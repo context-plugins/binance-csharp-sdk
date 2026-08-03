@@ -1,0 +1,20 @@
+using System.Text.Json.Serialization;
+using BinancePublicSpotApi.Core.Enum;
+
+namespace BinancePublicSpotApi.Models.Enums;
+
+[JsonConverter(typeof(StringEnumConverter<Type6>))]
+public sealed record Type6 : StringEnum<Type6>
+{
+    private Type6(string value) : base(value)
+    {
+    }
+
+    public static readonly Type6 Spot = new("SPOT");
+
+    public static readonly Type6 Margin = new("MARGIN");
+
+    public static readonly Type6 Futures = new("FUTURES");
+
+    public static Type6 FromValue(string value) => FromValueCore(value);
+}

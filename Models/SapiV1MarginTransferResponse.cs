@@ -1,0 +1,13 @@
+using System.Collections.Generic;
+using System.Text.Json.Serialization;
+
+namespace BinancePublicSpotApi.Models;
+
+public record SapiV1MarginTransferResponse
+{
+    [JsonPropertyName("rows")]
+    public required IReadOnlyList<Row2> Rows { get; init; }
+
+    [JsonPropertyName("total")]
+    public required int Total { get; init; }
+}

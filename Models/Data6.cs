@@ -1,0 +1,13 @@
+using System.Collections.Generic;
+using System.Text.Json.Serialization;
+
+namespace BinancePublicSpotApi.Models;
+
+public record Data6
+{
+    [JsonPropertyName("assets")]
+    public required IReadOnlyList<Assets2> Assets { get; init; }
+
+    [JsonPropertyName("position")]
+    public required IReadOnlyList<Position1> Position { get; init; }
+}

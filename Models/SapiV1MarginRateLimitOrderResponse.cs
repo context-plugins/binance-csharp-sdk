@@ -1,0 +1,21 @@
+using System.Text.Json.Serialization;
+
+namespace BinancePublicSpotApi.Models;
+
+public record SapiV1MarginRateLimitOrderResponse
+{
+    [JsonPropertyName("rateLimitType")]
+    public required string RateLimitType { get; init; }
+
+    [JsonPropertyName("interval")]
+    public required string Interval { get; init; }
+
+    [JsonPropertyName("intervalNum")]
+    public required long IntervalNum { get; init; }
+
+    [JsonPropertyName("limit")]
+    public required long Limit { get; init; }
+
+    [JsonPropertyName("count")]
+    public required long Count { get; init; }
+}
