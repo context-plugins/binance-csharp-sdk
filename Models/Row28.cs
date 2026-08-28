@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using BinancePublicSpotApi.Core.Models;
 
 namespace BinancePublicSpotApi.Models;
 
@@ -24,4 +25,7 @@ public record Row28
 
     [JsonPropertyName("adjustTime")]
     public required long AdjustTime { get; init; }
+
+    [JsonExtensionData]
+    public AdditionalProperties AdditionalProperties { get; init; } = [];
 }

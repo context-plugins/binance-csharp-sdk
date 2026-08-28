@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using BinancePublicSpotApi.Core.Models;
 
 namespace BinancePublicSpotApi.Models;
 
@@ -33,4 +34,7 @@ public record Detail6
 
     [JsonPropertyName("extraRewardAPR")]
     public required string ExtraRewardApr { get; init; }
+
+    [JsonExtensionData]
+    public AdditionalProperties AdditionalProperties { get; init; } = [];
 }

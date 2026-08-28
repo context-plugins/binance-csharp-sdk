@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using BinancePublicSpotApi.Core.Models;
 
 namespace BinancePublicSpotApi.Models;
 
@@ -18,4 +19,7 @@ public record TaxCommission
 
     [JsonPropertyName("seller")]
     public required string Seller { get; init; }
+
+    [JsonExtensionData]
+    public AdditionalProperties AdditionalProperties { get; init; } = [];
 }

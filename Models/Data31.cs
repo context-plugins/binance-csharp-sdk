@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using BinancePublicSpotApi.Core.Models;
 
 namespace BinancePublicSpotApi.Models;
 
@@ -12,4 +13,7 @@ public record Data31
 
     [JsonPropertyName("quoteAsset")]
     public required string QuoteAsset { get; init; }
+
+    [JsonExtensionData]
+    public AdditionalProperties AdditionalProperties { get; init; } = [];
 }

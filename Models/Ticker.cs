@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using BinancePublicSpotApi.Core.Models;
 
 namespace BinancePublicSpotApi.Models;
 
@@ -60,4 +61,7 @@ public record Ticker
 
     [JsonPropertyName("count")]
     public required long Count { get; init; }
+
+    [JsonExtensionData]
+    public AdditionalProperties AdditionalProperties { get; init; } = [];
 }

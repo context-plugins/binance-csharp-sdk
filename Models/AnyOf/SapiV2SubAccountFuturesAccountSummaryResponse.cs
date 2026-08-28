@@ -9,34 +9,34 @@ namespace BinancePublicSpotApi.Models.AnyOf;
 [JsonConverter(typeof(SapiV2SubAccountFuturesAccountSummaryResponseConverter))]
 public record SapiV2SubAccountFuturesAccountSummaryResponse
 {
-    private readonly Optional<SubAccountUsdtfuturesSummary> _subAccountUsdtfuturesSummaryValue;
+    private readonly Optional<SubAccountUsdtFuturesSummary> _subAccountUsdtFuturesSummaryValue;
 
-    private readonly Optional<SubAccountCoinfuturesSummary> _subAccountCoinfuturesSummaryValue;
+    private readonly Optional<SubAccountCoinFuturesSummary> _subAccountCoinFuturesSummaryValue;
 
-    private SapiV2SubAccountFuturesAccountSummaryResponse(Optional<SubAccountUsdtfuturesSummary> subAccountUsdtfuturesSummaryValue,
-        Optional<SubAccountCoinfuturesSummary> subAccountCoinfuturesSummaryValue)
+    private SapiV2SubAccountFuturesAccountSummaryResponse(Optional<SubAccountUsdtFuturesSummary> subAccountUsdtFuturesSummaryValue,
+        Optional<SubAccountCoinFuturesSummary> subAccountCoinFuturesSummaryValue)
     {
-        _subAccountUsdtfuturesSummaryValue = subAccountUsdtfuturesSummaryValue;
-        _subAccountCoinfuturesSummaryValue = subAccountCoinfuturesSummaryValue;
+        _subAccountUsdtFuturesSummaryValue = subAccountUsdtFuturesSummaryValue;
+        _subAccountCoinFuturesSummaryValue = subAccountCoinFuturesSummaryValue;
     }
 
-    public static SapiV2SubAccountFuturesAccountSummaryResponse SubAccountUsdtfuturesSummary(SubAccountUsdtfuturesSummary value) =>
-        new(Optional<SubAccountUsdtfuturesSummary>.Some(value), default);
+    public static SapiV2SubAccountFuturesAccountSummaryResponse SubAccountUsdtFuturesSummary(SubAccountUsdtFuturesSummary value) =>
+        new(Optional<SubAccountUsdtFuturesSummary>.Some(value), default);
 
-    public static SapiV2SubAccountFuturesAccountSummaryResponse SubAccountCoinfuturesSummary(SubAccountCoinfuturesSummary value) =>
-        new(default, Optional<SubAccountCoinfuturesSummary>.Some(value));
+    public static SapiV2SubAccountFuturesAccountSummaryResponse SubAccountCoinFuturesSummary(SubAccountCoinFuturesSummary value) =>
+        new(default, Optional<SubAccountCoinFuturesSummary>.Some(value));
 
-    public bool TryGetSubAccountUsdtfuturesSummary(out SubAccountUsdtfuturesSummary value) =>
-        _subAccountUsdtfuturesSummaryValue.TryGetValue(out value);
+    public bool TryGetSubAccountUsdtFuturesSummary(out SubAccountUsdtFuturesSummary value) =>
+        _subAccountUsdtFuturesSummaryValue.TryGetValue(out value);
 
-    public bool TryGetSubAccountCoinfuturesSummary(out SubAccountCoinfuturesSummary value) =>
-        _subAccountCoinfuturesSummaryValue.TryGetValue(out value);
+    public bool TryGetSubAccountCoinFuturesSummary(out SubAccountCoinFuturesSummary value) =>
+        _subAccountCoinFuturesSummaryValue.TryGetValue(out value);
 
-    public static implicit operator SapiV2SubAccountFuturesAccountSummaryResponse(SubAccountUsdtfuturesSummary value) =>
-        SubAccountUsdtfuturesSummary(value);
+    public static implicit operator SapiV2SubAccountFuturesAccountSummaryResponse(SubAccountUsdtFuturesSummary value) =>
+        SubAccountUsdtFuturesSummary(value);
 
-    public static implicit operator SapiV2SubAccountFuturesAccountSummaryResponse(SubAccountCoinfuturesSummary value) =>
-        SubAccountCoinfuturesSummary(value);
+    public static implicit operator SapiV2SubAccountFuturesAccountSummaryResponse(SubAccountCoinFuturesSummary value) =>
+        SubAccountCoinFuturesSummary(value);
 }
 
 file sealed class SapiV2SubAccountFuturesAccountSummaryResponseConverter : JsonConverter<SapiV2SubAccountFuturesAccountSummaryResponse>
@@ -47,32 +47,32 @@ file sealed class SapiV2SubAccountFuturesAccountSummaryResponseConverter : JsonC
     {
         using var doc = JsonDocument.ParseValue(ref reader);
         var root = doc.RootElement;
-        if (JsonSerializer.TryDeserialize<SubAccountUsdtfuturesSummary>(root,
+        if (JsonSerializer.TryDeserialize<SubAccountUsdtFuturesSummary>(root,
             options,
-            out var subAccountUsdtfuturesSummaryValue))
+            out var subAccountUsdtFuturesSummaryValue))
         {
-            return SapiV2SubAccountFuturesAccountSummaryResponse.SubAccountUsdtfuturesSummary(subAccountUsdtfuturesSummaryValue);
+            return SapiV2SubAccountFuturesAccountSummaryResponse.SubAccountUsdtFuturesSummary(subAccountUsdtFuturesSummaryValue);
         }
-        if (JsonSerializer.TryDeserialize<SubAccountCoinfuturesSummary>(root,
+        if (JsonSerializer.TryDeserialize<SubAccountCoinFuturesSummary>(root,
             options,
-            out var subAccountCoinfuturesSummaryValue))
+            out var subAccountCoinFuturesSummaryValue))
         {
-            return SapiV2SubAccountFuturesAccountSummaryResponse.SubAccountCoinfuturesSummary(subAccountCoinfuturesSummaryValue);
+            return SapiV2SubAccountFuturesAccountSummaryResponse.SubAccountCoinFuturesSummary(subAccountCoinFuturesSummaryValue);
         }
-        throw new JsonException($"JSON does not match SubAccountUsdtfuturesSummary or SubAccountCoinfuturesSummary schemas: {root.ToString()}");
+        throw new JsonException($"JSON does not match SubAccountUsdtFuturesSummary or SubAccountCoinFuturesSummary schemas: {root.ToString()}");
     }
 
     public override void Write(Utf8JsonWriter writer,
         SapiV2SubAccountFuturesAccountSummaryResponse value,
         JsonSerializerOptions options)
     {
-        if (value.TryGetSubAccountUsdtfuturesSummary(out var subAccountUsdtfuturesSummaryValue))
+        if (value.TryGetSubAccountUsdtFuturesSummary(out var subAccountUsdtFuturesSummaryValue))
         {
-            JsonSerializer.Serialize(writer, subAccountUsdtfuturesSummaryValue, options);
+            JsonSerializer.Serialize(writer, subAccountUsdtFuturesSummaryValue, options);
         }
-        else if (value.TryGetSubAccountCoinfuturesSummary(out var subAccountCoinfuturesSummaryValue))
+        else if (value.TryGetSubAccountCoinFuturesSummary(out var subAccountCoinFuturesSummaryValue))
         {
-            JsonSerializer.Serialize(writer, subAccountCoinfuturesSummaryValue, options);
+            JsonSerializer.Serialize(writer, subAccountCoinFuturesSummaryValue, options);
         }
         else
         {

@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using BinancePublicSpotApi.Core.Models;
 
 namespace BinancePublicSpotApi.Models;
 
@@ -24,4 +25,7 @@ public record ApiV3AccountCommissionResponse
     /// </summary>
     [JsonPropertyName("discount")]
     public required Discount Discount { get; init; }
+
+    [JsonExtensionData]
+    public AdditionalProperties AdditionalProperties { get; init; } = [];
 }

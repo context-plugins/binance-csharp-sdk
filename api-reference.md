@@ -39,7 +39,7 @@ catch (SdkException<ChangePlanStatusError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type ChangePlanStatusError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -113,7 +113,7 @@ catch (SdkException<GetListOfPlansError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetListOfPlansError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -190,7 +190,7 @@ catch (SdkException<GetTargetAssetRoiDataUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetTargetAssetRoiDataUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -267,7 +267,7 @@ catch (SdkException<GetTargetAssetListUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetTargetAssetListUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -351,7 +351,7 @@ catch (SdkException<IndexLinkedPlanRebalanceDetailsUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type IndexLinkedPlanRebalanceDetailsUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -432,7 +432,7 @@ catch (SdkException<IndexLinkedPlanRedemptionTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type IndexLinkedPlanRedemptionTradeError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -518,7 +518,7 @@ catch (SdkException<IndexLinkedPlanRedemptionHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type IndexLinkedPlanRedemptionHistoryUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -607,7 +607,7 @@ catch (SdkException<InvestmentPlanAdjustmentError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type InvestmentPlanAdjustmentError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -702,7 +702,7 @@ catch (SdkException<InvestmentPlanCreationUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type InvestmentPlanCreationUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -796,7 +796,7 @@ catch (SdkException<OneTimeTransactionTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type OneTimeTransactionTradeError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -876,7 +876,7 @@ catch (SdkException<QueryIndexDetailsUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryIndexDetailsUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -952,7 +952,7 @@ catch (SdkException<QueryIndexLinkedPlanPositionDetailsUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryIndexLinkedPlanPositionDetailsUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -1029,7 +1029,7 @@ catch (SdkException<QueryOneTimeTransactionStatusUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryOneTimeTransactionStatusUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -1103,7 +1103,7 @@ catch (SdkException<QueryAllSourceAssetAndTargetAssetUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryAllSourceAssetAndTargetAssetUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -1179,7 +1179,7 @@ catch (SdkException<QueryHoldingDetailsOfThePlanError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryHoldingDetailsOfThePlanError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -1259,7 +1259,7 @@ catch (SdkException<QuerySourceAssetListUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QuerySourceAssetListUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -1344,7 +1344,7 @@ catch (SdkException<QuerySubscriptionTransactionHistoryError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QuerySubscriptionTransactionHistoryError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -1425,7 +1425,7 @@ catch (SdkException<BlvtInfoMarketDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type BlvtInfoMarketDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -1493,7 +1493,7 @@ catch (SdkException<BlvtUserLimitInfoUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type BlvtUserLimitInfoUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -1573,7 +1573,7 @@ catch (SdkException<QuerySubscriptionRecordUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QuerySubscriptionRecordUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -1648,7 +1648,7 @@ catch (SdkException<RedeemBlvtUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type RedeemBlvtUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -1729,7 +1729,7 @@ catch (SdkException<RedemptionRecordUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type RedemptionRecordUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -1804,7 +1804,7 @@ catch (SdkException<SubscribeBlvtUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type SubscribeBlvtUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -1890,7 +1890,7 @@ catch (SdkException<GetC2CTradeHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetC2CTradeHistoryUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -1971,7 +1971,7 @@ catch (SdkException<AcceptQuoteTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type AcceptQuoteTradeError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -2044,7 +2044,7 @@ catch (SdkException<CancelLimitOrderUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type CancelLimitOrderUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -2122,7 +2122,7 @@ catch (SdkException<GetConvertTradeHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetConvertTradeHistoryUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -2197,7 +2197,7 @@ catch (SdkException<ListAllConvertPairsError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type ListAllConvertPairsError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -2268,7 +2268,7 @@ catch (SdkException<OrderStatusUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type OrderStatusUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -2356,7 +2356,7 @@ catch (SdkException<PlaceLimitOrderUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type PlaceLimitOrderUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -2436,7 +2436,7 @@ catch (SdkException<QueryLimitOpenOrdersUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryLimitOpenOrdersUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -2510,7 +2510,7 @@ catch (SdkException<QueryOrderQuantityPrecisionPerAssetUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryOrderQuantityPrecisionPerAssetUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -2590,7 +2590,7 @@ catch (SdkException<SendQuoteRequestUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type SendQuoteRequestUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -2672,7 +2672,7 @@ catch (SdkException<GetFuturesLeadTraderStatusTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetFuturesLeadTraderStatusTradeError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -2746,7 +2746,7 @@ catch (SdkException<GetFuturesLeadTradingSymbolWhitelistUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetFuturesLeadTradingSymbolWhitelistUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -2828,7 +2828,7 @@ catch (SdkException<AdjustLtvFlexibleLoanAdjustLtvTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type AdjustLtvFlexibleLoanAdjustLtvTradeError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -2913,7 +2913,7 @@ catch (SdkException<AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserDataError> e
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -2997,7 +2997,7 @@ catch (SdkException<BorrowFlexibleLoanBorrowTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type BorrowFlexibleLoanBorrowTradeError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -3082,7 +3082,7 @@ catch (SdkException<BorrowGetFlexibleLoanBorrowHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type BorrowGetFlexibleLoanBorrowHistoryUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -3165,7 +3165,7 @@ catch (SdkException<BorrowGetFlexibleLoanOngoingOrdersUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type BorrowGetFlexibleLoanOngoingOrdersUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -3246,7 +3246,7 @@ catch (SdkException<CheckCollateralRepayRateUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type CheckCollateralRepayRateUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -3324,7 +3324,7 @@ catch (SdkException<CryptoLoanAdjustLtvTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type CryptoLoanAdjustLtvTradeError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -3404,7 +3404,7 @@ catch (SdkException<CryptoLoanBorrowTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type CryptoLoanBorrowTradeError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -3486,7 +3486,7 @@ catch (SdkException<CryptoLoanCustomizeMarginCallTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type CryptoLoanCustomizeMarginCallTradeError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -3565,7 +3565,7 @@ catch (SdkException<CryptoLoanRepayTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type CryptoLoanRepayTradeError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -3645,7 +3645,7 @@ catch (SdkException<GetCollateralAssetsDataUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetCollateralAssetsDataUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -3729,7 +3729,7 @@ catch (SdkException<GetCryptoLoansBorrowHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetCryptoLoansBorrowHistoryUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -3816,7 +3816,7 @@ catch (SdkException<GetCryptoLoansIncomeHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetCryptoLoansIncomeHistoryUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -3896,7 +3896,7 @@ catch (SdkException<GetFlexibleLoanAssetsDataUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetFlexibleLoanAssetsDataUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -3972,7 +3972,7 @@ catch (SdkException<GetFlexibleLoanCollateralAssetsDataUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetFlexibleLoanCollateralAssetsDataUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -4055,7 +4055,7 @@ catch (SdkException<GetLoanLtvAdjustmentHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetLoanLtvAdjustmentHistoryUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -4139,7 +4139,7 @@ catch (SdkException<GetLoanOngoingOrdersUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetLoanOngoingOrdersUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -4226,7 +4226,7 @@ catch (SdkException<GetLoanRepaymentHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetLoanRepaymentHistoryUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -4309,7 +4309,7 @@ catch (SdkException<GetLoanableAssetsDataUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetLoanableAssetsDataUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -4390,7 +4390,7 @@ catch (SdkException<RepayFlexibleLoanRepayTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type RepayFlexibleLoanRepayTradeError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -4476,7 +4476,7 @@ catch (SdkException<RepayGetFlexibleLoanRepaymentHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type RepayGetFlexibleLoanRepaymentHistoryUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -4566,7 +4566,7 @@ catch (SdkException<ChangeAutoCompoundStatusUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type ChangeAutoCompoundStatusUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -4640,7 +4640,7 @@ catch (SdkException<CheckDualInvestmentAccountsUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type CheckDualInvestmentAccountsUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -4717,7 +4717,7 @@ catch (SdkException<GetDualInvestmentPositionsUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetDualInvestmentPositionsUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -4799,7 +4799,7 @@ catch (SdkException<GetDualInvestmentProductListUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetDualInvestmentProductListUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -4885,7 +4885,7 @@ catch (SdkException<SubscribeDualInvestmentProductsUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type SubscribeDualInvestmentProductsUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -4972,7 +4972,7 @@ catch (SdkException<FiatDepositWithdrawHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type FiatDepositWithdrawHistoryUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -5056,7 +5056,7 @@ catch (SdkException<FiatPaymentsHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type FiatPaymentsHistoryUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -5142,7 +5142,7 @@ catch (SdkException<GetFutureAccountTransactionHistoryListUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetFutureAccountTransactionHistoryListUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -5187,7 +5187,7 @@ catch (SdkException<GetFutureAccountTransactionHistoryListUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1FuturesHistDataLinkResponse&gt; GetFutureTickLevelOrderbookHistoricalDataDownloadLinkUserData(string symbol, DataType dataType, long timestamp, string signature, long? startTime, long? endTime, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1FuturesHistDataLinkResponse&gt; GetFutureTickLevelOrderbookHistoricalDataDownloadLinkUserData(string symbol, DataTypeEnum dataType, long timestamp, string signature, long? startTime, long? endTime, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
 
 <dl>
 <dd>
@@ -5223,7 +5223,7 @@ catch (SdkException<GetFutureTickLevelOrderbookHistoricalDataDownloadLinkUserDat
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetFutureTickLevelOrderbookHistoricalDataDownloadLinkUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -5239,7 +5239,7 @@ catch (SdkException<GetFutureTickLevelOrderbookHistoricalDataDownloadLinkUserDat
 | Name | Type | Description |
 | --- | --- | --- |
 | <code>symbol</code> | <code>string</code> | - |
-| <code>dataType</code> | <code>[DataType](Models/Enums/DataType.cs)</code> | - |
+| <code>dataType</code> | <code>[DataTypeEnum](Models/Enums/DataTypeEnum.cs)</code> | - |
 | <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
 | <code>signature</code> | <code>string</code> | Signature |
 | <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
@@ -5304,7 +5304,7 @@ catch (SdkException<NewFutureAccountTransferUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type NewFutureAccountTransferUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -5385,7 +5385,7 @@ catch (SdkException<CancelAlgoOrderTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type CancelAlgoOrderTradeError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -5459,7 +5459,7 @@ catch (SdkException<QueryCurrentAlgoOpenOrdersUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryCurrentAlgoOpenOrdersUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -5540,7 +5540,7 @@ catch (SdkException<QueryHistoricalAlgoOrdersUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryHistoricalAlgoOrdersUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -5624,7 +5624,7 @@ catch (SdkException<QuerySubOrdersUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QuerySubOrdersUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -5719,7 +5719,7 @@ catch (SdkException<TimeWeightedAveragePriceTwapNewOrderTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type TimeWeightedAveragePriceTwapNewOrderTradeError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -5816,7 +5816,7 @@ catch (SdkException<VolumeParticipationVpNewOrderTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type VolumeParticipationVpNewOrderTradeError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -5915,7 +5915,7 @@ catch (SdkException<BuyABinanceCodeTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type BuyABinanceCodeTradeError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -5997,7 +5997,7 @@ catch (SdkException<CreateABinanceCodeUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type CreateABinanceCodeUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -6073,7 +6073,7 @@ catch (SdkException<FetchRsaPublicKeyUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type FetchRsaPublicKeyUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -6145,7 +6145,7 @@ catch (SdkException<FetchTokenLimitUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type FetchTokenLimitUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -6224,7 +6224,7 @@ catch (SdkException<RedeemABinanceCodeUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type RedeemABinanceCodeUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -6300,7 +6300,7 @@ catch (SdkException<VerifyABinanceCodeUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type VerifyABinanceCodeUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -6377,7 +6377,7 @@ catch (SdkException<CloseAListenKeyUserStream3Error> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type CloseAListenKeyUserStream3Error
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -6503,7 +6503,7 @@ catch (SdkException<PingKeepAliveAListenKeyUserStreamApiError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type PingKeepAliveAListenKeyUserStreamApiError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -6580,7 +6580,7 @@ catch (SdkException<AdjustCrossMarginMaxLeverageUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type AdjustCrossMarginMaxLeverageUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -6652,7 +6652,7 @@ catch (SdkException<CrossMarginCollateralRatioMarketDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type CrossMarginCollateralRatioMarketDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -6710,7 +6710,7 @@ catch (SdkException<DisableIsolatedMarginAccountTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type DisableIsolatedMarginAccountTradeError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -6783,7 +6783,7 @@ catch (SdkException<EnableIsolatedMarginAccountTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type EnableIsolatedMarginAccountTradeError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -6854,7 +6854,7 @@ catch (SdkException<GetAllCrossMarginPairsMarketDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetAllCrossMarginPairsMarketDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -6922,7 +6922,7 @@ catch (SdkException<GetAllIsolatedMarginSymbolUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetAllIsolatedMarginSymbolUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -6993,7 +6993,7 @@ catch (SdkException<GetAllMarginAssetsMarketDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetAllMarginAssetsMarketDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -7061,7 +7061,7 @@ catch (SdkException<GetBnbBurnStatusUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetBnbBurnStatusUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -7144,7 +7144,7 @@ catch (SdkException<GetCrossMarginTransferHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetCrossMarginTransferHistoryUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -7230,7 +7230,7 @@ catch (SdkException<GetForceLiquidationRecordUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetForceLiquidationRecordUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -7323,7 +7323,7 @@ catch (SdkException<GetInterestHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetInterestHistoryUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -7402,7 +7402,7 @@ catch (SdkException<GetSmallLiabilityExchangeCoinListUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetSmallLiabilityExchangeCoinListUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -7480,7 +7480,7 @@ catch (SdkException<GetSmallLiabilityExchangeHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetSmallLiabilityExchangeHistoryUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -7556,7 +7556,7 @@ catch (SdkException<GetSummaryOfMarginAccountUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetSummaryOfMarginAccountUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -7633,7 +7633,7 @@ catch (SdkException<GetAFutureHourlyInterestRateUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetAFutureHourlyInterestRateUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -7716,7 +7716,7 @@ catch (SdkException<GetCrossOrIsolatedMarginCapitalFlowUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetCrossOrIsolatedMarginCapitalFlowUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -7797,7 +7797,7 @@ catch (SdkException<GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMar
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMarginMarketDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -7879,7 +7879,7 @@ catch (SdkException<MarginAccountCancelOcoTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type MarginAccountCancelOcoTradeError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -7965,7 +7965,7 @@ catch (SdkException<MarginAccountCancelOrderTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type MarginAccountCancelOrderTradeError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -8048,7 +8048,7 @@ catch (SdkException<MarginAccountCancelAllOpenOrdersOnASymbolTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type MarginAccountCancelAllOpenOrdersOnASymbolTradeError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -8149,7 +8149,7 @@ catch (SdkException<MarginAccountNewOcoTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type MarginAccountNewOcoTradeError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -8267,7 +8267,7 @@ catch (SdkException<MarginAccountNewOtoTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type MarginAccountNewOtoTradeError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -8398,7 +8398,7 @@ catch (SdkException<MarginAccountNewOtocoTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type MarginAccountNewOtocoTradeError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -8516,7 +8516,7 @@ catch (SdkException<MarginAccountNewOrderTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type MarginAccountNewOrderTradeError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -8609,7 +8609,7 @@ catch (SdkException<MarginInterestRateHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type MarginInterestRateHistoryUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -8692,7 +8692,7 @@ catch (SdkException<MarginAccountBorrowRepayMarginError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type MarginAccountBorrowRepayMarginError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -8769,7 +8769,7 @@ catch (SdkException<MarginManualLiquidationMarginError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type MarginManualLiquidationMarginError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -8840,7 +8840,7 @@ catch (SdkException<QueryCrossMarginAccountDetailsUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryCrossMarginAccountDetailsUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -8916,7 +8916,7 @@ catch (SdkException<QueryCrossMarginFeeDataUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryCrossMarginFeeDataUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -8994,7 +8994,7 @@ catch (SdkException<QueryCurrentMarginOrderCountUsageTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryCurrentMarginOrderCountUsageTradeError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -9068,7 +9068,7 @@ catch (SdkException<QueryEnabledIsolatedMarginAccountLimitUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryEnabledIsolatedMarginAccountLimitUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -9144,7 +9144,7 @@ catch (SdkException<QueryIsolatedMarginAccountInfoUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryIsolatedMarginAccountInfoUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -9221,7 +9221,7 @@ catch (SdkException<QueryIsolatedMarginFeeDataUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryIsolatedMarginFeeDataUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -9299,7 +9299,7 @@ catch (SdkException<QueryIsolatedMarginTierDataUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryIsolatedMarginTierDataUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -9373,7 +9373,7 @@ catch (SdkException<QueryLiabilityCoinLeverageBracketInCrossMarginProModeMarketD
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryLiabilityCoinLeverageBracketInCrossMarginProModeMarketDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -9442,7 +9442,7 @@ catch (SdkException<QueryMarginAccountSAllOrdersUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryMarginAccountSAllOrdersUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -9528,7 +9528,7 @@ catch (SdkException<QueryMarginAccountSOcoUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryMarginAccountSOcoUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -9606,7 +9606,7 @@ catch (SdkException<QueryMarginAccountSOpenOcoUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryMarginAccountSOpenOcoUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -9686,7 +9686,7 @@ catch (SdkException<QueryMarginAccountSOpenOrdersUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryMarginAccountSOpenOrdersUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -9767,7 +9767,7 @@ catch (SdkException<QueryMarginAccountSOrderUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryMarginAccountSOrderUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -9851,7 +9851,7 @@ catch (SdkException<QueryMarginAccountSTradeListUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryMarginAccountSTradeListUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -9937,7 +9937,7 @@ catch (SdkException<QueryMarginAccountSAllOcoUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryMarginAccountSAllOcoUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -10015,7 +10015,7 @@ catch (SdkException<QueryMarginAvailableInventoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryMarginAvailableInventoryUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -10085,7 +10085,7 @@ catch (SdkException<QueryMarginPriceIndexMarketDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryMarginPriceIndexMarketDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -10156,7 +10156,7 @@ catch (SdkException<QueryMaxBorrowUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryMaxBorrowUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -10234,7 +10234,7 @@ catch (SdkException<QueryMaxTransferOutAmountUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryMaxTransferOutAmountUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -10323,7 +10323,7 @@ catch (SdkException<QueryBorrowRepayRecordsInMarginAccountUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryBorrowRepayRecordsInMarginAccountUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -10371,7 +10371,7 @@ catch (SdkException<QueryBorrowRepayRecordsInMarginAccountUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;BnbBurnStatus&gt; ToggleBnbBurnOnSpotTradeAndMarginInterestUserData(long timestamp, string signature, SpotBnbburn? spotBnbburn, InterestBnbburn? interestBnbburn, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;BnbBurnStatus&gt; ToggleBnbBurnOnSpotTradeAndMarginInterestUserData(long timestamp, string signature, SpotBnbBurn? spotBnbBurn, InterestBnbBurn? interestBnbBurn, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
 
 <dl>
 <dd>
@@ -10398,8 +10398,8 @@ try
 {
     var response = await client.Margin.ToggleBnbBurnOnSpotTradeAndMarginInterestUserData(timestamp,
         signature,
-        spotBnbburn,
-        interestBnbburn,
+        spotBnbBurn,
+        interestBnbBurn,
         recvWindow);
     // TODO: Handle 'response' of type BnbBurnStatus
 }
@@ -10407,7 +10407,7 @@ catch (SdkException<ToggleBnbBurnOnSpotTradeAndMarginInterestUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type ToggleBnbBurnOnSpotTradeAndMarginInterestUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -10424,8 +10424,8 @@ catch (SdkException<ToggleBnbBurnOnSpotTradeAndMarginInterestUserDataError> ex)
 | --- | --- | --- |
 | <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
 | <code>signature</code> | <code>string</code> | Signature |
-| <code>spotBnbburn</code> | <code>[SpotBnbburn?](Models/Enums/SpotBnbburn.cs)</code> | Determines whether to use BNB to pay for trading fees on SPOT |
-| <code>interestBnbburn</code> | <code>[InterestBnbburn?](Models/Enums/InterestBnbburn.cs)</code> | Determines whether to use BNB to pay for margin loan's interest |
+| <code>spotBnbBurn</code> | <code>[SpotBnbBurn?](Models/Enums/SpotBnbBurn.cs)</code> | Determines whether to use BNB to pay for trading fees on SPOT |
+| <code>interestBnbBurn</code> | <code>[InterestBnbBurn?](Models/Enums/InterestBnbBurn.cs)</code> | Determines whether to use BNB to pay for margin loan's interest |
 | <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
 
 </dd>
@@ -10485,7 +10485,7 @@ catch (SdkException<CloseAListenKeyUserStream2Error> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type CloseAListenKeyUserStream2Error
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -10611,7 +10611,7 @@ catch (SdkException<PingKeepAliveAListenKeyUserStream2Error> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type PingKeepAliveAListenKeyUserStream2Error
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -10653,7 +10653,7 @@ catch (SdkException<PingKeepAliveAListenKeyUserStream2Error> ex)
 > Source: [Market](Api/Market.cs)
 
 <details>
-<summary><code>Task&lt;ApiV3Ticker24HrResponse&gt; HrTickerPriceChangeStatistics24(string? symbol, string? symbols, TypeModel? type, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;ApiV3Ticker24HrResponse&gt; HrTickerPriceChangeStatistics24(string? symbol, string? symbols, TypeEnum? type, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
 
 <dl>
 <dd>
@@ -10689,7 +10689,7 @@ catch (SdkException<HrTickerPriceChangeStatistics24Error> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type HrTickerPriceChangeStatistics24Error
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -10706,7 +10706,7 @@ catch (SdkException<HrTickerPriceChangeStatistics24Error> ex)
 | --- | --- | --- |
 | <code>symbol</code> | <code>string?</code> | Trading symbol, e.g. BNBUSDT |
 | <code>symbols</code> | <code>string?</code> | - |
-| <code>type</code> | <code>[TypeModel?](Models/Enums/TypeModel.cs)</code> | Supported values: FULL or MINI.<br>If none provided, the default is FULL |
+| <code>type</code> | <code>[TypeEnum?](Models/Enums/TypeEnum.cs)</code> | Supported values: FULL or MINI.<br>If none provided, the default is FULL |
 
 </dd>
 </dl>
@@ -10826,7 +10826,7 @@ catch (SdkException<CompressedAggregateTradesListError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type CompressedAggregateTradesListError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -10900,7 +10900,7 @@ catch (SdkException<CurrentAveragePriceError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type CurrentAveragePriceError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -10981,7 +10981,7 @@ catch (SdkException<ExchangeInformationError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type ExchangeInformationError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -11056,7 +11056,7 @@ catch (SdkException<KlineCandlestickDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type KlineCandlestickDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -11203,7 +11203,7 @@ catch (SdkException<OrderBookError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type OrderBookError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -11274,7 +11274,7 @@ catch (SdkException<RecentTradesListError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type RecentTradesListError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -11351,7 +11351,7 @@ catch (SdkException<RollingWindowPriceChangeStatisticsError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type RollingWindowPriceChangeStatisticsError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -11428,7 +11428,7 @@ catch (SdkException<SymbolOrderBookTickerError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type SymbolOrderBookTickerError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -11503,7 +11503,7 @@ catch (SdkException<SymbolPriceTickerError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type SymbolPriceTickerError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -11597,7 +11597,7 @@ catch (SdkException<RawError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;ApiV3TickerTradingDayResponse&gt; TradingDayTicker(string? symbol, string? symbols, string? timeZone, TypeModel? type, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;ApiV3TickerTradingDayResponse&gt; TradingDayTicker(string? symbol, string? symbols, string? timeZone, TypeEnum? type, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
 
 <dl>
 <dd>
@@ -11636,7 +11636,7 @@ catch (SdkException<TradingDayTickerError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type TradingDayTickerError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -11654,7 +11654,7 @@ catch (SdkException<TradingDayTickerError> ex)
 | <code>symbol</code> | <code>string?</code> | Trading symbol, e.g. BNBUSDT |
 | <code>symbols</code> | <code>string?</code> | - |
 | <code>timeZone</code> | <code>string?</code> | Default: 0 (UTC) |
-| <code>type</code> | <code>[TypeModel?](Models/Enums/TypeModel.cs)</code> | Supported values: FULL or MINI.<br>If none provided, the default is FULL |
+| <code>type</code> | <code>[TypeEnum?](Models/Enums/TypeEnum.cs)</code> | Supported values: FULL or MINI.<br>If none provided, the default is FULL |
 
 </dd>
 </dl>
@@ -11677,7 +11677,7 @@ catch (SdkException<TradingDayTickerError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;IReadOnlyList&lt;ApiV3UiKlinesResponse&gt;&gt;&gt; Uiklines(string symbol, Interval interval, long? startTime, long? endTime, string? timeZone, int? limit, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;IReadOnlyList&lt;ApiV3UiKlinesResponse&gt;&gt;&gt; UiKlines(string symbol, Interval interval, long? startTime, long? endTime, string? timeZone, int? limit, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
 
 <dl>
 <dd>
@@ -11704,14 +11704,14 @@ Weight(IP): 2
 ```csharp
 try
 {
-    var response = await client.Market.Uiklines(symbol, interval, startTime, endTime, timeZone, limit);
+    var response = await client.Market.UiKlines(symbol, interval, startTime, endTime, timeZone, limit);
     // TODO: Handle 'response' of type IReadOnlyList<IReadOnlyList<ApiV3UiKlinesResponse>>
 }
-catch (SdkException<UiklinesError> ex)
+catch (SdkException<UiKlinesError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type UiklinesError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -11743,7 +11743,7 @@ catch (SdkException<UiklinesError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;IReadOnlyList&lt;[ApiV3UiKlinesResponse](Models/AnyOf/ApiV3UiKlinesResponse.cs)&gt;&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[UiklinesError](Errors/UiklinesError.cs)&gt;</code>
+**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[UiKlinesError](Errors/UiKlinesError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -11788,7 +11788,7 @@ catch (SdkException<AccountListUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type AccountListUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -11860,7 +11860,7 @@ catch (SdkException<AcquiringAlgorithmMarketDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type AcquiringAlgorithmMarketDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -11916,7 +11916,7 @@ catch (SdkException<AcquiringCoinNameMarketDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type AcquiringCoinNameMarketDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -11976,7 +11976,7 @@ catch (SdkException<CancelHashrateResaleConfigurationUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type CancelHashrateResaleConfigurationUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -12057,7 +12057,7 @@ catch (SdkException<EarningsListUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type EarningsListUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -12143,7 +12143,7 @@ catch (SdkException<ExtraBonusListUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type ExtraBonusListUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -12226,7 +12226,7 @@ catch (SdkException<HashrateResaleDetailsUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type HashrateResaleDetailsUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -12304,7 +12304,7 @@ catch (SdkException<HashrateResaleListUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type HashrateResaleListUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -12384,7 +12384,7 @@ catch (SdkException<HashrateResaleRequestUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type HashrateResaleRequestUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -12467,7 +12467,7 @@ catch (SdkException<MiningAccountEarningUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type MiningAccountEarningUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -12547,7 +12547,7 @@ catch (SdkException<RequestForDetailMinerListUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type RequestForDetailMinerListUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -12628,7 +12628,7 @@ catch (SdkException<RequestForMinerListUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type RequestForMinerListUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -12704,7 +12704,7 @@ catch (SdkException<StatisticListUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type StatisticListUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -12780,7 +12780,7 @@ catch (SdkException<GetNftAssetUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetNftAssetUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -12861,7 +12861,7 @@ catch (SdkException<GetNftDepositHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetNftDepositHistoryUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -12945,7 +12945,7 @@ catch (SdkException<GetNftTransactionHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetNftTransactionHistoryUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -13029,7 +13029,7 @@ catch (SdkException<GetNftWithdrawHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetNftWithdrawHistoryUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -13116,7 +13116,7 @@ catch (SdkException<GetPayTradeHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetPayTradeHistoryUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -13199,7 +13199,7 @@ catch (SdkException<BnbTransferUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type BnbTransferUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -13276,7 +13276,7 @@ catch (SdkException<ChangeAutoRepayFuturesStatusUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type ChangeAutoRepayFuturesStatusUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -13349,7 +13349,7 @@ catch (SdkException<FundAutoCollectionUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type FundAutoCollectionUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -13421,7 +13421,7 @@ catch (SdkException<FundCollectionByAssetUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type FundCollectionByAssetUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -13494,7 +13494,7 @@ catch (SdkException<GetAutoRepayFuturesStatusUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetAutoRepayFuturesStatusUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -13564,7 +13564,7 @@ catch (SdkException<GetPortfolioMarginAssetLeverageUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetPortfolioMarginAssetLeverageUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -13622,7 +13622,7 @@ catch (SdkException<PortfolioMarginAccountUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type PortfolioMarginAccountUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -13696,7 +13696,7 @@ catch (SdkException<PortfolioMarginBankruptcyLoanAmountUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type PortfolioMarginBankruptcyLoanAmountUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -13771,7 +13771,7 @@ catch (SdkException<PortfolioMarginBankruptcyLoanRepayUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type PortfolioMarginBankruptcyLoanRepayUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -13844,7 +13844,7 @@ catch (SdkException<PortfolioMarginCollateralRateMarketDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type PortfolioMarginCollateralRateMarketDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -13904,7 +13904,7 @@ catch (SdkException<PortfolioMarginProTieredCollateralRateUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type PortfolioMarginProTieredCollateralRateUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -13982,7 +13982,7 @@ catch (SdkException<QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUse
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -14060,7 +14060,7 @@ catch (SdkException<QueryPortfolioMarginAssetIndexPriceMarketDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryPortfolioMarginAssetIndexPriceMarketDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -14130,7 +14130,7 @@ catch (SdkException<RepayFuturesNegativeBalanceUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type RepayFuturesNegativeBalanceUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -14213,7 +14213,7 @@ catch (SdkException<GetSpotRebateHistoryRecordsUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetSpotRebateHistoryRecordsUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -14297,7 +14297,7 @@ catch (SdkException<ChangeFixedActivityPositionToDailyPositionUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type ChangeFixedActivityPositionToDailyPositionUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -14379,7 +14379,7 @@ catch (SdkException<GetFixedActivityProjectListUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetFixedActivityProjectListUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -14461,7 +14461,7 @@ catch (SdkException<GetFixedActivityProjectPositionUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetFixedActivityProjectPositionUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -14538,7 +14538,7 @@ catch (SdkException<PurchaseFixedActivityProjectUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type PurchaseFixedActivityProjectUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -14621,7 +14621,7 @@ catch (SdkException<GetCollateralRecordUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetCollateralRecordUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -14699,7 +14699,7 @@ catch (SdkException<GetFlexiblePersonalLeftQuotaUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetFlexiblePersonalLeftQuotaUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -14776,7 +14776,7 @@ catch (SdkException<GetFlexibleProductPositionUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetFlexibleProductPositionUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -14856,7 +14856,7 @@ catch (SdkException<GetFlexibleRedemptionRecordUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetFlexibleRedemptionRecordUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -14934,7 +14934,7 @@ catch (SdkException<GetFlexibleRewardsHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetFlexibleRewardsHistoryUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -15010,7 +15010,7 @@ catch (SdkException<GetFlexibleSubscriptionPreviewUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetFlexibleSubscriptionPreviewUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -15091,7 +15091,7 @@ catch (SdkException<GetFlexibleSubscriptionRecordUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetFlexibleSubscriptionRecordUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -15171,7 +15171,7 @@ catch (SdkException<GetLockedPersonalLeftQuotaUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetLockedPersonalLeftQuotaUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -15249,7 +15249,7 @@ catch (SdkException<GetLockedProductPositionUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetLockedProductPositionUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -15333,7 +15333,7 @@ catch (SdkException<GetLockedRedemptionRecordUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetLockedRedemptionRecordUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -15417,7 +15417,7 @@ catch (SdkException<GetLockedRewardsHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetLockedRewardsHistoryUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -15497,7 +15497,7 @@ catch (SdkException<GetLockedSubscriptionPreviewUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetLockedSubscriptionPreviewUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -15578,7 +15578,7 @@ catch (SdkException<GetLockedSubscriptionRecordUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetLockedSubscriptionRecordUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -15661,7 +15661,7 @@ catch (SdkException<GetRateHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetRateHistoryUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -15743,7 +15743,7 @@ catch (SdkException<GetSimpleEarnFlexibleProductListUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetSimpleEarnFlexibleProductListUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -15821,7 +15821,7 @@ catch (SdkException<GetSimpleEarnLockedProductListUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetSimpleEarnLockedProductListUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -15902,7 +15902,7 @@ catch (SdkException<RedeemFlexibleProductTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type RedeemFlexibleProductTradeError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -15978,7 +15978,7 @@ catch (SdkException<RedeemLockedProductTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type RedeemLockedProductTradeError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -16053,7 +16053,7 @@ catch (SdkException<SetFlexibleAutoSubscribeUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type SetFlexibleAutoSubscribeUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -16129,7 +16129,7 @@ catch (SdkException<SetLockedAutoSubscribeUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type SetLockedAutoSubscribeUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -16207,7 +16207,7 @@ catch (SdkException<SetLockedProductRedeemOptionUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type SetLockedProductRedeemOptionUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -16279,7 +16279,7 @@ catch (SdkException<SimpleAccountUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type SimpleAccountUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -16357,7 +16357,7 @@ catch (SdkException<SubscribeFlexibleProductTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type SubscribeFlexibleProductTradeError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -16440,7 +16440,7 @@ catch (SdkException<SubscribeLockedProductTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type SubscribeLockedProductTradeError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -16521,7 +16521,7 @@ catch (SdkException<CancelAlgoOrderError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type CancelAlgoOrderError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -16594,7 +16594,7 @@ catch (SdkException<QueryCurrentAlgoOpenOrdersError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryCurrentAlgoOpenOrdersError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -16674,7 +16674,7 @@ catch (SdkException<QueryHistoricalAlgoOrdersError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryHistoricalAlgoOrdersError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -16752,7 +16752,7 @@ catch (SdkException<QuerySubOrdersError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QuerySubOrdersError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -16835,7 +16835,7 @@ catch (SdkException<TimeWeightedAveragePriceTwapNewOrderError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type TimeWeightedAveragePriceTwapNewOrderError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -16915,7 +16915,7 @@ catch (SdkException<EthStakingAccountV2UserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type EthStakingAccountV2UserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -16996,7 +16996,7 @@ catch (SdkException<GetBethRewardsDistributionHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetBethRewardsDistributionHistoryUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -17081,7 +17081,7 @@ catch (SdkException<GetEthRedemptionHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetEthRedemptionHistoryUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -17166,7 +17166,7 @@ catch (SdkException<GetEthStakingHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetEthStakingHistoryUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -17251,7 +17251,7 @@ catch (SdkException<GetWbethRateHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetWbethRateHistoryUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -17336,7 +17336,7 @@ catch (SdkException<GetWbethRewardsHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetWbethRewardsHistoryUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -17421,7 +17421,7 @@ catch (SdkException<GetWbethUnwrapHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetWbethUnwrapHistoryUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -17506,7 +17506,7 @@ catch (SdkException<GetWbethWrapHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetWbethWrapHistoryUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -17580,7 +17580,7 @@ catch (SdkException<GetCurrentEthStakingQuotaUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetCurrentEthStakingQuotaUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -17654,7 +17654,7 @@ catch (SdkException<RedeemEthTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type RedeemEthTradeError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -17730,7 +17730,7 @@ catch (SdkException<SubscribeEthStakingV2TradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type SubscribeEthStakingV2TradeError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -17803,7 +17803,7 @@ catch (SdkException<WrapBethTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type WrapBethTradeError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -17880,7 +17880,7 @@ catch (SdkException<CloseAListenKeyUserStreamError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type CloseAListenKeyUserStreamError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -18006,7 +18006,7 @@ catch (SdkException<PingKeepAliveAListenKeyUserStreamError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type PingKeepAliveAListenKeyUserStreamError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -18084,7 +18084,7 @@ catch (SdkException<CreateAVirtualSubAccountForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type CreateAVirtualSubAccountForMasterAccountError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -18161,7 +18161,7 @@ catch (SdkException<DeleteIpListForASubAccountApiKeyForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type DeleteIpListForASubAccountApiKeyForMasterAccountError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -18240,7 +18240,7 @@ catch (SdkException<DepositAssetsIntoTheManagedSubAccountForInvestorMasterAccoun
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type DepositAssetsIntoTheManagedSubAccountForInvestorMasterAccountError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -18316,7 +18316,7 @@ catch (SdkException<DetailOnSubAccountSFuturesAccountForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type DetailOnSubAccountSFuturesAccountForMasterAccountError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -18391,7 +18391,7 @@ catch (SdkException<DetailOnSubAccountSFuturesAccountV2ForMasterAccountError> ex
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type DetailOnSubAccountSFuturesAccountV2ForMasterAccountError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -18466,7 +18466,7 @@ catch (SdkException<DetailOnSubAccountSMarginAccountForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type DetailOnSubAccountSMarginAccountForMasterAccountError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -18540,7 +18540,7 @@ catch (SdkException<EnableFuturesForSubAccountForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type EnableFuturesForSubAccountForMasterAccountError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -18615,7 +18615,7 @@ catch (SdkException<EnableLeverageTokenForSubAccountForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type EnableLeverageTokenForSubAccountForMasterAccountError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -18690,7 +18690,7 @@ catch (SdkException<EnableMarginForSubAccountForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type EnableMarginForSubAccountForMasterAccountError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -18766,7 +18766,7 @@ catch (SdkException<EnableOptionsForSubAccountForMasterAccountUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type EnableOptionsForSubAccountForMasterAccountUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -18840,7 +18840,7 @@ catch (SdkException<FuturesPositionRiskOfSubAccountForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type FuturesPositionRiskOfSubAccountForMasterAccountError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -18915,7 +18915,7 @@ catch (SdkException<FuturesPositionRiskOfSubAccountV2ForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type FuturesPositionRiskOfSubAccountV2ForMasterAccountError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -18991,7 +18991,7 @@ catch (SdkException<GetIpRestrictionForASubAccountApiKeyForMasterAccountError> e
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetIpRestrictionForASubAccountApiKeyForMasterAccountError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -19070,7 +19070,7 @@ catch (SdkException<GetManagedSubAccountDepositAddressForInvestorMasterAccountEr
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetManagedSubAccountDepositAddressForInvestorMasterAccountError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -19146,7 +19146,7 @@ catch (SdkException<ManagedSubAccountAssetDetailsForInvestorMasterAccountError> 
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type ManagedSubAccountAssetDetailsForInvestorMasterAccountError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -19228,7 +19228,7 @@ catch (SdkException<ManagedSubAccountSnapshotForInvestorMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type ManagedSubAccountSnapshotForInvestorMasterAccountError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -19309,7 +19309,7 @@ catch (SdkException<MarginTransferForSubAccountForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type MarginTransferForSubAccountForMasterAccountError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -19394,7 +19394,7 @@ catch (SdkException<QueryManagedSubAccountTransferLogForInvestorMasterAccountErr
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryManagedSubAccountTransferLogForInvestorMasterAccountError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -19482,7 +19482,7 @@ catch (SdkException<QueryManagedSubAccountTransferLogForTradingTeamMasterAccount
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryManagedSubAccountTransferLogForTradingTeamMasterAccountError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -19569,7 +19569,7 @@ catch (SdkException<QueryManagedSubAccountTransferLogForTradingTeamSubAccountUse
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryManagedSubAccountTransferLogForTradingTeamSubAccountUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -19648,7 +19648,7 @@ catch (SdkException<QueryManagedSubAccountFuturesAssetDetailsForInvestorMasterAc
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryManagedSubAccountFuturesAssetDetailsForInvestorMasterAccountError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -19726,7 +19726,7 @@ catch (SdkException<QueryManagedSubAccountListForInvestorError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryManagedSubAccountListForInvestorError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -19802,7 +19802,7 @@ catch (SdkException<QueryManagedSubAccountMarginAssetDetailsForInvestorMasterAcc
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryManagedSubAccountMarginAssetDetailsForInvestorMasterAccountError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -19878,7 +19878,7 @@ catch (SdkException<QuerySubAccountAssetsForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QuerySubAccountAssetsForMasterAccountError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -19955,7 +19955,7 @@ catch (SdkException<QuerySubAccountListForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QuerySubAccountListForMasterAccountError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -20034,7 +20034,7 @@ catch (SdkException<QuerySubAccountTransactionStatisticsForMasterAccountError> e
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QuerySubAccountTransactionStatisticsForMasterAccountError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -20107,7 +20107,7 @@ catch (SdkException<SubAccountAssetsForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type SubAccountAssetsForMasterAccountError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -20189,7 +20189,7 @@ catch (SdkException<SubAccountDepositHistoryForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type SubAccountDepositHistoryForMasterAccountError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -20275,7 +20275,7 @@ catch (SdkException<SubAccountFuturesAssetTransferForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type SubAccountFuturesAssetTransferForMasterAccountError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -20358,7 +20358,7 @@ catch (SdkException<SubAccountFuturesAssetTransferHistoryForMasterAccountError> 
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type SubAccountFuturesAssetTransferHistoryForMasterAccountError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -20445,7 +20445,7 @@ catch (SdkException<SubAccountSpotAssetTransferHistoryForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type SubAccountSpotAssetTransferHistoryForMasterAccountError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -20528,7 +20528,7 @@ catch (SdkException<SubAccountSpotAssetsSummaryForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type SubAccountSpotAssetsSummaryForMasterAccountError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -20608,7 +20608,7 @@ catch (SdkException<SubAccountSpotAssetsSummaryForMasterAccount2Error> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type SubAccountSpotAssetsSummaryForMasterAccount2Error
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -20691,7 +20691,7 @@ catch (SdkException<SubAccountTransferHistoryForSubAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type SubAccountTransferHistoryForSubAccountError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -20771,7 +20771,7 @@ catch (SdkException<SubAccountSStatusOnMarginFuturesForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type SubAccountSStatusOnMarginFuturesForMasterAccountError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -20844,7 +20844,7 @@ catch (SdkException<SummaryOfSubAccountSFuturesAccountForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type SummaryOfSubAccountSFuturesAccountForMasterAccountError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -20919,7 +20919,7 @@ catch (SdkException<SummaryOfSubAccountSFuturesAccountV2ForMasterAccountError> e
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type SummaryOfSubAccountSFuturesAccountV2ForMasterAccountError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -20994,7 +20994,7 @@ catch (SdkException<SummaryOfSubAccountSMarginAccountForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type SummaryOfSubAccountSMarginAccountForMasterAccountError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -21070,7 +21070,7 @@ catch (SdkException<TransferForSubAccountForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type TransferForSubAccountForMasterAccountError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -21148,7 +21148,7 @@ catch (SdkException<TransferToMasterForSubAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type TransferToMasterForSubAccountError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -21225,7 +21225,7 @@ catch (SdkException<TransferToSubAccountOfSameMasterForSubAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type TransferToSubAccountOfSameMasterForSubAccountError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -21316,7 +21316,7 @@ catch (SdkException<UniversalTransferForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type UniversalTransferForMasterAccountError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -21408,7 +21408,7 @@ catch (SdkException<UniversalTransferHistoryForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type UniversalTransferHistoryForMasterAccountError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -21493,7 +21493,7 @@ catch (SdkException<UpdateIpRestrictionForSubAccountApiKeyForMasterAccountError>
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type UpdateIpRestrictionForSubAccountApiKeyForMasterAccountError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -21573,7 +21573,7 @@ catch (SdkException<WithdrawlAssetsFromTheManagedSubAccountForInvestorMasterAcco
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type WithdrawlAssetsFromTheManagedSubAccountForInvestorMasterAccountError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -21653,7 +21653,7 @@ catch (SdkException<AccountInformationUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type AccountInformationUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -21752,7 +21752,7 @@ catch (SdkException<AccountTradeListUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type AccountTradeListUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -21841,7 +21841,7 @@ catch (SdkException<AllOrdersUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type AllOrdersUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -21926,7 +21926,7 @@ catch (SdkException<CancelOcoTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type CancelOcoTradeError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -22011,7 +22011,7 @@ catch (SdkException<CancelOrderTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type CancelOrderTradeError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -22089,7 +22089,7 @@ catch (SdkException<CancelAllOpenOrdersOnASymbolTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type CancelAllOpenOrdersOnASymbolTradeError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -22188,7 +22188,7 @@ catch (SdkException<CancelAnExistingOrderAndSendANewOrderTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type CancelAnExistingOrderAndSendANewOrderTradeError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -22282,7 +22282,7 @@ catch (SdkException<CurrentOpenOrdersUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type CurrentOpenOrdersUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -22387,7 +22387,7 @@ catch (SdkException<NewOrderTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type NewOrderTradeError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -22505,7 +22505,7 @@ catch (SdkException<NewOrderListOtoTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type NewOrderListOtoTradeError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -22641,7 +22641,7 @@ catch (SdkException<NewOrderListOtocoTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type NewOrderListOtocoTradeError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -22779,7 +22779,7 @@ catch (SdkException<NewOrderListOcoTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type NewOrderListOcoTradeError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -22887,7 +22887,7 @@ catch (SdkException<NewOrderUsingSorTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type NewOrderUsingSorTradeError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -22991,7 +22991,7 @@ catch (SdkException<QueryAllocationsUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryAllocationsUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -23069,7 +23069,7 @@ catch (SdkException<QueryCommissionRatesUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryCommissionRatesUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -23141,7 +23141,7 @@ catch (SdkException<QueryCurrentOrderCountUsageTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryCurrentOrderCountUsageTradeError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -23217,7 +23217,7 @@ catch (SdkException<QueryOcoUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryOcoUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -23289,7 +23289,7 @@ catch (SdkException<QueryOpenOcoUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryOpenOcoUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -23369,7 +23369,7 @@ catch (SdkException<QueryOrderUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryOrderUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -23465,7 +23465,7 @@ catch (SdkException<QueryPreventedMatchesError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryPreventedMatchesError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -23548,7 +23548,7 @@ catch (SdkException<QueryAllOcoUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryAllOcoUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -23644,7 +23644,7 @@ catch (SdkException<TestNewOrderTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type TestNewOrderTradeError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -23749,7 +23749,7 @@ catch (SdkException<TestNewOrderUsingSorTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type TestNewOrderUsingSorTradeError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -23842,7 +23842,7 @@ catch (SdkException<CheckLockedValueOfVipCollateralAccountUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type CheckLockedValueOfVipCollateralAccountUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -23916,7 +23916,7 @@ catch (SdkException<GetBorrowInterestRateUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetBorrowInterestRateUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -23992,7 +23992,7 @@ catch (SdkException<GetCollateralAssetDataUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetCollateralAssetDataUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -24065,7 +24065,7 @@ catch (SdkException<GetLoanableAssetsDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetLoanableAssetsDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -24147,7 +24147,7 @@ catch (SdkException<GetVipLoanOngoingOrdersUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetVipLoanOngoingOrdersUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -24233,7 +24233,7 @@ catch (SdkException<GetVipLoanRepaymentHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetVipLoanRepaymentHistoryUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -24315,7 +24315,7 @@ catch (SdkException<QueryApplicationStatusUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryApplicationStatusUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -24398,7 +24398,7 @@ catch (SdkException<VipLoanBorrowError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type VipLoanBorrowError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -24477,7 +24477,7 @@ catch (SdkException<VipLoanRenewError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type VipLoanRenewError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -24551,7 +24551,7 @@ catch (SdkException<VipLoanRepayTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type VipLoanRepayTradeError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -24629,7 +24629,7 @@ catch (SdkException<AccountApiTradingStatusUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type AccountApiTradingStatusUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -24701,7 +24701,7 @@ catch (SdkException<AccountStatusUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type AccountStatusUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -24773,7 +24773,7 @@ catch (SdkException<AccountInfoUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type AccountInfoUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -24845,7 +24845,7 @@ catch (SdkException<AllCoinsInformationUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type AllCoinsInformationUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -24919,7 +24919,7 @@ catch (SdkException<AssetDetailUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type AssetDetailUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -24997,7 +24997,7 @@ catch (SdkException<AssetDividendRecordUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type AssetDividendRecordUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -25080,7 +25080,7 @@ catch (SdkException<ConvertTransferUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type ConvertTransferUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -25163,7 +25163,7 @@ catch (SdkException<DailyAccountSnapshotUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type DailyAccountSnapshotUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -25246,7 +25246,7 @@ catch (SdkException<DepositAddressSupportingNetworkUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type DepositAddressSupportingNetworkUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -25331,7 +25331,7 @@ catch (SdkException<DepositHistorySupportingNetworkUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type DepositHistorySupportingNetworkUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -25410,7 +25410,7 @@ catch (SdkException<DisableFastWithdrawSwitchUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type DisableFastWithdrawSwitchUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -25482,7 +25482,7 @@ catch (SdkException<DustTransferUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type DustTransferUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -25559,7 +25559,7 @@ catch (SdkException<DustLogUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type DustLogUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -25635,7 +25635,7 @@ catch (SdkException<EnableFastWithdrawSwitchUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type EnableFastWithdrawSwitchUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -25711,7 +25711,7 @@ catch (SdkException<FetchDepositAddressListWithNetworkUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type FetchDepositAddressListWithNetworkUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -25785,7 +25785,7 @@ catch (SdkException<FetchWithdrawAddressListUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type FetchWithdrawAddressListUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -25843,7 +25843,7 @@ catch (SdkException<FundingWalletUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type FundingWalletUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -25915,7 +25915,7 @@ catch (SdkException<GetApiKeyPermissionUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetApiKeyPermissionUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -25988,7 +25988,7 @@ catch (SdkException<GetAssetsThatCanBeConvertedIntoBnbUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetAssetsThatCanBeConvertedIntoBnbUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -26070,7 +26070,7 @@ catch (SdkException<GetCloudMiningPaymentAndRefundHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetCloudMiningPaymentAndRefundHistoryUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -26149,7 +26149,7 @@ catch (SdkException<GetSymbolsDelistScheduleForSpotMarketDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type GetSymbolsDelistScheduleForSpotMarketDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -26227,7 +26227,7 @@ catch (SdkException<OneClickArrivalDepositApplyUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type OneClickArrivalDepositApplyUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -26310,7 +26310,7 @@ catch (SdkException<QueryConvertTransferUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryConvertTransferUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -26398,7 +26398,7 @@ catch (SdkException<QueryUserDelegationHistoryForMasterAccountUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryUserDelegationHistoryForMasterAccountUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -26489,7 +26489,7 @@ catch (SdkException<QueryUserUniversalTransferHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryUserUniversalTransferHistoryUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -26568,7 +26568,7 @@ catch (SdkException<QueryUserWalletBalanceUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryUserWalletBalanceUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -26640,7 +26640,7 @@ catch (SdkException<QueryAutoConvertingStableCoinsUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type QueryAutoConvertingStableCoinsUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -26698,7 +26698,7 @@ catch (SdkException<SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataError
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -26824,7 +26824,7 @@ catch (SdkException<TradeFeeUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type TradeFeeUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -26897,7 +26897,7 @@ catch (SdkException<UserAssetUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type UserAssetUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -27016,7 +27016,7 @@ catch (SdkException<UserUniversalTransferUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type UserUniversalTransferUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -27106,7 +27106,7 @@ catch (SdkException<WithdrawUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type WithdrawUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```
@@ -27205,7 +27205,7 @@ catch (SdkException<WithdrawHistorySupportingNetworkUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
-        // TODO: Handle 'error' of type WithdrawHistorySupportingNetworkUserDataError
+        // TODO: Handle 'error' of type Error
     }
 }
 ```

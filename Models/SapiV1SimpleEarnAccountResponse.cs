@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using BinancePublicSpotApi.Core.Models;
 
 namespace BinancePublicSpotApi.Models;
 
@@ -21,4 +22,7 @@ public record SapiV1SimpleEarnAccountResponse
 
     [JsonPropertyName("totalLockedInUSDT")]
     public required string TotalLockedInUsdt { get; init; }
+
+    [JsonExtensionData]
+    public AdditionalProperties AdditionalProperties { get; init; } = [];
 }

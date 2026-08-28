@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using BinancePublicSpotApi.Core.Models;
 
 namespace BinancePublicSpotApi.Models;
 
@@ -24,4 +25,7 @@ public record SapiV3AssetGetUserAssetResponse
 
     [JsonPropertyName("btcValuation")]
     public required string BtcValuation { get; init; }
+
+    [JsonExtensionData]
+    public AdditionalProperties AdditionalProperties { get; init; } = [];
 }

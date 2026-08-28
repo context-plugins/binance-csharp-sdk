@@ -1,5 +1,6 @@
 using System;
 using System.Text.Json.Serialization;
+using BinancePublicSpotApi.Core.Models;
 
 namespace BinancePublicSpotApi.Models;
 
@@ -55,4 +56,7 @@ public record SapiV1LendingProjectPositionListResponse
 
     [JsonPropertyName("type")]
     public required string Type { get; init; }
+
+    [JsonExtensionData]
+    public AdditionalProperties AdditionalProperties { get; init; } = [];
 }

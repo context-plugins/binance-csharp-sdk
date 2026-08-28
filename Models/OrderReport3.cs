@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using BinancePublicSpotApi.Core.Models;
 
 namespace BinancePublicSpotApi.Models;
 
@@ -48,4 +49,7 @@ public record OrderReport3
 
     [JsonPropertyName("selfTradePreventionMode")]
     public required string SelfTradePreventionMode { get; init; }
+
+    [JsonExtensionData]
+    public AdditionalProperties AdditionalProperties { get; init; } = [];
 }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using BinancePublicSpotApi.Core.Models;
 
 namespace BinancePublicSpotApi.Models;
 
@@ -13,4 +14,7 @@ public record SapiV1MiningStatisticsUserListResponse
 
     [JsonPropertyName("data")]
     public required IReadOnlyList<Data18> Data { get; init; }
+
+    [JsonExtensionData]
+    public AdditionalProperties AdditionalProperties { get; init; } = [];
 }

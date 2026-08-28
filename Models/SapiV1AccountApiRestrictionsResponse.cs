@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using BinancePublicSpotApi.Core.Models;
 
 namespace BinancePublicSpotApi.Models;
 
@@ -64,4 +65,7 @@ public record SapiV1AccountApiRestrictionsResponse
     /// </summary>
     [JsonPropertyName("tradingAuthorityExpirationTime")]
     public required long TradingAuthorityExpirationTime { get; init; }
+
+    [JsonExtensionData]
+    public AdditionalProperties AdditionalProperties { get; init; } = [];
 }

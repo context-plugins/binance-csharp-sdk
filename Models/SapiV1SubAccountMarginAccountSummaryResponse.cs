@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using BinancePublicSpotApi.Core.Models;
 
 namespace BinancePublicSpotApi.Models;
 
@@ -16,4 +17,7 @@ public record SapiV1SubAccountMarginAccountSummaryResponse
 
     [JsonPropertyName("subAccountList")]
     public required IReadOnlyList<SubAccountList2> SubAccountList { get; init; }
+
+    [JsonExtensionData]
+    public AdditionalProperties AdditionalProperties { get; init; } = [];
 }

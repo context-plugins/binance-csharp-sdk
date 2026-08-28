@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using BinancePublicSpotApi.Core.Models;
 
 namespace BinancePublicSpotApi.Models;
 
@@ -25,4 +26,7 @@ public record UserAssetDribblet
 
     [JsonPropertyName("userAssetDribbletDetails")]
     public required IReadOnlyList<UserAssetDribbletDetail> UserAssetDribbletDetails { get; init; }
+
+    [JsonExtensionData]
+    public AdditionalProperties AdditionalProperties { get; init; } = [];
 }

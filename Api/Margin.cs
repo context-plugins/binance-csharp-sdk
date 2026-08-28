@@ -2289,8 +2289,8 @@ public sealed class Margin
     /// </summary>
     /// <param name="timestamp">UTC timestamp in ms</param>
     /// <param name="signature">Signature</param>
-    /// <param name="spotBnbburn">Determines whether to use BNB to pay for trading fees on SPOT</param>
-    /// <param name="interestBnbburn">Determines whether to use BNB to pay for margin loan's interest</param>
+    /// <param name="spotBnbBurn">Determines whether to use BNB to pay for trading fees on SPOT</param>
+    /// <param name="interestBnbBurn">Determines whether to use BNB to pay for margin loan's interest</param>
     /// <param name="recvWindow">The value cannot be greater than 60000</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
     /// <param name="ct">Cancellation token</param>
@@ -2306,8 +2306,8 @@ public sealed class Margin
     /// </remarks>
     public Task<BnbBurnStatus> ToggleBnbBurnOnSpotTradeAndMarginInterestUserData(long timestamp,
         string signature,
-        SpotBnbburn? spotBnbburn,
-        InterestBnbburn? interestBnbburn,
+        SpotBnbBurn? spotBnbBurn,
+        InterestBnbBurn? interestBnbBurn,
         long? recvWindow,
         RequestOptions? requestOptions = null,
         CancellationToken ct = default) =>
@@ -2315,8 +2315,8 @@ public sealed class Margin
             [],
             [new Param("timestamp", timestamp),
                 new Param("signature", signature),
-                new Param("spotBNBBurn", spotBnbburn),
-                new Param("interestBNBBurn", interestBnbburn),
+                new Param("spotBNBBurn", spotBnbBurn),
+                new Param("interestBNBBurn", interestBnbBurn),
                 new Param("recvWindow", recvWindow)],
             [new HeaderParam("Idempotency-Key", Guid.NewGuid())],
             HttpMethod.Post,

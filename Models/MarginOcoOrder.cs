@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using BinancePublicSpotApi.Core.Models;
 
 namespace BinancePublicSpotApi.Models;
 
@@ -34,4 +35,7 @@ public record MarginOcoOrder
 
     [JsonPropertyName("orderReports")]
     public required IReadOnlyList<OrderReport1> OrderReports { get; init; }
+
+    [JsonExtensionData]
+    public AdditionalProperties AdditionalProperties { get; init; } = [];
 }

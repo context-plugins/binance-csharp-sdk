@@ -7,22 +7,22 @@ using BinancePublicSpotApi.Models;
 
 namespace BinancePublicSpotApi.Errors;
 
-public sealed class UiklinesError : ApiError
+public sealed class UiKlinesError : ApiError
 {
     private readonly Optional<Error> _errorValue;
 
-    private UiklinesError(Optional<Error> errorValue, Optional<RawError> fallback) : base(fallback)
+    private UiKlinesError(Optional<Error> errorValue, Optional<RawError> fallback) : base(fallback)
     {
         _errorValue = errorValue;
     }
 
-    private static UiklinesError AsError(Error value) => new(Optional<Error>.Some(value), default);
+    private static UiKlinesError AsError(Error value) => new(Optional<Error>.Some(value), default);
 
-    private static UiklinesError AsFallback(RawError value) => new(default, Optional<RawError>.Some(value));
+    private static UiKlinesError AsFallback(RawError value) => new(default, Optional<RawError>.Some(value));
 
     public bool TryGetError(out Error value) => _errorValue.TryGetValue(out value);
 
-    internal static Task<UiklinesError> Create(HttpResponseMessage response, CancellationToken ct) =>
+    internal static Task<UiKlinesError> Create(HttpResponseMessage response, CancellationToken ct) =>
         (int)response.StatusCode switch
         {
             400 => FromJson<Error>(response, ct).As(AsError),
@@ -30,14 +30,14 @@ public sealed class UiklinesError : ApiError
         };
 }
 
-internal sealed class UiklinesErrorResponse : IErrorResponse<UiklinesError>
+internal sealed class UiKlinesErrorResponse : IErrorResponse<UiKlinesError>
 {
-    public static UiklinesErrorResponse Instance { get; } = new();
+    public static UiKlinesErrorResponse Instance { get; } = new();
 
-    private UiklinesErrorResponse()
+    private UiKlinesErrorResponse()
     {
     }
 
-    public Task<UiklinesError> Map(HttpResponseMessage response, CancellationToken ct) =>
-        UiklinesError.Create(response, ct);
+    public Task<UiKlinesError> Map(HttpResponseMessage response, CancellationToken ct) =>
+        UiKlinesError.Create(response, ct);
 }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using BinancePublicSpotApi.Core.Models;
 
 namespace BinancePublicSpotApi.Models;
 
@@ -16,4 +17,7 @@ public record SapiV1LendingAutoInvestIndexInfoResponse
 
     [JsonPropertyName("assetAllocation")]
     public required IReadOnlyList<AssetAllocation> AssetAllocation { get; init; }
+
+    [JsonExtensionData]
+    public AdditionalProperties AdditionalProperties { get; init; } = [];
 }

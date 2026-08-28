@@ -33,7 +33,13 @@ public sealed class BinancePublicSpotApiClient
         var resiliencePipelineFactory = new ResiliencePipelineFactory(options.Retry);
         var httpLogger = new HttpLogger(options.Logging, "BinancePublicSpotApiClient");
         var rawClient =
-            new RawClient(httpClient, urlFactory, httpStatusPolicy, headersFactory, resiliencePipelineFactory, httpLogger);
+            new RawClient(httpClient,
+                urlFactory,
+                httpStatusPolicy,
+                headersFactory,
+                resiliencePipelineFactory,
+                httpLogger,
+                options.Hooks);
         var auth = new AuthSchemes(options);
         AutoInvest = new AutoInvest(rawClient, server, auth);
         Blvt = new Blvt(rawClient, server, auth);

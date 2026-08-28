@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using BinancePublicSpotApi.Core.Models;
 
 namespace BinancePublicSpotApi.Models;
 
@@ -45,4 +46,7 @@ public record ApiV3MyAllocationsResponse
 
     [JsonPropertyName("isAllocator")]
     public required bool IsAllocator { get; init; }
+
+    [JsonExtensionData]
+    public AdditionalProperties AdditionalProperties { get; init; } = [];
 }

@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using BinancePublicSpotApi.Core.Models;
 
 namespace BinancePublicSpotApi.Models;
 
@@ -32,11 +33,14 @@ public record Detail
     /// BNB amount(Deducted commission fee
     /// </summary>
     [JsonPropertyName("toBNBOffExchange")]
-    public required string ToBnboffExchange { get; init; }
+    public required string ToBnbOffExchange { get; init; }
 
     /// <summary>
     /// Commission fee
     /// </summary>
     [JsonPropertyName("exchange")]
     public required string Exchange { get; init; }
+
+    [JsonExtensionData]
+    public AdditionalProperties AdditionalProperties { get; init; } = [];
 }

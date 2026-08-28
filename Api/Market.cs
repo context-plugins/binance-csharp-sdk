@@ -52,7 +52,7 @@ public sealed class Market
     /// </remarks>
     public Task<ApiV3Ticker24HrResponse> HrTickerPriceChangeStatistics24(string? symbol,
         string? symbols,
-        TypeModel? type,
+        TypeEnum? type,
         RequestOptions? requestOptions = null,
         CancellationToken ct = default) =>
         _rawClient.Execute(_server.Default("/api/v3/ticker/24hr"),
@@ -545,7 +545,7 @@ public sealed class Market
     public Task<ApiV3TickerTradingDayResponse> TradingDayTicker(string? symbol,
         string? symbols,
         string? timeZone,
-        TypeModel? type,
+        TypeEnum? type,
         RequestOptions? requestOptions = null,
         CancellationToken ct = default) =>
         _rawClient.Execute(_server.Default("/api/v3/ticker/tradingDay"),
@@ -575,7 +575,7 @@ public sealed class Market
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
     /// <param name="ct">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="IReadOnlyList{T}"/> of <see cref="IReadOnlyList{T}"/> of <see cref="ApiV3UiKlinesResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="UiklinesError"/> when the server returns an error response.</exception>
+    /// <exception cref="SdkException{TResult}"> of <see cref="UiKlinesError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// The request is similar to klines having the same parameters and response.
     /// <para>
@@ -585,7 +585,7 @@ public sealed class Market
     /// Weight(IP): 2
     /// </para>
     /// </remarks>
-    public Task<IReadOnlyList<IReadOnlyList<ApiV3UiKlinesResponse>>> Uiklines(string symbol,
+    public Task<IReadOnlyList<IReadOnlyList<ApiV3UiKlinesResponse>>> UiKlines(string symbol,
         Interval interval,
         long? startTime,
         long? endTime,
@@ -605,7 +605,7 @@ public sealed class Market
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<IReadOnlyList<IReadOnlyList<ApiV3UiKlinesResponse>>>(),
-            UiklinesErrorResponse.Instance,
+            UiKlinesErrorResponse.Instance,
             [],
             requestOptions,
             ct);

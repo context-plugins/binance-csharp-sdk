@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using BinancePublicSpotApi.Core.Models;
 
 namespace BinancePublicSpotApi.Models;
 
@@ -12,4 +13,7 @@ public record SapiV1ConvertAcceptQuoteResponse
 
     [JsonPropertyName("orderStatus")]
     public required string OrderStatus { get; init; }
+
+    [JsonExtensionData]
+    public AdditionalProperties AdditionalProperties { get; init; } = [];
 }

@@ -94,7 +94,7 @@ public sealed class Futures
     /// Weight(IP): 1
     /// </remarks>
     public Task<SapiV1FuturesHistDataLinkResponse> GetFutureTickLevelOrderbookHistoricalDataDownloadLinkUserData(string symbol,
-        DataType dataType,
+        DataTypeEnum dataType,
         long timestamp,
         string signature,
         long? startTime,

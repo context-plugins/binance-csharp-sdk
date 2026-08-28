@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using BinancePublicSpotApi.Core.Models;
 
 namespace BinancePublicSpotApi.Models;
 
@@ -13,4 +14,7 @@ public record SapiV1SubAccountSpotSummaryResponse
 
     [JsonPropertyName("spotSubUserAssetBtcVoList")]
     public required IReadOnlyList<SpotSubUserAssetBtcVoList> SpotSubUserAssetBtcVoList { get; init; }
+
+    [JsonExtensionData]
+    public AdditionalProperties AdditionalProperties { get; init; } = [];
 }

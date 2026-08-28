@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using BinancePublicSpotApi.Core.Models;
 
 namespace BinancePublicSpotApi.Models;
 
@@ -30,4 +31,7 @@ public record SapiV1LendingAutoInvestRedeemHistoryResponse
 
     [JsonPropertyName("transactionFeeUnit")]
     public required string TransactionFeeUnit { get; init; }
+
+    [JsonExtensionData]
+    public AdditionalProperties AdditionalProperties { get; init; } = [];
 }

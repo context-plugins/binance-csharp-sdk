@@ -9,34 +9,34 @@ namespace BinancePublicSpotApi.Models.AnyOf;
 [JsonConverter(typeof(SapiV2SubAccountFuturesPositionRiskResponseConverter))]
 public record SapiV2SubAccountFuturesPositionRiskResponse
 {
-    private readonly Optional<SubAccountUsdtfuturesPositionRisk> _subAccountUsdtfuturesPositionRiskValue;
+    private readonly Optional<SubAccountUsdtFuturesPositionRisk> _subAccountUsdtFuturesPositionRiskValue;
 
-    private readonly Optional<SubAccountCoinfuturesPositionRisk> _subAccountCoinfuturesPositionRiskValue;
+    private readonly Optional<SubAccountCoinFuturesPositionRisk> _subAccountCoinFuturesPositionRiskValue;
 
-    private SapiV2SubAccountFuturesPositionRiskResponse(Optional<SubAccountUsdtfuturesPositionRisk> subAccountUsdtfuturesPositionRiskValue,
-        Optional<SubAccountCoinfuturesPositionRisk> subAccountCoinfuturesPositionRiskValue)
+    private SapiV2SubAccountFuturesPositionRiskResponse(Optional<SubAccountUsdtFuturesPositionRisk> subAccountUsdtFuturesPositionRiskValue,
+        Optional<SubAccountCoinFuturesPositionRisk> subAccountCoinFuturesPositionRiskValue)
     {
-        _subAccountUsdtfuturesPositionRiskValue = subAccountUsdtfuturesPositionRiskValue;
-        _subAccountCoinfuturesPositionRiskValue = subAccountCoinfuturesPositionRiskValue;
+        _subAccountUsdtFuturesPositionRiskValue = subAccountUsdtFuturesPositionRiskValue;
+        _subAccountCoinFuturesPositionRiskValue = subAccountCoinFuturesPositionRiskValue;
     }
 
-    public static SapiV2SubAccountFuturesPositionRiskResponse SubAccountUsdtfuturesPositionRisk(SubAccountUsdtfuturesPositionRisk value) =>
-        new(Optional<SubAccountUsdtfuturesPositionRisk>.Some(value), default);
+    public static SapiV2SubAccountFuturesPositionRiskResponse SubAccountUsdtFuturesPositionRisk(SubAccountUsdtFuturesPositionRisk value) =>
+        new(Optional<SubAccountUsdtFuturesPositionRisk>.Some(value), default);
 
-    public static SapiV2SubAccountFuturesPositionRiskResponse SubAccountCoinfuturesPositionRisk(SubAccountCoinfuturesPositionRisk value) =>
-        new(default, Optional<SubAccountCoinfuturesPositionRisk>.Some(value));
+    public static SapiV2SubAccountFuturesPositionRiskResponse SubAccountCoinFuturesPositionRisk(SubAccountCoinFuturesPositionRisk value) =>
+        new(default, Optional<SubAccountCoinFuturesPositionRisk>.Some(value));
 
-    public bool TryGetSubAccountUsdtfuturesPositionRisk(out SubAccountUsdtfuturesPositionRisk value) =>
-        _subAccountUsdtfuturesPositionRiskValue.TryGetValue(out value);
+    public bool TryGetSubAccountUsdtFuturesPositionRisk(out SubAccountUsdtFuturesPositionRisk value) =>
+        _subAccountUsdtFuturesPositionRiskValue.TryGetValue(out value);
 
-    public bool TryGetSubAccountCoinfuturesPositionRisk(out SubAccountCoinfuturesPositionRisk value) =>
-        _subAccountCoinfuturesPositionRiskValue.TryGetValue(out value);
+    public bool TryGetSubAccountCoinFuturesPositionRisk(out SubAccountCoinFuturesPositionRisk value) =>
+        _subAccountCoinFuturesPositionRiskValue.TryGetValue(out value);
 
-    public static implicit operator SapiV2SubAccountFuturesPositionRiskResponse(SubAccountUsdtfuturesPositionRisk value) =>
-        SubAccountUsdtfuturesPositionRisk(value);
+    public static implicit operator SapiV2SubAccountFuturesPositionRiskResponse(SubAccountUsdtFuturesPositionRisk value) =>
+        SubAccountUsdtFuturesPositionRisk(value);
 
-    public static implicit operator SapiV2SubAccountFuturesPositionRiskResponse(SubAccountCoinfuturesPositionRisk value) =>
-        SubAccountCoinfuturesPositionRisk(value);
+    public static implicit operator SapiV2SubAccountFuturesPositionRiskResponse(SubAccountCoinFuturesPositionRisk value) =>
+        SubAccountCoinFuturesPositionRisk(value);
 }
 
 file sealed class SapiV2SubAccountFuturesPositionRiskResponseConverter : JsonConverter<SapiV2SubAccountFuturesPositionRiskResponse>
@@ -47,32 +47,32 @@ file sealed class SapiV2SubAccountFuturesPositionRiskResponseConverter : JsonCon
     {
         using var doc = JsonDocument.ParseValue(ref reader);
         var root = doc.RootElement;
-        if (JsonSerializer.TryDeserialize<SubAccountUsdtfuturesPositionRisk>(root,
+        if (JsonSerializer.TryDeserialize<SubAccountUsdtFuturesPositionRisk>(root,
             options,
-            out var subAccountUsdtfuturesPositionRiskValue))
+            out var subAccountUsdtFuturesPositionRiskValue))
         {
-            return SapiV2SubAccountFuturesPositionRiskResponse.SubAccountUsdtfuturesPositionRisk(subAccountUsdtfuturesPositionRiskValue);
+            return SapiV2SubAccountFuturesPositionRiskResponse.SubAccountUsdtFuturesPositionRisk(subAccountUsdtFuturesPositionRiskValue);
         }
-        if (JsonSerializer.TryDeserialize<SubAccountCoinfuturesPositionRisk>(root,
+        if (JsonSerializer.TryDeserialize<SubAccountCoinFuturesPositionRisk>(root,
             options,
-            out var subAccountCoinfuturesPositionRiskValue))
+            out var subAccountCoinFuturesPositionRiskValue))
         {
-            return SapiV2SubAccountFuturesPositionRiskResponse.SubAccountCoinfuturesPositionRisk(subAccountCoinfuturesPositionRiskValue);
+            return SapiV2SubAccountFuturesPositionRiskResponse.SubAccountCoinFuturesPositionRisk(subAccountCoinFuturesPositionRiskValue);
         }
-        throw new JsonException($"JSON does not match SubAccountUsdtfuturesPositionRisk or SubAccountCoinfuturesPositionRisk schemas: {root.ToString()}");
+        throw new JsonException($"JSON does not match SubAccountUsdtFuturesPositionRisk or SubAccountCoinFuturesPositionRisk schemas: {root.ToString()}");
     }
 
     public override void Write(Utf8JsonWriter writer,
         SapiV2SubAccountFuturesPositionRiskResponse value,
         JsonSerializerOptions options)
     {
-        if (value.TryGetSubAccountUsdtfuturesPositionRisk(out var subAccountUsdtfuturesPositionRiskValue))
+        if (value.TryGetSubAccountUsdtFuturesPositionRisk(out var subAccountUsdtFuturesPositionRiskValue))
         {
-            JsonSerializer.Serialize(writer, subAccountUsdtfuturesPositionRiskValue, options);
+            JsonSerializer.Serialize(writer, subAccountUsdtFuturesPositionRiskValue, options);
         }
-        else if (value.TryGetSubAccountCoinfuturesPositionRisk(out var subAccountCoinfuturesPositionRiskValue))
+        else if (value.TryGetSubAccountCoinFuturesPositionRisk(out var subAccountCoinFuturesPositionRiskValue))
         {
-            JsonSerializer.Serialize(writer, subAccountCoinfuturesPositionRiskValue, options);
+            JsonSerializer.Serialize(writer, subAccountCoinFuturesPositionRiskValue, options);
         }
         else
         {

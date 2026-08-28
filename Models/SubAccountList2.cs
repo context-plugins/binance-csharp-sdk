@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using BinancePublicSpotApi.Core.Models;
 
 namespace BinancePublicSpotApi.Models;
 
@@ -15,4 +16,7 @@ public record SubAccountList2
 
     [JsonPropertyName("totalNetAssetOfBtc")]
     public required string TotalNetAssetOfBtc { get; init; }
+
+    [JsonExtensionData]
+    public AdditionalProperties AdditionalProperties { get; init; } = [];
 }

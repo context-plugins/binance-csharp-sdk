@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using BinancePublicSpotApi.Core.Models;
 
 namespace BinancePublicSpotApi.Models;
 
@@ -36,5 +37,8 @@ public record ManagerSubUserInfoVoList
     public required bool IsFutureEnabled { get; init; }
 
     [JsonPropertyName("isSignedLVTRiskAgreement")]
-    public required bool IsSignedLvtriskAgreement { get; init; }
+    public required bool IsSignedLvtRiskAgreement { get; init; }
+
+    [JsonExtensionData]
+    public AdditionalProperties AdditionalProperties { get; init; } = [];
 }

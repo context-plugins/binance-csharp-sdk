@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using BinancePublicSpotApi.Core.Models;
 
 namespace BinancePublicSpotApi.Models;
 
@@ -9,4 +10,7 @@ public record SapiV1SubAccountBlvtEnableResponse
 
     [JsonPropertyName("enableBlvt")]
     public required bool EnableBlvt { get; init; }
+
+    [JsonExtensionData]
+    public AdditionalProperties AdditionalProperties { get; init; } = [];
 }

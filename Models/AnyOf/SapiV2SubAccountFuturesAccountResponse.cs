@@ -9,34 +9,34 @@ namespace BinancePublicSpotApi.Models.AnyOf;
 [JsonConverter(typeof(SapiV2SubAccountFuturesAccountResponseConverter))]
 public record SapiV2SubAccountFuturesAccountResponse
 {
-    private readonly Optional<SubAccountUsdtfuturesDetails> _subAccountUsdtfuturesDetailsValue;
+    private readonly Optional<SubAccountUsdtFuturesDetails> _subAccountUsdtFuturesDetailsValue;
 
-    private readonly Optional<SubAccountCoinfuturesDetails> _subAccountCoinfuturesDetailsValue;
+    private readonly Optional<SubAccountCoinFuturesDetails> _subAccountCoinFuturesDetailsValue;
 
-    private SapiV2SubAccountFuturesAccountResponse(Optional<SubAccountUsdtfuturesDetails> subAccountUsdtfuturesDetailsValue,
-        Optional<SubAccountCoinfuturesDetails> subAccountCoinfuturesDetailsValue)
+    private SapiV2SubAccountFuturesAccountResponse(Optional<SubAccountUsdtFuturesDetails> subAccountUsdtFuturesDetailsValue,
+        Optional<SubAccountCoinFuturesDetails> subAccountCoinFuturesDetailsValue)
     {
-        _subAccountUsdtfuturesDetailsValue = subAccountUsdtfuturesDetailsValue;
-        _subAccountCoinfuturesDetailsValue = subAccountCoinfuturesDetailsValue;
+        _subAccountUsdtFuturesDetailsValue = subAccountUsdtFuturesDetailsValue;
+        _subAccountCoinFuturesDetailsValue = subAccountCoinFuturesDetailsValue;
     }
 
-    public static SapiV2SubAccountFuturesAccountResponse SubAccountUsdtfuturesDetails(SubAccountUsdtfuturesDetails value) =>
-        new(Optional<SubAccountUsdtfuturesDetails>.Some(value), default);
+    public static SapiV2SubAccountFuturesAccountResponse SubAccountUsdtFuturesDetails(SubAccountUsdtFuturesDetails value) =>
+        new(Optional<SubAccountUsdtFuturesDetails>.Some(value), default);
 
-    public static SapiV2SubAccountFuturesAccountResponse SubAccountCoinfuturesDetails(SubAccountCoinfuturesDetails value) =>
-        new(default, Optional<SubAccountCoinfuturesDetails>.Some(value));
+    public static SapiV2SubAccountFuturesAccountResponse SubAccountCoinFuturesDetails(SubAccountCoinFuturesDetails value) =>
+        new(default, Optional<SubAccountCoinFuturesDetails>.Some(value));
 
-    public bool TryGetSubAccountUsdtfuturesDetails(out SubAccountUsdtfuturesDetails value) =>
-        _subAccountUsdtfuturesDetailsValue.TryGetValue(out value);
+    public bool TryGetSubAccountUsdtFuturesDetails(out SubAccountUsdtFuturesDetails value) =>
+        _subAccountUsdtFuturesDetailsValue.TryGetValue(out value);
 
-    public bool TryGetSubAccountCoinfuturesDetails(out SubAccountCoinfuturesDetails value) =>
-        _subAccountCoinfuturesDetailsValue.TryGetValue(out value);
+    public bool TryGetSubAccountCoinFuturesDetails(out SubAccountCoinFuturesDetails value) =>
+        _subAccountCoinFuturesDetailsValue.TryGetValue(out value);
 
-    public static implicit operator SapiV2SubAccountFuturesAccountResponse(SubAccountUsdtfuturesDetails value) =>
-        SubAccountUsdtfuturesDetails(value);
+    public static implicit operator SapiV2SubAccountFuturesAccountResponse(SubAccountUsdtFuturesDetails value) =>
+        SubAccountUsdtFuturesDetails(value);
 
-    public static implicit operator SapiV2SubAccountFuturesAccountResponse(SubAccountCoinfuturesDetails value) =>
-        SubAccountCoinfuturesDetails(value);
+    public static implicit operator SapiV2SubAccountFuturesAccountResponse(SubAccountCoinFuturesDetails value) =>
+        SubAccountCoinFuturesDetails(value);
 }
 
 file sealed class SapiV2SubAccountFuturesAccountResponseConverter : JsonConverter<SapiV2SubAccountFuturesAccountResponse>
@@ -47,32 +47,32 @@ file sealed class SapiV2SubAccountFuturesAccountResponseConverter : JsonConverte
     {
         using var doc = JsonDocument.ParseValue(ref reader);
         var root = doc.RootElement;
-        if (JsonSerializer.TryDeserialize<SubAccountUsdtfuturesDetails>(root,
+        if (JsonSerializer.TryDeserialize<SubAccountUsdtFuturesDetails>(root,
             options,
-            out var subAccountUsdtfuturesDetailsValue))
+            out var subAccountUsdtFuturesDetailsValue))
         {
-            return SapiV2SubAccountFuturesAccountResponse.SubAccountUsdtfuturesDetails(subAccountUsdtfuturesDetailsValue);
+            return SapiV2SubAccountFuturesAccountResponse.SubAccountUsdtFuturesDetails(subAccountUsdtFuturesDetailsValue);
         }
-        if (JsonSerializer.TryDeserialize<SubAccountCoinfuturesDetails>(root,
+        if (JsonSerializer.TryDeserialize<SubAccountCoinFuturesDetails>(root,
             options,
-            out var subAccountCoinfuturesDetailsValue))
+            out var subAccountCoinFuturesDetailsValue))
         {
-            return SapiV2SubAccountFuturesAccountResponse.SubAccountCoinfuturesDetails(subAccountCoinfuturesDetailsValue);
+            return SapiV2SubAccountFuturesAccountResponse.SubAccountCoinFuturesDetails(subAccountCoinFuturesDetailsValue);
         }
-        throw new JsonException($"JSON does not match SubAccountUsdtfuturesDetails or SubAccountCoinfuturesDetails schemas: {root.ToString()}");
+        throw new JsonException($"JSON does not match SubAccountUsdtFuturesDetails or SubAccountCoinFuturesDetails schemas: {root.ToString()}");
     }
 
     public override void Write(Utf8JsonWriter writer,
         SapiV2SubAccountFuturesAccountResponse value,
         JsonSerializerOptions options)
     {
-        if (value.TryGetSubAccountUsdtfuturesDetails(out var subAccountUsdtfuturesDetailsValue))
+        if (value.TryGetSubAccountUsdtFuturesDetails(out var subAccountUsdtFuturesDetailsValue))
         {
-            JsonSerializer.Serialize(writer, subAccountUsdtfuturesDetailsValue, options);
+            JsonSerializer.Serialize(writer, subAccountUsdtFuturesDetailsValue, options);
         }
-        else if (value.TryGetSubAccountCoinfuturesDetails(out var subAccountCoinfuturesDetailsValue))
+        else if (value.TryGetSubAccountCoinFuturesDetails(out var subAccountCoinFuturesDetailsValue))
         {
-            JsonSerializer.Serialize(writer, subAccountCoinfuturesDetailsValue, options);
+            JsonSerializer.Serialize(writer, subAccountCoinFuturesDetailsValue, options);
         }
         else
         {

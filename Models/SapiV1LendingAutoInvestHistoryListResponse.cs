@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using BinancePublicSpotApi.Core.Models;
 
 namespace BinancePublicSpotApi.Models;
 
@@ -57,4 +58,7 @@ public record SapiV1LendingAutoInvestHistoryListResponse
 
     [JsonPropertyName("subscriptionCycle")]
     public required string SubscriptionCycle { get; init; }
+
+    [JsonExtensionData]
+    public AdditionalProperties AdditionalProperties { get; init; } = [];
 }

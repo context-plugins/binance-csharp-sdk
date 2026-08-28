@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using BinancePublicSpotApi.Core.Models;
 
 namespace BinancePublicSpotApi.Models;
 
@@ -39,4 +40,7 @@ public record SapiV1PortfolioAccountResponse
     /// </summary>
     [JsonPropertyName("accountType")]
     public required string AccountType { get; init; }
+
+    [JsonExtensionData]
+    public AdditionalProperties AdditionalProperties { get; init; } = [];
 }
