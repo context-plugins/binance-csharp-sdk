@@ -1,7 +1,7 @@
 using System.Net.Http;
-using BinancePublicSpotApi.Core.Extensions;
+using Binance.Core.Extensions;
 
-namespace BinancePublicSpotApi.Core.Request;
+namespace Binance.Core.Request;
 
 internal sealed class EmptyBody : IRequest
 {

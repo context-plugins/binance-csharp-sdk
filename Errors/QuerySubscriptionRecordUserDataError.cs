@@ -1,11 +1,11 @@
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using BinancePublicSpotApi.Core.ErrorResponse;
-using BinancePublicSpotApi.Core.Models;
-using BinancePublicSpotApi.Models;
+using Binance.Core.ErrorResponse;
+using Binance.Core.Models;
+using Binance.Models;
 
-namespace BinancePublicSpotApi.Errors;
+namespace Binance.Errors;
 
 public sealed class QuerySubscriptionRecordUserDataError : ApiError
 {

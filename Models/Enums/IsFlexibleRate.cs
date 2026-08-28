@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
-using BinancePublicSpotApi.Core.Enum;
+using Binance.Core.Enum;
 
-namespace BinancePublicSpotApi.Models.Enums;
+namespace Binance.Models.Enums;
 
 [JsonConverter(typeof(StringEnumConverter<IsFlexibleRate>))]
 public sealed record IsFlexibleRate : StringEnum<IsFlexibleRate>

@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using BinancePublicSpotApi.Core.Models;
+using Binance.Core.Models;
 
-namespace BinancePublicSpotApi.Core.Request;
+namespace Binance.Core.Request;
 
 internal sealed class FormUrlEncodedRequest : IRequest
 {

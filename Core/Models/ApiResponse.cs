@@ -1,7 +1,7 @@
-using BinancePublicSpotApi.Core.ErrorResponse;
-using BinancePublicSpotApi.Core.Response;
+using Binance.Core.ErrorResponse;
+using Binance.Core.Response;
 
-namespace BinancePublicSpotApi.Core.Models;
+namespace Binance.Core.Models;
 
 internal sealed class ApiResponse<TResponse, TError>
 {

@@ -1,6 +1,6 @@
 using System.Net.Http;
 
-namespace BinancePublicSpotApi.Core.Request;
+namespace Binance.Core.Request;
 
 internal interface IRequest
 {

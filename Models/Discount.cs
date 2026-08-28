@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
-using BinancePublicSpotApi.Core.Models;
+using Binance.Core.Models;
 
-namespace BinancePublicSpotApi.Models;
+namespace Binance.Models;
 
 /// <summary>
 /// Discount commission when paying in BNB.

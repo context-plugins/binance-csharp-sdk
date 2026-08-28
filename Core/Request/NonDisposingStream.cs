@@ -3,7 +3,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace BinancePublicSpotApi.Core.Request;
+namespace Binance.Core.Request;
 
 internal sealed class NonDisposingStream : Stream
 {

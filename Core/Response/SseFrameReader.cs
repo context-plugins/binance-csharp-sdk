@@ -5,9 +5,9 @@ using System.Net.ServerSentEvents;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
-using BinancePublicSpotApi.Core.Exceptions;
+using Binance.Core.Exceptions;
 
-namespace BinancePublicSpotApi.Core.Response;
+namespace Binance.Core.Response;
 
 internal static class SseFrameReader
 {

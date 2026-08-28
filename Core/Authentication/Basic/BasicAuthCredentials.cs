@@ -1,7 +1,7 @@
 using System;
 using System.Text;
 
-namespace BinancePublicSpotApi.Core.Authentication.Basic;
+namespace Binance.Core.Authentication.Basic;
 
 public sealed class BasicAuthCredentials
 {

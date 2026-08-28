@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.ComponentModel.DataAnnotations;
 
-namespace BinancePublicSpotApi.Core.Validation.Attributes;
+namespace Binance.Core.Validation.Attributes;
 
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]
 public sealed class MaxPropertiesAttribute : ValidationAttribute

@@ -1,6 +1,6 @@
-using BinancePublicSpotApi.Core.Models;
+using Binance.Core.Models;
 
-namespace BinancePublicSpotApi.Servers;
+namespace Binance.Servers;
 
 public class DefaultOptions
 {

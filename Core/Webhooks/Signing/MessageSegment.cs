@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace BinancePublicSpotApi.Core.Webhooks.Signing;
+namespace Binance.Core.Webhooks.Signing;
 
 internal abstract record MessageSegment
 {

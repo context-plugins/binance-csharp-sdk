@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 using Polly;
 using Polly.Retry;
 using Polly.Timeout;
-using BinancePublicSpotApi.Core.Configuration;
-using BinancePublicSpotApi.Core.Logging;
-using BinancePublicSpotApi.Core.Request;
+using Binance.Core.Configuration;
+using Binance.Core.Logging;
+using Binance.Core.Request;
 
-namespace BinancePublicSpotApi.Core;
+namespace Binance.Core;
 
 internal sealed class ResiliencePipelineFactory
 {

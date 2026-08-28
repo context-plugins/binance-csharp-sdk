@@ -1,6 +1,6 @@
 using System.Text.Json;
 
-namespace BinancePublicSpotApi.Core.Webhooks;
+namespace Binance.Core.Webhooks;
 
 public abstract class WebhookEventParser<TEvent>
     where TEvent : class

@@ -1,9 +1,9 @@
 using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using BinancePublicSpotApi.Core.Extensions;
+using Binance.Core.Extensions;
 
-namespace BinancePublicSpotApi.Core.Converters;
+namespace Binance.Core.Converters;
 
 internal sealed class DateOnlyDateTimeOffsetConverter : JsonConverter<DateTimeOffset>
 {

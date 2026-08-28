@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using BinancePublicSpotApi.Core.Models;
+using Binance.Core.Models;
 
-namespace BinancePublicSpotApi.Core;
+namespace Binance.Core;
 
 internal sealed class UriFactory
 {

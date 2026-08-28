@@ -1,6 +1,6 @@
 using System;
 
-namespace BinancePublicSpotApi.Core.Exceptions;
+namespace Binance.Core.Exceptions;
 
 public sealed class SdkException<TError> : Exception
 {

@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text.Json;
-using BinancePublicSpotApi.Core.Extensions;
+using Binance.Core.Extensions;
 
-namespace BinancePublicSpotApi.Core.Models;
+namespace Binance.Core.Models;
 
 public sealed class AdditionalProperties : IDictionary<string, JsonElement>, IEquatable<AdditionalProperties>
 {

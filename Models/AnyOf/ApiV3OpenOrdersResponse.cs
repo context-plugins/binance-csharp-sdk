@@ -1,10 +1,10 @@
 using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using BinancePublicSpotApi.Core.Extensions;
-using BinancePublicSpotApi.Core.Models;
+using Binance.Core.Extensions;
+using Binance.Core.Models;
 
-namespace BinancePublicSpotApi.Models.AnyOf;
+namespace Binance.Models.AnyOf;
 
 [JsonConverter(typeof(ApiV3OpenOrdersResponseConverter))]
 public record ApiV3OpenOrdersResponse

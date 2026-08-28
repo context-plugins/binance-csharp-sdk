@@ -1,15 +1,15 @@
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using BinancePublicSpotApi.Core;
-using BinancePublicSpotApi.Core.Exceptions;
-using BinancePublicSpotApi.Core.Models;
-using BinancePublicSpotApi.Core.Request;
-using BinancePublicSpotApi.Core.Response;
-using BinancePublicSpotApi.Errors;
-using BinancePublicSpotApi.Models;
+using Binance.Core;
+using Binance.Core.Exceptions;
+using Binance.Core.Models;
+using Binance.Core.Request;
+using Binance.Core.Response;
+using Binance.Errors;
+using Binance.Models;
 
-namespace BinancePublicSpotApi.Api;
+namespace Binance.Api;
 
 /// <summary>
 /// Fiat Endpoints

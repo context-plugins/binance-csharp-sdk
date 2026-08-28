@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
-using BinancePublicSpotApi.Core.Models;
+using Binance.Core.Models;
 
-namespace BinancePublicSpotApi.Models;
+namespace Binance.Models;
 
 /// <summary>
 /// Tax commission rates for trades from the order.

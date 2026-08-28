@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 
-namespace BinancePublicSpotApi.Core.Configuration;
+namespace Binance.Core.Configuration;
 
 public record RetryOptions
 {

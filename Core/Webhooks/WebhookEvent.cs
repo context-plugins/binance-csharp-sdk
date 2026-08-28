@@ -1,6 +1,6 @@
-using BinancePublicSpotApi.Core.Enum;
+using Binance.Core.Enum;
 
-namespace BinancePublicSpotApi.Core.Webhooks;
+namespace Binance.Core.Webhooks;
 
 public abstract record WebhookEvent<TPayload>
 {

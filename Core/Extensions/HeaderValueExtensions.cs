@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Linq;
 using System.Net.Http.Headers;
 
-namespace BinancePublicSpotApi.Core.Extensions;
+namespace Binance.Core.Extensions;
 
 internal static class HeaderValueExtensions
 {

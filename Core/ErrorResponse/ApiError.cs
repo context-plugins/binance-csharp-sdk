@@ -2,10 +2,10 @@ using System;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using BinancePublicSpotApi.Core.Models;
-using BinancePublicSpotApi.Core.Response;
+using Binance.Core.Models;
+using Binance.Core.Response;
 
-namespace BinancePublicSpotApi.Core.ErrorResponse;
+namespace Binance.Core.ErrorResponse;
 
 public abstract class ApiError
 {

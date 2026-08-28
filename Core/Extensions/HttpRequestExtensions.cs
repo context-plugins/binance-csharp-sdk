@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Net.Http.Headers;
-using BinancePublicSpotApi.Core.Models;
+using Binance.Core.Models;
 
-namespace BinancePublicSpotApi.Core.Extensions;
+namespace Binance.Core.Extensions;
 
 internal static class HttpRequestExtensions
 {

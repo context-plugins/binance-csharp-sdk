@@ -3,7 +3,7 @@ using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace BinancePublicSpotApi.Core.Authentication.Basic;
+namespace Binance.Core.Authentication.Basic;
 
 internal sealed class BasicAuthScheme : IAuthScheme
 {

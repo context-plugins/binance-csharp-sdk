@@ -1,11 +1,11 @@
 using System.Collections.Generic;
-using BinancePublicSpotApi.Core.Configuration;
-using BinancePublicSpotApi.Core.Hooks;
-using BinancePublicSpotApi.Servers;
+using Binance.Core.Configuration;
+using Binance.Core.Hooks;
+using Binance.Servers;
 
-namespace BinancePublicSpotApi;
+namespace Binance;
 
-public class BinancePublicSpotApiClientOptions
+public class BinanceClientOptions
 {
     public ServerEnvironment Environment { get; set; } = ServerEnvironment.Default();
     public RetryOptions Retry { get; set; } = RetryOptions.Default();

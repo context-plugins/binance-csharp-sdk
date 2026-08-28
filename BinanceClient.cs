@@ -1,10 +1,10 @@
 using System.Net.Http;
-using BinancePublicSpotApi.Api;
-using BinancePublicSpotApi.Core;
-using BinancePublicSpotApi.Core.Logging;
-using BinancePublicSpotApi.Core.Models;
+using Binance.Api;
+using Binance.Core;
+using Binance.Core.Logging;
+using Binance.Core.Models;
 
-namespace BinancePublicSpotApi;
+namespace Binance;
 
 /// <summary>
 /// OpenAPI Specifications for the Binance Public Spot API
@@ -14,9 +14,9 @@ namespace BinancePublicSpotApi;
 ///   - <see href="https://binance-docs.github.io/apidocs/spot/en">https://binance-docs.github.io/apidocs/spot/en</see>
 /// </para>
 /// </summary>
-public sealed class BinancePublicSpotApiClient
+public sealed class BinanceClient
 {
-    public BinancePublicSpotApiClient(HttpClient httpClient, BinancePublicSpotApiClientOptions options)
+    public BinanceClient(HttpClient httpClient, BinanceClientOptions options)
     {
         var server = new Server(options.Environment, options.Server);
         var queryParameterFactory = new QueryParameterFactory([]);
@@ -24,14 +24,14 @@ public sealed class BinancePublicSpotApiClient
         var urlFactory = new UriFactory(queryParameterFactory, templateParamsFactory);
         var httpStatusPolicy = new HttpStatusPolicy([]);
         var headersFactory =
-            new HeadersFactory([new HeaderParam("User-Agent", "BinancePublicSpotApiClient/1.0 CSharp"),
+            new HeadersFactory([new HeaderParam("User-Agent", "BinanceClient/1.0 CSharp"),
                     new HeaderParam("X-APIMatic-Lang", "CSharp"),
                     new HeaderParam("X-APIMatic-Package-Version", "1.0"),
                     new HeaderParam("X-APIMatic-Gen-Version", "4.0.0"),
                     new HeaderParam("X-APIMatic-OS", RuntimeEnvironment.Os),
                     new HeaderParam("X-APIMatic-Runtime", RuntimeEnvironment.Runtime)]);
         var resiliencePipelineFactory = new ResiliencePipelineFactory(options.Retry);
-        var httpLogger = new HttpLogger(options.Logging, "BinancePublicSpotApiClient");
+        var httpLogger = new HttpLogger(options.Logging, "BinanceClient");
         var rawClient =
             new RawClient(httpClient,
                 urlFactory,

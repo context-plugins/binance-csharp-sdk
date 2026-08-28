@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace BinancePublicSpotApi.Core.Enum;
+namespace Binance.Core.Enum;
 
 internal sealed class IntEnumConverter<TEnum> : JsonConverter<TEnum>
     where TEnum : IntEnum<TEnum>

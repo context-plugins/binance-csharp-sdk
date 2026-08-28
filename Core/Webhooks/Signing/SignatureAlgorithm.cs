@@ -1,6 +1,6 @@
 using System.Security.Cryptography;
 
-namespace BinancePublicSpotApi.Core.Webhooks.Signing;
+namespace Binance.Core.Webhooks.Signing;
 
 internal abstract record SignatureAlgorithm
 {
