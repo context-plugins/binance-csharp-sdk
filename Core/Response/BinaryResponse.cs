@@ -2,9 +2,9 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
-using Binance.Core.Models;
+using BinancePublicSpotApi.Core.Models;
 
-namespace Binance.Core.Response;
+namespace BinancePublicSpotApi.Core.Response;
 
 internal sealed class BinaryResponse : IResponse<BinaryContent>
 {

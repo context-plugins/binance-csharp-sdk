@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
-using Binance.Core.Models;
+using BinancePublicSpotApi.Core.Models;
 
-namespace Binance.Models;
+namespace BinancePublicSpotApi.Models;
 
 public record AggTrade
 {
@@ -46,6 +46,12 @@ public record AggTrade
     /// </summary>
     [JsonPropertyName("m")]
     public required bool M { get; init; }
+
+    /// <summary>
+    /// Was the trade the best price match?
+    /// </summary>
+    [JsonPropertyName("M")]
+    public required bool M2 { get; init; }
 
     [JsonExtensionData]
     public AdditionalProperties AdditionalProperties { get; init; } = [];

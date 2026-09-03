@@ -8,6 +8,7 @@ Accessor: `client.FuturesAlgo` · Source: `Api/FuturesAlgo.cs` · 6 operations
 
 ### CancelAlgoOrderTrade
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `CancelAlgoOrderTrade(long algoId, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `algoId` ← `algoId`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -23,6 +24,7 @@ Accessor: `client.FuturesAlgo` · Source: `Api/FuturesAlgo.cs` · 6 operations
 
 ### QueryCurrentAlgoOpenOrdersUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QueryCurrentAlgoOpenOrdersUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -38,6 +40,7 @@ Accessor: `client.FuturesAlgo` · Source: `Api/FuturesAlgo.cs` · 6 operations
 
 ### QueryHistoricalAlgoOrdersUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QueryHistoricalAlgoOrdersUserData(long timestamp, string signature, string? symbol, Side? side, long? startTime, long? endTime, int? page, string? pageSize, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 7 params (`symbol` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `symbol` ← `symbol`, `side` ← `side`, `startTime` ← `startTime`, `endTime` ← `endTime`, `page` ← `page`, `pageSize` ← `pageSize`, `recvWindow` ← `recvWindow`
@@ -54,6 +57,7 @@ Accessor: `client.FuturesAlgo` · Source: `Api/FuturesAlgo.cs` · 6 operations
 
 ### QuerySubOrdersUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QuerySubOrdersUserData(long algoId, long timestamp, string signature, int? page, string? pageSize, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `page` — nullable, no default → **must pass explicitly**
   - `pageSize` — nullable, no default → **must pass explicitly**
@@ -71,6 +75,7 @@ Accessor: `client.FuturesAlgo` · Source: `Api/FuturesAlgo.cs` · 6 operations
 
 ### TimeWeightedAveragePriceTwapNewOrderTrade
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `TimeWeightedAveragePriceTwapNewOrderTrade(string symbol, Side side, double quantity, long duration, long timestamp, string signature, PositionSide? positionSide, string? clientAlgoId, bool? reduceOnly, double? limitPrice, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 5 params (`positionSide` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `symbol` ← `symbol`, `side` ← `side`, `quantity` ← `quantity`, `duration` ← `duration`, `timestamp` ← `timestamp`, `signature` ← `signature`, `positionSide` ← `positionSide`, `clientAlgoId` ← `clientAlgoId`, `reduceOnly` ← `reduceOnly`, `limitPrice` ← `limitPrice`, `recvWindow` ← `recvWindow`
@@ -88,6 +93,7 @@ Accessor: `client.FuturesAlgo` · Source: `Api/FuturesAlgo.cs` · 6 operations
 
 ### VolumeParticipationVpNewOrderTrade
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `VolumeParticipationVpNewOrderTrade(string symbol, Side side, double quantity, Urgency urgency, long timestamp, string signature, PositionSide? positionSide, string? clientAlgoId, bool? reduceOnly, double? limitPrice, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 5 params (`positionSide` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `symbol` ← `symbol`, `side` ← `side`, `quantity` ← `quantity`, `urgency` ← `urgency`, `timestamp` ← `timestamp`, `signature` ← `signature`, `positionSide` ← `positionSide`, `clientAlgoId` ← `clientAlgoId`, `reduceOnly` ← `reduceOnly`, `limitPrice` ← `limitPrice`, `recvWindow` ← `recvWindow`

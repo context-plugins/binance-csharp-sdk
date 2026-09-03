@@ -4,9 +4,9 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using Binance.Core.Exceptions;
+using BinancePublicSpotApi.Core.Exceptions;
 
-namespace Binance.Core.Authentication;
+namespace BinancePublicSpotApi.Core.Authentication;
 
 /// <summary>
 /// Represents multiple alternative schemes (OR logic).

@@ -1,6 +1,6 @@
 using System;
 
-namespace Binance.Core.Exceptions;
+namespace BinancePublicSpotApi.Core.Exceptions;
 
 public abstract class SseException : Exception
 {

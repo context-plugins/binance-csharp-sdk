@@ -1,6 +1,6 @@
 using System.Net.Http;
 
-namespace Binance.Core.Extensions;
+namespace BinancePublicSpotApi.Core.Extensions;
 
 internal static class HttpContentExtension
 {

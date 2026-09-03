@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-namespace Binance.Core.Models;
+namespace BinancePublicSpotApi.Core.Models;
 
 [DebuggerDisplay("{GetDebuggerDisplay(),nq}")]
 internal readonly record struct Optional<TValue>

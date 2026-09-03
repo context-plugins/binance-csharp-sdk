@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Binance.Core.Authentication.ApiKey;
+namespace BinancePublicSpotApi.Core.Authentication.ApiKey;
 
 internal sealed class ApiKeyQueryScheme : IAuthScheme
 {

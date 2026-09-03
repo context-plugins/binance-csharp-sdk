@@ -8,6 +8,7 @@ Accessor: `client.Fiat` · Source: `Api/Fiat.cs` · 2 operations
 
 ### FiatDepositWithdrawHistoryUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `FiatDepositWithdrawHistoryUserData(int transactionType, long timestamp, string signature, long? beginTime, long? endTime, int? page, int? rows, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 5 params (`beginTime` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `transactionType` ← `transactionType`, `timestamp` ← `timestamp`, `signature` ← `signature`, `beginTime` ← `beginTime`, `endTime` ← `endTime`, `page` ← `page`, `rows` ← `rows`, `recvWindow` ← `recvWindow`
@@ -23,6 +24,7 @@ Accessor: `client.Fiat` · Source: `Api/Fiat.cs` · 2 operations
 
 ### FiatPaymentsHistoryUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `FiatPaymentsHistoryUserData(int transactionType, long timestamp, string signature, long? beginTime, long? endTime, int? page, int? rows, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 5 params (`beginTime` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `transactionType` ← `transactionType`, `timestamp` ← `timestamp`, `signature` ← `signature`, `beginTime` ← `beginTime`, `endTime` ← `endTime`, `page` ← `page`, `rows` ← `rows`, `recvWindow` ← `recvWindow`

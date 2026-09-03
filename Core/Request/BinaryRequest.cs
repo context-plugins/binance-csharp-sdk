@@ -1,9 +1,9 @@
 using System.Net.Http;
 using System.Net.Http.Headers;
-using Binance.Core.Extensions;
-using Binance.Core.Models;
+using BinancePublicSpotApi.Core.Extensions;
+using BinancePublicSpotApi.Core.Models;
 
-namespace Binance.Core.Request;
+namespace BinancePublicSpotApi.Core.Request;
 
 internal sealed class BinaryRequest : IRequest
 {

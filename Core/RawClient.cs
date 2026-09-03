@@ -6,18 +6,18 @@ using System.Threading;
 using System.Threading.Tasks;
 using Polly;
 using Polly.Timeout;
-using Binance.Core.Authentication;
-using Binance.Core.ErrorResponse;
-using Binance.Core.Extensions;
-using Binance.Core.Hooks;
-using Binance.Core.Logging;
-using Binance.Core.Models;
-using Binance.Core.Pagination;
-using Binance.Core.Pagination.States;
-using Binance.Core.Request;
-using Binance.Core.Response;
+using BinancePublicSpotApi.Core.Authentication;
+using BinancePublicSpotApi.Core.ErrorResponse;
+using BinancePublicSpotApi.Core.Extensions;
+using BinancePublicSpotApi.Core.Hooks;
+using BinancePublicSpotApi.Core.Logging;
+using BinancePublicSpotApi.Core.Models;
+using BinancePublicSpotApi.Core.Pagination;
+using BinancePublicSpotApi.Core.Pagination.States;
+using BinancePublicSpotApi.Core.Request;
+using BinancePublicSpotApi.Core.Response;
 
-namespace Binance.Core;
+namespace BinancePublicSpotApi.Core;
 
 internal sealed class RawClient
 {

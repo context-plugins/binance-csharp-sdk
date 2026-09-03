@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
-using Binance.Core.Models;
+using BinancePublicSpotApi.Core.Models;
 
-namespace Binance.Core;
+namespace BinancePublicSpotApi.Core;
 
 internal static class ParameterFlattener
 {

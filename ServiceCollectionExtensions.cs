@@ -3,15 +3,15 @@ using System.Net.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace Binance;
+namespace BinancePublicSpotApi;
 
 public static class ServiceCollectionExtensions
 {
     extension(IServiceCollection services)
     {
-        public IServiceCollection AddBinanceClient(Action<BinanceClientOptions>? configure = null)
+        public IServiceCollection AddBinancePublicSpotApiClient(Action<BinancePublicSpotApiClientOptions>? configure = null)
         {
-            var options = new BinanceClientOptions();
+            var options = new BinancePublicSpotApiClientOptions();
             configure?.Invoke(options);
             services.AddHttpClient();
             services.AddSingleton(sp =>
@@ -23,7 +23,7 @@ public static class ServiceCollectionExtensions
                         };
                     var httpClientFactory = sp.GetRequiredService<IHttpClientFactory>();
                     var httpClient = httpClientFactory.CreateClient();
-                    return new BinanceClient(httpClient, options);
+                    return new BinancePublicSpotApiClient(httpClient, options);
                 });
             return services;
         }

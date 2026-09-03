@@ -1,3 +1,3 @@
-namespace Binance.Core.Models;
+namespace BinancePublicSpotApi.Core.Models;
 
 public readonly record struct HeaderParam(string Key, object? Value);

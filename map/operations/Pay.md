@@ -8,6 +8,7 @@ Accessor: `client.Pay` · Source: `Api/Pay.cs` · 1 operation
 
 ### GetPayTradeHistoryUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetPayTradeHistoryUserData(long timestamp, string signature, long? startTime, long? endTime, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 4 params (`startTime` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `startTime` ← `startTime`, `endTime` ← `endTime`, `limit` ← `limit`, `recvWindow` ← `recvWindow`

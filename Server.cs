@@ -1,7 +1,7 @@
-using Binance.Core.Models;
-using Binance.Servers;
+using BinancePublicSpotApi.Core.Models;
+using BinancePublicSpotApi.Servers;
 
-namespace Binance;
+namespace BinancePublicSpotApi;
 
 public class Server
 {

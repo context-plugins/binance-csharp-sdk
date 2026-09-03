@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
-using Binance.Core.Models;
+using BinancePublicSpotApi.Core.Models;
 
-namespace Binance.Models;
+namespace BinancePublicSpotApi.Models;
 
 public record SapiV1ManagedSubaccountWithdrawResponse
 {

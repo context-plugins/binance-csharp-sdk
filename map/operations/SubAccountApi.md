@@ -8,6 +8,7 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 ### CreateAVirtualSubAccountForMasterAccount
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `CreateAVirtualSubAccountForMasterAccount(string subAccountString, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `subAccountString` ← `subAccountString`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -23,6 +24,7 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 ### DeleteIpListForASubAccountApiKeyForMasterAccount
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `DeleteIpListForASubAccountApiKeyForMasterAccount(string email, string subAccountApiKey, long timestamp, string signature, string? ipAddress, string? thirdPartyName, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `ipAddress` — nullable, no default → **must pass explicitly**
   - `thirdPartyName` — nullable, no default → **must pass explicitly**
@@ -40,6 +42,7 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 ### DepositAssetsIntoTheManagedSubAccountForInvestorMasterAccount
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `DepositAssetsIntoTheManagedSubAccountForInvestorMasterAccount(string toEmail, string asset, double amount, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `toEmail` ← `toEmail`, `asset` ← `asset`, `amount` ← `amount`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -55,6 +58,7 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 ### DetailOnSubAccountSFuturesAccountForMasterAccount
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `DetailOnSubAccountSFuturesAccountForMasterAccount(string email, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `email` ← `email`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -70,6 +74,7 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 ### DetailOnSubAccountSFuturesAccountV2ForMasterAccount
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `DetailOnSubAccountSFuturesAccountV2ForMasterAccount(string email, int futuresType, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `email` ← `email`, `futuresType` ← `futuresType`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -85,6 +90,7 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 ### DetailOnSubAccountSMarginAccountForMasterAccount
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `DetailOnSubAccountSMarginAccountForMasterAccount(string email, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `email` ← `email`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -100,6 +106,7 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 ### EnableFuturesForSubAccountForMasterAccount
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `EnableFuturesForSubAccountForMasterAccount(string email, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `email` ← `email`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -115,6 +122,7 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 ### EnableLeverageTokenForSubAccountForMasterAccount
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `EnableLeverageTokenForSubAccountForMasterAccount(string email, bool enableBlvt, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `email` ← `email`, `enableBlvt` ← `enableBlvt`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -130,6 +138,7 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 ### EnableMarginForSubAccountForMasterAccount
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `EnableMarginForSubAccountForMasterAccount(string email, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `email` ← `email`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -145,6 +154,7 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 ### EnableOptionsForSubAccountForMasterAccountUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `EnableOptionsForSubAccountForMasterAccountUserData(string email, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `email` ← `email`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -160,6 +170,7 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 ### FuturesPositionRiskOfSubAccountForMasterAccount
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `FuturesPositionRiskOfSubAccountForMasterAccount(string email, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `email` ← `email`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -175,6 +186,7 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 ### FuturesPositionRiskOfSubAccountV2ForMasterAccount
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `FuturesPositionRiskOfSubAccountV2ForMasterAccount(string email, int futuresType, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `email` ← `email`, `futuresType` ← `futuresType`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -190,6 +202,7 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 ### GetIpRestrictionForASubAccountApiKeyForMasterAccount
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetIpRestrictionForASubAccountApiKeyForMasterAccount(string email, string subAccountApiKey, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `email` ← `email`, `subAccountApiKey` ← `subAccountApiKey`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -205,6 +218,7 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 ### GetManagedSubAccountDepositAddressForInvestorMasterAccount
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetManagedSubAccountDepositAddressForInvestorMasterAccount(string email, string coin, long timestamp, string signature, string? network, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `network` — nullable, no default → **must pass explicitly**
   - `recvWindow` — nullable, no default → **must pass explicitly**
@@ -221,6 +235,7 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 ### ManagedSubAccountAssetDetailsForInvestorMasterAccount
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `ManagedSubAccountAssetDetailsForInvestorMasterAccount(string email, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `email` ← `email`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -251,6 +266,7 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 ### MarginTransferForSubAccountForMasterAccount
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `MarginTransferForSubAccountForMasterAccount(string email, string asset, double amount, int type, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `email` ← `email`, `asset` ← `asset`, `amount` ← `amount`, `type` ← `type`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -266,6 +282,7 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 ### QueryManagedSubAccountFuturesAssetDetailsForInvestorMasterAccount
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QueryManagedSubAccountFuturesAssetDetailsForInvestorMasterAccount(string email, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `email` ← `email`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -281,6 +298,7 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 ### QueryManagedSubAccountListForInvestor
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QueryManagedSubAccountListForInvestor(string email, long timestamp, string signature, int? page, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `page` — nullable, no default → **must pass explicitly**
   - `limit` — nullable, no default → **must pass explicitly**
@@ -298,6 +316,7 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 ### QueryManagedSubAccountMarginAssetDetailsForInvestorMasterAccount
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QueryManagedSubAccountMarginAssetDetailsForInvestorMasterAccount(string email, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `email` ← `email`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -313,6 +332,7 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 ### QueryManagedSubAccountTransferLogForInvestorMasterAccount
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QueryManagedSubAccountTransferLogForInvestorMasterAccount(string email, long timestamp, string signature, long? startTime, long? endTime, int? page, int? limit, string? transfers, string? transferFunctionAccountType, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 7 params (`startTime` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `email` ← `email`, `timestamp` ← `timestamp`, `signature` ← `signature`, `startTime` ← `startTime`, `endTime` ← `endTime`, `page` ← `page`, `limit` ← `limit`, `transfers` ← `transfers`, `transferFunctionAccountType` ← `transferFunctionAccountType`, `recvWindow` ← `recvWindow`
@@ -328,6 +348,7 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 ### QueryManagedSubAccountTransferLogForTradingTeamMasterAccount
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QueryManagedSubAccountTransferLogForTradingTeamMasterAccount(string email, long timestamp, string signature, long? startTime, long? endTime, int? page, int? limit, string? transfers, string? transferFunctionAccountType, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 7 params (`startTime` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `email` ← `email`, `timestamp` ← `timestamp`, `signature` ← `signature`, `startTime` ← `startTime`, `endTime` ← `endTime`, `page` ← `page`, `limit` ← `limit`, `transfers` ← `transfers`, `transferFunctionAccountType` ← `transferFunctionAccountType`, `recvWindow` ← `recvWindow`
@@ -343,6 +364,7 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 ### QueryManagedSubAccountTransferLogForTradingTeamSubAccountUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QueryManagedSubAccountTransferLogForTradingTeamSubAccountUserData(Transfers transfers, TransferFunctionAccountType transferFunctionAccountType, long timestamp, string signature, long? startTime, long? endTime, int? page, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 5 params (`startTime` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `transfers` ← `transfers`, `transferFunctionAccountType` ← `transferFunctionAccountType`, `timestamp` ← `timestamp`, `signature` ← `signature`, `startTime` ← `startTime`, `endTime` ← `endTime`, `page` ← `page`, `limit` ← `limit`, `recvWindow` ← `recvWindow`
@@ -360,6 +382,7 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 ### QuerySubAccountAssetsForMasterAccount
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QuerySubAccountAssetsForMasterAccount(string email, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `email` ← `email`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -375,6 +398,7 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 ### QuerySubAccountListForMasterAccount
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QuerySubAccountListForMasterAccount(long timestamp, string signature, string? email, IsFreeze? isFreeze, int? page, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 5 params (`email` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `email` ← `email`, `isFreeze` ← `isFreeze`, `page` ← `page`, `limit` ← `limit`, `recvWindow` ← `recvWindow`
@@ -391,6 +415,7 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 ### QuerySubAccountTransactionStatisticsForMasterAccount
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QuerySubAccountTransactionStatisticsForMasterAccount(string email, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `email` ← `email`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -406,6 +431,7 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 ### SubAccountAssetsForMasterAccount
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `SubAccountAssetsForMasterAccount(string email, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `email` ← `email`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -421,6 +447,7 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 ### SubAccountDepositHistoryForMasterAccount
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `SubAccountDepositHistoryForMasterAccount(string email, long timestamp, string signature, string? coin, int? status, long? startTime, long? endTime, long? limit, int? offset, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 7 params (`coin` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `email` ← `email`, `timestamp` ← `timestamp`, `signature` ← `signature`, `coin` ← `coin`, `status` ← `status`, `startTime` ← `startTime`, `endTime` ← `endTime`, `limit` ← `limit`, `offset` ← `offset`, `recvWindow` ← `recvWindow`
@@ -436,6 +463,7 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 ### SubAccountFuturesAssetTransferForMasterAccount
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `SubAccountFuturesAssetTransferForMasterAccount(string fromEmail, string toEmail, int futuresType, string asset, double amount, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `fromEmail` ← `fromEmail`, `toEmail` ← `toEmail`, `futuresType` ← `futuresType`, `asset` ← `asset`, `amount` ← `amount`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -451,6 +479,7 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 ### SubAccountFuturesAssetTransferHistoryForMasterAccount
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `SubAccountFuturesAssetTransferHistoryForMasterAccount(string email, int futuresType, long timestamp, string signature, long? startTime, long? endTime, int? page, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 5 params (`startTime` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `email` ← `email`, `futuresType` ← `futuresType`, `timestamp` ← `timestamp`, `signature` ← `signature`, `startTime` ← `startTime`, `endTime` ← `endTime`, `page` ← `page`, `limit` ← `limit`, `recvWindow` ← `recvWindow`
@@ -466,6 +495,7 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 ### SubAccountSStatusOnMarginFuturesForMasterAccount
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `SubAccountSStatusOnMarginFuturesForMasterAccount(long timestamp, string signature, string? email, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `email` — nullable, no default → **must pass explicitly**
   - `recvWindow` — nullable, no default → **must pass explicitly**
@@ -482,6 +512,7 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 ### SubAccountSpotAssetTransferHistoryForMasterAccount
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `SubAccountSpotAssetTransferHistoryForMasterAccount(long timestamp, string signature, string? fromEmail, string? toEmail, long? startTime, long? endTime, int? page, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 7 params (`fromEmail` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `fromEmail` ← `fromEmail`, `toEmail` ← `toEmail`, `startTime` ← `startTime`, `endTime` ← `endTime`, `page` ← `page`, `limit` ← `limit`, `recvWindow` ← `recvWindow`
@@ -497,6 +528,7 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 ### SubAccountSpotAssetsSummaryForMasterAccount
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `SubAccountSpotAssetsSummaryForMasterAccount(long timestamp, string signature, string? email, int? page, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 4 params (`email` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `email` ← `email`, `page` ← `page`, `size` ← `size`, `recvWindow` ← `recvWindow`
@@ -512,6 +544,7 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 ### SubAccountSpotAssetsSummaryForMasterAccount2
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `SubAccountSpotAssetsSummaryForMasterAccount2(string email, string coin, long timestamp, string signature, string? network, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `network` — nullable, no default → **must pass explicitly**
   - `recvWindow` — nullable, no default → **must pass explicitly**
@@ -528,6 +561,7 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 ### SubAccountTransferHistoryForSubAccount
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `SubAccountTransferHistoryForSubAccount(long timestamp, string signature, string? asset, int? type, long? startTime, long? endTime, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 6 params (`asset` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `asset` ← `asset`, `type` ← `type`, `startTime` ← `startTime`, `endTime` ← `endTime`, `limit` ← `limit`, `recvWindow` ← `recvWindow`
@@ -543,6 +577,7 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 ### SummaryOfSubAccountSFuturesAccountForMasterAccount
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `SummaryOfSubAccountSFuturesAccountForMasterAccount(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -558,6 +593,7 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 ### SummaryOfSubAccountSFuturesAccountV2ForMasterAccount
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `SummaryOfSubAccountSFuturesAccountV2ForMasterAccount(int futuresType, long timestamp, string signature, int? page, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `page` — nullable, no default → **must pass explicitly**
   - `limit` — nullable, no default → **must pass explicitly**
@@ -575,6 +611,7 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 ### SummaryOfSubAccountSMarginAccountForMasterAccount
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `SummaryOfSubAccountSMarginAccountForMasterAccount(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -590,6 +627,7 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 ### TransferForSubAccountForMasterAccount
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `TransferForSubAccountForMasterAccount(string email, string asset, double amount, int type, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `email` ← `email`, `asset` ← `asset`, `amount` ← `amount`, `type` ← `type`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -605,6 +643,7 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 ### TransferToMasterForSubAccount
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `TransferToMasterForSubAccount(string asset, double amount, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `asset` ← `asset`, `amount` ← `amount`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -620,6 +659,7 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 ### TransferToSubAccountOfSameMasterForSubAccount
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `TransferToSubAccountOfSameMasterForSubAccount(string toEmail, string asset, double amount, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `toEmail` ← `toEmail`, `asset` ← `asset`, `amount` ← `amount`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -635,6 +675,7 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 ### UniversalTransferForMasterAccount
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `UniversalTransferForMasterAccount(FromAccountType fromAccountType, ToAccountType toAccountType, string asset, double amount, long timestamp, string signature, string? fromEmail, string? toEmail, string? clientTranId, string? symbol, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 5 params (`fromEmail` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `fromAccountType` ← `fromAccountType`, `toAccountType` ← `toAccountType`, `asset` ← `asset`, `amount` ← `amount`, `timestamp` ← `timestamp`, `signature` ← `signature`, `fromEmail` ← `fromEmail`, `toEmail` ← `toEmail`, `clientTranId` ← `clientTranId`, `symbol` ← `symbol`, `recvWindow` ← `recvWindow`
@@ -652,6 +693,7 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 ### UniversalTransferHistoryForMasterAccount
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `UniversalTransferHistoryForMasterAccount(long timestamp, string signature, string? fromEmail, string? toEmail, string? clientTranId, long? startTime, long? endTime, int? page, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 8 params (`fromEmail` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `fromEmail` ← `fromEmail`, `toEmail` ← `toEmail`, `clientTranId` ← `clientTranId`, `startTime` ← `startTime`, `endTime` ← `endTime`, `page` ← `page`, `limit` ← `limit`, `recvWindow` ← `recvWindow`
@@ -667,6 +709,7 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 ### UpdateIpRestrictionForSubAccountApiKeyForMasterAccount
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `UpdateIpRestrictionForSubAccountApiKeyForMasterAccount(string email, string subAccountApiKey, string status, long timestamp, string signature, string? thirdPartyName, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `thirdPartyName` — nullable, no default → **must pass explicitly**
   - `recvWindow` — nullable, no default → **must pass explicitly**
@@ -683,6 +726,7 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 ### WithdrawlAssetsFromTheManagedSubAccountForInvestorMasterAccount
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `WithdrawlAssetsFromTheManagedSubAccountForInvestorMasterAccount(string fromEmail, string asset, double amount, long timestamp, string signature, long? transferDate, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `transferDate` — nullable, no default → **must pass explicitly**
   - `recvWindow` — nullable, no default → **must pass explicitly**

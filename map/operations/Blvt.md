@@ -8,6 +8,7 @@ Accessor: `client.Blvt` · Source: `Api/Blvt.cs` · 6 operations
 
 ### BlvtInfoMarketData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `BlvtInfoMarketData(string? tokenName, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `tokenName` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `tokenName` ← `tokenName`
@@ -23,6 +24,7 @@ Accessor: `client.Blvt` · Source: `Api/Blvt.cs` · 6 operations
 
 ### BlvtUserLimitInfoUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `BlvtUserLimitInfoUserData(long timestamp, string signature, string? tokenName, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `tokenName` — nullable, no default → **must pass explicitly**
   - `recvWindow` — nullable, no default → **must pass explicitly**
@@ -39,6 +41,7 @@ Accessor: `client.Blvt` · Source: `Api/Blvt.cs` · 6 operations
 
 ### QuerySubscriptionRecordUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QuerySubscriptionRecordUserData(long timestamp, string signature, string? tokenName, long? id, long? startTime, long? endTime, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 6 params (`tokenName` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `tokenName` ← `tokenName`, `id` ← `id`, `startTime` ← `startTime`, `endTime` ← `endTime`, `limit` ← `limit`, `recvWindow` ← `recvWindow`
@@ -54,6 +57,7 @@ Accessor: `client.Blvt` · Source: `Api/Blvt.cs` · 6 operations
 
 ### RedeemBlvtUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `RedeemBlvtUserData(string tokenName, double amount, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `tokenName` ← `tokenName`, `amount` ← `amount`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -69,6 +73,7 @@ Accessor: `client.Blvt` · Source: `Api/Blvt.cs` · 6 operations
 
 ### RedemptionRecordUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `RedemptionRecordUserData(long timestamp, string signature, string? tokenName, long? id, long? startTime, long? endTime, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 6 params (`tokenName` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `tokenName` ← `tokenName`, `id` ← `id`, `startTime` ← `startTime`, `endTime` ← `endTime`, `limit` ← `limit`, `recvWindow` ← `recvWindow`
@@ -84,6 +89,7 @@ Accessor: `client.Blvt` · Source: `Api/Blvt.cs` · 6 operations
 
 ### SubscribeBlvtUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `SubscribeBlvtUserData(string tokenName, double cost, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `tokenName` ← `tokenName`, `cost` ← `cost`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`

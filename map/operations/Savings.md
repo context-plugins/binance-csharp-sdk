@@ -8,6 +8,7 @@ Accessor: `client.Savings` · Source: `Api/Savings.cs` · 4 operations
 
 ### ChangeFixedActivityPositionToDailyPositionUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `ChangeFixedActivityPositionToDailyPositionUserData(string projectId, string lot, long timestamp, string signature, string? positionId, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `positionId` — nullable, no default → **must pass explicitly**
   - `recvWindow` — nullable, no default → **must pass explicitly**
@@ -24,6 +25,7 @@ Accessor: `client.Savings` · Source: `Api/Savings.cs` · 4 operations
 
 ### GetFixedActivityProjectListUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetFixedActivityProjectListUserData(Type8 type, long timestamp, string signature, string? asset, Status? status, bool? isSortAsc, SortBy? sortBy, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 7 params (`asset` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `type` ← `type`, `timestamp` ← `timestamp`, `signature` ← `signature`, `asset` ← `asset`, `status` ← `status`, `isSortAsc` ← `isSortAsc`, `sortBy` ← `sortBy`, `current` ← `current`, `size` ← `size`, `recvWindow` ← `recvWindow`
@@ -42,6 +44,7 @@ Accessor: `client.Savings` · Source: `Api/Savings.cs` · 4 operations
 
 ### GetFixedActivityProjectPositionUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetFixedActivityProjectPositionUserData(string asset, long timestamp, string signature, string? projectId, Status? status, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `projectId` — nullable, no default → **must pass explicitly**
   - `status` — nullable, no default → **must pass explicitly**
@@ -60,6 +63,7 @@ Accessor: `client.Savings` · Source: `Api/Savings.cs` · 4 operations
 
 ### PurchaseFixedActivityProjectUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `PurchaseFixedActivityProjectUserData(string projectId, string lot, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `projectId` ← `projectId`, `lot` ← `lot`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`

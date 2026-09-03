@@ -1,7 +1,7 @@
 using System;
 using System.Globalization;
 
-namespace Binance.Core.Extensions;
+namespace BinancePublicSpotApi.Core.Extensions;
 
 internal static class DateTimeOffsetExtensions
 {

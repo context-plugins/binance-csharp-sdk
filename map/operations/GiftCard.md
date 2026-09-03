@@ -8,6 +8,7 @@ Accessor: `client.GiftCard` · Source: `Api/GiftCard.cs` · 6 operations
 
 ### BuyABinanceCodeTrade
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `BuyABinanceCodeTrade(string baseToken, string faceToken, double baseTokenAmount, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `baseToken` ← `baseToken`, `faceToken` ← `faceToken`, `baseTokenAmount` ← `baseTokenAmount`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -23,6 +24,7 @@ Accessor: `client.GiftCard` · Source: `Api/GiftCard.cs` · 6 operations
 
 ### CreateABinanceCodeUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `CreateABinanceCodeUserData(string token, double amount, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `token` ← `token`, `amount` ← `amount`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -38,6 +40,7 @@ Accessor: `client.GiftCard` · Source: `Api/GiftCard.cs` · 6 operations
 
 ### FetchRsaPublicKeyUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `FetchRsaPublicKeyUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -53,6 +56,7 @@ Accessor: `client.GiftCard` · Source: `Api/GiftCard.cs` · 6 operations
 
 ### FetchTokenLimitUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `FetchTokenLimitUserData(string baseToken, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `baseToken` ← `baseToken`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -68,6 +72,7 @@ Accessor: `client.GiftCard` · Source: `Api/GiftCard.cs` · 6 operations
 
 ### RedeemABinanceCodeUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `RedeemABinanceCodeUserData(string code, long timestamp, string signature, string? externalUid, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `externalUid` — nullable, no default → **must pass explicitly**
   - `recvWindow` — nullable, no default → **must pass explicitly**
@@ -84,6 +89,7 @@ Accessor: `client.GiftCard` · Source: `Api/GiftCard.cs` · 6 operations
 
 ### VerifyABinanceCodeUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `VerifyABinanceCodeUserData(string referenceNo, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `referenceNo` ← `referenceNo`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`

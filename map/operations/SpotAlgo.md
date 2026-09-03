@@ -8,6 +8,7 @@ Accessor: `client.SpotAlgo` · Source: `Api/SpotAlgo.cs` · 5 operations
 
 ### CancelAlgoOrder
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `CancelAlgoOrder(long algoId, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `algoId` ← `algoId`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -23,6 +24,7 @@ Accessor: `client.SpotAlgo` · Source: `Api/SpotAlgo.cs` · 5 operations
 
 ### QueryCurrentAlgoOpenOrders
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QueryCurrentAlgoOpenOrders(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -38,6 +40,7 @@ Accessor: `client.SpotAlgo` · Source: `Api/SpotAlgo.cs` · 5 operations
 
 ### QueryHistoricalAlgoOrders
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QueryHistoricalAlgoOrders(string symbol, Side side, long timestamp, string signature, long? startTime, long? endTime, int? page, string? pageSize, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 5 params (`startTime` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `symbol` ← `symbol`, `side` ← `side`, `timestamp` ← `timestamp`, `signature` ← `signature`, `startTime` ← `startTime`, `endTime` ← `endTime`, `page` ← `page`, `pageSize` ← `pageSize`, `recvWindow` ← `recvWindow`
@@ -54,6 +57,7 @@ Accessor: `client.SpotAlgo` · Source: `Api/SpotAlgo.cs` · 5 operations
 
 ### QuerySubOrders
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QuerySubOrders(long algoId, long timestamp, string signature, int? page, string? pageSize, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `page` — nullable, no default → **must pass explicitly**
   - `pageSize` — nullable, no default → **must pass explicitly**
@@ -71,6 +75,7 @@ Accessor: `client.SpotAlgo` · Source: `Api/SpotAlgo.cs` · 5 operations
 
 ### TimeWeightedAveragePriceTwapNewOrder
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `TimeWeightedAveragePriceTwapNewOrder(string symbol, Side side, double quantity, int duration, long timestamp, string signature, string? clientAlgoId, double? limitPrice, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `clientAlgoId` — nullable, no default → **must pass explicitly**
   - `limitPrice` — nullable, no default → **must pass explicitly**

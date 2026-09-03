@@ -8,6 +8,7 @@ Accessor: `client.Staking` · Source: `Api/Staking.cs` · 12 operations
 
 ### EthStakingAccountV2UserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `EthStakingAccountV2UserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -23,6 +24,7 @@ Accessor: `client.Staking` · Source: `Api/Staking.cs` · 12 operations
 
 ### GetBethRewardsDistributionHistoryUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetBethRewardsDistributionHistoryUserData(long timestamp, string signature, long? startTime, long? endTime, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 5 params (`startTime` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `size` ← `size`, `recvWindow` ← `recvWindow`
@@ -38,6 +40,7 @@ Accessor: `client.Staking` · Source: `Api/Staking.cs` · 12 operations
 
 ### GetCurrentEthStakingQuotaUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetCurrentEthStakingQuotaUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -53,6 +56,7 @@ Accessor: `client.Staking` · Source: `Api/Staking.cs` · 12 operations
 
 ### GetEthRedemptionHistoryUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetEthRedemptionHistoryUserData(long timestamp, string signature, long? startTime, long? endTime, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 5 params (`startTime` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `size` ← `size`, `recvWindow` ← `recvWindow`
@@ -68,6 +72,7 @@ Accessor: `client.Staking` · Source: `Api/Staking.cs` · 12 operations
 
 ### GetEthStakingHistoryUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetEthStakingHistoryUserData(long timestamp, string signature, long? startTime, long? endTime, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 5 params (`startTime` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `size` ← `size`, `recvWindow` ← `recvWindow`
@@ -83,6 +88,7 @@ Accessor: `client.Staking` · Source: `Api/Staking.cs` · 12 operations
 
 ### GetWbethRateHistoryUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetWbethRateHistoryUserData(long timestamp, string signature, long? startTime, long? endTime, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 5 params (`startTime` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `size` ← `size`, `recvWindow` ← `recvWindow`
@@ -98,6 +104,7 @@ Accessor: `client.Staking` · Source: `Api/Staking.cs` · 12 operations
 
 ### GetWbethRewardsHistoryUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetWbethRewardsHistoryUserData(long timestamp, string signature, long? startTime, long? endTime, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 5 params (`startTime` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `size` ← `size`, `recvWindow` ← `recvWindow`
@@ -113,6 +120,7 @@ Accessor: `client.Staking` · Source: `Api/Staking.cs` · 12 operations
 
 ### GetWbethUnwrapHistoryUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetWbethUnwrapHistoryUserData(long timestamp, string signature, long? startTime, long? endTime, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 5 params (`startTime` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `size` ← `size`, `recvWindow` ← `recvWindow`
@@ -128,6 +136,7 @@ Accessor: `client.Staking` · Source: `Api/Staking.cs` · 12 operations
 
 ### GetWbethWrapHistoryUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetWbethWrapHistoryUserData(long timestamp, string signature, long? startTime, long? endTime, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 5 params (`startTime` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `size` ← `size`, `recvWindow` ← `recvWindow`
@@ -143,6 +152,7 @@ Accessor: `client.Staking` · Source: `Api/Staking.cs` · 12 operations
 
 ### RedeemEthTrade
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `RedeemEthTrade(double amount, long timestamp, string signature, string? asset, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `asset` — nullable, no default → **must pass explicitly**
   - `recvWindow` — nullable, no default → **must pass explicitly**
@@ -159,6 +169,7 @@ Accessor: `client.Staking` · Source: `Api/Staking.cs` · 12 operations
 
 ### SubscribeEthStakingV2Trade
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `SubscribeEthStakingV2Trade(double amount, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `amount` ← `amount`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -174,6 +185,7 @@ Accessor: `client.Staking` · Source: `Api/Staking.cs` · 12 operations
 
 ### WrapBethTrade
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `WrapBethTrade(double amount, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `amount` ← `amount`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`

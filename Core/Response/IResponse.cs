@@ -2,7 +2,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Binance.Core.Response;
+namespace BinancePublicSpotApi.Core.Response;
 
 internal interface IResponse<TResponse>
 {

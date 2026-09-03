@@ -8,6 +8,7 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 
 ### AdjustLtvFlexibleLoanAdjustLtvTrade
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `AdjustLtvFlexibleLoanAdjustLtvTrade(double adjustmentAmount, Direction direction, long timestamp, string signature, string? loanCoin, string? collateralCoin, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `loanCoin` — nullable, no default → **must pass explicitly**
   - `collateralCoin` — nullable, no default → **must pass explicitly**
@@ -26,6 +27,7 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 
 ### AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserData(long timestamp, string signature, string? loanCoin, string? collateralCoin, long? startTime, long? endTime, int? current, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 7 params (`loanCoin` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `loanCoin` ← `loanCoin`, `collateralCoin` ← `collateralCoin`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `limit` ← `limit`, `recvWindow` ← `recvWindow`
@@ -41,6 +43,7 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 
 ### BorrowFlexibleLoanBorrowTrade
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `BorrowFlexibleLoanBorrowTrade(long timestamp, string signature, string? loanCoin, double? loanAmount, string? collateralCoin, double? collateralAmount, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 5 params (`loanCoin` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `loanCoin` ← `loanCoin`, `loanAmount` ← `loanAmount`, `collateralCoin` ← `collateralCoin`, `collateralAmount` ← `collateralAmount`, `recvWindow` ← `recvWindow`
@@ -56,6 +59,7 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 
 ### BorrowGetFlexibleLoanBorrowHistoryUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `BorrowGetFlexibleLoanBorrowHistoryUserData(long timestamp, string signature, string? loanCoin, string? collateralCoin, long? startTime, long? endTime, int? current, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 7 params (`loanCoin` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `loanCoin` ← `loanCoin`, `collateralCoin` ← `collateralCoin`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `limit` ← `limit`, `recvWindow` ← `recvWindow`
@@ -71,6 +75,7 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 
 ### BorrowGetFlexibleLoanOngoingOrdersUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `BorrowGetFlexibleLoanOngoingOrdersUserData(long timestamp, string signature, string? loanCoin, string? collateralCoin, int? current, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 5 params (`loanCoin` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `loanCoin` ← `loanCoin`, `collateralCoin` ← `collateralCoin`, `current` ← `current`, `limit` ← `limit`, `recvWindow` ← `recvWindow`
@@ -86,6 +91,7 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 
 ### CheckCollateralRepayRateUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `CheckCollateralRepayRateUserData(string loanCoin, string collateralCoin, double repayAmount, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `loanCoin` ← `loanCoin`, `collateralCoin` ← `collateralCoin`, `repayAmount` ← `repayAmount`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -101,6 +107,7 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 
 ### CryptoLoanAdjustLtvTrade
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `CryptoLoanAdjustLtvTrade(long orderId, double amount, Direction direction, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `orderId` ← `orderId`, `amount` ← `amount`, `direction` ← `direction`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -117,6 +124,7 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 
 ### CryptoLoanBorrowTrade
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `CryptoLoanBorrowTrade(string loanCoin, string collateralCoin, int loanTerm, long timestamp, string signature, double? loanAmount, double? collateralAmount, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `loanAmount` — nullable, no default → **must pass explicitly**
   - `collateralAmount` — nullable, no default → **must pass explicitly**
@@ -134,6 +142,7 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 
 ### CryptoLoanCustomizeMarginCallTrade
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `CryptoLoanCustomizeMarginCallTrade(double marginCall, long timestamp, string signature, long? orderId, string? collateralCoin, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `orderId` — nullable, no default → **must pass explicitly**
   - `collateralCoin` — nullable, no default → **must pass explicitly**
@@ -151,6 +160,7 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 
 ### CryptoLoanRepayTrade
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `CryptoLoanRepayTrade(long orderId, double amount, long timestamp, string signature, int? type, bool? collateralReturn, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `type` — nullable, no default → **must pass explicitly**
   - `collateralReturn` — nullable, no default → **must pass explicitly**
@@ -168,6 +178,7 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 
 ### GetCollateralAssetsDataUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetCollateralAssetsDataUserData(long timestamp, string signature, string? collateralCoin, int? vipLevel, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `collateralCoin` — nullable, no default → **must pass explicitly**
   - `vipLevel` — nullable, no default → **must pass explicitly**
@@ -185,6 +196,7 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 
 ### GetCryptoLoansBorrowHistoryUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetCryptoLoansBorrowHistoryUserData(long timestamp, string signature, long? orderId, string? loanCoin, string? collateralCoin, long? startTime, long? endTime, int? current, long? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 8 params (`orderId` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `orderId` ← `orderId`, `loanCoin` ← `loanCoin`, `collateralCoin` ← `collateralCoin`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `limit` ← `limit`, `recvWindow` ← `recvWindow`
@@ -200,6 +212,7 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 
 ### GetCryptoLoansIncomeHistoryUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetCryptoLoansIncomeHistoryUserData(long timestamp, string signature, string? asset, Type9? type, long? startTime, long? endTime, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 6 params (`asset` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `asset` ← `asset`, `type` ← `type`, `startTime` ← `startTime`, `endTime` ← `endTime`, `limit` ← `limit`, `recvWindow` ← `recvWindow`
@@ -216,6 +229,7 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 
 ### GetFlexibleLoanAssetsDataUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetFlexibleLoanAssetsDataUserData(long timestamp, string signature, string? loanCoin, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `loanCoin` — nullable, no default → **must pass explicitly**
   - `recvWindow` — nullable, no default → **must pass explicitly**
@@ -232,6 +246,7 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 
 ### GetFlexibleLoanCollateralAssetsDataUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetFlexibleLoanCollateralAssetsDataUserData(long timestamp, string signature, string? collateralCoin, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `collateralCoin` — nullable, no default → **must pass explicitly**
   - `recvWindow` — nullable, no default → **must pass explicitly**
@@ -248,6 +263,7 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 
 ### GetLoanLtvAdjustmentHistoryUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetLoanLtvAdjustmentHistoryUserData(long timestamp, string signature, long? orderId, string? loanCoin, string? collateralCoin, long? startTime, long? endTime, int? current, long? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 8 params (`orderId` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `orderId` ← `orderId`, `loanCoin` ← `loanCoin`, `collateralCoin` ← `collateralCoin`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `limit` ← `limit`, `recvWindow` ← `recvWindow`
@@ -263,6 +279,7 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 
 ### GetLoanOngoingOrdersUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetLoanOngoingOrdersUserData(long timestamp, string signature, long? orderId, string? loanCoin, string? collateralCoin, int? current, long? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 6 params (`orderId` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `orderId` ← `orderId`, `loanCoin` ← `loanCoin`, `collateralCoin` ← `collateralCoin`, `current` ← `current`, `limit` ← `limit`, `recvWindow` ← `recvWindow`
@@ -278,6 +295,7 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 
 ### GetLoanRepaymentHistoryUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetLoanRepaymentHistoryUserData(long timestamp, string signature, long? orderId, string? loanCoin, string? collateralCoin, long? startTime, long? endTime, int? current, long? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 8 params (`orderId` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `orderId` ← `orderId`, `loanCoin` ← `loanCoin`, `collateralCoin` ← `collateralCoin`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `limit` ← `limit`, `recvWindow` ← `recvWindow`
@@ -293,6 +311,7 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 
 ### GetLoanableAssetsDataUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetLoanableAssetsDataUserData(long timestamp, string signature, string? loanCoin, int? vipLevel, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `loanCoin` — nullable, no default → **must pass explicitly**
   - `vipLevel` — nullable, no default → **must pass explicitly**
@@ -310,6 +329,7 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 
 ### RepayFlexibleLoanRepayTrade
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `RepayFlexibleLoanRepayTrade(double repayAmount, long timestamp, string signature, string? loanCoin, string? collateralCoin, bool? collateralReturn, bool? fullRepayment, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 5 params (`loanCoin` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `repayAmount` ← `repayAmount`, `timestamp` ← `timestamp`, `signature` ← `signature`, `loanCoin` ← `loanCoin`, `collateralCoin` ← `collateralCoin`, `collateralReturn` ← `collateralReturn`, `fullRepayment` ← `fullRepayment`, `recvWindow` ← `recvWindow`
@@ -325,6 +345,7 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 
 ### RepayGetFlexibleLoanRepaymentHistoryUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `RepayGetFlexibleLoanRepaymentHistoryUserData(long timestamp, string signature, string? loanCoin, string? collateralCoin, long? startTime, long? endTime, int? current, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 7 params (`loanCoin` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `loanCoin` ← `loanCoin`, `collateralCoin` ← `collateralCoin`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `limit` ← `limit`, `recvWindow` ← `recvWindow`

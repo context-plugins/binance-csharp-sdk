@@ -1,8 +1,8 @@
 using System;
 using Microsoft.Extensions.Logging;
-using Binance.Core.Configuration;
+using BinancePublicSpotApi.Core.Configuration;
 
-namespace Binance.Core.Logging;
+namespace BinancePublicSpotApi.Core.Logging;
 
 internal static class LoggingEnvironment
 {

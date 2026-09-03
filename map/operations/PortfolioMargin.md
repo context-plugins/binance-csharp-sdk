@@ -8,6 +8,7 @@ Accessor: `client.PortfolioMargin` · Source: `Api/PortfolioMargin.cs` · 14 ope
 
 ### BnbTransferUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `BnbTransferUserData(TransferSide transferSide, double amount, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `transferSide` ← `transferSide`, `amount` ← `amount`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -24,6 +25,7 @@ Accessor: `client.PortfolioMargin` · Source: `Api/PortfolioMargin.cs` · 14 ope
 
 ### ChangeAutoRepayFuturesStatusUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `ChangeAutoRepayFuturesStatusUserData(bool autoRepay, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `autoRepay` ← `autoRepay`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -39,6 +41,7 @@ Accessor: `client.PortfolioMargin` · Source: `Api/PortfolioMargin.cs` · 14 ope
 
 ### FundAutoCollectionUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `FundAutoCollectionUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -54,6 +57,7 @@ Accessor: `client.PortfolioMargin` · Source: `Api/PortfolioMargin.cs` · 14 ope
 
 ### FundCollectionByAssetUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `FundCollectionByAssetUserData(string asset, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `asset` ← `asset`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -69,6 +73,7 @@ Accessor: `client.PortfolioMargin` · Source: `Api/PortfolioMargin.cs` · 14 ope
 
 ### GetAutoRepayFuturesStatusUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetAutoRepayFuturesStatusUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -97,6 +102,7 @@ Accessor: `client.PortfolioMargin` · Source: `Api/PortfolioMargin.cs` · 14 ope
 
 ### PortfolioMarginAccountUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `PortfolioMarginAccountUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -112,6 +118,7 @@ Accessor: `client.PortfolioMargin` · Source: `Api/PortfolioMargin.cs` · 14 ope
 
 ### PortfolioMarginBankruptcyLoanAmountUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `PortfolioMarginBankruptcyLoanAmountUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -127,6 +134,7 @@ Accessor: `client.PortfolioMargin` · Source: `Api/PortfolioMargin.cs` · 14 ope
 
 ### PortfolioMarginBankruptcyLoanRepayUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `PortfolioMarginBankruptcyLoanRepayUserData(long timestamp, string signature, string? from, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `from` — nullable, no default → **must pass explicitly**
   - `recvWindow` — nullable, no default → **must pass explicitly**
@@ -143,6 +151,7 @@ Accessor: `client.PortfolioMargin` · Source: `Api/PortfolioMargin.cs` · 14 ope
 
 ### PortfolioMarginCollateralRateMarketData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `PortfolioMarginCollateralRateMarketData(RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `IReadOnlyList<SapiV1PortfolioCollateralRateResponse>`
 - **Error**: `SdkException<PortfolioMarginCollateralRateMarketDataError>` — **Case A (typed)**
@@ -156,6 +165,7 @@ Accessor: `client.PortfolioMargin` · Source: `Api/PortfolioMargin.cs` · 14 ope
 
 ### PortfolioMarginProTieredCollateralRateUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `PortfolioMarginProTieredCollateralRateUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -171,6 +181,7 @@ Accessor: `client.PortfolioMargin` · Source: `Api/PortfolioMargin.cs` · 14 ope
 
 ### QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUserData(string asset, long timestamp, string signature, long? startTime, long? endTime, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 4 params (`startTime` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `asset` ← `asset`, `timestamp` ← `timestamp`, `signature` ← `signature`, `startTime` ← `startTime`, `endTime` ← `endTime`, `size` ← `size`, `recvWindow` ← `recvWindow`
@@ -186,6 +197,7 @@ Accessor: `client.PortfolioMargin` · Source: `Api/PortfolioMargin.cs` · 14 ope
 
 ### QueryPortfolioMarginAssetIndexPriceMarketData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QueryPortfolioMarginAssetIndexPriceMarketData(string? asset, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `asset` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `asset` ← `asset`
@@ -201,6 +213,7 @@ Accessor: `client.PortfolioMargin` · Source: `Api/PortfolioMargin.cs` · 14 ope
 
 ### RepayFuturesNegativeBalanceUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `RepayFuturesNegativeBalanceUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`

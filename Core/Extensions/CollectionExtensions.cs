@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Binance.Core.Extensions;
+namespace BinancePublicSpotApi.Core.Extensions;
 
 internal static class CollectionExtensions
 {

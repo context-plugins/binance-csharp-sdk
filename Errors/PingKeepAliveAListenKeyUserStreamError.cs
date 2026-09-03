@@ -1,11 +1,11 @@
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using Binance.Core.ErrorResponse;
-using Binance.Core.Models;
-using Binance.Models;
+using BinancePublicSpotApi.Core.ErrorResponse;
+using BinancePublicSpotApi.Core.Models;
+using BinancePublicSpotApi.Models;
 
-namespace Binance.Errors;
+namespace BinancePublicSpotApi.Errors;
 
 public sealed class PingKeepAliveAListenKeyUserStreamError : ApiError
 {

@@ -7,10 +7,10 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
-using Binance.Core.Exceptions;
-using Binance.Core.Extensions;
+using BinancePublicSpotApi.Core.Exceptions;
+using BinancePublicSpotApi.Core.Extensions;
 
-namespace Binance.Core.Response;
+namespace BinancePublicSpotApi.Core.Response;
 
 internal sealed class JsonSseResponse<TResponse> : IResponse<IAsyncEnumerable<TResponse>>
 {

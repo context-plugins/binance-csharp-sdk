@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Net.Http;
-using Binance.Core.Authentication;
-using Binance.Core.Request;
+using BinancePublicSpotApi.Core.Authentication;
+using BinancePublicSpotApi.Core.Request;
 
-namespace Binance.Core.Models;
+namespace BinancePublicSpotApi.Core.Models;
 
 internal sealed class ApiRequest
 {

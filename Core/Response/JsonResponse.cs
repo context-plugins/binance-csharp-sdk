@@ -3,9 +3,9 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
-using Binance.Core.Extensions;
+using BinancePublicSpotApi.Core.Extensions;
 
-namespace Binance.Core.Response;
+namespace BinancePublicSpotApi.Core.Response;
 
 internal sealed class JsonResponse<TResponse> : IResponse<TResponse>
 {

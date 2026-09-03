@@ -1,7 +1,7 @@
 using System;
 using System.Text.Json;
 
-namespace Binance.Core.Webhooks;
+namespace BinancePublicSpotApi.Core.Webhooks;
 
 internal abstract record WebhookTypeSource
 {

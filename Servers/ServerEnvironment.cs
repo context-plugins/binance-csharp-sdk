@@ -1,8 +1,8 @@
 using System;
 using System.Text.Json.Serialization;
-using Binance.Core.Enum;
+using BinancePublicSpotApi.Core.Enum;
 
-namespace Binance.Servers;
+namespace BinancePublicSpotApi.Servers;
 
 [JsonConverter(typeof(StringEnumConverter<ServerEnvironment>))]
 public record ServerEnvironment : StringEnum<ServerEnvironment>

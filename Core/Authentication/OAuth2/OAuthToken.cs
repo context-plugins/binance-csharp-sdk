@@ -1,7 +1,7 @@
 using System;
 using System.Text.Json.Serialization;
 
-namespace Binance.Core.Authentication.OAuth2;
+namespace BinancePublicSpotApi.Core.Authentication.OAuth2;
 
 /// <summary>
 /// Represents the token response issued by the authorization server for grant types that do not

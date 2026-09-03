@@ -8,6 +8,7 @@ Accessor: `client.DualInvestment` · Source: `Api/DualInvestment.cs` · 5 operat
 
 ### ChangeAutoCompoundStatusUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `ChangeAutoCompoundStatusUserData(long positionId, AutoCompoundPlan autoCompoundPlan, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `positionId` ← `positionId`, `autoCompoundPlan` ← `autoCompoundPlan`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -24,6 +25,7 @@ Accessor: `client.DualInvestment` · Source: `Api/DualInvestment.cs` · 5 operat
 
 ### CheckDualInvestmentAccountsUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `CheckDualInvestmentAccountsUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -39,6 +41,7 @@ Accessor: `client.DualInvestment` · Source: `Api/DualInvestment.cs` · 5 operat
 
 ### GetDualInvestmentPositionsUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetDualInvestmentPositionsUserData(long timestamp, string signature, Status2? status, string? pageSize, int? pageIndex, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 4 params (`status` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `status` ← `status`, `pageSize` ← `pageSize`, `pageIndex` ← `pageIndex`, `recvWindow` ← `recvWindow`
@@ -55,6 +58,7 @@ Accessor: `client.DualInvestment` · Source: `Api/DualInvestment.cs` · 5 operat
 
 ### GetDualInvestmentProductListUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetDualInvestmentProductListUserData(OptionType optionType, string exercisedCoin, string investCoin, long timestamp, string signature, string? pageSize, int? pageIndex, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `pageSize` — nullable, no default → **must pass explicitly**
   - `pageIndex` — nullable, no default → **must pass explicitly**
@@ -73,6 +77,7 @@ Accessor: `client.DualInvestment` · Source: `Api/DualInvestment.cs` · 5 operat
 
 ### SubscribeDualInvestmentProductsUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `SubscribeDualInvestmentProductsUserData(string id, string orderId, double depositAmount, AutoCompoundPlan autoCompoundPlan, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `id` ← `id`, `orderId` ← `orderId`, `depositAmount` ← `depositAmount`, `autoCompoundPlan` ← `autoCompoundPlan`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`

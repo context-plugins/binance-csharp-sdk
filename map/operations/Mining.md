@@ -8,6 +8,7 @@ Accessor: `client.Mining` · Source: `Api/Mining.cs` · 13 operations
 
 ### AccountListUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `AccountListUserData(string algo, string userName, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `algo` ← `algo`, `userName` ← `userName`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -23,6 +24,7 @@ Accessor: `client.Mining` · Source: `Api/Mining.cs` · 13 operations
 
 ### AcquiringAlgorithmMarketData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `AcquiringAlgorithmMarketData(RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `SapiV1MiningPubAlgoListResponse`
 - **Error**: `SdkException<AcquiringAlgorithmMarketDataError>` — **Case A (typed)**
@@ -36,6 +38,7 @@ Accessor: `client.Mining` · Source: `Api/Mining.cs` · 13 operations
 
 ### AcquiringCoinNameMarketData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `AcquiringCoinNameMarketData(RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `SapiV1MiningPubCoinListResponse`
 - **Error**: `SdkException<AcquiringCoinNameMarketDataError>` — **Case A (typed)**
@@ -49,6 +52,7 @@ Accessor: `client.Mining` · Source: `Api/Mining.cs` · 13 operations
 
 ### CancelHashrateResaleConfigurationUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `CancelHashrateResaleConfigurationUserData(string configId, string userName, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `configId` ← `configId`, `userName` ← `userName`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -64,6 +68,7 @@ Accessor: `client.Mining` · Source: `Api/Mining.cs` · 13 operations
 
 ### EarningsListUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `EarningsListUserData(string algo, string userName, long timestamp, string signature, string? coin, string? startDate, string? endDate, int? pageIndex, string? pageSize, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 6 params (`coin` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `algo` ← `algo`, `userName` ← `userName`, `timestamp` ← `timestamp`, `signature` ← `signature`, `coin` ← `coin`, `startDate` ← `startDate`, `endDate` ← `endDate`, `pageIndex` ← `pageIndex`, `pageSize` ← `pageSize`, `recvWindow` ← `recvWindow`
@@ -79,6 +84,7 @@ Accessor: `client.Mining` · Source: `Api/Mining.cs` · 13 operations
 
 ### ExtraBonusListUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `ExtraBonusListUserData(string algo, string userName, long timestamp, string signature, string? coin, string? startDate, string? endDate, int? pageIndex, string? pageSize, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 6 params (`coin` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `algo` ← `algo`, `userName` ← `userName`, `timestamp` ← `timestamp`, `signature` ← `signature`, `coin` ← `coin`, `startDate` ← `startDate`, `endDate` ← `endDate`, `pageIndex` ← `pageIndex`, `pageSize` ← `pageSize`, `recvWindow` ← `recvWindow`
@@ -94,6 +100,7 @@ Accessor: `client.Mining` · Source: `Api/Mining.cs` · 13 operations
 
 ### HashrateResaleDetailsUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `HashrateResaleDetailsUserData(string configId, string userName, long timestamp, string signature, int? pageIndex, string? pageSize, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `pageIndex` — nullable, no default → **must pass explicitly**
   - `pageSize` — nullable, no default → **must pass explicitly**
@@ -111,6 +118,7 @@ Accessor: `client.Mining` · Source: `Api/Mining.cs` · 13 operations
 
 ### HashrateResaleListUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `HashrateResaleListUserData(long timestamp, string signature, int? pageIndex, string? pageSize, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `pageIndex` — nullable, no default → **must pass explicitly**
   - `pageSize` — nullable, no default → **must pass explicitly**
@@ -128,6 +136,7 @@ Accessor: `client.Mining` · Source: `Api/Mining.cs` · 13 operations
 
 ### HashrateResaleRequestUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `HashrateResaleRequestUserData(string userName, string algo, string toPoolUser, string hashRate, long timestamp, string signature, string? startDate, string? endDate, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `startDate` — nullable, no default → **must pass explicitly**
   - `endDate` — nullable, no default → **must pass explicitly**
@@ -145,6 +154,7 @@ Accessor: `client.Mining` · Source: `Api/Mining.cs` · 13 operations
 
 ### MiningAccountEarningUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `MiningAccountEarningUserData(string algo, long timestamp, string signature, string? startDate, string? endDate, int? pageIndex, string? pageSize, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 5 params (`startDate` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `algo` ← `algo`, `timestamp` ← `timestamp`, `signature` ← `signature`, `startDate` ← `startDate`, `endDate` ← `endDate`, `pageIndex` ← `pageIndex`, `pageSize` ← `pageSize`, `recvWindow` ← `recvWindow`
@@ -160,6 +170,7 @@ Accessor: `client.Mining` · Source: `Api/Mining.cs` · 13 operations
 
 ### RequestForDetailMinerListUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `RequestForDetailMinerListUserData(string algo, string userName, string workerName, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `algo` ← `algo`, `userName` ← `userName`, `workerName` ← `workerName`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -175,6 +186,7 @@ Accessor: `client.Mining` · Source: `Api/Mining.cs` · 13 operations
 
 ### RequestForMinerListUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `RequestForMinerListUserData(string algo, string userName, long timestamp, string signature, int? pageIndex, int? sort, int? sortColumn, int? workerStatus, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 5 params (`pageIndex` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `algo` ← `algo`, `userName` ← `userName`, `timestamp` ← `timestamp`, `signature` ← `signature`, `pageIndex` ← `pageIndex`, `sort` ← `sort`, `sortColumn` ← `sortColumn`, `workerStatus` ← `workerStatus`, `recvWindow` ← `recvWindow`
@@ -190,6 +202,7 @@ Accessor: `client.Mining` · Source: `Api/Mining.cs` · 13 operations
 
 ### StatisticListUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `StatisticListUserData(string algo, string userName, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `algo` ← `algo`, `userName` ← `userName`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`

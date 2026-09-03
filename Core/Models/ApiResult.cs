@@ -2,9 +2,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Net.Http.Headers;
-using Binance.Core.Exceptions;
+using BinancePublicSpotApi.Core.Exceptions;
 
-namespace Binance.Core.Models;
+namespace BinancePublicSpotApi.Core.Models;
 
 /// <summary>
 ///     Represents either a successful response of type <typeparamref name="TResponse" />

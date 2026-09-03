@@ -1,20 +1,20 @@
 <!-- Generated file — do not edit; regenerated with the SDK. -->
 
-# SDK map — Binance (.NET)
+# SDK map — Binance Public Spot API (.NET)
 
 > A generated table of contents for this SDK. Consult this map and its sub-pages to learn signatures, error types, and server/auth wiring **by lookup**. Model shapes and enum values are *not* duplicated here — the map names the file declaring each type; read the shape there. The compiler is the backstop: a wrong name fails to build.
 
 |  |  |
 | --- | --- |
-| SDK display name | Binance |
-| Root namespace | `Binance` |
+| SDK display name | Binance Public Spot API |
+| Root namespace | `BinancePublicSpotApi` |
 | Target framework | `netstandard2.0` (C# `LangVersion 14`, `Nullable enable`) |
 | API spec version | `1.0` |
 | Generator | APIMatic |
 
 Staleness check: the API spec version above changes when the SDK is regenerated from a new spec. If a lookup here fails to compile, trust the compiler and re-read the source file named in the row.
 
-All `Source` paths on this map and its sub-pages are relative to the **SDK root** — the directory holding this file and `Binance.csproj` — never to the page that carries them. Open them as-is from the SDK root, from any page; if the SDK sits under a subdirectory of a larger repo, prefix that subdirectory.
+All `Source` paths on this map and its sub-pages are relative to the **SDK root** — the directory holding this file and `BinancePublicSpotApi.csproj` — never to the page that carries them. Open them as-is from the SDK root, from any page; if the SDK sits under a subdirectory of a larger repo, prefix that subdirectory.
 
 ---
 
@@ -24,18 +24,18 @@ All `Source` paths on this map and its sub-pages are relative to the **SDK root*
 var httpClient = new HttpClient();
 // TODO: configure more client options here
 var options =
-    new BinanceClientOptions
+    new BinancePublicSpotApiClientOptions
     {
         ApiKeyAuth = "YOUR_API_KEY",
         Environment = ServerEnvironment.Production,
     };
-var client = new BinanceClient(httpClient, options);
+var client = new BinancePublicSpotApiClient(httpClient, options);
 ```
 
-DI alternative (`services.AddBinanceClient`):
+DI alternative (`services.AddBinancePublicSpotApiClient`):
 
 ```csharp
-services.AddBinanceClient(options =>
+services.AddBinancePublicSpotApiClient(options =>
     {
         options.ApiKeyAuth = "YOUR_API_KEY";
         options.Environment = ServerEnvironment.Production;
@@ -43,9 +43,9 @@ services.AddBinanceClient(options =>
     });
 ```
 
-Every API group is a property on the client (e.g. `client.AutoInvest`). Source: `BinanceClient.cs`. The only constructor is `BinanceClient(HttpClient httpClient, BinanceClientOptions options)`.
+Every API group is a property on the client (e.g. `client.AutoInvest`). Source: `BinancePublicSpotApiClient.cs`. The only constructor is `BinancePublicSpotApiClient(HttpClient httpClient, BinancePublicSpotApiClientOptions options)`.
 
-All `BinanceClientOptions` properties (source: `BinanceClientOptions.cs`):
+All `BinancePublicSpotApiClientOptions` properties (source: `BinancePublicSpotApiClientOptions.cs`):
 
 | Property | Type |
 | --- | --- |
@@ -56,7 +56,7 @@ All `BinanceClientOptions` properties (source: `BinanceClientOptions.cs`):
 | `Hooks` | `IReadOnlyList<SdkHook>` |
 | `ApiKeyAuth` | `string?` |
 
-`RetryOptions` members (namespace `Binance.Core.Configuration` — add `using Binance.Core.Configuration;`; source: `Core/Configuration/RetryOptions.cs`; all members are `required`, so build a full instance or start from `RetryOptions.Default()`):
+`RetryOptions` members (namespace `BinancePublicSpotApi.Core.Configuration` — add `using BinancePublicSpotApi.Core.Configuration;`; source: `Core/Configuration/RetryOptions.cs`; all members are `required`, so build a full instance or start from `RetryOptions.Default()`):
 
 | Member | Type |
 | --- | --- |
@@ -185,18 +185,25 @@ Namespaces by content type (add `using` accordingly):
 
 | Contents | Namespace |
 | --- | --- |
-| Client & options (root) | `Binance` |
-| Operation controllers (`Api/`) | `Binance.Api` |
-| Records (`Models/`) | `Binance.Models` |
-| Enums (`Models/Enums/`) | `Binance.Models.Enums` |
-| AnyOf unions (`Models/AnyOf/`) | `Binance.Models.AnyOf` |
-| Error classes (`Errors/`) | `Binance.Errors` |
+| Client & options (root) | `BinancePublicSpotApi` |
+| Operation controllers (`Api/`) | `BinancePublicSpotApi.Api` |
+| Records (`Models/`) | `BinancePublicSpotApi.Models` |
+| Enums (`Models/Enums/`) | `BinancePublicSpotApi.Models.Enums` |
+| AnyOf unions (`Models/AnyOf/`) | `BinancePublicSpotApi.Models.AnyOf` |
+| Error classes (`Errors/`) | `BinancePublicSpotApi.Errors` |
 
 ---
 
 ## Servers & auth
 
 **API key (header `X-MBX-APIKEY`).** Set `options.ApiKeyAuth = "<api_key>"`; sent as the `X-MBX-APIKEY` request header. Binance Public API Key
+
+Operation blocks name their credential in an **Auth** bullet; an operation whose spec declares no scheme carries no such bullet.
+
+- `AND` — every credential listed must be set for the call to be fully authenticated.
+- `OR` — the first credential you set that applies successfully is the one sent, in the order listed.
+
+A credential you never set is skipped rather than throwing, and the request is sent anyway — so an authentication failure can mean no credential was sent rather than a bad one. Under `OR`, if every credential you did set fails to apply, `AuthSchemeException` is thrown.
 
 **Environments.** `options.Environment` selects the target environment (`Servers/ServerEnvironment.cs`):
 

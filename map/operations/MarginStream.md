@@ -8,6 +8,7 @@ Accessor: `client.MarginStream` · Source: `Api/MarginStream.cs` · 3 operations
 
 ### CloseAListenKeyUserStream2
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `CloseAListenKeyUserStream2(string? listenKey, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `listenKey` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `listenKey` ← `listenKey`
@@ -22,6 +23,7 @@ Accessor: `client.MarginStream` · Source: `Api/MarginStream.cs` · 3 operations
 
 ### CreateAListenKeyUserStream2
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `CreateAListenKeyUserStream2(RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `SapiV1UserDataStreamResponse`
 - **Error**: `SdkException<RawError>` — **Case B**
@@ -32,6 +34,7 @@ Accessor: `client.MarginStream` · Source: `Api/MarginStream.cs` · 3 operations
 
 ### PingKeepAliveAListenKeyUserStream2
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `PingKeepAliveAListenKeyUserStream2(string? listenKey, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `listenKey` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `listenKey` ← `listenKey`

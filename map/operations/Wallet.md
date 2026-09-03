@@ -8,6 +8,7 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 ### AccountApiTradingStatusUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `AccountApiTradingStatusUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -23,6 +24,7 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 ### AccountInfoUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `AccountInfoUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -38,6 +40,7 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 ### AccountStatusUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `AccountStatusUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -53,6 +56,7 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 ### AllCoinsInformationUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `AllCoinsInformationUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -68,6 +72,7 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 ### AssetDetailUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `AssetDetailUserData(long timestamp, string signature, string? asset, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `asset` — nullable, no default → **must pass explicitly**
   - `recvWindow` — nullable, no default → **must pass explicitly**
@@ -84,6 +89,7 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 ### AssetDividendRecordUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `AssetDividendRecordUserData(long timestamp, string signature, string? asset, long? startTime, long? endTime, long? recvWindow, int? limit = 20, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 4 params (`asset` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
   - defaults: `limit` = `20`
@@ -100,6 +106,7 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 ### ConvertTransferUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `ConvertTransferUserData(string clientTranId, string asset, double amount, string targetAsset, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `clientTranId` ← `clientTranId`, `asset` ← `asset`, `amount` ← `amount`, `targetAsset` ← `targetAsset`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -115,6 +122,7 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 ### DailyAccountSnapshotUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `DailyAccountSnapshotUserData(Type6 type, long timestamp, string signature, long? startTime, long? endTime, long? recvWindow, int? limit = 7, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `startTime` — nullable, no default → **must pass explicitly**
   - `endTime` — nullable, no default → **must pass explicitly**
@@ -134,6 +142,7 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 ### DepositAddressSupportingNetworkUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `DepositAddressSupportingNetworkUserData(string coin, long timestamp, string signature, string? network, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `network` — nullable, no default → **must pass explicitly**
   - `recvWindow` — nullable, no default → **must pass explicitly**
@@ -150,6 +159,7 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 ### DepositHistorySupportingNetworkUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `DepositHistorySupportingNetworkUserData(long timestamp, string signature, string? coin, int? status, long? startTime, long? endTime, int? offset, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 7 params (`coin` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `coin` ← `coin`, `status` ← `status`, `startTime` ← `startTime`, `endTime` ← `endTime`, `offset` ← `offset`, `limit` ← `limit`, `recvWindow` ← `recvWindow`
@@ -165,6 +175,7 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 ### DisableFastWithdrawSwitchUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `DisableFastWithdrawSwitchUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -179,6 +190,7 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 ### DustLogUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `DustLogUserData(long timestamp, string signature, AccountType? accountType, long? startTime, long? endTime, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 4 params (`accountType` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `accountType` ← `accountType`, `startTime` ← `startTime`, `endTime` ← `endTime`, `recvWindow` ← `recvWindow`
@@ -195,6 +207,7 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 ### DustTransferUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `DustTransferUserData(IReadOnlyList<string> asset, long timestamp, string signature, AccountType? accountType, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `accountType` — nullable, no default → **must pass explicitly**
   - `recvWindow` — nullable, no default → **must pass explicitly**
@@ -212,6 +225,7 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 ### EnableFastWithdrawSwitchUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `EnableFastWithdrawSwitchUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -226,6 +240,7 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 ### FetchDepositAddressListWithNetworkUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `FetchDepositAddressListWithNetworkUserData(string coin, long timestamp, string signature, string? network, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `network` — nullable, no default → **must pass explicitly**
   - `recvWindow` — nullable, no default → **must pass explicitly**
@@ -242,6 +257,7 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 ### FetchWithdrawAddressListUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `FetchWithdrawAddressListUserData(RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `IReadOnlyList<SapiV1CapitalWithdrawAddressListResponse>`
 - **Error**: `SdkException<FetchWithdrawAddressListUserDataError>` — **Case A (typed)**
@@ -255,6 +271,7 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 ### FundingWalletUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `FundingWalletUserData(long timestamp, string signature, string? asset, NeedBtcValuation? needBtcValuation, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `asset` — nullable, no default → **must pass explicitly**
   - `needBtcValuation` — nullable, no default → **must pass explicitly**
@@ -273,6 +290,7 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 ### GetApiKeyPermissionUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetApiKeyPermissionUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -288,6 +306,7 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 ### GetAssetsThatCanBeConvertedIntoBnbUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetAssetsThatCanBeConvertedIntoBnbUserData(long timestamp, string signature, AccountType? accountType, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `accountType` — nullable, no default → **must pass explicitly**
   - `recvWindow` — nullable, no default → **must pass explicitly**
@@ -305,6 +324,7 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 ### GetCloudMiningPaymentAndRefundHistoryUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetCloudMiningPaymentAndRefundHistoryUserData(long startTime, long endTime, long timestamp, string signature, long? tranId, string? clientTranId, string? asset, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 6 params (`tranId` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `startTime` ← `startTime`, `endTime` ← `endTime`, `timestamp` ← `timestamp`, `signature` ← `signature`, `tranId` ← `tranId`, `clientTranId` ← `clientTranId`, `asset` ← `asset`, `current` ← `current`, `size` ← `size`, `recvWindow` ← `recvWindow`
@@ -320,6 +340,7 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 ### GetSymbolsDelistScheduleForSpotMarketData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetSymbolsDelistScheduleForSpotMarketData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -335,6 +356,7 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 ### OneClickArrivalDepositApplyUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `OneClickArrivalDepositApplyUserData(long timestamp, string signature, long? depositId, string? txId, long? subAccountId, long? subUserId, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 5 params (`depositId` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `depositId` ← `depositId`, `txId` ← `txId`, `subAccountId` ← `subAccountId`, `subUserId` ← `subUserId`, `recvWindow` ← `recvWindow`
@@ -350,6 +372,7 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 ### QueryAutoConvertingStableCoinsUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QueryAutoConvertingStableCoinsUserData(RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `SapiV1CapitalContractConvertibleCoinsResponse`
 - **Error**: `SdkException<QueryAutoConvertingStableCoinsUserDataError>` — **Case A (typed)**
@@ -363,6 +386,7 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 ### QueryConvertTransferUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QueryConvertTransferUserData(long startTime, long endTime, long timestamp, string signature, long? tranId, string? asset, AccountType3? accountType, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 6 params (`tranId` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `startTime` ← `startTime`, `endTime` ← `endTime`, `timestamp` ← `timestamp`, `signature` ← `signature`, `tranId` ← `tranId`, `asset` ← `asset`, `accountType` ← `accountType`, `current` ← `current`, `size` ← `size`, `recvWindow` ← `recvWindow`
@@ -379,6 +403,7 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 ### QueryUserDelegationHistoryForMasterAccountUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QueryUserDelegationHistoryForMasterAccountUserData(string email, long startTime, long endTime, string asset, long timestamp, string signature, string? type, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 4 params (`type` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `email` ← `email`, `startTime` ← `startTime`, `endTime` ← `endTime`, `asset` ← `asset`, `timestamp` ← `timestamp`, `signature` ← `signature`, `type` ← `type`, `current` ← `current`, `size` ← `size`, `recvWindow` ← `recvWindow`
@@ -394,6 +419,7 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 ### QueryUserUniversalTransferHistoryUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QueryUserUniversalTransferHistoryUserData(Type7 type, long timestamp, string signature, long? startTime, long? endTime, int? current, int? size, string? fromSymbol, string? toSymbol, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 7 params (`startTime` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `type` ← `type`, `timestamp` ← `timestamp`, `signature` ← `signature`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `size` ← `size`, `fromSymbol` ← `fromSymbol`, `toSymbol` ← `toSymbol`, `recvWindow` ← `recvWindow`
@@ -410,6 +436,7 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 ### QueryUserWalletBalanceUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QueryUserWalletBalanceUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -425,6 +452,7 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 ### SwitchOnOffBusdAndStableCoinsConversionUserDataUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `SwitchOnOffBusdAndStableCoinsConversionUserDataUserData(string coin, bool enable, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Query params (wire ← C#)**: `coin` ← `coin`, `enable` ← `enable`
 - **Returns**: `object`
@@ -448,6 +476,7 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 ### TradeFeeUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `TradeFeeUserData(long timestamp, string signature, string? symbol, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `symbol` — nullable, no default → **must pass explicitly**
   - `recvWindow` — nullable, no default → **must pass explicitly**
@@ -464,6 +493,7 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 ### UserAssetUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `UserAssetUserData(long timestamp, string signature, string? asset, NeedBtcValuation? needBtcValuation, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `asset` — nullable, no default → **must pass explicitly**
   - `needBtcValuation` — nullable, no default → **must pass explicitly**
@@ -482,6 +512,7 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 ### UserUniversalTransferUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `UserUniversalTransferUserData(Type7 type, string asset, double amount, long timestamp, string signature, string? fromSymbol, string? toSymbol, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `fromSymbol` — nullable, no default → **must pass explicitly**
   - `toSymbol` — nullable, no default → **must pass explicitly**
@@ -500,6 +531,7 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 ### WithdrawHistorySupportingNetworkUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `WithdrawHistorySupportingNetworkUserData(long timestamp, string signature, string? coin, string? withdrawOrderId, int? status, long? startTime, long? endTime, int? offset, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 8 params (`coin` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `coin` ← `coin`, `withdrawOrderId` ← `withdrawOrderId`, `status` ← `status`, `startTime` ← `startTime`, `endTime` ← `endTime`, `offset` ← `offset`, `limit` ← `limit`, `recvWindow` ← `recvWindow`
@@ -515,6 +547,7 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 ### WithdrawUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `WithdrawUserData(string coin, string address, double amount, long timestamp, string signature, string? withdrawOrderId, string? network, string? addressTag, string? name, int? walletType, long? recvWindow, bool? transactionFeeFlag = false, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 6 params (`withdrawOrderId` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
   - defaults: `transactionFeeFlag` = `false`

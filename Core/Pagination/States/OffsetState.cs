@@ -1,7 +1,7 @@
 using System;
 using System.Net.Http.Headers;
 
-namespace Binance.Core.Pagination.States;
+namespace BinancePublicSpotApi.Core.Pagination.States;
 
 internal sealed record OffsetState<TResponse> : IPageState<TResponse, OffsetState<TResponse>>
 {

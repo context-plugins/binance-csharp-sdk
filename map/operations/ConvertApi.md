@@ -8,6 +8,7 @@ Accessor: `client.ConvertApi` · Source: `Api/ConvertApi.cs` · 9 operations
 
 ### AcceptQuoteTrade
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `AcceptQuoteTrade(string quoteId, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `quoteId` ← `quoteId`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -23,6 +24,7 @@ Accessor: `client.ConvertApi` · Source: `Api/ConvertApi.cs` · 9 operations
 
 ### CancelLimitOrderUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `CancelLimitOrderUserData(long orderId, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `orderId` ← `orderId`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -38,6 +40,7 @@ Accessor: `client.ConvertApi` · Source: `Api/ConvertApi.cs` · 9 operations
 
 ### GetConvertTradeHistoryUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetConvertTradeHistoryUserData(long startTime, long endTime, long timestamp, string signature, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `limit` — nullable, no default → **must pass explicitly**
   - `recvWindow` — nullable, no default → **must pass explicitly**
@@ -70,6 +73,7 @@ Accessor: `client.ConvertApi` · Source: `Api/ConvertApi.cs` · 9 operations
 
 ### OrderStatusUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `OrderStatusUserData(long timestamp, string signature, string? orderId, string? quoteId, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `orderId` — nullable, no default → **must pass explicitly**
   - `quoteId` — nullable, no default → **must pass explicitly**
@@ -87,6 +91,7 @@ Accessor: `client.ConvertApi` · Source: `Api/ConvertApi.cs` · 9 operations
 
 ### PlaceLimitOrderUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `PlaceLimitOrderUserData(string baseAsset, string quoteAsset, double limitPrice, Side side, long timestamp, string signature, double? baseAmount, double? quoteAmount, WalletType? walletType, ExpiredType? expiredType, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 5 params (`baseAmount` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `baseAsset` ← `baseAsset`, `quoteAsset` ← `quoteAsset`, `limitPrice` ← `limitPrice`, `side` ← `side`, `timestamp` ← `timestamp`, `signature` ← `signature`, `baseAmount` ← `baseAmount`, `quoteAmount` ← `quoteAmount`, `walletType` ← `walletType`, `expiredType` ← `expiredType`, `recvWindow` ← `recvWindow`
@@ -105,6 +110,7 @@ Accessor: `client.ConvertApi` · Source: `Api/ConvertApi.cs` · 9 operations
 
 ### QueryLimitOpenOrdersUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QueryLimitOpenOrdersUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -120,6 +126,7 @@ Accessor: `client.ConvertApi` · Source: `Api/ConvertApi.cs` · 9 operations
 
 ### QueryOrderQuantityPrecisionPerAssetUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QueryOrderQuantityPrecisionPerAssetUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -135,6 +142,7 @@ Accessor: `client.ConvertApi` · Source: `Api/ConvertApi.cs` · 9 operations
 
 ### SendQuoteRequestUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `SendQuoteRequestUserData(string fromAsset, string toAsset, long timestamp, string signature, double? fromAmount, double? toAmount, string? validTime, string? walletType, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 5 params (`fromAmount` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `fromAsset` ← `fromAsset`, `toAsset` ← `toAsset`, `timestamp` ← `timestamp`, `signature` ← `signature`, `fromAmount` ← `fromAmount`, `toAmount` ← `toAmount`, `validTime` ← `validTime`, `walletType` ← `walletType`, `recvWindow` ← `recvWindow`

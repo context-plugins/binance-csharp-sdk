@@ -1,4 +1,4 @@
-namespace Binance.Core.Models;
+namespace BinancePublicSpotApi.Core.Models;
 
 internal readonly record struct TemplateParam(string Key, object? Value)
 {

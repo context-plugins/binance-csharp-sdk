@@ -8,6 +8,7 @@ Accessor: `client.StreamApi` · Source: `Api/StreamApi.cs` · 3 operations
 
 ### CloseAListenKeyUserStream
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `CloseAListenKeyUserStream(string? listenKey, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `listenKey` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `listenKey` ← `listenKey`
@@ -22,6 +23,7 @@ Accessor: `client.StreamApi` · Source: `Api/StreamApi.cs` · 3 operations
 
 ### CreateAListenKeyUserStream
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `CreateAListenKeyUserStream(RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `ApiV3UserDataStreamResponse`
 - **Error**: `SdkException<RawError>` — **Case B**
@@ -32,6 +34,7 @@ Accessor: `client.StreamApi` · Source: `Api/StreamApi.cs` · 3 operations
 
 ### PingKeepAliveAListenKeyUserStream
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `PingKeepAliveAListenKeyUserStream(string? listenKey, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `listenKey` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `listenKey` ← `listenKey`

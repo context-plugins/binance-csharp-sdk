@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
-using Binance.Core.Hooks;
+using BinancePublicSpotApi.Core.Hooks;
 
-namespace Binance.Core;
+namespace BinancePublicSpotApi.Core;
 
 public sealed record RequestOptions
 {

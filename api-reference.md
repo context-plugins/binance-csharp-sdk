@@ -1,6 +1,6 @@
 # Reference
 
-> Source: [BinanceClient](BinanceClient.cs)
+> Source: [BinancePublicSpotApiClient](BinancePublicSpotApiClient.cs)
 
 ## AutoInvest
 

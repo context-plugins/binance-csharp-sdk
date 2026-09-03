@@ -8,6 +8,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### AdjustCrossMarginMaxLeverageUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `AdjustCrossMarginMaxLeverageUserData(int maxLeverage, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `maxLeverage` ← `maxLeverage`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -23,6 +24,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### CrossMarginCollateralRatioMarketData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `CrossMarginCollateralRatioMarketData(RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `IReadOnlyList<SapiV1MarginCrossMarginCollateralRatioResponse>`
 - **Error**: `SdkException<CrossMarginCollateralRatioMarketDataError>` — **Case A (typed)**
@@ -36,6 +38,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### DisableIsolatedMarginAccountTrade
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `DisableIsolatedMarginAccountTrade(string symbol, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `symbol` ← `symbol`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -51,6 +54,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### EnableIsolatedMarginAccountTrade
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `EnableIsolatedMarginAccountTrade(string symbol, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `symbol` ← `symbol`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -66,6 +70,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### GetAFutureHourlyInterestRateUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetAFutureHourlyInterestRateUserData(long timestamp, string signature, string? assets, IsIsolated? isIsolated, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `assets` — nullable, no default → **must pass explicitly**
   - `isIsolated` — nullable, no default → **must pass explicitly**
@@ -84,6 +89,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### GetAllCrossMarginPairsMarketData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetAllCrossMarginPairsMarketData(string symbol, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Query params (wire ← C#)**: `symbol` ← `symbol`
 - **Returns**: `IReadOnlyList<SapiV1MarginAllPairsResponse>`
@@ -98,6 +104,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### GetAllIsolatedMarginSymbolUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetAllIsolatedMarginSymbolUserData(string symbol, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `symbol` ← `symbol`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -113,6 +120,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### GetAllMarginAssetsMarketData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetAllMarginAssetsMarketData(string asset, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Query params (wire ← C#)**: `asset` ← `asset`
 - **Returns**: `IReadOnlyList<SapiV1MarginAllAssetsResponse>`
@@ -127,6 +135,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### GetBnbBurnStatusUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetBnbBurnStatusUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -142,6 +151,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### GetCrossMarginTransferHistoryUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetCrossMarginTransferHistoryUserData(long timestamp, string signature, string? asset, Type2? type, long? startTime, long? endTime, int? current, int? size, string? isolatedSymbol, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 8 params (`asset` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `asset` ← `asset`, `type` ← `type`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `size` ← `size`, `isolatedSymbol` ← `isolatedSymbol`, `recvWindow` ← `recvWindow`
@@ -158,6 +168,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### GetCrossOrIsolatedMarginCapitalFlowUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetCrossOrIsolatedMarginCapitalFlowUserData(long timestamp, string signature, string? asset, string? symbol, Type3? type, long? startTime, long? endTime, long? fromId, long? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 8 params (`asset` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `asset` ← `asset`, `symbol` ← `symbol`, `type` ← `type`, `startTime` ← `startTime`, `endTime` ← `endTime`, `fromId` ← `fromId`, `limit` ← `limit`, `recvWindow` ← `recvWindow`
@@ -174,6 +185,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### GetForceLiquidationRecordUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetForceLiquidationRecordUserData(long timestamp, string signature, long? startTime, long? endTime, string? isolatedSymbol, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 6 params (`startTime` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `startTime` ← `startTime`, `endTime` ← `endTime`, `isolatedSymbol` ← `isolatedSymbol`, `current` ← `current`, `size` ← `size`, `recvWindow` ← `recvWindow`
@@ -189,6 +201,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### GetInterestHistoryUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetInterestHistoryUserData(long timestamp, string signature, string? asset, string? isolatedSymbol, long? startTime, long? endTime, int? current, int? size, string? archived, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 8 params (`asset` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `asset` ← `asset`, `isolatedSymbol` ← `isolatedSymbol`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `size` ← `size`, `archived` ← `archived`, `recvWindow` ← `recvWindow`
@@ -204,6 +217,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### GetSmallLiabilityExchangeCoinListUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetSmallLiabilityExchangeCoinListUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -219,6 +233,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### GetSmallLiabilityExchangeHistoryUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetSmallLiabilityExchangeHistoryUserData(long timestamp, string signature, int? current, int? size, long? startTime, long? endTime, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 5 params (`current` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `current` ← `current`, `size` ← `size`, `startTime` ← `startTime`, `endTime` ← `endTime`, `recvWindow` ← `recvWindow`
@@ -234,6 +249,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### GetSummaryOfMarginAccountUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetSummaryOfMarginAccountUserData(string email, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `email` ← `email`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -249,6 +265,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMarginMarketData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMarginMarketData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -264,6 +281,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### MarginAccountBorrowRepayMargin
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `MarginAccountBorrowRepayMargin(string asset, string isIsolated, string symbol, double amount, string type, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `asset` ← `asset`, `isIsolated` ← `isIsolated`, `symbol` ← `symbol`, `amount` ← `amount`, `type` ← `type`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -279,6 +297,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### MarginAccountCancelAllOpenOrdersOnASymbolTrade
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `MarginAccountCancelAllOpenOrdersOnASymbolTrade(string symbol, long timestamp, string signature, IsIsolated? isIsolated, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `isIsolated` — nullable, no default → **must pass explicitly**
   - `recvWindow` — nullable, no default → **must pass explicitly**
@@ -296,6 +315,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### MarginAccountCancelOcoTrade
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `MarginAccountCancelOcoTrade(string symbol, long timestamp, string signature, IsIsolated? isIsolated, long? orderListId, string? listClientOrderId, string? newClientOrderId, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 5 params (`isIsolated` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `symbol` ← `symbol`, `timestamp` ← `timestamp`, `signature` ← `signature`, `isIsolated` ← `isIsolated`, `orderListId` ← `orderListId`, `listClientOrderId` ← `listClientOrderId`, `newClientOrderId` ← `newClientOrderId`, `recvWindow` ← `recvWindow`
@@ -312,6 +332,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### MarginAccountCancelOrderTrade
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `MarginAccountCancelOrderTrade(string symbol, long timestamp, string signature, IsIsolated? isIsolated, long? orderId, string? origClientOrderId, string? newClientOrderId, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 5 params (`isIsolated` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `symbol` ← `symbol`, `timestamp` ← `timestamp`, `signature` ← `signature`, `isIsolated` ← `isIsolated`, `orderId` ← `orderId`, `origClientOrderId` ← `origClientOrderId`, `newClientOrderId` ← `newClientOrderId`, `recvWindow` ← `recvWindow`
@@ -328,6 +349,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### MarginAccountNewOcoTrade
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `MarginAccountNewOcoTrade(string symbol, Side side, double quantity, double price, double stopPrice, long timestamp, string signature, IsIsolated? isIsolated, string? listClientOrderId, string? limitClientOrderId, double? limitIcebergQty, string? stopClientOrderId, double? stopLimitPrice, double? stopIcebergQty, StopLimitTimeInForce? stopLimitTimeInForce, NewOrderRespType? newOrderRespType, SideEffectType? sideEffectType, SelfTradePreventionMode? selfTradePreventionMode, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 12 params (`isIsolated` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `symbol` ← `symbol`, `side` ← `side`, `quantity` ← `quantity`, `price` ← `price`, `stopPrice` ← `stopPrice`, `timestamp` ← `timestamp`, `signature` ← `signature`, `isIsolated` ← `isIsolated`, `listClientOrderId` ← `listClientOrderId`, `limitClientOrderId` ← `limitClientOrderId`, `limitIcebergQty` ← `limitIcebergQty`, `stopClientOrderId` ← `stopClientOrderId`, `stopLimitPrice` ← `stopLimitPrice`, `stopIcebergQty` ← `stopIcebergQty`, `stopLimitTimeInForce` ← `stopLimitTimeInForce`, `newOrderRespType` ← `newOrderRespType`, `sideEffectType` ← `sideEffectType`, `selfTradePreventionMode` ← `selfTradePreventionMode`, `recvWindow` ← `recvWindow`
@@ -349,6 +371,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### MarginAccountNewOrderTrade
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `MarginAccountNewOrderTrade(string symbol, Side side, Type1 type, double quantity, bool autoRepayAtCancel, long timestamp, string signature, IsIsolated? isIsolated, double? quoteOrderQty, double? price, double? stopPrice, string? newClientOrderId, double? icebergQty, NewOrderRespType? newOrderRespType, SideEffectType? sideEffectType, TimeInForce? timeInForce, SelfTradePreventionMode? selfTradePreventionMode, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 11 params (`isIsolated` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `symbol` ← `symbol`, `side` ← `side`, `type` ← `type`, `quantity` ← `quantity`, `autoRepayAtCancel` ← `autoRepayAtCancel`, `timestamp` ← `timestamp`, `signature` ← `signature`, `isIsolated` ← `isIsolated`, `quoteOrderQty` ← `quoteOrderQty`, `price` ← `price`, `stopPrice` ← `stopPrice`, `newClientOrderId` ← `newClientOrderId`, `icebergQty` ← `icebergQty`, `newOrderRespType` ← `newOrderRespType`, `sideEffectType` ← `sideEffectType`, `timeInForce` ← `timeInForce`, `selfTradePreventionMode` ← `selfTradePreventionMode`, `recvWindow` ← `recvWindow`
@@ -371,6 +394,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### MarginAccountNewOtoTrade
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `MarginAccountNewOtoTrade(string symbol, WorkingType workingType, WorkingSide workingSide, double workingPrice, double workingQuantity, double workingIcebergQty, PendingType pendingType, PendingSide pendingSide, double pendingQuantity, long timestamp, string signature, IsIsolated? isIsolated, string? listClientOrderId, NewOrderRespType? newOrderRespType, SideEffectType1? sideEffectType, SelfTradePreventionMode? selfTradePreventionMode, bool? autoRepayAtCancel, string? workingClientOrderId, WorkingTimeInForce? workingTimeInForce, string? pendingClientOrderId, double? pendingPrice, double? pendingStopPrice, double? pendingTrailingDelta, double? pendingIcebergQty, PendingTimeInForce? pendingTimeInForce, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 14 params (`isIsolated` … `pendingTimeInForce`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `symbol` ← `symbol`, `workingType` ← `workingType`, `workingSide` ← `workingSide`, `workingPrice` ← `workingPrice`, `workingQuantity` ← `workingQuantity`, `workingIcebergQty` ← `workingIcebergQty`, `pendingType` ← `pendingType`, `pendingSide` ← `pendingSide`, `pendingQuantity` ← `pendingQuantity`, `timestamp` ← `timestamp`, `signature` ← `signature`, `isIsolated` ← `isIsolated`, `listClientOrderId` ← `listClientOrderId`, `newOrderRespType` ← `newOrderRespType`, `sideEffectType` ← `sideEffectType`, `selfTradePreventionMode` ← `selfTradePreventionMode`, `autoRepayAtCancel` ← `autoRepayAtCancel`, `workingClientOrderId` ← `workingClientOrderId`, `workingTimeInForce` ← `workingTimeInForce`, `pendingClientOrderId` ← `pendingClientOrderId`, `pendingPrice` ← `pendingPrice`, `pendingStopPrice` ← `pendingStopPrice`, `pendingTrailingDelta` ← `pendingTrailingDelta`, `pendingIcebergQty` ← `pendingIcebergQty`, `pendingTimeInForce` ← `pendingTimeInForce`
@@ -396,6 +420,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### MarginAccountNewOtocoTrade
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `MarginAccountNewOtocoTrade(string symbol, WorkingType workingType, WorkingSide workingSide, double workingPrice, double workingQuantity, double workingIcebergQty, PendingSide pendingSide, double pendingQuantity, PendingAboveType pendingAboveType, long timestamp, string signature, IsIsolated? isIsolated, SideEffectType1? sideEffectType, bool? autoRepayAtCancel, string? listClientOrderId, NewOrderRespType? newOrderRespType, SelfTradePreventionMode? selfTradePreventionMode, string? workingClientOrderId, WorkingTimeInForce? workingTimeInForce, string? pendingAboveClientOrderId, double? pendingAbovePrice, double? pendingAboveStopPrice, double? pendingAboveTrailingDelta, double? pendingAboveIcebergQty, PendingAboveTimeInForce? pendingAboveTimeInForce, PendingBelowType? pendingBelowType, string? pendingBelowClientOrderId, double? pendingBelowPrice, double? pendingBelowStopPrice, double? pendingBelowTrailingDelta, double? pendingBelowIcebergQty, PendingBelowTimeInForce? pendingBelowTimeInForce, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 21 params (`isIsolated` … `pendingBelowTimeInForce`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `symbol` ← `symbol`, `workingType` ← `workingType`, `workingSide` ← `workingSide`, `workingPrice` ← `workingPrice`, `workingQuantity` ← `workingQuantity`, `workingIcebergQty` ← `workingIcebergQty`, `pendingSide` ← `pendingSide`, `pendingQuantity` ← `pendingQuantity`, `pendingAboveType` ← `pendingAboveType`, `timestamp` ← `timestamp`, `signature` ← `signature`, `isIsolated` ← `isIsolated`, `sideEffectType` ← `sideEffectType`, `autoRepayAtCancel` ← `autoRepayAtCancel`, `listClientOrderId` ← `listClientOrderId`, `newOrderRespType` ← `newOrderRespType`, `selfTradePreventionMode` ← `selfTradePreventionMode`, `workingClientOrderId` ← `workingClientOrderId`, `workingTimeInForce` ← `workingTimeInForce`, `pendingAboveClientOrderId` ← `pendingAboveClientOrderId`, `pendingAbovePrice` ← `pendingAbovePrice`, `pendingAboveStopPrice` ← `pendingAboveStopPrice`, `pendingAboveTrailingDelta` ← `pendingAboveTrailingDelta`, `pendingAboveIcebergQty` ← `pendingAboveIcebergQty`, `pendingAboveTimeInForce` ← `pendingAboveTimeInForce`, `pendingBelowType` ← `pendingBelowType`, `pendingBelowClientOrderId` ← `pendingBelowClientOrderId`, `pendingBelowPrice` ← `pendingBelowPrice`, `pendingBelowStopPrice` ← `pendingBelowStopPrice`, `pendingBelowTrailingDelta` ← `pendingBelowTrailingDelta`, `pendingBelowIcebergQty` ← `pendingBelowIcebergQty`, `pendingBelowTimeInForce` ← `pendingBelowTimeInForce`
@@ -423,6 +448,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### MarginInterestRateHistoryUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `MarginInterestRateHistoryUserData(string asset, long timestamp, string signature, int? vipLevel, long? startTime, long? endTime, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 4 params (`vipLevel` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `asset` ← `asset`, `timestamp` ← `timestamp`, `signature` ← `signature`, `vipLevel` ← `vipLevel`, `startTime` ← `startTime`, `endTime` ← `endTime`, `recvWindow` ← `recvWindow`
@@ -438,6 +464,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### MarginManualLiquidationMargin
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `MarginManualLiquidationMargin(Type4 type, long timestamp, string signature, string? symbol, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `symbol` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `type` ← `type`, `timestamp` ← `timestamp`, `signature` ← `signature`, `symbol` ← `symbol`
@@ -454,6 +481,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### QueryBorrowRepayRecordsInMarginAccountUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QueryBorrowRepayRecordsInMarginAccountUserData(string asset, string type, long timestamp, string signature, string? isolatedSymbol, long? txId, long? startTime, long? endTime, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 7 params (`isolatedSymbol` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `asset` ← `asset`, `type` ← `type`, `timestamp` ← `timestamp`, `signature` ← `signature`, `isolatedSymbol` ← `isolatedSymbol`, `txId` ← `txId`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `size` ← `size`, `recvWindow` ← `recvWindow`
@@ -469,6 +497,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### QueryCrossMarginAccountDetailsUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QueryCrossMarginAccountDetailsUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -484,6 +513,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### QueryCrossMarginFeeDataUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QueryCrossMarginFeeDataUserData(long timestamp, string signature, int? vipLevel, string? coin, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `vipLevel` — nullable, no default → **must pass explicitly**
   - `coin` — nullable, no default → **must pass explicitly**
@@ -501,6 +531,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### QueryCurrentMarginOrderCountUsageTrade
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QueryCurrentMarginOrderCountUsageTrade(long timestamp, string signature, string? isIsolated, string? symbol, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `isIsolated` — nullable, no default → **must pass explicitly**
   - `symbol` — nullable, no default → **must pass explicitly**
@@ -518,6 +549,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### QueryEnabledIsolatedMarginAccountLimitUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QueryEnabledIsolatedMarginAccountLimitUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -533,6 +565,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### QueryIsolatedMarginAccountInfoUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QueryIsolatedMarginAccountInfoUserData(long timestamp, string signature, string? symbols, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `symbols` — nullable, no default → **must pass explicitly**
   - `recvWindow` — nullable, no default → **must pass explicitly**
@@ -549,6 +582,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### QueryIsolatedMarginFeeDataUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QueryIsolatedMarginFeeDataUserData(long timestamp, string signature, int? vipLevel, string? symbol, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `vipLevel` — nullable, no default → **must pass explicitly**
   - `symbol` — nullable, no default → **must pass explicitly**
@@ -566,6 +600,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### QueryIsolatedMarginTierDataUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QueryIsolatedMarginTierDataUserData(string symbol, long timestamp, string signature, string? tier, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `tier` — nullable, no default → **must pass explicitly**
   - `recvWindow` — nullable, no default → **must pass explicitly**
@@ -582,6 +617,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### QueryLiabilityCoinLeverageBracketInCrossMarginProModeMarketData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QueryLiabilityCoinLeverageBracketInCrossMarginProModeMarketData(RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Returns**: `IReadOnlyList<SapiV1MarginLeverageBracketResponse>`
 - **Error**: `SdkException<QueryLiabilityCoinLeverageBracketInCrossMarginProModeMarketDataError>` — **Case A (typed)**
@@ -595,6 +631,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### QueryMarginAccountSAllOcoUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QueryMarginAccountSAllOcoUserData(long timestamp, string signature, IsIsolated? isIsolated, string? symbol, string? fromId, long? startTime, long? endTime, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 7 params (`isIsolated` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `isIsolated` ← `isIsolated`, `symbol` ← `symbol`, `fromId` ← `fromId`, `startTime` ← `startTime`, `endTime` ← `endTime`, `limit` ← `limit`, `recvWindow` ← `recvWindow`
@@ -611,6 +648,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### QueryMarginAccountSAllOrdersUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QueryMarginAccountSAllOrdersUserData(string symbol, long timestamp, string signature, IsIsolated? isIsolated, long? orderId, long? startTime, long? endTime, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 6 params (`isIsolated` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `symbol` ← `symbol`, `timestamp` ← `timestamp`, `signature` ← `signature`, `isIsolated` ← `isIsolated`, `orderId` ← `orderId`, `startTime` ← `startTime`, `endTime` ← `endTime`, `limit` ← `limit`, `recvWindow` ← `recvWindow`
@@ -627,6 +665,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### QueryMarginAccountSOcoUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QueryMarginAccountSOcoUserData(long timestamp, string signature, IsIsolated? isIsolated, string? symbol, long? orderListId, string? origClientOrderId, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 5 params (`isIsolated` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `isIsolated` ← `isIsolated`, `symbol` ← `symbol`, `orderListId` ← `orderListId`, `origClientOrderId` ← `origClientOrderId`, `recvWindow` ← `recvWindow`
@@ -643,6 +682,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### QueryMarginAccountSOpenOcoUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QueryMarginAccountSOpenOcoUserData(long timestamp, string signature, IsIsolated? isIsolated, string? symbol, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `isIsolated` — nullable, no default → **must pass explicitly**
   - `symbol` — nullable, no default → **must pass explicitly**
@@ -661,6 +701,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### QueryMarginAccountSOpenOrdersUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QueryMarginAccountSOpenOrdersUserData(long timestamp, string signature, string? symbol, IsIsolated? isIsolated, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `symbol` — nullable, no default → **must pass explicitly**
   - `isIsolated` — nullable, no default → **must pass explicitly**
@@ -679,6 +720,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### QueryMarginAccountSOrderUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QueryMarginAccountSOrderUserData(string symbol, long timestamp, string signature, IsIsolated? isIsolated, long? orderId, string? origClientOrderId, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 4 params (`isIsolated` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `symbol` ← `symbol`, `timestamp` ← `timestamp`, `signature` ← `signature`, `isIsolated` ← `isIsolated`, `orderId` ← `orderId`, `origClientOrderId` ← `origClientOrderId`, `recvWindow` ← `recvWindow`
@@ -695,6 +737,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### QueryMarginAccountSTradeListUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QueryMarginAccountSTradeListUserData(string symbol, long timestamp, string signature, IsIsolated? isIsolated, long? startTime, long? endTime, long? fromId, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 6 params (`isIsolated` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `symbol` ← `symbol`, `timestamp` ← `timestamp`, `signature` ← `signature`, `isIsolated` ← `isIsolated`, `startTime` ← `startTime`, `endTime` ← `endTime`, `fromId` ← `fromId`, `limit` ← `limit`, `recvWindow` ← `recvWindow`
@@ -711,6 +754,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### QueryMarginAvailableInventoryUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QueryMarginAvailableInventoryUserData(Type4 type, long timestamp, string signature, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Query params (wire ← C#)**: `type` ← `type`, `timestamp` ← `timestamp`, `signature` ← `signature`
 - **Returns**: `SapiV1MarginAvailableInventoryResponse`
@@ -726,6 +770,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### QueryMarginPriceIndexMarketData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QueryMarginPriceIndexMarketData(string symbol, RequestOptions? requestOptions = null, CancellationToken ct = default)`
 - **Query params (wire ← C#)**: `symbol` ← `symbol`
 - **Returns**: `SapiV1MarginPriceIndexResponse`
@@ -740,6 +785,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### QueryMaxBorrowUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QueryMaxBorrowUserData(string asset, long timestamp, string signature, string? isolatedSymbol, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `isolatedSymbol` — nullable, no default → **must pass explicitly**
   - `recvWindow` — nullable, no default → **must pass explicitly**
@@ -756,6 +802,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### QueryMaxTransferOutAmountUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QueryMaxTransferOutAmountUserData(string asset, long timestamp, string signature, string? isolatedSymbol, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `isolatedSymbol` — nullable, no default → **must pass explicitly**
   - `recvWindow` — nullable, no default → **must pass explicitly**
@@ -772,6 +819,7 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 ### ToggleBnbBurnOnSpotTradeAndMarginInterestUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `ToggleBnbBurnOnSpotTradeAndMarginInterestUserData(long timestamp, string signature, SpotBnbBurn? spotBnbBurn, InterestBnbBurn? interestBnbBurn, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `spotBnbBurn` — nullable, no default → **must pass explicitly**
   - `interestBnbBurn` — nullable, no default → **must pass explicitly**

@@ -1,6 +1,6 @@
 using System.Net.Http.Headers;
 
-namespace Binance.Core.Pagination.States;
+namespace BinancePublicSpotApi.Core.Pagination.States;
 
 internal interface IPageState<in TResponse, out TState>
 {

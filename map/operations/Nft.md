@@ -8,6 +8,7 @@ Accessor: `client.Nft` · Source: `Api/Nft.cs` · 4 operations
 
 ### GetNftAssetUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetNftAssetUserData(long timestamp, string signature, int? limit, int? page, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `limit` — nullable, no default → **must pass explicitly**
   - `page` — nullable, no default → **must pass explicitly**
@@ -25,6 +26,7 @@ Accessor: `client.Nft` · Source: `Api/Nft.cs` · 4 operations
 
 ### GetNftDepositHistoryUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetNftDepositHistoryUserData(long timestamp, string signature, long? startTime, long? endTime, int? limit, int? page, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 5 params (`startTime` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `startTime` ← `startTime`, `endTime` ← `endTime`, `limit` ← `limit`, `page` ← `page`, `recvWindow` ← `recvWindow`
@@ -40,6 +42,7 @@ Accessor: `client.Nft` · Source: `Api/Nft.cs` · 4 operations
 
 ### GetNftTransactionHistoryUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetNftTransactionHistoryUserData(int orderType, long timestamp, string signature, long? startTime, long? endTime, int? limit, int? page, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 5 params (`startTime` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `orderType` ← `orderType`, `timestamp` ← `timestamp`, `signature` ← `signature`, `startTime` ← `startTime`, `endTime` ← `endTime`, `limit` ← `limit`, `page` ← `page`, `recvWindow` ← `recvWindow`
@@ -55,6 +58,7 @@ Accessor: `client.Nft` · Source: `Api/Nft.cs` · 4 operations
 
 ### GetNftWithdrawHistoryUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetNftWithdrawHistoryUserData(long timestamp, string signature, long? startTime, long? endTime, int? limit, int? page, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 5 params (`startTime` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `startTime` ← `startTime`, `endTime` ← `endTime`, `limit` ← `limit`, `page` ← `page`, `recvWindow` ← `recvWindow`

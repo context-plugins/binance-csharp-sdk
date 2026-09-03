@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Binance.Core.Validation.Attributes;
+namespace BinancePublicSpotApi.Core.Validation.Attributes;
 
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]
 public sealed class MultipleOfAttribute : ValidationAttribute

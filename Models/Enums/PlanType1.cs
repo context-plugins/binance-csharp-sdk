@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
-using Binance.Core.Enum;
+using BinancePublicSpotApi.Core.Enum;
 
-namespace Binance.Models.Enums;
+namespace BinancePublicSpotApi.Models.Enums;
 
 [JsonConverter(typeof(StringEnumConverter<PlanType1>))]
 public sealed record PlanType1 : StringEnum<PlanType1>

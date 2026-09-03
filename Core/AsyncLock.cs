@@ -2,7 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Binance.Core;
+namespace BinancePublicSpotApi.Core;
 
 internal sealed class AsyncLock
 {

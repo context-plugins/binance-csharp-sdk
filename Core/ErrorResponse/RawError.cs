@@ -6,7 +6,7 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Binance.Core.ErrorResponse;
+namespace BinancePublicSpotApi.Core.ErrorResponse;
 
 public sealed class RawError
 {

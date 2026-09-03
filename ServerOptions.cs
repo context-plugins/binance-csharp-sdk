@@ -1,6 +1,6 @@
-using Binance.Servers;
+using BinancePublicSpotApi.Servers;
 
-namespace Binance;
+namespace BinancePublicSpotApi;
 
 public class ServerOptions
 {

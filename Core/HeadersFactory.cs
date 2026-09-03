@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Binance.Core.Models;
+using BinancePublicSpotApi.Core.Models;
 
-namespace Binance.Core;
+namespace BinancePublicSpotApi.Core;
 
 internal sealed class HeadersFactory
 {

@@ -8,6 +8,7 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 ### GetCollateralRecordUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetCollateralRecordUserData(long timestamp, string signature, string? productId, long? startTime, long? endTime, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 6 params (`productId` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `productId` ← `productId`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `size` ← `size`, `recvWindow` ← `recvWindow`
@@ -23,6 +24,7 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 ### GetFlexiblePersonalLeftQuotaUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetFlexiblePersonalLeftQuotaUserData(string productId, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `productId` ← `productId`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -38,6 +40,7 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 ### GetFlexibleProductPositionUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetFlexibleProductPositionUserData(long timestamp, string signature, string? asset, string? productId, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 5 params (`asset` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `asset` ← `asset`, `productId` ← `productId`, `current` ← `current`, `size` ← `size`, `recvWindow` ← `recvWindow`
@@ -53,6 +56,7 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 ### GetFlexibleRedemptionRecordUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetFlexibleRedemptionRecordUserData(string? productId, string? redeemId, string? asset, long? startTime, long? endTime, int? current, int? size, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 7 params (`productId` … `size`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `productId` ← `productId`, `redeemId` ← `redeemId`, `asset` ← `asset`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `size` ← `size`
@@ -68,6 +72,7 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 ### GetFlexibleRewardsHistoryUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetFlexibleRewardsHistoryUserData(string type, string? productId, string? asset, long? startTime, long? endTime, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 4 params (`productId` … `endTime`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `type` ← `type`, `productId` ← `productId`, `asset` ← `asset`, `startTime` ← `startTime`, `endTime` ← `endTime`
@@ -83,6 +88,7 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 ### GetFlexibleSubscriptionPreviewUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetFlexibleSubscriptionPreviewUserData(string productId, double amount, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `productId` ← `productId`, `amount` ← `amount`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -98,6 +104,7 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 ### GetFlexibleSubscriptionRecordUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetFlexibleSubscriptionRecordUserData(long timestamp, string signature, string? productId, string? purchaseId, string? asset, long? startTime, long? endTime, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 8 params (`productId` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `productId` ← `productId`, `purchaseId` ← `purchaseId`, `asset` ← `asset`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `size` ← `size`, `recvWindow` ← `recvWindow`
@@ -113,6 +120,7 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 ### GetLockedPersonalLeftQuotaUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetLockedPersonalLeftQuotaUserData(string projectId, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `projectId` ← `projectId`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -128,6 +136,7 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 ### GetLockedProductPositionUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetLockedProductPositionUserData(long timestamp, string signature, string? asset, string? positionId, string? projectId, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 6 params (`asset` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `asset` ← `asset`, `positionId` ← `positionId`, `projectId` ← `projectId`, `current` ← `current`, `size` ← `size`, `recvWindow` ← `recvWindow`
@@ -143,6 +152,7 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 ### GetLockedRedemptionRecordUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetLockedRedemptionRecordUserData(long timestamp, string signature, string? positionId, string? redeemId, string? asset, long? startTime, long? endTime, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 8 params (`positionId` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `positionId` ← `positionId`, `redeemId` ← `redeemId`, `asset` ← `asset`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `size` ← `size`, `recvWindow` ← `recvWindow`
@@ -158,6 +168,7 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 ### GetLockedRewardsHistoryUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetLockedRewardsHistoryUserData(long timestamp, string signature, string? positionId, string? asset, long? startTime, long? endTime, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 6 params (`positionId` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `positionId` ← `positionId`, `asset` ← `asset`, `startTime` ← `startTime`, `endTime` ← `endTime`, `size` ← `size`, `recvWindow` ← `recvWindow`
@@ -173,6 +184,7 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 ### GetLockedSubscriptionPreviewUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetLockedSubscriptionPreviewUserData(string projectId, double amount, long timestamp, string signature, bool? autoSubscribe, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `autoSubscribe` — nullable, no default → **must pass explicitly**
   - `recvWindow` — nullable, no default → **must pass explicitly**
@@ -189,6 +201,7 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 ### GetLockedSubscriptionRecordUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetLockedSubscriptionRecordUserData(long timestamp, string signature, string? purchaseId, string? asset, long? startTime, long? endTime, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 7 params (`purchaseId` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `purchaseId` ← `purchaseId`, `asset` ← `asset`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `size` ← `size`, `recvWindow` ← `recvWindow`
@@ -204,6 +217,7 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 ### GetRateHistoryUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetRateHistoryUserData(string productId, long timestamp, string signature, long? startTime, long? endTime, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 5 params (`startTime` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `productId` ← `productId`, `timestamp` ← `timestamp`, `signature` ← `signature`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `size` ← `size`, `recvWindow` ← `recvWindow`
@@ -219,6 +233,7 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 ### GetSimpleEarnFlexibleProductListUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetSimpleEarnFlexibleProductListUserData(long timestamp, string signature, string? asset, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 4 params (`asset` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `asset` ← `asset`, `current` ← `current`, `size` ← `size`, `recvWindow` ← `recvWindow`
@@ -234,6 +249,7 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 ### GetSimpleEarnLockedProductListUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetSimpleEarnLockedProductListUserData(long timestamp, string signature, string? asset, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 4 params (`asset` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `asset` ← `asset`, `current` ← `current`, `size` ← `size`, `recvWindow` ← `recvWindow`
@@ -249,6 +265,7 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 ### RedeemFlexibleProductTrade
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `RedeemFlexibleProductTrade(string productId, long timestamp, string signature, bool? redeemAll, double? amount, string? destAccount, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 4 params (`redeemAll` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `productId` ← `productId`, `timestamp` ← `timestamp`, `signature` ← `signature`, `redeemAll` ← `redeemAll`, `amount` ← `amount`, `destAccount` ← `destAccount`, `recvWindow` ← `recvWindow`
@@ -264,6 +281,7 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 ### RedeemLockedProductTrade
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `RedeemLockedProductTrade(string positionId, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `positionId` ← `positionId`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -279,6 +297,7 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 ### SetFlexibleAutoSubscribeUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `SetFlexibleAutoSubscribeUserData(string productId, bool autoSubscribe, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `productId` ← `productId`, `autoSubscribe` ← `autoSubscribe`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -294,6 +313,7 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 ### SetLockedAutoSubscribeUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `SetLockedAutoSubscribeUserData(string positionId, bool autoSubscribe, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `positionId` ← `positionId`, `autoSubscribe` ← `autoSubscribe`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -309,6 +329,7 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 ### SetLockedProductRedeemOptionUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `SetLockedProductRedeemOptionUserData(string positionId, long timestamp, string signature, RedeemTo? redeemTo, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `redeemTo` — nullable, no default → **must pass explicitly**
   - `recvWindow` — nullable, no default → **must pass explicitly**
@@ -326,6 +347,7 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 ### SimpleAccountUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `SimpleAccountUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -341,6 +363,7 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 ### SubscribeFlexibleProductTrade
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `SubscribeFlexibleProductTrade(string productId, double amount, long timestamp, string signature, bool? autoSubscribe, string? sourceAccount, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `autoSubscribe` — nullable, no default → **must pass explicitly**
   - `sourceAccount` — nullable, no default → **must pass explicitly**
@@ -358,6 +381,7 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 ### SubscribeLockedProductTrade
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `SubscribeLockedProductTrade(string projectId, double amount, long timestamp, string signature, bool? autoSubscribe, string? sourceAccount, RedeemTo? redeemTo, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 4 params (`autoSubscribe` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `projectId` ← `projectId`, `amount` ← `amount`, `timestamp` ← `timestamp`, `signature` ← `signature`, `autoSubscribe` ← `autoSubscribe`, `sourceAccount` ← `sourceAccount`, `redeemTo` ← `redeemTo`, `recvWindow` ← `recvWindow`

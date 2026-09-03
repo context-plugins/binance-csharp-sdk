@@ -8,6 +8,7 @@ Accessor: `client.Futures` · Source: `Api/Futures.cs` · 3 operations
 
 ### GetFutureAccountTransactionHistoryListUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetFutureAccountTransactionHistoryListUserData(string asset, long startTime, long timestamp, string signature, long? endTime, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 4 params (`endTime` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `asset` ← `asset`, `startTime` ← `startTime`, `timestamp` ← `timestamp`, `signature` ← `signature`, `endTime` ← `endTime`, `current` ← `current`, `size` ← `size`, `recvWindow` ← `recvWindow`
@@ -23,6 +24,7 @@ Accessor: `client.Futures` · Source: `Api/Futures.cs` · 3 operations
 
 ### GetFutureTickLevelOrderbookHistoricalDataDownloadLinkUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetFutureTickLevelOrderbookHistoricalDataDownloadLinkUserData(string symbol, DataTypeEnum dataType, long timestamp, string signature, long? startTime, long? endTime, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `startTime` — nullable, no default → **must pass explicitly**
   - `endTime` — nullable, no default → **must pass explicitly**
@@ -41,6 +43,7 @@ Accessor: `client.Futures` · Source: `Api/Futures.cs` · 3 operations
 
 ### NewFutureAccountTransferUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `NewFutureAccountTransferUserData(string asset, double amount, long type, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `asset` ← `asset`, `amount` ← `amount`, `type` ← `type`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`

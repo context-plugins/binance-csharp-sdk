@@ -1,9 +1,9 @@
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using Binance.Core.ErrorResponse;
+using BinancePublicSpotApi.Core.ErrorResponse;
 
-namespace Binance.Core.Response;
+namespace BinancePublicSpotApi.Core.Response;
 
 internal sealed class RawErrorBodyResponse : IResponse<RawError>
 {

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Binance.Core.Exceptions;
+namespace BinancePublicSpotApi.Core.Exceptions;
 
 public sealed class AuthSchemeException : Exception
 {

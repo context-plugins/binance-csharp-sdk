@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace Binance.Core.Webhooks.Signing;
+namespace BinancePublicSpotApi.Core.Webhooks.Signing;
 
 internal sealed class SignatureVerifier
 {

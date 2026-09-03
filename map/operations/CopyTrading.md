@@ -8,6 +8,7 @@ Accessor: `client.CopyTrading` · Source: `Api/CopyTrading.cs` · 2 operations
 
 ### GetFuturesLeadTraderStatusTrade
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetFuturesLeadTraderStatusTrade(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
@@ -23,6 +24,7 @@ Accessor: `client.CopyTrading` · Source: `Api/CopyTrading.cs` · 2 operations
 
 ### GetFuturesLeadTradingSymbolWhitelistUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetFuturesLeadTradingSymbolWhitelistUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `recvWindow` — nullable, no default → **must pass explicitly**
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Binance.Core.Webhooks;
+namespace BinancePublicSpotApi.Core.Webhooks;
 
 public sealed class WebhookRequest
 {

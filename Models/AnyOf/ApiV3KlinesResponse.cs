@@ -1,9 +1,9 @@
 using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Binance.Core.Models;
+using BinancePublicSpotApi.Core.Models;
 
-namespace Binance.Models.AnyOf;
+namespace BinancePublicSpotApi.Models.AnyOf;
 
 [JsonConverter(typeof(ApiV3KlinesResponseConverter))]
 public record ApiV3KlinesResponse

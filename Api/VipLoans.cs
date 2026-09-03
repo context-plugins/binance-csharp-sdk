@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using Binance.Core;
-using Binance.Core.Exceptions;
-using Binance.Core.Models;
-using Binance.Core.Request;
-using Binance.Core.Response;
-using Binance.Errors;
-using Binance.Models;
-using Binance.Models.Enums;
+using BinancePublicSpotApi.Core;
+using BinancePublicSpotApi.Core.Exceptions;
+using BinancePublicSpotApi.Core.Models;
+using BinancePublicSpotApi.Core.Request;
+using BinancePublicSpotApi.Core.Response;
+using BinancePublicSpotApi.Errors;
+using BinancePublicSpotApi.Models;
+using BinancePublicSpotApi.Models.Enums;
 
-namespace Binance.Api;
+namespace BinancePublicSpotApi.Api;
 
 /// <summary>
 /// VIP Loans Endpoints

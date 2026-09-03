@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
-using Binance.Core.Configuration;
+using BinancePublicSpotApi.Core.Configuration;
 
-namespace Binance.Core.Logging;
+namespace BinancePublicSpotApi.Core.Logging;
 
 internal sealed class HttpLogger
 {

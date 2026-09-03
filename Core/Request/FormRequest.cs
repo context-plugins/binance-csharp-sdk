@@ -4,9 +4,9 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
-using Binance.Core.Models;
+using BinancePublicSpotApi.Core.Models;
 
-namespace Binance.Core.Request;
+namespace BinancePublicSpotApi.Core.Request;
 
 internal sealed class FormRequest : IRequest
 {

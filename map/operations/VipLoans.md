@@ -8,6 +8,7 @@ Accessor: `client.VipLoans` · Source: `Api/VipLoans.cs` · 10 operations
 
 ### CheckLockedValueOfVipCollateralAccountUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `CheckLockedValueOfVipCollateralAccountUserData(long timestamp, string signature, long? orderId, long? collateralAccountId, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `orderId` — nullable, no default → **must pass explicitly**
   - `collateralAccountId` — nullable, no default → **must pass explicitly**
@@ -25,6 +26,7 @@ Accessor: `client.VipLoans` · Source: `Api/VipLoans.cs` · 10 operations
 
 ### GetBorrowInterestRateUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetBorrowInterestRateUserData(long timestamp, string signature, string? loanCoin, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `loanCoin` — nullable, no default → **must pass explicitly**
   - `recvWindow` — nullable, no default → **must pass explicitly**
@@ -41,6 +43,7 @@ Accessor: `client.VipLoans` · Source: `Api/VipLoans.cs` · 10 operations
 
 ### GetCollateralAssetDataUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetCollateralAssetDataUserData(long timestamp, string signature, string? collateralCoin, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `collateralCoin` — nullable, no default → **must pass explicitly**
   - `recvWindow` — nullable, no default → **must pass explicitly**
@@ -57,6 +60,7 @@ Accessor: `client.VipLoans` · Source: `Api/VipLoans.cs` · 10 operations
 
 ### GetLoanableAssetsData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetLoanableAssetsData(long timestamp, string signature, string? loanCoin, int? vipLevel, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `loanCoin` — nullable, no default → **must pass explicitly**
   - `vipLevel` — nullable, no default → **must pass explicitly**
@@ -74,6 +78,7 @@ Accessor: `client.VipLoans` · Source: `Api/VipLoans.cs` · 10 operations
 
 ### GetVipLoanOngoingOrdersUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetVipLoanOngoingOrdersUserData(long timestamp, string signature, long? orderId, long? collateralAccountId, string? loanCoin, string? collateralCoin, int? current, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 7 params (`orderId` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `orderId` ← `orderId`, `collateralAccountId` ← `collateralAccountId`, `loanCoin` ← `loanCoin`, `collateralCoin` ← `collateralCoin`, `current` ← `current`, `limit` ← `limit`, `recvWindow` ← `recvWindow`
@@ -89,6 +94,7 @@ Accessor: `client.VipLoans` · Source: `Api/VipLoans.cs` · 10 operations
 
 ### GetVipLoanRepaymentHistoryUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `GetVipLoanRepaymentHistoryUserData(long timestamp, string signature, long? orderId, string? loanCoin, long? startTime, long? endTime, int? current, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - 7 params (`orderId` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
 - **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `orderId` ← `orderId`, `loanCoin` ← `loanCoin`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `limit` ← `limit`, `recvWindow` ← `recvWindow`
@@ -104,6 +110,7 @@ Accessor: `client.VipLoans` · Source: `Api/VipLoans.cs` · 10 operations
 
 ### QueryApplicationStatusUserData
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `QueryApplicationStatusUserData(long timestamp, string signature, int? current, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `current` — nullable, no default → **must pass explicitly**
   - `limit` — nullable, no default → **must pass explicitly**
@@ -121,6 +128,7 @@ Accessor: `client.VipLoans` · Source: `Api/VipLoans.cs` · 10 operations
 
 ### VipLoanBorrow
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `VipLoanBorrow(long loanAccountId, double loanAmount, string collateralAccountId, string collateralCoin, IsFlexibleRate isFlexibleRate, long timestamp, string signature, string? loanCoin, int? loanTerm, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `loanCoin` — nullable, no default → **must pass explicitly**
   - `loanTerm` — nullable, no default → **must pass explicitly**
@@ -139,6 +147,7 @@ Accessor: `client.VipLoans` · Source: `Api/VipLoans.cs` · 10 operations
 
 ### VipLoanRenew
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `VipLoanRenew(long timestamp, string signature, long? orderId, int? loanTerm, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `orderId` — nullable, no default → **must pass explicitly**
   - `loanTerm` — nullable, no default → **must pass explicitly**
@@ -156,6 +165,7 @@ Accessor: `client.VipLoans` · Source: `Api/VipLoans.cs` · 10 operations
 
 ### VipLoanRepayTrade
 
+- **Auth**: `options.ApiKeyAuth`
 - **Signature**: `VipLoanRepayTrade(double amount, long timestamp, string signature, long? orderId, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
   - `orderId` — nullable, no default → **must pass explicitly**
   - `recvWindow` — nullable, no default → **must pass explicitly**

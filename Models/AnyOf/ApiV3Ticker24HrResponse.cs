@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Binance.Core.Extensions;
-using Binance.Core.Models;
+using BinancePublicSpotApi.Core.Extensions;
+using BinancePublicSpotApi.Core.Models;
 
-namespace Binance.Models.AnyOf;
+namespace BinancePublicSpotApi.Models.AnyOf;
 
 [JsonConverter(typeof(ApiV3Ticker24HrResponseConverter))]
 public record ApiV3Ticker24HrResponse
