@@ -9,15 +9,16 @@ Accessor: `client.SpotAlgo` · Source: `Api/SpotAlgo.cs` · 5 operations
 ### CancelAlgoOrder
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `CancelAlgoOrder(long algoId, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `algoId` ← `algoId`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `CancelAlgoOrder(CancelAlgoOrderRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `AlgoId`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `algoId` ← `AlgoId`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1AlgoSpotOrderResponse`
-- **Error**: `SdkException<CancelAlgoOrderError>` — **Case A (typed)**
+- **Error**: `ApiException<CancelAlgoOrderError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `CancelAlgoOrderRequest` | `Requests/SpotAlgo/CancelAlgoOrderRequest.cs` |
 | `SapiV1AlgoSpotOrderResponse` | `Models/SapiV1AlgoSpotOrderResponse.cs` |
 | `CancelAlgoOrderError` | `Errors/CancelAlgoOrderError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -25,15 +26,16 @@ Accessor: `client.SpotAlgo` · Source: `Api/SpotAlgo.cs` · 5 operations
 ### QueryCurrentAlgoOpenOrders
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `QueryCurrentAlgoOpenOrders(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `QueryCurrentAlgoOpenOrders(QueryCurrentAlgoOpenOrdersRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1AlgoSpotOpenOrdersResponse`
-- **Error**: `SdkException<QueryCurrentAlgoOpenOrdersError>` — **Case A (typed)**
+- **Error**: `ApiException<QueryCurrentAlgoOpenOrdersError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `QueryCurrentAlgoOpenOrdersRequest` | `Requests/SpotAlgo/QueryCurrentAlgoOpenOrdersRequest.cs` |
 | `SapiV1AlgoSpotOpenOrdersResponse` | `Models/SapiV1AlgoSpotOpenOrdersResponse.cs` |
 | `QueryCurrentAlgoOpenOrdersError` | `Errors/QueryCurrentAlgoOpenOrdersError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -41,15 +43,16 @@ Accessor: `client.SpotAlgo` · Source: `Api/SpotAlgo.cs` · 5 operations
 ### QueryHistoricalAlgoOrders
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `QueryHistoricalAlgoOrders(string symbol, Side side, long timestamp, string signature, long? startTime, long? endTime, int? page, string? pageSize, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 5 params (`startTime` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `symbol` ← `symbol`, `side` ← `side`, `timestamp` ← `timestamp`, `signature` ← `signature`, `startTime` ← `startTime`, `endTime` ← `endTime`, `page` ← `page`, `pageSize` ← `pageSize`, `recvWindow` ← `recvWindow`
+- **Signature**: `QueryHistoricalAlgoOrders(QueryHistoricalAlgoOrdersRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Symbol`, `Side`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `symbol` ← `Symbol`, `side` ← `Side`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `startTime` ← `StartTime`, `endTime` ← `EndTime`, `page` ← `Page`, `pageSize` ← `PageSize`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1AlgoSpotHistoricalOrdersResponse`
-- **Error**: `SdkException<QueryHistoricalAlgoOrdersError>` — **Case A (typed)**
+- **Error**: `ApiException<QueryHistoricalAlgoOrdersError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `QueryHistoricalAlgoOrdersRequest` | `Requests/SpotAlgo/QueryHistoricalAlgoOrdersRequest.cs` |
 | `Side` | `Models/Enums/Side.cs` |
 | `SapiV1AlgoSpotHistoricalOrdersResponse` | `Models/SapiV1AlgoSpotHistoricalOrdersResponse.cs` |
 | `QueryHistoricalAlgoOrdersError` | `Errors/QueryHistoricalAlgoOrdersError.cs` |
@@ -58,17 +61,16 @@ Accessor: `client.SpotAlgo` · Source: `Api/SpotAlgo.cs` · 5 operations
 ### QuerySubOrders
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `QuerySubOrders(long algoId, long timestamp, string signature, int? page, string? pageSize, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `page` — nullable, no default → **must pass explicitly**
-  - `pageSize` — nullable, no default → **must pass explicitly**
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `algoId` ← `algoId`, `timestamp` ← `timestamp`, `signature` ← `signature`, `page` ← `page`, `pageSize` ← `pageSize`, `recvWindow` ← `recvWindow`
+- **Signature**: `QuerySubOrders(QuerySubOrdersRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `AlgoId`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `algoId` ← `AlgoId`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `page` ← `Page`, `pageSize` ← `PageSize`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1AlgoSpotSubOrdersResponse`
-- **Error**: `SdkException<QuerySubOrdersError>` — **Case A (typed)**
+- **Error**: `ApiException<QuerySubOrdersError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `QuerySubOrdersRequest` | `Requests/SpotAlgo/QuerySubOrdersRequest.cs` |
 | `SapiV1AlgoSpotSubOrdersResponse` | `Models/SapiV1AlgoSpotSubOrdersResponse.cs` |
 | `QuerySubOrdersError` | `Errors/QuerySubOrdersError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -76,17 +78,16 @@ Accessor: `client.SpotAlgo` · Source: `Api/SpotAlgo.cs` · 5 operations
 ### TimeWeightedAveragePriceTwapNewOrder
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `TimeWeightedAveragePriceTwapNewOrder(string symbol, Side side, double quantity, int duration, long timestamp, string signature, string? clientAlgoId, double? limitPrice, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `clientAlgoId` — nullable, no default → **must pass explicitly**
-  - `limitPrice` — nullable, no default → **must pass explicitly**
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `symbol` ← `symbol`, `side` ← `side`, `quantity` ← `quantity`, `duration` ← `duration`, `timestamp` ← `timestamp`, `signature` ← `signature`, `clientAlgoId` ← `clientAlgoId`, `limitPrice` ← `limitPrice`, `recvWindow` ← `recvWindow`
+- **Signature**: `TimeWeightedAveragePriceTwapNewOrder(TimeWeightedAveragePriceTwapNewOrderRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Symbol`, `Side`, `Quantity`, `Duration`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `symbol` ← `Symbol`, `side` ← `Side`, `quantity` ← `Quantity`, `duration` ← `Duration`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `clientAlgoId` ← `ClientAlgoId`, `limitPrice` ← `LimitPrice`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1AlgoSpotNewOrderTwapResponse`
-- **Error**: `SdkException<TimeWeightedAveragePriceTwapNewOrderError>` — **Case A (typed)**
+- **Error**: `ApiException<TimeWeightedAveragePriceTwapNewOrderError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `TimeWeightedAveragePriceTwapNewOrderRequest` | `Requests/SpotAlgo/TimeWeightedAveragePriceTwapNewOrderRequest.cs` |
 | `Side` | `Models/Enums/Side.cs` |
 | `SapiV1AlgoSpotNewOrderTwapResponse` | `Models/SapiV1AlgoSpotNewOrderTwapResponse.cs` |
 | `TimeWeightedAveragePriceTwapNewOrderError` | `Errors/TimeWeightedAveragePriceTwapNewOrderError.cs` |

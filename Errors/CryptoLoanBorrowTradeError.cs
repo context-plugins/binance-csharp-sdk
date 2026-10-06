@@ -1,11 +1,9 @@
-using System.Net.Http;
-using System.Threading;
 using System.Threading.Tasks;
-using BinancePublicSpotApi.Core.ErrorResponse;
-using BinancePublicSpotApi.Core.Models;
-using BinancePublicSpotApi.Models;
+using Binance.Core.ErrorResponse;
+using Binance.Core.Models;
+using Binance.Models;
 
-namespace BinancePublicSpotApi.Errors;
+namespace Binance.Errors;
 
 public sealed class CryptoLoanBorrowTradeError : ApiError
 {
@@ -16,30 +14,19 @@ public sealed class CryptoLoanBorrowTradeError : ApiError
         _errorValue = errorValue;
     }
 
-    private static CryptoLoanBorrowTradeError AsError(Error value) =>
-        new(Optional<Error>.Some(value), default);
+    private static CryptoLoanBorrowTradeError AsError(Error value) => new(Optional<Error>.Some(value), default);
 
     private static CryptoLoanBorrowTradeError AsFallback(RawError value) =>
         new(default, Optional<RawError>.Some(value));
 
     public bool TryGetError(out Error value) => _errorValue.TryGetValue(out value);
 
-    internal static Task<CryptoLoanBorrowTradeError> Create(HttpResponseMessage response, CancellationToken ct) =>
-        (int)response.StatusCode switch
+    private static Task<CryptoLoanBorrowTradeError> Create(FailedResponse response) =>
+        response.StatusCode switch
         {
-            400 or 401 => FromJson<Error>(response, ct).As(AsError),
-            _ => FromRawBody(response, ct).As(AsFallback)
+            400 or 401 => response.Json<Error>().As(AsError),
+            _ => response.RawBody().As(AsFallback)
         };
-}
 
-internal sealed class CryptoLoanBorrowTradeErrorResponse : IErrorResponse<CryptoLoanBorrowTradeError>
-{
-    public static CryptoLoanBorrowTradeErrorResponse Instance { get; } = new();
-
-    private CryptoLoanBorrowTradeErrorResponse()
-    {
-    }
-
-    public Task<CryptoLoanBorrowTradeError> Map(HttpResponseMessage response, CancellationToken ct) =>
-        CryptoLoanBorrowTradeError.Create(response, ct);
+    internal static ApiErrorResponse<CryptoLoanBorrowTradeError> Response { get; } = new(Create);
 }

@@ -9,16 +9,16 @@ Accessor: `client.Savings` · Source: `Api/Savings.cs` · 4 operations
 ### ChangeFixedActivityPositionToDailyPositionUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `ChangeFixedActivityPositionToDailyPositionUserData(string projectId, string lot, long timestamp, string signature, string? positionId, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `positionId` — nullable, no default → **must pass explicitly**
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `projectId` ← `projectId`, `lot` ← `lot`, `timestamp` ← `timestamp`, `signature` ← `signature`, `positionId` ← `positionId`, `recvWindow` ← `recvWindow`
+- **Signature**: `ChangeFixedActivityPositionToDailyPositionUserData(ChangeFixedActivityPositionToDailyPositionUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `ProjectId`, `Lot`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `projectId` ← `ProjectId`, `lot` ← `Lot`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `positionId` ← `PositionId`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1LendingPositionChangedResponse`
-- **Error**: `SdkException<ChangeFixedActivityPositionToDailyPositionUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<ChangeFixedActivityPositionToDailyPositionUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `ChangeFixedActivityPositionToDailyPositionUserDataRequest` | `Requests/Savings/ChangeFixedActivityPositionToDailyPositionUserDataRequest.cs` |
 | `SapiV1LendingPositionChangedResponse` | `Models/SapiV1LendingPositionChangedResponse.cs` |
 | `ChangeFixedActivityPositionToDailyPositionUserDataError` | `Errors/ChangeFixedActivityPositionToDailyPositionUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -26,15 +26,16 @@ Accessor: `client.Savings` · Source: `Api/Savings.cs` · 4 operations
 ### GetFixedActivityProjectListUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetFixedActivityProjectListUserData(Type8 type, long timestamp, string signature, string? asset, Status? status, bool? isSortAsc, SortBy? sortBy, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 7 params (`asset` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `type` ← `type`, `timestamp` ← `timestamp`, `signature` ← `signature`, `asset` ← `asset`, `status` ← `status`, `isSortAsc` ← `isSortAsc`, `sortBy` ← `sortBy`, `current` ← `current`, `size` ← `size`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetFixedActivityProjectListUserData(GetFixedActivityProjectListUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Type`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `type` ← `Type`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `asset` ← `Asset`, `status` ← `Status`, `isSortAsc` ← `IsSortAsc`, `sortBy` ← `SortBy`, `current` ← `Current`, `size` ← `Size`, `recvWindow` ← `RecvWindow`
 - **Returns**: `IReadOnlyList<SapiV1LendingProjectListResponse>`
-- **Error**: `SdkException<GetFixedActivityProjectListUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetFixedActivityProjectListUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetFixedActivityProjectListUserDataRequest` | `Requests/Savings/GetFixedActivityProjectListUserDataRequest.cs` |
 | `Type8` | `Models/Enums/Type8.cs` |
 | `Status` | `Models/Enums/Status.cs` |
 | `SortBy` | `Models/Enums/SortBy.cs` |
@@ -45,17 +46,16 @@ Accessor: `client.Savings` · Source: `Api/Savings.cs` · 4 operations
 ### GetFixedActivityProjectPositionUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetFixedActivityProjectPositionUserData(string asset, long timestamp, string signature, string? projectId, Status? status, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `projectId` — nullable, no default → **must pass explicitly**
-  - `status` — nullable, no default → **must pass explicitly**
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `asset` ← `asset`, `timestamp` ← `timestamp`, `signature` ← `signature`, `projectId` ← `projectId`, `status` ← `status`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetFixedActivityProjectPositionUserData(GetFixedActivityProjectPositionUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Asset`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `asset` ← `Asset`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `projectId` ← `ProjectId`, `status` ← `Status`, `recvWindow` ← `RecvWindow`
 - **Returns**: `IReadOnlyList<SapiV1LendingProjectPositionListResponse>`
-- **Error**: `SdkException<GetFixedActivityProjectPositionUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetFixedActivityProjectPositionUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetFixedActivityProjectPositionUserDataRequest` | `Requests/Savings/GetFixedActivityProjectPositionUserDataRequest.cs` |
 | `Status` | `Models/Enums/Status.cs` |
 | `SapiV1LendingProjectPositionListResponse` | `Models/SapiV1LendingProjectPositionListResponse.cs` |
 | `GetFixedActivityProjectPositionUserDataError` | `Errors/GetFixedActivityProjectPositionUserDataError.cs` |
@@ -64,15 +64,16 @@ Accessor: `client.Savings` · Source: `Api/Savings.cs` · 4 operations
 ### PurchaseFixedActivityProjectUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `PurchaseFixedActivityProjectUserData(string projectId, string lot, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `projectId` ← `projectId`, `lot` ← `lot`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `PurchaseFixedActivityProjectUserData(PurchaseFixedActivityProjectUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `ProjectId`, `Lot`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `projectId` ← `ProjectId`, `lot` ← `Lot`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1LendingCustomizedFixedPurchaseResponse`
-- **Error**: `SdkException<PurchaseFixedActivityProjectUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<PurchaseFixedActivityProjectUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `PurchaseFixedActivityProjectUserDataRequest` | `Requests/Savings/PurchaseFixedActivityProjectUserDataRequest.cs` |
 | `SapiV1LendingCustomizedFixedPurchaseResponse` | `Models/SapiV1LendingCustomizedFixedPurchaseResponse.cs` |
 | `PurchaseFixedActivityProjectUserDataError` | `Errors/PurchaseFixedActivityProjectUserDataError.cs` |
 | `Error` | `Models/Error.cs` |

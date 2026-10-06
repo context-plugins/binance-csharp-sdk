@@ -1,11 +1,9 @@
-using System.Net.Http;
-using System.Threading;
 using System.Threading.Tasks;
-using BinancePublicSpotApi.Core.ErrorResponse;
-using BinancePublicSpotApi.Core.Models;
-using BinancePublicSpotApi.Models;
+using Binance.Core.ErrorResponse;
+using Binance.Core.Models;
+using Binance.Models;
 
-namespace BinancePublicSpotApi.Errors;
+namespace Binance.Errors;
 
 public sealed class RecentTradesListError : ApiError
 {
@@ -18,27 +16,16 @@ public sealed class RecentTradesListError : ApiError
 
     private static RecentTradesListError AsError(Error value) => new(Optional<Error>.Some(value), default);
 
-    private static RecentTradesListError AsFallback(RawError value) =>
-        new(default, Optional<RawError>.Some(value));
+    private static RecentTradesListError AsFallback(RawError value) => new(default, Optional<RawError>.Some(value));
 
     public bool TryGetError(out Error value) => _errorValue.TryGetValue(out value);
 
-    internal static Task<RecentTradesListError> Create(HttpResponseMessage response, CancellationToken ct) =>
-        (int)response.StatusCode switch
+    private static Task<RecentTradesListError> Create(FailedResponse response) =>
+        response.StatusCode switch
         {
-            400 => FromJson<Error>(response, ct).As(AsError),
-            _ => FromRawBody(response, ct).As(AsFallback)
+            400 => response.Json<Error>().As(AsError),
+            _ => response.RawBody().As(AsFallback)
         };
-}
 
-internal sealed class RecentTradesListErrorResponse : IErrorResponse<RecentTradesListError>
-{
-    public static RecentTradesListErrorResponse Instance { get; } = new();
-
-    private RecentTradesListErrorResponse()
-    {
-    }
-
-    public Task<RecentTradesListError> Map(HttpResponseMessage response, CancellationToken ct) =>
-        RecentTradesListError.Create(response, ct);
+    internal static ApiErrorResponse<RecentTradesListError> Response { get; } = new(Create);
 }

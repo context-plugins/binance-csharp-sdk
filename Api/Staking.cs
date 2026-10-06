@@ -2,15 +2,16 @@ using System;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using BinancePublicSpotApi.Core;
-using BinancePublicSpotApi.Core.Exceptions;
-using BinancePublicSpotApi.Core.Models;
-using BinancePublicSpotApi.Core.Request;
-using BinancePublicSpotApi.Core.Response;
-using BinancePublicSpotApi.Errors;
-using BinancePublicSpotApi.Models;
+using Binance.Core;
+using Binance.Core.Exceptions;
+using Binance.Core.Models;
+using Binance.Core.Request;
+using Binance.Core.Response;
+using Binance.Errors;
+using Binance.Models;
+using Binance.Requests.Staking;
 
-namespace BinancePublicSpotApi.Api;
+namespace Binance.Api;
 
 public sealed class Staking
 {
@@ -28,49 +29,42 @@ public sealed class Staking
     /// <summary>
     /// ETH Staking account V2(USER_DATA)
     /// </summary>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV2EthStakingAccountResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="EthStakingAccountV2UserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="EthStakingAccountV2UserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Weight(IP): 150
     /// </remarks>
-    public Task<SapiV2EthStakingAccountResponse> EthStakingAccountV2UserData(long timestamp,
-        string signature,
-        long? recvWindow,
+    public Task<SapiV2EthStakingAccountResponse> EthStakingAccountV2UserData(EthStakingAccountV2UserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v2/eth-staking/account"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v2/eth-staking/account"),
             [],
-            [new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV2EthStakingAccountResponse>(),
-            EthStakingAccountV2UserDataErrorResponse.Instance,
+            EthStakingAccountV2UserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Get BETH rewards distribution history(USER_DATA)
     /// </summary>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="startTime">UTC timestamp in ms</param>
-    /// <param name="endTime">UTC timestamp in ms</param>
-    /// <param name="current">Current querying page. Start from 1. Default:1</param>
-    /// <param name="size">Default:10 Max:100</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1EthStakingEthHistoryRewardsHistoryResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="GetBethRewardsDistributionHistoryUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="GetBethRewardsDistributionHistoryUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// <list type="bullet">
     ///   <item><description>The time between startTime and endTime cannot be longer than 3 months.</description></item>
@@ -82,47 +76,38 @@ public sealed class Staking
     /// Weight(IP): 150
     /// </para>
     /// </remarks>
-    public Task<SapiV1EthStakingEthHistoryRewardsHistoryResponse> GetBethRewardsDistributionHistoryUserData(long timestamp,
-        string signature,
-        long? startTime,
-        long? endTime,
-        int? current,
-        int? size,
-        long? recvWindow,
+    public Task<SapiV1EthStakingEthHistoryRewardsHistoryResponse> GetBethRewardsDistributionHistoryUserData(GetBethRewardsDistributionHistoryUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/eth-staking/eth/history/rewardsHistory"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/eth-staking/eth/history/rewardsHistory"),
             [],
-            [new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("startTime", startTime),
-                new Param("endTime", endTime),
-                new Param("current", current),
-                new Param("size", size),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("startTime", request.StartTime),
+                new Param("endTime", request.EndTime),
+                new Param("current", request.Current),
+                new Param("size", request.Size),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1EthStakingEthHistoryRewardsHistoryResponse>(),
-            GetBethRewardsDistributionHistoryUserDataErrorResponse.Instance,
+            GetBethRewardsDistributionHistoryUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Get ETH redemption history (USER_DATA)
     /// </summary>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="startTime">UTC timestamp in ms</param>
-    /// <param name="endTime">UTC timestamp in ms</param>
-    /// <param name="current">Current querying page. Start from 1. Default:1</param>
-    /// <param name="size">Default:10 Max:100</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1EthStakingEthHistoryRedemptionHistoryResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="GetEthRedemptionHistoryUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="GetEthRedemptionHistoryUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// <list type="bullet">
     ///   <item><description>The time between startTime and endTime cannot be longer than 3 months.</description></item>
@@ -134,47 +119,38 @@ public sealed class Staking
     /// Weight(IP): 150
     /// </para>
     /// </remarks>
-    public Task<SapiV1EthStakingEthHistoryRedemptionHistoryResponse> GetEthRedemptionHistoryUserData(long timestamp,
-        string signature,
-        long? startTime,
-        long? endTime,
-        int? current,
-        int? size,
-        long? recvWindow,
+    public Task<SapiV1EthStakingEthHistoryRedemptionHistoryResponse> GetEthRedemptionHistoryUserData(GetEthRedemptionHistoryUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/eth-staking/eth/history/redemptionHistory"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/eth-staking/eth/history/redemptionHistory"),
             [],
-            [new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("startTime", startTime),
-                new Param("endTime", endTime),
-                new Param("current", current),
-                new Param("size", size),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("startTime", request.StartTime),
+                new Param("endTime", request.EndTime),
+                new Param("current", request.Current),
+                new Param("size", request.Size),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1EthStakingEthHistoryRedemptionHistoryResponse>(),
-            GetEthRedemptionHistoryUserDataErrorResponse.Instance,
+            GetEthRedemptionHistoryUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Get ETH staking history (USER_DATA)
     /// </summary>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="startTime">UTC timestamp in ms</param>
-    /// <param name="endTime">UTC timestamp in ms</param>
-    /// <param name="current">Current querying page. Start from 1. Default:1</param>
-    /// <param name="size">Default:10 Max:100</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1EthStakingEthHistoryStakingHistoryResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="GetEthStakingHistoryUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="GetEthStakingHistoryUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// <list type="bullet">
     ///   <item><description>The time between startTime and endTime cannot be longer than 3 months.</description></item>
@@ -186,47 +162,38 @@ public sealed class Staking
     /// Weight(IP): 150
     /// </para>
     /// </remarks>
-    public Task<SapiV1EthStakingEthHistoryStakingHistoryResponse> GetEthStakingHistoryUserData(long timestamp,
-        string signature,
-        long? startTime,
-        long? endTime,
-        int? current,
-        int? size,
-        long? recvWindow,
+    public Task<SapiV1EthStakingEthHistoryStakingHistoryResponse> GetEthStakingHistoryUserData(GetEthStakingHistoryUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/eth-staking/eth/history/stakingHistory"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/eth-staking/eth/history/stakingHistory"),
             [],
-            [new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("startTime", startTime),
-                new Param("endTime", endTime),
-                new Param("current", current),
-                new Param("size", size),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("startTime", request.StartTime),
+                new Param("endTime", request.EndTime),
+                new Param("current", request.Current),
+                new Param("size", request.Size),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1EthStakingEthHistoryStakingHistoryResponse>(),
-            GetEthStakingHistoryUserDataErrorResponse.Instance,
+            GetEthStakingHistoryUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Get WBETH Rate History (USER_DATA)
     /// </summary>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="startTime">UTC timestamp in ms</param>
-    /// <param name="endTime">UTC timestamp in ms</param>
-    /// <param name="current">Current querying page. Start from 1. Default:1</param>
-    /// <param name="size">Default:10 Max:100</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1EthStakingEthHistoryRateHistoryResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="GetWbethRateHistoryUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="GetWbethRateHistoryUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// <list type="bullet">
     ///   <item><description>The time between startTime and endTime cannot be longer than 3 months.</description></item>
@@ -238,47 +205,38 @@ public sealed class Staking
     /// Weight(IP): 150
     /// </para>
     /// </remarks>
-    public Task<SapiV1EthStakingEthHistoryRateHistoryResponse> GetWbethRateHistoryUserData(long timestamp,
-        string signature,
-        long? startTime,
-        long? endTime,
-        int? current,
-        int? size,
-        long? recvWindow,
+    public Task<SapiV1EthStakingEthHistoryRateHistoryResponse> GetWbethRateHistoryUserData(GetWbethRateHistoryUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/eth-staking/eth/history/rateHistory"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/eth-staking/eth/history/rateHistory"),
             [],
-            [new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("startTime", startTime),
-                new Param("endTime", endTime),
-                new Param("current", current),
-                new Param("size", size),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("startTime", request.StartTime),
+                new Param("endTime", request.EndTime),
+                new Param("current", request.Current),
+                new Param("size", request.Size),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1EthStakingEthHistoryRateHistoryResponse>(),
-            GetWbethRateHistoryUserDataErrorResponse.Instance,
+            GetWbethRateHistoryUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Get WBETH rewards history(USER_DATA)
     /// </summary>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="startTime">UTC timestamp in ms</param>
-    /// <param name="endTime">UTC timestamp in ms</param>
-    /// <param name="current">Current querying page. Start from 1. Default:1</param>
-    /// <param name="size">Default:10 Max:100</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1EthStakingEthHistoryWbethRewardsHistoryResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="GetWbethRewardsHistoryUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="GetWbethRewardsHistoryUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// <list type="bullet">
     ///   <item><description>The time between startTime and endTime cannot be longer than 3 months.</description></item>
@@ -290,47 +248,38 @@ public sealed class Staking
     /// Weight(IP): 150
     /// </para>
     /// </remarks>
-    public Task<SapiV1EthStakingEthHistoryWbethRewardsHistoryResponse> GetWbethRewardsHistoryUserData(long timestamp,
-        string signature,
-        long? startTime,
-        long? endTime,
-        int? current,
-        int? size,
-        long? recvWindow,
+    public Task<SapiV1EthStakingEthHistoryWbethRewardsHistoryResponse> GetWbethRewardsHistoryUserData(GetWbethRewardsHistoryUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/eth-staking/eth/history/wbethRewardsHistory"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/eth-staking/eth/history/wbethRewardsHistory"),
             [],
-            [new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("startTime", startTime),
-                new Param("endTime", endTime),
-                new Param("current", current),
-                new Param("size", size),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("startTime", request.StartTime),
+                new Param("endTime", request.EndTime),
+                new Param("current", request.Current),
+                new Param("size", request.Size),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1EthStakingEthHistoryWbethRewardsHistoryResponse>(),
-            GetWbethRewardsHistoryUserDataErrorResponse.Instance,
+            GetWbethRewardsHistoryUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Get WBETH unwrap history (USER_DATA)
     /// </summary>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="startTime">UTC timestamp in ms</param>
-    /// <param name="endTime">UTC timestamp in ms</param>
-    /// <param name="current">Current querying page. Start from 1. Default:1</param>
-    /// <param name="size">Default:10 Max:100</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1EthStakingWbethHistoryUnwrapHistoryResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="GetWbethUnwrapHistoryUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="GetWbethUnwrapHistoryUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// <list type="bullet">
     ///   <item><description>The time between startTime and endTime cannot be longer than 3 months.</description></item>
@@ -342,47 +291,38 @@ public sealed class Staking
     /// Weight(IP): 150
     /// </para>
     /// </remarks>
-    public Task<SapiV1EthStakingWbethHistoryUnwrapHistoryResponse> GetWbethUnwrapHistoryUserData(long timestamp,
-        string signature,
-        long? startTime,
-        long? endTime,
-        int? current,
-        int? size,
-        long? recvWindow,
+    public Task<SapiV1EthStakingWbethHistoryUnwrapHistoryResponse> GetWbethUnwrapHistoryUserData(GetWbethUnwrapHistoryUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/eth-staking/wbeth/history/unwrapHistory"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/eth-staking/wbeth/history/unwrapHistory"),
             [],
-            [new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("startTime", startTime),
-                new Param("endTime", endTime),
-                new Param("current", current),
-                new Param("size", size),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("startTime", request.StartTime),
+                new Param("endTime", request.EndTime),
+                new Param("current", request.Current),
+                new Param("size", request.Size),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1EthStakingWbethHistoryUnwrapHistoryResponse>(),
-            GetWbethUnwrapHistoryUserDataErrorResponse.Instance,
+            GetWbethUnwrapHistoryUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Get WBETH wrap history (USER_DATA)
     /// </summary>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="startTime">UTC timestamp in ms</param>
-    /// <param name="endTime">UTC timestamp in ms</param>
-    /// <param name="current">Current querying page. Start from 1. Default:1</param>
-    /// <param name="size">Default:10 Max:100</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1EthStakingWbethHistoryWrapHistoryResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="GetWbethWrapHistoryUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="GetWbethWrapHistoryUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// <list type="bullet">
     ///   <item><description>The time between startTime and endTime cannot be longer than 3 months.</description></item>
@@ -394,77 +334,69 @@ public sealed class Staking
     /// Weight(IP): 150
     /// </para>
     /// </remarks>
-    public Task<SapiV1EthStakingWbethHistoryWrapHistoryResponse> GetWbethWrapHistoryUserData(long timestamp,
-        string signature,
-        long? startTime,
-        long? endTime,
-        int? current,
-        int? size,
-        long? recvWindow,
+    public Task<SapiV1EthStakingWbethHistoryWrapHistoryResponse> GetWbethWrapHistoryUserData(GetWbethWrapHistoryUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/eth-staking/wbeth/history/wrapHistory"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/eth-staking/wbeth/history/wrapHistory"),
             [],
-            [new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("startTime", startTime),
-                new Param("endTime", endTime),
-                new Param("current", current),
-                new Param("size", size),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("startTime", request.StartTime),
+                new Param("endTime", request.EndTime),
+                new Param("current", request.Current),
+                new Param("size", request.Size),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1EthStakingWbethHistoryWrapHistoryResponse>(),
-            GetWbethWrapHistoryUserDataErrorResponse.Instance,
+            GetWbethWrapHistoryUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Get current ETH staking quota (USER_DATA)
     /// </summary>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1EthStakingEthQuotaResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="GetCurrentEthStakingQuotaUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="GetCurrentEthStakingQuotaUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Weight(IP): 150
     /// </remarks>
-    public Task<SapiV1EthStakingEthQuotaResponse> GetCurrentEthStakingQuotaUserData(long timestamp,
-        string signature,
-        long? recvWindow,
+    public Task<SapiV1EthStakingEthQuotaResponse> GetCurrentEthStakingQuotaUserData(GetCurrentEthStakingQuotaUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/eth-staking/eth/quota"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/eth-staking/eth/quota"),
             [],
-            [new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1EthStakingEthQuotaResponse>(),
-            GetCurrentEthStakingQuotaUserDataErrorResponse.Instance,
+            GetCurrentEthStakingQuotaUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Redeem ETH (TRADE)
     /// </summary>
-    /// <param name="amount">Amount in BETH, limit 8 decimals</param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="asset">WBETH or BETH, default to BETH</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1EthStakingEthRedeemResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="RedeemEthTradeError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="RedeemEthTradeError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Redeem WBETH or BETH and get ETH
     /// <list type="bullet">
@@ -474,40 +406,36 @@ public sealed class Staking
     /// Weight(IP): 150
     /// </para>
     /// </remarks>
-    public Task<SapiV1EthStakingEthRedeemResponse> RedeemEthTrade(double amount,
-        long timestamp,
-        string signature,
-        string? asset,
-        long? recvWindow,
+    public Task<SapiV1EthStakingEthRedeemResponse> RedeemEthTrade(RedeemEthTradeRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/eth-staking/eth/redeem"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/eth-staking/eth/redeem"),
             [],
-            [new Param("amount", amount),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("asset", asset),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("amount", request.Amount),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("asset", request.Asset),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [new HeaderParam("Idempotency-Key", Guid.NewGuid())],
             HttpMethod.Post,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1EthStakingEthRedeemResponse>(),
-            RedeemEthTradeErrorResponse.Instance,
+            RedeemEthTradeError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Subscribe ETH Staking V2(TRADE)
     /// </summary>
-    /// <param name="amount">Amount in ETH, limit 4 decimals</param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV2EthStakingEthStakeResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="SubscribeEthStakingV2TradeError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="SubscribeEthStakingV2TradeError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Stake ETH to get WBETH
     /// <list type="bullet">
@@ -517,38 +445,35 @@ public sealed class Staking
     /// Weight(IP): 150
     /// </para>
     /// </remarks>
-    public Task<SapiV2EthStakingEthStakeResponse> SubscribeEthStakingV2Trade(double amount,
-        long timestamp,
-        string signature,
-        long? recvWindow,
+    public Task<SapiV2EthStakingEthStakeResponse> SubscribeEthStakingV2Trade(SubscribeEthStakingV2TradeRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v2/eth-staking/eth/stake"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v2/eth-staking/eth/stake"),
             [],
-            [new Param("amount", amount),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("amount", request.Amount),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [new HeaderParam("Idempotency-Key", Guid.NewGuid())],
             HttpMethod.Post,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV2EthStakingEthStakeResponse>(),
-            SubscribeEthStakingV2TradeErrorResponse.Instance,
+            SubscribeEthStakingV2TradeError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Wrap BETH(TRADE)
     /// </summary>
-    /// <param name="amount">Amount in BETH, limit 4 decimals</param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1EthStakingWbethWrapResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="WrapBethTradeError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="WrapBethTradeError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// <list type="bullet">
     ///   <item><description>You need to open Enable Spot &amp; Margin Trading permission for the API Key which requests this endpoint.</description></item>
@@ -557,24 +482,24 @@ public sealed class Staking
     /// Weight(IP): 150
     /// </para>
     /// </remarks>
-    public Task<SapiV1EthStakingWbethWrapResponse> WrapBethTrade(double amount,
-        long timestamp,
-        string signature,
-        long? recvWindow,
+    public Task<SapiV1EthStakingWbethWrapResponse> WrapBethTrade(WrapBethTradeRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/eth-staking/wbeth/wrap"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/eth-staking/wbeth/wrap"),
             [],
-            [new Param("amount", amount),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("amount", request.Amount),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [new HeaderParam("Idempotency-Key", Guid.NewGuid())],
             HttpMethod.Post,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1EthStakingWbethWrapResponse>(),
-            WrapBethTradeErrorResponse.Instance,
+            WrapBethTradeError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 }

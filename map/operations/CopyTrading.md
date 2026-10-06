@@ -9,15 +9,16 @@ Accessor: `client.CopyTrading` · Source: `Api/CopyTrading.cs` · 2 operations
 ### GetFuturesLeadTraderStatusTrade
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetFuturesLeadTraderStatusTrade(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetFuturesLeadTraderStatusTrade(GetFuturesLeadTraderStatusTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1CopyTradingFuturesUserStatusResponse`
-- **Error**: `SdkException<GetFuturesLeadTraderStatusTradeError>` — **Case A (typed)**
+- **Error**: `ApiException<GetFuturesLeadTraderStatusTradeError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetFuturesLeadTraderStatusTradeRequest` | `Requests/CopyTrading/GetFuturesLeadTraderStatusTradeRequest.cs` |
 | `SapiV1CopyTradingFuturesUserStatusResponse` | `Models/SapiV1CopyTradingFuturesUserStatusResponse.cs` |
 | `GetFuturesLeadTraderStatusTradeError` | `Errors/GetFuturesLeadTraderStatusTradeError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -25,15 +26,16 @@ Accessor: `client.CopyTrading` · Source: `Api/CopyTrading.cs` · 2 operations
 ### GetFuturesLeadTradingSymbolWhitelistUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetFuturesLeadTradingSymbolWhitelistUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetFuturesLeadTradingSymbolWhitelistUserData(GetFuturesLeadTradingSymbolWhitelistUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1CopyTradingFuturesLeadSymbolResponse`
-- **Error**: `SdkException<GetFuturesLeadTradingSymbolWhitelistUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetFuturesLeadTradingSymbolWhitelistUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetFuturesLeadTradingSymbolWhitelistUserDataRequest` | `Requests/CopyTrading/GetFuturesLeadTradingSymbolWhitelistUserDataRequest.cs` |
 | `SapiV1CopyTradingFuturesLeadSymbolResponse` | `Models/SapiV1CopyTradingFuturesLeadSymbolResponse.cs` |
 | `GetFuturesLeadTradingSymbolWhitelistUserDataError` | `Errors/GetFuturesLeadTradingSymbolWhitelistUserDataError.cs` |
 | `Error` | `Models/Error.cs` |

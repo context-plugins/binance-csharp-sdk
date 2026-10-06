@@ -1,11 +1,9 @@
-using System.Net.Http;
-using System.Threading;
 using System.Threading.Tasks;
-using BinancePublicSpotApi.Core.ErrorResponse;
-using BinancePublicSpotApi.Core.Models;
-using BinancePublicSpotApi.Models;
+using Binance.Core.ErrorResponse;
+using Binance.Core.Models;
+using Binance.Models;
 
-namespace BinancePublicSpotApi.Errors;
+namespace Binance.Errors;
 
 public sealed class QueryBorrowRepayRecordsInMarginAccountUserDataError : ApiError
 {
@@ -25,23 +23,13 @@ public sealed class QueryBorrowRepayRecordsInMarginAccountUserDataError : ApiErr
 
     public bool TryGetError(out Error value) => _errorValue.TryGetValue(out value);
 
-    internal static Task<QueryBorrowRepayRecordsInMarginAccountUserDataError> Create(HttpResponseMessage response,
-        CancellationToken ct) =>
-        (int)response.StatusCode switch
+    private static Task<QueryBorrowRepayRecordsInMarginAccountUserDataError> Create(FailedResponse response) =>
+        response.StatusCode switch
         {
-            400 => FromJson<Error>(response, ct).As(AsError),
-            _ => FromRawBody(response, ct).As(AsFallback)
+            400 => response.Json<Error>().As(AsError),
+            _ => response.RawBody().As(AsFallback)
         };
-}
 
-internal sealed class QueryBorrowRepayRecordsInMarginAccountUserDataErrorResponse : IErrorResponse<QueryBorrowRepayRecordsInMarginAccountUserDataError>
-{
-    public static QueryBorrowRepayRecordsInMarginAccountUserDataErrorResponse Instance { get; } = new();
-
-    private QueryBorrowRepayRecordsInMarginAccountUserDataErrorResponse()
-    {
-    }
-
-    public Task<QueryBorrowRepayRecordsInMarginAccountUserDataError> Map(HttpResponseMessage response,
-        CancellationToken ct) => QueryBorrowRepayRecordsInMarginAccountUserDataError.Create(response, ct);
+    internal static ApiErrorResponse<QueryBorrowRepayRecordsInMarginAccountUserDataError> Response { get; } = new(
+        Create);
 }

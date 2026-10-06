@@ -1,6 +1,6 @@
-using BinancePublicSpotApi.Core.Models;
+using Binance.Core.Models;
 
-namespace BinancePublicSpotApi.Servers;
+namespace Binance.Servers;
 
 public class DefaultOptions
 {
@@ -8,7 +8,8 @@ public class DefaultOptions
     public Environment2Options Environment2 { get; set; } = new();
 
     internal UrlTemplate Resolve(ServerEnvironment environment, string path) =>
-        environment.Match(() => new UrlTemplate(Production.BaseUrl, path, []),
+        environment.Match(
+            () => new UrlTemplate(Production.BaseUrl, path, []),
             () => new UrlTemplate(Environment2.BaseUrl, path, []));
 
     public class ProductionOptions

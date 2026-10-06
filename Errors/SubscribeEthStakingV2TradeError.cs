@@ -1,11 +1,9 @@
-using System.Net.Http;
-using System.Threading;
 using System.Threading.Tasks;
-using BinancePublicSpotApi.Core.ErrorResponse;
-using BinancePublicSpotApi.Core.Models;
-using BinancePublicSpotApi.Models;
+using Binance.Core.ErrorResponse;
+using Binance.Core.Models;
+using Binance.Models;
 
-namespace BinancePublicSpotApi.Errors;
+namespace Binance.Errors;
 
 public sealed class SubscribeEthStakingV2TradeError : ApiError
 {
@@ -16,30 +14,19 @@ public sealed class SubscribeEthStakingV2TradeError : ApiError
         _errorValue = errorValue;
     }
 
-    private static SubscribeEthStakingV2TradeError AsError(Error value) =>
-        new(Optional<Error>.Some(value), default);
+    private static SubscribeEthStakingV2TradeError AsError(Error value) => new(Optional<Error>.Some(value), default);
 
     private static SubscribeEthStakingV2TradeError AsFallback(RawError value) =>
         new(default, Optional<RawError>.Some(value));
 
     public bool TryGetError(out Error value) => _errorValue.TryGetValue(out value);
 
-    internal static Task<SubscribeEthStakingV2TradeError> Create(HttpResponseMessage response, CancellationToken ct) =>
-        (int)response.StatusCode switch
+    private static Task<SubscribeEthStakingV2TradeError> Create(FailedResponse response) =>
+        response.StatusCode switch
         {
-            400 or 401 => FromJson<Error>(response, ct).As(AsError),
-            _ => FromRawBody(response, ct).As(AsFallback)
+            400 or 401 => response.Json<Error>().As(AsError),
+            _ => response.RawBody().As(AsFallback)
         };
-}
 
-internal sealed class SubscribeEthStakingV2TradeErrorResponse : IErrorResponse<SubscribeEthStakingV2TradeError>
-{
-    public static SubscribeEthStakingV2TradeErrorResponse Instance { get; } = new();
-
-    private SubscribeEthStakingV2TradeErrorResponse()
-    {
-    }
-
-    public Task<SubscribeEthStakingV2TradeError> Map(HttpResponseMessage response, CancellationToken ct) =>
-        SubscribeEthStakingV2TradeError.Create(response, ct);
+    internal static ApiErrorResponse<SubscribeEthStakingV2TradeError> Response { get; } = new(Create);
 }

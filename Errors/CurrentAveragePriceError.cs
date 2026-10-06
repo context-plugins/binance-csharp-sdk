@@ -1,11 +1,9 @@
-using System.Net.Http;
-using System.Threading;
 using System.Threading.Tasks;
-using BinancePublicSpotApi.Core.ErrorResponse;
-using BinancePublicSpotApi.Core.Models;
-using BinancePublicSpotApi.Models;
+using Binance.Core.ErrorResponse;
+using Binance.Core.Models;
+using Binance.Models;
 
-namespace BinancePublicSpotApi.Errors;
+namespace Binance.Errors;
 
 public sealed class CurrentAveragePriceError : ApiError
 {
@@ -16,30 +14,18 @@ public sealed class CurrentAveragePriceError : ApiError
         _errorValue = errorValue;
     }
 
-    private static CurrentAveragePriceError AsError(Error value) =>
-        new(Optional<Error>.Some(value), default);
+    private static CurrentAveragePriceError AsError(Error value) => new(Optional<Error>.Some(value), default);
 
-    private static CurrentAveragePriceError AsFallback(RawError value) =>
-        new(default, Optional<RawError>.Some(value));
+    private static CurrentAveragePriceError AsFallback(RawError value) => new(default, Optional<RawError>.Some(value));
 
     public bool TryGetError(out Error value) => _errorValue.TryGetValue(out value);
 
-    internal static Task<CurrentAveragePriceError> Create(HttpResponseMessage response, CancellationToken ct) =>
-        (int)response.StatusCode switch
+    private static Task<CurrentAveragePriceError> Create(FailedResponse response) =>
+        response.StatusCode switch
         {
-            400 => FromJson<Error>(response, ct).As(AsError),
-            _ => FromRawBody(response, ct).As(AsFallback)
+            400 => response.Json<Error>().As(AsError),
+            _ => response.RawBody().As(AsFallback)
         };
-}
 
-internal sealed class CurrentAveragePriceErrorResponse : IErrorResponse<CurrentAveragePriceError>
-{
-    public static CurrentAveragePriceErrorResponse Instance { get; } = new();
-
-    private CurrentAveragePriceErrorResponse()
-    {
-    }
-
-    public Task<CurrentAveragePriceError> Map(HttpResponseMessage response, CancellationToken ct) =>
-        CurrentAveragePriceError.Create(response, ct);
+    internal static ApiErrorResponse<CurrentAveragePriceError> Response { get; } = new(Create);
 }

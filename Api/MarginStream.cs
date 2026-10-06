@@ -2,16 +2,17 @@ using System;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using BinancePublicSpotApi.Core;
-using BinancePublicSpotApi.Core.ErrorResponse;
-using BinancePublicSpotApi.Core.Exceptions;
-using BinancePublicSpotApi.Core.Models;
-using BinancePublicSpotApi.Core.Request;
-using BinancePublicSpotApi.Core.Response;
-using BinancePublicSpotApi.Errors;
-using BinancePublicSpotApi.Models;
+using Binance.Core;
+using Binance.Core.ErrorResponse;
+using Binance.Core.Exceptions;
+using Binance.Core.Models;
+using Binance.Core.Request;
+using Binance.Core.Response;
+using Binance.Errors;
+using Binance.Models;
+using Binance.Requests.MarginStream;
 
-namespace BinancePublicSpotApi.Api;
+namespace Binance.Api;
 
 /// <summary>
 /// Margin User Data Stream
@@ -32,39 +33,40 @@ public sealed class MarginStream
     /// <summary>
     /// Close a ListenKey (USER_STREAM)
     /// </summary>
-    /// <param name="listenKey">User websocket listen key</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="object"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="CloseAListenKeyUserStream2Error"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="CloseAListenKeyUserStream2Error"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Close out a user data stream.
     /// <para>
     /// Weight: 1
     /// </para>
     /// </remarks>
-    public Task<object> CloseAListenKeyUserStream2(string? listenKey,
+    public Task<object> CloseAListenKeyUserStream2(CloseAListenKeyUserStream2Request request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/userDataStream"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/userDataStream"),
             [],
-            [new Param("listenKey", listenKey)],
+            [new Param("listenKey", request.ListenKey)],
             [new HeaderParam("Idempotency-Key", Guid.NewGuid())],
             HttpMethod.Delete,
             EmptyBody.Instance,
             JsonResponse.Create<object>(),
-            CloseAListenKeyUserStream2ErrorResponse.Instance,
+            CloseAListenKeyUserStream2Error.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Create a ListenKey (USER_STREAM)
     /// </summary>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1UserDataStreamResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="RawError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="RawError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Start a new user data stream.
     /// The stream will close after 60 minutes unless a keepalive is sent. If the account has an active <c>listenKey</c>, that <c>listenKey</c> will be returned and its validity will be extended for 60 minutes.
@@ -73,8 +75,9 @@ public sealed class MarginStream
     /// </para>
     /// </remarks>
     public Task<SapiV1UserDataStreamResponse> CreateAListenKeyUserStream2(RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/userDataStream"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/userDataStream"),
             [],
             [],
             [new HeaderParam("Idempotency-Key", Guid.NewGuid())],
@@ -84,34 +87,35 @@ public sealed class MarginStream
             RawErrorResponse.Instance,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Ping/Keep-alive a ListenKey (USER_STREAM)
     /// </summary>
-    /// <param name="listenKey">User websocket listen key</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="object"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="PingKeepAliveAListenKeyUserStream2Error"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="PingKeepAliveAListenKeyUserStream2Error"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Keepalive a user data stream to prevent a time out. User data streams will close after 60 minutes. It's recommended to send a ping about every 30 minutes.
     /// <para>
     /// Weight: 1
     /// </para>
     /// </remarks>
-    public Task<object> PingKeepAliveAListenKeyUserStream2(string? listenKey,
+    public Task<object> PingKeepAliveAListenKeyUserStream2(PingKeepAliveAListenKeyUserStream2Request request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/userDataStream"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/userDataStream"),
             [],
-            [new Param("listenKey", listenKey)],
+            [new Param("listenKey", request.ListenKey)],
             [new HeaderParam("Idempotency-Key", Guid.NewGuid())],
             HttpMethod.Put,
             EmptyBody.Instance,
             JsonResponse.Create<object>(),
-            PingKeepAliveAListenKeyUserStream2ErrorResponse.Instance,
+            PingKeepAliveAListenKeyUserStream2Error.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 }

@@ -9,15 +9,16 @@ Accessor: `client.Pay` · Source: `Api/Pay.cs` · 1 operation
 ### GetPayTradeHistoryUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetPayTradeHistoryUserData(long timestamp, string signature, long? startTime, long? endTime, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 4 params (`startTime` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `startTime` ← `startTime`, `endTime` ← `endTime`, `limit` ← `limit`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetPayTradeHistoryUserData(GetPayTradeHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `startTime` ← `StartTime`, `endTime` ← `EndTime`, `limit` ← `Limit`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1PayTransactionsResponse`
-- **Error**: `SdkException<GetPayTradeHistoryUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetPayTradeHistoryUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetPayTradeHistoryUserDataRequest` | `Requests/Pay/GetPayTradeHistoryUserDataRequest.cs` |
 | `SapiV1PayTransactionsResponse` | `Models/SapiV1PayTransactionsResponse.cs` |
 | `GetPayTradeHistoryUserDataError` | `Errors/GetPayTradeHistoryUserDataError.cs` |
 | `Error` | `Models/Error.cs` |

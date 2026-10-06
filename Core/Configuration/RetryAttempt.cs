@@ -1,7 +1,7 @@
 using System;
 using System.Net;
 
-namespace BinancePublicSpotApi.Core.Configuration;
+namespace Binance.Core.Configuration;
 
 public sealed record RetryAttempt
 {

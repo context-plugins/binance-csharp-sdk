@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using BinancePublicSpotApi.Core.Extensions;
-using BinancePublicSpotApi.Core.Models;
+using Binance.Core.Extensions;
+using Binance.Core.Models;
 
-namespace BinancePublicSpotApi.Models.AnyOf;
+namespace Binance.Models.AnyOf;
 
 [JsonConverter(typeof(ApiV3TickerTradingDayResponseConverter))]
 public record ApiV3TickerTradingDayResponse
@@ -51,7 +51,8 @@ file sealed class ApiV3TickerTradingDayResponseConverter : JsonConverter<ApiV3Ti
         {
             return ApiV3TickerTradingDayResponse.ListOfDayTicker(listOfDayTickerValue);
         }
-        throw new JsonException($"JSON does not match DayTicker or IReadOnlyList<DayTicker> schemas: {root.ToString()}");
+        throw new JsonException(
+            $"JSON does not match DayTicker or IReadOnlyList<DayTicker> schemas: {root.ToString()}");
     }
 
     public override void Write(Utf8JsonWriter writer,

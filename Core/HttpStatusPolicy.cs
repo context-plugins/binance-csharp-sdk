@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 
-namespace BinancePublicSpotApi.Core;
+namespace Binance.Core;
 
 internal sealed class HttpStatusPolicy
 {

@@ -1,10 +1,10 @@
 using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using BinancePublicSpotApi.Core.Extensions;
-using BinancePublicSpotApi.Core.Models;
+using Binance.Core.Extensions;
+using Binance.Core.Models;
 
-namespace BinancePublicSpotApi.Models.AnyOf;
+namespace Binance.Models.AnyOf;
 
 [JsonConverter(typeof(SapiV1MarginOrderResponseConverter))]
 public record SapiV1MarginOrderResponse
@@ -60,30 +60,26 @@ file sealed class SapiV1MarginOrderResponseConverter : JsonConverter<SapiV1Margi
     {
         using var doc = JsonDocument.ParseValue(ref reader);
         var root = doc.RootElement;
-        if (JsonSerializer.TryDeserialize<MarginOrderResponseAck>(root,
-            options,
-            out var marginOrderResponseAckValue))
+        if (JsonSerializer.TryDeserialize<MarginOrderResponseAck>(root, options, out var marginOrderResponseAckValue))
         {
             return SapiV1MarginOrderResponse.MarginOrderResponseAck(marginOrderResponseAckValue);
         }
-        if (JsonSerializer.TryDeserialize<MarginOrderResponseResult>(root,
+        if (JsonSerializer.TryDeserialize<MarginOrderResponseResult>(
+            root,
             options,
             out var marginOrderResponseResultValue))
         {
             return SapiV1MarginOrderResponse.MarginOrderResponseResult(marginOrderResponseResultValue);
         }
-        if (JsonSerializer.TryDeserialize<MarginOrderResponseFull>(root,
-            options,
-            out var marginOrderResponseFullValue))
+        if (JsonSerializer.TryDeserialize<MarginOrderResponseFull>(root, options, out var marginOrderResponseFullValue))
         {
             return SapiV1MarginOrderResponse.MarginOrderResponseFull(marginOrderResponseFullValue);
         }
-        throw new JsonException($"JSON does not match MarginOrderResponseAck or MarginOrderResponseResult or MarginOrderResponseFull schemas: {root.ToString()}");
+        throw new JsonException(
+            $"JSON does not match MarginOrderResponseAck or MarginOrderResponseResult or MarginOrderResponseFull schemas: {root.ToString()}");
     }
 
-    public override void Write(Utf8JsonWriter writer,
-        SapiV1MarginOrderResponse value,
-        JsonSerializerOptions options)
+    public override void Write(Utf8JsonWriter writer, SapiV1MarginOrderResponse value, JsonSerializerOptions options)
     {
         if (value.TryGetMarginOrderResponseAck(out var marginOrderResponseAckValue))
         {

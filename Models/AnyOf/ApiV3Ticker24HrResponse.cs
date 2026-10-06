@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using BinancePublicSpotApi.Core.Extensions;
-using BinancePublicSpotApi.Core.Models;
+using Binance.Core.Extensions;
+using Binance.Core.Models;
 
-namespace BinancePublicSpotApi.Models.AnyOf;
+namespace Binance.Models.AnyOf;
 
 [JsonConverter(typeof(ApiV3Ticker24HrResponseConverter))]
 public record ApiV3Ticker24HrResponse
@@ -20,16 +20,14 @@ public record ApiV3Ticker24HrResponse
         _listOfTickerValue = listOfTickerValue;
     }
 
-    public static ApiV3Ticker24HrResponse Ticker(Ticker value) =>
-        new(Optional<Ticker>.Some(value), default);
+    public static ApiV3Ticker24HrResponse Ticker(Ticker value) => new(Optional<Ticker>.Some(value), default);
 
     public static ApiV3Ticker24HrResponse ListOfTicker(IReadOnlyList<Ticker> value) =>
         new(default, Optional<IReadOnlyList<Ticker>>.Some(value));
 
     public bool TryGetTicker(out Ticker value) => _tickerValue.TryGetValue(out value);
 
-    public bool TryGetListOfTicker(out IReadOnlyList<Ticker> value) =>
-        _listOfTickerValue.TryGetValue(out value);
+    public bool TryGetListOfTicker(out IReadOnlyList<Ticker> value) => _listOfTickerValue.TryGetValue(out value);
 
     public static implicit operator ApiV3Ticker24HrResponse(Ticker value) => Ticker(value);
 }

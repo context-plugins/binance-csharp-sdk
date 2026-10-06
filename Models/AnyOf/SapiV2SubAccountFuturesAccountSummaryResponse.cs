@@ -1,10 +1,10 @@
 using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using BinancePublicSpotApi.Core.Extensions;
-using BinancePublicSpotApi.Core.Models;
+using Binance.Core.Extensions;
+using Binance.Core.Models;
 
-namespace BinancePublicSpotApi.Models.AnyOf;
+namespace Binance.Models.AnyOf;
 
 [JsonConverter(typeof(SapiV2SubAccountFuturesAccountSummaryResponseConverter))]
 public record SapiV2SubAccountFuturesAccountSummaryResponse
@@ -47,19 +47,24 @@ file sealed class SapiV2SubAccountFuturesAccountSummaryResponseConverter : JsonC
     {
         using var doc = JsonDocument.ParseValue(ref reader);
         var root = doc.RootElement;
-        if (JsonSerializer.TryDeserialize<SubAccountUsdtFuturesSummary>(root,
+        if (JsonSerializer.TryDeserialize<SubAccountUsdtFuturesSummary>(
+            root,
             options,
             out var subAccountUsdtFuturesSummaryValue))
         {
-            return SapiV2SubAccountFuturesAccountSummaryResponse.SubAccountUsdtFuturesSummary(subAccountUsdtFuturesSummaryValue);
+            return SapiV2SubAccountFuturesAccountSummaryResponse.SubAccountUsdtFuturesSummary(
+                subAccountUsdtFuturesSummaryValue);
         }
-        if (JsonSerializer.TryDeserialize<SubAccountCoinFuturesSummary>(root,
+        if (JsonSerializer.TryDeserialize<SubAccountCoinFuturesSummary>(
+            root,
             options,
             out var subAccountCoinFuturesSummaryValue))
         {
-            return SapiV2SubAccountFuturesAccountSummaryResponse.SubAccountCoinFuturesSummary(subAccountCoinFuturesSummaryValue);
+            return SapiV2SubAccountFuturesAccountSummaryResponse.SubAccountCoinFuturesSummary(
+                subAccountCoinFuturesSummaryValue);
         }
-        throw new JsonException($"JSON does not match SubAccountUsdtFuturesSummary or SubAccountCoinFuturesSummary schemas: {root.ToString()}");
+        throw new JsonException(
+            $"JSON does not match SubAccountUsdtFuturesSummary or SubAccountCoinFuturesSummary schemas: {root.ToString()}");
     }
 
     public override void Write(Utf8JsonWriter writer,
@@ -76,7 +81,8 @@ file sealed class SapiV2SubAccountFuturesAccountSummaryResponseConverter : JsonC
         }
         else
         {
-            throw new JsonException($"{nameof(SapiV2SubAccountFuturesAccountSummaryResponse)} contains no valid value to serialize.");
+            throw new JsonException(
+                $"{nameof(SapiV2SubAccountFuturesAccountSummaryResponse)} contains no valid value to serialize.");
         }
     }
 }

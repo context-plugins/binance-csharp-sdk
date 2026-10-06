@@ -9,15 +9,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### AdjustCrossMarginMaxLeverageUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `AdjustCrossMarginMaxLeverageUserData(int maxLeverage, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `maxLeverage` ← `maxLeverage`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `AdjustCrossMarginMaxLeverageUserData(AdjustCrossMarginMaxLeverageUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `MaxLeverage`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `maxLeverage` ← `MaxLeverage`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1MarginMaxLeverageResponse`
-- **Error**: `SdkException<AdjustCrossMarginMaxLeverageUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<AdjustCrossMarginMaxLeverageUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `AdjustCrossMarginMaxLeverageUserDataRequest` | `Requests/Margin/AdjustCrossMarginMaxLeverageUserDataRequest.cs` |
 | `SapiV1MarginMaxLeverageResponse` | `Models/SapiV1MarginMaxLeverageResponse.cs` |
 | `AdjustCrossMarginMaxLeverageUserDataError` | `Errors/AdjustCrossMarginMaxLeverageUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -25,9 +26,9 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### CrossMarginCollateralRatioMarketData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `CrossMarginCollateralRatioMarketData(RequestOptions? requestOptions = null, CancellationToken ct = default)`
+- **Signature**: `CrossMarginCollateralRatioMarketData(RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
 - **Returns**: `IReadOnlyList<SapiV1MarginCrossMarginCollateralRatioResponse>`
-- **Error**: `SdkException<CrossMarginCollateralRatioMarketDataError>` — **Case A (typed)**
+- **Error**: `ApiException<CrossMarginCollateralRatioMarketDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
@@ -39,15 +40,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### DisableIsolatedMarginAccountTrade
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `DisableIsolatedMarginAccountTrade(string symbol, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `symbol` ← `symbol`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `DisableIsolatedMarginAccountTrade(DisableIsolatedMarginAccountTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Symbol`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `symbol` ← `Symbol`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1MarginIsolatedAccountResponse`
-- **Error**: `SdkException<DisableIsolatedMarginAccountTradeError>` — **Case A (typed)**
+- **Error**: `ApiException<DisableIsolatedMarginAccountTradeError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `DisableIsolatedMarginAccountTradeRequest` | `Requests/Margin/DisableIsolatedMarginAccountTradeRequest.cs` |
 | `SapiV1MarginIsolatedAccountResponse` | `Models/SapiV1MarginIsolatedAccountResponse.cs` |
 | `DisableIsolatedMarginAccountTradeError` | `Errors/DisableIsolatedMarginAccountTradeError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -55,15 +57,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### EnableIsolatedMarginAccountTrade
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `EnableIsolatedMarginAccountTrade(string symbol, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `symbol` ← `symbol`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `EnableIsolatedMarginAccountTrade(EnableIsolatedMarginAccountTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Symbol`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `symbol` ← `Symbol`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1MarginIsolatedAccountResponse`
-- **Error**: `SdkException<EnableIsolatedMarginAccountTradeError>` — **Case A (typed)**
+- **Error**: `ApiException<EnableIsolatedMarginAccountTradeError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `EnableIsolatedMarginAccountTradeRequest` | `Requests/Margin/EnableIsolatedMarginAccountTradeRequest.cs` |
 | `SapiV1MarginIsolatedAccountResponse` | `Models/SapiV1MarginIsolatedAccountResponse.cs` |
 | `EnableIsolatedMarginAccountTradeError` | `Errors/EnableIsolatedMarginAccountTradeError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -71,17 +74,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### GetAFutureHourlyInterestRateUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetAFutureHourlyInterestRateUserData(long timestamp, string signature, string? assets, IsIsolated? isIsolated, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `assets` — nullable, no default → **must pass explicitly**
-  - `isIsolated` — nullable, no default → **must pass explicitly**
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `assets` ← `assets`, `isIsolated` ← `isIsolated`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetAFutureHourlyInterestRateUserData(GetAFutureHourlyInterestRateUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `assets` ← `Assets`, `isIsolated` ← `IsIsolated`, `recvWindow` ← `RecvWindow`
 - **Returns**: `IReadOnlyList<SapiV1MarginNextHourlyInterestRateResponse>`
-- **Error**: `SdkException<GetAFutureHourlyInterestRateUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetAFutureHourlyInterestRateUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetAFutureHourlyInterestRateUserDataRequest` | `Requests/Margin/GetAFutureHourlyInterestRateUserDataRequest.cs` |
 | `IsIsolated` | `Models/Enums/IsIsolated.cs` |
 | `SapiV1MarginNextHourlyInterestRateResponse` | `Models/SapiV1MarginNextHourlyInterestRateResponse.cs` |
 | `GetAFutureHourlyInterestRateUserDataError` | `Errors/GetAFutureHourlyInterestRateUserDataError.cs` |
@@ -90,14 +92,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### GetAllCrossMarginPairsMarketData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetAllCrossMarginPairsMarketData(string symbol, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-- **Query params (wire ← C#)**: `symbol` ← `symbol`
+- **Signature**: `GetAllCrossMarginPairsMarketData(GetAllCrossMarginPairsMarketDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Symbol`
+- **Query params (wire ← C#)**: `symbol` ← `Symbol`
 - **Returns**: `IReadOnlyList<SapiV1MarginAllPairsResponse>`
-- **Error**: `SdkException<GetAllCrossMarginPairsMarketDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetAllCrossMarginPairsMarketDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetAllCrossMarginPairsMarketDataRequest` | `Requests/Margin/GetAllCrossMarginPairsMarketDataRequest.cs` |
 | `SapiV1MarginAllPairsResponse` | `Models/SapiV1MarginAllPairsResponse.cs` |
 | `GetAllCrossMarginPairsMarketDataError` | `Errors/GetAllCrossMarginPairsMarketDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -105,15 +109,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### GetAllIsolatedMarginSymbolUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetAllIsolatedMarginSymbolUserData(string symbol, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `symbol` ← `symbol`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetAllIsolatedMarginSymbolUserData(GetAllIsolatedMarginSymbolUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Symbol`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `symbol` ← `Symbol`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `IReadOnlyList<SapiV1MarginIsolatedAllPairsResponse>`
-- **Error**: `SdkException<GetAllIsolatedMarginSymbolUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetAllIsolatedMarginSymbolUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetAllIsolatedMarginSymbolUserDataRequest` | `Requests/Margin/GetAllIsolatedMarginSymbolUserDataRequest.cs` |
 | `SapiV1MarginIsolatedAllPairsResponse` | `Models/SapiV1MarginIsolatedAllPairsResponse.cs` |
 | `GetAllIsolatedMarginSymbolUserDataError` | `Errors/GetAllIsolatedMarginSymbolUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -121,14 +126,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### GetAllMarginAssetsMarketData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetAllMarginAssetsMarketData(string asset, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-- **Query params (wire ← C#)**: `asset` ← `asset`
+- **Signature**: `GetAllMarginAssetsMarketData(GetAllMarginAssetsMarketDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Asset`
+- **Query params (wire ← C#)**: `asset` ← `Asset`
 - **Returns**: `IReadOnlyList<SapiV1MarginAllAssetsResponse>`
-- **Error**: `SdkException<GetAllMarginAssetsMarketDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetAllMarginAssetsMarketDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetAllMarginAssetsMarketDataRequest` | `Requests/Margin/GetAllMarginAssetsMarketDataRequest.cs` |
 | `SapiV1MarginAllAssetsResponse` | `Models/SapiV1MarginAllAssetsResponse.cs` |
 | `GetAllMarginAssetsMarketDataError` | `Errors/GetAllMarginAssetsMarketDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -136,15 +143,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### GetBnbBurnStatusUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetBnbBurnStatusUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetBnbBurnStatusUserData(GetBnbBurnStatusUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `BnbBurnStatus`
-- **Error**: `SdkException<GetBnbBurnStatusUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetBnbBurnStatusUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetBnbBurnStatusUserDataRequest` | `Requests/Margin/GetBnbBurnStatusUserDataRequest.cs` |
 | `BnbBurnStatus` | `Models/BnbBurnStatus.cs` |
 | `GetBnbBurnStatusUserDataError` | `Errors/GetBnbBurnStatusUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -152,15 +160,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### GetCrossMarginTransferHistoryUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetCrossMarginTransferHistoryUserData(long timestamp, string signature, string? asset, Type2? type, long? startTime, long? endTime, int? current, int? size, string? isolatedSymbol, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 8 params (`asset` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `asset` ← `asset`, `type` ← `type`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `size` ← `size`, `isolatedSymbol` ← `isolatedSymbol`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetCrossMarginTransferHistoryUserData(GetCrossMarginTransferHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `asset` ← `Asset`, `type` ← `Type`, `startTime` ← `StartTime`, `endTime` ← `EndTime`, `current` ← `Current`, `size` ← `Size`, `isolatedSymbol` ← `IsolatedSymbol`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1MarginTransferResponse`
-- **Error**: `SdkException<GetCrossMarginTransferHistoryUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetCrossMarginTransferHistoryUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetCrossMarginTransferHistoryUserDataRequest` | `Requests/Margin/GetCrossMarginTransferHistoryUserDataRequest.cs` |
 | `Type2` | `Models/Enums/Type2.cs` |
 | `SapiV1MarginTransferResponse` | `Models/SapiV1MarginTransferResponse.cs` |
 | `GetCrossMarginTransferHistoryUserDataError` | `Errors/GetCrossMarginTransferHistoryUserDataError.cs` |
@@ -169,15 +178,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### GetCrossOrIsolatedMarginCapitalFlowUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetCrossOrIsolatedMarginCapitalFlowUserData(long timestamp, string signature, string? asset, string? symbol, Type3? type, long? startTime, long? endTime, long? fromId, long? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 8 params (`asset` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `asset` ← `asset`, `symbol` ← `symbol`, `type` ← `type`, `startTime` ← `startTime`, `endTime` ← `endTime`, `fromId` ← `fromId`, `limit` ← `limit`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetCrossOrIsolatedMarginCapitalFlowUserData(GetCrossOrIsolatedMarginCapitalFlowUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `asset` ← `Asset`, `symbol` ← `Symbol`, `type` ← `Type`, `startTime` ← `StartTime`, `endTime` ← `EndTime`, `fromId` ← `FromId`, `limit` ← `Limit`, `recvWindow` ← `RecvWindow`
 - **Returns**: `IReadOnlyList<SapiV1MarginCapitalFlowResponse>`
-- **Error**: `SdkException<GetCrossOrIsolatedMarginCapitalFlowUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetCrossOrIsolatedMarginCapitalFlowUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetCrossOrIsolatedMarginCapitalFlowUserDataRequest` | `Requests/Margin/GetCrossOrIsolatedMarginCapitalFlowUserDataRequest.cs` |
 | `Type3` | `Models/Enums/Type3.cs` |
 | `SapiV1MarginCapitalFlowResponse` | `Models/SapiV1MarginCapitalFlowResponse.cs` |
 | `GetCrossOrIsolatedMarginCapitalFlowUserDataError` | `Errors/GetCrossOrIsolatedMarginCapitalFlowUserDataError.cs` |
@@ -186,15 +196,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### GetForceLiquidationRecordUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetForceLiquidationRecordUserData(long timestamp, string signature, long? startTime, long? endTime, string? isolatedSymbol, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 6 params (`startTime` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `startTime` ← `startTime`, `endTime` ← `endTime`, `isolatedSymbol` ← `isolatedSymbol`, `current` ← `current`, `size` ← `size`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetForceLiquidationRecordUserData(GetForceLiquidationRecordUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `startTime` ← `StartTime`, `endTime` ← `EndTime`, `isolatedSymbol` ← `IsolatedSymbol`, `current` ← `Current`, `size` ← `Size`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1MarginForceLiquidationRecResponse`
-- **Error**: `SdkException<GetForceLiquidationRecordUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetForceLiquidationRecordUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetForceLiquidationRecordUserDataRequest` | `Requests/Margin/GetForceLiquidationRecordUserDataRequest.cs` |
 | `SapiV1MarginForceLiquidationRecResponse` | `Models/SapiV1MarginForceLiquidationRecResponse.cs` |
 | `GetForceLiquidationRecordUserDataError` | `Errors/GetForceLiquidationRecordUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -202,15 +213,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### GetInterestHistoryUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetInterestHistoryUserData(long timestamp, string signature, string? asset, string? isolatedSymbol, long? startTime, long? endTime, int? current, int? size, string? archived, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 8 params (`asset` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `asset` ← `asset`, `isolatedSymbol` ← `isolatedSymbol`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `size` ← `size`, `archived` ← `archived`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetInterestHistoryUserData(GetInterestHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `asset` ← `Asset`, `isolatedSymbol` ← `IsolatedSymbol`, `startTime` ← `StartTime`, `endTime` ← `EndTime`, `current` ← `Current`, `size` ← `Size`, `archived` ← `Archived`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1MarginInterestHistoryResponse`
-- **Error**: `SdkException<GetInterestHistoryUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetInterestHistoryUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetInterestHistoryUserDataRequest` | `Requests/Margin/GetInterestHistoryUserDataRequest.cs` |
 | `SapiV1MarginInterestHistoryResponse` | `Models/SapiV1MarginInterestHistoryResponse.cs` |
 | `GetInterestHistoryUserDataError` | `Errors/GetInterestHistoryUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -218,15 +230,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### GetSmallLiabilityExchangeCoinListUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetSmallLiabilityExchangeCoinListUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetSmallLiabilityExchangeCoinListUserData(GetSmallLiabilityExchangeCoinListUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `IReadOnlyList<SapiV1MarginExchangeSmallLiabilityResponse>`
-- **Error**: `SdkException<GetSmallLiabilityExchangeCoinListUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetSmallLiabilityExchangeCoinListUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetSmallLiabilityExchangeCoinListUserDataRequest` | `Requests/Margin/GetSmallLiabilityExchangeCoinListUserDataRequest.cs` |
 | `SapiV1MarginExchangeSmallLiabilityResponse` | `Models/SapiV1MarginExchangeSmallLiabilityResponse.cs` |
 | `GetSmallLiabilityExchangeCoinListUserDataError` | `Errors/GetSmallLiabilityExchangeCoinListUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -234,15 +247,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### GetSmallLiabilityExchangeHistoryUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetSmallLiabilityExchangeHistoryUserData(long timestamp, string signature, int? current, int? size, long? startTime, long? endTime, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 5 params (`current` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `current` ← `current`, `size` ← `size`, `startTime` ← `startTime`, `endTime` ← `endTime`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetSmallLiabilityExchangeHistoryUserData(GetSmallLiabilityExchangeHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `current` ← `Current`, `size` ← `Size`, `startTime` ← `StartTime`, `endTime` ← `EndTime`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1MarginExchangeSmallLiabilityHistoryResponse`
-- **Error**: `SdkException<GetSmallLiabilityExchangeHistoryUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetSmallLiabilityExchangeHistoryUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetSmallLiabilityExchangeHistoryUserDataRequest` | `Requests/Margin/GetSmallLiabilityExchangeHistoryUserDataRequest.cs` |
 | `SapiV1MarginExchangeSmallLiabilityHistoryResponse` | `Models/SapiV1MarginExchangeSmallLiabilityHistoryResponse.cs` |
 | `GetSmallLiabilityExchangeHistoryUserDataError` | `Errors/GetSmallLiabilityExchangeHistoryUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -250,15 +264,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### GetSummaryOfMarginAccountUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetSummaryOfMarginAccountUserData(string email, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `email` ← `email`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetSummaryOfMarginAccountUserData(GetSummaryOfMarginAccountUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Email`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `email` ← `Email`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1MarginTradeCoeffResponse`
-- **Error**: `SdkException<GetSummaryOfMarginAccountUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetSummaryOfMarginAccountUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetSummaryOfMarginAccountUserDataRequest` | `Requests/Margin/GetSummaryOfMarginAccountUserDataRequest.cs` |
 | `SapiV1MarginTradeCoeffResponse` | `Models/SapiV1MarginTradeCoeffResponse.cs` |
 | `GetSummaryOfMarginAccountUserDataError` | `Errors/GetSummaryOfMarginAccountUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -266,15 +281,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMarginMarketData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMarginMarketData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMarginMarketData(GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMarginMarketDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `IReadOnlyList<SapiV1MarginDelistScheduleResponse>`
-- **Error**: `SdkException<GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMarginMarketDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMarginMarketDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMarginMarketDataRequest` | `Requests/Margin/GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMarginMarketDataRequest.cs` |
 | `SapiV1MarginDelistScheduleResponse` | `Models/SapiV1MarginDelistScheduleResponse.cs` |
 | `GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMarginMarketDataError` | `Errors/GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMarginMarketDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -282,15 +298,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### MarginAccountBorrowRepayMargin
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `MarginAccountBorrowRepayMargin(string asset, string isIsolated, string symbol, double amount, string type, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `asset` ← `asset`, `isIsolated` ← `isIsolated`, `symbol` ← `symbol`, `amount` ← `amount`, `type` ← `type`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `MarginAccountBorrowRepayMargin(MarginAccountBorrowRepayMarginRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Asset`, `IsIsolated`, `Symbol`, `Amount`, `Type`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `asset` ← `Asset`, `isIsolated` ← `IsIsolated`, `symbol` ← `Symbol`, `amount` ← `Amount`, `type` ← `Type`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1MarginBorrowRepayResponse`
-- **Error**: `SdkException<MarginAccountBorrowRepayMarginError>` — **Case A (typed)**
+- **Error**: `ApiException<MarginAccountBorrowRepayMarginError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `MarginAccountBorrowRepayMarginRequest` | `Requests/Margin/MarginAccountBorrowRepayMarginRequest.cs` |
 | `SapiV1MarginBorrowRepayResponse` | `Models/SapiV1MarginBorrowRepayResponse.cs` |
 | `MarginAccountBorrowRepayMarginError` | `Errors/MarginAccountBorrowRepayMarginError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -298,16 +315,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### MarginAccountCancelAllOpenOrdersOnASymbolTrade
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `MarginAccountCancelAllOpenOrdersOnASymbolTrade(string symbol, long timestamp, string signature, IsIsolated? isIsolated, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `isIsolated` — nullable, no default → **must pass explicitly**
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `symbol` ← `symbol`, `timestamp` ← `timestamp`, `signature` ← `signature`, `isIsolated` ← `isIsolated`, `recvWindow` ← `recvWindow`
+- **Signature**: `MarginAccountCancelAllOpenOrdersOnASymbolTrade(MarginAccountCancelAllOpenOrdersOnASymbolTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Symbol`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `symbol` ← `Symbol`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `isIsolated` ← `IsIsolated`, `recvWindow` ← `RecvWindow`
 - **Returns**: `IReadOnlyList<SapiV1MarginOpenOrdersResponse>`
-- **Error**: `SdkException<MarginAccountCancelAllOpenOrdersOnASymbolTradeError>` — **Case A (typed)**
+- **Error**: `ApiException<MarginAccountCancelAllOpenOrdersOnASymbolTradeError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `MarginAccountCancelAllOpenOrdersOnASymbolTradeRequest` | `Requests/Margin/MarginAccountCancelAllOpenOrdersOnASymbolTradeRequest.cs` |
 | `IsIsolated` | `Models/Enums/IsIsolated.cs` |
 | `SapiV1MarginOpenOrdersResponse` | `Models/AnyOf/SapiV1MarginOpenOrdersResponse.cs` |
 | `MarginAccountCancelAllOpenOrdersOnASymbolTradeError` | `Errors/MarginAccountCancelAllOpenOrdersOnASymbolTradeError.cs` |
@@ -316,15 +333,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### MarginAccountCancelOcoTrade
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `MarginAccountCancelOcoTrade(string symbol, long timestamp, string signature, IsIsolated? isIsolated, long? orderListId, string? listClientOrderId, string? newClientOrderId, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 5 params (`isIsolated` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `symbol` ← `symbol`, `timestamp` ← `timestamp`, `signature` ← `signature`, `isIsolated` ← `isIsolated`, `orderListId` ← `orderListId`, `listClientOrderId` ← `listClientOrderId`, `newClientOrderId` ← `newClientOrderId`, `recvWindow` ← `recvWindow`
+- **Signature**: `MarginAccountCancelOcoTrade(MarginAccountCancelOcoTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Symbol`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `symbol` ← `Symbol`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `isIsolated` ← `IsIsolated`, `orderListId` ← `OrderListId`, `listClientOrderId` ← `ListClientOrderId`, `newClientOrderId` ← `NewClientOrderId`, `recvWindow` ← `RecvWindow`
 - **Returns**: `MarginOcoOrder`
-- **Error**: `SdkException<MarginAccountCancelOcoTradeError>` — **Case A (typed)**
+- **Error**: `ApiException<MarginAccountCancelOcoTradeError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `MarginAccountCancelOcoTradeRequest` | `Requests/Margin/MarginAccountCancelOcoTradeRequest.cs` |
 | `IsIsolated` | `Models/Enums/IsIsolated.cs` |
 | `MarginOcoOrder` | `Models/MarginOcoOrder.cs` |
 | `MarginAccountCancelOcoTradeError` | `Errors/MarginAccountCancelOcoTradeError.cs` |
@@ -333,15 +351,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### MarginAccountCancelOrderTrade
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `MarginAccountCancelOrderTrade(string symbol, long timestamp, string signature, IsIsolated? isIsolated, long? orderId, string? origClientOrderId, string? newClientOrderId, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 5 params (`isIsolated` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `symbol` ← `symbol`, `timestamp` ← `timestamp`, `signature` ← `signature`, `isIsolated` ← `isIsolated`, `orderId` ← `orderId`, `origClientOrderId` ← `origClientOrderId`, `newClientOrderId` ← `newClientOrderId`, `recvWindow` ← `recvWindow`
+- **Signature**: `MarginAccountCancelOrderTrade(MarginAccountCancelOrderTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Symbol`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `symbol` ← `Symbol`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `isIsolated` ← `IsIsolated`, `orderId` ← `OrderId`, `origClientOrderId` ← `OrigClientOrderId`, `newClientOrderId` ← `NewClientOrderId`, `recvWindow` ← `RecvWindow`
 - **Returns**: `MarginOrder`
-- **Error**: `SdkException<MarginAccountCancelOrderTradeError>` — **Case A (typed)**
+- **Error**: `ApiException<MarginAccountCancelOrderTradeError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `MarginAccountCancelOrderTradeRequest` | `Requests/Margin/MarginAccountCancelOrderTradeRequest.cs` |
 | `IsIsolated` | `Models/Enums/IsIsolated.cs` |
 | `MarginOrder` | `Models/MarginOrder.cs` |
 | `MarginAccountCancelOrderTradeError` | `Errors/MarginAccountCancelOrderTradeError.cs` |
@@ -350,15 +369,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### MarginAccountNewOcoTrade
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `MarginAccountNewOcoTrade(string symbol, Side side, double quantity, double price, double stopPrice, long timestamp, string signature, IsIsolated? isIsolated, string? listClientOrderId, string? limitClientOrderId, double? limitIcebergQty, string? stopClientOrderId, double? stopLimitPrice, double? stopIcebergQty, StopLimitTimeInForce? stopLimitTimeInForce, NewOrderRespType? newOrderRespType, SideEffectType? sideEffectType, SelfTradePreventionMode? selfTradePreventionMode, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 12 params (`isIsolated` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `symbol` ← `symbol`, `side` ← `side`, `quantity` ← `quantity`, `price` ← `price`, `stopPrice` ← `stopPrice`, `timestamp` ← `timestamp`, `signature` ← `signature`, `isIsolated` ← `isIsolated`, `listClientOrderId` ← `listClientOrderId`, `limitClientOrderId` ← `limitClientOrderId`, `limitIcebergQty` ← `limitIcebergQty`, `stopClientOrderId` ← `stopClientOrderId`, `stopLimitPrice` ← `stopLimitPrice`, `stopIcebergQty` ← `stopIcebergQty`, `stopLimitTimeInForce` ← `stopLimitTimeInForce`, `newOrderRespType` ← `newOrderRespType`, `sideEffectType` ← `sideEffectType`, `selfTradePreventionMode` ← `selfTradePreventionMode`, `recvWindow` ← `recvWindow`
+- **Signature**: `MarginAccountNewOcoTrade(MarginAccountNewOcoTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Symbol`, `Side`, `Quantity`, `Price`, `StopPrice`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `symbol` ← `Symbol`, `side` ← `Side`, `quantity` ← `Quantity`, `price` ← `Price`, `stopPrice` ← `StopPrice`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `isIsolated` ← `IsIsolated`, `listClientOrderId` ← `ListClientOrderId`, `limitClientOrderId` ← `LimitClientOrderId`, `limitIcebergQty` ← `LimitIcebergQty`, `stopClientOrderId` ← `StopClientOrderId`, `stopLimitPrice` ← `StopLimitPrice`, `stopIcebergQty` ← `StopIcebergQty`, `stopLimitTimeInForce` ← `StopLimitTimeInForce`, `newOrderRespType` ← `NewOrderRespType`, `sideEffectType` ← `SideEffectType`, `selfTradePreventionMode` ← `SelfTradePreventionMode`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1MarginOrderOcoResponse`
-- **Error**: `SdkException<MarginAccountNewOcoTradeError>` — **Case A (typed)**
+- **Error**: `ApiException<MarginAccountNewOcoTradeError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `MarginAccountNewOcoTradeRequest` | `Requests/Margin/MarginAccountNewOcoTradeRequest.cs` |
 | `Side` | `Models/Enums/Side.cs` |
 | `IsIsolated` | `Models/Enums/IsIsolated.cs` |
 | `StopLimitTimeInForce` | `Models/Enums/StopLimitTimeInForce.cs` |
@@ -372,15 +392,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### MarginAccountNewOrderTrade
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `MarginAccountNewOrderTrade(string symbol, Side side, Type1 type, double quantity, bool autoRepayAtCancel, long timestamp, string signature, IsIsolated? isIsolated, double? quoteOrderQty, double? price, double? stopPrice, string? newClientOrderId, double? icebergQty, NewOrderRespType? newOrderRespType, SideEffectType? sideEffectType, TimeInForce? timeInForce, SelfTradePreventionMode? selfTradePreventionMode, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 11 params (`isIsolated` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `symbol` ← `symbol`, `side` ← `side`, `type` ← `type`, `quantity` ← `quantity`, `autoRepayAtCancel` ← `autoRepayAtCancel`, `timestamp` ← `timestamp`, `signature` ← `signature`, `isIsolated` ← `isIsolated`, `quoteOrderQty` ← `quoteOrderQty`, `price` ← `price`, `stopPrice` ← `stopPrice`, `newClientOrderId` ← `newClientOrderId`, `icebergQty` ← `icebergQty`, `newOrderRespType` ← `newOrderRespType`, `sideEffectType` ← `sideEffectType`, `timeInForce` ← `timeInForce`, `selfTradePreventionMode` ← `selfTradePreventionMode`, `recvWindow` ← `recvWindow`
+- **Signature**: `MarginAccountNewOrderTrade(MarginAccountNewOrderTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Symbol`, `Side`, `Type`, `Quantity`, `AutoRepayAtCancel`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `symbol` ← `Symbol`, `side` ← `Side`, `type` ← `Type`, `quantity` ← `Quantity`, `autoRepayAtCancel` ← `AutoRepayAtCancel`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `isIsolated` ← `IsIsolated`, `quoteOrderQty` ← `QuoteOrderQty`, `price` ← `Price`, `stopPrice` ← `StopPrice`, `newClientOrderId` ← `NewClientOrderId`, `icebergQty` ← `IcebergQty`, `newOrderRespType` ← `NewOrderRespType`, `sideEffectType` ← `SideEffectType`, `timeInForce` ← `TimeInForce`, `selfTradePreventionMode` ← `SelfTradePreventionMode`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1MarginOrderResponse`
-- **Error**: `SdkException<MarginAccountNewOrderTradeError>` — **Case A (typed)**
+- **Error**: `ApiException<MarginAccountNewOrderTradeError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `MarginAccountNewOrderTradeRequest` | `Requests/Margin/MarginAccountNewOrderTradeRequest.cs` |
 | `Side` | `Models/Enums/Side.cs` |
 | `Type1` | `Models/Enums/Type1.cs` |
 | `IsIsolated` | `Models/Enums/IsIsolated.cs` |
@@ -395,15 +416,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### MarginAccountNewOtoTrade
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `MarginAccountNewOtoTrade(string symbol, WorkingType workingType, WorkingSide workingSide, double workingPrice, double workingQuantity, double workingIcebergQty, PendingType pendingType, PendingSide pendingSide, double pendingQuantity, long timestamp, string signature, IsIsolated? isIsolated, string? listClientOrderId, NewOrderRespType? newOrderRespType, SideEffectType1? sideEffectType, SelfTradePreventionMode? selfTradePreventionMode, bool? autoRepayAtCancel, string? workingClientOrderId, WorkingTimeInForce? workingTimeInForce, string? pendingClientOrderId, double? pendingPrice, double? pendingStopPrice, double? pendingTrailingDelta, double? pendingIcebergQty, PendingTimeInForce? pendingTimeInForce, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 14 params (`isIsolated` … `pendingTimeInForce`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `symbol` ← `symbol`, `workingType` ← `workingType`, `workingSide` ← `workingSide`, `workingPrice` ← `workingPrice`, `workingQuantity` ← `workingQuantity`, `workingIcebergQty` ← `workingIcebergQty`, `pendingType` ← `pendingType`, `pendingSide` ← `pendingSide`, `pendingQuantity` ← `pendingQuantity`, `timestamp` ← `timestamp`, `signature` ← `signature`, `isIsolated` ← `isIsolated`, `listClientOrderId` ← `listClientOrderId`, `newOrderRespType` ← `newOrderRespType`, `sideEffectType` ← `sideEffectType`, `selfTradePreventionMode` ← `selfTradePreventionMode`, `autoRepayAtCancel` ← `autoRepayAtCancel`, `workingClientOrderId` ← `workingClientOrderId`, `workingTimeInForce` ← `workingTimeInForce`, `pendingClientOrderId` ← `pendingClientOrderId`, `pendingPrice` ← `pendingPrice`, `pendingStopPrice` ← `pendingStopPrice`, `pendingTrailingDelta` ← `pendingTrailingDelta`, `pendingIcebergQty` ← `pendingIcebergQty`, `pendingTimeInForce` ← `pendingTimeInForce`
+- **Signature**: `MarginAccountNewOtoTrade(MarginAccountNewOtoTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Symbol`, `WorkingType`, `WorkingSide`, `WorkingPrice`, `WorkingQuantity`, `WorkingIcebergQty`, `PendingType`, `PendingSide`, `PendingQuantity`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `symbol` ← `Symbol`, `workingType` ← `WorkingType`, `workingSide` ← `WorkingSide`, `workingPrice` ← `WorkingPrice`, `workingQuantity` ← `WorkingQuantity`, `workingIcebergQty` ← `WorkingIcebergQty`, `pendingType` ← `PendingType`, `pendingSide` ← `PendingSide`, `pendingQuantity` ← `PendingQuantity`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `isIsolated` ← `IsIsolated`, `listClientOrderId` ← `ListClientOrderId`, `newOrderRespType` ← `NewOrderRespType`, `sideEffectType` ← `SideEffectType`, `selfTradePreventionMode` ← `SelfTradePreventionMode`, `autoRepayAtCancel` ← `AutoRepayAtCancel`, `workingClientOrderId` ← `WorkingClientOrderId`, `workingTimeInForce` ← `WorkingTimeInForce`, `pendingClientOrderId` ← `PendingClientOrderId`, `pendingPrice` ← `PendingPrice`, `pendingStopPrice` ← `PendingStopPrice`, `pendingTrailingDelta` ← `PendingTrailingDelta`, `pendingIcebergQty` ← `PendingIcebergQty`, `pendingTimeInForce` ← `PendingTimeInForce`
 - **Returns**: `SapiV1MarginOrderOtoResponse`
-- **Error**: `SdkException<MarginAccountNewOtoTradeError>` — **Case A (typed)**
+- **Error**: `ApiException<MarginAccountNewOtoTradeError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `MarginAccountNewOtoTradeRequest` | `Requests/Margin/MarginAccountNewOtoTradeRequest.cs` |
 | `WorkingType` | `Models/Enums/WorkingType.cs` |
 | `WorkingSide` | `Models/Enums/WorkingSide.cs` |
 | `PendingType` | `Models/Enums/PendingType.cs` |
@@ -421,15 +443,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### MarginAccountNewOtocoTrade
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `MarginAccountNewOtocoTrade(string symbol, WorkingType workingType, WorkingSide workingSide, double workingPrice, double workingQuantity, double workingIcebergQty, PendingSide pendingSide, double pendingQuantity, PendingAboveType pendingAboveType, long timestamp, string signature, IsIsolated? isIsolated, SideEffectType1? sideEffectType, bool? autoRepayAtCancel, string? listClientOrderId, NewOrderRespType? newOrderRespType, SelfTradePreventionMode? selfTradePreventionMode, string? workingClientOrderId, WorkingTimeInForce? workingTimeInForce, string? pendingAboveClientOrderId, double? pendingAbovePrice, double? pendingAboveStopPrice, double? pendingAboveTrailingDelta, double? pendingAboveIcebergQty, PendingAboveTimeInForce? pendingAboveTimeInForce, PendingBelowType? pendingBelowType, string? pendingBelowClientOrderId, double? pendingBelowPrice, double? pendingBelowStopPrice, double? pendingBelowTrailingDelta, double? pendingBelowIcebergQty, PendingBelowTimeInForce? pendingBelowTimeInForce, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 21 params (`isIsolated` … `pendingBelowTimeInForce`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `symbol` ← `symbol`, `workingType` ← `workingType`, `workingSide` ← `workingSide`, `workingPrice` ← `workingPrice`, `workingQuantity` ← `workingQuantity`, `workingIcebergQty` ← `workingIcebergQty`, `pendingSide` ← `pendingSide`, `pendingQuantity` ← `pendingQuantity`, `pendingAboveType` ← `pendingAboveType`, `timestamp` ← `timestamp`, `signature` ← `signature`, `isIsolated` ← `isIsolated`, `sideEffectType` ← `sideEffectType`, `autoRepayAtCancel` ← `autoRepayAtCancel`, `listClientOrderId` ← `listClientOrderId`, `newOrderRespType` ← `newOrderRespType`, `selfTradePreventionMode` ← `selfTradePreventionMode`, `workingClientOrderId` ← `workingClientOrderId`, `workingTimeInForce` ← `workingTimeInForce`, `pendingAboveClientOrderId` ← `pendingAboveClientOrderId`, `pendingAbovePrice` ← `pendingAbovePrice`, `pendingAboveStopPrice` ← `pendingAboveStopPrice`, `pendingAboveTrailingDelta` ← `pendingAboveTrailingDelta`, `pendingAboveIcebergQty` ← `pendingAboveIcebergQty`, `pendingAboveTimeInForce` ← `pendingAboveTimeInForce`, `pendingBelowType` ← `pendingBelowType`, `pendingBelowClientOrderId` ← `pendingBelowClientOrderId`, `pendingBelowPrice` ← `pendingBelowPrice`, `pendingBelowStopPrice` ← `pendingBelowStopPrice`, `pendingBelowTrailingDelta` ← `pendingBelowTrailingDelta`, `pendingBelowIcebergQty` ← `pendingBelowIcebergQty`, `pendingBelowTimeInForce` ← `pendingBelowTimeInForce`
+- **Signature**: `MarginAccountNewOtocoTrade(MarginAccountNewOtocoTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Symbol`, `WorkingType`, `WorkingSide`, `WorkingPrice`, `WorkingQuantity`, `WorkingIcebergQty`, `PendingSide`, `PendingQuantity`, `PendingAboveType`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `symbol` ← `Symbol`, `workingType` ← `WorkingType`, `workingSide` ← `WorkingSide`, `workingPrice` ← `WorkingPrice`, `workingQuantity` ← `WorkingQuantity`, `workingIcebergQty` ← `WorkingIcebergQty`, `pendingSide` ← `PendingSide`, `pendingQuantity` ← `PendingQuantity`, `pendingAboveType` ← `PendingAboveType`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `isIsolated` ← `IsIsolated`, `sideEffectType` ← `SideEffectType`, `autoRepayAtCancel` ← `AutoRepayAtCancel`, `listClientOrderId` ← `ListClientOrderId`, `newOrderRespType` ← `NewOrderRespType`, `selfTradePreventionMode` ← `SelfTradePreventionMode`, `workingClientOrderId` ← `WorkingClientOrderId`, `workingTimeInForce` ← `WorkingTimeInForce`, `pendingAboveClientOrderId` ← `PendingAboveClientOrderId`, `pendingAbovePrice` ← `PendingAbovePrice`, `pendingAboveStopPrice` ← `PendingAboveStopPrice`, `pendingAboveTrailingDelta` ← `PendingAboveTrailingDelta`, `pendingAboveIcebergQty` ← `PendingAboveIcebergQty`, `pendingAboveTimeInForce` ← `PendingAboveTimeInForce`, `pendingBelowType` ← `PendingBelowType`, `pendingBelowClientOrderId` ← `PendingBelowClientOrderId`, `pendingBelowPrice` ← `PendingBelowPrice`, `pendingBelowStopPrice` ← `PendingBelowStopPrice`, `pendingBelowTrailingDelta` ← `PendingBelowTrailingDelta`, `pendingBelowIcebergQty` ← `PendingBelowIcebergQty`, `pendingBelowTimeInForce` ← `PendingBelowTimeInForce`
 - **Returns**: `SapiV1MarginOrderOtocoResponse`
-- **Error**: `SdkException<MarginAccountNewOtocoTradeError>` — **Case A (typed)**
+- **Error**: `ApiException<MarginAccountNewOtocoTradeError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `MarginAccountNewOtocoTradeRequest` | `Requests/Margin/MarginAccountNewOtocoTradeRequest.cs` |
 | `WorkingType` | `Models/Enums/WorkingType.cs` |
 | `WorkingSide` | `Models/Enums/WorkingSide.cs` |
 | `PendingSide` | `Models/Enums/PendingSide.cs` |
@@ -449,15 +472,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### MarginInterestRateHistoryUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `MarginInterestRateHistoryUserData(string asset, long timestamp, string signature, int? vipLevel, long? startTime, long? endTime, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 4 params (`vipLevel` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `asset` ← `asset`, `timestamp` ← `timestamp`, `signature` ← `signature`, `vipLevel` ← `vipLevel`, `startTime` ← `startTime`, `endTime` ← `endTime`, `recvWindow` ← `recvWindow`
+- **Signature**: `MarginInterestRateHistoryUserData(MarginInterestRateHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Asset`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `asset` ← `Asset`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `vipLevel` ← `VipLevel`, `startTime` ← `StartTime`, `endTime` ← `EndTime`, `recvWindow` ← `RecvWindow`
 - **Returns**: `IReadOnlyList<SapiV1MarginInterestRateHistoryResponse>`
-- **Error**: `SdkException<MarginInterestRateHistoryUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<MarginInterestRateHistoryUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `MarginInterestRateHistoryUserDataRequest` | `Requests/Margin/MarginInterestRateHistoryUserDataRequest.cs` |
 | `SapiV1MarginInterestRateHistoryResponse` | `Models/SapiV1MarginInterestRateHistoryResponse.cs` |
 | `MarginInterestRateHistoryUserDataError` | `Errors/MarginInterestRateHistoryUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -465,15 +489,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### MarginManualLiquidationMargin
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `MarginManualLiquidationMargin(Type4 type, long timestamp, string signature, string? symbol, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `symbol` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `type` ← `type`, `timestamp` ← `timestamp`, `signature` ← `signature`, `symbol` ← `symbol`
+- **Signature**: `MarginManualLiquidationMargin(MarginManualLiquidationMarginRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Type`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `type` ← `Type`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `symbol` ← `Symbol`
 - **Returns**: `IReadOnlyList<SapiV1MarginManualLiquidationResponse>`
-- **Error**: `SdkException<MarginManualLiquidationMarginError>` — **Case A (typed)**
+- **Error**: `ApiException<MarginManualLiquidationMarginError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `MarginManualLiquidationMarginRequest` | `Requests/Margin/MarginManualLiquidationMarginRequest.cs` |
 | `Type4` | `Models/Enums/Type4.cs` |
 | `SapiV1MarginManualLiquidationResponse` | `Models/SapiV1MarginManualLiquidationResponse.cs` |
 | `MarginManualLiquidationMarginError` | `Errors/MarginManualLiquidationMarginError.cs` |
@@ -482,15 +507,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### QueryBorrowRepayRecordsInMarginAccountUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `QueryBorrowRepayRecordsInMarginAccountUserData(string asset, string type, long timestamp, string signature, string? isolatedSymbol, long? txId, long? startTime, long? endTime, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 7 params (`isolatedSymbol` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `asset` ← `asset`, `type` ← `type`, `timestamp` ← `timestamp`, `signature` ← `signature`, `isolatedSymbol` ← `isolatedSymbol`, `txId` ← `txId`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `size` ← `size`, `recvWindow` ← `recvWindow`
+- **Signature**: `QueryBorrowRepayRecordsInMarginAccountUserData(QueryBorrowRepayRecordsInMarginAccountUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Asset`, `Type`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `asset` ← `Asset`, `type` ← `Type`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `isolatedSymbol` ← `IsolatedSymbol`, `txId` ← `TxId`, `startTime` ← `StartTime`, `endTime` ← `EndTime`, `current` ← `Current`, `size` ← `Size`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1MarginBorrowRepayResponse1`
-- **Error**: `SdkException<QueryBorrowRepayRecordsInMarginAccountUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<QueryBorrowRepayRecordsInMarginAccountUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `QueryBorrowRepayRecordsInMarginAccountUserDataRequest` | `Requests/Margin/QueryBorrowRepayRecordsInMarginAccountUserDataRequest.cs` |
 | `SapiV1MarginBorrowRepayResponse1` | `Models/SapiV1MarginBorrowRepayResponse1.cs` |
 | `QueryBorrowRepayRecordsInMarginAccountUserDataError` | `Errors/QueryBorrowRepayRecordsInMarginAccountUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -498,15 +524,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### QueryCrossMarginAccountDetailsUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `QueryCrossMarginAccountDetailsUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `QueryCrossMarginAccountDetailsUserData(QueryCrossMarginAccountDetailsUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1MarginAccountResponse`
-- **Error**: `SdkException<QueryCrossMarginAccountDetailsUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<QueryCrossMarginAccountDetailsUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `QueryCrossMarginAccountDetailsUserDataRequest` | `Requests/Margin/QueryCrossMarginAccountDetailsUserDataRequest.cs` |
 | `SapiV1MarginAccountResponse` | `Models/SapiV1MarginAccountResponse.cs` |
 | `QueryCrossMarginAccountDetailsUserDataError` | `Errors/QueryCrossMarginAccountDetailsUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -514,17 +541,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### QueryCrossMarginFeeDataUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `QueryCrossMarginFeeDataUserData(long timestamp, string signature, int? vipLevel, string? coin, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `vipLevel` — nullable, no default → **must pass explicitly**
-  - `coin` — nullable, no default → **must pass explicitly**
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `vipLevel` ← `vipLevel`, `coin` ← `coin`, `recvWindow` ← `recvWindow`
+- **Signature**: `QueryCrossMarginFeeDataUserData(QueryCrossMarginFeeDataUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `vipLevel` ← `VipLevel`, `coin` ← `Coin`, `recvWindow` ← `RecvWindow`
 - **Returns**: `IReadOnlyList<SapiV1MarginCrossMarginDataResponse>`
-- **Error**: `SdkException<QueryCrossMarginFeeDataUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<QueryCrossMarginFeeDataUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `QueryCrossMarginFeeDataUserDataRequest` | `Requests/Margin/QueryCrossMarginFeeDataUserDataRequest.cs` |
 | `SapiV1MarginCrossMarginDataResponse` | `Models/SapiV1MarginCrossMarginDataResponse.cs` |
 | `QueryCrossMarginFeeDataUserDataError` | `Errors/QueryCrossMarginFeeDataUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -532,17 +558,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### QueryCurrentMarginOrderCountUsageTrade
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `QueryCurrentMarginOrderCountUsageTrade(long timestamp, string signature, string? isIsolated, string? symbol, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `isIsolated` — nullable, no default → **must pass explicitly**
-  - `symbol` — nullable, no default → **must pass explicitly**
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `isIsolated` ← `isIsolated`, `symbol` ← `symbol`, `recvWindow` ← `recvWindow`
+- **Signature**: `QueryCurrentMarginOrderCountUsageTrade(QueryCurrentMarginOrderCountUsageTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `isIsolated` ← `IsIsolated`, `symbol` ← `Symbol`, `recvWindow` ← `RecvWindow`
 - **Returns**: `IReadOnlyList<SapiV1MarginRateLimitOrderResponse>`
-- **Error**: `SdkException<QueryCurrentMarginOrderCountUsageTradeError>` — **Case A (typed)**
+- **Error**: `ApiException<QueryCurrentMarginOrderCountUsageTradeError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `QueryCurrentMarginOrderCountUsageTradeRequest` | `Requests/Margin/QueryCurrentMarginOrderCountUsageTradeRequest.cs` |
 | `SapiV1MarginRateLimitOrderResponse` | `Models/SapiV1MarginRateLimitOrderResponse.cs` |
 | `QueryCurrentMarginOrderCountUsageTradeError` | `Errors/QueryCurrentMarginOrderCountUsageTradeError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -550,15 +575,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### QueryEnabledIsolatedMarginAccountLimitUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `QueryEnabledIsolatedMarginAccountLimitUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `QueryEnabledIsolatedMarginAccountLimitUserData(QueryEnabledIsolatedMarginAccountLimitUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1MarginIsolatedAccountLimitResponse`
-- **Error**: `SdkException<QueryEnabledIsolatedMarginAccountLimitUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<QueryEnabledIsolatedMarginAccountLimitUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `QueryEnabledIsolatedMarginAccountLimitUserDataRequest` | `Requests/Margin/QueryEnabledIsolatedMarginAccountLimitUserDataRequest.cs` |
 | `SapiV1MarginIsolatedAccountLimitResponse` | `Models/SapiV1MarginIsolatedAccountLimitResponse.cs` |
 | `QueryEnabledIsolatedMarginAccountLimitUserDataError` | `Errors/QueryEnabledIsolatedMarginAccountLimitUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -566,16 +592,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### QueryIsolatedMarginAccountInfoUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `QueryIsolatedMarginAccountInfoUserData(long timestamp, string signature, string? symbols, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `symbols` — nullable, no default → **must pass explicitly**
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `symbols` ← `symbols`, `recvWindow` ← `recvWindow`
+- **Signature**: `QueryIsolatedMarginAccountInfoUserData(QueryIsolatedMarginAccountInfoUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `symbols` ← `Symbols`, `recvWindow` ← `RecvWindow`
 - **Returns**: `IsolatedMarginAccountInfo`
-- **Error**: `SdkException<QueryIsolatedMarginAccountInfoUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<QueryIsolatedMarginAccountInfoUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `QueryIsolatedMarginAccountInfoUserDataRequest` | `Requests/Margin/QueryIsolatedMarginAccountInfoUserDataRequest.cs` |
 | `IsolatedMarginAccountInfo` | `Models/IsolatedMarginAccountInfo.cs` |
 | `QueryIsolatedMarginAccountInfoUserDataError` | `Errors/QueryIsolatedMarginAccountInfoUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -583,17 +609,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### QueryIsolatedMarginFeeDataUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `QueryIsolatedMarginFeeDataUserData(long timestamp, string signature, int? vipLevel, string? symbol, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `vipLevel` — nullable, no default → **must pass explicitly**
-  - `symbol` — nullable, no default → **must pass explicitly**
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `vipLevel` ← `vipLevel`, `symbol` ← `symbol`, `recvWindow` ← `recvWindow`
+- **Signature**: `QueryIsolatedMarginFeeDataUserData(QueryIsolatedMarginFeeDataUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `vipLevel` ← `VipLevel`, `symbol` ← `Symbol`, `recvWindow` ← `RecvWindow`
 - **Returns**: `IReadOnlyList<SapiV1MarginIsolatedMarginDataResponse>`
-- **Error**: `SdkException<QueryIsolatedMarginFeeDataUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<QueryIsolatedMarginFeeDataUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `QueryIsolatedMarginFeeDataUserDataRequest` | `Requests/Margin/QueryIsolatedMarginFeeDataUserDataRequest.cs` |
 | `SapiV1MarginIsolatedMarginDataResponse` | `Models/SapiV1MarginIsolatedMarginDataResponse.cs` |
 | `QueryIsolatedMarginFeeDataUserDataError` | `Errors/QueryIsolatedMarginFeeDataUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -601,16 +626,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### QueryIsolatedMarginTierDataUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `QueryIsolatedMarginTierDataUserData(string symbol, long timestamp, string signature, string? tier, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `tier` — nullable, no default → **must pass explicitly**
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `symbol` ← `symbol`, `timestamp` ← `timestamp`, `signature` ← `signature`, `tier` ← `tier`, `recvWindow` ← `recvWindow`
+- **Signature**: `QueryIsolatedMarginTierDataUserData(QueryIsolatedMarginTierDataUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Symbol`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `symbol` ← `Symbol`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `tier` ← `Tier`, `recvWindow` ← `RecvWindow`
 - **Returns**: `IReadOnlyList<SapiV1MarginIsolatedMarginTierResponse>`
-- **Error**: `SdkException<QueryIsolatedMarginTierDataUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<QueryIsolatedMarginTierDataUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `QueryIsolatedMarginTierDataUserDataRequest` | `Requests/Margin/QueryIsolatedMarginTierDataUserDataRequest.cs` |
 | `SapiV1MarginIsolatedMarginTierResponse` | `Models/SapiV1MarginIsolatedMarginTierResponse.cs` |
 | `QueryIsolatedMarginTierDataUserDataError` | `Errors/QueryIsolatedMarginTierDataUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -618,9 +643,9 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### QueryLiabilityCoinLeverageBracketInCrossMarginProModeMarketData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `QueryLiabilityCoinLeverageBracketInCrossMarginProModeMarketData(RequestOptions? requestOptions = null, CancellationToken ct = default)`
+- **Signature**: `QueryLiabilityCoinLeverageBracketInCrossMarginProModeMarketData(RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
 - **Returns**: `IReadOnlyList<SapiV1MarginLeverageBracketResponse>`
-- **Error**: `SdkException<QueryLiabilityCoinLeverageBracketInCrossMarginProModeMarketDataError>` — **Case A (typed)**
+- **Error**: `ApiException<QueryLiabilityCoinLeverageBracketInCrossMarginProModeMarketDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
@@ -632,15 +657,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### QueryMarginAccountSAllOcoUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `QueryMarginAccountSAllOcoUserData(long timestamp, string signature, IsIsolated? isIsolated, string? symbol, string? fromId, long? startTime, long? endTime, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 7 params (`isIsolated` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `isIsolated` ← `isIsolated`, `symbol` ← `symbol`, `fromId` ← `fromId`, `startTime` ← `startTime`, `endTime` ← `endTime`, `limit` ← `limit`, `recvWindow` ← `recvWindow`
+- **Signature**: `QueryMarginAccountSAllOcoUserData(QueryMarginAccountSAllOcoUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `isIsolated` ← `IsIsolated`, `symbol` ← `Symbol`, `fromId` ← `FromId`, `startTime` ← `StartTime`, `endTime` ← `EndTime`, `limit` ← `Limit`, `recvWindow` ← `RecvWindow`
 - **Returns**: `IReadOnlyList<SapiV1MarginAllOrderListResponse>`
-- **Error**: `SdkException<QueryMarginAccountSAllOcoUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<QueryMarginAccountSAllOcoUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `QueryMarginAccountSAllOcoUserDataRequest` | `Requests/Margin/QueryMarginAccountSAllOcoUserDataRequest.cs` |
 | `IsIsolated` | `Models/Enums/IsIsolated.cs` |
 | `SapiV1MarginAllOrderListResponse` | `Models/SapiV1MarginAllOrderListResponse.cs` |
 | `QueryMarginAccountSAllOcoUserDataError` | `Errors/QueryMarginAccountSAllOcoUserDataError.cs` |
@@ -649,15 +675,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### QueryMarginAccountSAllOrdersUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `QueryMarginAccountSAllOrdersUserData(string symbol, long timestamp, string signature, IsIsolated? isIsolated, long? orderId, long? startTime, long? endTime, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 6 params (`isIsolated` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `symbol` ← `symbol`, `timestamp` ← `timestamp`, `signature` ← `signature`, `isIsolated` ← `isIsolated`, `orderId` ← `orderId`, `startTime` ← `startTime`, `endTime` ← `endTime`, `limit` ← `limit`, `recvWindow` ← `recvWindow`
+- **Signature**: `QueryMarginAccountSAllOrdersUserData(QueryMarginAccountSAllOrdersUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Symbol`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `symbol` ← `Symbol`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `isIsolated` ← `IsIsolated`, `orderId` ← `OrderId`, `startTime` ← `StartTime`, `endTime` ← `EndTime`, `limit` ← `Limit`, `recvWindow` ← `RecvWindow`
 - **Returns**: `IReadOnlyList<MarginOrderDetail>`
-- **Error**: `SdkException<QueryMarginAccountSAllOrdersUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<QueryMarginAccountSAllOrdersUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `QueryMarginAccountSAllOrdersUserDataRequest` | `Requests/Margin/QueryMarginAccountSAllOrdersUserDataRequest.cs` |
 | `IsIsolated` | `Models/Enums/IsIsolated.cs` |
 | `MarginOrderDetail` | `Models/MarginOrderDetail.cs` |
 | `QueryMarginAccountSAllOrdersUserDataError` | `Errors/QueryMarginAccountSAllOrdersUserDataError.cs` |
@@ -666,15 +693,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### QueryMarginAccountSOcoUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `QueryMarginAccountSOcoUserData(long timestamp, string signature, IsIsolated? isIsolated, string? symbol, long? orderListId, string? origClientOrderId, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 5 params (`isIsolated` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `isIsolated` ← `isIsolated`, `symbol` ← `symbol`, `orderListId` ← `orderListId`, `origClientOrderId` ← `origClientOrderId`, `recvWindow` ← `recvWindow`
+- **Signature**: `QueryMarginAccountSOcoUserData(QueryMarginAccountSOcoUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `isIsolated` ← `IsIsolated`, `symbol` ← `Symbol`, `orderListId` ← `OrderListId`, `origClientOrderId` ← `OrigClientOrderId`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1MarginOrderListResponse`
-- **Error**: `SdkException<QueryMarginAccountSOcoUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<QueryMarginAccountSOcoUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `QueryMarginAccountSOcoUserDataRequest` | `Requests/Margin/QueryMarginAccountSOcoUserDataRequest.cs` |
 | `IsIsolated` | `Models/Enums/IsIsolated.cs` |
 | `SapiV1MarginOrderListResponse` | `Models/SapiV1MarginOrderListResponse.cs` |
 | `QueryMarginAccountSOcoUserDataError` | `Errors/QueryMarginAccountSOcoUserDataError.cs` |
@@ -683,17 +711,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### QueryMarginAccountSOpenOcoUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `QueryMarginAccountSOpenOcoUserData(long timestamp, string signature, IsIsolated? isIsolated, string? symbol, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `isIsolated` — nullable, no default → **must pass explicitly**
-  - `symbol` — nullable, no default → **must pass explicitly**
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `isIsolated` ← `isIsolated`, `symbol` ← `symbol`, `recvWindow` ← `recvWindow`
+- **Signature**: `QueryMarginAccountSOpenOcoUserData(QueryMarginAccountSOpenOcoUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `isIsolated` ← `IsIsolated`, `symbol` ← `Symbol`, `recvWindow` ← `RecvWindow`
 - **Returns**: `IReadOnlyList<SapiV1MarginOpenOrderListResponse>`
-- **Error**: `SdkException<QueryMarginAccountSOpenOcoUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<QueryMarginAccountSOpenOcoUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `QueryMarginAccountSOpenOcoUserDataRequest` | `Requests/Margin/QueryMarginAccountSOpenOcoUserDataRequest.cs` |
 | `IsIsolated` | `Models/Enums/IsIsolated.cs` |
 | `SapiV1MarginOpenOrderListResponse` | `Models/SapiV1MarginOpenOrderListResponse.cs` |
 | `QueryMarginAccountSOpenOcoUserDataError` | `Errors/QueryMarginAccountSOpenOcoUserDataError.cs` |
@@ -702,17 +729,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### QueryMarginAccountSOpenOrdersUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `QueryMarginAccountSOpenOrdersUserData(long timestamp, string signature, string? symbol, IsIsolated? isIsolated, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `symbol` — nullable, no default → **must pass explicitly**
-  - `isIsolated` — nullable, no default → **must pass explicitly**
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `symbol` ← `symbol`, `isIsolated` ← `isIsolated`, `recvWindow` ← `recvWindow`
+- **Signature**: `QueryMarginAccountSOpenOrdersUserData(QueryMarginAccountSOpenOrdersUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `symbol` ← `Symbol`, `isIsolated` ← `IsIsolated`, `recvWindow` ← `RecvWindow`
 - **Returns**: `IReadOnlyList<MarginOrderDetail>`
-- **Error**: `SdkException<QueryMarginAccountSOpenOrdersUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<QueryMarginAccountSOpenOrdersUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `QueryMarginAccountSOpenOrdersUserDataRequest` | `Requests/Margin/QueryMarginAccountSOpenOrdersUserDataRequest.cs` |
 | `IsIsolated` | `Models/Enums/IsIsolated.cs` |
 | `MarginOrderDetail` | `Models/MarginOrderDetail.cs` |
 | `QueryMarginAccountSOpenOrdersUserDataError` | `Errors/QueryMarginAccountSOpenOrdersUserDataError.cs` |
@@ -721,15 +747,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### QueryMarginAccountSOrderUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `QueryMarginAccountSOrderUserData(string symbol, long timestamp, string signature, IsIsolated? isIsolated, long? orderId, string? origClientOrderId, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 4 params (`isIsolated` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `symbol` ← `symbol`, `timestamp` ← `timestamp`, `signature` ← `signature`, `isIsolated` ← `isIsolated`, `orderId` ← `orderId`, `origClientOrderId` ← `origClientOrderId`, `recvWindow` ← `recvWindow`
+- **Signature**: `QueryMarginAccountSOrderUserData(QueryMarginAccountSOrderUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Symbol`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `symbol` ← `Symbol`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `isIsolated` ← `IsIsolated`, `orderId` ← `OrderId`, `origClientOrderId` ← `OrigClientOrderId`, `recvWindow` ← `RecvWindow`
 - **Returns**: `MarginOrderDetail`
-- **Error**: `SdkException<QueryMarginAccountSOrderUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<QueryMarginAccountSOrderUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `QueryMarginAccountSOrderUserDataRequest` | `Requests/Margin/QueryMarginAccountSOrderUserDataRequest.cs` |
 | `IsIsolated` | `Models/Enums/IsIsolated.cs` |
 | `MarginOrderDetail` | `Models/MarginOrderDetail.cs` |
 | `QueryMarginAccountSOrderUserDataError` | `Errors/QueryMarginAccountSOrderUserDataError.cs` |
@@ -738,15 +765,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### QueryMarginAccountSTradeListUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `QueryMarginAccountSTradeListUserData(string symbol, long timestamp, string signature, IsIsolated? isIsolated, long? startTime, long? endTime, long? fromId, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 6 params (`isIsolated` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `symbol` ← `symbol`, `timestamp` ← `timestamp`, `signature` ← `signature`, `isIsolated` ← `isIsolated`, `startTime` ← `startTime`, `endTime` ← `endTime`, `fromId` ← `fromId`, `limit` ← `limit`, `recvWindow` ← `recvWindow`
+- **Signature**: `QueryMarginAccountSTradeListUserData(QueryMarginAccountSTradeListUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Symbol`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `symbol` ← `Symbol`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `isIsolated` ← `IsIsolated`, `startTime` ← `StartTime`, `endTime` ← `EndTime`, `fromId` ← `FromId`, `limit` ← `Limit`, `recvWindow` ← `RecvWindow`
 - **Returns**: `IReadOnlyList<MarginTrade>`
-- **Error**: `SdkException<QueryMarginAccountSTradeListUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<QueryMarginAccountSTradeListUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `QueryMarginAccountSTradeListUserDataRequest` | `Requests/Margin/QueryMarginAccountSTradeListUserDataRequest.cs` |
 | `IsIsolated` | `Models/Enums/IsIsolated.cs` |
 | `MarginTrade` | `Models/MarginTrade.cs` |
 | `QueryMarginAccountSTradeListUserDataError` | `Errors/QueryMarginAccountSTradeListUserDataError.cs` |
@@ -755,14 +783,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### QueryMarginAvailableInventoryUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `QueryMarginAvailableInventoryUserData(Type4 type, long timestamp, string signature, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-- **Query params (wire ← C#)**: `type` ← `type`, `timestamp` ← `timestamp`, `signature` ← `signature`
+- **Signature**: `QueryMarginAvailableInventoryUserData(QueryMarginAvailableInventoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Type`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `type` ← `Type`, `timestamp` ← `Timestamp`, `signature` ← `Signature`
 - **Returns**: `SapiV1MarginAvailableInventoryResponse`
-- **Error**: `SdkException<QueryMarginAvailableInventoryUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<QueryMarginAvailableInventoryUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `QueryMarginAvailableInventoryUserDataRequest` | `Requests/Margin/QueryMarginAvailableInventoryUserDataRequest.cs` |
 | `Type4` | `Models/Enums/Type4.cs` |
 | `SapiV1MarginAvailableInventoryResponse` | `Models/SapiV1MarginAvailableInventoryResponse.cs` |
 | `QueryMarginAvailableInventoryUserDataError` | `Errors/QueryMarginAvailableInventoryUserDataError.cs` |
@@ -771,14 +801,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### QueryMarginPriceIndexMarketData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `QueryMarginPriceIndexMarketData(string symbol, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-- **Query params (wire ← C#)**: `symbol` ← `symbol`
+- **Signature**: `QueryMarginPriceIndexMarketData(QueryMarginPriceIndexMarketDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Symbol`
+- **Query params (wire ← C#)**: `symbol` ← `Symbol`
 - **Returns**: `SapiV1MarginPriceIndexResponse`
-- **Error**: `SdkException<QueryMarginPriceIndexMarketDataError>` — **Case A (typed)**
+- **Error**: `ApiException<QueryMarginPriceIndexMarketDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `QueryMarginPriceIndexMarketDataRequest` | `Requests/Margin/QueryMarginPriceIndexMarketDataRequest.cs` |
 | `SapiV1MarginPriceIndexResponse` | `Models/SapiV1MarginPriceIndexResponse.cs` |
 | `QueryMarginPriceIndexMarketDataError` | `Errors/QueryMarginPriceIndexMarketDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -786,16 +818,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### QueryMaxBorrowUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `QueryMaxBorrowUserData(string asset, long timestamp, string signature, string? isolatedSymbol, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `isolatedSymbol` — nullable, no default → **must pass explicitly**
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `asset` ← `asset`, `timestamp` ← `timestamp`, `signature` ← `signature`, `isolatedSymbol` ← `isolatedSymbol`, `recvWindow` ← `recvWindow`
+- **Signature**: `QueryMaxBorrowUserData(QueryMaxBorrowUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Asset`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `asset` ← `Asset`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `isolatedSymbol` ← `IsolatedSymbol`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1MarginMaxBorrowableResponse`
-- **Error**: `SdkException<QueryMaxBorrowUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<QueryMaxBorrowUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `QueryMaxBorrowUserDataRequest` | `Requests/Margin/QueryMaxBorrowUserDataRequest.cs` |
 | `SapiV1MarginMaxBorrowableResponse` | `Models/SapiV1MarginMaxBorrowableResponse.cs` |
 | `QueryMaxBorrowUserDataError` | `Errors/QueryMaxBorrowUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -803,16 +835,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### QueryMaxTransferOutAmountUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `QueryMaxTransferOutAmountUserData(string asset, long timestamp, string signature, string? isolatedSymbol, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `isolatedSymbol` — nullable, no default → **must pass explicitly**
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `asset` ← `asset`, `timestamp` ← `timestamp`, `signature` ← `signature`, `isolatedSymbol` ← `isolatedSymbol`, `recvWindow` ← `recvWindow`
+- **Signature**: `QueryMaxTransferOutAmountUserData(QueryMaxTransferOutAmountUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Asset`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `asset` ← `Asset`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `isolatedSymbol` ← `IsolatedSymbol`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1MarginMaxTransferableResponse`
-- **Error**: `SdkException<QueryMaxTransferOutAmountUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<QueryMaxTransferOutAmountUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `QueryMaxTransferOutAmountUserDataRequest` | `Requests/Margin/QueryMaxTransferOutAmountUserDataRequest.cs` |
 | `SapiV1MarginMaxTransferableResponse` | `Models/SapiV1MarginMaxTransferableResponse.cs` |
 | `QueryMaxTransferOutAmountUserDataError` | `Errors/QueryMaxTransferOutAmountUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -820,17 +852,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 ### ToggleBnbBurnOnSpotTradeAndMarginInterestUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `ToggleBnbBurnOnSpotTradeAndMarginInterestUserData(long timestamp, string signature, SpotBnbBurn? spotBnbBurn, InterestBnbBurn? interestBnbBurn, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `spotBnbBurn` — nullable, no default → **must pass explicitly**
-  - `interestBnbBurn` — nullable, no default → **must pass explicitly**
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `spotBNBBurn` ← `spotBnbBurn`, `interestBNBBurn` ← `interestBnbBurn`, `recvWindow` ← `recvWindow`
+- **Signature**: `ToggleBnbBurnOnSpotTradeAndMarginInterestUserData(ToggleBnbBurnOnSpotTradeAndMarginInterestUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `spotBNBBurn` ← `SpotBnbBurn`, `interestBNBBurn` ← `InterestBnbBurn`, `recvWindow` ← `RecvWindow`
 - **Returns**: `BnbBurnStatus`
-- **Error**: `SdkException<ToggleBnbBurnOnSpotTradeAndMarginInterestUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<ToggleBnbBurnOnSpotTradeAndMarginInterestUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `ToggleBnbBurnOnSpotTradeAndMarginInterestUserDataRequest` | `Requests/Margin/ToggleBnbBurnOnSpotTradeAndMarginInterestUserDataRequest.cs` |
 | `SpotBnbBurn` | `Models/Enums/SpotBnbBurn.cs` |
 | `InterestBnbBurn` | `Models/Enums/InterestBnbBurn.cs` |
 | `BnbBurnStatus` | `Models/BnbBurnStatus.cs` |

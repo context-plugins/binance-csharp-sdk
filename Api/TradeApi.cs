@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using BinancePublicSpotApi.Core;
-using BinancePublicSpotApi.Core.Exceptions;
-using BinancePublicSpotApi.Core.Models;
-using BinancePublicSpotApi.Core.Request;
-using BinancePublicSpotApi.Core.Response;
-using BinancePublicSpotApi.Errors;
-using BinancePublicSpotApi.Models;
-using BinancePublicSpotApi.Models.AnyOf;
-using BinancePublicSpotApi.Models.Enums;
+using Binance.Core;
+using Binance.Core.Exceptions;
+using Binance.Core.Models;
+using Binance.Core.Request;
+using Binance.Core.Response;
+using Binance.Errors;
+using Binance.Models;
+using Binance.Models.AnyOf;
+using Binance.Requests.TradeApi;
 
-namespace BinancePublicSpotApi.Api;
+namespace Binance.Api;
 
 /// <summary>
 /// Account/Trade
@@ -34,54 +34,45 @@ public sealed class TradeApi
     /// <summary>
     /// Account Information (USER_DATA)
     /// </summary>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="Account"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="AccountInformationUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="AccountInformationUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Get current account information.
     /// <para>
     /// Weight(IP): 20
     /// </para>
     /// </remarks>
-    public Task<Account> AccountInformationUserData(long timestamp,
-        string signature,
-        long? recvWindow,
+    public Task<Account> AccountInformationUserData(AccountInformationUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/api/v3/account"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/api/v3/account"),
             [],
-            [new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<Account>(),
-            AccountInformationUserDataErrorResponse.Instance,
+            AccountInformationUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Account Trade List (USER_DATA)
     /// </summary>
-    /// <param name="symbol">Trading symbol, e.g. BNBUSDT</param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="orderId">This can only be used in combination with symbol.</param>
-    /// <param name="startTime">UTC timestamp in ms</param>
-    /// <param name="endTime">UTC timestamp in ms</param>
-    /// <param name="fromId">Trade id to fetch from. Default gets most recent trades.</param>
-    /// <param name="limit">Default 500; max 1000.</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="IReadOnlyList{T}"/> of <see cref="MyTrade"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="AccountTradeListUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="AccountTradeListUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Get trades for a specific account and symbol.
     /// <para>
@@ -116,52 +107,40 @@ public sealed class TradeApi
     /// Weight(IP): 20
     /// </para>
     /// </remarks>
-    public Task<IReadOnlyList<MyTrade>> AccountTradeListUserData(string symbol,
-        long timestamp,
-        string signature,
-        long? orderId,
-        long? startTime,
-        long? endTime,
-        long? fromId,
-        int? limit,
-        long? recvWindow,
+    public Task<IReadOnlyList<MyTrade>> AccountTradeListUserData(AccountTradeListUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/api/v3/myTrades"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/api/v3/myTrades"),
             [],
-            [new Param("symbol", symbol),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("orderId", orderId),
-                new Param("startTime", startTime),
-                new Param("endTime", endTime),
-                new Param("fromId", fromId),
-                new Param("limit", limit),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("symbol", request.Symbol),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("orderId", request.OrderId),
+                new Param("startTime", request.StartTime),
+                new Param("endTime", request.EndTime),
+                new Param("fromId", request.FromId),
+                new Param("limit", request.Limit),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<IReadOnlyList<MyTrade>>(),
-            AccountTradeListUserDataErrorResponse.Instance,
+            AccountTradeListUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// All Orders (USER_DATA)
     /// </summary>
-    /// <param name="symbol">Trading symbol, e.g. BNBUSDT</param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="orderId">Order id</param>
-    /// <param name="startTime">UTC timestamp in ms</param>
-    /// <param name="endTime">UTC timestamp in ms</param>
-    /// <param name="limit">Default 500; max 1000.</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="IReadOnlyList{T}"/> of <see cref="OrderDetails"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="AllOrdersUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="AllOrdersUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Get all account orders; active, canceled, or filled..
     /// <list type="bullet">
@@ -173,49 +152,39 @@ public sealed class TradeApi
     /// Weight(IP): 20
     /// </para>
     /// </remarks>
-    public Task<IReadOnlyList<OrderDetails>> AllOrdersUserData(string symbol,
-        long timestamp,
-        string signature,
-        long? orderId,
-        long? startTime,
-        long? endTime,
-        int? limit,
-        long? recvWindow,
+    public Task<IReadOnlyList<OrderDetails>> AllOrdersUserData(AllOrdersUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/api/v3/allOrders"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/api/v3/allOrders"),
             [],
-            [new Param("symbol", symbol),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("orderId", orderId),
-                new Param("startTime", startTime),
-                new Param("endTime", endTime),
-                new Param("limit", limit),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("symbol", request.Symbol),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("orderId", request.OrderId),
+                new Param("startTime", request.StartTime),
+                new Param("endTime", request.EndTime),
+                new Param("limit", request.Limit),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<IReadOnlyList<OrderDetails>>(),
-            AllOrdersUserDataErrorResponse.Instance,
+            AllOrdersUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Cancel OCO (TRADE)
     /// </summary>
-    /// <param name="symbol">Trading symbol, e.g. BNBUSDT</param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="orderListId">Order list id</param>
-    /// <param name="listClientOrderId">A unique Id for the entire orderList</param>
-    /// <param name="newClientOrderId">Used to uniquely identify this cancel. Automatically generated by default</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="OcoOrder"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="CancelOcoTradeError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="CancelOcoTradeError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Cancel an entire Order List
     /// <para>
@@ -225,48 +194,38 @@ public sealed class TradeApi
     /// Weight(IP): 1
     /// </para>
     /// </remarks>
-    public Task<OcoOrder> CancelOcoTrade(string symbol,
-        long timestamp,
-        string signature,
-        long? orderListId,
-        string? listClientOrderId,
-        string? newClientOrderId,
-        long? recvWindow,
+    public Task<OcoOrder> CancelOcoTrade(CancelOcoTradeRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/api/v3/orderList"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/api/v3/orderList"),
             [],
-            [new Param("symbol", symbol),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("orderListId", orderListId),
-                new Param("listClientOrderId", listClientOrderId),
-                new Param("newClientOrderId", newClientOrderId),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("symbol", request.Symbol),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("orderListId", request.OrderListId),
+                new Param("listClientOrderId", request.ListClientOrderId),
+                new Param("newClientOrderId", request.NewClientOrderId),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [new HeaderParam("Idempotency-Key", Guid.NewGuid())],
             HttpMethod.Delete,
             EmptyBody.Instance,
             JsonResponse.Create<OcoOrder>(),
-            CancelOcoTradeErrorResponse.Instance,
+            CancelOcoTradeError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Cancel Order (TRADE)
     /// </summary>
-    /// <param name="symbol">Trading symbol, e.g. BNBUSDT</param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="orderId">Order id</param>
-    /// <param name="origClientOrderId">Order id from client</param>
-    /// <param name="newClientOrderId">Used to uniquely identify this cancel. Automatically generated by default</param>
-    /// <param name="cancelRestrictions"></param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="Order"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="CancelOrderTradeError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="CancelOrderTradeError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Cancel an active order.
     /// <para>
@@ -276,46 +235,39 @@ public sealed class TradeApi
     /// Weight(IP): 1
     /// </para>
     /// </remarks>
-    public Task<Order> CancelOrderTrade(string symbol,
-        long timestamp,
-        string signature,
-        long? orderId,
-        string? origClientOrderId,
-        string? newClientOrderId,
-        CancelRestrictions? cancelRestrictions,
-        long? recvWindow,
+    public Task<Order> CancelOrderTrade(CancelOrderTradeRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/api/v3/order"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/api/v3/order"),
             [],
-            [new Param("symbol", symbol),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("orderId", orderId),
-                new Param("origClientOrderId", origClientOrderId),
-                new Param("newClientOrderId", newClientOrderId),
-                new Param("cancelRestrictions", cancelRestrictions),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("symbol", request.Symbol),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("orderId", request.OrderId),
+                new Param("origClientOrderId", request.OrigClientOrderId),
+                new Param("newClientOrderId", request.NewClientOrderId),
+                new Param("cancelRestrictions", request.CancelRestrictions),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [new HeaderParam("Idempotency-Key", Guid.NewGuid())],
             HttpMethod.Delete,
             EmptyBody.Instance,
             JsonResponse.Create<Order>(),
-            CancelOrderTradeErrorResponse.Instance,
+            CancelOrderTradeError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Cancel all Open Orders on a Symbol (TRADE)
     /// </summary>
-    /// <param name="symbol">Trading symbol, e.g. BNBUSDT</param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="IReadOnlyList{T}"/> of <see cref="ApiV3OpenOrdersResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="CancelAllOpenOrdersOnASymbolTradeError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="CancelAllOpenOrdersOnASymbolTradeError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Cancels all active orders on a symbol.
     /// This includes OCO orders.
@@ -323,57 +275,35 @@ public sealed class TradeApi
     /// Weight(IP): 1
     /// </para>
     /// </remarks>
-    public Task<IReadOnlyList<ApiV3OpenOrdersResponse>> CancelAllOpenOrdersOnASymbolTrade(string symbol,
-        long timestamp,
-        string signature,
-        long? recvWindow,
+    public Task<IReadOnlyList<ApiV3OpenOrdersResponse>> CancelAllOpenOrdersOnASymbolTrade(CancelAllOpenOrdersOnASymbolTradeRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/api/v3/openOrders"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/api/v3/openOrders"),
             [],
-            [new Param("symbol", symbol),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("symbol", request.Symbol),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [new HeaderParam("Idempotency-Key", Guid.NewGuid())],
             HttpMethod.Delete,
             EmptyBody.Instance,
             JsonResponse.Create<IReadOnlyList<ApiV3OpenOrdersResponse>>(),
-            CancelAllOpenOrdersOnASymbolTradeErrorResponse.Instance,
+            CancelAllOpenOrdersOnASymbolTradeError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Cancel an Existing Order and Send a New Order (Trade)
     /// </summary>
-    /// <param name="symbol">Trading symbol, e.g. BNBUSDT</param>
-    /// <param name="side"></param>
-    /// <param name="type">Order type</param>
-    /// <param name="cancelReplaceMode">- <c>STOP_ON_FAILURE</c> If the cancel request fails, the new order placement will not be attempted. - <c>ALLOW_FAILURES</c> If new order placement will be attempted even if cancel request fails.</param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="cancelRestrictions"></param>
-    /// <param name="timeInForce">Order time in force</param>
-    /// <param name="quantity">Order quantity</param>
-    /// <param name="quoteOrderQty">Quote quantity</param>
-    /// <param name="price">Order price</param>
-    /// <param name="cancelNewClientOrderId">Used to uniquely identify this cancel. Automatically generated by default</param>
-    /// <param name="cancelOrigClientOrderId">Either the cancelOrigClientOrderId or cancelOrderId must be provided. If both are provided, cancelOrderId takes precedence.</param>
-    /// <param name="cancelOrderId">Either the cancelOrigClientOrderId or cancelOrderId must be provided. If both are provided, cancelOrderId takes precedence.</param>
-    /// <param name="newClientOrderId">Used to uniquely identify this cancel. Automatically generated by default</param>
-    /// <param name="strategyId"></param>
-    /// <param name="strategyType">The value cannot be less than 1000000.</param>
-    /// <param name="stopPrice">Used with STOP_LOSS, STOP_LOSS_LIMIT, TAKE_PROFIT, and TAKE_PROFIT_LIMIT orders.</param>
-    /// <param name="trailingDelta">Used with STOP_LOSS, STOP_LOSS_LIMIT, TAKE_PROFIT, and TAKE_PROFIT_LIMIT orders.</param>
-    /// <param name="icebergQty">Used with LIMIT, STOP_LOSS_LIMIT, and TAKE_PROFIT_LIMIT to create an iceberg order.</param>
-    /// <param name="newOrderRespType">Set the response JSON. MARKET and LIMIT order types default to FULL, all other orders default to ACK.</param>
-    /// <param name="selfTradePreventionMode">The allowed enums is dependent on what is configured on the symbol. The possible supported values are EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH, NONE.</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="ApiV3OrderCancelReplaceResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="CancelAnExistingOrderAndSendANewOrderTradeError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="CancelAnExistingOrderAndSendANewOrderTradeError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Cancels an existing order and places a new order on the same symbol.
     /// <para>
@@ -386,76 +316,54 @@ public sealed class TradeApi
     /// Weight(IP): 1
     /// </para>
     /// </remarks>
-    public Task<ApiV3OrderCancelReplaceResponse> CancelAnExistingOrderAndSendANewOrderTrade(string symbol,
-        Side side,
-        Type1 type,
-        string cancelReplaceMode,
-        long timestamp,
-        string signature,
-        CancelRestrictions? cancelRestrictions,
-        TimeInForce? timeInForce,
-        double? quantity,
-        double? quoteOrderQty,
-        double? price,
-        string? cancelNewClientOrderId,
-        string? cancelOrigClientOrderId,
-        long? cancelOrderId,
-        string? newClientOrderId,
-        long? strategyId,
-        long? strategyType,
-        double? stopPrice,
-        double? trailingDelta,
-        double? icebergQty,
-        NewOrderRespType? newOrderRespType,
-        SelfTradePreventionMode? selfTradePreventionMode,
-        long? recvWindow,
+    public Task<ApiV3OrderCancelReplaceResponse> CancelAnExistingOrderAndSendANewOrderTrade(CancelAnExistingOrderAndSendANewOrderTradeRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/api/v3/order/cancelReplace"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/api/v3/order/cancelReplace"),
             [],
-            [new Param("symbol", symbol),
-                new Param("side", side),
-                new Param("type", type),
-                new Param("cancelReplaceMode", cancelReplaceMode),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("cancelRestrictions", cancelRestrictions),
-                new Param("timeInForce", timeInForce),
-                new Param("quantity", quantity),
-                new Param("quoteOrderQty", quoteOrderQty),
-                new Param("price", price),
-                new Param("cancelNewClientOrderId", cancelNewClientOrderId),
-                new Param("cancelOrigClientOrderId", cancelOrigClientOrderId),
-                new Param("cancelOrderId", cancelOrderId),
-                new Param("newClientOrderId", newClientOrderId),
-                new Param("strategyId", strategyId),
-                new Param("strategyType", strategyType),
-                new Param("stopPrice", stopPrice),
-                new Param("trailingDelta", trailingDelta),
-                new Param("icebergQty", icebergQty),
-                new Param("newOrderRespType", newOrderRespType),
-                new Param("selfTradePreventionMode", selfTradePreventionMode),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("symbol", request.Symbol),
+                new Param("side", request.Side),
+                new Param("type", request.Type),
+                new Param("cancelReplaceMode", request.CancelReplaceMode),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("cancelRestrictions", request.CancelRestrictions),
+                new Param("timeInForce", request.TimeInForce),
+                new Param("quantity", request.Quantity),
+                new Param("quoteOrderQty", request.QuoteOrderQty),
+                new Param("price", request.Price),
+                new Param("cancelNewClientOrderId", request.CancelNewClientOrderId),
+                new Param("cancelOrigClientOrderId", request.CancelOrigClientOrderId),
+                new Param("cancelOrderId", request.CancelOrderId),
+                new Param("newClientOrderId", request.NewClientOrderId),
+                new Param("strategyId", request.StrategyId),
+                new Param("strategyType", request.StrategyType),
+                new Param("stopPrice", request.StopPrice),
+                new Param("trailingDelta", request.TrailingDelta),
+                new Param("icebergQty", request.IcebergQty),
+                new Param("newOrderRespType", request.NewOrderRespType),
+                new Param("selfTradePreventionMode", request.SelfTradePreventionMode),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [new HeaderParam("Idempotency-Key", Guid.NewGuid())],
             HttpMethod.Post,
             EmptyBody.Instance,
             JsonResponse.Create<ApiV3OrderCancelReplaceResponse>(),
-            CancelAnExistingOrderAndSendANewOrderTradeErrorResponse.Instance,
+            CancelAnExistingOrderAndSendANewOrderTradeError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Current Open Orders (USER_DATA)
     /// </summary>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="symbol">Trading symbol, e.g. BNBUSDT</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="IReadOnlyList{T}"/> of <see cref="OrderDetails"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="CurrentOpenOrdersUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="CurrentOpenOrdersUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Get all open orders on a symbol. Careful when accessing this with no symbol.
     /// <para>
@@ -464,52 +372,35 @@ public sealed class TradeApi
     /// - <c>80</c> when the symbol parameter is omitted;
     /// </para>
     /// </remarks>
-    public Task<IReadOnlyList<OrderDetails>> CurrentOpenOrdersUserData(long timestamp,
-        string signature,
-        string? symbol,
-        long? recvWindow,
+    public Task<IReadOnlyList<OrderDetails>> CurrentOpenOrdersUserData(CurrentOpenOrdersUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/api/v3/openOrders"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/api/v3/openOrders"),
             [],
-            [new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("symbol", symbol),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("symbol", request.Symbol),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<IReadOnlyList<OrderDetails>>(),
-            CurrentOpenOrdersUserDataErrorResponse.Instance,
+            CurrentOpenOrdersUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// New Order (TRADE)
     /// </summary>
-    /// <param name="symbol">Trading symbol, e.g. BNBUSDT</param>
-    /// <param name="side"></param>
-    /// <param name="type">Order type</param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="timeInForce">Order time in force</param>
-    /// <param name="quantity">Order quantity</param>
-    /// <param name="quoteOrderQty">Quote quantity</param>
-    /// <param name="price">Order price</param>
-    /// <param name="newClientOrderId">Used to uniquely identify this cancel. Automatically generated by default</param>
-    /// <param name="strategyId"></param>
-    /// <param name="strategyType">The value cannot be less than 1000000.</param>
-    /// <param name="stopPrice">Used with STOP_LOSS, STOP_LOSS_LIMIT, TAKE_PROFIT, and TAKE_PROFIT_LIMIT orders.</param>
-    /// <param name="trailingDelta">Used with STOP_LOSS, STOP_LOSS_LIMIT, TAKE_PROFIT, and TAKE_PROFIT_LIMIT orders.</param>
-    /// <param name="icebergQty">Used with LIMIT, STOP_LOSS_LIMIT, and TAKE_PROFIT_LIMIT to create an iceberg order.</param>
-    /// <param name="newOrderRespType">Set the response JSON. MARKET and LIMIT order types default to FULL, all other orders default to ACK.</param>
-    /// <param name="selfTradePreventionMode">The allowed enums is dependent on what is configured on the symbol. The possible supported values are EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH, NONE.</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="ApiV3OrderResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="NewOrderTradeError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="NewOrderTradeError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Send in a new order.
     /// <list type="bullet">
@@ -534,88 +425,49 @@ public sealed class TradeApi
     /// Weight(IP): 1
     /// </para>
     /// </remarks>
-    public Task<ApiV3OrderResponse> NewOrderTrade(string symbol,
-        Side side,
-        Type1 type,
-        long timestamp,
-        string signature,
-        TimeInForce? timeInForce,
-        double? quantity,
-        double? quoteOrderQty,
-        double? price,
-        string? newClientOrderId,
-        long? strategyId,
-        long? strategyType,
-        double? stopPrice,
-        double? trailingDelta,
-        double? icebergQty,
-        NewOrderRespType? newOrderRespType,
-        SelfTradePreventionMode? selfTradePreventionMode,
-        long? recvWindow,
+    public Task<ApiV3OrderResponse> NewOrderTrade(NewOrderTradeRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/api/v3/order"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/api/v3/order"),
             [],
-            [new Param("symbol", symbol),
-                new Param("side", side),
-                new Param("type", type),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("timeInForce", timeInForce),
-                new Param("quantity", quantity),
-                new Param("quoteOrderQty", quoteOrderQty),
-                new Param("price", price),
-                new Param("newClientOrderId", newClientOrderId),
-                new Param("strategyId", strategyId),
-                new Param("strategyType", strategyType),
-                new Param("stopPrice", stopPrice),
-                new Param("trailingDelta", trailingDelta),
-                new Param("icebergQty", icebergQty),
-                new Param("newOrderRespType", newOrderRespType),
-                new Param("selfTradePreventionMode", selfTradePreventionMode),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("symbol", request.Symbol),
+                new Param("side", request.Side),
+                new Param("type", request.Type),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("timeInForce", request.TimeInForce),
+                new Param("quantity", request.Quantity),
+                new Param("quoteOrderQty", request.QuoteOrderQty),
+                new Param("price", request.Price),
+                new Param("newClientOrderId", request.NewClientOrderId),
+                new Param("strategyId", request.StrategyId),
+                new Param("strategyType", request.StrategyType),
+                new Param("stopPrice", request.StopPrice),
+                new Param("trailingDelta", request.TrailingDelta),
+                new Param("icebergQty", request.IcebergQty),
+                new Param("newOrderRespType", request.NewOrderRespType),
+                new Param("selfTradePreventionMode", request.SelfTradePreventionMode),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [new HeaderParam("Idempotency-Key", Guid.NewGuid())],
             HttpMethod.Post,
             EmptyBody.Instance,
             JsonResponse.Create<ApiV3OrderResponse>(),
-            NewOrderTradeErrorResponse.Instance,
+            NewOrderTradeError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// New Order List - OTO (TRADE)
     /// </summary>
-    /// <param name="symbol">Trading symbol, e.g. BNBUSDT</param>
-    /// <param name="workingType">Supported values: LIMIT,LIMIT_MAKER</param>
-    /// <param name="workingSide">BUY,SELL</param>
-    /// <param name="workingPrice"></param>
-    /// <param name="workingQuantity">Sets the quantity for the working order.</param>
-    /// <param name="workingIcebergQty">This can only be used if workingTimeInForce is GTC.</param>
-    /// <param name="pendingType">Supported values: Order Types Note that MARKET orders using quoteOrderQty are not supported.</param>
-    /// <param name="pendingSide">BUY,SELL</param>
-    /// <param name="pendingQuantity">Sets the quantity for the pending order.</param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="listClientOrderId">Arbitrary unique ID among open order lists. Automatically generated if not sent. A new order list with the same <c>listClientOrderId</c> is accepted only when the previous one is filled or completely expired. <c>listClientOrderId</c> is distinct from the <c>workingClientOrderId</c> and the <c>pendingClientOrderId</c>.</param>
-    /// <param name="newOrderRespType">Set the response JSON.</param>
-    /// <param name="selfTradePreventionMode">The allowed enums is dependent on what is configured on the symbol. The possible supported values are EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH, NONE.</param>
-    /// <param name="workingClientOrderId">Arbitrary unique ID among open orders for the working order. Automatically generated if not sent.</param>
-    /// <param name="workingTimeInForce">GTC, IOC, FOK</param>
-    /// <param name="workingStrategyId">Arbitrary numeric value identifying the working order within an order strategy.</param>
-    /// <param name="workingStrategyType">Arbitrary numeric value identifying the working order strategy. Values smaller than 1000000 are reserved and cannot be used.</param>
-    /// <param name="pendingClientOrderId">Arbitrary unique ID among open orders for the pending order. Automatically generated if not sent.</param>
-    /// <param name="pendingPrice"></param>
-    /// <param name="pendingStopPrice"></param>
-    /// <param name="pendingTrailingDelta"></param>
-    /// <param name="pendingIcebergQty">This can only be used if pendingTimeInForce is GTC.</param>
-    /// <param name="pendingTimeInForce">GTC, IOC, FOK</param>
-    /// <param name="pendingStrategyId">Arbitrary numeric value identifying the pending order within an order strategy.</param>
-    /// <param name="pendingStrategyType">Arbitrary numeric value identifying the pending order strategy. Values smaller than 1000000 are reserved and cannot be used.</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="ApiV3OrderListOtoResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="NewOrderListOtoTradeError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="NewOrderListOtoTradeError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Places an <c>OTO</c>.
     /// - An <c>OTO</c> (One-Triggers-the-Other) is an order list comprised of 2 orders.
@@ -628,114 +480,57 @@ public sealed class TradeApi
     /// Weight: 1
     /// </para>
     /// </remarks>
-    public Task<ApiV3OrderListOtoResponse> NewOrderListOtoTrade(string symbol,
-        WorkingType workingType,
-        WorkingSide workingSide,
-        double workingPrice,
-        double workingQuantity,
-        double workingIcebergQty,
-        PendingType pendingType,
-        PendingSide pendingSide,
-        double pendingQuantity,
-        long timestamp,
-        string signature,
-        string? listClientOrderId,
-        NewOrderRespType? newOrderRespType,
-        SelfTradePreventionMode? selfTradePreventionMode,
-        string? workingClientOrderId,
-        WorkingTimeInForce? workingTimeInForce,
-        double? workingStrategyId,
-        long? workingStrategyType,
-        string? pendingClientOrderId,
-        double? pendingPrice,
-        double? pendingStopPrice,
-        double? pendingTrailingDelta,
-        double? pendingIcebergQty,
-        PendingTimeInForce? pendingTimeInForce,
-        double? pendingStrategyId,
-        long? pendingStrategyType,
+    public Task<ApiV3OrderListOtoResponse> NewOrderListOtoTrade(NewOrderListOtoTradeRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/api/v3/orderList/oto"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/api/v3/orderList/oto"),
             [],
-            [new Param("symbol", symbol),
-                new Param("workingType", workingType),
-                new Param("workingSide", workingSide),
-                new Param("workingPrice", workingPrice),
-                new Param("workingQuantity", workingQuantity),
-                new Param("workingIcebergQty", workingIcebergQty),
-                new Param("pendingType", pendingType),
-                new Param("pendingSide", pendingSide),
-                new Param("pendingQuantity", pendingQuantity),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("listClientOrderId", listClientOrderId),
-                new Param("newOrderRespType", newOrderRespType),
-                new Param("selfTradePreventionMode", selfTradePreventionMode),
-                new Param("workingClientOrderId", workingClientOrderId),
-                new Param("workingTimeInForce", workingTimeInForce),
-                new Param("workingStrategyId", workingStrategyId),
-                new Param("workingStrategyType", workingStrategyType),
-                new Param("pendingClientOrderId", pendingClientOrderId),
-                new Param("pendingPrice", pendingPrice),
-                new Param("pendingStopPrice", pendingStopPrice),
-                new Param("pendingTrailingDelta", pendingTrailingDelta),
-                new Param("pendingIcebergQty", pendingIcebergQty),
-                new Param("pendingTimeInForce", pendingTimeInForce),
-                new Param("pendingStrategyId", pendingStrategyId),
-                new Param("pendingStrategyType", pendingStrategyType)],
+            [
+                new Param("symbol", request.Symbol),
+                new Param("workingType", request.WorkingType),
+                new Param("workingSide", request.WorkingSide),
+                new Param("workingPrice", request.WorkingPrice),
+                new Param("workingQuantity", request.WorkingQuantity),
+                new Param("workingIcebergQty", request.WorkingIcebergQty),
+                new Param("pendingType", request.PendingType),
+                new Param("pendingSide", request.PendingSide),
+                new Param("pendingQuantity", request.PendingQuantity),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("listClientOrderId", request.ListClientOrderId),
+                new Param("newOrderRespType", request.NewOrderRespType),
+                new Param("selfTradePreventionMode", request.SelfTradePreventionMode),
+                new Param("workingClientOrderId", request.WorkingClientOrderId),
+                new Param("workingTimeInForce", request.WorkingTimeInForce),
+                new Param("workingStrategyId", request.WorkingStrategyId),
+                new Param("workingStrategyType", request.WorkingStrategyType),
+                new Param("pendingClientOrderId", request.PendingClientOrderId),
+                new Param("pendingPrice", request.PendingPrice),
+                new Param("pendingStopPrice", request.PendingStopPrice),
+                new Param("pendingTrailingDelta", request.PendingTrailingDelta),
+                new Param("pendingIcebergQty", request.PendingIcebergQty),
+                new Param("pendingTimeInForce", request.PendingTimeInForce),
+                new Param("pendingStrategyId", request.PendingStrategyId),
+                new Param("pendingStrategyType", request.PendingStrategyType),
+            ],
             [new HeaderParam("Idempotency-Key", Guid.NewGuid())],
             HttpMethod.Post,
             EmptyBody.Instance,
             JsonResponse.Create<ApiV3OrderListOtoResponse>(),
-            NewOrderListOtoTradeErrorResponse.Instance,
+            NewOrderListOtoTradeError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// New Order List - OTOCO (TRADE)
     /// </summary>
-    /// <param name="symbol">Trading symbol, e.g. BNBUSDT</param>
-    /// <param name="workingType">Supported values: LIMIT,LIMIT_MAKER</param>
-    /// <param name="workingSide">BUY,SELL</param>
-    /// <param name="workingPrice"></param>
-    /// <param name="workingQuantity">Sets the quantity for the working order.</param>
-    /// <param name="workingIcebergQty">This can only be used if workingTimeInForce is GTC.</param>
-    /// <param name="pendingSide">BUY,SELL</param>
-    /// <param name="pendingQuantity">Sets the quantity for the pending order.</param>
-    /// <param name="pendingAboveType">Supported values: LIMIT_MAKER, STOP_LOSS, and STOP_LOSS_LIMIT</param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="listClientOrderId">Arbitrary unique ID among open order lists. Automatically generated if not sent. A new order list with the same <c>listClientOrderId</c> is accepted only when the previous one is filled or completely expired. <c>listClientOrderId</c> is distinct from the <c>workingClientOrderId</c> and the <c>pendingClientOrderId</c>.</param>
-    /// <param name="newOrderRespType">Set the response JSON.</param>
-    /// <param name="selfTradePreventionMode">The allowed enums is dependent on what is configured on the symbol. The possible supported values are EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH, NONE.</param>
-    /// <param name="workingClientOrderId">Arbitrary unique ID among open orders for the working order. Automatically generated if not sent.</param>
-    /// <param name="workingTimeInForce">GTC, IOC, FOK</param>
-    /// <param name="workingStrategyId">Arbitrary numeric value identifying the working order within an order strategy.</param>
-    /// <param name="workingStrategyType">Arbitrary numeric value identifying the working order strategy. Values smaller than 1000000 are reserved and cannot be used.</param>
-    /// <param name="pendingAboveClientOrderId">Arbitrary unique ID among open orders for the pending above order. Automatically generated if not sent.</param>
-    /// <param name="pendingAbovePrice"></param>
-    /// <param name="pendingAboveStopPrice"></param>
-    /// <param name="pendingAboveTrailingDelta"></param>
-    /// <param name="pendingAboveIcebergQty">This can only be used if pendingAboveTimeInForce is GTC.</param>
-    /// <param name="pendingAboveTimeInForce"></param>
-    /// <param name="pendingAboveStrategyId">Arbitrary numeric value identifying the pending above order within an order strategy.</param>
-    /// <param name="pendingAboveStrategyType">Arbitrary numeric value identifying the pending above order strategy. Values smaller than 1000000 are reserved and cannot be used.</param>
-    /// <param name="pendingBelowType">Supported values: LIMIT_MAKER, STOP_LOSS, and STOP_LOSS_LIMIT</param>
-    /// <param name="pendingBelowClientOrderId">Arbitrary unique ID among open orders for the pending below order. Automatically generated if not sent.</param>
-    /// <param name="pendingBelowPrice"></param>
-    /// <param name="pendingBelowStopPrice"></param>
-    /// <param name="pendingBelowTrailingDelta"></param>
-    /// <param name="pendingBelowIcebergQty">This can only be used if pendingBelowTimeInForce is GTC.</param>
-    /// <param name="pendingBelowTimeInForce"></param>
-    /// <param name="pendingBelowStrategyId">Arbitrary numeric value identifying the pending below order within an order strategy.</param>
-    /// <param name="pendingBelowStrategyType">Arbitrary numeric value identifying the pending below order strategy. Values smaller than 1000000 are reserved and cannot be used.</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="ApiV3OrderListOtocoResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="NewOrderListOtocoTradeError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="NewOrderListOtocoTradeError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Place an <c>OTOCO</c>.
     /// - An <c>OTOCO</c> (One-Triggers-One-Cancels-the-Other) is an order list comprised of 3 orders.
@@ -748,125 +543,67 @@ public sealed class TradeApi
     /// Weight: 1
     /// </para>
     /// </remarks>
-    public Task<ApiV3OrderListOtocoResponse> NewOrderListOtocoTrade(string symbol,
-        WorkingType workingType,
-        WorkingSide workingSide,
-        double workingPrice,
-        double workingQuantity,
-        double workingIcebergQty,
-        PendingSide pendingSide,
-        double pendingQuantity,
-        PendingAboveType pendingAboveType,
-        long timestamp,
-        string signature,
-        string? listClientOrderId,
-        NewOrderRespType? newOrderRespType,
-        SelfTradePreventionMode? selfTradePreventionMode,
-        string? workingClientOrderId,
-        WorkingTimeInForce? workingTimeInForce,
-        double? workingStrategyId,
-        long? workingStrategyType,
-        string? pendingAboveClientOrderId,
-        double? pendingAbovePrice,
-        double? pendingAboveStopPrice,
-        double? pendingAboveTrailingDelta,
-        double? pendingAboveIcebergQty,
-        PendingAboveTimeInForce? pendingAboveTimeInForce,
-        double? pendingAboveStrategyId,
-        long? pendingAboveStrategyType,
-        PendingBelowType? pendingBelowType,
-        string? pendingBelowClientOrderId,
-        double? pendingBelowPrice,
-        double? pendingBelowStopPrice,
-        double? pendingBelowTrailingDelta,
-        double? pendingBelowIcebergQty,
-        PendingBelowTimeInForce? pendingBelowTimeInForce,
-        double? pendingBelowStrategyId,
-        long? pendingBelowStrategyType,
-        long? recvWindow,
+    public Task<ApiV3OrderListOtocoResponse> NewOrderListOtocoTrade(NewOrderListOtocoTradeRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/api/v3/orderList/otoco"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/api/v3/orderList/otoco"),
             [],
-            [new Param("symbol", symbol),
-                new Param("workingType", workingType),
-                new Param("workingSide", workingSide),
-                new Param("workingPrice", workingPrice),
-                new Param("workingQuantity", workingQuantity),
-                new Param("workingIcebergQty", workingIcebergQty),
-                new Param("pendingSide", pendingSide),
-                new Param("pendingQuantity", pendingQuantity),
-                new Param("pendingAboveType", pendingAboveType),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("listClientOrderId", listClientOrderId),
-                new Param("newOrderRespType", newOrderRespType),
-                new Param("selfTradePreventionMode", selfTradePreventionMode),
-                new Param("workingClientOrderId", workingClientOrderId),
-                new Param("workingTimeInForce", workingTimeInForce),
-                new Param("workingStrategyId", workingStrategyId),
-                new Param("workingStrategyType", workingStrategyType),
-                new Param("pendingAboveClientOrderId", pendingAboveClientOrderId),
-                new Param("pendingAbovePrice", pendingAbovePrice),
-                new Param("pendingAboveStopPrice", pendingAboveStopPrice),
-                new Param("pendingAboveTrailingDelta", pendingAboveTrailingDelta),
-                new Param("pendingAboveIcebergQty", pendingAboveIcebergQty),
-                new Param("pendingAboveTimeInForce", pendingAboveTimeInForce),
-                new Param("pendingAboveStrategyId", pendingAboveStrategyId),
-                new Param("pendingAboveStrategyType", pendingAboveStrategyType),
-                new Param("pendingBelowType", pendingBelowType),
-                new Param("pendingBelowClientOrderId", pendingBelowClientOrderId),
-                new Param("pendingBelowPrice", pendingBelowPrice),
-                new Param("pendingBelowStopPrice", pendingBelowStopPrice),
-                new Param("pendingBelowTrailingDelta", pendingBelowTrailingDelta),
-                new Param("pendingBelowIcebergQty", pendingBelowIcebergQty),
-                new Param("pendingBelowTimeInForce", pendingBelowTimeInForce),
-                new Param("pendingBelowStrategyId", pendingBelowStrategyId),
-                new Param("pendingBelowStrategyType", pendingBelowStrategyType),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("symbol", request.Symbol),
+                new Param("workingType", request.WorkingType),
+                new Param("workingSide", request.WorkingSide),
+                new Param("workingPrice", request.WorkingPrice),
+                new Param("workingQuantity", request.WorkingQuantity),
+                new Param("workingIcebergQty", request.WorkingIcebergQty),
+                new Param("pendingSide", request.PendingSide),
+                new Param("pendingQuantity", request.PendingQuantity),
+                new Param("pendingAboveType", request.PendingAboveType),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("listClientOrderId", request.ListClientOrderId),
+                new Param("newOrderRespType", request.NewOrderRespType),
+                new Param("selfTradePreventionMode", request.SelfTradePreventionMode),
+                new Param("workingClientOrderId", request.WorkingClientOrderId),
+                new Param("workingTimeInForce", request.WorkingTimeInForce),
+                new Param("workingStrategyId", request.WorkingStrategyId),
+                new Param("workingStrategyType", request.WorkingStrategyType),
+                new Param("pendingAboveClientOrderId", request.PendingAboveClientOrderId),
+                new Param("pendingAbovePrice", request.PendingAbovePrice),
+                new Param("pendingAboveStopPrice", request.PendingAboveStopPrice),
+                new Param("pendingAboveTrailingDelta", request.PendingAboveTrailingDelta),
+                new Param("pendingAboveIcebergQty", request.PendingAboveIcebergQty),
+                new Param("pendingAboveTimeInForce", request.PendingAboveTimeInForce),
+                new Param("pendingAboveStrategyId", request.PendingAboveStrategyId),
+                new Param("pendingAboveStrategyType", request.PendingAboveStrategyType),
+                new Param("pendingBelowType", request.PendingBelowType),
+                new Param("pendingBelowClientOrderId", request.PendingBelowClientOrderId),
+                new Param("pendingBelowPrice", request.PendingBelowPrice),
+                new Param("pendingBelowStopPrice", request.PendingBelowStopPrice),
+                new Param("pendingBelowTrailingDelta", request.PendingBelowTrailingDelta),
+                new Param("pendingBelowIcebergQty", request.PendingBelowIcebergQty),
+                new Param("pendingBelowTimeInForce", request.PendingBelowTimeInForce),
+                new Param("pendingBelowStrategyId", request.PendingBelowStrategyId),
+                new Param("pendingBelowStrategyType", request.PendingBelowStrategyType),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [new HeaderParam("Idempotency-Key", Guid.NewGuid())],
             HttpMethod.Post,
             EmptyBody.Instance,
             JsonResponse.Create<ApiV3OrderListOtocoResponse>(),
-            NewOrderListOtocoTradeErrorResponse.Instance,
+            NewOrderListOtocoTradeError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// New Order list - OCO (TRADE)
     /// </summary>
-    /// <param name="symbol">Trading symbol, e.g. BNBUSDT</param>
-    /// <param name="side"></param>
-    /// <param name="quantity"></param>
-    /// <param name="aboveType">Supported values : <c>STOP_LOSS_LIMIT</c>, <c>STOP_LOSS</c>, <c>LIMIT_MAKER</c></param>
-    /// <param name="belowType">Supported values : <c>STOP_LOSS_LIMIT</c>, <c>STOP_LOSS</c>, <c>LIMIT_MAKER</c></param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="listClientOrderId">Arbitrary unique ID among open order lists. Automatically generated if not sent. A new order list with the same <c>listClientOrderId</c> is accepted only when the previous one is filled or completely expired. <c>listClientOrderId</c> is distinct from the <c>aboveClientOrderId</c> and the <c>belowCLientOrderId</c>.</param>
-    /// <param name="aboveClientOrderId">Arbitrary unique ID among open orders for the above order. Automatically generated if not sent</param>
-    /// <param name="aboveIcebergQty">Note that this can only be used if <c>aboveTimeInForce</c> is <c>GTC</c>.</param>
-    /// <param name="abovePrice"></param>
-    /// <param name="aboveStopPrice">Can be used if <c>aboveType</c> is <c>STOP_LOSS</c> or <c>STOP_LOSS_LIMIT</c>. Either <c>aboveStopPrice</c> or <c>aboveTrailingDelta</c> or both, must be specified.</param>
-    /// <param name="aboveTrailingDelta"></param>
-    /// <param name="aboveTimeInForce">Required if the <c>aboveType</c> is <c>STOP_LOSS_LIMIT</c>.</param>
-    /// <param name="aboveStrategyId">Arbitrary numeric value identifying the above order within an order strategy.</param>
-    /// <param name="aboveStrategyType">Arbitrary numeric value identifying the above order strategy. Values smaller than 1000000 are reserved and cannot be used.</param>
-    /// <param name="belowClientOrderId">Arbitrary unique ID among open orders for the below order. Automatically generated if not sent</param>
-    /// <param name="belowIcebergQty">Note that this can only be used if <c>belowTimeInForce</c> is <c>GTC</c>.</param>
-    /// <param name="belowPrice">Can be used if <c>belowType</c> is <c>STOP_LOSS_LIMIT</c> or <c>LIMIT_MAKER</c> to specify the limit price.</param>
-    /// <param name="belowStopPrice">Can be used if <c>belowType</c> is <c>STOP_LOSS</c> or <c>STOP_LOSS_LIMIT</c>. Either <c>belowStopPrice</c> or <c>belowTrailingDelta</c> or both, must be specified.</param>
-    /// <param name="belowTrailingDelta"></param>
-    /// <param name="belowTimeInForce">Required if the <c>belowType</c> is <c>STOP_LOSS_LIMIT</c>.</param>
-    /// <param name="belowStrategyId">Arbitrary numeric value identifying the below order within an order strategy.</param>
-    /// <param name="belowStrategyType">Arbitrary numeric value identifying the below order strategy. Values smaller than 1000000 are reserved and cannot be used.</param>
-    /// <param name="newOrderRespType">Set the response JSON. MARKET and LIMIT order types default to FULL, all other orders default to ACK.</param>
-    /// <param name="selfTradePreventionMode">The allowed enums is dependent on what is configured on the symbol. The possible supported values are EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH, NONE.</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="ApiV3OrderListOcoResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="NewOrderListOcoTradeError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="NewOrderListOcoTradeError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Send in an one-cancels-the-other (OCO) pair, where activation of one order immediately cancels the other.
     /// <list type="bullet">
@@ -884,157 +621,101 @@ public sealed class TradeApi
     /// Weight(IP): 1
     /// </para>
     /// </remarks>
-    public Task<ApiV3OrderListOcoResponse> NewOrderListOcoTrade(string symbol,
-        Side side,
-        double quantity,
-        string aboveType,
-        string belowType,
-        long timestamp,
-        string signature,
-        string? listClientOrderId,
-        string? aboveClientOrderId,
-        double? aboveIcebergQty,
-        double? abovePrice,
-        double? aboveStopPrice,
-        double? aboveTrailingDelta,
-        AboveTimeInForce? aboveTimeInForce,
-        double? aboveStrategyId,
-        long? aboveStrategyType,
-        string? belowClientOrderId,
-        double? belowIcebergQty,
-        double? belowPrice,
-        double? belowStopPrice,
-        double? belowTrailingDelta,
-        BelowTimeInForce? belowTimeInForce,
-        double? belowStrategyId,
-        long? belowStrategyType,
-        NewOrderRespType? newOrderRespType,
-        SelfTradePreventionMode? selfTradePreventionMode,
-        long? recvWindow,
+    public Task<ApiV3OrderListOcoResponse> NewOrderListOcoTrade(NewOrderListOcoTradeRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/api/v3/orderList/oco"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/api/v3/orderList/oco"),
             [],
-            [new Param("symbol", symbol),
-                new Param("side", side),
-                new Param("quantity", quantity),
-                new Param("aboveType", aboveType),
-                new Param("belowType", belowType),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("listClientOrderId", listClientOrderId),
-                new Param("aboveClientOrderId", aboveClientOrderId),
-                new Param("aboveIcebergQty", aboveIcebergQty),
-                new Param("abovePrice", abovePrice),
-                new Param("aboveStopPrice", aboveStopPrice),
-                new Param("aboveTrailingDelta", aboveTrailingDelta),
-                new Param("aboveTimeInForce", aboveTimeInForce),
-                new Param("aboveStrategyId", aboveStrategyId),
-                new Param("aboveStrategyType", aboveStrategyType),
-                new Param("belowClientOrderId", belowClientOrderId),
-                new Param("belowIcebergQty", belowIcebergQty),
-                new Param("belowPrice", belowPrice),
-                new Param("belowStopPrice", belowStopPrice),
-                new Param("belowTrailingDelta", belowTrailingDelta),
-                new Param("belowTimeInForce", belowTimeInForce),
-                new Param("belowStrategyId", belowStrategyId),
-                new Param("belowStrategyType", belowStrategyType),
-                new Param("newOrderRespType", newOrderRespType),
-                new Param("selfTradePreventionMode", selfTradePreventionMode),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("symbol", request.Symbol),
+                new Param("side", request.Side),
+                new Param("quantity", request.Quantity),
+                new Param("aboveType", request.AboveType),
+                new Param("belowType", request.BelowType),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("listClientOrderId", request.ListClientOrderId),
+                new Param("aboveClientOrderId", request.AboveClientOrderId),
+                new Param("aboveIcebergQty", request.AboveIcebergQty),
+                new Param("abovePrice", request.AbovePrice),
+                new Param("aboveStopPrice", request.AboveStopPrice),
+                new Param("aboveTrailingDelta", request.AboveTrailingDelta),
+                new Param("aboveTimeInForce", request.AboveTimeInForce),
+                new Param("aboveStrategyId", request.AboveStrategyId),
+                new Param("aboveStrategyType", request.AboveStrategyType),
+                new Param("belowClientOrderId", request.BelowClientOrderId),
+                new Param("belowIcebergQty", request.BelowIcebergQty),
+                new Param("belowPrice", request.BelowPrice),
+                new Param("belowStopPrice", request.BelowStopPrice),
+                new Param("belowTrailingDelta", request.BelowTrailingDelta),
+                new Param("belowTimeInForce", request.BelowTimeInForce),
+                new Param("belowStrategyId", request.BelowStrategyId),
+                new Param("belowStrategyType", request.BelowStrategyType),
+                new Param("newOrderRespType", request.NewOrderRespType),
+                new Param("selfTradePreventionMode", request.SelfTradePreventionMode),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [new HeaderParam("Idempotency-Key", Guid.NewGuid())],
             HttpMethod.Post,
             EmptyBody.Instance,
             JsonResponse.Create<ApiV3OrderListOcoResponse>(),
-            NewOrderListOcoTradeErrorResponse.Instance,
+            NewOrderListOcoTradeError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// New order using SOR (TRADE)
     /// </summary>
-    /// <param name="symbol">Trading symbol, e.g. BNBUSDT</param>
-    /// <param name="side"></param>
-    /// <param name="type">Order type</param>
-    /// <param name="quantity"></param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="timeInForce">Order time in force</param>
-    /// <param name="price"></param>
-    /// <param name="newClientOrderId">Used to uniquely identify this cancel. Automatically generated by default</param>
-    /// <param name="strategyId"></param>
-    /// <param name="strategyType">The value cannot be less than 1000000.</param>
-    /// <param name="icebergQty">Used with LIMIT, STOP_LOSS_LIMIT, and TAKE_PROFIT_LIMIT to create an iceberg order.</param>
-    /// <param name="newOrderRespType">Set the response JSON. MARKET and LIMIT order types default to FULL, all other orders default to ACK.</param>
-    /// <param name="selfTradePreventionMode">The allowed enums is dependent on what is configured on the symbol. The possible supported values are EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH, NONE.</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="ApiV3SorOrderResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="NewOrderUsingSorTradeError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="NewOrderUsingSorTradeError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Weight(IP): 6
     /// </remarks>
-    public Task<ApiV3SorOrderResponse> NewOrderUsingSorTrade(string symbol,
-        Side side,
-        Type1 type,
-        double quantity,
-        long timestamp,
-        string signature,
-        TimeInForce? timeInForce,
-        double? price,
-        string? newClientOrderId,
-        long? strategyId,
-        long? strategyType,
-        double? icebergQty,
-        NewOrderRespType? newOrderRespType,
-        SelfTradePreventionMode? selfTradePreventionMode,
-        long? recvWindow,
+    public Task<ApiV3SorOrderResponse> NewOrderUsingSorTrade(NewOrderUsingSorTradeRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/api/v3/sor/order"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/api/v3/sor/order"),
             [],
-            [new Param("symbol", symbol),
-                new Param("side", side),
-                new Param("type", type),
-                new Param("quantity", quantity),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("timeInForce", timeInForce),
-                new Param("price", price),
-                new Param("newClientOrderId", newClientOrderId),
-                new Param("strategyId", strategyId),
-                new Param("strategyType", strategyType),
-                new Param("icebergQty", icebergQty),
-                new Param("newOrderRespType", newOrderRespType),
-                new Param("selfTradePreventionMode", selfTradePreventionMode),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("symbol", request.Symbol),
+                new Param("side", request.Side),
+                new Param("type", request.Type),
+                new Param("quantity", request.Quantity),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("timeInForce", request.TimeInForce),
+                new Param("price", request.Price),
+                new Param("newClientOrderId", request.NewClientOrderId),
+                new Param("strategyId", request.StrategyId),
+                new Param("strategyType", request.StrategyType),
+                new Param("icebergQty", request.IcebergQty),
+                new Param("newOrderRespType", request.NewOrderRespType),
+                new Param("selfTradePreventionMode", request.SelfTradePreventionMode),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [new HeaderParam("Idempotency-Key", Guid.NewGuid())],
             HttpMethod.Post,
             EmptyBody.Instance,
             JsonResponse.Create<ApiV3SorOrderResponse>(),
-            NewOrderUsingSorTradeErrorResponse.Instance,
+            NewOrderUsingSorTradeError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Query Allocations (USER_DATA)
     /// </summary>
-    /// <param name="symbol">Trading symbol, e.g. BNBUSDT</param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="startTime">UTC timestamp in ms</param>
-    /// <param name="endTime">UTC timestamp in ms</param>
-    /// <param name="fromAllocationId"></param>
-    /// <param name="limit">Default 500; max 1000.</param>
-    /// <param name="orderId">Order id</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="IReadOnlyList{T}"/> of <see cref="ApiV3MyAllocationsResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="QueryAllocationsUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="QueryAllocationsUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Retrieves allocations resulting from SOR order placement.
     /// <para>
@@ -1055,191 +736,175 @@ public sealed class TradeApi
     /// Note: The time between startTime and endTime can't be longer than 24 hours.
     /// </para>
     /// </remarks>
-    public Task<IReadOnlyList<ApiV3MyAllocationsResponse>> QueryAllocationsUserData(string symbol,
-        long timestamp,
-        string signature,
-        long? startTime,
-        long? endTime,
-        long? fromAllocationId,
-        int? limit,
-        long? orderId,
-        long? recvWindow,
+    public Task<IReadOnlyList<ApiV3MyAllocationsResponse>> QueryAllocationsUserData(QueryAllocationsUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/api/v3/myAllocations"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/api/v3/myAllocations"),
             [],
-            [new Param("symbol", symbol),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("startTime", startTime),
-                new Param("endTime", endTime),
-                new Param("fromAllocationId", fromAllocationId),
-                new Param("limit", limit),
-                new Param("orderId", orderId),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("symbol", request.Symbol),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("startTime", request.StartTime),
+                new Param("endTime", request.EndTime),
+                new Param("fromAllocationId", request.FromAllocationId),
+                new Param("limit", request.Limit),
+                new Param("orderId", request.OrderId),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<IReadOnlyList<ApiV3MyAllocationsResponse>>(),
-            QueryAllocationsUserDataErrorResponse.Instance,
+            QueryAllocationsUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Query Commission Rates (USER_DATA)
     /// </summary>
-    /// <param name="symbol">Trading symbol, e.g. BNBUSDT</param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="ApiV3AccountCommissionResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="QueryCommissionRatesUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="QueryCommissionRatesUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Get current account commission rates.
     /// <para>
     /// Weight: 20
     /// </para>
     /// </remarks>
-    public Task<ApiV3AccountCommissionResponse> QueryCommissionRatesUserData(string symbol,
-        long timestamp,
-        string signature,
+    public Task<ApiV3AccountCommissionResponse> QueryCommissionRatesUserData(QueryCommissionRatesUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/api/v3/account/commission"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/api/v3/account/commission"),
             [],
-            [new Param("symbol", symbol), new Param("timestamp", timestamp), new Param("signature", signature)],
+            [
+                new Param("symbol", request.Symbol),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<ApiV3AccountCommissionResponse>(),
-            QueryCommissionRatesUserDataErrorResponse.Instance,
+            QueryCommissionRatesUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Query Current Order Count Usage (TRADE)
     /// </summary>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="IReadOnlyList{T}"/> of <see cref="ApiV3RateLimitOrderResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="QueryCurrentOrderCountUsageTradeError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="QueryCurrentOrderCountUsageTradeError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Displays the user's current order count usage for all intervals.
     /// <para>
     /// Weight(IP): 40
     /// </para>
     /// </remarks>
-    public Task<IReadOnlyList<ApiV3RateLimitOrderResponse>> QueryCurrentOrderCountUsageTrade(long timestamp,
-        string signature,
-        long? recvWindow,
+    public Task<IReadOnlyList<ApiV3RateLimitOrderResponse>> QueryCurrentOrderCountUsageTrade(QueryCurrentOrderCountUsageTradeRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/api/v3/rateLimit/order"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/api/v3/rateLimit/order"),
             [],
-            [new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<IReadOnlyList<ApiV3RateLimitOrderResponse>>(),
-            QueryCurrentOrderCountUsageTradeErrorResponse.Instance,
+            QueryCurrentOrderCountUsageTradeError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Query OCO (USER_DATA)
     /// </summary>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="orderListId">Order list id</param>
-    /// <param name="origClientOrderId">Order id from client</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="ApiV3OrderListResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="QueryOcoUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="QueryOcoUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Retrieves a specific OCO based on provided optional parameters
     /// <para>
     /// Weight(IP): 4
     /// </para>
     /// </remarks>
-    public Task<ApiV3OrderListResponse> QueryOcoUserData(long timestamp,
-        string signature,
-        long? orderListId,
-        string? origClientOrderId,
-        long? recvWindow,
+    public Task<ApiV3OrderListResponse> QueryOcoUserData(QueryOcoUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/api/v3/orderList"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/api/v3/orderList"),
             [],
-            [new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("orderListId", orderListId),
-                new Param("origClientOrderId", origClientOrderId),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("orderListId", request.OrderListId),
+                new Param("origClientOrderId", request.OrigClientOrderId),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<ApiV3OrderListResponse>(),
-            QueryOcoUserDataErrorResponse.Instance,
+            QueryOcoUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Query Open OCO (USER_DATA)
     /// </summary>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="IReadOnlyList{T}"/> of <see cref="ApiV3OpenOrderListResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="QueryOpenOcoUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="QueryOpenOcoUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Weight(IP): 6
     /// </remarks>
-    public Task<IReadOnlyList<ApiV3OpenOrderListResponse>> QueryOpenOcoUserData(long timestamp,
-        string signature,
-        long? recvWindow,
+    public Task<IReadOnlyList<ApiV3OpenOrderListResponse>> QueryOpenOcoUserData(QueryOpenOcoUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/api/v3/openOrderList"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/api/v3/openOrderList"),
             [],
-            [new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<IReadOnlyList<ApiV3OpenOrderListResponse>>(),
-            QueryOpenOcoUserDataErrorResponse.Instance,
+            QueryOpenOcoUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Query Order (USER_DATA)
     /// </summary>
-    /// <param name="symbol">Trading symbol, e.g. BNBUSDT</param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="orderId">Order id</param>
-    /// <param name="origClientOrderId">Order id from client</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="OrderDetails"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="QueryOrderUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="QueryOrderUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Check an order's status.
     /// <list type="bullet">
@@ -1250,46 +915,37 @@ public sealed class TradeApi
     /// Weight(IP): 4
     /// </para>
     /// </remarks>
-    public Task<OrderDetails> QueryOrderUserData(string symbol,
-        long timestamp,
-        string signature,
-        long? orderId,
-        string? origClientOrderId,
-        long? recvWindow,
+    public Task<OrderDetails> QueryOrderUserData(QueryOrderUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/api/v3/order"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/api/v3/order"),
             [],
-            [new Param("symbol", symbol),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("orderId", orderId),
-                new Param("origClientOrderId", origClientOrderId),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("symbol", request.Symbol),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("orderId", request.OrderId),
+                new Param("origClientOrderId", request.OrigClientOrderId),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<OrderDetails>(),
-            QueryOrderUserDataErrorResponse.Instance,
+            QueryOrderUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Query Prevented Matches
     /// </summary>
-    /// <param name="symbol">Trading symbol, e.g. BNBUSDT</param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="preventedMatchId"></param>
-    /// <param name="orderId">Order id</param>
-    /// <param name="fromPreventedMatchId"></param>
-    /// <param name="limit">Default 500; max 1000.</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="IReadOnlyList{T}"/> of <see cref="ApiV3MyPreventedMatchesResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="QueryPreventedMatchesError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="QueryPreventedMatchesError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Displays the list of orders that were expired because of STP.
     /// <para>
@@ -1314,107 +970,77 @@ public sealed class TradeApi
     /// Querying by orderId:               20
     /// </para>
     /// </remarks>
-    public Task<IReadOnlyList<ApiV3MyPreventedMatchesResponse>> QueryPreventedMatches(string symbol,
-        long timestamp,
-        string signature,
-        long? preventedMatchId,
-        long? orderId,
-        long? fromPreventedMatchId,
-        int? limit,
-        long? recvWindow,
+    public Task<IReadOnlyList<ApiV3MyPreventedMatchesResponse>> QueryPreventedMatches(QueryPreventedMatchesRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/api/v3/myPreventedMatches"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/api/v3/myPreventedMatches"),
             [],
-            [new Param("symbol", symbol),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("preventedMatchId", preventedMatchId),
-                new Param("orderId", orderId),
-                new Param("fromPreventedMatchId", fromPreventedMatchId),
-                new Param("limit", limit),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("symbol", request.Symbol),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("preventedMatchId", request.PreventedMatchId),
+                new Param("orderId", request.OrderId),
+                new Param("fromPreventedMatchId", request.FromPreventedMatchId),
+                new Param("limit", request.Limit),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<IReadOnlyList<ApiV3MyPreventedMatchesResponse>>(),
-            QueryPreventedMatchesErrorResponse.Instance,
+            QueryPreventedMatchesError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Query all OCO (USER_DATA)
     /// </summary>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="fromId">Trade id to fetch from. Default gets most recent trades.</param>
-    /// <param name="startTime">UTC timestamp in ms</param>
-    /// <param name="endTime">UTC timestamp in ms</param>
-    /// <param name="limit">Default 500; max 1000.</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="IReadOnlyList{T}"/> of <see cref="ApiV3AllOrderListResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="QueryAllOcoUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="QueryAllOcoUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Retrieves all OCO based on provided optional parameters
     /// <para>
     /// Weight(IP): 20
     /// </para>
     /// </remarks>
-    public Task<IReadOnlyList<ApiV3AllOrderListResponse>> QueryAllOcoUserData(long timestamp,
-        string signature,
-        long? fromId,
-        long? startTime,
-        long? endTime,
-        int? limit,
-        long? recvWindow,
+    public Task<IReadOnlyList<ApiV3AllOrderListResponse>> QueryAllOcoUserData(QueryAllOcoUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/api/v3/allOrderList"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/api/v3/allOrderList"),
             [],
-            [new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("fromId", fromId),
-                new Param("startTime", startTime),
-                new Param("endTime", endTime),
-                new Param("limit", limit),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("fromId", request.FromId),
+                new Param("startTime", request.StartTime),
+                new Param("endTime", request.EndTime),
+                new Param("limit", request.Limit),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<IReadOnlyList<ApiV3AllOrderListResponse>>(),
-            QueryAllOcoUserDataErrorResponse.Instance,
+            QueryAllOcoUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Test New Order (TRADE)
     /// </summary>
-    /// <param name="symbol">Trading symbol, e.g. BNBUSDT</param>
-    /// <param name="side"></param>
-    /// <param name="type">Order type</param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="timeInForce">Order time in force</param>
-    /// <param name="quantity">Order quantity</param>
-    /// <param name="quoteOrderQty">Quote quantity</param>
-    /// <param name="price">Order price</param>
-    /// <param name="newClientOrderId">Used to uniquely identify this cancel. Automatically generated by default</param>
-    /// <param name="strategyId"></param>
-    /// <param name="strategyType">The value cannot be less than 1000000.</param>
-    /// <param name="stopPrice">Used with STOP_LOSS, STOP_LOSS_LIMIT, TAKE_PROFIT, and TAKE_PROFIT_LIMIT orders.</param>
-    /// <param name="trailingDelta">Used with STOP_LOSS, STOP_LOSS_LIMIT, TAKE_PROFIT, and TAKE_PROFIT_LIMIT orders.</param>
-    /// <param name="icebergQty">Used with LIMIT, STOP_LOSS_LIMIT, and TAKE_PROFIT_LIMIT to create an iceberg order.</param>
-    /// <param name="newOrderRespType">Set the response JSON. MARKET and LIMIT order types default to FULL, all other orders default to ACK.</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
-    /// <param name="computeCommissionRates">Default: false</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="object"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="TestNewOrderTradeError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="TestNewOrderTradeError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Test new order creation and signature/recvWindow long.
     /// Creates and validates a new order but does not send it into the matching engine.
@@ -1424,78 +1050,49 @@ public sealed class TradeApi
     ///   - With computeCommissionRates: <c>20</c>
     /// </para>
     /// </remarks>
-    public Task<object> TestNewOrderTrade(string symbol,
-        Side side,
-        Type1 type,
-        long timestamp,
-        string signature,
-        TimeInForce? timeInForce,
-        double? quantity,
-        double? quoteOrderQty,
-        double? price,
-        string? newClientOrderId,
-        long? strategyId,
-        long? strategyType,
-        double? stopPrice,
-        double? trailingDelta,
-        double? icebergQty,
-        NewOrderRespType? newOrderRespType,
-        long? recvWindow,
-        bool? computeCommissionRates,
+    public Task<object> TestNewOrderTrade(TestNewOrderTradeRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/api/v3/order/test"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/api/v3/order/test"),
             [],
-            [new Param("symbol", symbol),
-                new Param("side", side),
-                new Param("type", type),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("timeInForce", timeInForce),
-                new Param("quantity", quantity),
-                new Param("quoteOrderQty", quoteOrderQty),
-                new Param("price", price),
-                new Param("newClientOrderId", newClientOrderId),
-                new Param("strategyId", strategyId),
-                new Param("strategyType", strategyType),
-                new Param("stopPrice", stopPrice),
-                new Param("trailingDelta", trailingDelta),
-                new Param("icebergQty", icebergQty),
-                new Param("newOrderRespType", newOrderRespType),
-                new Param("recvWindow", recvWindow),
-                new Param("computeCommissionRates", computeCommissionRates)],
+            [
+                new Param("symbol", request.Symbol),
+                new Param("side", request.Side),
+                new Param("type", request.Type),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("timeInForce", request.TimeInForce),
+                new Param("quantity", request.Quantity),
+                new Param("quoteOrderQty", request.QuoteOrderQty),
+                new Param("price", request.Price),
+                new Param("newClientOrderId", request.NewClientOrderId),
+                new Param("strategyId", request.StrategyId),
+                new Param("strategyType", request.StrategyType),
+                new Param("stopPrice", request.StopPrice),
+                new Param("trailingDelta", request.TrailingDelta),
+                new Param("icebergQty", request.IcebergQty),
+                new Param("newOrderRespType", request.NewOrderRespType),
+                new Param("recvWindow", request.RecvWindow),
+                new Param("computeCommissionRates", request.ComputeCommissionRates),
+            ],
             [new HeaderParam("Idempotency-Key", Guid.NewGuid())],
             HttpMethod.Post,
             EmptyBody.Instance,
             JsonResponse.Create<object>(),
-            TestNewOrderTradeErrorResponse.Instance,
+            TestNewOrderTradeError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Test new order using SOR (TRADE)
     /// </summary>
-    /// <param name="symbol">Trading symbol, e.g. BNBUSDT</param>
-    /// <param name="side"></param>
-    /// <param name="type">Order type</param>
-    /// <param name="quantity"></param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="timeInForce">Order time in force</param>
-    /// <param name="price"></param>
-    /// <param name="newClientOrderId">Used to uniquely identify this cancel. Automatically generated by default</param>
-    /// <param name="strategyId"></param>
-    /// <param name="strategyType">The value cannot be less than 1000000.</param>
-    /// <param name="icebergQty">Used with LIMIT, STOP_LOSS_LIMIT, and TAKE_PROFIT_LIMIT to create an iceberg order.</param>
-    /// <param name="newOrderRespType">Set the response JSON. MARKET and LIMIT order types default to FULL, all other orders default to ACK.</param>
-    /// <param name="selfTradePreventionMode">The allowed enums is dependent on what is configured on the symbol. The possible supported values are EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH, NONE.</param>
-    /// <param name="computeCommissionRates">Default: false</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="object"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="TestNewOrderUsingSorTradeError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="TestNewOrderUsingSorTradeError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Test new order creation and signature/recvWindow using smart order routing (SOR).
     /// Creates and validates a new order but does not send it into the matching engine.
@@ -1505,48 +1102,36 @@ public sealed class TradeApi
     ///   - With computeCommissionRates: <c>20</c>
     /// </para>
     /// </remarks>
-    public Task<object> TestNewOrderUsingSorTrade(string symbol,
-        Side side,
-        Type1 type,
-        double quantity,
-        long timestamp,
-        string signature,
-        TimeInForce? timeInForce,
-        double? price,
-        string? newClientOrderId,
-        long? strategyId,
-        long? strategyType,
-        double? icebergQty,
-        NewOrderRespType? newOrderRespType,
-        SelfTradePreventionMode? selfTradePreventionMode,
-        bool? computeCommissionRates,
-        long? recvWindow,
+    public Task<object> TestNewOrderUsingSorTrade(TestNewOrderUsingSorTradeRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/api/v3/sor/order/test"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/api/v3/sor/order/test"),
             [],
-            [new Param("symbol", symbol),
-                new Param("side", side),
-                new Param("type", type),
-                new Param("quantity", quantity),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("timeInForce", timeInForce),
-                new Param("price", price),
-                new Param("newClientOrderId", newClientOrderId),
-                new Param("strategyId", strategyId),
-                new Param("strategyType", strategyType),
-                new Param("icebergQty", icebergQty),
-                new Param("newOrderRespType", newOrderRespType),
-                new Param("selfTradePreventionMode", selfTradePreventionMode),
-                new Param("computeCommissionRates", computeCommissionRates),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("symbol", request.Symbol),
+                new Param("side", request.Side),
+                new Param("type", request.Type),
+                new Param("quantity", request.Quantity),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("timeInForce", request.TimeInForce),
+                new Param("price", request.Price),
+                new Param("newClientOrderId", request.NewClientOrderId),
+                new Param("strategyId", request.StrategyId),
+                new Param("strategyType", request.StrategyType),
+                new Param("icebergQty", request.IcebergQty),
+                new Param("newOrderRespType", request.NewOrderRespType),
+                new Param("selfTradePreventionMode", request.SelfTradePreventionMode),
+                new Param("computeCommissionRates", request.ComputeCommissionRates),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [new HeaderParam("Idempotency-Key", Guid.NewGuid())],
             HttpMethod.Post,
             EmptyBody.Instance,
             JsonResponse.Create<object>(),
-            TestNewOrderUsingSorTradeErrorResponse.Instance,
+            TestNewOrderUsingSorTradeError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 }

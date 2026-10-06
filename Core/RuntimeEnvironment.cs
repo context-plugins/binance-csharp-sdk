@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices;
 
-namespace BinancePublicSpotApi.Core;
+namespace Binance.Core;
 
 internal static class RuntimeEnvironment
 {

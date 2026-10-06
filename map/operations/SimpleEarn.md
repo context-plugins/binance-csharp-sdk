@@ -9,15 +9,16 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 ### GetCollateralRecordUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetCollateralRecordUserData(long timestamp, string signature, string? productId, long? startTime, long? endTime, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 6 params (`productId` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `productId` ← `productId`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `size` ← `size`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetCollateralRecordUserData(GetCollateralRecordUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `productId` ← `ProductId`, `startTime` ← `StartTime`, `endTime` ← `EndTime`, `current` ← `Current`, `size` ← `Size`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1SimpleEarnFlexibleHistoryCollateralRecordResponse`
-- **Error**: `SdkException<GetCollateralRecordUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetCollateralRecordUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetCollateralRecordUserDataRequest` | `Requests/SimpleEarn/GetCollateralRecordUserDataRequest.cs` |
 | `SapiV1SimpleEarnFlexibleHistoryCollateralRecordResponse` | `Models/SapiV1SimpleEarnFlexibleHistoryCollateralRecordResponse.cs` |
 | `GetCollateralRecordUserDataError` | `Errors/GetCollateralRecordUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -25,15 +26,16 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 ### GetFlexiblePersonalLeftQuotaUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetFlexiblePersonalLeftQuotaUserData(string productId, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `productId` ← `productId`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetFlexiblePersonalLeftQuotaUserData(GetFlexiblePersonalLeftQuotaUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `ProductId`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `productId` ← `ProductId`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1SimpleEarnFlexiblePersonalLeftQuotaResponse`
-- **Error**: `SdkException<GetFlexiblePersonalLeftQuotaUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetFlexiblePersonalLeftQuotaUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetFlexiblePersonalLeftQuotaUserDataRequest` | `Requests/SimpleEarn/GetFlexiblePersonalLeftQuotaUserDataRequest.cs` |
 | `SapiV1SimpleEarnFlexiblePersonalLeftQuotaResponse` | `Models/SapiV1SimpleEarnFlexiblePersonalLeftQuotaResponse.cs` |
 | `GetFlexiblePersonalLeftQuotaUserDataError` | `Errors/GetFlexiblePersonalLeftQuotaUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -41,15 +43,16 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 ### GetFlexibleProductPositionUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetFlexibleProductPositionUserData(long timestamp, string signature, string? asset, string? productId, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 5 params (`asset` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `asset` ← `asset`, `productId` ← `productId`, `current` ← `current`, `size` ← `size`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetFlexibleProductPositionUserData(GetFlexibleProductPositionUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `asset` ← `Asset`, `productId` ← `ProductId`, `current` ← `Current`, `size` ← `Size`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1SimpleEarnFlexiblePositionResponse`
-- **Error**: `SdkException<GetFlexibleProductPositionUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetFlexibleProductPositionUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetFlexibleProductPositionUserDataRequest` | `Requests/SimpleEarn/GetFlexibleProductPositionUserDataRequest.cs` |
 | `SapiV1SimpleEarnFlexiblePositionResponse` | `Models/SapiV1SimpleEarnFlexiblePositionResponse.cs` |
 | `GetFlexibleProductPositionUserDataError` | `Errors/GetFlexibleProductPositionUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -57,15 +60,15 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 ### GetFlexibleRedemptionRecordUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetFlexibleRedemptionRecordUserData(string? productId, string? redeemId, string? asset, long? startTime, long? endTime, int? current, int? size, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 7 params (`productId` … `size`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `productId` ← `productId`, `redeemId` ← `redeemId`, `asset` ← `asset`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `size` ← `size`
+- **Signature**: `GetFlexibleRedemptionRecordUserData(GetFlexibleRedemptionRecordUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+- **Query params (wire ← C#)**: `productId` ← `ProductId`, `redeemId` ← `RedeemId`, `asset` ← `Asset`, `startTime` ← `StartTime`, `endTime` ← `EndTime`, `current` ← `Current`, `size` ← `Size`
 - **Returns**: `SapiV1SimpleEarnFlexibleHistoryRedemptionRecordResponse`
-- **Error**: `SdkException<GetFlexibleRedemptionRecordUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetFlexibleRedemptionRecordUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetFlexibleRedemptionRecordUserDataRequest` | `Requests/SimpleEarn/GetFlexibleRedemptionRecordUserDataRequest.cs` |
 | `SapiV1SimpleEarnFlexibleHistoryRedemptionRecordResponse` | `Models/SapiV1SimpleEarnFlexibleHistoryRedemptionRecordResponse.cs` |
 | `GetFlexibleRedemptionRecordUserDataError` | `Errors/GetFlexibleRedemptionRecordUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -73,15 +76,16 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 ### GetFlexibleRewardsHistoryUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetFlexibleRewardsHistoryUserData(string type, string? productId, string? asset, long? startTime, long? endTime, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 4 params (`productId` … `endTime`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `type` ← `type`, `productId` ← `productId`, `asset` ← `asset`, `startTime` ← `startTime`, `endTime` ← `endTime`
+- **Signature**: `GetFlexibleRewardsHistoryUserData(GetFlexibleRewardsHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Type`
+- **Query params (wire ← C#)**: `type` ← `Type`, `productId` ← `ProductId`, `asset` ← `Asset`, `startTime` ← `StartTime`, `endTime` ← `EndTime`
 - **Returns**: `SapiV1SimpleEarnFlexibleHistoryRewardsRecordResponse`
-- **Error**: `SdkException<GetFlexibleRewardsHistoryUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetFlexibleRewardsHistoryUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetFlexibleRewardsHistoryUserDataRequest` | `Requests/SimpleEarn/GetFlexibleRewardsHistoryUserDataRequest.cs` |
 | `SapiV1SimpleEarnFlexibleHistoryRewardsRecordResponse` | `Models/SapiV1SimpleEarnFlexibleHistoryRewardsRecordResponse.cs` |
 | `GetFlexibleRewardsHistoryUserDataError` | `Errors/GetFlexibleRewardsHistoryUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -89,15 +93,16 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 ### GetFlexibleSubscriptionPreviewUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetFlexibleSubscriptionPreviewUserData(string productId, double amount, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `productId` ← `productId`, `amount` ← `amount`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetFlexibleSubscriptionPreviewUserData(GetFlexibleSubscriptionPreviewUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `ProductId`, `Amount`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `productId` ← `ProductId`, `amount` ← `Amount`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1SimpleEarnFlexibleSubscriptionPreviewResponse`
-- **Error**: `SdkException<GetFlexibleSubscriptionPreviewUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetFlexibleSubscriptionPreviewUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetFlexibleSubscriptionPreviewUserDataRequest` | `Requests/SimpleEarn/GetFlexibleSubscriptionPreviewUserDataRequest.cs` |
 | `SapiV1SimpleEarnFlexibleSubscriptionPreviewResponse` | `Models/SapiV1SimpleEarnFlexibleSubscriptionPreviewResponse.cs` |
 | `GetFlexibleSubscriptionPreviewUserDataError` | `Errors/GetFlexibleSubscriptionPreviewUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -105,15 +110,16 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 ### GetFlexibleSubscriptionRecordUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetFlexibleSubscriptionRecordUserData(long timestamp, string signature, string? productId, string? purchaseId, string? asset, long? startTime, long? endTime, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 8 params (`productId` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `productId` ← `productId`, `purchaseId` ← `purchaseId`, `asset` ← `asset`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `size` ← `size`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetFlexibleSubscriptionRecordUserData(GetFlexibleSubscriptionRecordUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `productId` ← `ProductId`, `purchaseId` ← `PurchaseId`, `asset` ← `Asset`, `startTime` ← `StartTime`, `endTime` ← `EndTime`, `current` ← `Current`, `size` ← `Size`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1SimpleEarnFlexibleHistorySubscriptionRecordResponse`
-- **Error**: `SdkException<GetFlexibleSubscriptionRecordUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetFlexibleSubscriptionRecordUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetFlexibleSubscriptionRecordUserDataRequest` | `Requests/SimpleEarn/GetFlexibleSubscriptionRecordUserDataRequest.cs` |
 | `SapiV1SimpleEarnFlexibleHistorySubscriptionRecordResponse` | `Models/SapiV1SimpleEarnFlexibleHistorySubscriptionRecordResponse.cs` |
 | `GetFlexibleSubscriptionRecordUserDataError` | `Errors/GetFlexibleSubscriptionRecordUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -121,15 +127,16 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 ### GetLockedPersonalLeftQuotaUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetLockedPersonalLeftQuotaUserData(string projectId, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `projectId` ← `projectId`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetLockedPersonalLeftQuotaUserData(GetLockedPersonalLeftQuotaUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `ProjectId`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `projectId` ← `ProjectId`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1SimpleEarnLockedPersonalLeftQuotaResponse`
-- **Error**: `SdkException<GetLockedPersonalLeftQuotaUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetLockedPersonalLeftQuotaUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetLockedPersonalLeftQuotaUserDataRequest` | `Requests/SimpleEarn/GetLockedPersonalLeftQuotaUserDataRequest.cs` |
 | `SapiV1SimpleEarnLockedPersonalLeftQuotaResponse` | `Models/SapiV1SimpleEarnLockedPersonalLeftQuotaResponse.cs` |
 | `GetLockedPersonalLeftQuotaUserDataError` | `Errors/GetLockedPersonalLeftQuotaUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -137,15 +144,16 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 ### GetLockedProductPositionUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetLockedProductPositionUserData(long timestamp, string signature, string? asset, string? positionId, string? projectId, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 6 params (`asset` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `asset` ← `asset`, `positionId` ← `positionId`, `projectId` ← `projectId`, `current` ← `current`, `size` ← `size`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetLockedProductPositionUserData(GetLockedProductPositionUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `asset` ← `Asset`, `positionId` ← `PositionId`, `projectId` ← `ProjectId`, `current` ← `Current`, `size` ← `Size`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1SimpleEarnLockedPositionResponse`
-- **Error**: `SdkException<GetLockedProductPositionUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetLockedProductPositionUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetLockedProductPositionUserDataRequest` | `Requests/SimpleEarn/GetLockedProductPositionUserDataRequest.cs` |
 | `SapiV1SimpleEarnLockedPositionResponse` | `Models/SapiV1SimpleEarnLockedPositionResponse.cs` |
 | `GetLockedProductPositionUserDataError` | `Errors/GetLockedProductPositionUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -153,15 +161,16 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 ### GetLockedRedemptionRecordUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetLockedRedemptionRecordUserData(long timestamp, string signature, string? positionId, string? redeemId, string? asset, long? startTime, long? endTime, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 8 params (`positionId` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `positionId` ← `positionId`, `redeemId` ← `redeemId`, `asset` ← `asset`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `size` ← `size`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetLockedRedemptionRecordUserData(GetLockedRedemptionRecordUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `positionId` ← `PositionId`, `redeemId` ← `RedeemId`, `asset` ← `Asset`, `startTime` ← `StartTime`, `endTime` ← `EndTime`, `current` ← `Current`, `size` ← `Size`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1SimpleEarnLockedHistoryRedemptionRecordResponse`
-- **Error**: `SdkException<GetLockedRedemptionRecordUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetLockedRedemptionRecordUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetLockedRedemptionRecordUserDataRequest` | `Requests/SimpleEarn/GetLockedRedemptionRecordUserDataRequest.cs` |
 | `SapiV1SimpleEarnLockedHistoryRedemptionRecordResponse` | `Models/SapiV1SimpleEarnLockedHistoryRedemptionRecordResponse.cs` |
 | `GetLockedRedemptionRecordUserDataError` | `Errors/GetLockedRedemptionRecordUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -169,15 +178,16 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 ### GetLockedRewardsHistoryUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetLockedRewardsHistoryUserData(long timestamp, string signature, string? positionId, string? asset, long? startTime, long? endTime, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 6 params (`positionId` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `positionId` ← `positionId`, `asset` ← `asset`, `startTime` ← `startTime`, `endTime` ← `endTime`, `size` ← `size`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetLockedRewardsHistoryUserData(GetLockedRewardsHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `positionId` ← `PositionId`, `asset` ← `Asset`, `startTime` ← `StartTime`, `endTime` ← `EndTime`, `size` ← `Size`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1SimpleEarnLockedHistoryRewardsRecordResponse`
-- **Error**: `SdkException<GetLockedRewardsHistoryUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetLockedRewardsHistoryUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetLockedRewardsHistoryUserDataRequest` | `Requests/SimpleEarn/GetLockedRewardsHistoryUserDataRequest.cs` |
 | `SapiV1SimpleEarnLockedHistoryRewardsRecordResponse` | `Models/SapiV1SimpleEarnLockedHistoryRewardsRecordResponse.cs` |
 | `GetLockedRewardsHistoryUserDataError` | `Errors/GetLockedRewardsHistoryUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -185,16 +195,16 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 ### GetLockedSubscriptionPreviewUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetLockedSubscriptionPreviewUserData(string projectId, double amount, long timestamp, string signature, bool? autoSubscribe, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `autoSubscribe` — nullable, no default → **must pass explicitly**
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `projectId` ← `projectId`, `amount` ← `amount`, `timestamp` ← `timestamp`, `signature` ← `signature`, `autoSubscribe` ← `autoSubscribe`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetLockedSubscriptionPreviewUserData(GetLockedSubscriptionPreviewUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `ProjectId`, `Amount`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `projectId` ← `ProjectId`, `amount` ← `Amount`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `autoSubscribe` ← `AutoSubscribe`, `recvWindow` ← `RecvWindow`
 - **Returns**: `IReadOnlyList<SapiV1SimpleEarnLockedSubscriptionPreviewResponse>`
-- **Error**: `SdkException<GetLockedSubscriptionPreviewUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetLockedSubscriptionPreviewUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetLockedSubscriptionPreviewUserDataRequest` | `Requests/SimpleEarn/GetLockedSubscriptionPreviewUserDataRequest.cs` |
 | `SapiV1SimpleEarnLockedSubscriptionPreviewResponse` | `Models/SapiV1SimpleEarnLockedSubscriptionPreviewResponse.cs` |
 | `GetLockedSubscriptionPreviewUserDataError` | `Errors/GetLockedSubscriptionPreviewUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -202,15 +212,16 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 ### GetLockedSubscriptionRecordUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetLockedSubscriptionRecordUserData(long timestamp, string signature, string? purchaseId, string? asset, long? startTime, long? endTime, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 7 params (`purchaseId` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `purchaseId` ← `purchaseId`, `asset` ← `asset`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `size` ← `size`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetLockedSubscriptionRecordUserData(GetLockedSubscriptionRecordUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `purchaseId` ← `PurchaseId`, `asset` ← `Asset`, `startTime` ← `StartTime`, `endTime` ← `EndTime`, `current` ← `Current`, `size` ← `Size`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1SimpleEarnLockedHistorySubscriptionRecordResponse`
-- **Error**: `SdkException<GetLockedSubscriptionRecordUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetLockedSubscriptionRecordUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetLockedSubscriptionRecordUserDataRequest` | `Requests/SimpleEarn/GetLockedSubscriptionRecordUserDataRequest.cs` |
 | `SapiV1SimpleEarnLockedHistorySubscriptionRecordResponse` | `Models/SapiV1SimpleEarnLockedHistorySubscriptionRecordResponse.cs` |
 | `GetLockedSubscriptionRecordUserDataError` | `Errors/GetLockedSubscriptionRecordUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -218,15 +229,16 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 ### GetRateHistoryUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetRateHistoryUserData(string productId, long timestamp, string signature, long? startTime, long? endTime, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 5 params (`startTime` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `productId` ← `productId`, `timestamp` ← `timestamp`, `signature` ← `signature`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `size` ← `size`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetRateHistoryUserData(GetRateHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `ProductId`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `productId` ← `ProductId`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `startTime` ← `StartTime`, `endTime` ← `EndTime`, `current` ← `Current`, `size` ← `Size`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1SimpleEarnFlexibleHistoryRateHistoryResponse`
-- **Error**: `SdkException<GetRateHistoryUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetRateHistoryUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetRateHistoryUserDataRequest` | `Requests/SimpleEarn/GetRateHistoryUserDataRequest.cs` |
 | `SapiV1SimpleEarnFlexibleHistoryRateHistoryResponse` | `Models/SapiV1SimpleEarnFlexibleHistoryRateHistoryResponse.cs` |
 | `GetRateHistoryUserDataError` | `Errors/GetRateHistoryUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -234,15 +246,16 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 ### GetSimpleEarnFlexibleProductListUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetSimpleEarnFlexibleProductListUserData(long timestamp, string signature, string? asset, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 4 params (`asset` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `asset` ← `asset`, `current` ← `current`, `size` ← `size`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetSimpleEarnFlexibleProductListUserData(GetSimpleEarnFlexibleProductListUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `asset` ← `Asset`, `current` ← `Current`, `size` ← `Size`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1SimpleEarnFlexibleListResponse`
-- **Error**: `SdkException<GetSimpleEarnFlexibleProductListUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetSimpleEarnFlexibleProductListUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetSimpleEarnFlexibleProductListUserDataRequest` | `Requests/SimpleEarn/GetSimpleEarnFlexibleProductListUserDataRequest.cs` |
 | `SapiV1SimpleEarnFlexibleListResponse` | `Models/SapiV1SimpleEarnFlexibleListResponse.cs` |
 | `GetSimpleEarnFlexibleProductListUserDataError` | `Errors/GetSimpleEarnFlexibleProductListUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -250,15 +263,16 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 ### GetSimpleEarnLockedProductListUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetSimpleEarnLockedProductListUserData(long timestamp, string signature, string? asset, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 4 params (`asset` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `asset` ← `asset`, `current` ← `current`, `size` ← `size`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetSimpleEarnLockedProductListUserData(GetSimpleEarnLockedProductListUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `asset` ← `Asset`, `current` ← `Current`, `size` ← `Size`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1SimpleEarnLockedListResponse`
-- **Error**: `SdkException<GetSimpleEarnLockedProductListUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetSimpleEarnLockedProductListUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetSimpleEarnLockedProductListUserDataRequest` | `Requests/SimpleEarn/GetSimpleEarnLockedProductListUserDataRequest.cs` |
 | `SapiV1SimpleEarnLockedListResponse` | `Models/SapiV1SimpleEarnLockedListResponse.cs` |
 | `GetSimpleEarnLockedProductListUserDataError` | `Errors/GetSimpleEarnLockedProductListUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -266,15 +280,16 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 ### RedeemFlexibleProductTrade
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `RedeemFlexibleProductTrade(string productId, long timestamp, string signature, bool? redeemAll, double? amount, string? destAccount, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 4 params (`redeemAll` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `productId` ← `productId`, `timestamp` ← `timestamp`, `signature` ← `signature`, `redeemAll` ← `redeemAll`, `amount` ← `amount`, `destAccount` ← `destAccount`, `recvWindow` ← `recvWindow`
+- **Signature**: `RedeemFlexibleProductTrade(RedeemFlexibleProductTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `ProductId`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `productId` ← `ProductId`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `redeemAll` ← `RedeemAll`, `amount` ← `Amount`, `destAccount` ← `DestAccount`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1SimpleEarnFlexibleRedeemResponse`
-- **Error**: `SdkException<RedeemFlexibleProductTradeError>` — **Case A (typed)**
+- **Error**: `ApiException<RedeemFlexibleProductTradeError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `RedeemFlexibleProductTradeRequest` | `Requests/SimpleEarn/RedeemFlexibleProductTradeRequest.cs` |
 | `SapiV1SimpleEarnFlexibleRedeemResponse` | `Models/SapiV1SimpleEarnFlexibleRedeemResponse.cs` |
 | `RedeemFlexibleProductTradeError` | `Errors/RedeemFlexibleProductTradeError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -282,15 +297,16 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 ### RedeemLockedProductTrade
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `RedeemLockedProductTrade(string positionId, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `positionId` ← `positionId`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `RedeemLockedProductTrade(RedeemLockedProductTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `PositionId`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `positionId` ← `PositionId`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1SimpleEarnLockedRedeemResponse`
-- **Error**: `SdkException<RedeemLockedProductTradeError>` — **Case A (typed)**
+- **Error**: `ApiException<RedeemLockedProductTradeError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `RedeemLockedProductTradeRequest` | `Requests/SimpleEarn/RedeemLockedProductTradeRequest.cs` |
 | `SapiV1SimpleEarnLockedRedeemResponse` | `Models/SapiV1SimpleEarnLockedRedeemResponse.cs` |
 | `RedeemLockedProductTradeError` | `Errors/RedeemLockedProductTradeError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -298,15 +314,16 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 ### SetFlexibleAutoSubscribeUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `SetFlexibleAutoSubscribeUserData(string productId, bool autoSubscribe, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `productId` ← `productId`, `autoSubscribe` ← `autoSubscribe`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `SetFlexibleAutoSubscribeUserData(SetFlexibleAutoSubscribeUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `ProductId`, `AutoSubscribe`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `productId` ← `ProductId`, `autoSubscribe` ← `AutoSubscribe`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1SimpleEarnFlexibleSetAutoSubscribeResponse`
-- **Error**: `SdkException<SetFlexibleAutoSubscribeUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<SetFlexibleAutoSubscribeUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `SetFlexibleAutoSubscribeUserDataRequest` | `Requests/SimpleEarn/SetFlexibleAutoSubscribeUserDataRequest.cs` |
 | `SapiV1SimpleEarnFlexibleSetAutoSubscribeResponse` | `Models/SapiV1SimpleEarnFlexibleSetAutoSubscribeResponse.cs` |
 | `SetFlexibleAutoSubscribeUserDataError` | `Errors/SetFlexibleAutoSubscribeUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -314,15 +331,16 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 ### SetLockedAutoSubscribeUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `SetLockedAutoSubscribeUserData(string positionId, bool autoSubscribe, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `positionId` ← `positionId`, `autoSubscribe` ← `autoSubscribe`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `SetLockedAutoSubscribeUserData(SetLockedAutoSubscribeUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `PositionId`, `AutoSubscribe`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `positionId` ← `PositionId`, `autoSubscribe` ← `AutoSubscribe`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1SimpleEarnLockedSetAutoSubscribeResponse`
-- **Error**: `SdkException<SetLockedAutoSubscribeUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<SetLockedAutoSubscribeUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `SetLockedAutoSubscribeUserDataRequest` | `Requests/SimpleEarn/SetLockedAutoSubscribeUserDataRequest.cs` |
 | `SapiV1SimpleEarnLockedSetAutoSubscribeResponse` | `Models/SapiV1SimpleEarnLockedSetAutoSubscribeResponse.cs` |
 | `SetLockedAutoSubscribeUserDataError` | `Errors/SetLockedAutoSubscribeUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -330,16 +348,16 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 ### SetLockedProductRedeemOptionUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `SetLockedProductRedeemOptionUserData(string positionId, long timestamp, string signature, RedeemTo? redeemTo, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `redeemTo` — nullable, no default → **must pass explicitly**
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `positionId` ← `positionId`, `timestamp` ← `timestamp`, `signature` ← `signature`, `redeemTo` ← `redeemTo`, `recvWindow` ← `recvWindow`
+- **Signature**: `SetLockedProductRedeemOptionUserData(SetLockedProductRedeemOptionUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `PositionId`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `positionId` ← `PositionId`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `redeemTo` ← `RedeemTo`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1SimpleEarnLockedSetRedeemOptionResponse`
-- **Error**: `SdkException<SetLockedProductRedeemOptionUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<SetLockedProductRedeemOptionUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `SetLockedProductRedeemOptionUserDataRequest` | `Requests/SimpleEarn/SetLockedProductRedeemOptionUserDataRequest.cs` |
 | `RedeemTo` | `Models/Enums/RedeemTo.cs` |
 | `SapiV1SimpleEarnLockedSetRedeemOptionResponse` | `Models/SapiV1SimpleEarnLockedSetRedeemOptionResponse.cs` |
 | `SetLockedProductRedeemOptionUserDataError` | `Errors/SetLockedProductRedeemOptionUserDataError.cs` |
@@ -348,15 +366,16 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 ### SimpleAccountUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `SimpleAccountUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `SimpleAccountUserData(SimpleAccountUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1SimpleEarnAccountResponse`
-- **Error**: `SdkException<SimpleAccountUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<SimpleAccountUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `SimpleAccountUserDataRequest` | `Requests/SimpleEarn/SimpleAccountUserDataRequest.cs` |
 | `SapiV1SimpleEarnAccountResponse` | `Models/SapiV1SimpleEarnAccountResponse.cs` |
 | `SimpleAccountUserDataError` | `Errors/SimpleAccountUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -364,17 +383,16 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 ### SubscribeFlexibleProductTrade
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `SubscribeFlexibleProductTrade(string productId, double amount, long timestamp, string signature, bool? autoSubscribe, string? sourceAccount, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `autoSubscribe` — nullable, no default → **must pass explicitly**
-  - `sourceAccount` — nullable, no default → **must pass explicitly**
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `productId` ← `productId`, `amount` ← `amount`, `timestamp` ← `timestamp`, `signature` ← `signature`, `autoSubscribe` ← `autoSubscribe`, `sourceAccount` ← `sourceAccount`, `recvWindow` ← `recvWindow`
+- **Signature**: `SubscribeFlexibleProductTrade(SubscribeFlexibleProductTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `ProductId`, `Amount`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `productId` ← `ProductId`, `amount` ← `Amount`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `autoSubscribe` ← `AutoSubscribe`, `sourceAccount` ← `SourceAccount`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1SimpleEarnFlexibleSubscribeResponse`
-- **Error**: `SdkException<SubscribeFlexibleProductTradeError>` — **Case A (typed)**
+- **Error**: `ApiException<SubscribeFlexibleProductTradeError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `SubscribeFlexibleProductTradeRequest` | `Requests/SimpleEarn/SubscribeFlexibleProductTradeRequest.cs` |
 | `SapiV1SimpleEarnFlexibleSubscribeResponse` | `Models/SapiV1SimpleEarnFlexibleSubscribeResponse.cs` |
 | `SubscribeFlexibleProductTradeError` | `Errors/SubscribeFlexibleProductTradeError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -382,15 +400,16 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 ### SubscribeLockedProductTrade
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `SubscribeLockedProductTrade(string projectId, double amount, long timestamp, string signature, bool? autoSubscribe, string? sourceAccount, RedeemTo? redeemTo, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 4 params (`autoSubscribe` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `projectId` ← `projectId`, `amount` ← `amount`, `timestamp` ← `timestamp`, `signature` ← `signature`, `autoSubscribe` ← `autoSubscribe`, `sourceAccount` ← `sourceAccount`, `redeemTo` ← `redeemTo`, `recvWindow` ← `recvWindow`
+- **Signature**: `SubscribeLockedProductTrade(SubscribeLockedProductTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `ProjectId`, `Amount`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `projectId` ← `ProjectId`, `amount` ← `Amount`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `autoSubscribe` ← `AutoSubscribe`, `sourceAccount` ← `SourceAccount`, `redeemTo` ← `RedeemTo`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1SimpleEarnLockedSubscribeResponse`
-- **Error**: `SdkException<SubscribeLockedProductTradeError>` — **Case A (typed)**
+- **Error**: `ApiException<SubscribeLockedProductTradeError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `SubscribeLockedProductTradeRequest` | `Requests/SimpleEarn/SubscribeLockedProductTradeRequest.cs` |
 | `RedeemTo` | `Models/Enums/RedeemTo.cs` |
 | `SapiV1SimpleEarnLockedSubscribeResponse` | `Models/SapiV1SimpleEarnLockedSubscribeResponse.cs` |
 | `SubscribeLockedProductTradeError` | `Errors/SubscribeLockedProductTradeError.cs` |

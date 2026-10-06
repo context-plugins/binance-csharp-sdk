@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using BinancePublicSpotApi.Core;
-using BinancePublicSpotApi.Core.ErrorResponse;
-using BinancePublicSpotApi.Core.Exceptions;
-using BinancePublicSpotApi.Core.Models;
-using BinancePublicSpotApi.Core.Request;
-using BinancePublicSpotApi.Core.Response;
-using BinancePublicSpotApi.Errors;
-using BinancePublicSpotApi.Models;
-using BinancePublicSpotApi.Models.AnyOf;
-using BinancePublicSpotApi.Models.Enums;
+using Binance.Core;
+using Binance.Core.ErrorResponse;
+using Binance.Core.Exceptions;
+using Binance.Core.Models;
+using Binance.Core.Request;
+using Binance.Core.Response;
+using Binance.Errors;
+using Binance.Models;
+using Binance.Models.AnyOf;
+using Binance.Requests.Wallet;
 
-namespace BinancePublicSpotApi.Api;
+namespace Binance.Api;
 
 /// <summary>
 /// Wallet Endpoints
@@ -35,154 +35,147 @@ public sealed class Wallet
     /// <summary>
     /// Account API Trading Status (USER_DATA)
     /// </summary>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1AccountApiTradingStatusResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="AccountApiTradingStatusUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="AccountApiTradingStatusUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Fetch account API trading status with details.
     /// <para>
     /// Weight(IP): 1
     /// </para>
     /// </remarks>
-    public Task<SapiV1AccountApiTradingStatusResponse> AccountApiTradingStatusUserData(long timestamp,
-        string signature,
-        long? recvWindow,
+    public Task<SapiV1AccountApiTradingStatusResponse> AccountApiTradingStatusUserData(AccountApiTradingStatusUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/account/apiTradingStatus"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/account/apiTradingStatus"),
             [],
-            [new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1AccountApiTradingStatusResponse>(),
-            AccountApiTradingStatusUserDataErrorResponse.Instance,
+            AccountApiTradingStatusUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Account Status (USER_DATA)
     /// </summary>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1AccountStatusResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="AccountStatusUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="AccountStatusUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Fetch account status detail.
     /// <para>
     /// Weight(IP): 1
     /// </para>
     /// </remarks>
-    public Task<SapiV1AccountStatusResponse> AccountStatusUserData(long timestamp,
-        string signature,
-        long? recvWindow,
+    public Task<SapiV1AccountStatusResponse> AccountStatusUserData(AccountStatusUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/account/status"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/account/status"),
             [],
-            [new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1AccountStatusResponse>(),
-            AccountStatusUserDataErrorResponse.Instance,
+            AccountStatusUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Account info (USER_DATA)
     /// </summary>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1AccountInfoResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="AccountInfoUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="AccountInfoUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Fetch account info detail.
     /// <para>
     /// Weight(IP): 1
     /// </para>
     /// </remarks>
-    public Task<SapiV1AccountInfoResponse> AccountInfoUserData(long timestamp,
-        string signature,
-        long? recvWindow,
+    public Task<SapiV1AccountInfoResponse> AccountInfoUserData(AccountInfoUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/account/info"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/account/info"),
             [],
-            [new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1AccountInfoResponse>(),
-            AccountInfoUserDataErrorResponse.Instance,
+            AccountInfoUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// All Coins' Information (USER_DATA)
     /// </summary>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="IReadOnlyList{T}"/> of <see cref="SapiV1CapitalConfigGetallResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="AllCoinsInformationUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="AllCoinsInformationUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Get information of coins (available for deposit and withdraw) for user.
     /// <para>
     /// Weight(IP): 10
     /// </para>
     /// </remarks>
-    public Task<IReadOnlyList<SapiV1CapitalConfigGetallResponse>> AllCoinsInformationUserData(long timestamp,
-        string signature,
-        long? recvWindow,
+    public Task<IReadOnlyList<SapiV1CapitalConfigGetallResponse>> AllCoinsInformationUserData(AllCoinsInformationUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/capital/config/getall"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/capital/config/getall"),
             [],
-            [new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<IReadOnlyList<SapiV1CapitalConfigGetallResponse>>(),
-            AllCoinsInformationUserDataErrorResponse.Instance,
+            AllCoinsInformationUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Asset Detail (USER_DATA)
     /// </summary>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="asset"></param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1AssetAssetDetailResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="AssetDetailUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="AssetDetailUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Fetch details of assets supported on Binance.
     /// <list type="bullet">
@@ -192,88 +185,73 @@ public sealed class Wallet
     /// Weight(IP): 1
     /// </para>
     /// </remarks>
-    public Task<SapiV1AssetAssetDetailResponse> AssetDetailUserData(long timestamp,
-        string signature,
-        string? asset,
-        long? recvWindow,
+    public Task<SapiV1AssetAssetDetailResponse> AssetDetailUserData(AssetDetailUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/asset/assetDetail"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/asset/assetDetail"),
             [],
-            [new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("asset", asset),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("asset", request.Asset),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1AssetAssetDetailResponse>(),
-            AssetDetailUserDataErrorResponse.Instance,
+            AssetDetailUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Asset Dividend Record (USER_DATA)
     /// </summary>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="asset"></param>
-    /// <param name="startTime">UTC timestamp in ms</param>
-    /// <param name="endTime">UTC timestamp in ms</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
-    /// <param name="limit"></param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1AssetAssetDividendResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="AssetDividendRecordUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="AssetDividendRecordUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Query asset Dividend Record
     /// <para>
     /// Weight(IP): 10
     /// </para>
     /// </remarks>
-    public Task<SapiV1AssetAssetDividendResponse> AssetDividendRecordUserData(long timestamp,
-        string signature,
-        string? asset,
-        long? startTime,
-        long? endTime,
-        long? recvWindow,
-        int? limit = 20,
+    public Task<SapiV1AssetAssetDividendResponse> AssetDividendRecordUserData(AssetDividendRecordUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/asset/assetDividend"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/asset/assetDividend"),
             [],
-            [new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("asset", asset),
-                new Param("startTime", startTime),
-                new Param("endTime", endTime),
-                new Param("limit", limit),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("asset", request.Asset),
+                new Param("startTime", request.StartTime),
+                new Param("endTime", request.EndTime),
+                new Param("limit", request.Limit),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1AssetAssetDividendResponse>(),
-            AssetDividendRecordUserDataErrorResponse.Instance,
+            AssetDividendRecordUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Convert Transfer (USER_DATA)
     /// </summary>
-    /// <param name="clientTranId">The unique flag, the min length is 20</param>
-    /// <param name="asset"></param>
-    /// <param name="amount"></param>
-    /// <param name="targetAsset">Target asset you want to convert</param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1AssetConvertTransferResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="ConvertTransferUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="ConvertTransferUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Convert transfer, convert between BUSD and stablecoins.
     /// If the clientId has been used before, will not do the convert transfer, the original transfer will be returned.
@@ -281,47 +259,38 @@ public sealed class Wallet
     /// Weight(UID): 5
     /// </para>
     /// </remarks>
-    public Task<SapiV1AssetConvertTransferResponse> ConvertTransferUserData(string clientTranId,
-        string asset,
-        double amount,
-        string targetAsset,
-        long timestamp,
-        string signature,
-        long? recvWindow,
+    public Task<SapiV1AssetConvertTransferResponse> ConvertTransferUserData(ConvertTransferUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/asset/convert-transfer"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/asset/convert-transfer"),
             [],
-            [new Param("clientTranId", clientTranId),
-                new Param("asset", asset),
-                new Param("amount", amount),
-                new Param("targetAsset", targetAsset),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("clientTranId", request.ClientTranId),
+                new Param("asset", request.Asset),
+                new Param("amount", request.Amount),
+                new Param("targetAsset", request.TargetAsset),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [new HeaderParam("Idempotency-Key", Guid.NewGuid())],
             HttpMethod.Post,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1AssetConvertTransferResponse>(),
-            ConvertTransferUserDataErrorResponse.Instance,
+            ConvertTransferUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Daily Account Snapshot (USER_DATA)
     /// </summary>
-    /// <param name="type"></param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="startTime">UTC timestamp in ms</param>
-    /// <param name="endTime">UTC timestamp in ms</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
-    /// <param name="limit"></param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1AccountSnapshotResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="DailyAccountSnapshotUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="DailyAccountSnapshotUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// <list type="bullet">
     ///   <item><description>The query time period must be less than 30 days</description></item>
@@ -332,45 +301,38 @@ public sealed class Wallet
     /// Weight(IP): 2400
     /// </para>
     /// </remarks>
-    public Task<SapiV1AccountSnapshotResponse> DailyAccountSnapshotUserData(Type6 type,
-        long timestamp,
-        string signature,
-        long? startTime,
-        long? endTime,
-        long? recvWindow,
-        int? limit = 7,
+    public Task<SapiV1AccountSnapshotResponse> DailyAccountSnapshotUserData(DailyAccountSnapshotUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/accountSnapshot"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/accountSnapshot"),
             [],
-            [new Param("type", type),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("startTime", startTime),
-                new Param("endTime", endTime),
-                new Param("limit", limit),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("type", request.Type),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("startTime", request.StartTime),
+                new Param("endTime", request.EndTime),
+                new Param("limit", request.Limit),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1AccountSnapshotResponse>(),
-            DailyAccountSnapshotUserDataErrorResponse.Instance,
+            DailyAccountSnapshotUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Deposit Address (supporting network) (USER_DATA)
     /// </summary>
-    /// <param name="coin">Coin name</param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="network"></param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1CapitalDepositAddressResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="DepositAddressSupportingNetworkUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="DepositAddressSupportingNetworkUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Fetch deposit address with network.
     /// <list type="bullet">
@@ -381,45 +343,36 @@ public sealed class Wallet
     /// Weight(IP): 10
     /// </para>
     /// </remarks>
-    public Task<SapiV1CapitalDepositAddressResponse> DepositAddressSupportingNetworkUserData(string coin,
-        long timestamp,
-        string signature,
-        string? network,
-        long? recvWindow,
+    public Task<SapiV1CapitalDepositAddressResponse> DepositAddressSupportingNetworkUserData(DepositAddressSupportingNetworkUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/capital/deposit/address"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/capital/deposit/address"),
             [],
-            [new Param("coin", coin),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("network", network),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("coin", request.Coin),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("network", request.Network),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1CapitalDepositAddressResponse>(),
-            DepositAddressSupportingNetworkUserDataErrorResponse.Instance,
+            DepositAddressSupportingNetworkUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Deposit History(supporting network) (USER_DATA)
     /// </summary>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="coin">Coin name</param>
-    /// <param name="status">* <c>0</c> - pending * <c>6</c> - credited but cannot withdraw * <c>1</c> - success</param>
-    /// <param name="startTime">UTC timestamp in ms</param>
-    /// <param name="endTime">UTC timestamp in ms</param>
-    /// <param name="offset"></param>
-    /// <param name="limit">Default 500; max 1000.</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="IReadOnlyList{T}"/> of <see cref="SapiV1CapitalDepositHisrecResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="DepositHistorySupportingNetworkUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="DepositHistorySupportingNetworkUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Fetch deposit history.
     /// <list type="bullet">
@@ -430,47 +383,40 @@ public sealed class Wallet
     /// Weight(IP): 1
     /// </para>
     /// </remarks>
-    public Task<IReadOnlyList<SapiV1CapitalDepositHisrecResponse>> DepositHistorySupportingNetworkUserData(long timestamp,
-        string signature,
-        string? coin,
-        int? status,
-        long? startTime,
-        long? endTime,
-        int? offset,
-        int? limit,
-        long? recvWindow,
+    public Task<IReadOnlyList<SapiV1CapitalDepositHisrecResponse>> DepositHistorySupportingNetworkUserData(DepositHistorySupportingNetworkUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/capital/deposit/hisrec"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/capital/deposit/hisrec"),
             [],
-            [new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("coin", coin),
-                new Param("status", status),
-                new Param("startTime", startTime),
-                new Param("endTime", endTime),
-                new Param("offset", offset),
-                new Param("limit", limit),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("coin", request.Coin),
+                new Param("status", request.Status),
+                new Param("startTime", request.StartTime),
+                new Param("endTime", request.EndTime),
+                new Param("offset", request.Offset),
+                new Param("limit", request.Limit),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<IReadOnlyList<SapiV1CapitalDepositHisrecResponse>>(),
-            DepositHistorySupportingNetworkUserDataErrorResponse.Instance,
+            DepositHistorySupportingNetworkUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Disable Fast Withdraw Switch (USER_DATA)
     /// </summary>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="object"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="DisableFastWithdrawSwitchUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="DisableFastWithdrawSwitchUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// <list type="bullet">
     ///   <item><description>This request will disable fastwithdraw switch under your account.</description></item>
@@ -480,117 +426,104 @@ public sealed class Wallet
     /// Weight(IP): 1
     /// </para>
     /// </remarks>
-    public Task<object> DisableFastWithdrawSwitchUserData(long timestamp,
-        string signature,
-        long? recvWindow,
+    public Task<object> DisableFastWithdrawSwitchUserData(DisableFastWithdrawSwitchUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/account/disableFastWithdrawSwitch"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/account/disableFastWithdrawSwitch"),
             [],
-            [new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [new HeaderParam("Idempotency-Key", Guid.NewGuid())],
             HttpMethod.Post,
             EmptyBody.Instance,
             JsonResponse.Create<object>(),
-            DisableFastWithdrawSwitchUserDataErrorResponse.Instance,
+            DisableFastWithdrawSwitchUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Dust Transfer (USER_DATA)
     /// </summary>
-    /// <param name="asset">The asset being converted. For example, asset=BTC&amp;asset=USDT</param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="accountType">SPOT or MARGIN, default SPOT</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1AssetDustResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="DustTransferUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="DustTransferUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Convert dust assets to BNB.
     /// <para>
     /// Weight(UID): 10
     /// </para>
     /// </remarks>
-    public Task<SapiV1AssetDustResponse> DustTransferUserData(IReadOnlyList<string> asset,
-        long timestamp,
-        string signature,
-        AccountType? accountType,
-        long? recvWindow,
+    public Task<SapiV1AssetDustResponse> DustTransferUserData(DustTransferUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/asset/dust"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/asset/dust"),
             [],
-            [new Param("asset", asset),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("accountType", accountType),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("asset", request.Asset),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("accountType", request.AccountType),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [new HeaderParam("Idempotency-Key", Guid.NewGuid())],
             HttpMethod.Post,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1AssetDustResponse>(),
-            DustTransferUserDataErrorResponse.Instance,
+            DustTransferUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// DustLog(USER_DATA)
     /// </summary>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="accountType">SPOT or MARGIN, default SPOT</param>
-    /// <param name="startTime">UTC timestamp in ms</param>
-    /// <param name="endTime">UTC timestamp in ms</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1AssetDribbletResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="DustLogUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="DustLogUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Weight(IP): 1
     /// </remarks>
-    public Task<SapiV1AssetDribbletResponse> DustLogUserData(long timestamp,
-        string signature,
-        AccountType? accountType,
-        long? startTime,
-        long? endTime,
-        long? recvWindow,
+    public Task<SapiV1AssetDribbletResponse> DustLogUserData(DustLogUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/asset/dribblet"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/asset/dribblet"),
             [],
-            [new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("accountType", accountType),
-                new Param("startTime", startTime),
-                new Param("endTime", endTime),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("accountType", request.AccountType),
+                new Param("startTime", request.StartTime),
+                new Param("endTime", request.EndTime),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1AssetDribbletResponse>(),
-            DustLogUserDataErrorResponse.Instance,
+            DustLogUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Enable Fast Withdraw Switch (USER_DATA)
     /// </summary>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="object"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="EnableFastWithdrawSwitchUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="EnableFastWithdrawSwitchUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// <list type="bullet">
     ///   <item><description>This request will enable fastwithdraw switch under your account. You need to enable "trade" option for the api key which requests this endpoint.</description></item>
@@ -600,73 +533,69 @@ public sealed class Wallet
     /// Weight(IP): 1
     /// </para>
     /// </remarks>
-    public Task<object> EnableFastWithdrawSwitchUserData(long timestamp,
-        string signature,
-        long? recvWindow,
+    public Task<object> EnableFastWithdrawSwitchUserData(EnableFastWithdrawSwitchUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/account/enableFastWithdrawSwitch"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/account/enableFastWithdrawSwitch"),
             [],
-            [new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [new HeaderParam("Idempotency-Key", Guid.NewGuid())],
             HttpMethod.Post,
             EmptyBody.Instance,
             JsonResponse.Create<object>(),
-            EnableFastWithdrawSwitchUserDataErrorResponse.Instance,
+            EnableFastWithdrawSwitchUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Fetch deposit address list with network (USER_DATA)
     /// </summary>
-    /// <param name="coin"></param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="network"></param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="IReadOnlyList{T}"/> of <see cref="SapiV1CapitalDepositAddressListResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="FetchDepositAddressListWithNetworkUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="FetchDepositAddressListWithNetworkUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Fetch deposit address list with network.
     /// <para>
     /// Weight(IP): 10
     /// </para>
     /// </remarks>
-    public Task<IReadOnlyList<SapiV1CapitalDepositAddressListResponse>> FetchDepositAddressListWithNetworkUserData(string coin,
-        long timestamp,
-        string signature,
-        string? network,
-        long? recvWindow,
+    public Task<IReadOnlyList<SapiV1CapitalDepositAddressListResponse>> FetchDepositAddressListWithNetworkUserData(FetchDepositAddressListWithNetworkUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/capital/deposit/address/list"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/capital/deposit/address/list"),
             [],
-            [new Param("coin", coin),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("network", network),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("coin", request.Coin),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("network", request.Network),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<IReadOnlyList<SapiV1CapitalDepositAddressListResponse>>(),
-            FetchDepositAddressListWithNetworkUserDataErrorResponse.Instance,
+            FetchDepositAddressListWithNetworkUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Fetch withdraw address list (USER_DATA)
     /// </summary>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="IReadOnlyList{T}"/> of <see cref="SapiV1CapitalWithdrawAddressListResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="FetchWithdrawAddressListUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="FetchWithdrawAddressListUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Fetch withdraw address list
     /// <para>
@@ -674,31 +603,28 @@ public sealed class Wallet
     /// </para>
     /// </remarks>
     public Task<IReadOnlyList<SapiV1CapitalWithdrawAddressListResponse>> FetchWithdrawAddressListUserData(RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/capital/withdraw/address/list"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/capital/withdraw/address/list"),
             [],
             [],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<IReadOnlyList<SapiV1CapitalWithdrawAddressListResponse>>(),
-            FetchWithdrawAddressListUserDataErrorResponse.Instance,
+            FetchWithdrawAddressListUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Funding Wallet (USER_DATA)
     /// </summary>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="asset"></param>
-    /// <param name="needBtcValuation"></param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="IReadOnlyList{T}"/> of <see cref="SapiV1AssetGetFundingAssetResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="FundingWalletUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="FundingWalletUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// <list type="bullet">
     ///   <item><description>Currently supports querying the following business assets：Binance Pay, Binance Card, Binance Gift Card, Stock Token</description></item>
@@ -707,360 +633,291 @@ public sealed class Wallet
     /// Weight(IP): 1
     /// </para>
     /// </remarks>
-    public Task<IReadOnlyList<SapiV1AssetGetFundingAssetResponse>> FundingWalletUserData(long timestamp,
-        string signature,
-        string? asset,
-        NeedBtcValuation? needBtcValuation,
-        long? recvWindow,
+    public Task<IReadOnlyList<SapiV1AssetGetFundingAssetResponse>> FundingWalletUserData(FundingWalletUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/asset/get-funding-asset"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/asset/get-funding-asset"),
             [],
-            [new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("asset", asset),
-                new Param("needBtcValuation", needBtcValuation),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("asset", request.Asset),
+                new Param("needBtcValuation", request.NeedBtcValuation),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [new HeaderParam("Idempotency-Key", Guid.NewGuid())],
             HttpMethod.Post,
             EmptyBody.Instance,
             JsonResponse.Create<IReadOnlyList<SapiV1AssetGetFundingAssetResponse>>(),
-            FundingWalletUserDataErrorResponse.Instance,
+            FundingWalletUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Get API Key Permission (USER_DATA)
     /// </summary>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1AccountApiRestrictionsResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="GetApiKeyPermissionUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="GetApiKeyPermissionUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Weight(IP): 1
     /// </remarks>
-    public Task<SapiV1AccountApiRestrictionsResponse> GetApiKeyPermissionUserData(long timestamp,
-        string signature,
-        long? recvWindow,
+    public Task<SapiV1AccountApiRestrictionsResponse> GetApiKeyPermissionUserData(GetApiKeyPermissionUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/account/apiRestrictions"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/account/apiRestrictions"),
             [],
-            [new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1AccountApiRestrictionsResponse>(),
-            GetApiKeyPermissionUserDataErrorResponse.Instance,
+            GetApiKeyPermissionUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Get Assets That Can Be Converted Into BNB (USER_DATA)
     /// </summary>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="accountType">SPOT or MARGIN, default SPOT</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1AssetDustBtcResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="GetAssetsThatCanBeConvertedIntoBnbUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="GetAssetsThatCanBeConvertedIntoBnbUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Weight(IP): 1
     /// </remarks>
-    public Task<SapiV1AssetDustBtcResponse> GetAssetsThatCanBeConvertedIntoBnbUserData(long timestamp,
-        string signature,
-        AccountType? accountType,
-        long? recvWindow,
+    public Task<SapiV1AssetDustBtcResponse> GetAssetsThatCanBeConvertedIntoBnbUserData(GetAssetsThatCanBeConvertedIntoBnbUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/asset/dust-btc"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/asset/dust-btc"),
             [],
-            [new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("accountType", accountType),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("accountType", request.AccountType),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [new HeaderParam("Idempotency-Key", Guid.NewGuid())],
             HttpMethod.Post,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1AssetDustBtcResponse>(),
-            GetAssetsThatCanBeConvertedIntoBnbUserDataErrorResponse.Instance,
+            GetAssetsThatCanBeConvertedIntoBnbUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Get Cloud-Mining payment and refund history (USER_DATA)
     /// </summary>
-    /// <param name="startTime">UTC timestamp in ms</param>
-    /// <param name="endTime">UTC timestamp in ms</param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="tranId">The transaction id</param>
-    /// <param name="clientTranId">The unique flag</param>
-    /// <param name="asset">If it is blank, we will query all assets</param>
-    /// <param name="current">Current querying page. Start from 1. Default:1</param>
-    /// <param name="size">Default:10 Max:100</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1AssetLedgerTransferCloudMiningQueryByPageResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="GetCloudMiningPaymentAndRefundHistoryUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="GetCloudMiningPaymentAndRefundHistoryUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// The query of Cloud-Mining payment and refund history
     /// <para>
     /// Weight(UID): 600
     /// </para>
     /// </remarks>
-    public Task<SapiV1AssetLedgerTransferCloudMiningQueryByPageResponse> GetCloudMiningPaymentAndRefundHistoryUserData(long startTime,
-        long endTime,
-        long timestamp,
-        string signature,
-        long? tranId,
-        string? clientTranId,
-        string? asset,
-        int? current,
-        int? size,
-        long? recvWindow,
+    public Task<SapiV1AssetLedgerTransferCloudMiningQueryByPageResponse> GetCloudMiningPaymentAndRefundHistoryUserData(GetCloudMiningPaymentAndRefundHistoryUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/asset/ledger-transfer/cloud-mining/queryByPage"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/asset/ledger-transfer/cloud-mining/queryByPage"),
             [],
-            [new Param("startTime", startTime),
-                new Param("endTime", endTime),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("tranId", tranId),
-                new Param("clientTranId", clientTranId),
-                new Param("asset", asset),
-                new Param("current", current),
-                new Param("size", size),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("startTime", request.StartTime),
+                new Param("endTime", request.EndTime),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("tranId", request.TranId),
+                new Param("clientTranId", request.ClientTranId),
+                new Param("asset", request.Asset),
+                new Param("current", request.Current),
+                new Param("size", request.Size),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1AssetLedgerTransferCloudMiningQueryByPageResponse>(),
-            GetCloudMiningPaymentAndRefundHistoryUserDataErrorResponse.Instance,
+            GetCloudMiningPaymentAndRefundHistoryUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Get symbols delist schedule for spot (MARKET_DATA)
     /// </summary>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="IReadOnlyList{T}"/> of <see cref="SapiV1SpotDelistScheduleResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="GetSymbolsDelistScheduleForSpotMarketDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="GetSymbolsDelistScheduleForSpotMarketDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Get symbols delist schedule for spot
     /// <para>
     /// Weight(IP): 100
     /// </para>
     /// </remarks>
-    public Task<IReadOnlyList<SapiV1SpotDelistScheduleResponse>> GetSymbolsDelistScheduleForSpotMarketData(long timestamp,
-        string signature,
-        long? recvWindow,
+    public Task<IReadOnlyList<SapiV1SpotDelistScheduleResponse>> GetSymbolsDelistScheduleForSpotMarketData(GetSymbolsDelistScheduleForSpotMarketDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/spot/delist-schedule"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/spot/delist-schedule"),
             [],
-            [new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<IReadOnlyList<SapiV1SpotDelistScheduleResponse>>(),
-            GetSymbolsDelistScheduleForSpotMarketDataErrorResponse.Instance,
+            GetSymbolsDelistScheduleForSpotMarketDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// One click arrival deposit apply (USER_DATA)
     /// </summary>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="depositId">Deposit record Id, priority use</param>
-    /// <param name="txId">Deposit txId, used when depositId is not specified</param>
-    /// <param name="subAccountId"></param>
-    /// <param name="subUserId"></param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1CapitalDepositCreditApplyResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="OneClickArrivalDepositApplyUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="OneClickArrivalDepositApplyUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Apply deposit credit for expired address (One click arrival)
     /// <para>
     /// Weight(IP): 1
     /// </para>
     /// </remarks>
-    public Task<SapiV1CapitalDepositCreditApplyResponse> OneClickArrivalDepositApplyUserData(long timestamp,
-        string signature,
-        long? depositId,
-        string? txId,
-        long? subAccountId,
-        long? subUserId,
-        long? recvWindow,
+    public Task<SapiV1CapitalDepositCreditApplyResponse> OneClickArrivalDepositApplyUserData(OneClickArrivalDepositApplyUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/capital/deposit/credit-apply"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/capital/deposit/credit-apply"),
             [],
-            [new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("depositId", depositId),
-                new Param("txId", txId),
-                new Param("subAccountId", subAccountId),
-                new Param("subUserId", subUserId),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("depositId", request.DepositId),
+                new Param("txId", request.TxId),
+                new Param("subAccountId", request.SubAccountId),
+                new Param("subUserId", request.SubUserId),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [new HeaderParam("Idempotency-Key", Guid.NewGuid())],
             HttpMethod.Post,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1CapitalDepositCreditApplyResponse>(),
-            OneClickArrivalDepositApplyUserDataErrorResponse.Instance,
+            OneClickArrivalDepositApplyUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Query Convert Transfer (USER_DATA)
     /// </summary>
-    /// <param name="startTime">UTC timestamp in ms</param>
-    /// <param name="endTime">UTC timestamp in ms</param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="tranId">The transaction id</param>
-    /// <param name="asset">If it is blank, we will match deducted asset and target asset.</param>
-    /// <param name="accountType">MAIN: main account. CARD: funding account. If it is blank, we will query spot and card wallet, otherwise, we just query the corresponding wallet</param>
-    /// <param name="current">Current querying page. Start from 1. Default:1</param>
-    /// <param name="size">Default:10 Max:100</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1AssetConvertTransferQueryByPageResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="QueryConvertTransferUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="QueryConvertTransferUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Weight(UID): 5
     /// </remarks>
-    public Task<SapiV1AssetConvertTransferQueryByPageResponse> QueryConvertTransferUserData(long startTime,
-        long endTime,
-        long timestamp,
-        string signature,
-        long? tranId,
-        string? asset,
-        AccountType3? accountType,
-        int? current,
-        int? size,
-        long? recvWindow,
+    public Task<SapiV1AssetConvertTransferQueryByPageResponse> QueryConvertTransferUserData(QueryConvertTransferUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/asset/convert-transfer/queryByPage"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/asset/convert-transfer/queryByPage"),
             [],
-            [new Param("startTime", startTime),
-                new Param("endTime", endTime),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("tranId", tranId),
-                new Param("asset", asset),
-                new Param("accountType", accountType),
-                new Param("current", current),
-                new Param("size", size),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("startTime", request.StartTime),
+                new Param("endTime", request.EndTime),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("tranId", request.TranId),
+                new Param("asset", request.Asset),
+                new Param("accountType", request.AccountType),
+                new Param("current", request.Current),
+                new Param("size", request.Size),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1AssetConvertTransferQueryByPageResponse>(),
-            QueryConvertTransferUserDataErrorResponse.Instance,
+            QueryConvertTransferUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Query User Delegation History(For Master Account) (USER_DATA)
     /// </summary>
-    /// <param name="email"></param>
-    /// <param name="startTime"></param>
-    /// <param name="endTime"></param>
-    /// <param name="asset"></param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="type"></param>
-    /// <param name="current">Current querying page. Start from 1. Default:1</param>
-    /// <param name="size">Default:10 Max:100</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1AssetCustodyTransferHistoryResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="QueryUserDelegationHistoryForMasterAccountUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="QueryUserDelegationHistoryForMasterAccountUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Query User Delegation History
     /// <para>
     /// Weight(IP): 60
     /// </para>
     /// </remarks>
-    public Task<SapiV1AssetCustodyTransferHistoryResponse> QueryUserDelegationHistoryForMasterAccountUserData(string email,
-        long startTime,
-        long endTime,
-        string asset,
-        long timestamp,
-        string signature,
-        string? type,
-        int? current,
-        int? size,
-        long? recvWindow,
+    public Task<SapiV1AssetCustodyTransferHistoryResponse> QueryUserDelegationHistoryForMasterAccountUserData(QueryUserDelegationHistoryForMasterAccountUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/asset/custody/transfer-history"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/asset/custody/transfer-history"),
             [],
-            [new Param("email", email),
-                new Param("startTime", startTime),
-                new Param("endTime", endTime),
-                new Param("asset", asset),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("type", type),
-                new Param("current", current),
-                new Param("size", size),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("email", request.Email),
+                new Param("startTime", request.StartTime),
+                new Param("endTime", request.EndTime),
+                new Param("asset", request.Asset),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("type", request.Type),
+                new Param("current", request.Current),
+                new Param("size", request.Size),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1AssetCustodyTransferHistoryResponse>(),
-            QueryUserDelegationHistoryForMasterAccountUserDataErrorResponse.Instance,
+            QueryUserDelegationHistoryForMasterAccountUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Query User Universal Transfer History (USER_DATA)
     /// </summary>
-    /// <param name="type">Universal transfer type</param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="startTime">UTC timestamp in ms</param>
-    /// <param name="endTime">UTC timestamp in ms</param>
-    /// <param name="current">Current querying page. Start from 1. Default:1</param>
-    /// <param name="size">Default:10 Max:100</param>
-    /// <param name="fromSymbol">Must be sent when type are ISOLATEDMARGIN_MARGIN and ISOLATEDMARGIN_ISOLATEDMARGIN</param>
-    /// <param name="toSymbol">Must be sent when type are MARGIN_ISOLATEDMARGIN and ISOLATEDMARGIN_ISOLATEDMARGIN</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1AssetTransferResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="QueryUserUniversalTransferHistoryUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="QueryUserUniversalTransferHistoryUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// <list type="bullet">
     ///   <item><description><c>fromSymbol</c> must be sent when type are ISOLATEDMARGIN_MARGIN and ISOLATEDMARGIN_ISOLATEDMARGIN</description></item>
@@ -1072,81 +929,74 @@ public sealed class Wallet
     /// Weight(IP): 1
     /// </para>
     /// </remarks>
-    public Task<SapiV1AssetTransferResponse> QueryUserUniversalTransferHistoryUserData(Type7 type,
-        long timestamp,
-        string signature,
-        long? startTime,
-        long? endTime,
-        int? current,
-        int? size,
-        string? fromSymbol,
-        string? toSymbol,
-        long? recvWindow,
+    public Task<SapiV1AssetTransferResponse> QueryUserUniversalTransferHistoryUserData(QueryUserUniversalTransferHistoryUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/asset/transfer"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/asset/transfer"),
             [],
-            [new Param("type", type),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("startTime", startTime),
-                new Param("endTime", endTime),
-                new Param("current", current),
-                new Param("size", size),
-                new Param("fromSymbol", fromSymbol),
-                new Param("toSymbol", toSymbol),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("type", request.Type),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("startTime", request.StartTime),
+                new Param("endTime", request.EndTime),
+                new Param("current", request.Current),
+                new Param("size", request.Size),
+                new Param("fromSymbol", request.FromSymbol),
+                new Param("toSymbol", request.ToSymbol),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1AssetTransferResponse>(),
-            QueryUserUniversalTransferHistoryUserDataErrorResponse.Instance,
+            QueryUserUniversalTransferHistoryUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Query User Wallet Balance (USER_DATA)
     /// </summary>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="IReadOnlyList{T}"/> of <see cref="SapiV1AssetWalletBalanceResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="QueryUserWalletBalanceUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="QueryUserWalletBalanceUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Query User Wallet Balance
     /// <para>
     /// Weight(IP): 60
     /// </para>
     /// </remarks>
-    public Task<IReadOnlyList<SapiV1AssetWalletBalanceResponse>> QueryUserWalletBalanceUserData(long timestamp,
-        string signature,
-        long? recvWindow,
+    public Task<IReadOnlyList<SapiV1AssetWalletBalanceResponse>> QueryUserWalletBalanceUserData(QueryUserWalletBalanceUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/asset/wallet/balance"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/asset/wallet/balance"),
             [],
-            [new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<IReadOnlyList<SapiV1AssetWalletBalanceResponse>>(),
-            QueryUserWalletBalanceUserDataErrorResponse.Instance,
+            QueryUserWalletBalanceUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Query auto-converting stable coins (USER_DATA)
     /// </summary>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1CapitalContractConvertibleCoinsResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="QueryAutoConvertingStableCoinsUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="QueryAutoConvertingStableCoinsUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Get a user's auto-conversion settings in deposit/withdrawal
     /// <para>
@@ -1154,57 +1004,57 @@ public sealed class Wallet
     /// </para>
     /// </remarks>
     public Task<SapiV1CapitalContractConvertibleCoinsResponse> QueryAutoConvertingStableCoinsUserData(RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/capital/contract/convertible-coins"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/capital/contract/convertible-coins"),
             [],
             [],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1CapitalContractConvertibleCoinsResponse>(),
-            QueryAutoConvertingStableCoinsUserDataErrorResponse.Instance,
+            QueryAutoConvertingStableCoinsUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Switch on/off BUSD and stable coins conversion (USER_DATA) (USER_DATA)
     /// </summary>
-    /// <param name="coin">Must be USDC, USDP or TUSD</param>
-    /// <param name="enable">true: turn on the auto-conversion. false: turn off the auto-conversion</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="object"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// User can use it to turn on or turn off the BUSD auto-conversion from/to a specific stable coin.
     /// <para>
     /// Weight(UID): 600'
     /// </para>
     /// </remarks>
-    public Task<object> SwitchOnOffBusdAndStableCoinsConversionUserDataUserData(string coin,
-        bool enable,
+    public Task<object> SwitchOnOffBusdAndStableCoinsConversionUserDataUserData(SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/capital/contract/convertible-coins"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/capital/contract/convertible-coins"),
             [],
-            [new Param("coin", coin), new Param("enable", enable)],
+            [new Param("coin", request.Coin), new Param("enable", request.Enable)],
             [new HeaderParam("Idempotency-Key", Guid.NewGuid())],
             HttpMethod.Post,
             EmptyBody.Instance,
             JsonResponse.Create<object>(),
-            SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataErrorResponse.Instance,
+            SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// System Status (System)
     /// </summary>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1SystemStatusResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="RawError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="RawError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Fetch system status.
     /// <para>
@@ -1212,8 +1062,9 @@ public sealed class Wallet
     /// </para>
     /// </remarks>
     public Task<SapiV1SystemStatusResponse> SystemStatusSystem(RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/system/status"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/system/status"),
             [],
             [],
             [],
@@ -1223,102 +1074,87 @@ public sealed class Wallet
             RawErrorResponse.Instance,
             [],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Trade Fee (USER_DATA)
     /// </summary>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="symbol">Trading symbol, e.g. BNBUSDT</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="IReadOnlyList{T}"/> of <see cref="SapiV1AssetTradeFeeResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="TradeFeeUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="TradeFeeUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Fetch trade fee
     /// <para>
     /// Weight(IP): 1
     /// </para>
     /// </remarks>
-    public Task<IReadOnlyList<SapiV1AssetTradeFeeResponse>> TradeFeeUserData(long timestamp,
-        string signature,
-        string? symbol,
-        long? recvWindow,
+    public Task<IReadOnlyList<SapiV1AssetTradeFeeResponse>> TradeFeeUserData(TradeFeeUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/asset/tradeFee"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/asset/tradeFee"),
             [],
-            [new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("symbol", symbol),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("symbol", request.Symbol),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<IReadOnlyList<SapiV1AssetTradeFeeResponse>>(),
-            TradeFeeUserDataErrorResponse.Instance,
+            TradeFeeUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// User Asset (USER_DATA)
     /// </summary>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="asset"></param>
-    /// <param name="needBtcValuation"></param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="IReadOnlyList{T}"/> of <see cref="SapiV3AssetGetUserAssetResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="UserAssetUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="UserAssetUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Get user assets, just for positive data.
     /// <para>
     /// Weight(IP): 5
     /// </para>
     /// </remarks>
-    public Task<IReadOnlyList<SapiV3AssetGetUserAssetResponse>> UserAssetUserData(long timestamp,
-        string signature,
-        string? asset,
-        NeedBtcValuation? needBtcValuation,
-        long? recvWindow,
+    public Task<IReadOnlyList<SapiV3AssetGetUserAssetResponse>> UserAssetUserData(UserAssetUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v3/asset/getUserAsset"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v3/asset/getUserAsset"),
             [],
-            [new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("asset", asset),
-                new Param("needBtcValuation", needBtcValuation),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("asset", request.Asset),
+                new Param("needBtcValuation", request.NeedBtcValuation),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [new HeaderParam("Idempotency-Key", Guid.NewGuid())],
             HttpMethod.Post,
             EmptyBody.Instance,
             JsonResponse.Create<IReadOnlyList<SapiV3AssetGetUserAssetResponse>>(),
-            UserAssetUserDataErrorResponse.Instance,
+            UserAssetUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// User Universal Transfer (USER_DATA)
     /// </summary>
-    /// <param name="type">Universal transfer type</param>
-    /// <param name="asset"></param>
-    /// <param name="amount"></param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="fromSymbol">Must be sent when type are ISOLATEDMARGIN_MARGIN and ISOLATEDMARGIN_ISOLATEDMARGIN</param>
-    /// <param name="toSymbol">Must be sent when type are MARGIN_ISOLATEDMARGIN and ISOLATEDMARGIN_ISOLATEDMARGIN</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1AssetTransferResponse1"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="UserUniversalTransferUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="UserUniversalTransferUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// You need to enable <c>Permits Universal Transfer</c> option for the api key which requests this endpoint.
     /// <list type="bullet">
@@ -1365,54 +1201,39 @@ public sealed class Wallet
     /// Weight(IP): 1
     /// </para>
     /// </remarks>
-    public Task<SapiV1AssetTransferResponse1> UserUniversalTransferUserData(Type7 type,
-        string asset,
-        double amount,
-        long timestamp,
-        string signature,
-        string? fromSymbol,
-        string? toSymbol,
-        long? recvWindow,
+    public Task<SapiV1AssetTransferResponse1> UserUniversalTransferUserData(UserUniversalTransferUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/asset/transfer"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/asset/transfer"),
             [],
-            [new Param("type", type),
-                new Param("asset", asset),
-                new Param("amount", amount),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("fromSymbol", fromSymbol),
-                new Param("toSymbol", toSymbol),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("type", request.Type),
+                new Param("asset", request.Asset),
+                new Param("amount", request.Amount),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("fromSymbol", request.FromSymbol),
+                new Param("toSymbol", request.ToSymbol),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [new HeaderParam("Idempotency-Key", Guid.NewGuid())],
             HttpMethod.Post,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1AssetTransferResponse1>(),
-            UserUniversalTransferUserDataErrorResponse.Instance,
+            UserUniversalTransferUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Withdraw (USER_DATA)
     /// </summary>
-    /// <param name="coin">Coin name</param>
-    /// <param name="address"></param>
-    /// <param name="amount"></param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="withdrawOrderId">Client id for withdraw</param>
-    /// <param name="network"></param>
-    /// <param name="addressTag">Secondary address identifier for coins like XRP,XMR etc.</param>
-    /// <param name="name"></param>
-    /// <param name="walletType">The wallet type for withdraw，0-Spot wallet, 1- Funding wallet. Default is Spot wallet</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
-    /// <param name="transactionFeeFlag">When making internal transfer - <c>true</c> -&gt;  returning the fee to the destination account; - <c>false</c> -&gt; returning the fee back to the departure account.</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1CapitalWithdrawApplyResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="WithdrawUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="WithdrawUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Submit a withdraw request.
     /// <list type="bullet">
@@ -1423,60 +1244,43 @@ public sealed class Wallet
     /// Weight(IP): 1
     /// </para>
     /// </remarks>
-    public Task<SapiV1CapitalWithdrawApplyResponse> WithdrawUserData(string coin,
-        string address,
-        double amount,
-        long timestamp,
-        string signature,
-        string? withdrawOrderId,
-        string? network,
-        string? addressTag,
-        string? name,
-        int? walletType,
-        long? recvWindow,
-        bool? transactionFeeFlag = false,
+    public Task<SapiV1CapitalWithdrawApplyResponse> WithdrawUserData(WithdrawUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/capital/withdraw/apply"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/capital/withdraw/apply"),
             [],
-            [new Param("coin", coin),
-                new Param("address", address),
-                new Param("amount", amount),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("withdrawOrderId", withdrawOrderId),
-                new Param("network", network),
-                new Param("addressTag", addressTag),
-                new Param("transactionFeeFlag", transactionFeeFlag),
-                new Param("name", name),
-                new Param("walletType", walletType),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("coin", request.Coin),
+                new Param("address", request.Address),
+                new Param("amount", request.Amount),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("withdrawOrderId", request.WithdrawOrderId),
+                new Param("network", request.Network),
+                new Param("addressTag", request.AddressTag),
+                new Param("transactionFeeFlag", request.TransactionFeeFlag),
+                new Param("name", request.Name),
+                new Param("walletType", request.WalletType),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [new HeaderParam("Idempotency-Key", Guid.NewGuid())],
             HttpMethod.Post,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1CapitalWithdrawApplyResponse>(),
-            WithdrawUserDataErrorResponse.Instance,
+            WithdrawUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Withdraw History (supporting network) (USER_DATA)
     /// </summary>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="coin">Coin name</param>
-    /// <param name="withdrawOrderId"></param>
-    /// <param name="status">* <c>0</c> - Email Sent * <c>1</c> - Cancelled * <c>2</c> - Awaiting Approval * <c>3</c> - Rejected * <c>4</c> - Processing * <c>5</c> - Failure * <c>6</c> - Completed</param>
-    /// <param name="startTime">UTC timestamp in ms</param>
-    /// <param name="endTime">UTC timestamp in ms</param>
-    /// <param name="offset"></param>
-    /// <param name="limit">Default 500; max 1000.</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="IReadOnlyList{T}"/> of <see cref="SapiV1CapitalWithdrawHistoryResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="WithdrawHistorySupportingNetworkUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="WithdrawHistorySupportingNetworkUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Fetch withdraw history.
     /// <para>
@@ -1494,36 +1298,30 @@ public sealed class Wallet
     /// Request Limit: 10 requests per second
     /// </para>
     /// </remarks>
-    public Task<IReadOnlyList<SapiV1CapitalWithdrawHistoryResponse>> WithdrawHistorySupportingNetworkUserData(long timestamp,
-        string signature,
-        string? coin,
-        string? withdrawOrderId,
-        int? status,
-        long? startTime,
-        long? endTime,
-        int? offset,
-        int? limit,
-        long? recvWindow,
+    public Task<IReadOnlyList<SapiV1CapitalWithdrawHistoryResponse>> WithdrawHistorySupportingNetworkUserData(WithdrawHistorySupportingNetworkUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/capital/withdraw/history"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/capital/withdraw/history"),
             [],
-            [new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("coin", coin),
-                new Param("withdrawOrderId", withdrawOrderId),
-                new Param("status", status),
-                new Param("startTime", startTime),
-                new Param("endTime", endTime),
-                new Param("offset", offset),
-                new Param("limit", limit),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("coin", request.Coin),
+                new Param("withdrawOrderId", request.WithdrawOrderId),
+                new Param("status", request.Status),
+                new Param("startTime", request.StartTime),
+                new Param("endTime", request.EndTime),
+                new Param("offset", request.Offset),
+                new Param("limit", request.Limit),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<IReadOnlyList<SapiV1CapitalWithdrawHistoryResponse>>(),
-            WithdrawHistorySupportingNetworkUserDataErrorResponse.Instance,
+            WithdrawHistorySupportingNetworkUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 }

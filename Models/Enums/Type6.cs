@@ -1,10 +1,11 @@
+using System;
 using System.Text.Json.Serialization;
-using BinancePublicSpotApi.Core.Enum;
+using Binance.Core.Enum;
 
-namespace BinancePublicSpotApi.Models.Enums;
+namespace Binance.Models.Enums;
 
 [JsonConverter(typeof(StringEnumConverter<Type6>))]
-public sealed record Type6 : StringEnum<Type6>
+public sealed record Type6 : OpenStringEnum<Type6>
 {
     private Type6(string value) : base(value)
     {
@@ -16,5 +17,23 @@ public sealed record Type6 : StringEnum<Type6>
 
     public static readonly Type6 Futures = new("FUTURES");
 
-    public static Type6 FromValue(string value) => FromValueCore(value);
+    public TResult Match<TResult>(Func<TResult> onSpot,
+        Func<TResult> onMargin,
+        Func<TResult> onFutures,
+        Func<string, TResult> otherwise) =>
+        this switch
+        {
+            _ when this == Spot => onSpot(),
+            _ when this == Margin => onMargin(),
+            _ when this == Futures => onFutures(),
+            _ => otherwise(Value)
+        };
+
+    public void Match(Action onSpot, Action onMargin, Action onFutures, Action<string> otherwise)
+    {
+        if (this == Spot) onSpot();
+        else if (this == Margin) onMargin();
+        else if (this == Futures) onFutures();
+        else otherwise(Value);
+    }
 }

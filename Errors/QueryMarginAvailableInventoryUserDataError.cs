@@ -1,17 +1,16 @@
-using System.Net.Http;
-using System.Threading;
 using System.Threading.Tasks;
-using BinancePublicSpotApi.Core.ErrorResponse;
-using BinancePublicSpotApi.Core.Models;
-using BinancePublicSpotApi.Models;
+using Binance.Core.ErrorResponse;
+using Binance.Core.Models;
+using Binance.Models;
 
-namespace BinancePublicSpotApi.Errors;
+namespace Binance.Errors;
 
 public sealed class QueryMarginAvailableInventoryUserDataError : ApiError
 {
     private readonly Optional<Error> _errorValue;
 
-    private QueryMarginAvailableInventoryUserDataError(Optional<Error> errorValue, Optional<RawError> fallback) : base(fallback)
+    private QueryMarginAvailableInventoryUserDataError(Optional<Error> errorValue,
+        Optional<RawError> fallback) : base(fallback)
     {
         _errorValue = errorValue;
     }
@@ -24,23 +23,12 @@ public sealed class QueryMarginAvailableInventoryUserDataError : ApiError
 
     public bool TryGetError(out Error value) => _errorValue.TryGetValue(out value);
 
-    internal static Task<QueryMarginAvailableInventoryUserDataError> Create(HttpResponseMessage response,
-        CancellationToken ct) =>
-        (int)response.StatusCode switch
+    private static Task<QueryMarginAvailableInventoryUserDataError> Create(FailedResponse response) =>
+        response.StatusCode switch
         {
-            400 or 401 => FromJson<Error>(response, ct).As(AsError),
-            _ => FromRawBody(response, ct).As(AsFallback)
+            400 or 401 => response.Json<Error>().As(AsError),
+            _ => response.RawBody().As(AsFallback)
         };
-}
 
-internal sealed class QueryMarginAvailableInventoryUserDataErrorResponse : IErrorResponse<QueryMarginAvailableInventoryUserDataError>
-{
-    public static QueryMarginAvailableInventoryUserDataErrorResponse Instance { get; } = new();
-
-    private QueryMarginAvailableInventoryUserDataErrorResponse()
-    {
-    }
-
-    public Task<QueryMarginAvailableInventoryUserDataError> Map(HttpResponseMessage response, CancellationToken ct) =>
-        QueryMarginAvailableInventoryUserDataError.Create(response, ct);
+    internal static ApiErrorResponse<QueryMarginAvailableInventoryUserDataError> Response { get; } = new(Create);
 }

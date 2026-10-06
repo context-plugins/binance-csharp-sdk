@@ -2,16 +2,16 @@ using System;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using BinancePublicSpotApi.Core;
-using BinancePublicSpotApi.Core.Exceptions;
-using BinancePublicSpotApi.Core.Models;
-using BinancePublicSpotApi.Core.Request;
-using BinancePublicSpotApi.Core.Response;
-using BinancePublicSpotApi.Errors;
-using BinancePublicSpotApi.Models;
-using BinancePublicSpotApi.Models.Enums;
+using Binance.Core;
+using Binance.Core.Exceptions;
+using Binance.Core.Models;
+using Binance.Core.Request;
+using Binance.Core.Response;
+using Binance.Errors;
+using Binance.Models;
+using Binance.Requests.DualInvestment;
 
-namespace BinancePublicSpotApi.Api;
+namespace Binance.Api;
 
 public sealed class DualInvestment
 {
@@ -29,15 +29,11 @@ public sealed class DualInvestment
     /// <summary>
     /// Change Auto-Compound status(USER_DATA)
     /// </summary>
-    /// <param name="positionId">Get positionId from /sapi/v1/dci/product/positions</param>
-    /// <param name="autoCompoundPlan">NONE: switch off the plan, STANDARD: standard plan, ADVANCED: advanced plan;</param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1DciProductAutoCompoundEditStatusResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="ChangeAutoCompoundStatusUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="ChangeAutoCompoundStatusUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Change Auto-Compound status
     /// <list type="bullet">
@@ -50,172 +46,146 @@ public sealed class DualInvestment
     /// Rate Limit: Maximum 1 time/s per account
     /// </para>
     /// </remarks>
-    public Task<SapiV1DciProductAutoCompoundEditStatusResponse> ChangeAutoCompoundStatusUserData(long positionId,
-        AutoCompoundPlan autoCompoundPlan,
-        long timestamp,
-        string signature,
-        long? recvWindow,
+    public Task<SapiV1DciProductAutoCompoundEditStatusResponse> ChangeAutoCompoundStatusUserData(ChangeAutoCompoundStatusUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/dci/product/auto_compound/edit-status"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/dci/product/auto_compound/edit-status"),
             [],
-            [new Param("positionId", positionId),
-                new Param("autoCompoundPlan", autoCompoundPlan),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("positionId", request.PositionId),
+                new Param("autoCompoundPlan", request.AutoCompoundPlan),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [new HeaderParam("Idempotency-Key", Guid.NewGuid())],
             HttpMethod.Post,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1DciProductAutoCompoundEditStatusResponse>(),
-            ChangeAutoCompoundStatusUserDataErrorResponse.Instance,
+            ChangeAutoCompoundStatusUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Check Dual Investment accounts(USER_DATA)
     /// </summary>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1DciProductAccountsResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="CheckDualInvestmentAccountsUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="CheckDualInvestmentAccountsUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Check Dual Investment accounts
     /// <para>
     /// Weight(IP): 1
     /// </para>
     /// </remarks>
-    public Task<SapiV1DciProductAccountsResponse> CheckDualInvestmentAccountsUserData(long timestamp,
-        string signature,
-        long? recvWindow,
+    public Task<SapiV1DciProductAccountsResponse> CheckDualInvestmentAccountsUserData(CheckDualInvestmentAccountsUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/dci/product/accounts"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/dci/product/accounts"),
             [],
-            [new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1DciProductAccountsResponse>(),
-            CheckDualInvestmentAccountsUserDataErrorResponse.Instance,
+            CheckDualInvestmentAccountsUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Get Dual Investment positions(USER_DATA)
     /// </summary>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="status">- PENDING: Products are purchasing, will give results later; - PURCHASE_SUCCESS: purchase successfully; - SETTLED: Products are finish settling; - PURCHASE_FAIL: fail to purchase; - REFUNDING: refund ongoing; - REFUND_SUCCESS: refund to spot account successfully; - SETTLING: Products are settling. If don't fill this field, will response all the position status.</param>
-    /// <param name="pageSize">MIN 1, MAX 100; Default 100</param>
-    /// <param name="pageIndex">Page number, default is first page, start form 1</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1DciProductPositionsResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="GetDualInvestmentPositionsUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="GetDualInvestmentPositionsUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Get Dual Investment positions (batch)
     /// <para>
     /// Weight(IP): 1
     /// </para>
     /// </remarks>
-    public Task<SapiV1DciProductPositionsResponse> GetDualInvestmentPositionsUserData(long timestamp,
-        string signature,
-        Status2? status,
-        string? pageSize,
-        int? pageIndex,
-        long? recvWindow,
+    public Task<SapiV1DciProductPositionsResponse> GetDualInvestmentPositionsUserData(GetDualInvestmentPositionsUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/dci/product/positions"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/dci/product/positions"),
             [],
-            [new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("status", status),
-                new Param("pageSize", pageSize),
-                new Param("pageIndex", pageIndex),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("status", request.Status),
+                new Param("pageSize", request.PageSize),
+                new Param("pageIndex", request.PageIndex),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1DciProductPositionsResponse>(),
-            GetDualInvestmentPositionsUserDataErrorResponse.Instance,
+            GetDualInvestmentPositionsUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Get Dual Investment product list(USER_DATA)
     /// </summary>
-    /// <param name="optionType">Input CALL or PUT</param>
-    /// <param name="exercisedCoin">Target exercised asset, e.g.: if you subscribe to a high sell product (call option), you should input:   - optionType: CALL,   - exercisedCoin: USDT,   - investCoin: BNB;  if you subscribe to a low buy product (put option), you should input:   - optionType: PUT,   - exercisedCoin: BNB,   - investCoin: USDT;</param>
-    /// <param name="investCoin">Asset used for subscribing, e.g.: if you subscribe to a high sell product (call option), you should input:   - optionType: CALL,   - exercisedCoin: USDT,   - investCoin: BNB;  if you subscribe to a low buy product (put option), you should input:   - optionType: PUT,   - exercisedCoin: BNB,   - investCoin: USDT;</param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="pageSize">MIN 1, MAX 100; Default 100</param>
-    /// <param name="pageIndex">Page number, default is first page, start form 1</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1DciProductListResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="GetDualInvestmentProductListUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="GetDualInvestmentProductListUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Get Dual Investment product list
     /// <para>
     /// Weight(IP): 1
     /// </para>
     /// </remarks>
-    public Task<SapiV1DciProductListResponse> GetDualInvestmentProductListUserData(OptionType optionType,
-        string exercisedCoin,
-        string investCoin,
-        long timestamp,
-        string signature,
-        string? pageSize,
-        int? pageIndex,
-        long? recvWindow,
+    public Task<SapiV1DciProductListResponse> GetDualInvestmentProductListUserData(GetDualInvestmentProductListUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/dci/product/list"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/dci/product/list"),
             [],
-            [new Param("optionType", optionType),
-                new Param("exercisedCoin", exercisedCoin),
-                new Param("investCoin", investCoin),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("pageSize", pageSize),
-                new Param("pageIndex", pageIndex),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("optionType", request.OptionType),
+                new Param("exercisedCoin", request.ExercisedCoin),
+                new Param("investCoin", request.InvestCoin),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("pageSize", request.PageSize),
+                new Param("pageIndex", request.PageIndex),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1DciProductListResponse>(),
-            GetDualInvestmentProductListUserDataErrorResponse.Instance,
+            GetDualInvestmentProductListUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Subscribe Dual Investment products(USER_DATA)
     /// </summary>
-    /// <param name="id">get id from /sapi/v1/dci/product/list</param>
-    /// <param name="orderId">get orderId from /sapi/v1/dci/product/list</param>
-    /// <param name="depositAmount"></param>
-    /// <param name="autoCompoundPlan">NONE: switch off the plan, STANDARD: standard plan, ADVANCED: advanced plan;</param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1DciProductSubscribeResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="SubscribeDualInvestmentProductsUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="SubscribeDualInvestmentProductsUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Subscribe Dual Investment products
     /// <list type="bullet">
@@ -226,30 +196,27 @@ public sealed class DualInvestment
     /// Weight(IP): 1
     /// </para>
     /// </remarks>
-    public Task<SapiV1DciProductSubscribeResponse> SubscribeDualInvestmentProductsUserData(string id,
-        string orderId,
-        double depositAmount,
-        AutoCompoundPlan autoCompoundPlan,
-        long timestamp,
-        string signature,
-        long? recvWindow,
+    public Task<SapiV1DciProductSubscribeResponse> SubscribeDualInvestmentProductsUserData(SubscribeDualInvestmentProductsUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/dci/product/subscribe"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/dci/product/subscribe"),
             [],
-            [new Param("id", id),
-                new Param("orderId", orderId),
-                new Param("depositAmount", depositAmount),
-                new Param("autoCompoundPlan", autoCompoundPlan),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("id", request.Id),
+                new Param("orderId", request.OrderId),
+                new Param("depositAmount", request.DepositAmount),
+                new Param("autoCompoundPlan", request.AutoCompoundPlan),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [new HeaderParam("Idempotency-Key", Guid.NewGuid())],
             HttpMethod.Post,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1DciProductSubscribeResponse>(),
-            SubscribeDualInvestmentProductsUserDataErrorResponse.Instance,
+            SubscribeDualInvestmentProductsUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 }

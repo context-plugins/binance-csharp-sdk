@@ -9,15 +9,16 @@ Accessor: `client.PortfolioMargin` · Source: `Api/PortfolioMargin.cs` · 14 ope
 ### BnbTransferUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `BnbTransferUserData(TransferSide transferSide, double amount, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `transferSide` ← `transferSide`, `amount` ← `amount`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `BnbTransferUserData(BnbTransferUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `TransferSide`, `Amount`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `transferSide` ← `TransferSide`, `amount` ← `Amount`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1PortfolioBnbTransferResponse`
-- **Error**: `SdkException<BnbTransferUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<BnbTransferUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `BnbTransferUserDataRequest` | `Requests/PortfolioMargin/BnbTransferUserDataRequest.cs` |
 | `TransferSide` | `Models/Enums/TransferSide.cs` |
 | `SapiV1PortfolioBnbTransferResponse` | `Models/SapiV1PortfolioBnbTransferResponse.cs` |
 | `BnbTransferUserDataError` | `Errors/BnbTransferUserDataError.cs` |
@@ -26,15 +27,16 @@ Accessor: `client.PortfolioMargin` · Source: `Api/PortfolioMargin.cs` · 14 ope
 ### ChangeAutoRepayFuturesStatusUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `ChangeAutoRepayFuturesStatusUserData(bool autoRepay, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `autoRepay` ← `autoRepay`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `ChangeAutoRepayFuturesStatusUserData(ChangeAutoRepayFuturesStatusUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `AutoRepay`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `autoRepay` ← `AutoRepay`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1PortfolioRepayFuturesSwitchResponse`
-- **Error**: `SdkException<ChangeAutoRepayFuturesStatusUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<ChangeAutoRepayFuturesStatusUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `ChangeAutoRepayFuturesStatusUserDataRequest` | `Requests/PortfolioMargin/ChangeAutoRepayFuturesStatusUserDataRequest.cs` |
 | `SapiV1PortfolioRepayFuturesSwitchResponse` | `Models/SapiV1PortfolioRepayFuturesSwitchResponse.cs` |
 | `ChangeAutoRepayFuturesStatusUserDataError` | `Errors/ChangeAutoRepayFuturesStatusUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -42,15 +44,16 @@ Accessor: `client.PortfolioMargin` · Source: `Api/PortfolioMargin.cs` · 14 ope
 ### FundAutoCollectionUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `FundAutoCollectionUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `FundAutoCollectionUserData(FundAutoCollectionUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1PortfolioAutoCollectionResponse`
-- **Error**: `SdkException<FundAutoCollectionUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<FundAutoCollectionUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `FundAutoCollectionUserDataRequest` | `Requests/PortfolioMargin/FundAutoCollectionUserDataRequest.cs` |
 | `SapiV1PortfolioAutoCollectionResponse` | `Models/SapiV1PortfolioAutoCollectionResponse.cs` |
 | `FundAutoCollectionUserDataError` | `Errors/FundAutoCollectionUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -58,15 +61,16 @@ Accessor: `client.PortfolioMargin` · Source: `Api/PortfolioMargin.cs` · 14 ope
 ### FundCollectionByAssetUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `FundCollectionByAssetUserData(string asset, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `asset` ← `asset`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `FundCollectionByAssetUserData(FundCollectionByAssetUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Asset`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `asset` ← `Asset`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1PortfolioAssetCollectionResponse`
-- **Error**: `SdkException<FundCollectionByAssetUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<FundCollectionByAssetUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `FundCollectionByAssetUserDataRequest` | `Requests/PortfolioMargin/FundCollectionByAssetUserDataRequest.cs` |
 | `SapiV1PortfolioAssetCollectionResponse` | `Models/SapiV1PortfolioAssetCollectionResponse.cs` |
 | `FundCollectionByAssetUserDataError` | `Errors/FundCollectionByAssetUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -74,24 +78,25 @@ Accessor: `client.PortfolioMargin` · Source: `Api/PortfolioMargin.cs` · 14 ope
 ### GetAutoRepayFuturesStatusUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetAutoRepayFuturesStatusUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetAutoRepayFuturesStatusUserData(GetAutoRepayFuturesStatusUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1PortfolioRepayFuturesSwitchResponse1`
-- **Error**: `SdkException<GetAutoRepayFuturesStatusUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetAutoRepayFuturesStatusUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetAutoRepayFuturesStatusUserDataRequest` | `Requests/PortfolioMargin/GetAutoRepayFuturesStatusUserDataRequest.cs` |
 | `SapiV1PortfolioRepayFuturesSwitchResponse1` | `Models/SapiV1PortfolioRepayFuturesSwitchResponse1.cs` |
 | `GetAutoRepayFuturesStatusUserDataError` | `Errors/GetAutoRepayFuturesStatusUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
 
 ### GetPortfolioMarginAssetLeverageUserData
 
-- **Signature**: `GetPortfolioMarginAssetLeverageUserData(RequestOptions? requestOptions = null, CancellationToken ct = default)`
+- **Signature**: `GetPortfolioMarginAssetLeverageUserData(RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
 - **Returns**: `IReadOnlyList<SapiV1PortfolioMarginAssetLeverageResponse>`
-- **Error**: `SdkException<GetPortfolioMarginAssetLeverageUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetPortfolioMarginAssetLeverageUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
@@ -103,15 +108,16 @@ Accessor: `client.PortfolioMargin` · Source: `Api/PortfolioMargin.cs` · 14 ope
 ### PortfolioMarginAccountUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `PortfolioMarginAccountUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `PortfolioMarginAccountUserData(PortfolioMarginAccountUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1PortfolioAccountResponse`
-- **Error**: `SdkException<PortfolioMarginAccountUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<PortfolioMarginAccountUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `PortfolioMarginAccountUserDataRequest` | `Requests/PortfolioMargin/PortfolioMarginAccountUserDataRequest.cs` |
 | `SapiV1PortfolioAccountResponse` | `Models/SapiV1PortfolioAccountResponse.cs` |
 | `PortfolioMarginAccountUserDataError` | `Errors/PortfolioMarginAccountUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -119,15 +125,16 @@ Accessor: `client.PortfolioMargin` · Source: `Api/PortfolioMargin.cs` · 14 ope
 ### PortfolioMarginBankruptcyLoanAmountUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `PortfolioMarginBankruptcyLoanAmountUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `PortfolioMarginBankruptcyLoanAmountUserData(PortfolioMarginBankruptcyLoanAmountUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1PortfolioPmLoanResponse`
-- **Error**: `SdkException<PortfolioMarginBankruptcyLoanAmountUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<PortfolioMarginBankruptcyLoanAmountUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `PortfolioMarginBankruptcyLoanAmountUserDataRequest` | `Requests/PortfolioMargin/PortfolioMarginBankruptcyLoanAmountUserDataRequest.cs` |
 | `SapiV1PortfolioPmLoanResponse` | `Models/SapiV1PortfolioPmLoanResponse.cs` |
 | `PortfolioMarginBankruptcyLoanAmountUserDataError` | `Errors/PortfolioMarginBankruptcyLoanAmountUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -135,16 +142,16 @@ Accessor: `client.PortfolioMargin` · Source: `Api/PortfolioMargin.cs` · 14 ope
 ### PortfolioMarginBankruptcyLoanRepayUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `PortfolioMarginBankruptcyLoanRepayUserData(long timestamp, string signature, string? from, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `from` — nullable, no default → **must pass explicitly**
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `from` ← `from`, `recvWindow` ← `recvWindow`
+- **Signature**: `PortfolioMarginBankruptcyLoanRepayUserData(PortfolioMarginBankruptcyLoanRepayUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `from` ← `From`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1PortfolioRepayResponse`
-- **Error**: `SdkException<PortfolioMarginBankruptcyLoanRepayUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<PortfolioMarginBankruptcyLoanRepayUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `PortfolioMarginBankruptcyLoanRepayUserDataRequest` | `Requests/PortfolioMargin/PortfolioMarginBankruptcyLoanRepayUserDataRequest.cs` |
 | `SapiV1PortfolioRepayResponse` | `Models/SapiV1PortfolioRepayResponse.cs` |
 | `PortfolioMarginBankruptcyLoanRepayUserDataError` | `Errors/PortfolioMarginBankruptcyLoanRepayUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -152,9 +159,9 @@ Accessor: `client.PortfolioMargin` · Source: `Api/PortfolioMargin.cs` · 14 ope
 ### PortfolioMarginCollateralRateMarketData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `PortfolioMarginCollateralRateMarketData(RequestOptions? requestOptions = null, CancellationToken ct = default)`
+- **Signature**: `PortfolioMarginCollateralRateMarketData(RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
 - **Returns**: `IReadOnlyList<SapiV1PortfolioCollateralRateResponse>`
-- **Error**: `SdkException<PortfolioMarginCollateralRateMarketDataError>` — **Case A (typed)**
+- **Error**: `ApiException<PortfolioMarginCollateralRateMarketDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
@@ -166,15 +173,16 @@ Accessor: `client.PortfolioMargin` · Source: `Api/PortfolioMargin.cs` · 14 ope
 ### PortfolioMarginProTieredCollateralRateUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `PortfolioMarginProTieredCollateralRateUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `PortfolioMarginProTieredCollateralRateUserData(PortfolioMarginProTieredCollateralRateUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `IReadOnlyList<SapiV2PortfolioCollateralRateResponse>`
-- **Error**: `SdkException<PortfolioMarginProTieredCollateralRateUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<PortfolioMarginProTieredCollateralRateUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `PortfolioMarginProTieredCollateralRateUserDataRequest` | `Requests/PortfolioMargin/PortfolioMarginProTieredCollateralRateUserDataRequest.cs` |
 | `SapiV2PortfolioCollateralRateResponse` | `Models/SapiV2PortfolioCollateralRateResponse.cs` |
 | `PortfolioMarginProTieredCollateralRateUserDataError` | `Errors/PortfolioMarginProTieredCollateralRateUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -182,15 +190,16 @@ Accessor: `client.PortfolioMargin` · Source: `Api/PortfolioMargin.cs` · 14 ope
 ### QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUserData(string asset, long timestamp, string signature, long? startTime, long? endTime, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 4 params (`startTime` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `asset` ← `asset`, `timestamp` ← `timestamp`, `signature` ← `signature`, `startTime` ← `startTime`, `endTime` ← `endTime`, `size` ← `size`, `recvWindow` ← `recvWindow`
+- **Signature**: `QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUserData(QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Asset`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `asset` ← `Asset`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `startTime` ← `StartTime`, `endTime` ← `EndTime`, `size` ← `Size`, `recvWindow` ← `RecvWindow`
 - **Returns**: `IReadOnlyList<SapiV1PortfolioInterestHistoryResponse>`
-- **Error**: `SdkException<QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUserDataRequest` | `Requests/PortfolioMargin/QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUserDataRequest.cs` |
 | `SapiV1PortfolioInterestHistoryResponse` | `Models/SapiV1PortfolioInterestHistoryResponse.cs` |
 | `QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUserDataError` | `Errors/QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -198,15 +207,15 @@ Accessor: `client.PortfolioMargin` · Source: `Api/PortfolioMargin.cs` · 14 ope
 ### QueryPortfolioMarginAssetIndexPriceMarketData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `QueryPortfolioMarginAssetIndexPriceMarketData(string? asset, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `asset` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `asset` ← `asset`
+- **Signature**: `QueryPortfolioMarginAssetIndexPriceMarketData(QueryPortfolioMarginAssetIndexPriceMarketDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+- **Query params (wire ← C#)**: `asset` ← `Asset`
 - **Returns**: `IReadOnlyList<SapiV1PortfolioAssetIndexPriceResponse>`
-- **Error**: `SdkException<QueryPortfolioMarginAssetIndexPriceMarketDataError>` — **Case A (typed)**
+- **Error**: `ApiException<QueryPortfolioMarginAssetIndexPriceMarketDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `QueryPortfolioMarginAssetIndexPriceMarketDataRequest` | `Requests/PortfolioMargin/QueryPortfolioMarginAssetIndexPriceMarketDataRequest.cs` |
 | `SapiV1PortfolioAssetIndexPriceResponse` | `Models/SapiV1PortfolioAssetIndexPriceResponse.cs` |
 | `QueryPortfolioMarginAssetIndexPriceMarketDataError` | `Errors/QueryPortfolioMarginAssetIndexPriceMarketDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -214,15 +223,16 @@ Accessor: `client.PortfolioMargin` · Source: `Api/PortfolioMargin.cs` · 14 ope
 ### RepayFuturesNegativeBalanceUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `RepayFuturesNegativeBalanceUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `RepayFuturesNegativeBalanceUserData(RepayFuturesNegativeBalanceUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1PortfolioRepayFuturesNegativeBalanceResponse`
-- **Error**: `SdkException<RepayFuturesNegativeBalanceUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<RepayFuturesNegativeBalanceUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `RepayFuturesNegativeBalanceUserDataRequest` | `Requests/PortfolioMargin/RepayFuturesNegativeBalanceUserDataRequest.cs` |
 | `SapiV1PortfolioRepayFuturesNegativeBalanceResponse` | `Models/SapiV1PortfolioRepayFuturesNegativeBalanceResponse.cs` |
 | `RepayFuturesNegativeBalanceUserDataError` | `Errors/RepayFuturesNegativeBalanceUserDataError.cs` |
 | `Error` | `Models/Error.cs` |

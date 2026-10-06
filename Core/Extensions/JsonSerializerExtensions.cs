@@ -5,7 +5,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace BinancePublicSpotApi.Core.Extensions;
+namespace Binance.Core.Extensions;
 
 internal static class JsonSerializerExtensions
 {

@@ -9,15 +9,16 @@ Accessor: `client.Rebate` · Source: `Api/Rebate.cs` · 1 operation
 ### GetSpotRebateHistoryRecordsUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetSpotRebateHistoryRecordsUserData(long timestamp, string signature, long? startTime, long? endTime, int? page, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 4 params (`startTime` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `startTime` ← `startTime`, `endTime` ← `endTime`, `page` ← `page`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetSpotRebateHistoryRecordsUserData(GetSpotRebateHistoryRecordsUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `startTime` ← `StartTime`, `endTime` ← `EndTime`, `page` ← `Page`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1RebateTaxQueryResponse`
-- **Error**: `SdkException<GetSpotRebateHistoryRecordsUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetSpotRebateHistoryRecordsUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetSpotRebateHistoryRecordsUserDataRequest` | `Requests/Rebate/GetSpotRebateHistoryRecordsUserDataRequest.cs` |
 | `SapiV1RebateTaxQueryResponse` | `Models/SapiV1RebateTaxQueryResponse.cs` |
 | `GetSpotRebateHistoryRecordsUserDataError` | `Errors/GetSpotRebateHistoryRecordsUserDataError.cs` |
 | `Error` | `Models/Error.cs` |

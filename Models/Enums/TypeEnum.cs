@@ -1,10 +1,11 @@
+using System;
 using System.Text.Json.Serialization;
-using BinancePublicSpotApi.Core.Enum;
+using Binance.Core.Enum;
 
-namespace BinancePublicSpotApi.Models.Enums;
+namespace Binance.Models.Enums;
 
 [JsonConverter(typeof(StringEnumConverter<TypeEnum>))]
-public sealed record TypeEnum : StringEnum<TypeEnum>
+public sealed record TypeEnum : OpenStringEnum<TypeEnum>
 {
     private TypeEnum(string value) : base(value)
     {
@@ -14,5 +15,18 @@ public sealed record TypeEnum : StringEnum<TypeEnum>
 
     public static readonly TypeEnum Mini = new("MINI");
 
-    public static TypeEnum FromValue(string value) => FromValueCore(value);
+    public TResult Match<TResult>(Func<TResult> onFull, Func<TResult> onMini, Func<string, TResult> otherwise) =>
+        this switch
+        {
+            _ when this == Full => onFull(),
+            _ when this == Mini => onMini(),
+            _ => otherwise(Value)
+        };
+
+    public void Match(Action onFull, Action onMini, Action<string> otherwise)
+    {
+        if (this == Full) onFull();
+        else if (this == Mini) onMini();
+        else otherwise(Value);
+    }
 }

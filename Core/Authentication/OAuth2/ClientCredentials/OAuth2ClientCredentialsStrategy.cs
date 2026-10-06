@@ -4,12 +4,12 @@ using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using BinancePublicSpotApi.Core.ErrorResponse;
-using BinancePublicSpotApi.Core.Models;
-using BinancePublicSpotApi.Core.Request;
-using BinancePublicSpotApi.Core.Response;
+using Binance.Core.ErrorResponse;
+using Binance.Core.Models;
+using Binance.Core.Request;
+using Binance.Core.Response;
 
-namespace BinancePublicSpotApi.Core.Authentication.OAuth2.ClientCredentials;
+namespace Binance.Core.Authentication.OAuth2.ClientCredentials;
 
 internal sealed class OAuth2ClientCredentialsStrategy : IOAuth2TokenStrategy<OAuth2ClientCredentials>
 {

@@ -9,17 +9,16 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 ### AdjustLtvFlexibleLoanAdjustLtvTrade
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `AdjustLtvFlexibleLoanAdjustLtvTrade(double adjustmentAmount, Direction direction, long timestamp, string signature, string? loanCoin, string? collateralCoin, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `loanCoin` — nullable, no default → **must pass explicitly**
-  - `collateralCoin` — nullable, no default → **must pass explicitly**
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `adjustmentAmount` ← `adjustmentAmount`, `direction` ← `direction`, `timestamp` ← `timestamp`, `signature` ← `signature`, `loanCoin` ← `loanCoin`, `collateralCoin` ← `collateralCoin`, `recvWindow` ← `recvWindow`
+- **Signature**: `AdjustLtvFlexibleLoanAdjustLtvTrade(AdjustLtvFlexibleLoanAdjustLtvTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `AdjustmentAmount`, `Direction`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `adjustmentAmount` ← `AdjustmentAmount`, `direction` ← `Direction`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `loanCoin` ← `LoanCoin`, `collateralCoin` ← `CollateralCoin`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV2LoanFlexibleAdjustLtvResponse`
-- **Error**: `SdkException<AdjustLtvFlexibleLoanAdjustLtvTradeError>` — **Case A (typed)**
+- **Error**: `ApiException<AdjustLtvFlexibleLoanAdjustLtvTradeError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `AdjustLtvFlexibleLoanAdjustLtvTradeRequest` | `Requests/CryptoLoans/AdjustLtvFlexibleLoanAdjustLtvTradeRequest.cs` |
 | `Direction` | `Models/Enums/Direction.cs` |
 | `SapiV2LoanFlexibleAdjustLtvResponse` | `Models/SapiV2LoanFlexibleAdjustLtvResponse.cs` |
 | `AdjustLtvFlexibleLoanAdjustLtvTradeError` | `Errors/AdjustLtvFlexibleLoanAdjustLtvTradeError.cs` |
@@ -28,15 +27,16 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 ### AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserData(long timestamp, string signature, string? loanCoin, string? collateralCoin, long? startTime, long? endTime, int? current, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 7 params (`loanCoin` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `loanCoin` ← `loanCoin`, `collateralCoin` ← `collateralCoin`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `limit` ← `limit`, `recvWindow` ← `recvWindow`
+- **Signature**: `AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserData(AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `loanCoin` ← `LoanCoin`, `collateralCoin` ← `CollateralCoin`, `startTime` ← `StartTime`, `endTime` ← `EndTime`, `current` ← `Current`, `limit` ← `Limit`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV2LoanFlexibleLtvAdjustmentHistoryResponse`
-- **Error**: `SdkException<AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserDataRequest` | `Requests/CryptoLoans/AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserDataRequest.cs` |
 | `SapiV2LoanFlexibleLtvAdjustmentHistoryResponse` | `Models/SapiV2LoanFlexibleLtvAdjustmentHistoryResponse.cs` |
 | `AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserDataError` | `Errors/AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -44,15 +44,16 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 ### BorrowFlexibleLoanBorrowTrade
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `BorrowFlexibleLoanBorrowTrade(long timestamp, string signature, string? loanCoin, double? loanAmount, string? collateralCoin, double? collateralAmount, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 5 params (`loanCoin` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `loanCoin` ← `loanCoin`, `loanAmount` ← `loanAmount`, `collateralCoin` ← `collateralCoin`, `collateralAmount` ← `collateralAmount`, `recvWindow` ← `recvWindow`
+- **Signature**: `BorrowFlexibleLoanBorrowTrade(BorrowFlexibleLoanBorrowTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `loanCoin` ← `LoanCoin`, `loanAmount` ← `LoanAmount`, `collateralCoin` ← `CollateralCoin`, `collateralAmount` ← `CollateralAmount`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV2LoanFlexibleBorrowResponse`
-- **Error**: `SdkException<BorrowFlexibleLoanBorrowTradeError>` — **Case A (typed)**
+- **Error**: `ApiException<BorrowFlexibleLoanBorrowTradeError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `BorrowFlexibleLoanBorrowTradeRequest` | `Requests/CryptoLoans/BorrowFlexibleLoanBorrowTradeRequest.cs` |
 | `SapiV2LoanFlexibleBorrowResponse` | `Models/SapiV2LoanFlexibleBorrowResponse.cs` |
 | `BorrowFlexibleLoanBorrowTradeError` | `Errors/BorrowFlexibleLoanBorrowTradeError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -60,15 +61,16 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 ### BorrowGetFlexibleLoanBorrowHistoryUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `BorrowGetFlexibleLoanBorrowHistoryUserData(long timestamp, string signature, string? loanCoin, string? collateralCoin, long? startTime, long? endTime, int? current, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 7 params (`loanCoin` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `loanCoin` ← `loanCoin`, `collateralCoin` ← `collateralCoin`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `limit` ← `limit`, `recvWindow` ← `recvWindow`
+- **Signature**: `BorrowGetFlexibleLoanBorrowHistoryUserData(BorrowGetFlexibleLoanBorrowHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `loanCoin` ← `LoanCoin`, `collateralCoin` ← `CollateralCoin`, `startTime` ← `StartTime`, `endTime` ← `EndTime`, `current` ← `Current`, `limit` ← `Limit`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV2LoanFlexibleBorrowHistoryResponse`
-- **Error**: `SdkException<BorrowGetFlexibleLoanBorrowHistoryUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<BorrowGetFlexibleLoanBorrowHistoryUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `BorrowGetFlexibleLoanBorrowHistoryUserDataRequest` | `Requests/CryptoLoans/BorrowGetFlexibleLoanBorrowHistoryUserDataRequest.cs` |
 | `SapiV2LoanFlexibleBorrowHistoryResponse` | `Models/SapiV2LoanFlexibleBorrowHistoryResponse.cs` |
 | `BorrowGetFlexibleLoanBorrowHistoryUserDataError` | `Errors/BorrowGetFlexibleLoanBorrowHistoryUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -76,15 +78,16 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 ### BorrowGetFlexibleLoanOngoingOrdersUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `BorrowGetFlexibleLoanOngoingOrdersUserData(long timestamp, string signature, string? loanCoin, string? collateralCoin, int? current, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 5 params (`loanCoin` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `loanCoin` ← `loanCoin`, `collateralCoin` ← `collateralCoin`, `current` ← `current`, `limit` ← `limit`, `recvWindow` ← `recvWindow`
+- **Signature**: `BorrowGetFlexibleLoanOngoingOrdersUserData(BorrowGetFlexibleLoanOngoingOrdersUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `loanCoin` ← `LoanCoin`, `collateralCoin` ← `CollateralCoin`, `current` ← `Current`, `limit` ← `Limit`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV2LoanFlexibleOngoingOrdersResponse`
-- **Error**: `SdkException<BorrowGetFlexibleLoanOngoingOrdersUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<BorrowGetFlexibleLoanOngoingOrdersUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `BorrowGetFlexibleLoanOngoingOrdersUserDataRequest` | `Requests/CryptoLoans/BorrowGetFlexibleLoanOngoingOrdersUserDataRequest.cs` |
 | `SapiV2LoanFlexibleOngoingOrdersResponse` | `Models/SapiV2LoanFlexibleOngoingOrdersResponse.cs` |
 | `BorrowGetFlexibleLoanOngoingOrdersUserDataError` | `Errors/BorrowGetFlexibleLoanOngoingOrdersUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -92,15 +95,16 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 ### CheckCollateralRepayRateUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `CheckCollateralRepayRateUserData(string loanCoin, string collateralCoin, double repayAmount, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `loanCoin` ← `loanCoin`, `collateralCoin` ← `collateralCoin`, `repayAmount` ← `repayAmount`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `CheckCollateralRepayRateUserData(CheckCollateralRepayRateUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `LoanCoin`, `CollateralCoin`, `RepayAmount`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `loanCoin` ← `LoanCoin`, `collateralCoin` ← `CollateralCoin`, `repayAmount` ← `RepayAmount`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1LoanRepayCollateralRateResponse`
-- **Error**: `SdkException<CheckCollateralRepayRateUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<CheckCollateralRepayRateUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `CheckCollateralRepayRateUserDataRequest` | `Requests/CryptoLoans/CheckCollateralRepayRateUserDataRequest.cs` |
 | `SapiV1LoanRepayCollateralRateResponse` | `Models/SapiV1LoanRepayCollateralRateResponse.cs` |
 | `CheckCollateralRepayRateUserDataError` | `Errors/CheckCollateralRepayRateUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -108,15 +112,16 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 ### CryptoLoanAdjustLtvTrade
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `CryptoLoanAdjustLtvTrade(long orderId, double amount, Direction direction, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `orderId` ← `orderId`, `amount` ← `amount`, `direction` ← `direction`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `CryptoLoanAdjustLtvTrade(CryptoLoanAdjustLtvTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `OrderId`, `Amount`, `Direction`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `orderId` ← `OrderId`, `amount` ← `Amount`, `direction` ← `Direction`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1LoanAdjustLtvResponse`
-- **Error**: `SdkException<CryptoLoanAdjustLtvTradeError>` — **Case A (typed)**
+- **Error**: `ApiException<CryptoLoanAdjustLtvTradeError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `CryptoLoanAdjustLtvTradeRequest` | `Requests/CryptoLoans/CryptoLoanAdjustLtvTradeRequest.cs` |
 | `Direction` | `Models/Enums/Direction.cs` |
 | `SapiV1LoanAdjustLtvResponse` | `Models/SapiV1LoanAdjustLtvResponse.cs` |
 | `CryptoLoanAdjustLtvTradeError` | `Errors/CryptoLoanAdjustLtvTradeError.cs` |
@@ -125,17 +130,16 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 ### CryptoLoanBorrowTrade
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `CryptoLoanBorrowTrade(string loanCoin, string collateralCoin, int loanTerm, long timestamp, string signature, double? loanAmount, double? collateralAmount, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `loanAmount` — nullable, no default → **must pass explicitly**
-  - `collateralAmount` — nullable, no default → **must pass explicitly**
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `loanCoin` ← `loanCoin`, `collateralCoin` ← `collateralCoin`, `loanTerm` ← `loanTerm`, `timestamp` ← `timestamp`, `signature` ← `signature`, `loanAmount` ← `loanAmount`, `collateralAmount` ← `collateralAmount`, `recvWindow` ← `recvWindow`
+- **Signature**: `CryptoLoanBorrowTrade(CryptoLoanBorrowTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `LoanCoin`, `CollateralCoin`, `LoanTerm`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `loanCoin` ← `LoanCoin`, `collateralCoin` ← `CollateralCoin`, `loanTerm` ← `LoanTerm`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `loanAmount` ← `LoanAmount`, `collateralAmount` ← `CollateralAmount`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1LoanBorrowResponse`
-- **Error**: `SdkException<CryptoLoanBorrowTradeError>` — **Case A (typed)**
+- **Error**: `ApiException<CryptoLoanBorrowTradeError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `CryptoLoanBorrowTradeRequest` | `Requests/CryptoLoans/CryptoLoanBorrowTradeRequest.cs` |
 | `SapiV1LoanBorrowResponse` | `Models/SapiV1LoanBorrowResponse.cs` |
 | `CryptoLoanBorrowTradeError` | `Errors/CryptoLoanBorrowTradeError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -143,17 +147,16 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 ### CryptoLoanCustomizeMarginCallTrade
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `CryptoLoanCustomizeMarginCallTrade(double marginCall, long timestamp, string signature, long? orderId, string? collateralCoin, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `orderId` — nullable, no default → **must pass explicitly**
-  - `collateralCoin` — nullable, no default → **must pass explicitly**
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `marginCall` ← `marginCall`, `timestamp` ← `timestamp`, `signature` ← `signature`, `orderId` ← `orderId`, `collateralCoin` ← `collateralCoin`, `recvWindow` ← `recvWindow`
+- **Signature**: `CryptoLoanCustomizeMarginCallTrade(CryptoLoanCustomizeMarginCallTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `MarginCall`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `marginCall` ← `MarginCall`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `orderId` ← `OrderId`, `collateralCoin` ← `CollateralCoin`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1LoanCustomizeMarginCallResponse`
-- **Error**: `SdkException<CryptoLoanCustomizeMarginCallTradeError>` — **Case A (typed)**
+- **Error**: `ApiException<CryptoLoanCustomizeMarginCallTradeError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `CryptoLoanCustomizeMarginCallTradeRequest` | `Requests/CryptoLoans/CryptoLoanCustomizeMarginCallTradeRequest.cs` |
 | `SapiV1LoanCustomizeMarginCallResponse` | `Models/SapiV1LoanCustomizeMarginCallResponse.cs` |
 | `CryptoLoanCustomizeMarginCallTradeError` | `Errors/CryptoLoanCustomizeMarginCallTradeError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -161,17 +164,16 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 ### CryptoLoanRepayTrade
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `CryptoLoanRepayTrade(long orderId, double amount, long timestamp, string signature, int? type, bool? collateralReturn, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `type` — nullable, no default → **must pass explicitly**
-  - `collateralReturn` — nullable, no default → **must pass explicitly**
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `orderId` ← `orderId`, `amount` ← `amount`, `timestamp` ← `timestamp`, `signature` ← `signature`, `type` ← `type`, `collateralReturn` ← `collateralReturn`, `recvWindow` ← `recvWindow`
+- **Signature**: `CryptoLoanRepayTrade(CryptoLoanRepayTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `OrderId`, `Amount`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `orderId` ← `OrderId`, `amount` ← `Amount`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `type` ← `Type`, `collateralReturn` ← `CollateralReturn`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1LoanRepayResponse`
-- **Error**: `SdkException<CryptoLoanRepayTradeError>` — **Case A (typed)**
+- **Error**: `ApiException<CryptoLoanRepayTradeError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `CryptoLoanRepayTradeRequest` | `Requests/CryptoLoans/CryptoLoanRepayTradeRequest.cs` |
 | `SapiV1LoanRepayResponse` | `Models/AnyOf/SapiV1LoanRepayResponse.cs` |
 | `CryptoLoanRepayTradeError` | `Errors/CryptoLoanRepayTradeError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -179,17 +181,16 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 ### GetCollateralAssetsDataUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetCollateralAssetsDataUserData(long timestamp, string signature, string? collateralCoin, int? vipLevel, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `collateralCoin` — nullable, no default → **must pass explicitly**
-  - `vipLevel` — nullable, no default → **must pass explicitly**
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `collateralCoin` ← `collateralCoin`, `vipLevel` ← `vipLevel`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetCollateralAssetsDataUserData(GetCollateralAssetsDataUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `collateralCoin` ← `CollateralCoin`, `vipLevel` ← `VipLevel`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1LoanCollateralDataResponse`
-- **Error**: `SdkException<GetCollateralAssetsDataUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetCollateralAssetsDataUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetCollateralAssetsDataUserDataRequest` | `Requests/CryptoLoans/GetCollateralAssetsDataUserDataRequest.cs` |
 | `SapiV1LoanCollateralDataResponse` | `Models/SapiV1LoanCollateralDataResponse.cs` |
 | `GetCollateralAssetsDataUserDataError` | `Errors/GetCollateralAssetsDataUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -197,15 +198,16 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 ### GetCryptoLoansBorrowHistoryUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetCryptoLoansBorrowHistoryUserData(long timestamp, string signature, long? orderId, string? loanCoin, string? collateralCoin, long? startTime, long? endTime, int? current, long? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 8 params (`orderId` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `orderId` ← `orderId`, `loanCoin` ← `loanCoin`, `collateralCoin` ← `collateralCoin`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `limit` ← `limit`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetCryptoLoansBorrowHistoryUserData(GetCryptoLoansBorrowHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `orderId` ← `OrderId`, `loanCoin` ← `LoanCoin`, `collateralCoin` ← `CollateralCoin`, `startTime` ← `StartTime`, `endTime` ← `EndTime`, `current` ← `Current`, `limit` ← `Limit`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1LoanBorrowHistoryResponse`
-- **Error**: `SdkException<GetCryptoLoansBorrowHistoryUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetCryptoLoansBorrowHistoryUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetCryptoLoansBorrowHistoryUserDataRequest` | `Requests/CryptoLoans/GetCryptoLoansBorrowHistoryUserDataRequest.cs` |
 | `SapiV1LoanBorrowHistoryResponse` | `Models/SapiV1LoanBorrowHistoryResponse.cs` |
 | `GetCryptoLoansBorrowHistoryUserDataError` | `Errors/GetCryptoLoansBorrowHistoryUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -213,15 +215,16 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 ### GetCryptoLoansIncomeHistoryUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetCryptoLoansIncomeHistoryUserData(long timestamp, string signature, string? asset, Type9? type, long? startTime, long? endTime, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 6 params (`asset` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `asset` ← `asset`, `type` ← `type`, `startTime` ← `startTime`, `endTime` ← `endTime`, `limit` ← `limit`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetCryptoLoansIncomeHistoryUserData(GetCryptoLoansIncomeHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `asset` ← `Asset`, `type` ← `Type`, `startTime` ← `StartTime`, `endTime` ← `EndTime`, `limit` ← `Limit`, `recvWindow` ← `RecvWindow`
 - **Returns**: `IReadOnlyList<SapiV1LoanIncomeResponse>`
-- **Error**: `SdkException<GetCryptoLoansIncomeHistoryUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetCryptoLoansIncomeHistoryUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetCryptoLoansIncomeHistoryUserDataRequest` | `Requests/CryptoLoans/GetCryptoLoansIncomeHistoryUserDataRequest.cs` |
 | `Type9` | `Models/Enums/Type9.cs` |
 | `SapiV1LoanIncomeResponse` | `Models/SapiV1LoanIncomeResponse.cs` |
 | `GetCryptoLoansIncomeHistoryUserDataError` | `Errors/GetCryptoLoansIncomeHistoryUserDataError.cs` |
@@ -230,16 +233,16 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 ### GetFlexibleLoanAssetsDataUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetFlexibleLoanAssetsDataUserData(long timestamp, string signature, string? loanCoin, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `loanCoin` — nullable, no default → **must pass explicitly**
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `loanCoin` ← `loanCoin`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetFlexibleLoanAssetsDataUserData(GetFlexibleLoanAssetsDataUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `loanCoin` ← `LoanCoin`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV2LoanFlexibleLoanableDataResponse`
-- **Error**: `SdkException<GetFlexibleLoanAssetsDataUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetFlexibleLoanAssetsDataUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetFlexibleLoanAssetsDataUserDataRequest` | `Requests/CryptoLoans/GetFlexibleLoanAssetsDataUserDataRequest.cs` |
 | `SapiV2LoanFlexibleLoanableDataResponse` | `Models/SapiV2LoanFlexibleLoanableDataResponse.cs` |
 | `GetFlexibleLoanAssetsDataUserDataError` | `Errors/GetFlexibleLoanAssetsDataUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -247,16 +250,16 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 ### GetFlexibleLoanCollateralAssetsDataUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetFlexibleLoanCollateralAssetsDataUserData(long timestamp, string signature, string? collateralCoin, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `collateralCoin` — nullable, no default → **must pass explicitly**
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `collateralCoin` ← `collateralCoin`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetFlexibleLoanCollateralAssetsDataUserData(GetFlexibleLoanCollateralAssetsDataUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `collateralCoin` ← `CollateralCoin`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV2LoanFlexibleCollateralDataResponse`
-- **Error**: `SdkException<GetFlexibleLoanCollateralAssetsDataUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetFlexibleLoanCollateralAssetsDataUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetFlexibleLoanCollateralAssetsDataUserDataRequest` | `Requests/CryptoLoans/GetFlexibleLoanCollateralAssetsDataUserDataRequest.cs` |
 | `SapiV2LoanFlexibleCollateralDataResponse` | `Models/SapiV2LoanFlexibleCollateralDataResponse.cs` |
 | `GetFlexibleLoanCollateralAssetsDataUserDataError` | `Errors/GetFlexibleLoanCollateralAssetsDataUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -264,15 +267,16 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 ### GetLoanLtvAdjustmentHistoryUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetLoanLtvAdjustmentHistoryUserData(long timestamp, string signature, long? orderId, string? loanCoin, string? collateralCoin, long? startTime, long? endTime, int? current, long? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 8 params (`orderId` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `orderId` ← `orderId`, `loanCoin` ← `loanCoin`, `collateralCoin` ← `collateralCoin`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `limit` ← `limit`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetLoanLtvAdjustmentHistoryUserData(GetLoanLtvAdjustmentHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `orderId` ← `OrderId`, `loanCoin` ← `LoanCoin`, `collateralCoin` ← `CollateralCoin`, `startTime` ← `StartTime`, `endTime` ← `EndTime`, `current` ← `Current`, `limit` ← `Limit`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1LoanLtvAdjustmentHistoryResponse`
-- **Error**: `SdkException<GetLoanLtvAdjustmentHistoryUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetLoanLtvAdjustmentHistoryUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetLoanLtvAdjustmentHistoryUserDataRequest` | `Requests/CryptoLoans/GetLoanLtvAdjustmentHistoryUserDataRequest.cs` |
 | `SapiV1LoanLtvAdjustmentHistoryResponse` | `Models/SapiV1LoanLtvAdjustmentHistoryResponse.cs` |
 | `GetLoanLtvAdjustmentHistoryUserDataError` | `Errors/GetLoanLtvAdjustmentHistoryUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -280,15 +284,16 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 ### GetLoanOngoingOrdersUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetLoanOngoingOrdersUserData(long timestamp, string signature, long? orderId, string? loanCoin, string? collateralCoin, int? current, long? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 6 params (`orderId` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `orderId` ← `orderId`, `loanCoin` ← `loanCoin`, `collateralCoin` ← `collateralCoin`, `current` ← `current`, `limit` ← `limit`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetLoanOngoingOrdersUserData(GetLoanOngoingOrdersUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `orderId` ← `OrderId`, `loanCoin` ← `LoanCoin`, `collateralCoin` ← `CollateralCoin`, `current` ← `Current`, `limit` ← `Limit`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1LoanOngoingOrdersResponse`
-- **Error**: `SdkException<GetLoanOngoingOrdersUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetLoanOngoingOrdersUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetLoanOngoingOrdersUserDataRequest` | `Requests/CryptoLoans/GetLoanOngoingOrdersUserDataRequest.cs` |
 | `SapiV1LoanOngoingOrdersResponse` | `Models/SapiV1LoanOngoingOrdersResponse.cs` |
 | `GetLoanOngoingOrdersUserDataError` | `Errors/GetLoanOngoingOrdersUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -296,15 +301,16 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 ### GetLoanRepaymentHistoryUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetLoanRepaymentHistoryUserData(long timestamp, string signature, long? orderId, string? loanCoin, string? collateralCoin, long? startTime, long? endTime, int? current, long? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 8 params (`orderId` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `orderId` ← `orderId`, `loanCoin` ← `loanCoin`, `collateralCoin` ← `collateralCoin`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `limit` ← `limit`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetLoanRepaymentHistoryUserData(GetLoanRepaymentHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `orderId` ← `OrderId`, `loanCoin` ← `LoanCoin`, `collateralCoin` ← `CollateralCoin`, `startTime` ← `StartTime`, `endTime` ← `EndTime`, `current` ← `Current`, `limit` ← `Limit`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1LoanRepayHistoryResponse`
-- **Error**: `SdkException<GetLoanRepaymentHistoryUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetLoanRepaymentHistoryUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetLoanRepaymentHistoryUserDataRequest` | `Requests/CryptoLoans/GetLoanRepaymentHistoryUserDataRequest.cs` |
 | `SapiV1LoanRepayHistoryResponse` | `Models/SapiV1LoanRepayHistoryResponse.cs` |
 | `GetLoanRepaymentHistoryUserDataError` | `Errors/GetLoanRepaymentHistoryUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -312,17 +318,16 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 ### GetLoanableAssetsDataUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetLoanableAssetsDataUserData(long timestamp, string signature, string? loanCoin, int? vipLevel, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `loanCoin` — nullable, no default → **must pass explicitly**
-  - `vipLevel` — nullable, no default → **must pass explicitly**
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `loanCoin` ← `loanCoin`, `vipLevel` ← `vipLevel`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetLoanableAssetsDataUserData(GetLoanableAssetsDataUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `loanCoin` ← `LoanCoin`, `vipLevel` ← `VipLevel`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1LoanLoanableDataResponse`
-- **Error**: `SdkException<GetLoanableAssetsDataUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetLoanableAssetsDataUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetLoanableAssetsDataUserDataRequest` | `Requests/CryptoLoans/GetLoanableAssetsDataUserDataRequest.cs` |
 | `SapiV1LoanLoanableDataResponse` | `Models/SapiV1LoanLoanableDataResponse.cs` |
 | `GetLoanableAssetsDataUserDataError` | `Errors/GetLoanableAssetsDataUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -330,15 +335,16 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 ### RepayFlexibleLoanRepayTrade
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `RepayFlexibleLoanRepayTrade(double repayAmount, long timestamp, string signature, string? loanCoin, string? collateralCoin, bool? collateralReturn, bool? fullRepayment, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 5 params (`loanCoin` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `repayAmount` ← `repayAmount`, `timestamp` ← `timestamp`, `signature` ← `signature`, `loanCoin` ← `loanCoin`, `collateralCoin` ← `collateralCoin`, `collateralReturn` ← `collateralReturn`, `fullRepayment` ← `fullRepayment`, `recvWindow` ← `recvWindow`
+- **Signature**: `RepayFlexibleLoanRepayTrade(RepayFlexibleLoanRepayTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `RepayAmount`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `repayAmount` ← `RepayAmount`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `loanCoin` ← `LoanCoin`, `collateralCoin` ← `CollateralCoin`, `collateralReturn` ← `CollateralReturn`, `fullRepayment` ← `FullRepayment`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV2LoanFlexibleRepayResponse`
-- **Error**: `SdkException<RepayFlexibleLoanRepayTradeError>` — **Case A (typed)**
+- **Error**: `ApiException<RepayFlexibleLoanRepayTradeError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `RepayFlexibleLoanRepayTradeRequest` | `Requests/CryptoLoans/RepayFlexibleLoanRepayTradeRequest.cs` |
 | `SapiV2LoanFlexibleRepayResponse` | `Models/SapiV2LoanFlexibleRepayResponse.cs` |
 | `RepayFlexibleLoanRepayTradeError` | `Errors/RepayFlexibleLoanRepayTradeError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -346,15 +352,16 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 ### RepayGetFlexibleLoanRepaymentHistoryUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `RepayGetFlexibleLoanRepaymentHistoryUserData(long timestamp, string signature, string? loanCoin, string? collateralCoin, long? startTime, long? endTime, int? current, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 7 params (`loanCoin` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `loanCoin` ← `loanCoin`, `collateralCoin` ← `collateralCoin`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `limit` ← `limit`, `recvWindow` ← `recvWindow`
+- **Signature**: `RepayGetFlexibleLoanRepaymentHistoryUserData(RepayGetFlexibleLoanRepaymentHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `loanCoin` ← `LoanCoin`, `collateralCoin` ← `CollateralCoin`, `startTime` ← `StartTime`, `endTime` ← `EndTime`, `current` ← `Current`, `limit` ← `Limit`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV2LoanFlexibleRepayHistoryResponse`
-- **Error**: `SdkException<RepayGetFlexibleLoanRepaymentHistoryUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<RepayGetFlexibleLoanRepaymentHistoryUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `RepayGetFlexibleLoanRepaymentHistoryUserDataRequest` | `Requests/CryptoLoans/RepayGetFlexibleLoanRepaymentHistoryUserDataRequest.cs` |
 | `SapiV2LoanFlexibleRepayHistoryResponse` | `Models/SapiV2LoanFlexibleRepayHistoryResponse.cs` |
 | `RepayGetFlexibleLoanRepaymentHistoryUserDataError` | `Errors/RepayGetFlexibleLoanRepaymentHistoryUserDataError.cs` |
 | `Error` | `Models/Error.cs` |

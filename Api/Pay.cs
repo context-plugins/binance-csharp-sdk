@@ -1,15 +1,16 @@
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using BinancePublicSpotApi.Core;
-using BinancePublicSpotApi.Core.Exceptions;
-using BinancePublicSpotApi.Core.Models;
-using BinancePublicSpotApi.Core.Request;
-using BinancePublicSpotApi.Core.Response;
-using BinancePublicSpotApi.Errors;
-using BinancePublicSpotApi.Models;
+using Binance.Core;
+using Binance.Core.Exceptions;
+using Binance.Core.Models;
+using Binance.Core.Request;
+using Binance.Core.Response;
+using Binance.Errors;
+using Binance.Models;
+using Binance.Requests.Pay;
 
-namespace BinancePublicSpotApi.Api;
+namespace Binance.Api;
 
 /// <summary>
 /// Pay Endpoints
@@ -30,16 +31,11 @@ public sealed class Pay
     /// <summary>
     /// Get Pay Trade History (USER_DATA)
     /// </summary>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="startTime">UTC timestamp in ms</param>
-    /// <param name="endTime">UTC timestamp in ms</param>
-    /// <param name="limit">default 100, max 100</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1PayTransactionsResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="GetPayTradeHistoryUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="GetPayTradeHistoryUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// <list type="bullet">
     ///   <item><description>If startTime and endTime are not sent, the recent 90 days' data will be returned.</description></item>
@@ -50,28 +46,26 @@ public sealed class Pay
     /// Weight(UID): 3000
     /// </para>
     /// </remarks>
-    public Task<SapiV1PayTransactionsResponse> GetPayTradeHistoryUserData(long timestamp,
-        string signature,
-        long? startTime,
-        long? endTime,
-        int? limit,
-        long? recvWindow,
+    public Task<SapiV1PayTransactionsResponse> GetPayTradeHistoryUserData(GetPayTradeHistoryUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/pay/transactions"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/pay/transactions"),
             [],
-            [new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("startTime", startTime),
-                new Param("endTime", endTime),
-                new Param("limit", limit),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("startTime", request.StartTime),
+                new Param("endTime", request.EndTime),
+                new Param("limit", request.Limit),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1PayTransactionsResponse>(),
-            GetPayTradeHistoryUserDataErrorResponse.Instance,
+            GetPayTradeHistoryUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 }

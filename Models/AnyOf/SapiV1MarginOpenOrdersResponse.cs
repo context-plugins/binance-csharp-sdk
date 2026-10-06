@@ -1,10 +1,10 @@
 using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using BinancePublicSpotApi.Core.Extensions;
-using BinancePublicSpotApi.Core.Models;
+using Binance.Core.Extensions;
+using Binance.Core.Models;
 
-namespace BinancePublicSpotApi.Models.AnyOf;
+namespace Binance.Models.AnyOf;
 
 [JsonConverter(typeof(SapiV1MarginOpenOrdersResponseConverter))]
 public record SapiV1MarginOpenOrdersResponse
@@ -34,8 +34,7 @@ public record SapiV1MarginOpenOrdersResponse
     public static implicit operator SapiV1MarginOpenOrdersResponse(CanceledMarginOrderDetail value) =>
         CanceledMarginOrderDetail(value);
 
-    public static implicit operator SapiV1MarginOpenOrdersResponse(MarginOcoOrder value) =>
-        MarginOcoOrder(value);
+    public static implicit operator SapiV1MarginOpenOrdersResponse(MarginOcoOrder value) => MarginOcoOrder(value);
 }
 
 file sealed class SapiV1MarginOpenOrdersResponseConverter : JsonConverter<SapiV1MarginOpenOrdersResponse>
@@ -46,7 +45,8 @@ file sealed class SapiV1MarginOpenOrdersResponseConverter : JsonConverter<SapiV1
     {
         using var doc = JsonDocument.ParseValue(ref reader);
         var root = doc.RootElement;
-        if (JsonSerializer.TryDeserialize<CanceledMarginOrderDetail>(root,
+        if (JsonSerializer.TryDeserialize<CanceledMarginOrderDetail>(
+            root,
             options,
             out var canceledMarginOrderDetailValue))
         {
@@ -56,7 +56,8 @@ file sealed class SapiV1MarginOpenOrdersResponseConverter : JsonConverter<SapiV1
         {
             return SapiV1MarginOpenOrdersResponse.MarginOcoOrder(marginOcoOrderValue);
         }
-        throw new JsonException($"JSON does not match CanceledMarginOrderDetail or MarginOcoOrder schemas: {root.ToString()}");
+        throw new JsonException(
+            $"JSON does not match CanceledMarginOrderDetail or MarginOcoOrder schemas: {root.ToString()}");
     }
 
     public override void Write(Utf8JsonWriter writer,

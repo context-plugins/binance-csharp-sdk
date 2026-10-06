@@ -9,15 +9,16 @@ Accessor: `client.Staking` · Source: `Api/Staking.cs` · 12 operations
 ### EthStakingAccountV2UserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `EthStakingAccountV2UserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `EthStakingAccountV2UserData(EthStakingAccountV2UserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV2EthStakingAccountResponse`
-- **Error**: `SdkException<EthStakingAccountV2UserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<EthStakingAccountV2UserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `EthStakingAccountV2UserDataRequest` | `Requests/Staking/EthStakingAccountV2UserDataRequest.cs` |
 | `SapiV2EthStakingAccountResponse` | `Models/SapiV2EthStakingAccountResponse.cs` |
 | `EthStakingAccountV2UserDataError` | `Errors/EthStakingAccountV2UserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -25,15 +26,16 @@ Accessor: `client.Staking` · Source: `Api/Staking.cs` · 12 operations
 ### GetBethRewardsDistributionHistoryUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetBethRewardsDistributionHistoryUserData(long timestamp, string signature, long? startTime, long? endTime, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 5 params (`startTime` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `size` ← `size`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetBethRewardsDistributionHistoryUserData(GetBethRewardsDistributionHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `startTime` ← `StartTime`, `endTime` ← `EndTime`, `current` ← `Current`, `size` ← `Size`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1EthStakingEthHistoryRewardsHistoryResponse`
-- **Error**: `SdkException<GetBethRewardsDistributionHistoryUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetBethRewardsDistributionHistoryUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetBethRewardsDistributionHistoryUserDataRequest` | `Requests/Staking/GetBethRewardsDistributionHistoryUserDataRequest.cs` |
 | `SapiV1EthStakingEthHistoryRewardsHistoryResponse` | `Models/SapiV1EthStakingEthHistoryRewardsHistoryResponse.cs` |
 | `GetBethRewardsDistributionHistoryUserDataError` | `Errors/GetBethRewardsDistributionHistoryUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -41,15 +43,16 @@ Accessor: `client.Staking` · Source: `Api/Staking.cs` · 12 operations
 ### GetCurrentEthStakingQuotaUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetCurrentEthStakingQuotaUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetCurrentEthStakingQuotaUserData(GetCurrentEthStakingQuotaUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1EthStakingEthQuotaResponse`
-- **Error**: `SdkException<GetCurrentEthStakingQuotaUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetCurrentEthStakingQuotaUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetCurrentEthStakingQuotaUserDataRequest` | `Requests/Staking/GetCurrentEthStakingQuotaUserDataRequest.cs` |
 | `SapiV1EthStakingEthQuotaResponse` | `Models/SapiV1EthStakingEthQuotaResponse.cs` |
 | `GetCurrentEthStakingQuotaUserDataError` | `Errors/GetCurrentEthStakingQuotaUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -57,15 +60,16 @@ Accessor: `client.Staking` · Source: `Api/Staking.cs` · 12 operations
 ### GetEthRedemptionHistoryUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetEthRedemptionHistoryUserData(long timestamp, string signature, long? startTime, long? endTime, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 5 params (`startTime` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `size` ← `size`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetEthRedemptionHistoryUserData(GetEthRedemptionHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `startTime` ← `StartTime`, `endTime` ← `EndTime`, `current` ← `Current`, `size` ← `Size`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1EthStakingEthHistoryRedemptionHistoryResponse`
-- **Error**: `SdkException<GetEthRedemptionHistoryUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetEthRedemptionHistoryUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetEthRedemptionHistoryUserDataRequest` | `Requests/Staking/GetEthRedemptionHistoryUserDataRequest.cs` |
 | `SapiV1EthStakingEthHistoryRedemptionHistoryResponse` | `Models/SapiV1EthStakingEthHistoryRedemptionHistoryResponse.cs` |
 | `GetEthRedemptionHistoryUserDataError` | `Errors/GetEthRedemptionHistoryUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -73,15 +77,16 @@ Accessor: `client.Staking` · Source: `Api/Staking.cs` · 12 operations
 ### GetEthStakingHistoryUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetEthStakingHistoryUserData(long timestamp, string signature, long? startTime, long? endTime, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 5 params (`startTime` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `size` ← `size`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetEthStakingHistoryUserData(GetEthStakingHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `startTime` ← `StartTime`, `endTime` ← `EndTime`, `current` ← `Current`, `size` ← `Size`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1EthStakingEthHistoryStakingHistoryResponse`
-- **Error**: `SdkException<GetEthStakingHistoryUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetEthStakingHistoryUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetEthStakingHistoryUserDataRequest` | `Requests/Staking/GetEthStakingHistoryUserDataRequest.cs` |
 | `SapiV1EthStakingEthHistoryStakingHistoryResponse` | `Models/SapiV1EthStakingEthHistoryStakingHistoryResponse.cs` |
 | `GetEthStakingHistoryUserDataError` | `Errors/GetEthStakingHistoryUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -89,15 +94,16 @@ Accessor: `client.Staking` · Source: `Api/Staking.cs` · 12 operations
 ### GetWbethRateHistoryUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetWbethRateHistoryUserData(long timestamp, string signature, long? startTime, long? endTime, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 5 params (`startTime` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `size` ← `size`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetWbethRateHistoryUserData(GetWbethRateHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `startTime` ← `StartTime`, `endTime` ← `EndTime`, `current` ← `Current`, `size` ← `Size`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1EthStakingEthHistoryRateHistoryResponse`
-- **Error**: `SdkException<GetWbethRateHistoryUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetWbethRateHistoryUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetWbethRateHistoryUserDataRequest` | `Requests/Staking/GetWbethRateHistoryUserDataRequest.cs` |
 | `SapiV1EthStakingEthHistoryRateHistoryResponse` | `Models/SapiV1EthStakingEthHistoryRateHistoryResponse.cs` |
 | `GetWbethRateHistoryUserDataError` | `Errors/GetWbethRateHistoryUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -105,15 +111,16 @@ Accessor: `client.Staking` · Source: `Api/Staking.cs` · 12 operations
 ### GetWbethRewardsHistoryUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetWbethRewardsHistoryUserData(long timestamp, string signature, long? startTime, long? endTime, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 5 params (`startTime` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `size` ← `size`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetWbethRewardsHistoryUserData(GetWbethRewardsHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `startTime` ← `StartTime`, `endTime` ← `EndTime`, `current` ← `Current`, `size` ← `Size`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1EthStakingEthHistoryWbethRewardsHistoryResponse`
-- **Error**: `SdkException<GetWbethRewardsHistoryUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetWbethRewardsHistoryUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetWbethRewardsHistoryUserDataRequest` | `Requests/Staking/GetWbethRewardsHistoryUserDataRequest.cs` |
 | `SapiV1EthStakingEthHistoryWbethRewardsHistoryResponse` | `Models/SapiV1EthStakingEthHistoryWbethRewardsHistoryResponse.cs` |
 | `GetWbethRewardsHistoryUserDataError` | `Errors/GetWbethRewardsHistoryUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -121,15 +128,16 @@ Accessor: `client.Staking` · Source: `Api/Staking.cs` · 12 operations
 ### GetWbethUnwrapHistoryUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetWbethUnwrapHistoryUserData(long timestamp, string signature, long? startTime, long? endTime, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 5 params (`startTime` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `size` ← `size`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetWbethUnwrapHistoryUserData(GetWbethUnwrapHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `startTime` ← `StartTime`, `endTime` ← `EndTime`, `current` ← `Current`, `size` ← `Size`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1EthStakingWbethHistoryUnwrapHistoryResponse`
-- **Error**: `SdkException<GetWbethUnwrapHistoryUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetWbethUnwrapHistoryUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetWbethUnwrapHistoryUserDataRequest` | `Requests/Staking/GetWbethUnwrapHistoryUserDataRequest.cs` |
 | `SapiV1EthStakingWbethHistoryUnwrapHistoryResponse` | `Models/SapiV1EthStakingWbethHistoryUnwrapHistoryResponse.cs` |
 | `GetWbethUnwrapHistoryUserDataError` | `Errors/GetWbethUnwrapHistoryUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -137,15 +145,16 @@ Accessor: `client.Staking` · Source: `Api/Staking.cs` · 12 operations
 ### GetWbethWrapHistoryUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetWbethWrapHistoryUserData(long timestamp, string signature, long? startTime, long? endTime, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 5 params (`startTime` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `size` ← `size`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetWbethWrapHistoryUserData(GetWbethWrapHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `startTime` ← `StartTime`, `endTime` ← `EndTime`, `current` ← `Current`, `size` ← `Size`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1EthStakingWbethHistoryWrapHistoryResponse`
-- **Error**: `SdkException<GetWbethWrapHistoryUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetWbethWrapHistoryUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetWbethWrapHistoryUserDataRequest` | `Requests/Staking/GetWbethWrapHistoryUserDataRequest.cs` |
 | `SapiV1EthStakingWbethHistoryWrapHistoryResponse` | `Models/SapiV1EthStakingWbethHistoryWrapHistoryResponse.cs` |
 | `GetWbethWrapHistoryUserDataError` | `Errors/GetWbethWrapHistoryUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -153,16 +162,16 @@ Accessor: `client.Staking` · Source: `Api/Staking.cs` · 12 operations
 ### RedeemEthTrade
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `RedeemEthTrade(double amount, long timestamp, string signature, string? asset, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `asset` — nullable, no default → **must pass explicitly**
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `amount` ← `amount`, `timestamp` ← `timestamp`, `signature` ← `signature`, `asset` ← `asset`, `recvWindow` ← `recvWindow`
+- **Signature**: `RedeemEthTrade(RedeemEthTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Amount`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `amount` ← `Amount`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `asset` ← `Asset`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1EthStakingEthRedeemResponse`
-- **Error**: `SdkException<RedeemEthTradeError>` — **Case A (typed)**
+- **Error**: `ApiException<RedeemEthTradeError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `RedeemEthTradeRequest` | `Requests/Staking/RedeemEthTradeRequest.cs` |
 | `SapiV1EthStakingEthRedeemResponse` | `Models/SapiV1EthStakingEthRedeemResponse.cs` |
 | `RedeemEthTradeError` | `Errors/RedeemEthTradeError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -170,15 +179,16 @@ Accessor: `client.Staking` · Source: `Api/Staking.cs` · 12 operations
 ### SubscribeEthStakingV2Trade
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `SubscribeEthStakingV2Trade(double amount, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `amount` ← `amount`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `SubscribeEthStakingV2Trade(SubscribeEthStakingV2TradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Amount`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `amount` ← `Amount`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV2EthStakingEthStakeResponse`
-- **Error**: `SdkException<SubscribeEthStakingV2TradeError>` — **Case A (typed)**
+- **Error**: `ApiException<SubscribeEthStakingV2TradeError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `SubscribeEthStakingV2TradeRequest` | `Requests/Staking/SubscribeEthStakingV2TradeRequest.cs` |
 | `SapiV2EthStakingEthStakeResponse` | `Models/SapiV2EthStakingEthStakeResponse.cs` |
 | `SubscribeEthStakingV2TradeError` | `Errors/SubscribeEthStakingV2TradeError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -186,15 +196,16 @@ Accessor: `client.Staking` · Source: `Api/Staking.cs` · 12 operations
 ### WrapBethTrade
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `WrapBethTrade(double amount, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `amount` ← `amount`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `WrapBethTrade(WrapBethTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Amount`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `amount` ← `Amount`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1EthStakingWbethWrapResponse`
-- **Error**: `SdkException<WrapBethTradeError>` — **Case A (typed)**
+- **Error**: `ApiException<WrapBethTradeError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `WrapBethTradeRequest` | `Requests/Staking/WrapBethTradeRequest.cs` |
 | `SapiV1EthStakingWbethWrapResponse` | `Models/SapiV1EthStakingWbethWrapResponse.cs` |
 | `WrapBethTradeError` | `Errors/WrapBethTradeError.cs` |
 | `Error` | `Models/Error.cs` |

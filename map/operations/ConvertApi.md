@@ -9,15 +9,16 @@ Accessor: `client.ConvertApi` · Source: `Api/ConvertApi.cs` · 9 operations
 ### AcceptQuoteTrade
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `AcceptQuoteTrade(string quoteId, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `quoteId` ← `quoteId`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `AcceptQuoteTrade(AcceptQuoteTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `QuoteId`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `quoteId` ← `QuoteId`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1ConvertAcceptQuoteResponse`
-- **Error**: `SdkException<AcceptQuoteTradeError>` — **Case A (typed)**
+- **Error**: `ApiException<AcceptQuoteTradeError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `AcceptQuoteTradeRequest` | `Requests/ConvertApi/AcceptQuoteTradeRequest.cs` |
 | `SapiV1ConvertAcceptQuoteResponse` | `Models/SapiV1ConvertAcceptQuoteResponse.cs` |
 | `AcceptQuoteTradeError` | `Errors/AcceptQuoteTradeError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -25,15 +26,16 @@ Accessor: `client.ConvertApi` · Source: `Api/ConvertApi.cs` · 9 operations
 ### CancelLimitOrderUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `CancelLimitOrderUserData(long orderId, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `orderId` ← `orderId`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `CancelLimitOrderUserData(CancelLimitOrderUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `OrderId`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `orderId` ← `OrderId`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1ConvertLimitCancelOrderResponse`
-- **Error**: `SdkException<CancelLimitOrderUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<CancelLimitOrderUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `CancelLimitOrderUserDataRequest` | `Requests/ConvertApi/CancelLimitOrderUserDataRequest.cs` |
 | `SapiV1ConvertLimitCancelOrderResponse` | `Models/SapiV1ConvertLimitCancelOrderResponse.cs` |
 | `CancelLimitOrderUserDataError` | `Errors/CancelLimitOrderUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -41,32 +43,31 @@ Accessor: `client.ConvertApi` · Source: `Api/ConvertApi.cs` · 9 operations
 ### GetConvertTradeHistoryUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetConvertTradeHistoryUserData(long startTime, long endTime, long timestamp, string signature, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `limit` — nullable, no default → **must pass explicitly**
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `startTime` ← `startTime`, `endTime` ← `endTime`, `timestamp` ← `timestamp`, `signature` ← `signature`, `limit` ← `limit`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetConvertTradeHistoryUserData(GetConvertTradeHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `StartTime`, `EndTime`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `startTime` ← `StartTime`, `endTime` ← `EndTime`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `limit` ← `Limit`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1ConvertTradeFlowResponse`
-- **Error**: `SdkException<GetConvertTradeHistoryUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetConvertTradeHistoryUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetConvertTradeHistoryUserDataRequest` | `Requests/ConvertApi/GetConvertTradeHistoryUserDataRequest.cs` |
 | `SapiV1ConvertTradeFlowResponse` | `Models/SapiV1ConvertTradeFlowResponse.cs` |
 | `GetConvertTradeHistoryUserDataError` | `Errors/GetConvertTradeHistoryUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
 
 ### ListAllConvertPairs
 
-- **Signature**: `ListAllConvertPairs(string? fromAsset, string? toAsset, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `fromAsset` — nullable, no default → **must pass explicitly**
-  - `toAsset` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `fromAsset` ← `fromAsset`, `toAsset` ← `toAsset`
+- **Signature**: `ListAllConvertPairs(ListAllConvertPairsRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+- **Query params (wire ← C#)**: `fromAsset` ← `FromAsset`, `toAsset` ← `ToAsset`
 - **Returns**: `IReadOnlyList<SapiV1ConvertExchangeInfoResponse>`
-- **Error**: `SdkException<ListAllConvertPairsError>` — **Case A (typed)**
+- **Error**: `ApiException<ListAllConvertPairsError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `ListAllConvertPairsRequest` | `Requests/ConvertApi/ListAllConvertPairsRequest.cs` |
 | `SapiV1ConvertExchangeInfoResponse` | `Models/SapiV1ConvertExchangeInfoResponse.cs` |
 | `ListAllConvertPairsError` | `Errors/ListAllConvertPairsError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -74,17 +75,16 @@ Accessor: `client.ConvertApi` · Source: `Api/ConvertApi.cs` · 9 operations
 ### OrderStatusUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `OrderStatusUserData(long timestamp, string signature, string? orderId, string? quoteId, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `orderId` — nullable, no default → **must pass explicitly**
-  - `quoteId` — nullable, no default → **must pass explicitly**
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `orderId` ← `orderId`, `quoteId` ← `quoteId`, `recvWindow` ← `recvWindow`
+- **Signature**: `OrderStatusUserData(OrderStatusUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `orderId` ← `OrderId`, `quoteId` ← `QuoteId`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1ConvertOrderStatusResponse`
-- **Error**: `SdkException<OrderStatusUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<OrderStatusUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `OrderStatusUserDataRequest` | `Requests/ConvertApi/OrderStatusUserDataRequest.cs` |
 | `SapiV1ConvertOrderStatusResponse` | `Models/SapiV1ConvertOrderStatusResponse.cs` |
 | `OrderStatusUserDataError` | `Errors/OrderStatusUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -92,15 +92,16 @@ Accessor: `client.ConvertApi` · Source: `Api/ConvertApi.cs` · 9 operations
 ### PlaceLimitOrderUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `PlaceLimitOrderUserData(string baseAsset, string quoteAsset, double limitPrice, Side side, long timestamp, string signature, double? baseAmount, double? quoteAmount, WalletType? walletType, ExpiredType? expiredType, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 5 params (`baseAmount` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `baseAsset` ← `baseAsset`, `quoteAsset` ← `quoteAsset`, `limitPrice` ← `limitPrice`, `side` ← `side`, `timestamp` ← `timestamp`, `signature` ← `signature`, `baseAmount` ← `baseAmount`, `quoteAmount` ← `quoteAmount`, `walletType` ← `walletType`, `expiredType` ← `expiredType`, `recvWindow` ← `recvWindow`
+- **Signature**: `PlaceLimitOrderUserData(PlaceLimitOrderUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `BaseAsset`, `QuoteAsset`, `LimitPrice`, `Side`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `baseAsset` ← `BaseAsset`, `quoteAsset` ← `QuoteAsset`, `limitPrice` ← `LimitPrice`, `side` ← `Side`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `baseAmount` ← `BaseAmount`, `quoteAmount` ← `QuoteAmount`, `walletType` ← `WalletType`, `expiredType` ← `ExpiredType`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1ConvertLimitPlaceOrderResponse`
-- **Error**: `SdkException<PlaceLimitOrderUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<PlaceLimitOrderUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `PlaceLimitOrderUserDataRequest` | `Requests/ConvertApi/PlaceLimitOrderUserDataRequest.cs` |
 | `Side` | `Models/Enums/Side.cs` |
 | `WalletType` | `Models/Enums/WalletType.cs` |
 | `ExpiredType` | `Models/Enums/ExpiredType.cs` |
@@ -111,15 +112,16 @@ Accessor: `client.ConvertApi` · Source: `Api/ConvertApi.cs` · 9 operations
 ### QueryLimitOpenOrdersUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `QueryLimitOpenOrdersUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `QueryLimitOpenOrdersUserData(QueryLimitOpenOrdersUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1ConvertLimitQueryOpenOrdersResponse`
-- **Error**: `SdkException<QueryLimitOpenOrdersUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<QueryLimitOpenOrdersUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `QueryLimitOpenOrdersUserDataRequest` | `Requests/ConvertApi/QueryLimitOpenOrdersUserDataRequest.cs` |
 | `SapiV1ConvertLimitQueryOpenOrdersResponse` | `Models/SapiV1ConvertLimitQueryOpenOrdersResponse.cs` |
 | `QueryLimitOpenOrdersUserDataError` | `Errors/QueryLimitOpenOrdersUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -127,15 +129,16 @@ Accessor: `client.ConvertApi` · Source: `Api/ConvertApi.cs` · 9 operations
 ### QueryOrderQuantityPrecisionPerAssetUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `QueryOrderQuantityPrecisionPerAssetUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `QueryOrderQuantityPrecisionPerAssetUserData(QueryOrderQuantityPrecisionPerAssetUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `IReadOnlyList<SapiV1ConvertAssetInfoResponse>`
-- **Error**: `SdkException<QueryOrderQuantityPrecisionPerAssetUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<QueryOrderQuantityPrecisionPerAssetUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `QueryOrderQuantityPrecisionPerAssetUserDataRequest` | `Requests/ConvertApi/QueryOrderQuantityPrecisionPerAssetUserDataRequest.cs` |
 | `SapiV1ConvertAssetInfoResponse` | `Models/SapiV1ConvertAssetInfoResponse.cs` |
 | `QueryOrderQuantityPrecisionPerAssetUserDataError` | `Errors/QueryOrderQuantityPrecisionPerAssetUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -143,15 +146,16 @@ Accessor: `client.ConvertApi` · Source: `Api/ConvertApi.cs` · 9 operations
 ### SendQuoteRequestUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `SendQuoteRequestUserData(string fromAsset, string toAsset, long timestamp, string signature, double? fromAmount, double? toAmount, string? validTime, string? walletType, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 5 params (`fromAmount` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `fromAsset` ← `fromAsset`, `toAsset` ← `toAsset`, `timestamp` ← `timestamp`, `signature` ← `signature`, `fromAmount` ← `fromAmount`, `toAmount` ← `toAmount`, `validTime` ← `validTime`, `walletType` ← `walletType`, `recvWindow` ← `recvWindow`
+- **Signature**: `SendQuoteRequestUserData(SendQuoteRequestUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `FromAsset`, `ToAsset`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `fromAsset` ← `FromAsset`, `toAsset` ← `ToAsset`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `fromAmount` ← `FromAmount`, `toAmount` ← `ToAmount`, `validTime` ← `ValidTime`, `walletType` ← `WalletType`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1ConvertGetQuoteResponse`
-- **Error**: `SdkException<SendQuoteRequestUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<SendQuoteRequestUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `SendQuoteRequestUserDataRequest` | `Requests/ConvertApi/SendQuoteRequestUserDataRequest.cs` |
 | `SapiV1ConvertGetQuoteResponse` | `Models/SapiV1ConvertGetQuoteResponse.cs` |
 | `SendQuoteRequestUserDataError` | `Errors/SendQuoteRequestUserDataError.cs` |
 | `Error` | `Models/Error.cs` |

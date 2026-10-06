@@ -1,4 +1,4 @@
-namespace BinancePublicSpotApi.Core.Models;
+namespace Binance.Core.Models;
 
 internal readonly record struct MultipartParam(
     string? Key,

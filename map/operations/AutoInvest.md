@@ -9,15 +9,16 @@ Accessor: `client.AutoInvest` · Source: `Api/AutoInvest.cs` · 17 operations
 ### ChangePlanStatus
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `ChangePlanStatus(int planId, Status1 status, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `planId` ← `planId`, `status` ← `status`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `ChangePlanStatus(ChangePlanStatusRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `PlanId`, `Status`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `planId` ← `PlanId`, `status` ← `Status`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1LendingAutoInvestPlanEditStatusResponse`
-- **Error**: `SdkException<ChangePlanStatusError>` — **Case A (typed)**
+- **Error**: `ApiException<ChangePlanStatusError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `ChangePlanStatusRequest` | `Requests/AutoInvest/ChangePlanStatusRequest.cs` |
 | `Status1` | `Models/Enums/Status1.cs` |
 | `SapiV1LendingAutoInvestPlanEditStatusResponse` | `Models/SapiV1LendingAutoInvestPlanEditStatusResponse.cs` |
 | `ChangePlanStatusError` | `Errors/ChangePlanStatusError.cs` |
@@ -26,15 +27,16 @@ Accessor: `client.AutoInvest` · Source: `Api/AutoInvest.cs` · 17 operations
 ### GetListOfPlans
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetListOfPlans(string planType, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `planType` ← `planType`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetListOfPlans(GetListOfPlansRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `PlanType`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `planType` ← `PlanType`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1LendingAutoInvestPlanListResponse`
-- **Error**: `SdkException<GetListOfPlansError>` — **Case A (typed)**
+- **Error**: `ApiException<GetListOfPlansError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetListOfPlansRequest` | `Requests/AutoInvest/GetListOfPlansRequest.cs` |
 | `SapiV1LendingAutoInvestPlanListResponse` | `Models/SapiV1LendingAutoInvestPlanListResponse.cs` |
 | `GetListOfPlansError` | `Errors/GetListOfPlansError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -42,15 +44,16 @@ Accessor: `client.AutoInvest` · Source: `Api/AutoInvest.cs` · 17 operations
 ### GetTargetAssetListUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetTargetAssetListUserData(long timestamp, string signature, string? targetAsset, int? size, int? current, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 4 params (`targetAsset` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `targetAsset` ← `targetAsset`, `size` ← `size`, `current` ← `current`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetTargetAssetListUserData(GetTargetAssetListUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `targetAsset` ← `TargetAsset`, `size` ← `Size`, `current` ← `Current`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1LendingAutoInvestTargetAssetListResponse`
-- **Error**: `SdkException<GetTargetAssetListUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetTargetAssetListUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetTargetAssetListUserDataRequest` | `Requests/AutoInvest/GetTargetAssetListUserDataRequest.cs` |
 | `SapiV1LendingAutoInvestTargetAssetListResponse` | `Models/SapiV1LendingAutoInvestTargetAssetListResponse.cs` |
 | `GetTargetAssetListUserDataError` | `Errors/GetTargetAssetListUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -58,15 +61,16 @@ Accessor: `client.AutoInvest` · Source: `Api/AutoInvest.cs` · 17 operations
 ### GetTargetAssetRoiDataUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetTargetAssetRoiDataUserData(string targetAsset, string hisRoiType, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `targetAsset` ← `targetAsset`, `hisRoiType` ← `hisRoiType`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetTargetAssetRoiDataUserData(GetTargetAssetRoiDataUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `TargetAsset`, `HisRoiType`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `targetAsset` ← `TargetAsset`, `hisRoiType` ← `HisRoiType`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `IReadOnlyList<SapiV1LendingAutoInvestTargetAssetRoiListResponse>`
-- **Error**: `SdkException<GetTargetAssetRoiDataUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetTargetAssetRoiDataUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetTargetAssetRoiDataUserDataRequest` | `Requests/AutoInvest/GetTargetAssetRoiDataUserDataRequest.cs` |
 | `SapiV1LendingAutoInvestTargetAssetRoiListResponse` | `Models/SapiV1LendingAutoInvestTargetAssetRoiListResponse.cs` |
 | `GetTargetAssetRoiDataUserDataError` | `Errors/GetTargetAssetRoiDataUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -74,15 +78,16 @@ Accessor: `client.AutoInvest` · Source: `Api/AutoInvest.cs` · 17 operations
 ### IndexLinkedPlanRebalanceDetailsUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `IndexLinkedPlanRebalanceDetailsUserData(long timestamp, string signature, long? startTime, long? endTime, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 5 params (`startTime` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `size` ← `size`, `recvWindow` ← `recvWindow`
+- **Signature**: `IndexLinkedPlanRebalanceDetailsUserData(IndexLinkedPlanRebalanceDetailsUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `startTime` ← `StartTime`, `endTime` ← `EndTime`, `current` ← `Current`, `size` ← `Size`, `recvWindow` ← `RecvWindow`
 - **Returns**: `IReadOnlyList<SapiV1LendingAutoInvestRebalanceHistoryResponse>`
-- **Error**: `SdkException<IndexLinkedPlanRebalanceDetailsUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<IndexLinkedPlanRebalanceDetailsUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `IndexLinkedPlanRebalanceDetailsUserDataRequest` | `Requests/AutoInvest/IndexLinkedPlanRebalanceDetailsUserDataRequest.cs` |
 | `SapiV1LendingAutoInvestRebalanceHistoryResponse` | `Models/SapiV1LendingAutoInvestRebalanceHistoryResponse.cs` |
 | `IndexLinkedPlanRebalanceDetailsUserDataError` | `Errors/IndexLinkedPlanRebalanceDetailsUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -90,15 +95,16 @@ Accessor: `client.AutoInvest` · Source: `Api/AutoInvest.cs` · 17 operations
 ### IndexLinkedPlanRedemptionHistoryUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `IndexLinkedPlanRedemptionHistoryUserData(long requestId, long timestamp, string signature, long? startTime, long? endTime, int? current, string? asset, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 6 params (`startTime` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `requestId` ← `requestId`, `timestamp` ← `timestamp`, `signature` ← `signature`, `startTime` ← `startTime`, `endTime` ← `endTime`, `current` ← `current`, `asset` ← `asset`, `size` ← `size`, `recvWindow` ← `recvWindow`
+- **Signature**: `IndexLinkedPlanRedemptionHistoryUserData(IndexLinkedPlanRedemptionHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `RequestId`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `requestId` ← `RequestId`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `startTime` ← `StartTime`, `endTime` ← `EndTime`, `current` ← `Current`, `asset` ← `Asset`, `size` ← `Size`, `recvWindow` ← `RecvWindow`
 - **Returns**: `IReadOnlyList<SapiV1LendingAutoInvestRedeemHistoryResponse>`
-- **Error**: `SdkException<IndexLinkedPlanRedemptionHistoryUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<IndexLinkedPlanRedemptionHistoryUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `IndexLinkedPlanRedemptionHistoryUserDataRequest` | `Requests/AutoInvest/IndexLinkedPlanRedemptionHistoryUserDataRequest.cs` |
 | `SapiV1LendingAutoInvestRedeemHistoryResponse` | `Models/SapiV1LendingAutoInvestRedeemHistoryResponse.cs` |
 | `IndexLinkedPlanRedemptionHistoryUserDataError` | `Errors/IndexLinkedPlanRedemptionHistoryUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -106,16 +112,16 @@ Accessor: `client.AutoInvest` · Source: `Api/AutoInvest.cs` · 17 operations
 ### IndexLinkedPlanRedemptionTrade
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `IndexLinkedPlanRedemptionTrade(long indexId, int redemptionPercentage, long timestamp, string signature, string? requestId, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `requestId` — nullable, no default → **must pass explicitly**
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `indexId` ← `indexId`, `redemptionPercentage` ← `redemptionPercentage`, `timestamp` ← `timestamp`, `signature` ← `signature`, `requestId` ← `requestId`, `recvWindow` ← `recvWindow`
+- **Signature**: `IndexLinkedPlanRedemptionTrade(IndexLinkedPlanRedemptionTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `IndexId`, `RedemptionPercentage`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `indexId` ← `IndexId`, `redemptionPercentage` ← `RedemptionPercentage`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `requestId` ← `RequestId`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1LendingAutoInvestRedeemResponse`
-- **Error**: `SdkException<IndexLinkedPlanRedemptionTradeError>` — **Case A (typed)**
+- **Error**: `ApiException<IndexLinkedPlanRedemptionTradeError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `IndexLinkedPlanRedemptionTradeRequest` | `Requests/AutoInvest/IndexLinkedPlanRedemptionTradeRequest.cs` |
 | `SapiV1LendingAutoInvestRedeemResponse` | `Models/SapiV1LendingAutoInvestRedeemResponse.cs` |
 | `IndexLinkedPlanRedemptionTradeError` | `Errors/IndexLinkedPlanRedemptionTradeError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -123,15 +129,16 @@ Accessor: `client.AutoInvest` · Source: `Api/AutoInvest.cs` · 17 operations
 ### InvestmentPlanAdjustment
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `InvestmentPlanAdjustment(int planId, double subscriptionAmount, SubscriptionCycle subscriptionCycle, int subscriptionStartTime, string sourceAsset, long timestamp, string signature, int? subscriptionStartDay, SubscriptionStartWeekday? subscriptionStartWeekday, bool? flexibleAllowedToUse, IReadOnlyList<Detail1>? details, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 5 params (`subscriptionStartDay` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `planId` ← `planId`, `subscriptionAmount` ← `subscriptionAmount`, `subscriptionCycle` ← `subscriptionCycle`, `subscriptionStartTime` ← `subscriptionStartTime`, `sourceAsset` ← `sourceAsset`, `timestamp` ← `timestamp`, `signature` ← `signature`, `subscriptionStartDay` ← `subscriptionStartDay`, `subscriptionStartWeekday` ← `subscriptionStartWeekday`, `flexibleAllowedToUse` ← `flexibleAllowedToUse`, `details` ← `details`, `recvWindow` ← `recvWindow`
+- **Signature**: `InvestmentPlanAdjustment(InvestmentPlanAdjustmentRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `PlanId`, `SubscriptionAmount`, `SubscriptionCycle`, `SubscriptionStartTime`, `SourceAsset`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `planId` ← `PlanId`, `subscriptionAmount` ← `SubscriptionAmount`, `subscriptionCycle` ← `SubscriptionCycle`, `subscriptionStartTime` ← `SubscriptionStartTime`, `sourceAsset` ← `SourceAsset`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `subscriptionStartDay` ← `SubscriptionStartDay`, `subscriptionStartWeekday` ← `SubscriptionStartWeekday`, `flexibleAllowedToUse` ← `FlexibleAllowedToUse`, `details` ← `Details`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1LendingAutoInvestPlanEditResponse`
-- **Error**: `SdkException<InvestmentPlanAdjustmentError>` — **Case A (typed)**
+- **Error**: `ApiException<InvestmentPlanAdjustmentError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `InvestmentPlanAdjustmentRequest` | `Requests/AutoInvest/InvestmentPlanAdjustmentRequest.cs` |
 | `SubscriptionCycle` | `Models/Enums/SubscriptionCycle.cs` |
 | `SubscriptionStartWeekday` | `Models/Enums/SubscriptionStartWeekday.cs` |
 | `Detail1` | `Models/Detail1.cs` |
@@ -142,15 +149,16 @@ Accessor: `client.AutoInvest` · Source: `Api/AutoInvest.cs` · 17 operations
 ### InvestmentPlanCreationUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `InvestmentPlanCreationUserData(SourceType sourceType, PlanType planType, double subscriptionAmount, SubscriptionCycle subscriptionCycle, int subscriptionStartTime, string sourceAsset, IReadOnlyList<Detail1> details, long timestamp, string signature, string? requestId, long? indexId, int? subscriptionStartDay, SubscriptionStartWeekday? subscriptionStartWeekday, bool? flexibleAllowedToUse, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 6 params (`requestId` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `sourceType` ← `sourceType`, `planType` ← `planType`, `subscriptionAmount` ← `subscriptionAmount`, `subscriptionCycle` ← `subscriptionCycle`, `subscriptionStartTime` ← `subscriptionStartTime`, `sourceAsset` ← `sourceAsset`, `details` ← `details`, `timestamp` ← `timestamp`, `signature` ← `signature`, `requestId` ← `requestId`, `IndexId` ← `indexId`, `subscriptionStartDay` ← `subscriptionStartDay`, `subscriptionStartWeekday` ← `subscriptionStartWeekday`, `flexibleAllowedToUse` ← `flexibleAllowedToUse`, `recvWindow` ← `recvWindow`
+- **Signature**: `InvestmentPlanCreationUserData(InvestmentPlanCreationUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `SourceType`, `PlanType`, `SubscriptionAmount`, `SubscriptionCycle`, `SubscriptionStartTime`, `SourceAsset`, `Details`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `sourceType` ← `SourceType`, `planType` ← `PlanType`, `subscriptionAmount` ← `SubscriptionAmount`, `subscriptionCycle` ← `SubscriptionCycle`, `subscriptionStartTime` ← `SubscriptionStartTime`, `sourceAsset` ← `SourceAsset`, `details` ← `Details`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `requestId` ← `RequestId`, `IndexId` ← `IndexId`, `subscriptionStartDay` ← `SubscriptionStartDay`, `subscriptionStartWeekday` ← `SubscriptionStartWeekday`, `flexibleAllowedToUse` ← `FlexibleAllowedToUse`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1LendingAutoInvestPlanAddResponse`
-- **Error**: `SdkException<InvestmentPlanCreationUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<InvestmentPlanCreationUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `InvestmentPlanCreationUserDataRequest` | `Requests/AutoInvest/InvestmentPlanCreationUserDataRequest.cs` |
 | `SourceType` | `Models/Enums/SourceType.cs` |
 | `PlanType` | `Models/Enums/PlanType.cs` |
 | `SubscriptionCycle` | `Models/Enums/SubscriptionCycle.cs` |
@@ -163,15 +171,16 @@ Accessor: `client.AutoInvest` · Source: `Api/AutoInvest.cs` · 17 operations
 ### OneTimeTransactionTrade
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `OneTimeTransactionTrade(string sourceType, double subscriptionAmount, string sourceAsset, long timestamp, string signature, string? requestId, bool? flexibleAllowedToUse, long? planId, long? indexId, IReadOnlyList<Detail5>? details, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 6 params (`requestId` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `sourceType` ← `sourceType`, `subscriptionAmount` ← `subscriptionAmount`, `sourceAsset` ← `sourceAsset`, `timestamp` ← `timestamp`, `signature` ← `signature`, `requestId` ← `requestId`, `flexibleAllowedToUse` ← `flexibleAllowedToUse`, `planId` ← `planId`, `indexId` ← `indexId`, `details` ← `details`, `recvWindow` ← `recvWindow`
+- **Signature**: `OneTimeTransactionTrade(OneTimeTransactionTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `SourceType`, `SubscriptionAmount`, `SourceAsset`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `sourceType` ← `SourceType`, `subscriptionAmount` ← `SubscriptionAmount`, `sourceAsset` ← `SourceAsset`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `requestId` ← `RequestId`, `flexibleAllowedToUse` ← `FlexibleAllowedToUse`, `planId` ← `PlanId`, `indexId` ← `IndexId`, `details` ← `Details`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1LendingAutoInvestOneOffResponse`
-- **Error**: `SdkException<OneTimeTransactionTradeError>` — **Case A (typed)**
+- **Error**: `ApiException<OneTimeTransactionTradeError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `OneTimeTransactionTradeRequest` | `Requests/AutoInvest/OneTimeTransactionTradeRequest.cs` |
 | `Detail5` | `Models/Detail5.cs` |
 | `SapiV1LendingAutoInvestOneOffResponse` | `Models/SapiV1LendingAutoInvestOneOffResponse.cs` |
 | `OneTimeTransactionTradeError` | `Errors/OneTimeTransactionTradeError.cs` |
@@ -180,15 +189,16 @@ Accessor: `client.AutoInvest` · Source: `Api/AutoInvest.cs` · 17 operations
 ### QueryAllSourceAssetAndTargetAssetUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `QueryAllSourceAssetAndTargetAssetUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `QueryAllSourceAssetAndTargetAssetUserData(QueryAllSourceAssetAndTargetAssetUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1LendingAutoInvestAllAssetResponse`
-- **Error**: `SdkException<QueryAllSourceAssetAndTargetAssetUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<QueryAllSourceAssetAndTargetAssetUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `QueryAllSourceAssetAndTargetAssetUserDataRequest` | `Requests/AutoInvest/QueryAllSourceAssetAndTargetAssetUserDataRequest.cs` |
 | `SapiV1LendingAutoInvestAllAssetResponse` | `Models/SapiV1LendingAutoInvestAllAssetResponse.cs` |
 | `QueryAllSourceAssetAndTargetAssetUserDataError` | `Errors/QueryAllSourceAssetAndTargetAssetUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -196,17 +206,16 @@ Accessor: `client.AutoInvest` · Source: `Api/AutoInvest.cs` · 17 operations
 ### QueryHoldingDetailsOfThePlan
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `QueryHoldingDetailsOfThePlan(long timestamp, string signature, long? planId, string? requestId, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `planId` — nullable, no default → **must pass explicitly**
-  - `requestId` — nullable, no default → **must pass explicitly**
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `planId` ← `planId`, `requestId` ← `requestId`, `recvWindow` ← `recvWindow`
+- **Signature**: `QueryHoldingDetailsOfThePlan(QueryHoldingDetailsOfThePlanRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `planId` ← `PlanId`, `requestId` ← `RequestId`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1LendingAutoInvestPlanIdResponse`
-- **Error**: `SdkException<QueryHoldingDetailsOfThePlanError>` — **Case A (typed)**
+- **Error**: `ApiException<QueryHoldingDetailsOfThePlanError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `QueryHoldingDetailsOfThePlanRequest` | `Requests/AutoInvest/QueryHoldingDetailsOfThePlanRequest.cs` |
 | `SapiV1LendingAutoInvestPlanIdResponse` | `Models/SapiV1LendingAutoInvestPlanIdResponse.cs` |
 | `QueryHoldingDetailsOfThePlanError` | `Errors/QueryHoldingDetailsOfThePlanError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -214,15 +223,16 @@ Accessor: `client.AutoInvest` · Source: `Api/AutoInvest.cs` · 17 operations
 ### QueryIndexDetailsUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `QueryIndexDetailsUserData(long indexId, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `indexId` ← `indexId`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `QueryIndexDetailsUserData(QueryIndexDetailsUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `IndexId`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `indexId` ← `IndexId`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1LendingAutoInvestIndexInfoResponse`
-- **Error**: `SdkException<QueryIndexDetailsUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<QueryIndexDetailsUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `QueryIndexDetailsUserDataRequest` | `Requests/AutoInvest/QueryIndexDetailsUserDataRequest.cs` |
 | `SapiV1LendingAutoInvestIndexInfoResponse` | `Models/SapiV1LendingAutoInvestIndexInfoResponse.cs` |
 | `QueryIndexDetailsUserDataError` | `Errors/QueryIndexDetailsUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -230,15 +240,16 @@ Accessor: `client.AutoInvest` · Source: `Api/AutoInvest.cs` · 17 operations
 ### QueryIndexLinkedPlanPositionDetailsUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `QueryIndexLinkedPlanPositionDetailsUserData(long indexId, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `indexId` ← `indexId`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `QueryIndexLinkedPlanPositionDetailsUserData(QueryIndexLinkedPlanPositionDetailsUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `IndexId`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `indexId` ← `IndexId`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1LendingAutoInvestIndexUserSummaryResponse`
-- **Error**: `SdkException<QueryIndexLinkedPlanPositionDetailsUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<QueryIndexLinkedPlanPositionDetailsUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `QueryIndexLinkedPlanPositionDetailsUserDataRequest` | `Requests/AutoInvest/QueryIndexLinkedPlanPositionDetailsUserDataRequest.cs` |
 | `SapiV1LendingAutoInvestIndexUserSummaryResponse` | `Models/SapiV1LendingAutoInvestIndexUserSummaryResponse.cs` |
 | `QueryIndexLinkedPlanPositionDetailsUserDataError` | `Errors/QueryIndexLinkedPlanPositionDetailsUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -246,16 +257,16 @@ Accessor: `client.AutoInvest` · Source: `Api/AutoInvest.cs` · 17 operations
 ### QueryOneTimeTransactionStatusUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `QueryOneTimeTransactionStatusUserData(long transactionId, long timestamp, string signature, string? requestId, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `requestId` — nullable, no default → **must pass explicitly**
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `transactionId` ← `transactionId`, `timestamp` ← `timestamp`, `signature` ← `signature`, `requestId` ← `requestId`, `recvWindow` ← `recvWindow`
+- **Signature**: `QueryOneTimeTransactionStatusUserData(QueryOneTimeTransactionStatusUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `TransactionId`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `transactionId` ← `TransactionId`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `requestId` ← `RequestId`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1LendingAutoInvestOneOffStatusResponse`
-- **Error**: `SdkException<QueryOneTimeTransactionStatusUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<QueryOneTimeTransactionStatusUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `QueryOneTimeTransactionStatusUserDataRequest` | `Requests/AutoInvest/QueryOneTimeTransactionStatusUserDataRequest.cs` |
 | `SapiV1LendingAutoInvestOneOffStatusResponse` | `Models/SapiV1LendingAutoInvestOneOffStatusResponse.cs` |
 | `QueryOneTimeTransactionStatusUserDataError` | `Errors/QueryOneTimeTransactionStatusUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -263,15 +274,16 @@ Accessor: `client.AutoInvest` · Source: `Api/AutoInvest.cs` · 17 operations
 ### QuerySourceAssetListUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `QuerySourceAssetListUserData(string usageType, long timestamp, string signature, string? targetAsset, long? indexId, bool? flexibleAllowedToUse, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 4 params (`targetAsset` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `usageType` ← `usageType`, `timestamp` ← `timestamp`, `signature` ← `signature`, `targetAsset` ← `targetAsset`, `indexId` ← `indexId`, `flexibleAllowedToUse` ← `flexibleAllowedToUse`, `recvWindow` ← `recvWindow`
+- **Signature**: `QuerySourceAssetListUserData(QuerySourceAssetListUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `UsageType`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `usageType` ← `UsageType`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `targetAsset` ← `TargetAsset`, `indexId` ← `IndexId`, `flexibleAllowedToUse` ← `FlexibleAllowedToUse`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1LendingAutoInvestSourceAssetListResponse`
-- **Error**: `SdkException<QuerySourceAssetListUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<QuerySourceAssetListUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `QuerySourceAssetListUserDataRequest` | `Requests/AutoInvest/QuerySourceAssetListUserDataRequest.cs` |
 | `SapiV1LendingAutoInvestSourceAssetListResponse` | `Models/SapiV1LendingAutoInvestSourceAssetListResponse.cs` |
 | `QuerySourceAssetListUserDataError` | `Errors/QuerySourceAssetListUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -279,15 +291,16 @@ Accessor: `client.AutoInvest` · Source: `Api/AutoInvest.cs` · 17 operations
 ### QuerySubscriptionTransactionHistory
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `QuerySubscriptionTransactionHistory(long timestamp, string signature, long? planId, long? startTime, long? endTime, long? targetAsset, PlanType1? planType, int? size, int? current, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 8 params (`planId` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `planId` ← `planId`, `startTime` ← `startTime`, `endTime` ← `endTime`, `targetAsset` ← `targetAsset`, `planType` ← `planType`, `size` ← `size`, `current` ← `current`, `recvWindow` ← `recvWindow`
+- **Signature**: `QuerySubscriptionTransactionHistory(QuerySubscriptionTransactionHistoryRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `planId` ← `PlanId`, `startTime` ← `StartTime`, `endTime` ← `EndTime`, `targetAsset` ← `TargetAsset`, `planType` ← `PlanType`, `size` ← `Size`, `current` ← `Current`, `recvWindow` ← `RecvWindow`
 - **Returns**: `IReadOnlyList<SapiV1LendingAutoInvestHistoryListResponse>`
-- **Error**: `SdkException<QuerySubscriptionTransactionHistoryError>` — **Case A (typed)**
+- **Error**: `ApiException<QuerySubscriptionTransactionHistoryError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `QuerySubscriptionTransactionHistoryRequest` | `Requests/AutoInvest/QuerySubscriptionTransactionHistoryRequest.cs` |
 | `PlanType1` | `Models/Enums/PlanType1.cs` |
 | `SapiV1LendingAutoInvestHistoryListResponse` | `Models/SapiV1LendingAutoInvestHistoryListResponse.cs` |
 | `QuerySubscriptionTransactionHistoryError` | `Errors/QuerySubscriptionTransactionHistoryError.cs` |

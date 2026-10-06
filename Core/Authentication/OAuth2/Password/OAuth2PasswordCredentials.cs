@@ -1,4 +1,4 @@
-namespace BinancePublicSpotApi.Core.Authentication.OAuth2.Password;
+namespace Binance.Core.Authentication.OAuth2.Password;
 
 public sealed class OAuth2PasswordCredentials
 {

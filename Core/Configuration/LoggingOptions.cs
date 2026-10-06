@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
 
-namespace BinancePublicSpotApi.Core.Configuration;
+namespace Binance.Core.Configuration;
 
 public record LoggingOptions
 {

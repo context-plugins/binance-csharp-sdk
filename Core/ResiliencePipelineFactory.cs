@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 using Polly;
 using Polly.Retry;
 using Polly.Timeout;
-using BinancePublicSpotApi.Core.Configuration;
-using BinancePublicSpotApi.Core.Logging;
-using BinancePublicSpotApi.Core.Request;
+using Binance.Core.Configuration;
+using Binance.Core.Logging;
+using Binance.Core.Request;
 
-namespace BinancePublicSpotApi.Core;
+namespace Binance.Core;
 
 internal sealed class ResiliencePipelineFactory
 {
@@ -25,9 +25,8 @@ internal sealed class ResiliencePipelineFactory
     private readonly ResiliencePipeline<HttpResponseMessage> _pipeline;
     private readonly ResiliencePipeline<HttpResponseMessage> _timeoutOnly;
 
-    public ResiliencePipelineFactory(RetryOptions options, TimeProvider? clock = null)
+    public ResiliencePipelineFactory(RetryOptions options, TimeProvider clock)
     {
-        clock ??= TimeProvider.System;
         _pipeline = CreateResiliencePipeline(options, clock);
         _timeoutOnly = options.MaxRetries <= 0
             ? _pipeline

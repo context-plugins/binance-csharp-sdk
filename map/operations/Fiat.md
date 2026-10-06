@@ -9,15 +9,16 @@ Accessor: `client.Fiat` · Source: `Api/Fiat.cs` · 2 operations
 ### FiatDepositWithdrawHistoryUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `FiatDepositWithdrawHistoryUserData(int transactionType, long timestamp, string signature, long? beginTime, long? endTime, int? page, int? rows, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 5 params (`beginTime` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `transactionType` ← `transactionType`, `timestamp` ← `timestamp`, `signature` ← `signature`, `beginTime` ← `beginTime`, `endTime` ← `endTime`, `page` ← `page`, `rows` ← `rows`, `recvWindow` ← `recvWindow`
+- **Signature**: `FiatDepositWithdrawHistoryUserData(FiatDepositWithdrawHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `TransactionType`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `transactionType` ← `TransactionType`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `beginTime` ← `BeginTime`, `endTime` ← `EndTime`, `page` ← `Page`, `rows` ← `Rows`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1FiatOrdersResponse`
-- **Error**: `SdkException<FiatDepositWithdrawHistoryUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<FiatDepositWithdrawHistoryUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `FiatDepositWithdrawHistoryUserDataRequest` | `Requests/Fiat/FiatDepositWithdrawHistoryUserDataRequest.cs` |
 | `SapiV1FiatOrdersResponse` | `Models/SapiV1FiatOrdersResponse.cs` |
 | `FiatDepositWithdrawHistoryUserDataError` | `Errors/FiatDepositWithdrawHistoryUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -25,15 +26,16 @@ Accessor: `client.Fiat` · Source: `Api/Fiat.cs` · 2 operations
 ### FiatPaymentsHistoryUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `FiatPaymentsHistoryUserData(int transactionType, long timestamp, string signature, long? beginTime, long? endTime, int? page, int? rows, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 5 params (`beginTime` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `transactionType` ← `transactionType`, `timestamp` ← `timestamp`, `signature` ← `signature`, `beginTime` ← `beginTime`, `endTime` ← `endTime`, `page` ← `page`, `rows` ← `rows`, `recvWindow` ← `recvWindow`
+- **Signature**: `FiatPaymentsHistoryUserData(FiatPaymentsHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `TransactionType`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `transactionType` ← `TransactionType`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `beginTime` ← `BeginTime`, `endTime` ← `EndTime`, `page` ← `Page`, `rows` ← `Rows`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1FiatPaymentsResponse`
-- **Error**: `SdkException<FiatPaymentsHistoryUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<FiatPaymentsHistoryUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `FiatPaymentsHistoryUserDataRequest` | `Requests/Fiat/FiatPaymentsHistoryUserDataRequest.cs` |
 | `SapiV1FiatPaymentsResponse` | `Models/SapiV1FiatPaymentsResponse.cs` |
 | `FiatPaymentsHistoryUserDataError` | `Errors/FiatPaymentsHistoryUserDataError.cs` |
 | `Error` | `Models/Error.cs` |

@@ -1,13 +1,13 @@
-using BinancePublicSpotApi.Core.Authentication;
-using BinancePublicSpotApi.Core.Authentication.ApiKey;
+using Binance.Core.Authentication;
+using Binance.Core.Authentication.ApiKey;
 
-namespace BinancePublicSpotApi;
+namespace Binance;
 
 internal sealed class AuthSchemes
 {
     public IAuthScheme ApiKeyAuth { get; }
 
-    public AuthSchemes(BinancePublicSpotApiClientOptions options)
+    public AuthSchemes(BinanceClientOptions options)
     {
         ApiKeyAuth = ApiKeyHeaderScheme.Create("X-MBX-APIKEY", options.ApiKeyAuth);
     }

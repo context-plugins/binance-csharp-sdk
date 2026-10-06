@@ -1,10 +1,10 @@
 using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using BinancePublicSpotApi.Core.Extensions;
-using BinancePublicSpotApi.Core.Models;
+using Binance.Core.Extensions;
+using Binance.Core.Models;
 
-namespace BinancePublicSpotApi.Models.AnyOf;
+namespace Binance.Models.AnyOf;
 
 [JsonConverter(typeof(ApiV3OpenOrdersResponseConverter))]
 public record ApiV3OpenOrdersResponse
@@ -21,8 +21,7 @@ public record ApiV3OpenOrdersResponse
 
     public static ApiV3OpenOrdersResponse Order(Order value) => new(Optional<Order>.Some(value), default);
 
-    public static ApiV3OpenOrdersResponse OcoOrder(OcoOrder value) =>
-        new(default, Optional<OcoOrder>.Some(value));
+    public static ApiV3OpenOrdersResponse OcoOrder(OcoOrder value) => new(default, Optional<OcoOrder>.Some(value));
 
     public bool TryGetOrder(out Order value) => _orderValue.TryGetValue(out value);
 

@@ -1,10 +1,10 @@
 using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using BinancePublicSpotApi.Core.Extensions;
-using BinancePublicSpotApi.Core.Models;
+using Binance.Core.Extensions;
+using Binance.Core.Models;
 
-namespace BinancePublicSpotApi.Models.AnyOf;
+namespace Binance.Models.AnyOf;
 
 [JsonConverter(typeof(SapiV1AccountSnapshotResponseConverter))]
 public record SapiV1AccountSnapshotResponse
@@ -37,16 +37,13 @@ public record SapiV1AccountSnapshotResponse
 
     public bool TryGetSnapshotMargin(out SnapshotMargin value) => _snapshotMarginValue.TryGetValue(out value);
 
-    public bool TryGetSnapshotFutures(out SnapshotFutures value) =>
-        _snapshotFuturesValue.TryGetValue(out value);
+    public bool TryGetSnapshotFutures(out SnapshotFutures value) => _snapshotFuturesValue.TryGetValue(out value);
 
     public static implicit operator SapiV1AccountSnapshotResponse(SnapshotSpot value) => SnapshotSpot(value);
 
-    public static implicit operator SapiV1AccountSnapshotResponse(SnapshotMargin value) =>
-        SnapshotMargin(value);
+    public static implicit operator SapiV1AccountSnapshotResponse(SnapshotMargin value) => SnapshotMargin(value);
 
-    public static implicit operator SapiV1AccountSnapshotResponse(SnapshotFutures value) =>
-        SnapshotFutures(value);
+    public static implicit operator SapiV1AccountSnapshotResponse(SnapshotFutures value) => SnapshotFutures(value);
 }
 
 file sealed class SapiV1AccountSnapshotResponseConverter : JsonConverter<SapiV1AccountSnapshotResponse>
@@ -69,7 +66,8 @@ file sealed class SapiV1AccountSnapshotResponseConverter : JsonConverter<SapiV1A
         {
             return SapiV1AccountSnapshotResponse.SnapshotFutures(snapshotFuturesValue);
         }
-        throw new JsonException($"JSON does not match SnapshotSpot or SnapshotMargin or SnapshotFutures schemas: {root.ToString()}");
+        throw new JsonException(
+            $"JSON does not match SnapshotSpot or SnapshotMargin or SnapshotFutures schemas: {root.ToString()}");
     }
 
     public override void Write(Utf8JsonWriter writer,

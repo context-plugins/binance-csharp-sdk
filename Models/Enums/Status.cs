@@ -1,10 +1,11 @@
+using System;
 using System.Text.Json.Serialization;
-using BinancePublicSpotApi.Core.Enum;
+using Binance.Core.Enum;
 
-namespace BinancePublicSpotApi.Models.Enums;
+namespace Binance.Models.Enums;
 
 [JsonConverter(typeof(StringEnumConverter<Status>))]
-public sealed record Status : StringEnum<Status>
+public sealed record Status : OpenStringEnum<Status>
 {
     private Status(string value) : base(value)
     {
@@ -16,5 +17,23 @@ public sealed record Status : StringEnum<Status>
 
     public static readonly Status Unsubscribable = new("UNSUBSCRIBABLE");
 
-    public static Status FromValue(string value) => FromValueCore(value);
+    public TResult Match<TResult>(Func<TResult> onAll,
+        Func<TResult> onSubscribable,
+        Func<TResult> onUnsubscribable,
+        Func<string, TResult> otherwise) =>
+        this switch
+        {
+            _ when this == All => onAll(),
+            _ when this == Subscribable => onSubscribable(),
+            _ when this == Unsubscribable => onUnsubscribable(),
+            _ => otherwise(Value)
+        };
+
+    public void Match(Action onAll, Action onSubscribable, Action onUnsubscribable, Action<string> otherwise)
+    {
+        if (this == All) onAll();
+        else if (this == Subscribable) onSubscribable();
+        else if (this == Unsubscribable) onUnsubscribable();
+        else otherwise(Value);
+    }
 }

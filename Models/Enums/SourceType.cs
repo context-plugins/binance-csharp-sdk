@@ -1,10 +1,11 @@
+using System;
 using System.Text.Json.Serialization;
-using BinancePublicSpotApi.Core.Enum;
+using Binance.Core.Enum;
 
-namespace BinancePublicSpotApi.Models.Enums;
+namespace Binance.Models.Enums;
 
 [JsonConverter(typeof(StringEnumConverter<SourceType>))]
-public sealed record SourceType : StringEnum<SourceType>
+public sealed record SourceType : OpenStringEnum<SourceType>
 {
     private SourceType(string value) : base(value)
     {
@@ -14,5 +15,18 @@ public sealed record SourceType : StringEnum<SourceType>
 
     public static readonly SourceType Tr = new("TR");
 
-    public static SourceType FromValue(string value) => FromValueCore(value);
+    public TResult Match<TResult>(Func<TResult> onMainSite, Func<TResult> onTr, Func<string, TResult> otherwise) =>
+        this switch
+        {
+            _ when this == MainSite => onMainSite(),
+            _ when this == Tr => onTr(),
+            _ => otherwise(Value)
+        };
+
+    public void Match(Action onMainSite, Action onTr, Action<string> otherwise)
+    {
+        if (this == MainSite) onMainSite();
+        else if (this == Tr) onTr();
+        else otherwise(Value);
+    }
 }

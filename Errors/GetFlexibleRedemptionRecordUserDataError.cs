@@ -1,17 +1,16 @@
-using System.Net.Http;
-using System.Threading;
 using System.Threading.Tasks;
-using BinancePublicSpotApi.Core.ErrorResponse;
-using BinancePublicSpotApi.Core.Models;
-using BinancePublicSpotApi.Models;
+using Binance.Core.ErrorResponse;
+using Binance.Core.Models;
+using Binance.Models;
 
-namespace BinancePublicSpotApi.Errors;
+namespace Binance.Errors;
 
 public sealed class GetFlexibleRedemptionRecordUserDataError : ApiError
 {
     private readonly Optional<Error> _errorValue;
 
-    private GetFlexibleRedemptionRecordUserDataError(Optional<Error> errorValue, Optional<RawError> fallback) : base(fallback)
+    private GetFlexibleRedemptionRecordUserDataError(Optional<Error> errorValue,
+        Optional<RawError> fallback) : base(fallback)
     {
         _errorValue = errorValue;
     }
@@ -24,23 +23,12 @@ public sealed class GetFlexibleRedemptionRecordUserDataError : ApiError
 
     public bool TryGetError(out Error value) => _errorValue.TryGetValue(out value);
 
-    internal static Task<GetFlexibleRedemptionRecordUserDataError> Create(HttpResponseMessage response,
-        CancellationToken ct) =>
-        (int)response.StatusCode switch
+    private static Task<GetFlexibleRedemptionRecordUserDataError> Create(FailedResponse response) =>
+        response.StatusCode switch
         {
-            400 or 401 => FromJson<Error>(response, ct).As(AsError),
-            _ => FromRawBody(response, ct).As(AsFallback)
+            400 or 401 => response.Json<Error>().As(AsError),
+            _ => response.RawBody().As(AsFallback)
         };
-}
 
-internal sealed class GetFlexibleRedemptionRecordUserDataErrorResponse : IErrorResponse<GetFlexibleRedemptionRecordUserDataError>
-{
-    public static GetFlexibleRedemptionRecordUserDataErrorResponse Instance { get; } = new();
-
-    private GetFlexibleRedemptionRecordUserDataErrorResponse()
-    {
-    }
-
-    public Task<GetFlexibleRedemptionRecordUserDataError> Map(HttpResponseMessage response, CancellationToken ct) =>
-        GetFlexibleRedemptionRecordUserDataError.Create(response, ct);
+    internal static ApiErrorResponse<GetFlexibleRedemptionRecordUserDataError> Response { get; } = new(Create);
 }

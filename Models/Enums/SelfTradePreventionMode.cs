@@ -1,10 +1,11 @@
+using System;
 using System.Text.Json.Serialization;
-using BinancePublicSpotApi.Core.Enum;
+using Binance.Core.Enum;
 
-namespace BinancePublicSpotApi.Models.Enums;
+namespace Binance.Models.Enums;
 
 [JsonConverter(typeof(StringEnumConverter<SelfTradePreventionMode>))]
-public sealed record SelfTradePreventionMode : StringEnum<SelfTradePreventionMode>
+public sealed record SelfTradePreventionMode : OpenStringEnum<SelfTradePreventionMode>
 {
     private SelfTradePreventionMode(string value) : base(value)
     {
@@ -18,5 +19,30 @@ public sealed record SelfTradePreventionMode : StringEnum<SelfTradePreventionMod
 
     public static readonly SelfTradePreventionMode None = new("NONE");
 
-    public static SelfTradePreventionMode FromValue(string value) => FromValueCore(value);
+    public TResult Match<TResult>(Func<TResult> onExpireTaker,
+        Func<TResult> onExpireMaker,
+        Func<TResult> onExpireBoth,
+        Func<TResult> onNone,
+        Func<string, TResult> otherwise) =>
+        this switch
+        {
+            _ when this == ExpireTaker => onExpireTaker(),
+            _ when this == ExpireMaker => onExpireMaker(),
+            _ when this == ExpireBoth => onExpireBoth(),
+            _ when this == None => onNone(),
+            _ => otherwise(Value)
+        };
+
+    public void Match(Action onExpireTaker,
+        Action onExpireMaker,
+        Action onExpireBoth,
+        Action onNone,
+        Action<string> otherwise)
+    {
+        if (this == ExpireTaker) onExpireTaker();
+        else if (this == ExpireMaker) onExpireMaker();
+        else if (this == ExpireBoth) onExpireBoth();
+        else if (this == None) onNone();
+        else otherwise(Value);
+    }
 }

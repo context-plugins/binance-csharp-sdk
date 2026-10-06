@@ -1,10 +1,11 @@
+using System;
 using System.Text.Json.Serialization;
-using BinancePublicSpotApi.Core.Enum;
+using Binance.Core.Enum;
 
-namespace BinancePublicSpotApi.Models.Enums;
+namespace Binance.Models.Enums;
 
 [JsonConverter(typeof(StringEnumConverter<TransferFunctionAccountType>))]
-public sealed record TransferFunctionAccountType : StringEnum<TransferFunctionAccountType>
+public sealed record TransferFunctionAccountType : OpenStringEnum<TransferFunctionAccountType>
 {
     private TransferFunctionAccountType(string value) : base(value)
     {
@@ -20,5 +21,34 @@ public sealed record TransferFunctionAccountType : StringEnum<TransferFunctionAc
 
     public static readonly TransferFunctionAccountType CoinFuture = new("COIN_FUTURE");
 
-    public static TransferFunctionAccountType FromValue(string value) => FromValueCore(value);
+    public TResult Match<TResult>(Func<TResult> onSpot,
+        Func<TResult> onMargin,
+        Func<TResult> onIsolatedMargin,
+        Func<TResult> onUsdtFuture,
+        Func<TResult> onCoinFuture,
+        Func<string, TResult> otherwise) =>
+        this switch
+        {
+            _ when this == Spot => onSpot(),
+            _ when this == Margin => onMargin(),
+            _ when this == IsolatedMargin => onIsolatedMargin(),
+            _ when this == UsdtFuture => onUsdtFuture(),
+            _ when this == CoinFuture => onCoinFuture(),
+            _ => otherwise(Value)
+        };
+
+    public void Match(Action onSpot,
+        Action onMargin,
+        Action onIsolatedMargin,
+        Action onUsdtFuture,
+        Action onCoinFuture,
+        Action<string> otherwise)
+    {
+        if (this == Spot) onSpot();
+        else if (this == Margin) onMargin();
+        else if (this == IsolatedMargin) onIsolatedMargin();
+        else if (this == UsdtFuture) onUsdtFuture();
+        else if (this == CoinFuture) onCoinFuture();
+        else otherwise(Value);
+    }
 }

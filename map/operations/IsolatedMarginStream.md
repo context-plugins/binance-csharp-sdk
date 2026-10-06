@@ -9,24 +9,24 @@ Accessor: `client.IsolatedMarginStream` · Source: `Api/IsolatedMarginStream.cs`
 ### CloseAListenKeyUserStream3
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `CloseAListenKeyUserStream3(string? listenKey, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `listenKey` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `listenKey` ← `listenKey`
+- **Signature**: `CloseAListenKeyUserStream3(CloseAListenKeyUserStream3Request request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+- **Query params (wire ← C#)**: `listenKey` ← `ListenKey`
 - **Returns**: `object`
-- **Error**: `SdkException<CloseAListenKeyUserStream3Error>` — **Case A (typed)**
+- **Error**: `ApiException<CloseAListenKeyUserStream3Error>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `CloseAListenKeyUserStream3Request` | `Requests/IsolatedMarginStream/CloseAListenKeyUserStream3Request.cs` |
 | `CloseAListenKeyUserStream3Error` | `Errors/CloseAListenKeyUserStream3Error.cs` |
 | `Error` | `Models/Error.cs` |
 
 ### GenerateAListenKeyUserStream
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GenerateAListenKeyUserStream(RequestOptions? requestOptions = null, CancellationToken ct = default)`
+- **Signature**: `GenerateAListenKeyUserStream(RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
 - **Returns**: `SapiV1UserDataStreamIsolatedResponse`
-- **Error**: `SdkException<RawError>` — **Case B**
+- **Error**: `ApiException<RawError>` — **Case B**
 
 | Type | Source |
 | --- | --- |
@@ -35,15 +35,15 @@ Accessor: `client.IsolatedMarginStream` · Source: `Api/IsolatedMarginStream.cs`
 ### PingKeepAliveAListenKeyUserStream
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `PingKeepAliveAListenKeyUserStream(string? listenKey, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `listenKey` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `listenKey` ← `listenKey`
+- **Signature**: `PingKeepAliveAListenKeyUserStream(PingKeepAliveAListenKeyUserStreamOperationRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+- **Query params (wire ← C#)**: `listenKey` ← `ListenKey`
 - **Returns**: `object`
-- **Error**: `SdkException<PingKeepAliveAListenKeyUserStreamApiError>` — **Case A (typed)**
+- **Error**: `ApiException<PingKeepAliveAListenKeyUserStreamApiError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `PingKeepAliveAListenKeyUserStreamOperationRequest` | `Requests/IsolatedMarginStream/PingKeepAliveAListenKeyUserStreamOperationRequest.cs` |
 | `PingKeepAliveAListenKeyUserStreamApiError` | `Errors/PingKeepAliveAListenKeyUserStreamApiError.cs` |
 | `Error` | `Models/Error.cs` |
 

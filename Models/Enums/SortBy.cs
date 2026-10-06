@@ -1,10 +1,11 @@
+using System;
 using System.Text.Json.Serialization;
-using BinancePublicSpotApi.Core.Enum;
+using Binance.Core.Enum;
 
-namespace BinancePublicSpotApi.Models.Enums;
+namespace Binance.Models.Enums;
 
 [JsonConverter(typeof(StringEnumConverter<SortBy>))]
-public sealed record SortBy : StringEnum<SortBy>
+public sealed record SortBy : OpenStringEnum<SortBy>
 {
     private SortBy(string value) : base(value)
     {
@@ -18,5 +19,30 @@ public sealed record SortBy : StringEnum<SortBy>
 
     public static readonly SortBy Duration = new("DURATION");
 
-    public static SortBy FromValue(string value) => FromValueCore(value);
+    public TResult Match<TResult>(Func<TResult> onStartTime,
+        Func<TResult> onLotSize,
+        Func<TResult> onInterestRate,
+        Func<TResult> onDuration,
+        Func<string, TResult> otherwise) =>
+        this switch
+        {
+            _ when this == StartTime => onStartTime(),
+            _ when this == LotSize => onLotSize(),
+            _ when this == InterestRate => onInterestRate(),
+            _ when this == Duration => onDuration(),
+            _ => otherwise(Value)
+        };
+
+    public void Match(Action onStartTime,
+        Action onLotSize,
+        Action onInterestRate,
+        Action onDuration,
+        Action<string> otherwise)
+    {
+        if (this == StartTime) onStartTime();
+        else if (this == LotSize) onLotSize();
+        else if (this == InterestRate) onInterestRate();
+        else if (this == Duration) onDuration();
+        else otherwise(Value);
+    }
 }

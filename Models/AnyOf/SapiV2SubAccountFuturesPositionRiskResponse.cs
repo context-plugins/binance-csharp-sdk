@@ -1,10 +1,10 @@
 using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using BinancePublicSpotApi.Core.Extensions;
-using BinancePublicSpotApi.Core.Models;
+using Binance.Core.Extensions;
+using Binance.Core.Models;
 
-namespace BinancePublicSpotApi.Models.AnyOf;
+namespace Binance.Models.AnyOf;
 
 [JsonConverter(typeof(SapiV2SubAccountFuturesPositionRiskResponseConverter))]
 public record SapiV2SubAccountFuturesPositionRiskResponse
@@ -47,19 +47,24 @@ file sealed class SapiV2SubAccountFuturesPositionRiskResponseConverter : JsonCon
     {
         using var doc = JsonDocument.ParseValue(ref reader);
         var root = doc.RootElement;
-        if (JsonSerializer.TryDeserialize<SubAccountUsdtFuturesPositionRisk>(root,
+        if (JsonSerializer.TryDeserialize<SubAccountUsdtFuturesPositionRisk>(
+            root,
             options,
             out var subAccountUsdtFuturesPositionRiskValue))
         {
-            return SapiV2SubAccountFuturesPositionRiskResponse.SubAccountUsdtFuturesPositionRisk(subAccountUsdtFuturesPositionRiskValue);
+            return SapiV2SubAccountFuturesPositionRiskResponse.SubAccountUsdtFuturesPositionRisk(
+                subAccountUsdtFuturesPositionRiskValue);
         }
-        if (JsonSerializer.TryDeserialize<SubAccountCoinFuturesPositionRisk>(root,
+        if (JsonSerializer.TryDeserialize<SubAccountCoinFuturesPositionRisk>(
+            root,
             options,
             out var subAccountCoinFuturesPositionRiskValue))
         {
-            return SapiV2SubAccountFuturesPositionRiskResponse.SubAccountCoinFuturesPositionRisk(subAccountCoinFuturesPositionRiskValue);
+            return SapiV2SubAccountFuturesPositionRiskResponse.SubAccountCoinFuturesPositionRisk(
+                subAccountCoinFuturesPositionRiskValue);
         }
-        throw new JsonException($"JSON does not match SubAccountUsdtFuturesPositionRisk or SubAccountCoinFuturesPositionRisk schemas: {root.ToString()}");
+        throw new JsonException(
+            $"JSON does not match SubAccountUsdtFuturesPositionRisk or SubAccountCoinFuturesPositionRisk schemas: {root.ToString()}");
     }
 
     public override void Write(Utf8JsonWriter writer,
@@ -76,7 +81,8 @@ file sealed class SapiV2SubAccountFuturesPositionRiskResponseConverter : JsonCon
         }
         else
         {
-            throw new JsonException($"{nameof(SapiV2SubAccountFuturesPositionRiskResponse)} contains no valid value to serialize.");
+            throw new JsonException(
+                $"{nameof(SapiV2SubAccountFuturesPositionRiskResponse)} contains no valid value to serialize.");
         }
     }
 }

@@ -1,17 +1,16 @@
-using System.Net.Http;
-using System.Threading;
 using System.Threading.Tasks;
-using BinancePublicSpotApi.Core.ErrorResponse;
-using BinancePublicSpotApi.Core.Models;
-using BinancePublicSpotApi.Models;
+using Binance.Core.ErrorResponse;
+using Binance.Core.Models;
+using Binance.Models;
 
-namespace BinancePublicSpotApi.Errors;
+namespace Binance.Errors;
 
 public sealed class HrTickerPriceChangeStatistics24Error : ApiError
 {
     private readonly Optional<Error> _errorValue;
 
-    private HrTickerPriceChangeStatistics24Error(Optional<Error> errorValue, Optional<RawError> fallback) : base(fallback)
+    private HrTickerPriceChangeStatistics24Error(Optional<Error> errorValue,
+        Optional<RawError> fallback) : base(fallback)
     {
         _errorValue = errorValue;
     }
@@ -24,23 +23,12 @@ public sealed class HrTickerPriceChangeStatistics24Error : ApiError
 
     public bool TryGetError(out Error value) => _errorValue.TryGetValue(out value);
 
-    internal static Task<HrTickerPriceChangeStatistics24Error> Create(HttpResponseMessage response,
-        CancellationToken ct) =>
-        (int)response.StatusCode switch
+    private static Task<HrTickerPriceChangeStatistics24Error> Create(FailedResponse response) =>
+        response.StatusCode switch
         {
-            400 => FromJson<Error>(response, ct).As(AsError),
-            _ => FromRawBody(response, ct).As(AsFallback)
+            400 => response.Json<Error>().As(AsError),
+            _ => response.RawBody().As(AsFallback)
         };
-}
 
-internal sealed class HrTickerPriceChangeStatistics24ErrorResponse : IErrorResponse<HrTickerPriceChangeStatistics24Error>
-{
-    public static HrTickerPriceChangeStatistics24ErrorResponse Instance { get; } = new();
-
-    private HrTickerPriceChangeStatistics24ErrorResponse()
-    {
-    }
-
-    public Task<HrTickerPriceChangeStatistics24Error> Map(HttpResponseMessage response, CancellationToken ct) =>
-        HrTickerPriceChangeStatistics24Error.Create(response, ct);
+    internal static ApiErrorResponse<HrTickerPriceChangeStatistics24Error> Response { get; } = new(Create);
 }

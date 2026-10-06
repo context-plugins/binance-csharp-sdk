@@ -1,7 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace BinancePublicSpotApi.Core.Authentication.OAuth2.AuthorizationCode;
+namespace Binance.Core.Authentication.OAuth2.AuthorizationCode;
 
 /// <summary>
 /// Callback invoked by the SDK to get an OAuth2 authorization code from the user.

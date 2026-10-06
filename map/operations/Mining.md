@@ -9,15 +9,16 @@ Accessor: `client.Mining` · Source: `Api/Mining.cs` · 13 operations
 ### AccountListUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `AccountListUserData(string algo, string userName, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `algo` ← `algo`, `userName` ← `userName`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `AccountListUserData(AccountListUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Algo`, `UserName`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `algo` ← `Algo`, `userName` ← `UserName`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1MiningStatisticsUserListResponse`
-- **Error**: `SdkException<AccountListUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<AccountListUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `AccountListUserDataRequest` | `Requests/Mining/AccountListUserDataRequest.cs` |
 | `SapiV1MiningStatisticsUserListResponse` | `Models/SapiV1MiningStatisticsUserListResponse.cs` |
 | `AccountListUserDataError` | `Errors/AccountListUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -25,9 +26,9 @@ Accessor: `client.Mining` · Source: `Api/Mining.cs` · 13 operations
 ### AcquiringAlgorithmMarketData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `AcquiringAlgorithmMarketData(RequestOptions? requestOptions = null, CancellationToken ct = default)`
+- **Signature**: `AcquiringAlgorithmMarketData(RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
 - **Returns**: `SapiV1MiningPubAlgoListResponse`
-- **Error**: `SdkException<AcquiringAlgorithmMarketDataError>` — **Case A (typed)**
+- **Error**: `ApiException<AcquiringAlgorithmMarketDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
@@ -39,9 +40,9 @@ Accessor: `client.Mining` · Source: `Api/Mining.cs` · 13 operations
 ### AcquiringCoinNameMarketData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `AcquiringCoinNameMarketData(RequestOptions? requestOptions = null, CancellationToken ct = default)`
+- **Signature**: `AcquiringCoinNameMarketData(RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
 - **Returns**: `SapiV1MiningPubCoinListResponse`
-- **Error**: `SdkException<AcquiringCoinNameMarketDataError>` — **Case A (typed)**
+- **Error**: `ApiException<AcquiringCoinNameMarketDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
@@ -53,15 +54,16 @@ Accessor: `client.Mining` · Source: `Api/Mining.cs` · 13 operations
 ### CancelHashrateResaleConfigurationUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `CancelHashrateResaleConfigurationUserData(string configId, string userName, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `configId` ← `configId`, `userName` ← `userName`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `CancelHashrateResaleConfigurationUserData(CancelHashrateResaleConfigurationUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `ConfigId`, `UserName`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `configId` ← `ConfigId`, `userName` ← `UserName`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1MiningHashTransferConfigCancelResponse`
-- **Error**: `SdkException<CancelHashrateResaleConfigurationUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<CancelHashrateResaleConfigurationUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `CancelHashrateResaleConfigurationUserDataRequest` | `Requests/Mining/CancelHashrateResaleConfigurationUserDataRequest.cs` |
 | `SapiV1MiningHashTransferConfigCancelResponse` | `Models/SapiV1MiningHashTransferConfigCancelResponse.cs` |
 | `CancelHashrateResaleConfigurationUserDataError` | `Errors/CancelHashrateResaleConfigurationUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -69,15 +71,16 @@ Accessor: `client.Mining` · Source: `Api/Mining.cs` · 13 operations
 ### EarningsListUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `EarningsListUserData(string algo, string userName, long timestamp, string signature, string? coin, string? startDate, string? endDate, int? pageIndex, string? pageSize, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 6 params (`coin` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `algo` ← `algo`, `userName` ← `userName`, `timestamp` ← `timestamp`, `signature` ← `signature`, `coin` ← `coin`, `startDate` ← `startDate`, `endDate` ← `endDate`, `pageIndex` ← `pageIndex`, `pageSize` ← `pageSize`, `recvWindow` ← `recvWindow`
+- **Signature**: `EarningsListUserData(EarningsListUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Algo`, `UserName`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `algo` ← `Algo`, `userName` ← `UserName`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `coin` ← `Coin`, `startDate` ← `StartDate`, `endDate` ← `EndDate`, `pageIndex` ← `PageIndex`, `pageSize` ← `PageSize`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1MiningPaymentListResponse`
-- **Error**: `SdkException<EarningsListUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<EarningsListUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `EarningsListUserDataRequest` | `Requests/Mining/EarningsListUserDataRequest.cs` |
 | `SapiV1MiningPaymentListResponse` | `Models/SapiV1MiningPaymentListResponse.cs` |
 | `EarningsListUserDataError` | `Errors/EarningsListUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -85,15 +88,16 @@ Accessor: `client.Mining` · Source: `Api/Mining.cs` · 13 operations
 ### ExtraBonusListUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `ExtraBonusListUserData(string algo, string userName, long timestamp, string signature, string? coin, string? startDate, string? endDate, int? pageIndex, string? pageSize, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 6 params (`coin` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `algo` ← `algo`, `userName` ← `userName`, `timestamp` ← `timestamp`, `signature` ← `signature`, `coin` ← `coin`, `startDate` ← `startDate`, `endDate` ← `endDate`, `pageIndex` ← `pageIndex`, `pageSize` ← `pageSize`, `recvWindow` ← `recvWindow`
+- **Signature**: `ExtraBonusListUserData(ExtraBonusListUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Algo`, `UserName`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `algo` ← `Algo`, `userName` ← `UserName`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `coin` ← `Coin`, `startDate` ← `StartDate`, `endDate` ← `EndDate`, `pageIndex` ← `PageIndex`, `pageSize` ← `PageSize`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1MiningPaymentOtherResponse`
-- **Error**: `SdkException<ExtraBonusListUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<ExtraBonusListUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `ExtraBonusListUserDataRequest` | `Requests/Mining/ExtraBonusListUserDataRequest.cs` |
 | `SapiV1MiningPaymentOtherResponse` | `Models/SapiV1MiningPaymentOtherResponse.cs` |
 | `ExtraBonusListUserDataError` | `Errors/ExtraBonusListUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -101,17 +105,16 @@ Accessor: `client.Mining` · Source: `Api/Mining.cs` · 13 operations
 ### HashrateResaleDetailsUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `HashrateResaleDetailsUserData(string configId, string userName, long timestamp, string signature, int? pageIndex, string? pageSize, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `pageIndex` — nullable, no default → **must pass explicitly**
-  - `pageSize` — nullable, no default → **must pass explicitly**
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `configId` ← `configId`, `userName` ← `userName`, `timestamp` ← `timestamp`, `signature` ← `signature`, `pageIndex` ← `pageIndex`, `pageSize` ← `pageSize`, `recvWindow` ← `recvWindow`
+- **Signature**: `HashrateResaleDetailsUserData(HashrateResaleDetailsUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `ConfigId`, `UserName`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `configId` ← `ConfigId`, `userName` ← `UserName`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `pageIndex` ← `PageIndex`, `pageSize` ← `PageSize`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1MiningHashTransferProfitDetailsResponse`
-- **Error**: `SdkException<HashrateResaleDetailsUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<HashrateResaleDetailsUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `HashrateResaleDetailsUserDataRequest` | `Requests/Mining/HashrateResaleDetailsUserDataRequest.cs` |
 | `SapiV1MiningHashTransferProfitDetailsResponse` | `Models/SapiV1MiningHashTransferProfitDetailsResponse.cs` |
 | `HashrateResaleDetailsUserDataError` | `Errors/HashrateResaleDetailsUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -119,17 +122,16 @@ Accessor: `client.Mining` · Source: `Api/Mining.cs` · 13 operations
 ### HashrateResaleListUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `HashrateResaleListUserData(long timestamp, string signature, int? pageIndex, string? pageSize, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `pageIndex` — nullable, no default → **must pass explicitly**
-  - `pageSize` — nullable, no default → **must pass explicitly**
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `pageIndex` ← `pageIndex`, `pageSize` ← `pageSize`, `recvWindow` ← `recvWindow`
+- **Signature**: `HashrateResaleListUserData(HashrateResaleListUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `pageIndex` ← `PageIndex`, `pageSize` ← `PageSize`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1MiningHashTransferConfigDetailsListResponse`
-- **Error**: `SdkException<HashrateResaleListUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<HashrateResaleListUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `HashrateResaleListUserDataRequest` | `Requests/Mining/HashrateResaleListUserDataRequest.cs` |
 | `SapiV1MiningHashTransferConfigDetailsListResponse` | `Models/SapiV1MiningHashTransferConfigDetailsListResponse.cs` |
 | `HashrateResaleListUserDataError` | `Errors/HashrateResaleListUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -137,17 +139,16 @@ Accessor: `client.Mining` · Source: `Api/Mining.cs` · 13 operations
 ### HashrateResaleRequestUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `HashrateResaleRequestUserData(string userName, string algo, string toPoolUser, string hashRate, long timestamp, string signature, string? startDate, string? endDate, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `startDate` — nullable, no default → **must pass explicitly**
-  - `endDate` — nullable, no default → **must pass explicitly**
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `userName` ← `userName`, `algo` ← `algo`, `toPoolUser` ← `toPoolUser`, `hashRate` ← `hashRate`, `timestamp` ← `timestamp`, `signature` ← `signature`, `startDate` ← `startDate`, `endDate` ← `endDate`, `recvWindow` ← `recvWindow`
+- **Signature**: `HashrateResaleRequestUserData(HashrateResaleRequestUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `UserName`, `Algo`, `ToPoolUser`, `HashRate`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `userName` ← `UserName`, `algo` ← `Algo`, `toPoolUser` ← `ToPoolUser`, `hashRate` ← `HashRate`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `startDate` ← `StartDate`, `endDate` ← `EndDate`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1MiningHashTransferConfigResponse`
-- **Error**: `SdkException<HashrateResaleRequestUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<HashrateResaleRequestUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `HashrateResaleRequestUserDataRequest` | `Requests/Mining/HashrateResaleRequestUserDataRequest.cs` |
 | `SapiV1MiningHashTransferConfigResponse` | `Models/SapiV1MiningHashTransferConfigResponse.cs` |
 | `HashrateResaleRequestUserDataError` | `Errors/HashrateResaleRequestUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -155,15 +156,16 @@ Accessor: `client.Mining` · Source: `Api/Mining.cs` · 13 operations
 ### MiningAccountEarningUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `MiningAccountEarningUserData(string algo, long timestamp, string signature, string? startDate, string? endDate, int? pageIndex, string? pageSize, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 5 params (`startDate` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `algo` ← `algo`, `timestamp` ← `timestamp`, `signature` ← `signature`, `startDate` ← `startDate`, `endDate` ← `endDate`, `pageIndex` ← `pageIndex`, `pageSize` ← `pageSize`, `recvWindow` ← `recvWindow`
+- **Signature**: `MiningAccountEarningUserData(MiningAccountEarningUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Algo`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `algo` ← `Algo`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `startDate` ← `StartDate`, `endDate` ← `EndDate`, `pageIndex` ← `PageIndex`, `pageSize` ← `PageSize`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1MiningPaymentUidResponse`
-- **Error**: `SdkException<MiningAccountEarningUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<MiningAccountEarningUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `MiningAccountEarningUserDataRequest` | `Requests/Mining/MiningAccountEarningUserDataRequest.cs` |
 | `SapiV1MiningPaymentUidResponse` | `Models/SapiV1MiningPaymentUidResponse.cs` |
 | `MiningAccountEarningUserDataError` | `Errors/MiningAccountEarningUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -171,15 +173,16 @@ Accessor: `client.Mining` · Source: `Api/Mining.cs` · 13 operations
 ### RequestForDetailMinerListUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `RequestForDetailMinerListUserData(string algo, string userName, string workerName, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `algo` ← `algo`, `userName` ← `userName`, `workerName` ← `workerName`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `RequestForDetailMinerListUserData(RequestForDetailMinerListUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Algo`, `UserName`, `WorkerName`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `algo` ← `Algo`, `userName` ← `UserName`, `workerName` ← `WorkerName`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1MiningWorkerDetailResponse`
-- **Error**: `SdkException<RequestForDetailMinerListUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<RequestForDetailMinerListUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `RequestForDetailMinerListUserDataRequest` | `Requests/Mining/RequestForDetailMinerListUserDataRequest.cs` |
 | `SapiV1MiningWorkerDetailResponse` | `Models/SapiV1MiningWorkerDetailResponse.cs` |
 | `RequestForDetailMinerListUserDataError` | `Errors/RequestForDetailMinerListUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -187,15 +190,16 @@ Accessor: `client.Mining` · Source: `Api/Mining.cs` · 13 operations
 ### RequestForMinerListUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `RequestForMinerListUserData(string algo, string userName, long timestamp, string signature, int? pageIndex, int? sort, int? sortColumn, int? workerStatus, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 5 params (`pageIndex` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `algo` ← `algo`, `userName` ← `userName`, `timestamp` ← `timestamp`, `signature` ← `signature`, `pageIndex` ← `pageIndex`, `sort` ← `sort`, `sortColumn` ← `sortColumn`, `workerStatus` ← `workerStatus`, `recvWindow` ← `recvWindow`
+- **Signature**: `RequestForMinerListUserData(RequestForMinerListUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Algo`, `UserName`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `algo` ← `Algo`, `userName` ← `UserName`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `pageIndex` ← `PageIndex`, `sort` ← `Sort`, `sortColumn` ← `SortColumn`, `workerStatus` ← `WorkerStatus`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1MiningWorkerListResponse`
-- **Error**: `SdkException<RequestForMinerListUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<RequestForMinerListUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `RequestForMinerListUserDataRequest` | `Requests/Mining/RequestForMinerListUserDataRequest.cs` |
 | `SapiV1MiningWorkerListResponse` | `Models/SapiV1MiningWorkerListResponse.cs` |
 | `RequestForMinerListUserDataError` | `Errors/RequestForMinerListUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -203,15 +207,16 @@ Accessor: `client.Mining` · Source: `Api/Mining.cs` · 13 operations
 ### StatisticListUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `StatisticListUserData(string algo, string userName, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `algo` ← `algo`, `userName` ← `userName`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `StatisticListUserData(StatisticListUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Algo`, `UserName`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `algo` ← `Algo`, `userName` ← `UserName`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1MiningStatisticsUserStatusResponse`
-- **Error**: `SdkException<StatisticListUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<StatisticListUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `StatisticListUserDataRequest` | `Requests/Mining/StatisticListUserDataRequest.cs` |
 | `SapiV1MiningStatisticsUserStatusResponse` | `Models/SapiV1MiningStatisticsUserStatusResponse.cs` |
 | `StatisticListUserDataError` | `Errors/StatisticListUserDataError.cs` |
 | `Error` | `Models/Error.cs` |

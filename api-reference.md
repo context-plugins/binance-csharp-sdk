@@ -1,13 +1,15 @@
 # Reference
 
-> Source: [BinancePublicSpotApiClient](BinancePublicSpotApiClient.cs)
+Every operation below is shown in its throwing form. On an error status it throws `ApiException<TError>` — the status code, headers, content type and the operation's error type, `RawError` (the raw body) when the spec declares none — and where an operation offers an `…AsResult` sibling, that sibling returns `ApiResult<TResponse, TError>` instead. A request that produces no usable response surfaces as `SdkConnectionException` or `SdkTimeoutException`, a body that does not match the documented response type as `ResponseDeserializationException`, and a credential that cannot be applied as `AuthSchemeException`; all of them derive from `SdkException` and name the failed call. See [README → Error Handling](README.md#error-handling).
+
+> Source: [BinanceClient](BinanceClient.cs)
 
 ## AutoInvest
 
 > Source: [AutoInvest](Api/AutoInvest.cs)
 
 <details>
-<summary><code>Task&lt;SapiV1LendingAutoInvestPlanEditStatusResponse&gt; ChangePlanStatus(int planId, Status1 status, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1LendingAutoInvestPlanEditStatusResponse&gt; ChangePlanStatus(ChangePlanStatusRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -32,10 +34,17 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.AutoInvest.ChangePlanStatus(planId, status, timestamp, signature, recvWindow);
+    var response = await client.AutoInvest.ChangePlanStatus(new ChangePlanStatusRequest
+    {
+        PlanId = 1,
+        Status = Status1.Ongoing,
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1LendingAutoInvestPlanEditStatusResponse
 }
-catch (SdkException<ChangePlanStatusError> ex)
+catch (ApiException<ChangePlanStatusError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -47,18 +56,12 @@ catch (SdkException<ChangePlanStatusError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>planId</code> | <code>int</code> | - |
-| <code>status</code> | <code>[Status1](Models/Enums/Status1.cs)</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[ChangePlanStatusRequest](Requests/AutoInvest/ChangePlanStatusRequest.cs)</code>
 
 </dd>
 </dl>
@@ -70,7 +73,7 @@ catch (SdkException<ChangePlanStatusError> ex)
 
 **OnSuccess**: <code>[SapiV1LendingAutoInvestPlanEditStatusResponse](Models/SapiV1LendingAutoInvestPlanEditStatusResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[ChangePlanStatusError](Errors/ChangePlanStatusError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[ChangePlanStatusError](Errors/ChangePlanStatusError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -81,7 +84,7 @@ catch (SdkException<ChangePlanStatusError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1LendingAutoInvestPlanListResponse&gt; GetListOfPlans(string planType, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1LendingAutoInvestPlanListResponse&gt; GetListOfPlans(GetListOfPlansRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -106,10 +109,16 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.AutoInvest.GetListOfPlans(planType, timestamp, signature, recvWindow);
+    var response = await client.AutoInvest.GetListOfPlans(new GetListOfPlansRequest
+    {
+        PlanType = "some example string",
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1LendingAutoInvestPlanListResponse
 }
-catch (SdkException<GetListOfPlansError> ex)
+catch (ApiException<GetListOfPlansError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -121,17 +130,12 @@ catch (SdkException<GetListOfPlansError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>planType</code> | <code>string</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetListOfPlansRequest](Requests/AutoInvest/GetListOfPlansRequest.cs)</code>
 
 </dd>
 </dl>
@@ -143,7 +147,7 @@ catch (SdkException<GetListOfPlansError> ex)
 
 **OnSuccess**: <code>[SapiV1LendingAutoInvestPlanListResponse](Models/SapiV1LendingAutoInvestPlanListResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetListOfPlansError](Errors/GetListOfPlansError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetListOfPlansError](Errors/GetListOfPlansError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -154,7 +158,7 @@ catch (SdkException<GetListOfPlansError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1LendingAutoInvestTargetAssetRoiListResponse&gt;&gt; GetTargetAssetRoiDataUserData(string targetAsset, string hisRoiType, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1LendingAutoInvestTargetAssetRoiListResponse&gt;&gt; GetTargetAssetRoiDataUserData(GetTargetAssetRoiDataUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -179,14 +183,17 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.AutoInvest.GetTargetAssetRoiDataUserData(targetAsset,
-        hisRoiType,
-        timestamp,
-        signature,
-        recvWindow);
+    var response = await client.AutoInvest.GetTargetAssetRoiDataUserData(new GetTargetAssetRoiDataUserDataRequest
+    {
+        TargetAsset = "BTC",
+        HisRoiType = "FIVE_YEAR",
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1LendingAutoInvestTargetAssetRoiListResponse>
 }
-catch (SdkException<GetTargetAssetRoiDataUserDataError> ex)
+catch (ApiException<GetTargetAssetRoiDataUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -198,18 +205,12 @@ catch (SdkException<GetTargetAssetRoiDataUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>targetAsset</code> | <code>string</code> | - |
-| <code>hisRoiType</code> | <code>string</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetTargetAssetRoiDataUserDataRequest](Requests/AutoInvest/GetTargetAssetRoiDataUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -221,7 +222,7 @@ catch (SdkException<GetTargetAssetRoiDataUserDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1LendingAutoInvestTargetAssetRoiListResponse](Models/SapiV1LendingAutoInvestTargetAssetRoiListResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetTargetAssetRoiDataUserDataError](Errors/GetTargetAssetRoiDataUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetTargetAssetRoiDataUserDataError](Errors/GetTargetAssetRoiDataUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -232,7 +233,7 @@ catch (SdkException<GetTargetAssetRoiDataUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1LendingAutoInvestTargetAssetListResponse&gt; GetTargetAssetListUserData(long timestamp, string signature, string? targetAsset, int? size, int? current, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1LendingAutoInvestTargetAssetListResponse&gt; GetTargetAssetListUserData(GetTargetAssetListUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -255,15 +256,17 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.AutoInvest.GetTargetAssetListUserData(timestamp,
-        signature,
-        targetAsset,
-        size,
-        current,
-        recvWindow);
+    var response = await client.AutoInvest.GetTargetAssetListUserData(new GetTargetAssetListUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        Size = 100,
+        Current = 1,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1LendingAutoInvestTargetAssetListResponse
 }
-catch (SdkException<GetTargetAssetListUserDataError> ex)
+catch (ApiException<GetTargetAssetListUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -275,19 +278,12 @@ catch (SdkException<GetTargetAssetListUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>targetAsset</code> | <code>string?</code> | - |
-| <code>size</code> | <code>int?</code> | Default:10 Max:100 |
-| <code>current</code> | <code>int?</code> | Current querying page. Start from 1. Default:1 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetTargetAssetListUserDataRequest](Requests/AutoInvest/GetTargetAssetListUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -299,7 +295,7 @@ catch (SdkException<GetTargetAssetListUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1LendingAutoInvestTargetAssetListResponse](Models/SapiV1LendingAutoInvestTargetAssetListResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetTargetAssetListUserDataError](Errors/GetTargetAssetListUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetTargetAssetListUserDataError](Errors/GetTargetAssetListUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -310,7 +306,7 @@ catch (SdkException<GetTargetAssetListUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1LendingAutoInvestRebalanceHistoryResponse&gt;&gt; IndexLinkedPlanRebalanceDetailsUserData(long timestamp, string signature, long? startTime, long? endTime, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1LendingAutoInvestRebalanceHistoryResponse&gt;&gt; IndexLinkedPlanRebalanceDetailsUserData(IndexLinkedPlanRebalanceDetailsUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -338,16 +334,18 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.AutoInvest.IndexLinkedPlanRebalanceDetailsUserData(timestamp,
-        signature,
-        startTime,
-        endTime,
-        current,
-        size,
-        recvWindow);
+    var response = await client.AutoInvest.IndexLinkedPlanRebalanceDetailsUserData(
+        new IndexLinkedPlanRebalanceDetailsUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            Current = 1,
+            Size = 100,
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1LendingAutoInvestRebalanceHistoryResponse>
 }
-catch (SdkException<IndexLinkedPlanRebalanceDetailsUserDataError> ex)
+catch (ApiException<IndexLinkedPlanRebalanceDetailsUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -359,20 +357,12 @@ catch (SdkException<IndexLinkedPlanRebalanceDetailsUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>current</code> | <code>int?</code> | Current querying page. Start from 1. Default:1 |
-| <code>size</code> | <code>int?</code> | Default:10 Max:100 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[IndexLinkedPlanRebalanceDetailsUserDataRequest](Requests/AutoInvest/IndexLinkedPlanRebalanceDetailsUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -384,7 +374,7 @@ catch (SdkException<IndexLinkedPlanRebalanceDetailsUserDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1LendingAutoInvestRebalanceHistoryResponse](Models/SapiV1LendingAutoInvestRebalanceHistoryResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[IndexLinkedPlanRebalanceDetailsUserDataError](Errors/IndexLinkedPlanRebalanceDetailsUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[IndexLinkedPlanRebalanceDetailsUserDataError](Errors/IndexLinkedPlanRebalanceDetailsUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -395,7 +385,7 @@ catch (SdkException<IndexLinkedPlanRebalanceDetailsUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1LendingAutoInvestRedeemResponse&gt; IndexLinkedPlanRedemptionTrade(long indexId, int redemptionPercentage, long timestamp, string signature, string? requestId, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1LendingAutoInvestRedeemResponse&gt; IndexLinkedPlanRedemptionTrade(IndexLinkedPlanRedemptionTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -420,15 +410,18 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.AutoInvest.IndexLinkedPlanRedemptionTrade(indexId,
-        redemptionPercentage,
-        timestamp,
-        signature,
-        requestId,
-        recvWindow);
+    var response = await client.AutoInvest.IndexLinkedPlanRedemptionTrade(new IndexLinkedPlanRedemptionTradeRequest
+    {
+        IndexId = 123456L,
+        RedemptionPercentage = 10,
+        Timestamp = 1L,
+        Signature = "some example string",
+        RequestId = "TR12354859",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1LendingAutoInvestRedeemResponse
 }
-catch (SdkException<IndexLinkedPlanRedemptionTradeError> ex)
+catch (ApiException<IndexLinkedPlanRedemptionTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -440,19 +433,12 @@ catch (SdkException<IndexLinkedPlanRedemptionTradeError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>indexId</code> | <code>long</code> | PORTFOLIO plan's Id |
-| <code>redemptionPercentage</code> | <code>int</code> | user redeem percentage,10/20/100. |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>requestId</code> | <code>string?</code> | sourceType + unique, transactionId and requestId cannot be empty at the same time |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[IndexLinkedPlanRedemptionTradeRequest](Requests/AutoInvest/IndexLinkedPlanRedemptionTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -464,7 +450,7 @@ catch (SdkException<IndexLinkedPlanRedemptionTradeError> ex)
 
 **OnSuccess**: <code>[SapiV1LendingAutoInvestRedeemResponse](Models/SapiV1LendingAutoInvestRedeemResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[IndexLinkedPlanRedemptionTradeError](Errors/IndexLinkedPlanRedemptionTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[IndexLinkedPlanRedemptionTradeError](Errors/IndexLinkedPlanRedemptionTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -475,7 +461,7 @@ catch (SdkException<IndexLinkedPlanRedemptionTradeError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1LendingAutoInvestRedeemHistoryResponse&gt;&gt; IndexLinkedPlanRedemptionHistoryUserData(long requestId, long timestamp, string signature, long? startTime, long? endTime, int? current, string? asset, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1LendingAutoInvestRedeemHistoryResponse&gt;&gt; IndexLinkedPlanRedemptionHistoryUserData(IndexLinkedPlanRedemptionHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -503,18 +489,20 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.AutoInvest.IndexLinkedPlanRedemptionHistoryUserData(requestId,
-        timestamp,
-        signature,
-        startTime,
-        endTime,
-        current,
-        asset,
-        size,
-        recvWindow);
+    var response = await client.AutoInvest.IndexLinkedPlanRedemptionHistoryUserData(
+        new IndexLinkedPlanRedemptionHistoryUserDataRequest
+        {
+            RequestId = 12345L,
+            Timestamp = 1L,
+            Signature = "some example string",
+            Current = 1,
+            Asset = "BTC",
+            Size = 100,
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1LendingAutoInvestRedeemHistoryResponse>
 }
-catch (SdkException<IndexLinkedPlanRedemptionHistoryUserDataError> ex)
+catch (ApiException<IndexLinkedPlanRedemptionHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -526,22 +514,12 @@ catch (SdkException<IndexLinkedPlanRedemptionHistoryUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>requestId</code> | <code>long</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>current</code> | <code>int?</code> | Current querying page. Start from 1. Default:1 |
-| <code>asset</code> | <code>string?</code> | - |
-| <code>size</code> | <code>int?</code> | Default:10 Max:100 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[IndexLinkedPlanRedemptionHistoryUserDataRequest](Requests/AutoInvest/IndexLinkedPlanRedemptionHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -553,7 +531,7 @@ catch (SdkException<IndexLinkedPlanRedemptionHistoryUserDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1LendingAutoInvestRedeemHistoryResponse](Models/SapiV1LendingAutoInvestRedeemHistoryResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[IndexLinkedPlanRedemptionHistoryUserDataError](Errors/IndexLinkedPlanRedemptionHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[IndexLinkedPlanRedemptionHistoryUserDataError](Errors/IndexLinkedPlanRedemptionHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -564,7 +542,7 @@ catch (SdkException<IndexLinkedPlanRedemptionHistoryUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1LendingAutoInvestPlanEditResponse&gt; InvestmentPlanAdjustment(int planId, double subscriptionAmount, SubscriptionCycle subscriptionCycle, int subscriptionStartTime, string sourceAsset, long timestamp, string signature, int? subscriptionStartDay, SubscriptionStartWeekday? subscriptionStartWeekday, bool? flexibleAllowedToUse, IReadOnlyList&lt;Detail1&gt;? details, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1LendingAutoInvestPlanEditResponse&gt; InvestmentPlanAdjustment(InvestmentPlanAdjustmentRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -589,21 +567,21 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.AutoInvest.InvestmentPlanAdjustment(planId,
-        subscriptionAmount,
-        subscriptionCycle,
-        subscriptionStartTime,
-        sourceAsset,
-        timestamp,
-        signature,
-        subscriptionStartDay,
-        subscriptionStartWeekday,
-        flexibleAllowedToUse,
-        details,
-        recvWindow);
+    var response = await client.AutoInvest.InvestmentPlanAdjustment(new InvestmentPlanAdjustmentRequest
+    {
+        PlanId = 1,
+        SubscriptionAmount = 1.5d,
+        SubscriptionCycle = SubscriptionCycle.H1,
+        SubscriptionStartTime = 1,
+        SourceAsset = "USDT",
+        Timestamp = 1L,
+        Signature = "some example string",
+        FlexibleAllowedToUse = true,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1LendingAutoInvestPlanEditResponse
 }
-catch (SdkException<InvestmentPlanAdjustmentError> ex)
+catch (ApiException<InvestmentPlanAdjustmentError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -615,25 +593,12 @@ catch (SdkException<InvestmentPlanAdjustmentError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>planId</code> | <code>int</code> | - |
-| <code>subscriptionAmount</code> | <code>double</code> | - |
-| <code>subscriptionCycle</code> | <code>[SubscriptionCycle](Models/Enums/SubscriptionCycle.cs)</code> | - |
-| <code>subscriptionStartTime</code> | <code>int</code> | - |
-| <code>sourceAsset</code> | <code>string</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>subscriptionStartDay</code> | <code>int?</code> | - |
-| <code>subscriptionStartWeekday</code> | <code>[SubscriptionStartWeekday?](Models/Enums/SubscriptionStartWeekday.cs)</code> | - |
-| <code>flexibleAllowedToUse</code> | <code>bool?</code> | - |
-| <code>details</code> | <code>IReadOnlyList&lt;[Detail1](Models/Detail1.cs)&gt;?</code> | - |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[InvestmentPlanAdjustmentRequest](Requests/AutoInvest/InvestmentPlanAdjustmentRequest.cs)</code>
 
 </dd>
 </dl>
@@ -645,7 +610,7 @@ catch (SdkException<InvestmentPlanAdjustmentError> ex)
 
 **OnSuccess**: <code>[SapiV1LendingAutoInvestPlanEditResponse](Models/SapiV1LendingAutoInvestPlanEditResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[InvestmentPlanAdjustmentError](Errors/InvestmentPlanAdjustmentError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[InvestmentPlanAdjustmentError](Errors/InvestmentPlanAdjustmentError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -656,7 +621,7 @@ catch (SdkException<InvestmentPlanAdjustmentError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1LendingAutoInvestPlanAddResponse&gt; InvestmentPlanCreationUserData(SourceType sourceType, PlanType planType, double subscriptionAmount, SubscriptionCycle subscriptionCycle, int subscriptionStartTime, string sourceAsset, IReadOnlyList&lt;Detail1&gt; details, long timestamp, string signature, string? requestId, long? indexId, int? subscriptionStartDay, SubscriptionStartWeekday? subscriptionStartWeekday, bool? flexibleAllowedToUse, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1LendingAutoInvestPlanAddResponse&gt; InvestmentPlanCreationUserData(InvestmentPlanCreationUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -681,24 +646,23 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.AutoInvest.InvestmentPlanCreationUserData(sourceType,
-        planType,
-        subscriptionAmount,
-        subscriptionCycle,
-        subscriptionStartTime,
-        sourceAsset,
-        details,
-        timestamp,
-        signature,
-        requestId,
-        indexId,
-        subscriptionStartDay,
-        subscriptionStartWeekday,
-        flexibleAllowedToUse,
-        recvWindow);
+    var response = await client.AutoInvest.InvestmentPlanCreationUserData(new InvestmentPlanCreationUserDataRequest
+    {
+        SourceType = SourceType.MainSite,
+        PlanType = PlanType.Single,
+        SubscriptionAmount = 1.5d,
+        SubscriptionCycle = SubscriptionCycle.H1,
+        SubscriptionStartTime = 1,
+        SourceAsset = "USDT",
+        Details = [new Detail1()],
+        Timestamp = 1L,
+        Signature = "some example string",
+        FlexibleAllowedToUse = true,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1LendingAutoInvestPlanAddResponse
 }
-catch (SdkException<InvestmentPlanCreationUserDataError> ex)
+catch (ApiException<InvestmentPlanCreationUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -710,28 +674,12 @@ catch (SdkException<InvestmentPlanCreationUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>sourceType</code> | <code>[SourceType](Models/Enums/SourceType.cs)</code> | - |
-| <code>planType</code> | <code>[PlanType](Models/Enums/PlanType.cs)</code> | - |
-| <code>subscriptionAmount</code> | <code>double</code> | - |
-| <code>subscriptionCycle</code> | <code>[SubscriptionCycle](Models/Enums/SubscriptionCycle.cs)</code> | - |
-| <code>subscriptionStartTime</code> | <code>int</code> | - |
-| <code>sourceAsset</code> | <code>string</code> | - |
-| <code>details</code> | <code>IReadOnlyList&lt;[Detail1](Models/Detail1.cs)&gt;</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>requestId</code> | <code>string?</code> | - |
-| <code>indexId</code> | <code>long?</code> | - |
-| <code>subscriptionStartDay</code> | <code>int?</code> | - |
-| <code>subscriptionStartWeekday</code> | <code>[SubscriptionStartWeekday?](Models/Enums/SubscriptionStartWeekday.cs)</code> | - |
-| <code>flexibleAllowedToUse</code> | <code>bool?</code> | - |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[InvestmentPlanCreationUserDataRequest](Requests/AutoInvest/InvestmentPlanCreationUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -743,7 +691,7 @@ catch (SdkException<InvestmentPlanCreationUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1LendingAutoInvestPlanAddResponse](Models/SapiV1LendingAutoInvestPlanAddResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[InvestmentPlanCreationUserDataError](Errors/InvestmentPlanCreationUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[InvestmentPlanCreationUserDataError](Errors/InvestmentPlanCreationUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -754,7 +702,7 @@ catch (SdkException<InvestmentPlanCreationUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1LendingAutoInvestOneOffResponse&gt; OneTimeTransactionTrade(string sourceType, double subscriptionAmount, string sourceAsset, long timestamp, string signature, string? requestId, bool? flexibleAllowedToUse, long? planId, long? indexId, IReadOnlyList&lt;Detail5&gt;? details, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1LendingAutoInvestOneOffResponse&gt; OneTimeTransactionTrade(OneTimeTransactionTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -779,20 +727,22 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.AutoInvest.OneTimeTransactionTrade(sourceType,
-        subscriptionAmount,
-        sourceAsset,
-        timestamp,
-        signature,
-        requestId,
-        flexibleAllowedToUse,
-        planId,
-        indexId,
-        details,
-        recvWindow);
+    var response = await client.AutoInvest.OneTimeTransactionTrade(new OneTimeTransactionTradeRequest
+    {
+        SourceType = "MAIN_SITE",
+        SubscriptionAmount = 10.1d,
+        SourceAsset = "USDT",
+        Timestamp = 1L,
+        Signature = "some example string",
+        RequestId = "TR12354859",
+        FlexibleAllowedToUse = true,
+        PlanId = 12345L,
+        IndexId = 1L,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1LendingAutoInvestOneOffResponse
 }
-catch (SdkException<OneTimeTransactionTradeError> ex)
+catch (ApiException<OneTimeTransactionTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -804,24 +754,12 @@ catch (SdkException<OneTimeTransactionTradeError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>sourceType</code> | <code>string</code> | - |
-| <code>subscriptionAmount</code> | <code>double</code> | - |
-| <code>sourceAsset</code> | <code>string</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>requestId</code> | <code>string?</code> | - |
-| <code>flexibleAllowedToUse</code> | <code>bool?</code> | - |
-| <code>planId</code> | <code>long?</code> | - |
-| <code>indexId</code> | <code>long?</code> | - |
-| <code>details</code> | <code>IReadOnlyList&lt;[Detail5](Models/Detail5.cs)&gt;?</code> | - |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[OneTimeTransactionTradeRequest](Requests/AutoInvest/OneTimeTransactionTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -833,7 +771,7 @@ catch (SdkException<OneTimeTransactionTradeError> ex)
 
 **OnSuccess**: <code>[SapiV1LendingAutoInvestOneOffResponse](Models/SapiV1LendingAutoInvestOneOffResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[OneTimeTransactionTradeError](Errors/OneTimeTransactionTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[OneTimeTransactionTradeError](Errors/OneTimeTransactionTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -844,7 +782,7 @@ catch (SdkException<OneTimeTransactionTradeError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1LendingAutoInvestIndexInfoResponse&gt; QueryIndexDetailsUserData(long indexId, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1LendingAutoInvestIndexInfoResponse&gt; QueryIndexDetailsUserData(QueryIndexDetailsUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -869,10 +807,16 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.AutoInvest.QueryIndexDetailsUserData(indexId, timestamp, signature, recvWindow);
+    var response = await client.AutoInvest.QueryIndexDetailsUserData(new QueryIndexDetailsUserDataRequest
+    {
+        IndexId = 1L,
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1LendingAutoInvestIndexInfoResponse
 }
-catch (SdkException<QueryIndexDetailsUserDataError> ex)
+catch (ApiException<QueryIndexDetailsUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -884,17 +828,12 @@ catch (SdkException<QueryIndexDetailsUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>indexId</code> | <code>long</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryIndexDetailsUserDataRequest](Requests/AutoInvest/QueryIndexDetailsUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -906,7 +845,7 @@ catch (SdkException<QueryIndexDetailsUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1LendingAutoInvestIndexInfoResponse](Models/SapiV1LendingAutoInvestIndexInfoResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryIndexDetailsUserDataError](Errors/QueryIndexDetailsUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryIndexDetailsUserDataError](Errors/QueryIndexDetailsUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -917,7 +856,7 @@ catch (SdkException<QueryIndexDetailsUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1LendingAutoInvestIndexUserSummaryResponse&gt; QueryIndexLinkedPlanPositionDetailsUserData(long indexId, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1LendingAutoInvestIndexUserSummaryResponse&gt; QueryIndexLinkedPlanPositionDetailsUserData(QueryIndexLinkedPlanPositionDetailsUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -942,13 +881,17 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.AutoInvest.QueryIndexLinkedPlanPositionDetailsUserData(indexId,
-        timestamp,
-        signature,
-        recvWindow);
+    var response = await client.AutoInvest.QueryIndexLinkedPlanPositionDetailsUserData(
+        new QueryIndexLinkedPlanPositionDetailsUserDataRequest
+        {
+            IndexId = 1L,
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1LendingAutoInvestIndexUserSummaryResponse
 }
-catch (SdkException<QueryIndexLinkedPlanPositionDetailsUserDataError> ex)
+catch (ApiException<QueryIndexLinkedPlanPositionDetailsUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -960,17 +903,12 @@ catch (SdkException<QueryIndexLinkedPlanPositionDetailsUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>indexId</code> | <code>long</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryIndexLinkedPlanPositionDetailsUserDataRequest](Requests/AutoInvest/QueryIndexLinkedPlanPositionDetailsUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -982,7 +920,7 @@ catch (SdkException<QueryIndexLinkedPlanPositionDetailsUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1LendingAutoInvestIndexUserSummaryResponse](Models/SapiV1LendingAutoInvestIndexUserSummaryResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryIndexLinkedPlanPositionDetailsUserDataError](Errors/QueryIndexLinkedPlanPositionDetailsUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryIndexLinkedPlanPositionDetailsUserDataError](Errors/QueryIndexLinkedPlanPositionDetailsUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -993,7 +931,7 @@ catch (SdkException<QueryIndexLinkedPlanPositionDetailsUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1LendingAutoInvestOneOffStatusResponse&gt; QueryOneTimeTransactionStatusUserData(long transactionId, long timestamp, string signature, string? requestId, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1LendingAutoInvestOneOffStatusResponse&gt; QueryOneTimeTransactionStatusUserData(QueryOneTimeTransactionStatusUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -1018,14 +956,18 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.AutoInvest.QueryOneTimeTransactionStatusUserData(transactionId,
-        timestamp,
-        signature,
-        requestId,
-        recvWindow);
+    var response = await client.AutoInvest.QueryOneTimeTransactionStatusUserData(
+        new QueryOneTimeTransactionStatusUserDataRequest
+        {
+            TransactionId = 12345L,
+            Timestamp = 1L,
+            Signature = "some example string",
+            RequestId = "TR12354859",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1LendingAutoInvestOneOffStatusResponse
 }
-catch (SdkException<QueryOneTimeTransactionStatusUserDataError> ex)
+catch (ApiException<QueryOneTimeTransactionStatusUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -1037,18 +979,12 @@ catch (SdkException<QueryOneTimeTransactionStatusUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>transactionId</code> | <code>long</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>requestId</code> | <code>string?</code> | - |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryOneTimeTransactionStatusUserDataRequest](Requests/AutoInvest/QueryOneTimeTransactionStatusUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -1060,7 +996,7 @@ catch (SdkException<QueryOneTimeTransactionStatusUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1LendingAutoInvestOneOffStatusResponse](Models/SapiV1LendingAutoInvestOneOffStatusResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryOneTimeTransactionStatusUserDataError](Errors/QueryOneTimeTransactionStatusUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryOneTimeTransactionStatusUserDataError](Errors/QueryOneTimeTransactionStatusUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -1071,7 +1007,7 @@ catch (SdkException<QueryOneTimeTransactionStatusUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1LendingAutoInvestAllAssetResponse&gt; QueryAllSourceAssetAndTargetAssetUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1LendingAutoInvestAllAssetResponse&gt; QueryAllSourceAssetAndTargetAssetUserData(QueryAllSourceAssetAndTargetAssetUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -1096,10 +1032,16 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.AutoInvest.QueryAllSourceAssetAndTargetAssetUserData(timestamp, signature, recvWindow);
+    var response = await client.AutoInvest.QueryAllSourceAssetAndTargetAssetUserData(
+        new QueryAllSourceAssetAndTargetAssetUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1LendingAutoInvestAllAssetResponse
 }
-catch (SdkException<QueryAllSourceAssetAndTargetAssetUserDataError> ex)
+catch (ApiException<QueryAllSourceAssetAndTargetAssetUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -1111,16 +1053,12 @@ catch (SdkException<QueryAllSourceAssetAndTargetAssetUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryAllSourceAssetAndTargetAssetUserDataRequest](Requests/AutoInvest/QueryAllSourceAssetAndTargetAssetUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -1132,7 +1070,7 @@ catch (SdkException<QueryAllSourceAssetAndTargetAssetUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1LendingAutoInvestAllAssetResponse](Models/SapiV1LendingAutoInvestAllAssetResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryAllSourceAssetAndTargetAssetUserDataError](Errors/QueryAllSourceAssetAndTargetAssetUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryAllSourceAssetAndTargetAssetUserDataError](Errors/QueryAllSourceAssetAndTargetAssetUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -1143,7 +1081,7 @@ catch (SdkException<QueryAllSourceAssetAndTargetAssetUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1LendingAutoInvestPlanIdResponse&gt; QueryHoldingDetailsOfThePlan(long timestamp, string signature, long? planId, string? requestId, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1LendingAutoInvestPlanIdResponse&gt; QueryHoldingDetailsOfThePlan(QueryHoldingDetailsOfThePlanRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -1168,14 +1106,15 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.AutoInvest.QueryHoldingDetailsOfThePlan(timestamp,
-        signature,
-        planId,
-        requestId,
-        recvWindow);
+    var response = await client.AutoInvest.QueryHoldingDetailsOfThePlan(new QueryHoldingDetailsOfThePlanRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1LendingAutoInvestPlanIdResponse
 }
-catch (SdkException<QueryHoldingDetailsOfThePlanError> ex)
+catch (ApiException<QueryHoldingDetailsOfThePlanError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -1187,18 +1126,12 @@ catch (SdkException<QueryHoldingDetailsOfThePlanError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>planId</code> | <code>long?</code> | - |
-| <code>requestId</code> | <code>string?</code> | - |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryHoldingDetailsOfThePlanRequest](Requests/AutoInvest/QueryHoldingDetailsOfThePlanRequest.cs)</code>
 
 </dd>
 </dl>
@@ -1210,7 +1143,7 @@ catch (SdkException<QueryHoldingDetailsOfThePlanError> ex)
 
 **OnSuccess**: <code>[SapiV1LendingAutoInvestPlanIdResponse](Models/SapiV1LendingAutoInvestPlanIdResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryHoldingDetailsOfThePlanError](Errors/QueryHoldingDetailsOfThePlanError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryHoldingDetailsOfThePlanError](Errors/QueryHoldingDetailsOfThePlanError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -1221,7 +1154,7 @@ catch (SdkException<QueryHoldingDetailsOfThePlanError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1LendingAutoInvestSourceAssetListResponse&gt; QuerySourceAssetListUserData(string usageType, long timestamp, string signature, string? targetAsset, long? indexId, bool? flexibleAllowedToUse, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1LendingAutoInvestSourceAssetListResponse&gt; QuerySourceAssetListUserData(QuerySourceAssetListUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -1246,16 +1179,19 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.AutoInvest.QuerySourceAssetListUserData(usageType,
-        timestamp,
-        signature,
-        targetAsset,
-        indexId,
-        flexibleAllowedToUse,
-        recvWindow);
+    var response = await client.AutoInvest.QuerySourceAssetListUserData(new QuerySourceAssetListUserDataRequest
+    {
+        UsageType = "RECURRING",
+        Timestamp = 1L,
+        Signature = "some example string",
+        TargetAsset = "BTC",
+        IndexId = 1L,
+        FlexibleAllowedToUse = true,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1LendingAutoInvestSourceAssetListResponse
 }
-catch (SdkException<QuerySourceAssetListUserDataError> ex)
+catch (ApiException<QuerySourceAssetListUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -1267,20 +1203,12 @@ catch (SdkException<QuerySourceAssetListUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>usageType</code> | <code>string</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>targetAsset</code> | <code>string?</code> | - |
-| <code>indexId</code> | <code>long?</code> | - |
-| <code>flexibleAllowedToUse</code> | <code>bool?</code> | - |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QuerySourceAssetListUserDataRequest](Requests/AutoInvest/QuerySourceAssetListUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -1292,7 +1220,7 @@ catch (SdkException<QuerySourceAssetListUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1LendingAutoInvestSourceAssetListResponse](Models/SapiV1LendingAutoInvestSourceAssetListResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QuerySourceAssetListUserDataError](Errors/QuerySourceAssetListUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QuerySourceAssetListUserDataError](Errors/QuerySourceAssetListUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -1303,7 +1231,7 @@ catch (SdkException<QuerySourceAssetListUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1LendingAutoInvestHistoryListResponse&gt;&gt; QuerySubscriptionTransactionHistory(long timestamp, string signature, long? planId, long? startTime, long? endTime, long? targetAsset, PlanType1? planType, int? size, int? current, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1LendingAutoInvestHistoryListResponse&gt;&gt; QuerySubscriptionTransactionHistory(QuerySubscriptionTransactionHistoryRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -1328,19 +1256,18 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.AutoInvest.QuerySubscriptionTransactionHistory(timestamp,
-        signature,
-        planId,
-        startTime,
-        endTime,
-        targetAsset,
-        planType,
-        size,
-        current,
-        recvWindow);
+    var response = await client.AutoInvest.QuerySubscriptionTransactionHistory(
+        new QuerySubscriptionTransactionHistoryRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            Size = 100,
+            Current = 1,
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1LendingAutoInvestHistoryListResponse>
 }
-catch (SdkException<QuerySubscriptionTransactionHistoryError> ex)
+catch (ApiException<QuerySubscriptionTransactionHistoryError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -1352,23 +1279,12 @@ catch (SdkException<QuerySubscriptionTransactionHistoryError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>planId</code> | <code>long?</code> | - |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>targetAsset</code> | <code>long?</code> | - |
-| <code>planType</code> | <code>[PlanType1?](Models/Enums/PlanType1.cs)</code> | - |
-| <code>size</code> | <code>int?</code> | Default:10 Max:100 |
-| <code>current</code> | <code>int?</code> | Current querying page. Start from 1. Default:1 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QuerySubscriptionTransactionHistoryRequest](Requests/AutoInvest/QuerySubscriptionTransactionHistoryRequest.cs)</code>
 
 </dd>
 </dl>
@@ -1380,7 +1296,7 @@ catch (SdkException<QuerySubscriptionTransactionHistoryError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1LendingAutoInvestHistoryListResponse](Models/SapiV1LendingAutoInvestHistoryListResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QuerySubscriptionTransactionHistoryError](Errors/QuerySubscriptionTransactionHistoryError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QuerySubscriptionTransactionHistoryError](Errors/QuerySubscriptionTransactionHistoryError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -1395,7 +1311,7 @@ catch (SdkException<QuerySubscriptionTransactionHistoryError> ex)
 > Source: [Blvt](Api/Blvt.cs)
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1BlvtTokenInfoResponse&gt;&gt; BlvtInfoMarketData(string? tokenName, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1BlvtTokenInfoResponse&gt;&gt; BlvtInfoMarketData(BlvtInfoMarketDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -1418,10 +1334,10 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.Blvt.BlvtInfoMarketData(tokenName);
+    var response = await client.Blvt.BlvtInfoMarketData(new BlvtInfoMarketDataRequest());
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1BlvtTokenInfoResponse>
 }
-catch (SdkException<BlvtInfoMarketDataError> ex)
+catch (ApiException<BlvtInfoMarketDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -1433,14 +1349,12 @@ catch (SdkException<BlvtInfoMarketDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>tokenName</code> | <code>string?</code> | BTCDOWN, BTCUP |
+<code>[BlvtInfoMarketDataRequest](Requests/Blvt/BlvtInfoMarketDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -1452,7 +1366,7 @@ catch (SdkException<BlvtInfoMarketDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1BlvtTokenInfoResponse](Models/SapiV1BlvtTokenInfoResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[BlvtInfoMarketDataError](Errors/BlvtInfoMarketDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[BlvtInfoMarketDataError](Errors/BlvtInfoMarketDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -1463,7 +1377,7 @@ catch (SdkException<BlvtInfoMarketDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1BlvtUserLimitResponse&gt;&gt; BlvtUserLimitInfoUserData(long timestamp, string signature, string? tokenName, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1BlvtUserLimitResponse&gt;&gt; BlvtUserLimitInfoUserData(BlvtUserLimitInfoUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -1486,10 +1400,15 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.Blvt.BlvtUserLimitInfoUserData(timestamp, signature, tokenName, recvWindow);
+    var response = await client.Blvt.BlvtUserLimitInfoUserData(new BlvtUserLimitInfoUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1BlvtUserLimitResponse>
 }
-catch (SdkException<BlvtUserLimitInfoUserDataError> ex)
+catch (ApiException<BlvtUserLimitInfoUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -1501,17 +1420,12 @@ catch (SdkException<BlvtUserLimitInfoUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>tokenName</code> | <code>string?</code> | BTCDOWN, BTCUP |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[BlvtUserLimitInfoUserDataRequest](Requests/Blvt/BlvtUserLimitInfoUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -1523,7 +1437,7 @@ catch (SdkException<BlvtUserLimitInfoUserDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1BlvtUserLimitResponse](Models/SapiV1BlvtUserLimitResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[BlvtUserLimitInfoUserDataError](Errors/BlvtUserLimitInfoUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[BlvtUserLimitInfoUserDataError](Errors/BlvtUserLimitInfoUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -1534,7 +1448,7 @@ catch (SdkException<BlvtUserLimitInfoUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1BlvtSubscribeRecordResponse&gt; QuerySubscriptionRecordUserData(long timestamp, string signature, string? tokenName, long? id, long? startTime, long? endTime, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1BlvtSubscribeRecordResponse&gt; QuerySubscriptionRecordUserData(QuerySubscriptionRecordUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -1559,17 +1473,16 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.Blvt.QuerySubscriptionRecordUserData(timestamp,
-        signature,
-        tokenName,
-        id,
-        startTime,
-        endTime,
-        limit,
-        recvWindow);
+    var response = await client.Blvt.QuerySubscriptionRecordUserData(new QuerySubscriptionRecordUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        Limit = 5,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1BlvtSubscribeRecordResponse
 }
-catch (SdkException<QuerySubscriptionRecordUserDataError> ex)
+catch (ApiException<QuerySubscriptionRecordUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -1581,21 +1494,12 @@ catch (SdkException<QuerySubscriptionRecordUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>tokenName</code> | <code>string?</code> | BTCDOWN, BTCUP |
-| <code>id</code> | <code>long?</code> | - |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>limit</code> | <code>int?</code> | Default 500; max 1000. |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QuerySubscriptionRecordUserDataRequest](Requests/Blvt/QuerySubscriptionRecordUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -1607,7 +1511,7 @@ catch (SdkException<QuerySubscriptionRecordUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1BlvtSubscribeRecordResponse](Models/SapiV1BlvtSubscribeRecordResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QuerySubscriptionRecordUserDataError](Errors/QuerySubscriptionRecordUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QuerySubscriptionRecordUserDataError](Errors/QuerySubscriptionRecordUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -1618,7 +1522,7 @@ catch (SdkException<QuerySubscriptionRecordUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1BlvtRedeemResponse&gt; RedeemBlvtUserData(string tokenName, double amount, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1BlvtRedeemResponse&gt; RedeemBlvtUserData(RedeemBlvtUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -1641,10 +1545,17 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.Blvt.RedeemBlvtUserData(tokenName, amount, timestamp, signature, recvWindow);
+    var response = await client.Blvt.RedeemBlvtUserData(new RedeemBlvtUserDataRequest
+    {
+        TokenName = "some example string",
+        Amount = 1.01d,
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1BlvtRedeemResponse
 }
-catch (SdkException<RedeemBlvtUserDataError> ex)
+catch (ApiException<RedeemBlvtUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -1656,18 +1567,12 @@ catch (SdkException<RedeemBlvtUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>tokenName</code> | <code>string</code> | BTCDOWN, BTCUP |
-| <code>amount</code> | <code>double</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[RedeemBlvtUserDataRequest](Requests/Blvt/RedeemBlvtUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -1679,7 +1584,7 @@ catch (SdkException<RedeemBlvtUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1BlvtRedeemResponse](Models/SapiV1BlvtRedeemResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[RedeemBlvtUserDataError](Errors/RedeemBlvtUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[RedeemBlvtUserDataError](Errors/RedeemBlvtUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -1690,7 +1595,7 @@ catch (SdkException<RedeemBlvtUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1BlvtRedeemRecordResponse&gt;&gt; RedemptionRecordUserData(long timestamp, string signature, string? tokenName, long? id, long? startTime, long? endTime, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1BlvtRedeemRecordResponse&gt;&gt; RedemptionRecordUserData(RedemptionRecordUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -1715,17 +1620,15 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.Blvt.RedemptionRecordUserData(timestamp,
-        signature,
-        tokenName,
-        id,
-        startTime,
-        endTime,
-        limit,
-        recvWindow);
+    var response = await client.Blvt.RedemptionRecordUserData(new RedemptionRecordUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1BlvtRedeemRecordResponse>
 }
-catch (SdkException<RedemptionRecordUserDataError> ex)
+catch (ApiException<RedemptionRecordUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -1737,21 +1640,12 @@ catch (SdkException<RedemptionRecordUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>tokenName</code> | <code>string?</code> | BTCDOWN, BTCUP |
-| <code>id</code> | <code>long?</code> | - |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>limit</code> | <code>int?</code> | default 1000, max 1000 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[RedemptionRecordUserDataRequest](Requests/Blvt/RedemptionRecordUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -1763,7 +1657,7 @@ catch (SdkException<RedemptionRecordUserDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1BlvtRedeemRecordResponse](Models/SapiV1BlvtRedeemRecordResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[RedemptionRecordUserDataError](Errors/RedemptionRecordUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[RedemptionRecordUserDataError](Errors/RedemptionRecordUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -1774,7 +1668,7 @@ catch (SdkException<RedemptionRecordUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1BlvtSubscribeResponse&gt; SubscribeBlvtUserData(string tokenName, double cost, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1BlvtSubscribeResponse&gt; SubscribeBlvtUserData(SubscribeBlvtUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -1797,10 +1691,17 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.Blvt.SubscribeBlvtUserData(tokenName, cost, timestamp, signature, recvWindow);
+    var response = await client.Blvt.SubscribeBlvtUserData(new SubscribeBlvtUserDataRequest
+    {
+        TokenName = "some example string",
+        Cost = 1.5d,
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1BlvtSubscribeResponse
 }
-catch (SdkException<SubscribeBlvtUserDataError> ex)
+catch (ApiException<SubscribeBlvtUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -1812,18 +1713,12 @@ catch (SdkException<SubscribeBlvtUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>tokenName</code> | <code>string</code> | BTCDOWN, BTCUP |
-| <code>cost</code> | <code>double</code> | Spot balance |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[SubscribeBlvtUserDataRequest](Requests/Blvt/SubscribeBlvtUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -1835,7 +1730,7 @@ catch (SdkException<SubscribeBlvtUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1BlvtSubscribeResponse](Models/SapiV1BlvtSubscribeResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[SubscribeBlvtUserDataError](Errors/SubscribeBlvtUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SubscribeBlvtUserDataError](Errors/SubscribeBlvtUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -1850,7 +1745,7 @@ catch (SdkException<SubscribeBlvtUserDataError> ex)
 > Source: [C2C](Api/C2C.cs)
 
 <details>
-<summary><code>Task&lt;SapiV1C2COrderMatchListUserOrderHistoryResponse&gt; GetC2CTradeHistoryUserData(TradeType tradeType, long timestamp, string signature, long? startTimestamp, long? endTimestamp, int? page, int? rows, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1C2COrderMatchListUserOrderHistoryResponse&gt; GetC2CTradeHistoryUserData(GetC2CTradeHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -1876,17 +1771,17 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.C2C.GetC2CTradeHistoryUserData(tradeType,
-        timestamp,
-        signature,
-        startTimestamp,
-        endTimestamp,
-        page,
-        rows,
-        recvWindow);
+    var response = await client.C2C.GetC2CTradeHistoryUserData(new GetC2CTradeHistoryUserDataRequest
+    {
+        TradeType = TradeType.Buy,
+        Timestamp = 1L,
+        Signature = "some example string",
+        Page = 1,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1C2COrderMatchListUserOrderHistoryResponse
 }
-catch (SdkException<GetC2CTradeHistoryUserDataError> ex)
+catch (ApiException<GetC2CTradeHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -1898,21 +1793,12 @@ catch (SdkException<GetC2CTradeHistoryUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>tradeType</code> | <code>[TradeType](Models/Enums/TradeType.cs)</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>startTimestamp</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTimestamp</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>page</code> | <code>int?</code> | Default 1 |
-| <code>rows</code> | <code>int?</code> | default 100, max 100 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetC2CTradeHistoryUserDataRequest](Requests/C2C/GetC2CTradeHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -1924,7 +1810,7 @@ catch (SdkException<GetC2CTradeHistoryUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1C2COrderMatchListUserOrderHistoryResponse](Models/SapiV1C2COrderMatchListUserOrderHistoryResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetC2CTradeHistoryUserDataError](Errors/GetC2CTradeHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetC2CTradeHistoryUserDataError](Errors/GetC2CTradeHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -1939,7 +1825,7 @@ catch (SdkException<GetC2CTradeHistoryUserDataError> ex)
 > Source: [ConvertApi](Api/ConvertApi.cs)
 
 <details>
-<summary><code>Task&lt;SapiV1ConvertAcceptQuoteResponse&gt; AcceptQuoteTrade(string quoteId, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1ConvertAcceptQuoteResponse&gt; AcceptQuoteTrade(AcceptQuoteTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -1964,10 +1850,16 @@ Weight(UID): 500
 ```csharp
 try
 {
-    var response = await client.ConvertApi.AcceptQuoteTrade(quoteId, timestamp, signature, recvWindow);
+    var response = await client.ConvertApi.AcceptQuoteTrade(new AcceptQuoteTradeRequest
+    {
+        QuoteId = "1000",
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1ConvertAcceptQuoteResponse
 }
-catch (SdkException<AcceptQuoteTradeError> ex)
+catch (ApiException<AcceptQuoteTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -1979,17 +1871,12 @@ catch (SdkException<AcceptQuoteTradeError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>quoteId</code> | <code>string</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[AcceptQuoteTradeRequest](Requests/ConvertApi/AcceptQuoteTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -2001,7 +1888,7 @@ catch (SdkException<AcceptQuoteTradeError> ex)
 
 **OnSuccess**: <code>[SapiV1ConvertAcceptQuoteResponse](Models/SapiV1ConvertAcceptQuoteResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[AcceptQuoteTradeError](Errors/AcceptQuoteTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[AcceptQuoteTradeError](Errors/AcceptQuoteTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -2012,7 +1899,7 @@ catch (SdkException<AcceptQuoteTradeError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1ConvertLimitCancelOrderResponse&gt; CancelLimitOrderUserData(long orderId, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1ConvertLimitCancelOrderResponse&gt; CancelLimitOrderUserData(CancelLimitOrderUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -2037,10 +1924,16 @@ Weight(UID): 200
 ```csharp
 try
 {
-    var response = await client.ConvertApi.CancelLimitOrderUserData(orderId, timestamp, signature, recvWindow);
+    var response = await client.ConvertApi.CancelLimitOrderUserData(new CancelLimitOrderUserDataRequest
+    {
+        OrderId = 1603680255057330400L,
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1ConvertLimitCancelOrderResponse
 }
-catch (SdkException<CancelLimitOrderUserDataError> ex)
+catch (ApiException<CancelLimitOrderUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -2052,17 +1945,12 @@ catch (SdkException<CancelLimitOrderUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>orderId</code> | <code>long</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[CancelLimitOrderUserDataRequest](Requests/ConvertApi/CancelLimitOrderUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -2074,7 +1962,7 @@ catch (SdkException<CancelLimitOrderUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1ConvertLimitCancelOrderResponse](Models/SapiV1ConvertLimitCancelOrderResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[CancelLimitOrderUserDataError](Errors/CancelLimitOrderUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CancelLimitOrderUserDataError](Errors/CancelLimitOrderUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -2085,7 +1973,7 @@ catch (SdkException<CancelLimitOrderUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1ConvertTradeFlowResponse&gt; GetConvertTradeHistoryUserData(long startTime, long endTime, long timestamp, string signature, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1ConvertTradeFlowResponse&gt; GetConvertTradeHistoryUserData(GetConvertTradeHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -2110,15 +1998,18 @@ Weight(UID): 3000
 ```csharp
 try
 {
-    var response = await client.ConvertApi.GetConvertTradeHistoryUserData(startTime,
-        endTime,
-        timestamp,
-        signature,
-        limit,
-        recvWindow);
+    var response = await client.ConvertApi.GetConvertTradeHistoryUserData(new GetConvertTradeHistoryUserDataRequest
+    {
+        StartTime = 1624248872184L,
+        EndTime = 1624248872185L,
+        Timestamp = 1L,
+        Signature = "some example string",
+        Limit = 100,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1ConvertTradeFlowResponse
 }
-catch (SdkException<GetConvertTradeHistoryUserDataError> ex)
+catch (ApiException<GetConvertTradeHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -2130,19 +2021,12 @@ catch (SdkException<GetConvertTradeHistoryUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>startTime</code> | <code>long</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long</code> | UTC timestamp in ms |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>limit</code> | <code>int?</code> | default 100, max 1000 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetConvertTradeHistoryUserDataRequest](Requests/ConvertApi/GetConvertTradeHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -2154,7 +2038,7 @@ catch (SdkException<GetConvertTradeHistoryUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1ConvertTradeFlowResponse](Models/SapiV1ConvertTradeFlowResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetConvertTradeHistoryUserDataError](Errors/GetConvertTradeHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetConvertTradeHistoryUserDataError](Errors/GetConvertTradeHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -2165,7 +2049,7 @@ catch (SdkException<GetConvertTradeHistoryUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1ConvertExchangeInfoResponse&gt;&gt; ListAllConvertPairs(string? fromAsset, string? toAsset, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1ConvertExchangeInfoResponse&gt;&gt; ListAllConvertPairs(ListAllConvertPairsRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -2190,10 +2074,14 @@ Weight(IP): 3000
 ```csharp
 try
 {
-    var response = await client.ConvertApi.ListAllConvertPairs(fromAsset, toAsset);
+    var response = await client.ConvertApi.ListAllConvertPairs(new ListAllConvertPairsRequest
+    {
+        FromAsset = "BTC",
+        ToAsset = "USDT",
+    });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1ConvertExchangeInfoResponse>
 }
-catch (SdkException<ListAllConvertPairsError> ex)
+catch (ApiException<ListAllConvertPairsError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -2205,15 +2093,12 @@ catch (SdkException<ListAllConvertPairsError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>fromAsset</code> | <code>string?</code> | User spends coin |
-| <code>toAsset</code> | <code>string?</code> | User receives coin |
+<code>[ListAllConvertPairsRequest](Requests/ConvertApi/ListAllConvertPairsRequest.cs)</code>
 
 </dd>
 </dl>
@@ -2225,7 +2110,7 @@ catch (SdkException<ListAllConvertPairsError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1ConvertExchangeInfoResponse](Models/SapiV1ConvertExchangeInfoResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[ListAllConvertPairsError](Errors/ListAllConvertPairsError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[ListAllConvertPairsError](Errors/ListAllConvertPairsError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -2236,7 +2121,7 @@ catch (SdkException<ListAllConvertPairsError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1ConvertOrderStatusResponse&gt; OrderStatusUserData(long timestamp, string signature, string? orderId, string? quoteId, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1ConvertOrderStatusResponse&gt; OrderStatusUserData(OrderStatusUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -2261,10 +2146,17 @@ Weight(UID): 100
 ```csharp
 try
 {
-    var response = await client.ConvertApi.OrderStatusUserData(timestamp, signature, orderId, quoteId, recvWindow);
+    var response = await client.ConvertApi.OrderStatusUserData(new OrderStatusUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        OrderId = "1000",
+        QuoteId = "1000",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1ConvertOrderStatusResponse
 }
-catch (SdkException<OrderStatusUserDataError> ex)
+catch (ApiException<OrderStatusUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -2276,18 +2168,12 @@ catch (SdkException<OrderStatusUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>orderId</code> | <code>string?</code> | - |
-| <code>quoteId</code> | <code>string?</code> | - |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[OrderStatusUserDataRequest](Requests/ConvertApi/OrderStatusUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -2299,7 +2185,7 @@ catch (SdkException<OrderStatusUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1ConvertOrderStatusResponse](Models/SapiV1ConvertOrderStatusResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[OrderStatusUserDataError](Errors/OrderStatusUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[OrderStatusUserDataError](Errors/OrderStatusUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -2310,7 +2196,7 @@ catch (SdkException<OrderStatusUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1ConvertLimitPlaceOrderResponse&gt; PlaceLimitOrderUserData(string baseAsset, string quoteAsset, double limitPrice, Side side, long timestamp, string signature, double? baseAmount, double? quoteAmount, WalletType? walletType, ExpiredType? expiredType, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1ConvertLimitPlaceOrderResponse&gt; PlaceLimitOrderUserData(PlaceLimitOrderUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -2339,20 +2225,21 @@ Weight(UID): 500
 ```csharp
 try
 {
-    var response = await client.ConvertApi.PlaceLimitOrderUserData(baseAsset,
-        quoteAsset,
-        limitPrice,
-        side,
-        timestamp,
-        signature,
-        baseAmount,
-        quoteAmount,
-        walletType,
-        expiredType,
-        recvWindow);
+    var response = await client.ConvertApi.PlaceLimitOrderUserData(new PlaceLimitOrderUserDataRequest
+    {
+        BaseAsset = "BUSD",
+        QuoteAsset = "USDT",
+        LimitPrice = 1.5d,
+        Side = Side.Sell,
+        Timestamp = 1L,
+        Signature = "some example string",
+        WalletType = WalletType.Spot,
+        ExpiredType = ExpiredType._1D,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1ConvertLimitPlaceOrderResponse
 }
-catch (SdkException<PlaceLimitOrderUserDataError> ex)
+catch (ApiException<PlaceLimitOrderUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -2364,24 +2251,12 @@ catch (SdkException<PlaceLimitOrderUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>baseAsset</code> | <code>string</code> | - |
-| <code>quoteAsset</code> | <code>string</code> | - |
-| <code>limitPrice</code> | <code>double</code> | Symbol limit price (from baseAsset to quoteAsset) |
-| <code>side</code> | <code>[Side](Models/Enums/Side.cs)</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>baseAmount</code> | <code>double?</code> | Base asset amount. (One of baseAmount or quoteAmount is required) |
-| <code>quoteAmount</code> | <code>double?</code> | Quote asset amount. (One of baseAmount or quoteAmount is required) |
-| <code>walletType</code> | <code>[WalletType?](Models/Enums/WalletType.cs)</code> | SPOT or FUNDING or SPOT_FUNDING. It is to use which type of assets. Default is SPOT. |
-| <code>expiredType</code> | <code>[ExpiredType?](Models/Enums/ExpiredType.cs)</code> | 1_D, 3_D, 7_D, 30_D (D means day) |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[PlaceLimitOrderUserDataRequest](Requests/ConvertApi/PlaceLimitOrderUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -2393,7 +2268,7 @@ catch (SdkException<PlaceLimitOrderUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1ConvertLimitPlaceOrderResponse](Models/SapiV1ConvertLimitPlaceOrderResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[PlaceLimitOrderUserDataError](Errors/PlaceLimitOrderUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[PlaceLimitOrderUserDataError](Errors/PlaceLimitOrderUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -2404,7 +2279,7 @@ catch (SdkException<PlaceLimitOrderUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1ConvertLimitQueryOpenOrdersResponse&gt; QueryLimitOpenOrdersUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1ConvertLimitQueryOpenOrdersResponse&gt; QueryLimitOpenOrdersUserData(QueryLimitOpenOrdersUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -2429,10 +2304,15 @@ Weight(UID): 3000
 ```csharp
 try
 {
-    var response = await client.ConvertApi.QueryLimitOpenOrdersUserData(timestamp, signature, recvWindow);
+    var response = await client.ConvertApi.QueryLimitOpenOrdersUserData(new QueryLimitOpenOrdersUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1ConvertLimitQueryOpenOrdersResponse
 }
-catch (SdkException<QueryLimitOpenOrdersUserDataError> ex)
+catch (ApiException<QueryLimitOpenOrdersUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -2444,16 +2324,12 @@ catch (SdkException<QueryLimitOpenOrdersUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryLimitOpenOrdersUserDataRequest](Requests/ConvertApi/QueryLimitOpenOrdersUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -2465,7 +2341,7 @@ catch (SdkException<QueryLimitOpenOrdersUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1ConvertLimitQueryOpenOrdersResponse](Models/SapiV1ConvertLimitQueryOpenOrdersResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryLimitOpenOrdersUserDataError](Errors/QueryLimitOpenOrdersUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryLimitOpenOrdersUserDataError](Errors/QueryLimitOpenOrdersUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -2476,7 +2352,7 @@ catch (SdkException<QueryLimitOpenOrdersUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1ConvertAssetInfoResponse&gt;&gt; QueryOrderQuantityPrecisionPerAssetUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1ConvertAssetInfoResponse&gt;&gt; QueryOrderQuantityPrecisionPerAssetUserData(QueryOrderQuantityPrecisionPerAssetUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -2501,12 +2377,16 @@ Weight(IP): 100
 ```csharp
 try
 {
-    var response = await client.ConvertApi.QueryOrderQuantityPrecisionPerAssetUserData(timestamp,
-        signature,
-        recvWindow);
+    var response = await client.ConvertApi.QueryOrderQuantityPrecisionPerAssetUserData(
+        new QueryOrderQuantityPrecisionPerAssetUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1ConvertAssetInfoResponse>
 }
-catch (SdkException<QueryOrderQuantityPrecisionPerAssetUserDataError> ex)
+catch (ApiException<QueryOrderQuantityPrecisionPerAssetUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -2518,16 +2398,12 @@ catch (SdkException<QueryOrderQuantityPrecisionPerAssetUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryOrderQuantityPrecisionPerAssetUserDataRequest](Requests/ConvertApi/QueryOrderQuantityPrecisionPerAssetUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -2539,7 +2415,7 @@ catch (SdkException<QueryOrderQuantityPrecisionPerAssetUserDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1ConvertAssetInfoResponse](Models/SapiV1ConvertAssetInfoResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryOrderQuantityPrecisionPerAssetUserDataError](Errors/QueryOrderQuantityPrecisionPerAssetUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryOrderQuantityPrecisionPerAssetUserDataError](Errors/QueryOrderQuantityPrecisionPerAssetUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -2550,7 +2426,7 @@ catch (SdkException<QueryOrderQuantityPrecisionPerAssetUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1ConvertGetQuoteResponse&gt; SendQuoteRequestUserData(string fromAsset, string toAsset, long timestamp, string signature, double? fromAmount, double? toAmount, string? validTime, string? walletType, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1ConvertGetQuoteResponse&gt; SendQuoteRequestUserData(SendQuoteRequestUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -2575,18 +2451,21 @@ Weight(UID): 200
 ```csharp
 try
 {
-    var response = await client.ConvertApi.SendQuoteRequestUserData(fromAsset,
-        toAsset,
-        timestamp,
-        signature,
-        fromAmount,
-        toAmount,
-        validTime,
-        walletType,
-        recvWindow);
+    var response = await client.ConvertApi.SendQuoteRequestUserData(new SendQuoteRequestUserDataRequest
+    {
+        FromAsset = "BTC",
+        ToAsset = "USDT",
+        Timestamp = 1L,
+        Signature = "some example string",
+        FromAmount = 1d,
+        ToAmount = 1d,
+        ValidTime = "10s",
+        WalletType = "SPOT",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1ConvertGetQuoteResponse
 }
-catch (SdkException<SendQuoteRequestUserDataError> ex)
+catch (ApiException<SendQuoteRequestUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -2598,22 +2477,12 @@ catch (SdkException<SendQuoteRequestUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>fromAsset</code> | <code>string</code> | - |
-| <code>toAsset</code> | <code>string</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>fromAmount</code> | <code>double?</code> | When specified, it is the amount you will be debited after the conversion |
-| <code>toAmount</code> | <code>double?</code> | When specified, it is the amount you will be debited after the conversion |
-| <code>validTime</code> | <code>string?</code> | 10s, 30s, 1m, 2m, default 10s |
-| <code>walletType</code> | <code>string?</code> | SPOT or FUNDING. Default is SPOT |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[SendQuoteRequestUserDataRequest](Requests/ConvertApi/SendQuoteRequestUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -2625,7 +2494,7 @@ catch (SdkException<SendQuoteRequestUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1ConvertGetQuoteResponse](Models/SapiV1ConvertGetQuoteResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[SendQuoteRequestUserDataError](Errors/SendQuoteRequestUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SendQuoteRequestUserDataError](Errors/SendQuoteRequestUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -2640,7 +2509,7 @@ catch (SdkException<SendQuoteRequestUserDataError> ex)
 > Source: [CopyTrading](Api/CopyTrading.cs)
 
 <details>
-<summary><code>Task&lt;SapiV1CopyTradingFuturesUserStatusResponse&gt; GetFuturesLeadTraderStatusTrade(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1CopyTradingFuturesUserStatusResponse&gt; GetFuturesLeadTraderStatusTrade(GetFuturesLeadTraderStatusTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -2665,10 +2534,15 @@ Weight(UID): 20
 ```csharp
 try
 {
-    var response = await client.CopyTrading.GetFuturesLeadTraderStatusTrade(timestamp, signature, recvWindow);
+    var response = await client.CopyTrading.GetFuturesLeadTraderStatusTrade(new GetFuturesLeadTraderStatusTradeRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1CopyTradingFuturesUserStatusResponse
 }
-catch (SdkException<GetFuturesLeadTraderStatusTradeError> ex)
+catch (ApiException<GetFuturesLeadTraderStatusTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -2680,16 +2554,12 @@ catch (SdkException<GetFuturesLeadTraderStatusTradeError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetFuturesLeadTraderStatusTradeRequest](Requests/CopyTrading/GetFuturesLeadTraderStatusTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -2701,7 +2571,7 @@ catch (SdkException<GetFuturesLeadTraderStatusTradeError> ex)
 
 **OnSuccess**: <code>[SapiV1CopyTradingFuturesUserStatusResponse](Models/SapiV1CopyTradingFuturesUserStatusResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetFuturesLeadTraderStatusTradeError](Errors/GetFuturesLeadTraderStatusTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetFuturesLeadTraderStatusTradeError](Errors/GetFuturesLeadTraderStatusTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -2712,7 +2582,7 @@ catch (SdkException<GetFuturesLeadTraderStatusTradeError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1CopyTradingFuturesLeadSymbolResponse&gt; GetFuturesLeadTradingSymbolWhitelistUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1CopyTradingFuturesLeadSymbolResponse&gt; GetFuturesLeadTradingSymbolWhitelistUserData(GetFuturesLeadTradingSymbolWhitelistUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -2737,12 +2607,16 @@ Weight(IP): 20
 ```csharp
 try
 {
-    var response = await client.CopyTrading.GetFuturesLeadTradingSymbolWhitelistUserData(timestamp,
-        signature,
-        recvWindow);
+    var response = await client.CopyTrading.GetFuturesLeadTradingSymbolWhitelistUserData(
+        new GetFuturesLeadTradingSymbolWhitelistUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1CopyTradingFuturesLeadSymbolResponse
 }
-catch (SdkException<GetFuturesLeadTradingSymbolWhitelistUserDataError> ex)
+catch (ApiException<GetFuturesLeadTradingSymbolWhitelistUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -2754,16 +2628,12 @@ catch (SdkException<GetFuturesLeadTradingSymbolWhitelistUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetFuturesLeadTradingSymbolWhitelistUserDataRequest](Requests/CopyTrading/GetFuturesLeadTradingSymbolWhitelistUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -2775,7 +2645,7 @@ catch (SdkException<GetFuturesLeadTradingSymbolWhitelistUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1CopyTradingFuturesLeadSymbolResponse](Models/SapiV1CopyTradingFuturesLeadSymbolResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetFuturesLeadTradingSymbolWhitelistUserDataError](Errors/GetFuturesLeadTradingSymbolWhitelistUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetFuturesLeadTradingSymbolWhitelistUserDataError](Errors/GetFuturesLeadTradingSymbolWhitelistUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -2790,7 +2660,7 @@ catch (SdkException<GetFuturesLeadTradingSymbolWhitelistUserDataError> ex)
 > Source: [CryptoLoans](Api/CryptoLoans.cs)
 
 <details>
-<summary><code>Task&lt;SapiV2LoanFlexibleAdjustLtvResponse&gt; AdjustLtvFlexibleLoanAdjustLtvTrade(double adjustmentAmount, Direction direction, long timestamp, string signature, string? loanCoin, string? collateralCoin, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV2LoanFlexibleAdjustLtvResponse&gt; AdjustLtvFlexibleLoanAdjustLtvTrade(AdjustLtvFlexibleLoanAdjustLtvTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -2815,16 +2685,20 @@ Weight(UID): 6000
 ```csharp
 try
 {
-    var response = await client.CryptoLoans.AdjustLtvFlexibleLoanAdjustLtvTrade(adjustmentAmount,
-        direction,
-        timestamp,
-        signature,
-        loanCoin,
-        collateralCoin,
-        recvWindow);
+    var response = await client.CryptoLoans.AdjustLtvFlexibleLoanAdjustLtvTrade(
+        new AdjustLtvFlexibleLoanAdjustLtvTradeRequest
+        {
+            AdjustmentAmount = 1.5d,
+            Direction = Direction.Additional,
+            Timestamp = 1L,
+            Signature = "some example string",
+            LoanCoin = "BUSD",
+            CollateralCoin = "BNB",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV2LoanFlexibleAdjustLtvResponse
 }
-catch (SdkException<AdjustLtvFlexibleLoanAdjustLtvTradeError> ex)
+catch (ApiException<AdjustLtvFlexibleLoanAdjustLtvTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -2836,20 +2710,12 @@ catch (SdkException<AdjustLtvFlexibleLoanAdjustLtvTradeError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>adjustmentAmount</code> | <code>double</code> | - |
-| <code>direction</code> | <code>[Direction](Models/Enums/Direction.cs)</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>loanCoin</code> | <code>string?</code> | Coin loaned |
-| <code>collateralCoin</code> | <code>string?</code> | Coin used as collateral |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[AdjustLtvFlexibleLoanAdjustLtvTradeRequest](Requests/CryptoLoans/AdjustLtvFlexibleLoanAdjustLtvTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -2861,7 +2727,7 @@ catch (SdkException<AdjustLtvFlexibleLoanAdjustLtvTradeError> ex)
 
 **OnSuccess**: <code>[SapiV2LoanFlexibleAdjustLtvResponse](Models/SapiV2LoanFlexibleAdjustLtvResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[AdjustLtvFlexibleLoanAdjustLtvTradeError](Errors/AdjustLtvFlexibleLoanAdjustLtvTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[AdjustLtvFlexibleLoanAdjustLtvTradeError](Errors/AdjustLtvFlexibleLoanAdjustLtvTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -2872,7 +2738,7 @@ catch (SdkException<AdjustLtvFlexibleLoanAdjustLtvTradeError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV2LoanFlexibleLtvAdjustmentHistoryResponse&gt; AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserData(long timestamp, string signature, string? loanCoin, string? collateralCoin, long? startTime, long? endTime, int? current, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV2LoanFlexibleLtvAdjustmentHistoryResponse&gt; AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserData(AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -2898,18 +2764,20 @@ Weight(IP): 400
 ```csharp
 try
 {
-    var response = await client.CryptoLoans.AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserData(timestamp,
-        signature,
-        loanCoin,
-        collateralCoin,
-        startTime,
-        endTime,
-        current,
-        limit,
-        recvWindow);
+    var response = await client.CryptoLoans.AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserData(
+        new AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            LoanCoin = "BUSD",
+            CollateralCoin = "BNB",
+            Current = 1,
+            Limit = 5,
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV2LoanFlexibleLtvAdjustmentHistoryResponse
 }
-catch (SdkException<AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserDataError> ex)
+catch (ApiException<AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -2921,22 +2789,12 @@ catch (SdkException<AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserDataError> e
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>loanCoin</code> | <code>string?</code> | Coin loaned |
-| <code>collateralCoin</code> | <code>string?</code> | Coin used as collateral |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>current</code> | <code>int?</code> | Current querying page. Start from 1. Default:1 |
-| <code>limit</code> | <code>int?</code> | Default 500; max 1000. |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserDataRequest](Requests/CryptoLoans/AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -2948,7 +2806,7 @@ catch (SdkException<AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserDataError> e
 
 **OnSuccess**: <code>[SapiV2LoanFlexibleLtvAdjustmentHistoryResponse](Models/SapiV2LoanFlexibleLtvAdjustmentHistoryResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserDataError](Errors/AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserDataError](Errors/AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -2959,7 +2817,7 @@ catch (SdkException<AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserDataError> e
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV2LoanFlexibleBorrowResponse&gt; BorrowFlexibleLoanBorrowTrade(long timestamp, string signature, string? loanCoin, double? loanAmount, string? collateralCoin, double? collateralAmount, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV2LoanFlexibleBorrowResponse&gt; BorrowFlexibleLoanBorrowTrade(BorrowFlexibleLoanBorrowTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -2984,16 +2842,19 @@ Weight(UID): 6000
 ```csharp
 try
 {
-    var response = await client.CryptoLoans.BorrowFlexibleLoanBorrowTrade(timestamp,
-        signature,
-        loanCoin,
-        loanAmount,
-        collateralCoin,
-        collateralAmount,
-        recvWindow);
+    var response = await client.CryptoLoans.BorrowFlexibleLoanBorrowTrade(new BorrowFlexibleLoanBorrowTradeRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        LoanCoin = "BUSD",
+        LoanAmount = 100.1d,
+        CollateralCoin = "BNB",
+        CollateralAmount = 50.5d,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV2LoanFlexibleBorrowResponse
 }
-catch (SdkException<BorrowFlexibleLoanBorrowTradeError> ex)
+catch (ApiException<BorrowFlexibleLoanBorrowTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -3005,20 +2866,12 @@ catch (SdkException<BorrowFlexibleLoanBorrowTradeError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>loanCoin</code> | <code>string?</code> | Coin loaned |
-| <code>loanAmount</code> | <code>double?</code> | Loan amount |
-| <code>collateralCoin</code> | <code>string?</code> | Coin used as collateral |
-| <code>collateralAmount</code> | <code>double?</code> | - |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[BorrowFlexibleLoanBorrowTradeRequest](Requests/CryptoLoans/BorrowFlexibleLoanBorrowTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -3030,7 +2883,7 @@ catch (SdkException<BorrowFlexibleLoanBorrowTradeError> ex)
 
 **OnSuccess**: <code>[SapiV2LoanFlexibleBorrowResponse](Models/SapiV2LoanFlexibleBorrowResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[BorrowFlexibleLoanBorrowTradeError](Errors/BorrowFlexibleLoanBorrowTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[BorrowFlexibleLoanBorrowTradeError](Errors/BorrowFlexibleLoanBorrowTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -3041,7 +2894,7 @@ catch (SdkException<BorrowFlexibleLoanBorrowTradeError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV2LoanFlexibleBorrowHistoryResponse&gt; BorrowGetFlexibleLoanBorrowHistoryUserData(long timestamp, string signature, string? loanCoin, string? collateralCoin, long? startTime, long? endTime, int? current, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV2LoanFlexibleBorrowHistoryResponse&gt; BorrowGetFlexibleLoanBorrowHistoryUserData(BorrowGetFlexibleLoanBorrowHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -3067,18 +2920,20 @@ Weight(IP): 400
 ```csharp
 try
 {
-    var response = await client.CryptoLoans.BorrowGetFlexibleLoanBorrowHistoryUserData(timestamp,
-        signature,
-        loanCoin,
-        collateralCoin,
-        startTime,
-        endTime,
-        current,
-        limit,
-        recvWindow);
+    var response = await client.CryptoLoans.BorrowGetFlexibleLoanBorrowHistoryUserData(
+        new BorrowGetFlexibleLoanBorrowHistoryUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            LoanCoin = "BUSD",
+            CollateralCoin = "BNB",
+            Current = 1,
+            Limit = 5,
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV2LoanFlexibleBorrowHistoryResponse
 }
-catch (SdkException<BorrowGetFlexibleLoanBorrowHistoryUserDataError> ex)
+catch (ApiException<BorrowGetFlexibleLoanBorrowHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -3090,22 +2945,12 @@ catch (SdkException<BorrowGetFlexibleLoanBorrowHistoryUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>loanCoin</code> | <code>string?</code> | Coin loaned |
-| <code>collateralCoin</code> | <code>string?</code> | Coin used as collateral |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>current</code> | <code>int?</code> | Current querying page. Start from 1. Default:1 |
-| <code>limit</code> | <code>int?</code> | Default 500; max 1000. |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[BorrowGetFlexibleLoanBorrowHistoryUserDataRequest](Requests/CryptoLoans/BorrowGetFlexibleLoanBorrowHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -3117,7 +2962,7 @@ catch (SdkException<BorrowGetFlexibleLoanBorrowHistoryUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV2LoanFlexibleBorrowHistoryResponse](Models/SapiV2LoanFlexibleBorrowHistoryResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[BorrowGetFlexibleLoanBorrowHistoryUserDataError](Errors/BorrowGetFlexibleLoanBorrowHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[BorrowGetFlexibleLoanBorrowHistoryUserDataError](Errors/BorrowGetFlexibleLoanBorrowHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -3128,7 +2973,7 @@ catch (SdkException<BorrowGetFlexibleLoanBorrowHistoryUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV2LoanFlexibleOngoingOrdersResponse&gt; BorrowGetFlexibleLoanOngoingOrdersUserData(long timestamp, string signature, string? loanCoin, string? collateralCoin, int? current, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV2LoanFlexibleOngoingOrdersResponse&gt; BorrowGetFlexibleLoanOngoingOrdersUserData(BorrowGetFlexibleLoanOngoingOrdersUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -3137,7 +2982,6 @@ catch (SdkException<BorrowGetFlexibleLoanBorrowHistoryUserDataError> ex)
 
 <dl>
 <dd>
-
 
 Weight(IP): 300
 
@@ -3152,16 +2996,20 @@ Weight(IP): 300
 ```csharp
 try
 {
-    var response = await client.CryptoLoans.BorrowGetFlexibleLoanOngoingOrdersUserData(timestamp,
-        signature,
-        loanCoin,
-        collateralCoin,
-        current,
-        limit,
-        recvWindow);
+    var response = await client.CryptoLoans.BorrowGetFlexibleLoanOngoingOrdersUserData(
+        new BorrowGetFlexibleLoanOngoingOrdersUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            LoanCoin = "BUSD",
+            CollateralCoin = "BNB",
+            Current = 1,
+            Limit = 5,
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV2LoanFlexibleOngoingOrdersResponse
 }
-catch (SdkException<BorrowGetFlexibleLoanOngoingOrdersUserDataError> ex)
+catch (ApiException<BorrowGetFlexibleLoanOngoingOrdersUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -3173,20 +3021,12 @@ catch (SdkException<BorrowGetFlexibleLoanOngoingOrdersUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>loanCoin</code> | <code>string?</code> | Coin loaned |
-| <code>collateralCoin</code> | <code>string?</code> | Coin used as collateral |
-| <code>current</code> | <code>int?</code> | Current querying page. Start from 1. Default:1 |
-| <code>limit</code> | <code>int?</code> | Default 500; max 1000. |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[BorrowGetFlexibleLoanOngoingOrdersUserDataRequest](Requests/CryptoLoans/BorrowGetFlexibleLoanOngoingOrdersUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -3198,7 +3038,7 @@ catch (SdkException<BorrowGetFlexibleLoanOngoingOrdersUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV2LoanFlexibleOngoingOrdersResponse](Models/SapiV2LoanFlexibleOngoingOrdersResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[BorrowGetFlexibleLoanOngoingOrdersUserDataError](Errors/BorrowGetFlexibleLoanOngoingOrdersUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[BorrowGetFlexibleLoanOngoingOrdersUserDataError](Errors/BorrowGetFlexibleLoanOngoingOrdersUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -3209,7 +3049,7 @@ catch (SdkException<BorrowGetFlexibleLoanOngoingOrdersUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1LoanRepayCollateralRateResponse&gt; CheckCollateralRepayRateUserData(string loanCoin, string collateralCoin, double repayAmount, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1LoanRepayCollateralRateResponse&gt; CheckCollateralRepayRateUserData(CheckCollateralRepayRateUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -3234,15 +3074,18 @@ Weight(IP): 6000
 ```csharp
 try
 {
-    var response = await client.CryptoLoans.CheckCollateralRepayRateUserData(loanCoin,
-        collateralCoin,
-        repayAmount,
-        timestamp,
-        signature,
-        recvWindow);
+    var response = await client.CryptoLoans.CheckCollateralRepayRateUserData(new CheckCollateralRepayRateUserDataRequest
+    {
+        LoanCoin = "BUSD",
+        CollateralCoin = "BNB",
+        RepayAmount = 1.5d,
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1LoanRepayCollateralRateResponse
 }
-catch (SdkException<CheckCollateralRepayRateUserDataError> ex)
+catch (ApiException<CheckCollateralRepayRateUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -3254,19 +3097,12 @@ catch (SdkException<CheckCollateralRepayRateUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>loanCoin</code> | <code>string</code> | Coin loaned |
-| <code>collateralCoin</code> | <code>string</code> | Coin used as collateral |
-| <code>repayAmount</code> | <code>double</code> | repay amount of loanCoin |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[CheckCollateralRepayRateUserDataRequest](Requests/CryptoLoans/CheckCollateralRepayRateUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -3278,7 +3114,7 @@ catch (SdkException<CheckCollateralRepayRateUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1LoanRepayCollateralRateResponse](Models/SapiV1LoanRepayCollateralRateResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[CheckCollateralRepayRateUserDataError](Errors/CheckCollateralRepayRateUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CheckCollateralRepayRateUserDataError](Errors/CheckCollateralRepayRateUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -3289,7 +3125,7 @@ catch (SdkException<CheckCollateralRepayRateUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1LoanAdjustLtvResponse&gt; CryptoLoanAdjustLtvTrade(long orderId, double amount, Direction direction, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1LoanAdjustLtvResponse&gt; CryptoLoanAdjustLtvTrade(CryptoLoanAdjustLtvTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -3312,15 +3148,18 @@ Weight(UID): 6000
 ```csharp
 try
 {
-    var response = await client.CryptoLoans.CryptoLoanAdjustLtvTrade(orderId,
-        amount,
-        direction,
-        timestamp,
-        signature,
-        recvWindow);
+    var response = await client.CryptoLoans.CryptoLoanAdjustLtvTrade(new CryptoLoanAdjustLtvTradeRequest
+    {
+        OrderId = 123456789L,
+        Amount = 100.5d,
+        Direction = Direction.Additional,
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1LoanAdjustLtvResponse
 }
-catch (SdkException<CryptoLoanAdjustLtvTradeError> ex)
+catch (ApiException<CryptoLoanAdjustLtvTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -3332,19 +3171,12 @@ catch (SdkException<CryptoLoanAdjustLtvTradeError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>orderId</code> | <code>long</code> | Order ID |
-| <code>amount</code> | <code>double</code> | Amount |
-| <code>direction</code> | <code>[Direction](Models/Enums/Direction.cs)</code> | 'ADDITIONAL', 'REDUCED' |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[CryptoLoanAdjustLtvTradeRequest](Requests/CryptoLoans/CryptoLoanAdjustLtvTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -3356,7 +3188,7 @@ catch (SdkException<CryptoLoanAdjustLtvTradeError> ex)
 
 **OnSuccess**: <code>[SapiV1LoanAdjustLtvResponse](Models/SapiV1LoanAdjustLtvResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[CryptoLoanAdjustLtvTradeError](Errors/CryptoLoanAdjustLtvTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CryptoLoanAdjustLtvTradeError](Errors/CryptoLoanAdjustLtvTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -3367,7 +3199,7 @@ catch (SdkException<CryptoLoanAdjustLtvTradeError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1LoanBorrowResponse&gt; CryptoLoanBorrowTrade(string loanCoin, string collateralCoin, int loanTerm, long timestamp, string signature, double? loanAmount, double? collateralAmount, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1LoanBorrowResponse&gt; CryptoLoanBorrowTrade(CryptoLoanBorrowTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -3390,17 +3222,20 @@ Weight(UID): 6000
 ```csharp
 try
 {
-    var response = await client.CryptoLoans.CryptoLoanBorrowTrade(loanCoin,
-        collateralCoin,
-        loanTerm,
-        timestamp,
-        signature,
-        loanAmount,
-        collateralAmount,
-        recvWindow);
+    var response = await client.CryptoLoans.CryptoLoanBorrowTrade(new CryptoLoanBorrowTradeRequest
+    {
+        LoanCoin = "BUSD",
+        CollateralCoin = "BNB",
+        LoanTerm = 30,
+        Timestamp = 1L,
+        Signature = "some example string",
+        LoanAmount = 100.1d,
+        CollateralAmount = 50.5d,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1LoanBorrowResponse
 }
-catch (SdkException<CryptoLoanBorrowTradeError> ex)
+catch (ApiException<CryptoLoanBorrowTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -3412,21 +3247,12 @@ catch (SdkException<CryptoLoanBorrowTradeError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>loanCoin</code> | <code>string</code> | Coin loaned |
-| <code>collateralCoin</code> | <code>string</code> | Coin used as collateral |
-| <code>loanTerm</code> | <code>int</code> | 7/14/30/90/180 days |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>loanAmount</code> | <code>double?</code> | Loan amount |
-| <code>collateralAmount</code> | <code>double?</code> | - |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[CryptoLoanBorrowTradeRequest](Requests/CryptoLoans/CryptoLoanBorrowTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -3438,7 +3264,7 @@ catch (SdkException<CryptoLoanBorrowTradeError> ex)
 
 **OnSuccess**: <code>[SapiV1LoanBorrowResponse](Models/SapiV1LoanBorrowResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[CryptoLoanBorrowTradeError](Errors/CryptoLoanBorrowTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CryptoLoanBorrowTradeError](Errors/CryptoLoanBorrowTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -3449,7 +3275,7 @@ catch (SdkException<CryptoLoanBorrowTradeError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1LoanCustomizeMarginCallResponse&gt; CryptoLoanCustomizeMarginCallTrade(double marginCall, long timestamp, string signature, long? orderId, string? collateralCoin, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1LoanCustomizeMarginCallResponse&gt; CryptoLoanCustomizeMarginCallTrade(CryptoLoanCustomizeMarginCallTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -3474,15 +3300,18 @@ Weight(UID): 6000
 ```csharp
 try
 {
-    var response = await client.CryptoLoans.CryptoLoanCustomizeMarginCallTrade(marginCall,
-        timestamp,
-        signature,
-        orderId,
-        collateralCoin,
-        recvWindow);
+    var response = await client.CryptoLoans.CryptoLoanCustomizeMarginCallTrade(
+        new CryptoLoanCustomizeMarginCallTradeRequest
+        {
+            MarginCall = 1.5d,
+            Timestamp = 1L,
+            Signature = "some example string",
+            CollateralCoin = "BNB",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1LoanCustomizeMarginCallResponse
 }
-catch (SdkException<CryptoLoanCustomizeMarginCallTradeError> ex)
+catch (ApiException<CryptoLoanCustomizeMarginCallTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -3494,19 +3323,12 @@ catch (SdkException<CryptoLoanCustomizeMarginCallTradeError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>marginCall</code> | <code>double</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>orderId</code> | <code>long?</code> | Mandatory when collateralCoin is empty. Send either orderId or collateralCoin, if both parameters are sent, take orderId only. |
-| <code>collateralCoin</code> | <code>string?</code> | Coin used as collateral |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[CryptoLoanCustomizeMarginCallTradeRequest](Requests/CryptoLoans/CryptoLoanCustomizeMarginCallTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -3518,7 +3340,7 @@ catch (SdkException<CryptoLoanCustomizeMarginCallTradeError> ex)
 
 **OnSuccess**: <code>[SapiV1LoanCustomizeMarginCallResponse](Models/SapiV1LoanCustomizeMarginCallResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[CryptoLoanCustomizeMarginCallTradeError](Errors/CryptoLoanCustomizeMarginCallTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CryptoLoanCustomizeMarginCallTradeError](Errors/CryptoLoanCustomizeMarginCallTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -3529,7 +3351,7 @@ catch (SdkException<CryptoLoanCustomizeMarginCallTradeError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1LoanRepayResponse&gt; CryptoLoanRepayTrade(long orderId, double amount, long timestamp, string signature, int? type, bool? collateralReturn, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1LoanRepayResponse&gt; CryptoLoanRepayTrade(CryptoLoanRepayTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -3552,16 +3374,19 @@ Weight(UID): 6000
 ```csharp
 try
 {
-    var response = await client.CryptoLoans.CryptoLoanRepayTrade(orderId,
-        amount,
-        timestamp,
-        signature,
-        type,
-        collateralReturn,
-        recvWindow);
+    var response = await client.CryptoLoans.CryptoLoanRepayTrade(new CryptoLoanRepayTradeRequest
+    {
+        OrderId = 123456789L,
+        Amount = 100.5d,
+        Timestamp = 1L,
+        Signature = "some example string",
+        Type = 1,
+        CollateralReturn = true,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1LoanRepayResponse
 }
-catch (SdkException<CryptoLoanRepayTradeError> ex)
+catch (ApiException<CryptoLoanRepayTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -3573,20 +3398,12 @@ catch (SdkException<CryptoLoanRepayTradeError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>orderId</code> | <code>long</code> | Order ID |
-| <code>amount</code> | <code>double</code> | Repayment Amount |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>type</code> | <code>int?</code> | Default: 1. 1 for 'repay with borrowed coin'; 2 for 'repay with collateral'. |
-| <code>collateralReturn</code> | <code>bool?</code> | Default: TRUE. TRUE: Return extra collateral to spot account; FALSE: Keep extra collateral in the order. |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[CryptoLoanRepayTradeRequest](Requests/CryptoLoans/CryptoLoanRepayTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -3598,7 +3415,7 @@ catch (SdkException<CryptoLoanRepayTradeError> ex)
 
 **OnSuccess**: <code>[SapiV1LoanRepayResponse](Models/AnyOf/SapiV1LoanRepayResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[CryptoLoanRepayTradeError](Errors/CryptoLoanRepayTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CryptoLoanRepayTradeError](Errors/CryptoLoanRepayTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -3609,7 +3426,7 @@ catch (SdkException<CryptoLoanRepayTradeError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1LoanCollateralDataResponse&gt; GetCollateralAssetsDataUserData(long timestamp, string signature, string? collateralCoin, int? vipLevel, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1LoanCollateralDataResponse&gt; GetCollateralAssetsDataUserData(GetCollateralAssetsDataUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -3634,14 +3451,17 @@ Weight(IP): 400
 ```csharp
 try
 {
-    var response = await client.CryptoLoans.GetCollateralAssetsDataUserData(timestamp,
-        signature,
-        collateralCoin,
-        vipLevel,
-        recvWindow);
+    var response = await client.CryptoLoans.GetCollateralAssetsDataUserData(new GetCollateralAssetsDataUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        CollateralCoin = "BNB",
+        VipLevel = 1,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1LoanCollateralDataResponse
 }
-catch (SdkException<GetCollateralAssetsDataUserDataError> ex)
+catch (ApiException<GetCollateralAssetsDataUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -3653,18 +3473,12 @@ catch (SdkException<GetCollateralAssetsDataUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>collateralCoin</code> | <code>string?</code> | Coin used as collateral |
-| <code>vipLevel</code> | <code>int?</code> | Defaults to user's vip level |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetCollateralAssetsDataUserDataRequest](Requests/CryptoLoans/GetCollateralAssetsDataUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -3676,7 +3490,7 @@ catch (SdkException<GetCollateralAssetsDataUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1LoanCollateralDataResponse](Models/SapiV1LoanCollateralDataResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetCollateralAssetsDataUserDataError](Errors/GetCollateralAssetsDataUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetCollateralAssetsDataUserDataError](Errors/GetCollateralAssetsDataUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -3687,7 +3501,7 @@ catch (SdkException<GetCollateralAssetsDataUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1LoanBorrowHistoryResponse&gt; GetCryptoLoansBorrowHistoryUserData(long timestamp, string signature, long? orderId, string? loanCoin, string? collateralCoin, long? startTime, long? endTime, int? current, long? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1LoanBorrowHistoryResponse&gt; GetCryptoLoansBorrowHistoryUserData(GetCryptoLoansBorrowHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -3713,19 +3527,21 @@ Weight(IP): 400
 ```csharp
 try
 {
-    var response = await client.CryptoLoans.GetCryptoLoansBorrowHistoryUserData(timestamp,
-        signature,
-        orderId,
-        loanCoin,
-        collateralCoin,
-        startTime,
-        endTime,
-        current,
-        limit,
-        recvWindow);
+    var response = await client.CryptoLoans.GetCryptoLoansBorrowHistoryUserData(
+        new GetCryptoLoansBorrowHistoryUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            OrderId = 10L,
+            LoanCoin = "BUSD",
+            CollateralCoin = "BNB",
+            Current = 1,
+            Limit = 10L,
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1LoanBorrowHistoryResponse
 }
-catch (SdkException<GetCryptoLoansBorrowHistoryUserDataError> ex)
+catch (ApiException<GetCryptoLoansBorrowHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -3737,23 +3553,12 @@ catch (SdkException<GetCryptoLoansBorrowHistoryUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>orderId</code> | <code>long?</code> | orderId in POST /sapi/v1/loan/borrow |
-| <code>loanCoin</code> | <code>string?</code> | Coin loaned |
-| <code>collateralCoin</code> | <code>string?</code> | Coin used as collateral |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>current</code> | <code>int?</code> | Current querying page. Start from 1. Default:1 |
-| <code>limit</code> | <code>long?</code> | default 10, max 100 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetCryptoLoansBorrowHistoryUserDataRequest](Requests/CryptoLoans/GetCryptoLoansBorrowHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -3765,7 +3570,7 @@ catch (SdkException<GetCryptoLoansBorrowHistoryUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1LoanBorrowHistoryResponse](Models/SapiV1LoanBorrowHistoryResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetCryptoLoansBorrowHistoryUserDataError](Errors/GetCryptoLoansBorrowHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetCryptoLoansBorrowHistoryUserDataError](Errors/GetCryptoLoansBorrowHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -3776,7 +3581,7 @@ catch (SdkException<GetCryptoLoansBorrowHistoryUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1LoanIncomeResponse&gt;&gt; GetCryptoLoansIncomeHistoryUserData(long timestamp, string signature, string? asset, Type9? type, long? startTime, long? endTime, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1LoanIncomeResponse&gt;&gt; GetCryptoLoansIncomeHistoryUserData(GetCryptoLoansIncomeHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -3802,17 +3607,18 @@ Weight(UID): 6000
 ```csharp
 try
 {
-    var response = await client.CryptoLoans.GetCryptoLoansIncomeHistoryUserData(timestamp,
-        signature,
-        asset,
-        type,
-        startTime,
-        endTime,
-        limit,
-        recvWindow);
+    var response = await client.CryptoLoans.GetCryptoLoansIncomeHistoryUserData(
+        new GetCryptoLoansIncomeHistoryUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            Asset = "BNB",
+            Limit = 20,
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1LoanIncomeResponse>
 }
-catch (SdkException<GetCryptoLoansIncomeHistoryUserDataError> ex)
+catch (ApiException<GetCryptoLoansIncomeHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -3824,21 +3630,12 @@ catch (SdkException<GetCryptoLoansIncomeHistoryUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>asset</code> | <code>string?</code> | - |
-| <code>type</code> | <code>[Type9?](Models/Enums/Type9.cs)</code> | All types will be returned by default.<br>  * `borrowIn`<br>  * `collateralSpent`<br>  * `repayAmount`<br>  * `collateralReturn` - Collateral return after repayment<br>  * `addCollateral`<br>  * `removeCollateral`<br>  * `collateralReturnAfterLiquidation` |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>limit</code> | <code>int?</code> | default 20, max 100 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetCryptoLoansIncomeHistoryUserDataRequest](Requests/CryptoLoans/GetCryptoLoansIncomeHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -3850,7 +3647,7 @@ catch (SdkException<GetCryptoLoansIncomeHistoryUserDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1LoanIncomeResponse](Models/SapiV1LoanIncomeResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetCryptoLoansIncomeHistoryUserDataError](Errors/GetCryptoLoansIncomeHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetCryptoLoansIncomeHistoryUserDataError](Errors/GetCryptoLoansIncomeHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -3861,7 +3658,7 @@ catch (SdkException<GetCryptoLoansIncomeHistoryUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV2LoanFlexibleLoanableDataResponse&gt; GetFlexibleLoanAssetsDataUserData(long timestamp, string signature, string? loanCoin, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV2LoanFlexibleLoanableDataResponse&gt; GetFlexibleLoanAssetsDataUserData(GetFlexibleLoanAssetsDataUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -3886,13 +3683,17 @@ Weight(IP): 400
 ```csharp
 try
 {
-    var response = await client.CryptoLoans.GetFlexibleLoanAssetsDataUserData(timestamp,
-        signature,
-        loanCoin,
-        recvWindow);
+    var response = await client.CryptoLoans.GetFlexibleLoanAssetsDataUserData(
+        new GetFlexibleLoanAssetsDataUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            LoanCoin = "BUSD",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV2LoanFlexibleLoanableDataResponse
 }
-catch (SdkException<GetFlexibleLoanAssetsDataUserDataError> ex)
+catch (ApiException<GetFlexibleLoanAssetsDataUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -3904,17 +3705,12 @@ catch (SdkException<GetFlexibleLoanAssetsDataUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>loanCoin</code> | <code>string?</code> | Coin loaned |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetFlexibleLoanAssetsDataUserDataRequest](Requests/CryptoLoans/GetFlexibleLoanAssetsDataUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -3926,7 +3722,7 @@ catch (SdkException<GetFlexibleLoanAssetsDataUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV2LoanFlexibleLoanableDataResponse](Models/SapiV2LoanFlexibleLoanableDataResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetFlexibleLoanAssetsDataUserDataError](Errors/GetFlexibleLoanAssetsDataUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetFlexibleLoanAssetsDataUserDataError](Errors/GetFlexibleLoanAssetsDataUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -3937,7 +3733,7 @@ catch (SdkException<GetFlexibleLoanAssetsDataUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV2LoanFlexibleCollateralDataResponse&gt; GetFlexibleLoanCollateralAssetsDataUserData(long timestamp, string signature, string? collateralCoin, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV2LoanFlexibleCollateralDataResponse&gt; GetFlexibleLoanCollateralAssetsDataUserData(GetFlexibleLoanCollateralAssetsDataUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -3962,13 +3758,17 @@ Weight(IP): 400
 ```csharp
 try
 {
-    var response = await client.CryptoLoans.GetFlexibleLoanCollateralAssetsDataUserData(timestamp,
-        signature,
-        collateralCoin,
-        recvWindow);
+    var response = await client.CryptoLoans.GetFlexibleLoanCollateralAssetsDataUserData(
+        new GetFlexibleLoanCollateralAssetsDataUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            CollateralCoin = "BNB",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV2LoanFlexibleCollateralDataResponse
 }
-catch (SdkException<GetFlexibleLoanCollateralAssetsDataUserDataError> ex)
+catch (ApiException<GetFlexibleLoanCollateralAssetsDataUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -3980,17 +3780,12 @@ catch (SdkException<GetFlexibleLoanCollateralAssetsDataUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>collateralCoin</code> | <code>string?</code> | Coin used as collateral |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetFlexibleLoanCollateralAssetsDataUserDataRequest](Requests/CryptoLoans/GetFlexibleLoanCollateralAssetsDataUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -4002,7 +3797,7 @@ catch (SdkException<GetFlexibleLoanCollateralAssetsDataUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV2LoanFlexibleCollateralDataResponse](Models/SapiV2LoanFlexibleCollateralDataResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetFlexibleLoanCollateralAssetsDataUserDataError](Errors/GetFlexibleLoanCollateralAssetsDataUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetFlexibleLoanCollateralAssetsDataUserDataError](Errors/GetFlexibleLoanCollateralAssetsDataUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -4013,7 +3808,7 @@ catch (SdkException<GetFlexibleLoanCollateralAssetsDataUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1LoanLtvAdjustmentHistoryResponse&gt; GetLoanLtvAdjustmentHistoryUserData(long timestamp, string signature, long? orderId, string? loanCoin, string? collateralCoin, long? startTime, long? endTime, int? current, long? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1LoanLtvAdjustmentHistoryResponse&gt; GetLoanLtvAdjustmentHistoryUserData(GetLoanLtvAdjustmentHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -4039,19 +3834,21 @@ Weight(IP): 400
 ```csharp
 try
 {
-    var response = await client.CryptoLoans.GetLoanLtvAdjustmentHistoryUserData(timestamp,
-        signature,
-        orderId,
-        loanCoin,
-        collateralCoin,
-        startTime,
-        endTime,
-        current,
-        limit,
-        recvWindow);
+    var response = await client.CryptoLoans.GetLoanLtvAdjustmentHistoryUserData(
+        new GetLoanLtvAdjustmentHistoryUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            OrderId = 10L,
+            LoanCoin = "BUSD",
+            CollateralCoin = "BNB",
+            Current = 1,
+            Limit = 10L,
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1LoanLtvAdjustmentHistoryResponse
 }
-catch (SdkException<GetLoanLtvAdjustmentHistoryUserDataError> ex)
+catch (ApiException<GetLoanLtvAdjustmentHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -4063,23 +3860,12 @@ catch (SdkException<GetLoanLtvAdjustmentHistoryUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>orderId</code> | <code>long?</code> | Order ID |
-| <code>loanCoin</code> | <code>string?</code> | Coin loaned |
-| <code>collateralCoin</code> | <code>string?</code> | Coin used as collateral |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>current</code> | <code>int?</code> | Current querying page. Start from 1. Default:1 |
-| <code>limit</code> | <code>long?</code> | default 10, max 100 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetLoanLtvAdjustmentHistoryUserDataRequest](Requests/CryptoLoans/GetLoanLtvAdjustmentHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -4091,7 +3877,7 @@ catch (SdkException<GetLoanLtvAdjustmentHistoryUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1LoanLtvAdjustmentHistoryResponse](Models/SapiV1LoanLtvAdjustmentHistoryResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetLoanLtvAdjustmentHistoryUserDataError](Errors/GetLoanLtvAdjustmentHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetLoanLtvAdjustmentHistoryUserDataError](Errors/GetLoanLtvAdjustmentHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -4102,7 +3888,7 @@ catch (SdkException<GetLoanLtvAdjustmentHistoryUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1LoanOngoingOrdersResponse&gt; GetLoanOngoingOrdersUserData(long timestamp, string signature, long? orderId, string? loanCoin, string? collateralCoin, int? current, long? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1LoanOngoingOrdersResponse&gt; GetLoanOngoingOrdersUserData(GetLoanOngoingOrdersUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -4125,17 +3911,20 @@ Weight(IP): 300
 ```csharp
 try
 {
-    var response = await client.CryptoLoans.GetLoanOngoingOrdersUserData(timestamp,
-        signature,
-        orderId,
-        loanCoin,
-        collateralCoin,
-        current,
-        limit,
-        recvWindow);
+    var response = await client.CryptoLoans.GetLoanOngoingOrdersUserData(new GetLoanOngoingOrdersUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        OrderId = 10L,
+        LoanCoin = "BUSD",
+        CollateralCoin = "BNB",
+        Current = 1,
+        Limit = 10L,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1LoanOngoingOrdersResponse
 }
-catch (SdkException<GetLoanOngoingOrdersUserDataError> ex)
+catch (ApiException<GetLoanOngoingOrdersUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -4147,21 +3936,12 @@ catch (SdkException<GetLoanOngoingOrdersUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>orderId</code> | <code>long?</code> | orderId in POST /sapi/v1/loan/borrow |
-| <code>loanCoin</code> | <code>string?</code> | Coin loaned |
-| <code>collateralCoin</code> | <code>string?</code> | Coin used as collateral |
-| <code>current</code> | <code>int?</code> | Current querying page. Start from 1; default:1, max:1000 |
-| <code>limit</code> | <code>long?</code> | default 10, max 100 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetLoanOngoingOrdersUserDataRequest](Requests/CryptoLoans/GetLoanOngoingOrdersUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -4173,7 +3953,7 @@ catch (SdkException<GetLoanOngoingOrdersUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1LoanOngoingOrdersResponse](Models/SapiV1LoanOngoingOrdersResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetLoanOngoingOrdersUserDataError](Errors/GetLoanOngoingOrdersUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetLoanOngoingOrdersUserDataError](Errors/GetLoanOngoingOrdersUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -4184,7 +3964,7 @@ catch (SdkException<GetLoanOngoingOrdersUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1LoanRepayHistoryResponse&gt; GetLoanRepaymentHistoryUserData(long timestamp, string signature, long? orderId, string? loanCoin, string? collateralCoin, long? startTime, long? endTime, int? current, long? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1LoanRepayHistoryResponse&gt; GetLoanRepaymentHistoryUserData(GetLoanRepaymentHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -4210,19 +3990,20 @@ Weight(IP): 400
 ```csharp
 try
 {
-    var response = await client.CryptoLoans.GetLoanRepaymentHistoryUserData(timestamp,
-        signature,
-        orderId,
-        loanCoin,
-        collateralCoin,
-        startTime,
-        endTime,
-        current,
-        limit,
-        recvWindow);
+    var response = await client.CryptoLoans.GetLoanRepaymentHistoryUserData(new GetLoanRepaymentHistoryUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        OrderId = 10L,
+        LoanCoin = "BUSD",
+        CollateralCoin = "BNB",
+        Current = 1,
+        Limit = 10L,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1LoanRepayHistoryResponse
 }
-catch (SdkException<GetLoanRepaymentHistoryUserDataError> ex)
+catch (ApiException<GetLoanRepaymentHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -4234,23 +4015,12 @@ catch (SdkException<GetLoanRepaymentHistoryUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>orderId</code> | <code>long?</code> | Order ID |
-| <code>loanCoin</code> | <code>string?</code> | Coin loaned |
-| <code>collateralCoin</code> | <code>string?</code> | Coin used as collateral |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>current</code> | <code>int?</code> | Current querying page. Start from 1. Default:1 |
-| <code>limit</code> | <code>long?</code> | default 10, max 100 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetLoanRepaymentHistoryUserDataRequest](Requests/CryptoLoans/GetLoanRepaymentHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -4262,7 +4032,7 @@ catch (SdkException<GetLoanRepaymentHistoryUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1LoanRepayHistoryResponse](Models/SapiV1LoanRepayHistoryResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetLoanRepaymentHistoryUserDataError](Errors/GetLoanRepaymentHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetLoanRepaymentHistoryUserDataError](Errors/GetLoanRepaymentHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -4273,7 +4043,7 @@ catch (SdkException<GetLoanRepaymentHistoryUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1LoanLoanableDataResponse&gt; GetLoanableAssetsDataUserData(long timestamp, string signature, string? loanCoin, int? vipLevel, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1LoanLoanableDataResponse&gt; GetLoanableAssetsDataUserData(GetLoanableAssetsDataUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -4298,14 +4068,17 @@ Weight(IP): 400
 ```csharp
 try
 {
-    var response = await client.CryptoLoans.GetLoanableAssetsDataUserData(timestamp,
-        signature,
-        loanCoin,
-        vipLevel,
-        recvWindow);
+    var response = await client.CryptoLoans.GetLoanableAssetsDataUserData(new GetLoanableAssetsDataUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        LoanCoin = "BUSD",
+        VipLevel = 1,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1LoanLoanableDataResponse
 }
-catch (SdkException<GetLoanableAssetsDataUserDataError> ex)
+catch (ApiException<GetLoanableAssetsDataUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -4317,18 +4090,12 @@ catch (SdkException<GetLoanableAssetsDataUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>loanCoin</code> | <code>string?</code> | Coin loaned |
-| <code>vipLevel</code> | <code>int?</code> | Defaults to user's vip level |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetLoanableAssetsDataUserDataRequest](Requests/CryptoLoans/GetLoanableAssetsDataUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -4340,7 +4107,7 @@ catch (SdkException<GetLoanableAssetsDataUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1LoanLoanableDataResponse](Models/SapiV1LoanLoanableDataResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetLoanableAssetsDataUserDataError](Errors/GetLoanableAssetsDataUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetLoanableAssetsDataUserDataError](Errors/GetLoanableAssetsDataUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -4351,7 +4118,7 @@ catch (SdkException<GetLoanableAssetsDataUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV2LoanFlexibleRepayResponse&gt; RepayFlexibleLoanRepayTrade(double repayAmount, long timestamp, string signature, string? loanCoin, string? collateralCoin, bool? collateralReturn, bool? fullRepayment, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV2LoanFlexibleRepayResponse&gt; RepayFlexibleLoanRepayTrade(RepayFlexibleLoanRepayTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -4376,17 +4143,20 @@ Weight(IP): 6000
 ```csharp
 try
 {
-    var response = await client.CryptoLoans.RepayFlexibleLoanRepayTrade(repayAmount,
-        timestamp,
-        signature,
-        loanCoin,
-        collateralCoin,
-        collateralReturn,
-        fullRepayment,
-        recvWindow);
+    var response = await client.CryptoLoans.RepayFlexibleLoanRepayTrade(new RepayFlexibleLoanRepayTradeRequest
+    {
+        RepayAmount = 1.5d,
+        Timestamp = 1L,
+        Signature = "some example string",
+        LoanCoin = "BUSD",
+        CollateralCoin = "BNB",
+        CollateralReturn = true,
+        FullRepayment = true,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV2LoanFlexibleRepayResponse
 }
-catch (SdkException<RepayFlexibleLoanRepayTradeError> ex)
+catch (ApiException<RepayFlexibleLoanRepayTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -4398,21 +4168,12 @@ catch (SdkException<RepayFlexibleLoanRepayTradeError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>repayAmount</code> | <code>double</code> | repay amount of loanCoin |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>loanCoin</code> | <code>string?</code> | Coin loaned |
-| <code>collateralCoin</code> | <code>string?</code> | Coin used as collateral |
-| <code>collateralReturn</code> | <code>bool?</code> | Default: TRUE.<br>TRUE: Return extra collateral to earn account;<br>FALSE: Keep extra collateral in the order, and lower LTV. |
-| <code>fullRepayment</code> | <code>bool?</code> | Default: FALSE.<br>TRUE: Full repayment;<br>FALSE: Partial repayment, based on loanAmount |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[RepayFlexibleLoanRepayTradeRequest](Requests/CryptoLoans/RepayFlexibleLoanRepayTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -4424,7 +4185,7 @@ catch (SdkException<RepayFlexibleLoanRepayTradeError> ex)
 
 **OnSuccess**: <code>[SapiV2LoanFlexibleRepayResponse](Models/SapiV2LoanFlexibleRepayResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[RepayFlexibleLoanRepayTradeError](Errors/RepayFlexibleLoanRepayTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[RepayFlexibleLoanRepayTradeError](Errors/RepayFlexibleLoanRepayTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -4435,7 +4196,7 @@ catch (SdkException<RepayFlexibleLoanRepayTradeError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV2LoanFlexibleRepayHistoryResponse&gt; RepayGetFlexibleLoanRepaymentHistoryUserData(long timestamp, string signature, string? loanCoin, string? collateralCoin, long? startTime, long? endTime, int? current, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV2LoanFlexibleRepayHistoryResponse&gt; RepayGetFlexibleLoanRepaymentHistoryUserData(RepayGetFlexibleLoanRepaymentHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -4461,18 +4222,20 @@ Weight(IP): 400
 ```csharp
 try
 {
-    var response = await client.CryptoLoans.RepayGetFlexibleLoanRepaymentHistoryUserData(timestamp,
-        signature,
-        loanCoin,
-        collateralCoin,
-        startTime,
-        endTime,
-        current,
-        limit,
-        recvWindow);
+    var response = await client.CryptoLoans.RepayGetFlexibleLoanRepaymentHistoryUserData(
+        new RepayGetFlexibleLoanRepaymentHistoryUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            LoanCoin = "BUSD",
+            CollateralCoin = "BNB",
+            Current = 1,
+            Limit = 5,
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV2LoanFlexibleRepayHistoryResponse
 }
-catch (SdkException<RepayGetFlexibleLoanRepaymentHistoryUserDataError> ex)
+catch (ApiException<RepayGetFlexibleLoanRepaymentHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -4484,22 +4247,12 @@ catch (SdkException<RepayGetFlexibleLoanRepaymentHistoryUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>loanCoin</code> | <code>string?</code> | Coin loaned |
-| <code>collateralCoin</code> | <code>string?</code> | Coin used as collateral |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>current</code> | <code>int?</code> | Current querying page. Start from 1. Default:1 |
-| <code>limit</code> | <code>int?</code> | Default 500; max 1000. |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[RepayGetFlexibleLoanRepaymentHistoryUserDataRequest](Requests/CryptoLoans/RepayGetFlexibleLoanRepaymentHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -4511,7 +4264,7 @@ catch (SdkException<RepayGetFlexibleLoanRepaymentHistoryUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV2LoanFlexibleRepayHistoryResponse](Models/SapiV2LoanFlexibleRepayHistoryResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[RepayGetFlexibleLoanRepaymentHistoryUserDataError](Errors/RepayGetFlexibleLoanRepaymentHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[RepayGetFlexibleLoanRepaymentHistoryUserDataError](Errors/RepayGetFlexibleLoanRepaymentHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -4526,7 +4279,7 @@ catch (SdkException<RepayGetFlexibleLoanRepaymentHistoryUserDataError> ex)
 > Source: [DualInvestment](Api/DualInvestment.cs)
 
 <details>
-<summary><code>Task&lt;SapiV1DciProductAutoCompoundEditStatusResponse&gt; ChangeAutoCompoundStatusUserData(long positionId, AutoCompoundPlan autoCompoundPlan, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1DciProductAutoCompoundEditStatusResponse&gt; ChangeAutoCompoundStatusUserData(ChangeAutoCompoundStatusUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -4555,14 +4308,18 @@ Rate Limit: Maximum 1 time/s per account
 ```csharp
 try
 {
-    var response = await client.DualInvestment.ChangeAutoCompoundStatusUserData(positionId,
-        autoCompoundPlan,
-        timestamp,
-        signature,
-        recvWindow);
+    var response = await client.DualInvestment.ChangeAutoCompoundStatusUserData(
+        new ChangeAutoCompoundStatusUserDataRequest
+        {
+            PositionId = 1L,
+            AutoCompoundPlan = AutoCompoundPlan.None,
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1DciProductAutoCompoundEditStatusResponse
 }
-catch (SdkException<ChangeAutoCompoundStatusUserDataError> ex)
+catch (ApiException<ChangeAutoCompoundStatusUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -4574,18 +4331,12 @@ catch (SdkException<ChangeAutoCompoundStatusUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>positionId</code> | <code>long</code> | Get positionId from /sapi/v1/dci/product/positions |
-| <code>autoCompoundPlan</code> | <code>[AutoCompoundPlan](Models/Enums/AutoCompoundPlan.cs)</code> | NONE: switch off the plan,<br>STANDARD: standard plan,<br>ADVANCED: advanced plan; |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[ChangeAutoCompoundStatusUserDataRequest](Requests/DualInvestment/ChangeAutoCompoundStatusUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -4597,7 +4348,7 @@ catch (SdkException<ChangeAutoCompoundStatusUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1DciProductAutoCompoundEditStatusResponse](Models/SapiV1DciProductAutoCompoundEditStatusResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[ChangeAutoCompoundStatusUserDataError](Errors/ChangeAutoCompoundStatusUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[ChangeAutoCompoundStatusUserDataError](Errors/ChangeAutoCompoundStatusUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -4608,7 +4359,7 @@ catch (SdkException<ChangeAutoCompoundStatusUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1DciProductAccountsResponse&gt; CheckDualInvestmentAccountsUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1DciProductAccountsResponse&gt; CheckDualInvestmentAccountsUserData(CheckDualInvestmentAccountsUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -4633,10 +4384,16 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.DualInvestment.CheckDualInvestmentAccountsUserData(timestamp, signature, recvWindow);
+    var response = await client.DualInvestment.CheckDualInvestmentAccountsUserData(
+        new CheckDualInvestmentAccountsUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1DciProductAccountsResponse
 }
-catch (SdkException<CheckDualInvestmentAccountsUserDataError> ex)
+catch (ApiException<CheckDualInvestmentAccountsUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -4648,16 +4405,12 @@ catch (SdkException<CheckDualInvestmentAccountsUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[CheckDualInvestmentAccountsUserDataRequest](Requests/DualInvestment/CheckDualInvestmentAccountsUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -4669,7 +4422,7 @@ catch (SdkException<CheckDualInvestmentAccountsUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1DciProductAccountsResponse](Models/SapiV1DciProductAccountsResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[CheckDualInvestmentAccountsUserDataError](Errors/CheckDualInvestmentAccountsUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CheckDualInvestmentAccountsUserDataError](Errors/CheckDualInvestmentAccountsUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -4680,7 +4433,7 @@ catch (SdkException<CheckDualInvestmentAccountsUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1DciProductPositionsResponse&gt; GetDualInvestmentPositionsUserData(long timestamp, string signature, Status2? status, string? pageSize, int? pageIndex, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1DciProductPositionsResponse&gt; GetDualInvestmentPositionsUserData(GetDualInvestmentPositionsUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -4705,15 +4458,16 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.DualInvestment.GetDualInvestmentPositionsUserData(timestamp,
-        signature,
-        status,
-        pageSize,
-        pageIndex,
-        recvWindow);
+    var response = await client.DualInvestment.GetDualInvestmentPositionsUserData(
+        new GetDualInvestmentPositionsUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1DciProductPositionsResponse
 }
-catch (SdkException<GetDualInvestmentPositionsUserDataError> ex)
+catch (ApiException<GetDualInvestmentPositionsUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -4725,19 +4479,12 @@ catch (SdkException<GetDualInvestmentPositionsUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>status</code> | <code>[Status2?](Models/Enums/Status2.cs)</code> | - PENDING: Products are purchasing, will give results later;<br>- PURCHASE_SUCCESS: purchase successfully;<br>- SETTLED: Products are finish settling;<br>- PURCHASE_FAIL: fail to purchase;<br>- REFUNDING: refund ongoing;<br>- REFUND_SUCCESS: refund to spot account successfully;<br>- SETTLING: Products are settling.<br>If don't fill this field, will response all the position status. |
-| <code>pageSize</code> | <code>string?</code> | MIN 1, MAX 100; Default 100 |
-| <code>pageIndex</code> | <code>int?</code> | Page number, default is first page, start form 1 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetDualInvestmentPositionsUserDataRequest](Requests/DualInvestment/GetDualInvestmentPositionsUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -4749,7 +4496,7 @@ catch (SdkException<GetDualInvestmentPositionsUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1DciProductPositionsResponse](Models/SapiV1DciProductPositionsResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetDualInvestmentPositionsUserDataError](Errors/GetDualInvestmentPositionsUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetDualInvestmentPositionsUserDataError](Errors/GetDualInvestmentPositionsUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -4760,7 +4507,7 @@ catch (SdkException<GetDualInvestmentPositionsUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1DciProductListResponse&gt; GetDualInvestmentProductListUserData(OptionType optionType, string exercisedCoin, string investCoin, long timestamp, string signature, string? pageSize, int? pageIndex, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1DciProductListResponse&gt; GetDualInvestmentProductListUserData(GetDualInvestmentProductListUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -4785,17 +4532,19 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.DualInvestment.GetDualInvestmentProductListUserData(optionType,
-        exercisedCoin,
-        investCoin,
-        timestamp,
-        signature,
-        pageSize,
-        pageIndex,
-        recvWindow);
+    var response = await client.DualInvestment.GetDualInvestmentProductListUserData(
+        new GetDualInvestmentProductListUserDataRequest
+        {
+            OptionType = OptionType.Call,
+            ExercisedCoin = "some example string",
+            InvestCoin = "some example string",
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1DciProductListResponse
 }
-catch (SdkException<GetDualInvestmentProductListUserDataError> ex)
+catch (ApiException<GetDualInvestmentProductListUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -4807,21 +4556,12 @@ catch (SdkException<GetDualInvestmentProductListUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>optionType</code> | <code>[OptionType](Models/Enums/OptionType.cs)</code> | Input CALL or PUT |
-| <code>exercisedCoin</code> | <code>string</code> | Target exercised asset, e.g.:<br>if you subscribe to a high sell product (call option), you should input:<br>  - optionType: CALL,<br>  - exercisedCoin: USDT,<br>  - investCoin: BNB;<br><br>if you subscribe to a low buy product (put option), you should input:<br>  - optionType: PUT,<br>  - exercisedCoin: BNB,<br>  - investCoin: USDT; |
-| <code>investCoin</code> | <code>string</code> | Asset used for subscribing, e.g.:<br>if you subscribe to a high sell product (call option), you should input:<br>  - optionType: CALL,<br>  - exercisedCoin: USDT,<br>  - investCoin: BNB;<br><br>if you subscribe to a low buy product (put option), you should input:<br>  - optionType: PUT,<br>  - exercisedCoin: BNB,<br>  - investCoin: USDT; |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>pageSize</code> | <code>string?</code> | MIN 1, MAX 100; Default 100 |
-| <code>pageIndex</code> | <code>int?</code> | Page number, default is first page, start form 1 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetDualInvestmentProductListUserDataRequest](Requests/DualInvestment/GetDualInvestmentProductListUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -4833,7 +4573,7 @@ catch (SdkException<GetDualInvestmentProductListUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1DciProductListResponse](Models/SapiV1DciProductListResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetDualInvestmentProductListUserDataError](Errors/GetDualInvestmentProductListUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetDualInvestmentProductListUserDataError](Errors/GetDualInvestmentProductListUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -4844,7 +4584,7 @@ catch (SdkException<GetDualInvestmentProductListUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1DciProductSubscribeResponse&gt; SubscribeDualInvestmentProductsUserData(string id, string orderId, double depositAmount, AutoCompoundPlan autoCompoundPlan, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1DciProductSubscribeResponse&gt; SubscribeDualInvestmentProductsUserData(SubscribeDualInvestmentProductsUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -4872,16 +4612,20 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.DualInvestment.SubscribeDualInvestmentProductsUserData(id,
-        orderId,
-        depositAmount,
-        autoCompoundPlan,
-        timestamp,
-        signature,
-        recvWindow);
+    var response = await client.DualInvestment.SubscribeDualInvestmentProductsUserData(
+        new SubscribeDualInvestmentProductsUserDataRequest
+        {
+            Id = "some example string",
+            OrderId = "some example string",
+            DepositAmount = 1.5d,
+            AutoCompoundPlan = AutoCompoundPlan.None,
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1DciProductSubscribeResponse
 }
-catch (SdkException<SubscribeDualInvestmentProductsUserDataError> ex)
+catch (ApiException<SubscribeDualInvestmentProductsUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -4893,20 +4637,12 @@ catch (SdkException<SubscribeDualInvestmentProductsUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>id</code> | <code>string</code> | get id from /sapi/v1/dci/product/list |
-| <code>orderId</code> | <code>string</code> | get orderId from /sapi/v1/dci/product/list |
-| <code>depositAmount</code> | <code>double</code> | - |
-| <code>autoCompoundPlan</code> | <code>[AutoCompoundPlan](Models/Enums/AutoCompoundPlan.cs)</code> | NONE: switch off the plan,<br>STANDARD: standard plan,<br>ADVANCED: advanced plan; |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[SubscribeDualInvestmentProductsUserDataRequest](Requests/DualInvestment/SubscribeDualInvestmentProductsUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -4918,7 +4654,7 @@ catch (SdkException<SubscribeDualInvestmentProductsUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1DciProductSubscribeResponse](Models/SapiV1DciProductSubscribeResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[SubscribeDualInvestmentProductsUserDataError](Errors/SubscribeDualInvestmentProductsUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SubscribeDualInvestmentProductsUserDataError](Errors/SubscribeDualInvestmentProductsUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -4933,7 +4669,7 @@ catch (SdkException<SubscribeDualInvestmentProductsUserDataError> ex)
 > Source: [Fiat](Api/Fiat.cs)
 
 <details>
-<summary><code>Task&lt;SapiV1FiatOrdersResponse&gt; FiatDepositWithdrawHistoryUserData(int transactionType, long timestamp, string signature, long? beginTime, long? endTime, int? page, int? rows, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1FiatOrdersResponse&gt; FiatDepositWithdrawHistoryUserData(FiatDepositWithdrawHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -4958,17 +4694,19 @@ Weight(UID): 90000
 ```csharp
 try
 {
-    var response = await client.Fiat.FiatDepositWithdrawHistoryUserData(transactionType,
-        timestamp,
-        signature,
-        beginTime,
-        endTime,
-        page,
-        rows,
-        recvWindow);
+    var response = await client.Fiat.FiatDepositWithdrawHistoryUserData(new FiatDepositWithdrawHistoryUserDataRequest
+    {
+        TransactionType = 1,
+        Timestamp = 1L,
+        Signature = "some example string",
+        BeginTime = 1626144956000L,
+        Page = 1,
+        Rows = 300,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1FiatOrdersResponse
 }
-catch (SdkException<FiatDepositWithdrawHistoryUserDataError> ex)
+catch (ApiException<FiatDepositWithdrawHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -4980,21 +4718,12 @@ catch (SdkException<FiatDepositWithdrawHistoryUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>transactionType</code> | <code>int</code> | * `0` - deposit<br>* `1` - withdraw |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>beginTime</code> | <code>long?</code> | - |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>page</code> | <code>int?</code> | Default 1 |
-| <code>rows</code> | <code>int?</code> | Default 100, max 500 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[FiatDepositWithdrawHistoryUserDataRequest](Requests/Fiat/FiatDepositWithdrawHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -5006,7 +4735,7 @@ catch (SdkException<FiatDepositWithdrawHistoryUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1FiatOrdersResponse](Models/SapiV1FiatOrdersResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[FiatDepositWithdrawHistoryUserDataError](Errors/FiatDepositWithdrawHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[FiatDepositWithdrawHistoryUserDataError](Errors/FiatDepositWithdrawHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -5017,7 +4746,7 @@ catch (SdkException<FiatDepositWithdrawHistoryUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1FiatPaymentsResponse&gt; FiatPaymentsHistoryUserData(int transactionType, long timestamp, string signature, long? beginTime, long? endTime, int? page, int? rows, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1FiatPaymentsResponse&gt; FiatPaymentsHistoryUserData(FiatPaymentsHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -5042,17 +4771,19 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.Fiat.FiatPaymentsHistoryUserData(transactionType,
-        timestamp,
-        signature,
-        beginTime,
-        endTime,
-        page,
-        rows,
-        recvWindow);
+    var response = await client.Fiat.FiatPaymentsHistoryUserData(new FiatPaymentsHistoryUserDataRequest
+    {
+        TransactionType = 1,
+        Timestamp = 1L,
+        Signature = "some example string",
+        BeginTime = 1626144956000L,
+        Page = 1,
+        Rows = 300,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1FiatPaymentsResponse
 }
-catch (SdkException<FiatPaymentsHistoryUserDataError> ex)
+catch (ApiException<FiatPaymentsHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -5064,21 +4795,12 @@ catch (SdkException<FiatPaymentsHistoryUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>transactionType</code> | <code>int</code> | * `0` - deposit<br>* `1` - withdraw |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>beginTime</code> | <code>long?</code> | - |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>page</code> | <code>int?</code> | Default 1 |
-| <code>rows</code> | <code>int?</code> | Default 100, max 500 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[FiatPaymentsHistoryUserDataRequest](Requests/Fiat/FiatPaymentsHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -5090,7 +4812,7 @@ catch (SdkException<FiatPaymentsHistoryUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1FiatPaymentsResponse](Models/SapiV1FiatPaymentsResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[FiatPaymentsHistoryUserDataError](Errors/FiatPaymentsHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[FiatPaymentsHistoryUserDataError](Errors/FiatPaymentsHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -5105,7 +4827,7 @@ catch (SdkException<FiatPaymentsHistoryUserDataError> ex)
 > Source: [Futures](Api/Futures.cs)
 
 <details>
-<summary><code>Task&lt;SapiV1FuturesTransferResponse1&gt; GetFutureAccountTransactionHistoryListUserData(string asset, long startTime, long timestamp, string signature, long? endTime, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1FuturesTransferResponse1&gt; GetFutureAccountTransactionHistoryListUserData(GetFutureAccountTransactionHistoryListUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -5128,17 +4850,20 @@ Weight(IP): 10
 ```csharp
 try
 {
-    var response = await client.Futures.GetFutureAccountTransactionHistoryListUserData(asset,
-        startTime,
-        timestamp,
-        signature,
-        endTime,
-        current,
-        size,
-        recvWindow);
+    var response = await client.Futures.GetFutureAccountTransactionHistoryListUserData(
+        new GetFutureAccountTransactionHistoryListUserDataRequest
+        {
+            Asset = "BTC",
+            StartTime = 1L,
+            Timestamp = 1L,
+            Signature = "some example string",
+            Current = 1,
+            Size = 100,
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1FuturesTransferResponse1
 }
-catch (SdkException<GetFutureAccountTransactionHistoryListUserDataError> ex)
+catch (ApiException<GetFutureAccountTransactionHistoryListUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -5150,21 +4875,12 @@ catch (SdkException<GetFutureAccountTransactionHistoryListUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>asset</code> | <code>string</code> | - |
-| <code>startTime</code> | <code>long</code> | UTC timestamp in ms |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>current</code> | <code>int?</code> | Current querying page. Start from 1. Default:1 |
-| <code>size</code> | <code>int?</code> | Default:10 Max:100 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetFutureAccountTransactionHistoryListUserDataRequest](Requests/Futures/GetFutureAccountTransactionHistoryListUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -5176,7 +4892,7 @@ catch (SdkException<GetFutureAccountTransactionHistoryListUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1FuturesTransferResponse1](Models/SapiV1FuturesTransferResponse1.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetFutureAccountTransactionHistoryListUserDataError](Errors/GetFutureAccountTransactionHistoryListUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetFutureAccountTransactionHistoryListUserDataError](Errors/GetFutureAccountTransactionHistoryListUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -5187,7 +4903,7 @@ catch (SdkException<GetFutureAccountTransactionHistoryListUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1FuturesHistDataLinkResponse&gt; GetFutureTickLevelOrderbookHistoricalDataDownloadLinkUserData(string symbol, DataTypeEnum dataType, long timestamp, string signature, long? startTime, long? endTime, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1FuturesHistDataLinkResponse&gt; GetFutureTickLevelOrderbookHistoricalDataDownloadLinkUserData(GetFutureTickLevelOrderbookHistoricalDataDownloadLinkUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -5210,16 +4926,18 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.Futures.GetFutureTickLevelOrderbookHistoricalDataDownloadLinkUserData(symbol,
-        dataType,
-        timestamp,
-        signature,
-        startTime,
-        endTime,
-        recvWindow);
+    var response = await client.Futures.GetFutureTickLevelOrderbookHistoricalDataDownloadLinkUserData(
+        new GetFutureTickLevelOrderbookHistoricalDataDownloadLinkUserDataRequest
+        {
+            Symbol = "BTCUSDT",
+            DataType = DataTypeEnum.TDepth,
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1FuturesHistDataLinkResponse
 }
-catch (SdkException<GetFutureTickLevelOrderbookHistoricalDataDownloadLinkUserDataError> ex)
+catch (ApiException<GetFutureTickLevelOrderbookHistoricalDataDownloadLinkUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -5231,20 +4949,12 @@ catch (SdkException<GetFutureTickLevelOrderbookHistoricalDataDownloadLinkUserDat
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string</code> | - |
-| <code>dataType</code> | <code>[DataTypeEnum](Models/Enums/DataTypeEnum.cs)</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetFutureTickLevelOrderbookHistoricalDataDownloadLinkUserDataRequest](Requests/Futures/GetFutureTickLevelOrderbookHistoricalDataDownloadLinkUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -5256,7 +4966,7 @@ catch (SdkException<GetFutureTickLevelOrderbookHistoricalDataDownloadLinkUserDat
 
 **OnSuccess**: <code>[SapiV1FuturesHistDataLinkResponse](Models/SapiV1FuturesHistDataLinkResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetFutureTickLevelOrderbookHistoricalDataDownloadLinkUserDataError](Errors/GetFutureTickLevelOrderbookHistoricalDataDownloadLinkUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetFutureTickLevelOrderbookHistoricalDataDownloadLinkUserDataError](Errors/GetFutureTickLevelOrderbookHistoricalDataDownloadLinkUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -5267,7 +4977,7 @@ catch (SdkException<GetFutureTickLevelOrderbookHistoricalDataDownloadLinkUserDat
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1FuturesTransferResponse&gt; NewFutureAccountTransferUserData(string asset, double amount, long type, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1FuturesTransferResponse&gt; NewFutureAccountTransferUserData(NewFutureAccountTransferUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -5292,15 +5002,18 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.Futures.NewFutureAccountTransferUserData(asset,
-        amount,
-        type,
-        timestamp,
-        signature,
-        recvWindow);
+    var response = await client.Futures.NewFutureAccountTransferUserData(new NewFutureAccountTransferUserDataRequest
+    {
+        Asset = "BTC",
+        Amount = 1.01d,
+        Type = 1L,
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1FuturesTransferResponse
 }
-catch (SdkException<NewFutureAccountTransferUserDataError> ex)
+catch (ApiException<NewFutureAccountTransferUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -5312,19 +5025,12 @@ catch (SdkException<NewFutureAccountTransferUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>asset</code> | <code>string</code> | - |
-| <code>amount</code> | <code>double</code> | - |
-| <code>type</code> | <code>long</code> | 1: transfer from spot account to USDT-Ⓜ futures account. 2: transfer from USDT-Ⓜ futures account to spot account. 3: transfer from spot account to COIN-Ⓜ futures account. 4: transfer from COIN-Ⓜ futures account to spot account. |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[NewFutureAccountTransferUserDataRequest](Requests/Futures/NewFutureAccountTransferUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -5336,7 +5042,7 @@ catch (SdkException<NewFutureAccountTransferUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1FuturesTransferResponse](Models/SapiV1FuturesTransferResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[NewFutureAccountTransferUserDataError](Errors/NewFutureAccountTransferUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[NewFutureAccountTransferUserDataError](Errors/NewFutureAccountTransferUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -5351,7 +5057,7 @@ catch (SdkException<NewFutureAccountTransferUserDataError> ex)
 > Source: [FuturesAlgo](Api/FuturesAlgo.cs)
 
 <details>
-<summary><code>Task&lt;SapiV1AlgoFuturesOrderResponse&gt; CancelAlgoOrderTrade(long algoId, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1AlgoFuturesOrderResponse&gt; CancelAlgoOrderTrade(CancelAlgoOrderTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -5378,10 +5084,16 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.FuturesAlgo.CancelAlgoOrderTrade(algoId, timestamp, signature, recvWindow);
+    var response = await client.FuturesAlgo.CancelAlgoOrderTrade(new CancelAlgoOrderTradeRequest
+    {
+        AlgoId = 1L,
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1AlgoFuturesOrderResponse
 }
-catch (SdkException<CancelAlgoOrderTradeError> ex)
+catch (ApiException<CancelAlgoOrderTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -5393,17 +5105,12 @@ catch (SdkException<CancelAlgoOrderTradeError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>algoId</code> | <code>long</code> | Eg. 14511 |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[CancelAlgoOrderTradeRequest](Requests/FuturesAlgo/CancelAlgoOrderTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -5415,7 +5122,7 @@ catch (SdkException<CancelAlgoOrderTradeError> ex)
 
 **OnSuccess**: <code>[SapiV1AlgoFuturesOrderResponse](Models/SapiV1AlgoFuturesOrderResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[CancelAlgoOrderTradeError](Errors/CancelAlgoOrderTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CancelAlgoOrderTradeError](Errors/CancelAlgoOrderTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -5426,7 +5133,7 @@ catch (SdkException<CancelAlgoOrderTradeError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1AlgoFuturesOpenOrdersResponse&gt; QueryCurrentAlgoOpenOrdersUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1AlgoFuturesOpenOrdersResponse&gt; QueryCurrentAlgoOpenOrdersUserData(QueryCurrentAlgoOpenOrdersUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -5452,10 +5159,16 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.FuturesAlgo.QueryCurrentAlgoOpenOrdersUserData(timestamp, signature, recvWindow);
+    var response = await client.FuturesAlgo.QueryCurrentAlgoOpenOrdersUserData(
+        new QueryCurrentAlgoOpenOrdersUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1AlgoFuturesOpenOrdersResponse
 }
-catch (SdkException<QueryCurrentAlgoOpenOrdersUserDataError> ex)
+catch (ApiException<QueryCurrentAlgoOpenOrdersUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -5467,16 +5180,12 @@ catch (SdkException<QueryCurrentAlgoOpenOrdersUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryCurrentAlgoOpenOrdersUserDataRequest](Requests/FuturesAlgo/QueryCurrentAlgoOpenOrdersUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -5488,7 +5197,7 @@ catch (SdkException<QueryCurrentAlgoOpenOrdersUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1AlgoFuturesOpenOrdersResponse](Models/SapiV1AlgoFuturesOpenOrdersResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryCurrentAlgoOpenOrdersUserDataError](Errors/QueryCurrentAlgoOpenOrdersUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryCurrentAlgoOpenOrdersUserDataError](Errors/QueryCurrentAlgoOpenOrdersUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -5499,7 +5208,7 @@ catch (SdkException<QueryCurrentAlgoOpenOrdersUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1AlgoFuturesHistoricalOrdersResponse&gt; QueryHistoricalAlgoOrdersUserData(long timestamp, string signature, string? symbol, Side? side, long? startTime, long? endTime, int? page, string? pageSize, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1AlgoFuturesHistoricalOrdersResponse&gt; QueryHistoricalAlgoOrdersUserData(QueryHistoricalAlgoOrdersUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -5525,18 +5234,19 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.FuturesAlgo.QueryHistoricalAlgoOrdersUserData(timestamp,
-        signature,
-        symbol,
-        side,
-        startTime,
-        endTime,
-        page,
-        pageSize,
-        recvWindow);
+    var response = await client.FuturesAlgo.QueryHistoricalAlgoOrdersUserData(
+        new QueryHistoricalAlgoOrdersUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            Symbol = "BNBUSDT",
+            Side = Side.Sell,
+            Page = 1,
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1AlgoFuturesHistoricalOrdersResponse
 }
-catch (SdkException<QueryHistoricalAlgoOrdersUserDataError> ex)
+catch (ApiException<QueryHistoricalAlgoOrdersUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -5548,22 +5258,12 @@ catch (SdkException<QueryHistoricalAlgoOrdersUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>symbol</code> | <code>string?</code> | Trading symbol, e.g. BNBUSDT |
-| <code>side</code> | <code>[Side?](Models/Enums/Side.cs)</code> | - |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>page</code> | <code>int?</code> | Default 1 |
-| <code>pageSize</code> | <code>string?</code> | MIN 1, MAX 100; Default 100 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryHistoricalAlgoOrdersUserDataRequest](Requests/FuturesAlgo/QueryHistoricalAlgoOrdersUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -5575,7 +5275,7 @@ catch (SdkException<QueryHistoricalAlgoOrdersUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1AlgoFuturesHistoricalOrdersResponse](Models/SapiV1AlgoFuturesHistoricalOrdersResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryHistoricalAlgoOrdersUserDataError](Errors/QueryHistoricalAlgoOrdersUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryHistoricalAlgoOrdersUserDataError](Errors/QueryHistoricalAlgoOrdersUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -5586,7 +5286,7 @@ catch (SdkException<QueryHistoricalAlgoOrdersUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1AlgoFuturesSubOrdersResponse&gt; QuerySubOrdersUserData(long algoId, long timestamp, string signature, int? page, string? pageSize, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1AlgoFuturesSubOrdersResponse&gt; QuerySubOrdersUserData(QuerySubOrdersUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -5612,15 +5312,17 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.FuturesAlgo.QuerySubOrdersUserData(algoId,
-        timestamp,
-        signature,
-        page,
-        pageSize,
-        recvWindow);
+    var response = await client.FuturesAlgo.QuerySubOrdersUserData(new QuerySubOrdersUserDataRequest
+    {
+        AlgoId = 1L,
+        Timestamp = 1L,
+        Signature = "some example string",
+        Page = 1,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1AlgoFuturesSubOrdersResponse
 }
-catch (SdkException<QuerySubOrdersUserDataError> ex)
+catch (ApiException<QuerySubOrdersUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -5632,19 +5334,12 @@ catch (SdkException<QuerySubOrdersUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>algoId</code> | <code>long</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>page</code> | <code>int?</code> | Default 1 |
-| <code>pageSize</code> | <code>string?</code> | MIN 1, MAX 100; Default 100 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QuerySubOrdersUserDataRequest](Requests/FuturesAlgo/QuerySubOrdersUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -5656,7 +5351,7 @@ catch (SdkException<QuerySubOrdersUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1AlgoFuturesSubOrdersResponse](Models/SapiV1AlgoFuturesSubOrdersResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QuerySubOrdersUserDataError](Errors/QuerySubOrdersUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QuerySubOrdersUserDataError](Errors/QuerySubOrdersUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -5667,7 +5362,7 @@ catch (SdkException<QuerySubOrdersUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1AlgoFuturesNewOrderTwapResponse&gt; TimeWeightedAveragePriceTwapNewOrderTrade(string symbol, Side side, double quantity, long duration, long timestamp, string signature, PositionSide? positionSide, string? clientAlgoId, bool? reduceOnly, double? limitPrice, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1AlgoFuturesNewOrderTwapResponse&gt; TimeWeightedAveragePriceTwapNewOrderTrade(TimeWeightedAveragePriceTwapNewOrderTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -5702,20 +5397,22 @@ Weight(UID): 3000
 ```csharp
 try
 {
-    var response = await client.FuturesAlgo.TimeWeightedAveragePriceTwapNewOrderTrade(symbol,
-        side,
-        quantity,
-        duration,
-        timestamp,
-        signature,
-        positionSide,
-        clientAlgoId,
-        reduceOnly,
-        limitPrice,
-        recvWindow);
+    var response = await client.FuturesAlgo.TimeWeightedAveragePriceTwapNewOrderTrade(
+        new TimeWeightedAveragePriceTwapNewOrderTradeRequest
+        {
+            Symbol = "BNBUSDT",
+            Side = Side.Sell,
+            Quantity = 1.5d,
+            Duration = 300L,
+            Timestamp = 1L,
+            Signature = "some example string",
+            PositionSide = PositionSide.Both,
+            ClientAlgoId = "00358ce6a268403398bd34eaa36dffe7",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1AlgoFuturesNewOrderTwapResponse
 }
-catch (SdkException<TimeWeightedAveragePriceTwapNewOrderTradeError> ex)
+catch (ApiException<TimeWeightedAveragePriceTwapNewOrderTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -5727,24 +5424,12 @@ catch (SdkException<TimeWeightedAveragePriceTwapNewOrderTradeError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string</code> | Trading symbol, e.g. BNBUSDT |
-| <code>side</code> | <code>[Side](Models/Enums/Side.cs)</code> | - |
-| <code>quantity</code> | <code>double</code> | Quantity of base asset; The notional (quantity * mark price(base asset)) must be more than the equivalent of 10,000 USDT and less than the equivalent of 1,000,000 USDT |
-| <code>duration</code> | <code>long</code> | Duration for TWAP orders in seconds. [300, 86400];Less than 5min => defaults to 5 min; Greater than 24h => defaults to 24h |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>positionSide</code> | <code>[PositionSide?](Models/Enums/PositionSide.cs)</code> | Default BOTH for One-way Mode ; LONG or SHORT for Hedge Mode. It must be sent in Hedge Mode. |
-| <code>clientAlgoId</code> | <code>string?</code> | A unique id among Algo orders (length should be 32 characters)， If it is not sent, we will give default value |
-| <code>reduceOnly</code> | <code>bool?</code> | 'true' or 'false'. Default 'false'; Cannot be sent in Hedge Mode; Cannot be sent when you open a position |
-| <code>limitPrice</code> | <code>double?</code> | Limit price of the order; If it is not sent, will place order by market price by default |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[TimeWeightedAveragePriceTwapNewOrderTradeRequest](Requests/FuturesAlgo/TimeWeightedAveragePriceTwapNewOrderTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -5756,7 +5441,7 @@ catch (SdkException<TimeWeightedAveragePriceTwapNewOrderTradeError> ex)
 
 **OnSuccess**: <code>[SapiV1AlgoFuturesNewOrderTwapResponse](Models/SapiV1AlgoFuturesNewOrderTwapResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[TimeWeightedAveragePriceTwapNewOrderTradeError](Errors/TimeWeightedAveragePriceTwapNewOrderTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[TimeWeightedAveragePriceTwapNewOrderTradeError](Errors/TimeWeightedAveragePriceTwapNewOrderTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -5767,7 +5452,7 @@ catch (SdkException<TimeWeightedAveragePriceTwapNewOrderTradeError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1AlgoFuturesNewOrderVpResponse&gt; VolumeParticipationVpNewOrderTrade(string symbol, Side side, double quantity, Urgency urgency, long timestamp, string signature, PositionSide? positionSide, string? clientAlgoId, bool? reduceOnly, double? limitPrice, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1AlgoFuturesNewOrderVpResponse&gt; VolumeParticipationVpNewOrderTrade(VolumeParticipationVpNewOrderTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -5799,20 +5484,22 @@ Weight(UID): 3000
 ```csharp
 try
 {
-    var response = await client.FuturesAlgo.VolumeParticipationVpNewOrderTrade(symbol,
-        side,
-        quantity,
-        urgency,
-        timestamp,
-        signature,
-        positionSide,
-        clientAlgoId,
-        reduceOnly,
-        limitPrice,
-        recvWindow);
+    var response = await client.FuturesAlgo.VolumeParticipationVpNewOrderTrade(
+        new VolumeParticipationVpNewOrderTradeRequest
+        {
+            Symbol = "BNBUSDT",
+            Side = Side.Sell,
+            Quantity = 1.5d,
+            Urgency = Urgency.Low,
+            Timestamp = 1L,
+            Signature = "some example string",
+            PositionSide = PositionSide.Both,
+            ClientAlgoId = "00358ce6a268403398bd34eaa36dffe7",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1AlgoFuturesNewOrderVpResponse
 }
-catch (SdkException<VolumeParticipationVpNewOrderTradeError> ex)
+catch (ApiException<VolumeParticipationVpNewOrderTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -5824,24 +5511,12 @@ catch (SdkException<VolumeParticipationVpNewOrderTradeError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string</code> | Trading symbol, e.g. BNBUSDT |
-| <code>side</code> | <code>[Side](Models/Enums/Side.cs)</code> | - |
-| <code>quantity</code> | <code>double</code> | Quantity of base asset; The notional (quantity * mark price(base asset)) must be more than the equivalent of 10,000 USDT and less than the equivalent of 1,000,000 USDT |
-| <code>urgency</code> | <code>[Urgency](Models/Enums/Urgency.cs)</code> | Represent the relative speed of the current execution; ENUM: LOW, MEDIUM, HIGH |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>positionSide</code> | <code>[PositionSide?](Models/Enums/PositionSide.cs)</code> | Default BOTH for One-way Mode ; LONG or SHORT for Hedge Mode. It must be sent in Hedge Mode. |
-| <code>clientAlgoId</code> | <code>string?</code> | A unique id among Algo orders (length should be 32 characters)， If it is not sent, we will give default value |
-| <code>reduceOnly</code> | <code>bool?</code> | 'true' or 'false'. Default 'false'; Cannot be sent in Hedge Mode; Cannot be sent when you open a position |
-| <code>limitPrice</code> | <code>double?</code> | Limit price of the order; If it is not sent, will place order by market price by default |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[VolumeParticipationVpNewOrderTradeRequest](Requests/FuturesAlgo/VolumeParticipationVpNewOrderTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -5853,7 +5528,7 @@ catch (SdkException<VolumeParticipationVpNewOrderTradeError> ex)
 
 **OnSuccess**: <code>[SapiV1AlgoFuturesNewOrderVpResponse](Models/SapiV1AlgoFuturesNewOrderVpResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[VolumeParticipationVpNewOrderTradeError](Errors/VolumeParticipationVpNewOrderTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[VolumeParticipationVpNewOrderTradeError](Errors/VolumeParticipationVpNewOrderTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -5868,7 +5543,7 @@ catch (SdkException<VolumeParticipationVpNewOrderTradeError> ex)
 > Source: [GiftCard](Api/GiftCard.cs)
 
 <details>
-<summary><code>Task&lt;SapiV1GiftcardBuyCodeResponse&gt; BuyABinanceCodeTrade(string baseToken, string faceToken, double baseTokenAmount, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1GiftcardBuyCodeResponse&gt; BuyABinanceCodeTrade(BuyABinanceCodeTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -5903,15 +5578,18 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.GiftCard.BuyABinanceCodeTrade(baseToken,
-        faceToken,
-        baseTokenAmount,
-        timestamp,
-        signature,
-        recvWindow);
+    var response = await client.GiftCard.BuyABinanceCodeTrade(new BuyABinanceCodeTradeRequest
+    {
+        BaseToken = "some example string",
+        FaceToken = "some example string",
+        BaseTokenAmount = 1.5d,
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1GiftcardBuyCodeResponse
 }
-catch (SdkException<BuyABinanceCodeTradeError> ex)
+catch (ApiException<BuyABinanceCodeTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -5923,19 +5601,12 @@ catch (SdkException<BuyABinanceCodeTradeError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>baseToken</code> | <code>string</code> | The token you want to pay, example BUSD |
-| <code>faceToken</code> | <code>string</code> | The token you want to buy, example BNB. If faceToken = baseToken, it's the same as createCode endpoint. |
-| <code>baseTokenAmount</code> | <code>double</code> | The base token asset quantity, example  1.002 |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[BuyABinanceCodeTradeRequest](Requests/GiftCard/BuyABinanceCodeTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -5947,7 +5618,7 @@ catch (SdkException<BuyABinanceCodeTradeError> ex)
 
 **OnSuccess**: <code>[SapiV1GiftcardBuyCodeResponse](Models/SapiV1GiftcardBuyCodeResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[BuyABinanceCodeTradeError](Errors/BuyABinanceCodeTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[BuyABinanceCodeTradeError](Errors/BuyABinanceCodeTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -5958,7 +5629,7 @@ catch (SdkException<BuyABinanceCodeTradeError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1GiftcardCreateCodeResponse&gt; CreateABinanceCodeUserData(string token, double amount, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1GiftcardCreateCodeResponse&gt; CreateABinanceCodeUserData(CreateABinanceCodeUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -5990,10 +5661,17 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.GiftCard.CreateABinanceCodeUserData(token, amount, timestamp, signature, recvWindow);
+    var response = await client.GiftCard.CreateABinanceCodeUserData(new CreateABinanceCodeUserDataRequest
+    {
+        Token = "some example string",
+        Amount = 1.5d,
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1GiftcardCreateCodeResponse
 }
-catch (SdkException<CreateABinanceCodeUserDataError> ex)
+catch (ApiException<CreateABinanceCodeUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -6005,18 +5683,12 @@ catch (SdkException<CreateABinanceCodeUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>token</code> | <code>string</code> | The coin type contained in the Binance Code |
-| <code>amount</code> | <code>double</code> | The amount of the coin |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[CreateABinanceCodeUserDataRequest](Requests/GiftCard/CreateABinanceCodeUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -6028,7 +5700,7 @@ catch (SdkException<CreateABinanceCodeUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1GiftcardCreateCodeResponse](Models/SapiV1GiftcardCreateCodeResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[CreateABinanceCodeUserDataError](Errors/CreateABinanceCodeUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CreateABinanceCodeUserDataError](Errors/CreateABinanceCodeUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -6039,7 +5711,7 @@ catch (SdkException<CreateABinanceCodeUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1GiftcardCryptographyRsaPublicKeyResponse&gt; FetchRsaPublicKeyUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1GiftcardCryptographyRsaPublicKeyResponse&gt; FetchRsaPublicKeyUserData(FetchRsaPublicKeyUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -6066,10 +5738,15 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.GiftCard.FetchRsaPublicKeyUserData(timestamp, signature, recvWindow);
+    var response = await client.GiftCard.FetchRsaPublicKeyUserData(new FetchRsaPublicKeyUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1GiftcardCryptographyRsaPublicKeyResponse
 }
-catch (SdkException<FetchRsaPublicKeyUserDataError> ex)
+catch (ApiException<FetchRsaPublicKeyUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -6081,16 +5758,12 @@ catch (SdkException<FetchRsaPublicKeyUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[FetchRsaPublicKeyUserDataRequest](Requests/GiftCard/FetchRsaPublicKeyUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -6102,7 +5775,7 @@ catch (SdkException<FetchRsaPublicKeyUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1GiftcardCryptographyRsaPublicKeyResponse](Models/SapiV1GiftcardCryptographyRsaPublicKeyResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[FetchRsaPublicKeyUserDataError](Errors/FetchRsaPublicKeyUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[FetchRsaPublicKeyUserDataError](Errors/FetchRsaPublicKeyUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -6113,7 +5786,7 @@ catch (SdkException<FetchRsaPublicKeyUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1GiftcardBuyCodeTokenLimitResponse&gt; FetchTokenLimitUserData(string baseToken, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1GiftcardBuyCodeTokenLimitResponse&gt; FetchTokenLimitUserData(FetchTokenLimitUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -6138,10 +5811,16 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.GiftCard.FetchTokenLimitUserData(baseToken, timestamp, signature, recvWindow);
+    var response = await client.GiftCard.FetchTokenLimitUserData(new FetchTokenLimitUserDataRequest
+    {
+        BaseToken = "some example string",
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1GiftcardBuyCodeTokenLimitResponse
 }
-catch (SdkException<FetchTokenLimitUserDataError> ex)
+catch (ApiException<FetchTokenLimitUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -6153,17 +5832,12 @@ catch (SdkException<FetchTokenLimitUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>baseToken</code> | <code>string</code> | The token you want to pay, example BUSD |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[FetchTokenLimitUserDataRequest](Requests/GiftCard/FetchTokenLimitUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -6175,7 +5849,7 @@ catch (SdkException<FetchTokenLimitUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1GiftcardBuyCodeTokenLimitResponse](Models/SapiV1GiftcardBuyCodeTokenLimitResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[FetchTokenLimitUserDataError](Errors/FetchTokenLimitUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[FetchTokenLimitUserDataError](Errors/FetchTokenLimitUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -6186,7 +5860,7 @@ catch (SdkException<FetchTokenLimitUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1GiftcardRedeemCodeResponse&gt; RedeemABinanceCodeUserData(string code, long timestamp, string signature, string? externalUid, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1GiftcardRedeemCodeResponse&gt; RedeemABinanceCodeUserData(RedeemABinanceCodeUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -6213,14 +5887,16 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.GiftCard.RedeemABinanceCodeUserData(code,
-        timestamp,
-        signature,
-        externalUid,
-        recvWindow);
+    var response = await client.GiftCard.RedeemABinanceCodeUserData(new RedeemABinanceCodeUserDataRequest
+    {
+        Code = "some example string",
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1GiftcardRedeemCodeResponse
 }
-catch (SdkException<RedeemABinanceCodeUserDataError> ex)
+catch (ApiException<RedeemABinanceCodeUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -6232,18 +5908,12 @@ catch (SdkException<RedeemABinanceCodeUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>code</code> | <code>string</code> | Binance Code |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>externalUid</code> | <code>string?</code> | Each external unique ID represents a unique user on the partner platform. The function helps you to identify the redemption behavior of different users, such as redemption frequency and amount. It also helps risk and limit control of a single account, such as daily limit on redemption volume, frequency, and incorrect number of entries. This will also prevent a single user account reach the partner's daily redemption limits. We strongly recommend you to use this feature and transfer us the User ID of your users if you have different users redeeming Binance codes on your platform. To protect user data privacy, you may choose to transfer the user id in any desired format (max. 400 characters). |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[RedeemABinanceCodeUserDataRequest](Requests/GiftCard/RedeemABinanceCodeUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -6255,7 +5925,7 @@ catch (SdkException<RedeemABinanceCodeUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1GiftcardRedeemCodeResponse](Models/SapiV1GiftcardRedeemCodeResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[RedeemABinanceCodeUserDataError](Errors/RedeemABinanceCodeUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[RedeemABinanceCodeUserDataError](Errors/RedeemABinanceCodeUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -6266,7 +5936,7 @@ catch (SdkException<RedeemABinanceCodeUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1GiftcardVerifyResponse&gt; VerifyABinanceCodeUserData(string referenceNo, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1GiftcardVerifyResponse&gt; VerifyABinanceCodeUserData(VerifyABinanceCodeUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -6293,10 +5963,16 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.GiftCard.VerifyABinanceCodeUserData(referenceNo, timestamp, signature, recvWindow);
+    var response = await client.GiftCard.VerifyABinanceCodeUserData(new VerifyABinanceCodeUserDataRequest
+    {
+        ReferenceNo = "some example string",
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1GiftcardVerifyResponse
 }
-catch (SdkException<VerifyABinanceCodeUserDataError> ex)
+catch (ApiException<VerifyABinanceCodeUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -6308,17 +5984,12 @@ catch (SdkException<VerifyABinanceCodeUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>referenceNo</code> | <code>string</code> | reference number |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[VerifyABinanceCodeUserDataRequest](Requests/GiftCard/VerifyABinanceCodeUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -6330,7 +6001,7 @@ catch (SdkException<VerifyABinanceCodeUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1GiftcardVerifyResponse](Models/SapiV1GiftcardVerifyResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[VerifyABinanceCodeUserDataError](Errors/VerifyABinanceCodeUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[VerifyABinanceCodeUserDataError](Errors/VerifyABinanceCodeUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -6345,7 +6016,7 @@ catch (SdkException<VerifyABinanceCodeUserDataError> ex)
 > Source: [IsolatedMarginStream](Api/IsolatedMarginStream.cs)
 
 <details>
-<summary><code>Task&lt;object&gt; CloseAListenKeyUserStream3(string? listenKey, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;object&gt; CloseAListenKeyUserStream3(CloseAListenKeyUserStream3Request request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -6370,10 +6041,13 @@ Weight: 1
 ```csharp
 try
 {
-    var response = await client.IsolatedMarginStream.CloseAListenKeyUserStream3(listenKey);
+    var response = await client.IsolatedMarginStream.CloseAListenKeyUserStream3(new CloseAListenKeyUserStream3Request
+    {
+        ListenKey = "pqia91ma19a5s61cv6a81va65sdf19v8a65a1a5s61cv6a81va65sdf19v8a65a1",
+    });
     // TODO: Handle 'response' of type object
 }
-catch (SdkException<CloseAListenKeyUserStream3Error> ex)
+catch (ApiException<CloseAListenKeyUserStream3Error> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -6385,14 +6059,12 @@ catch (SdkException<CloseAListenKeyUserStream3Error> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>listenKey</code> | <code>string?</code> | User websocket listen key |
+<code>[CloseAListenKeyUserStream3Request](Requests/IsolatedMarginStream/CloseAListenKeyUserStream3Request.cs)</code>
 
 </dd>
 </dl>
@@ -6404,7 +6076,7 @@ catch (SdkException<CloseAListenKeyUserStream3Error> ex)
 
 **OnSuccess**: <code>object</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[CloseAListenKeyUserStream3Error](Errors/CloseAListenKeyUserStream3Error.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CloseAListenKeyUserStream3Error](Errors/CloseAListenKeyUserStream3Error.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -6415,7 +6087,7 @@ catch (SdkException<CloseAListenKeyUserStream3Error> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1UserDataStreamIsolatedResponse&gt; GenerateAListenKeyUserStream(RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1UserDataStreamIsolatedResponse&gt; GenerateAListenKeyUserStream(RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -6444,7 +6116,7 @@ try
     var response = await client.IsolatedMarginStream.GenerateAListenKeyUserStream();
     // TODO: Handle 'response' of type SapiV1UserDataStreamIsolatedResponse
 }
-catch (SdkException<RawError> ex)
+catch (ApiException<RawError> ex)
 {
     // TODO: Handle 'ex.Error' of type RawError
 }
@@ -6460,7 +6132,7 @@ catch (SdkException<RawError> ex)
 
 **OnSuccess**: <code>[SapiV1UserDataStreamIsolatedResponse](Models/SapiV1UserDataStreamIsolatedResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[RawError](Core/ErrorResponse/RawError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[RawError](Core/ErrorResponse/RawError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -6471,7 +6143,7 @@ catch (SdkException<RawError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;object&gt; PingKeepAliveAListenKeyUserStream(string? listenKey, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;object&gt; PingKeepAliveAListenKeyUserStream(PingKeepAliveAListenKeyUserStreamOperationRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -6496,10 +6168,14 @@ Weight: 1
 ```csharp
 try
 {
-    var response = await client.IsolatedMarginStream.PingKeepAliveAListenKeyUserStream(listenKey);
+    var response = await client.IsolatedMarginStream.PingKeepAliveAListenKeyUserStream(
+        new PingKeepAliveAListenKeyUserStreamOperationRequest
+        {
+            ListenKey = "pqia91ma19a5s61cv6a81va65sdf19v8a65a1a5s61cv6a81va65sdf19v8a65a1",
+        });
     // TODO: Handle 'response' of type object
 }
-catch (SdkException<PingKeepAliveAListenKeyUserStreamApiError> ex)
+catch (ApiException<PingKeepAliveAListenKeyUserStreamApiError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -6511,14 +6187,12 @@ catch (SdkException<PingKeepAliveAListenKeyUserStreamApiError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>listenKey</code> | <code>string?</code> | User websocket listen key |
+<code>[PingKeepAliveAListenKeyUserStreamOperationRequest](Requests/IsolatedMarginStream/PingKeepAliveAListenKeyUserStreamOperationRequest.cs)</code>
 
 </dd>
 </dl>
@@ -6530,7 +6204,7 @@ catch (SdkException<PingKeepAliveAListenKeyUserStreamApiError> ex)
 
 **OnSuccess**: <code>object</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[PingKeepAliveAListenKeyUserStreamApiError](Errors/PingKeepAliveAListenKeyUserStreamApiError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[PingKeepAliveAListenKeyUserStreamApiError](Errors/PingKeepAliveAListenKeyUserStreamApiError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -6545,7 +6219,7 @@ catch (SdkException<PingKeepAliveAListenKeyUserStreamApiError> ex)
 > Source: [Margin](Api/Margin.cs)
 
 <details>
-<summary><code>Task&lt;SapiV1MarginMaxLeverageResponse&gt; AdjustCrossMarginMaxLeverageUserData(int maxLeverage, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1MarginMaxLeverageResponse&gt; AdjustCrossMarginMaxLeverageUserData(AdjustCrossMarginMaxLeverageUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -6570,13 +6244,17 @@ Weight(UID): 3000
 ```csharp
 try
 {
-    var response = await client.Margin.AdjustCrossMarginMaxLeverageUserData(maxLeverage,
-        timestamp,
-        signature,
-        recvWindow);
+    var response = await client.Margin.AdjustCrossMarginMaxLeverageUserData(
+        new AdjustCrossMarginMaxLeverageUserDataRequest
+        {
+            MaxLeverage = 3,
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1MarginMaxLeverageResponse
 }
-catch (SdkException<AdjustCrossMarginMaxLeverageUserDataError> ex)
+catch (ApiException<AdjustCrossMarginMaxLeverageUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -6588,17 +6266,12 @@ catch (SdkException<AdjustCrossMarginMaxLeverageUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>maxLeverage</code> | <code>int</code> | Can only adjust 3 or 5 |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[AdjustCrossMarginMaxLeverageUserDataRequest](Requests/Margin/AdjustCrossMarginMaxLeverageUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -6610,7 +6283,7 @@ catch (SdkException<AdjustCrossMarginMaxLeverageUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1MarginMaxLeverageResponse](Models/SapiV1MarginMaxLeverageResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[AdjustCrossMarginMaxLeverageUserDataError](Errors/AdjustCrossMarginMaxLeverageUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[AdjustCrossMarginMaxLeverageUserDataError](Errors/AdjustCrossMarginMaxLeverageUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -6621,7 +6294,7 @@ catch (SdkException<AdjustCrossMarginMaxLeverageUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1MarginCrossMarginCollateralRatioResponse&gt;&gt; CrossMarginCollateralRatioMarketData(RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1MarginCrossMarginCollateralRatioResponse&gt;&gt; CrossMarginCollateralRatioMarketData(RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -6630,7 +6303,6 @@ catch (SdkException<AdjustCrossMarginMaxLeverageUserDataError> ex)
 
 <dl>
 <dd>
-
 
 Weight(IP): 100
 
@@ -6648,7 +6320,7 @@ try
     var response = await client.Margin.CrossMarginCollateralRatioMarketData();
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1MarginCrossMarginCollateralRatioResponse>
 }
-catch (SdkException<CrossMarginCollateralRatioMarketDataError> ex)
+catch (ApiException<CrossMarginCollateralRatioMarketDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -6667,7 +6339,7 @@ catch (SdkException<CrossMarginCollateralRatioMarketDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginCrossMarginCollateralRatioResponse](Models/SapiV1MarginCrossMarginCollateralRatioResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[CrossMarginCollateralRatioMarketDataError](Errors/CrossMarginCollateralRatioMarketDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CrossMarginCollateralRatioMarketDataError](Errors/CrossMarginCollateralRatioMarketDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -6678,7 +6350,7 @@ catch (SdkException<CrossMarginCollateralRatioMarketDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1MarginIsolatedAccountResponse&gt; DisableIsolatedMarginAccountTrade(string symbol, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1MarginIsolatedAccountResponse&gt; DisableIsolatedMarginAccountTrade(DisableIsolatedMarginAccountTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -6703,10 +6375,16 @@ Weight(UID): 300
 ```csharp
 try
 {
-    var response = await client.Margin.DisableIsolatedMarginAccountTrade(symbol, timestamp, signature, recvWindow);
+    var response = await client.Margin.DisableIsolatedMarginAccountTrade(new DisableIsolatedMarginAccountTradeRequest
+    {
+        Symbol = "BNBUSDT",
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1MarginIsolatedAccountResponse
 }
-catch (SdkException<DisableIsolatedMarginAccountTradeError> ex)
+catch (ApiException<DisableIsolatedMarginAccountTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -6718,17 +6396,12 @@ catch (SdkException<DisableIsolatedMarginAccountTradeError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string</code> | Trading symbol, e.g. BNBUSDT |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[DisableIsolatedMarginAccountTradeRequest](Requests/Margin/DisableIsolatedMarginAccountTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -6740,7 +6413,7 @@ catch (SdkException<DisableIsolatedMarginAccountTradeError> ex)
 
 **OnSuccess**: <code>[SapiV1MarginIsolatedAccountResponse](Models/SapiV1MarginIsolatedAccountResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[DisableIsolatedMarginAccountTradeError](Errors/DisableIsolatedMarginAccountTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[DisableIsolatedMarginAccountTradeError](Errors/DisableIsolatedMarginAccountTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -6751,7 +6424,7 @@ catch (SdkException<DisableIsolatedMarginAccountTradeError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1MarginIsolatedAccountResponse&gt; EnableIsolatedMarginAccountTrade(string symbol, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1MarginIsolatedAccountResponse&gt; EnableIsolatedMarginAccountTrade(EnableIsolatedMarginAccountTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -6776,10 +6449,16 @@ Weight(UID): 300
 ```csharp
 try
 {
-    var response = await client.Margin.EnableIsolatedMarginAccountTrade(symbol, timestamp, signature, recvWindow);
+    var response = await client.Margin.EnableIsolatedMarginAccountTrade(new EnableIsolatedMarginAccountTradeRequest
+    {
+        Symbol = "BNBUSDT",
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1MarginIsolatedAccountResponse
 }
-catch (SdkException<EnableIsolatedMarginAccountTradeError> ex)
+catch (ApiException<EnableIsolatedMarginAccountTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -6791,17 +6470,12 @@ catch (SdkException<EnableIsolatedMarginAccountTradeError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string</code> | Trading symbol, e.g. BNBUSDT |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[EnableIsolatedMarginAccountTradeRequest](Requests/Margin/EnableIsolatedMarginAccountTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -6813,7 +6487,7 @@ catch (SdkException<EnableIsolatedMarginAccountTradeError> ex)
 
 **OnSuccess**: <code>[SapiV1MarginIsolatedAccountResponse](Models/SapiV1MarginIsolatedAccountResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[EnableIsolatedMarginAccountTradeError](Errors/EnableIsolatedMarginAccountTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[EnableIsolatedMarginAccountTradeError](Errors/EnableIsolatedMarginAccountTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -6824,7 +6498,7 @@ catch (SdkException<EnableIsolatedMarginAccountTradeError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1MarginAllPairsResponse&gt;&gt; GetAllCrossMarginPairsMarketData(string symbol, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1MarginAllPairsResponse&gt;&gt; GetAllCrossMarginPairsMarketData(GetAllCrossMarginPairsMarketDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -6847,10 +6521,13 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.Margin.GetAllCrossMarginPairsMarketData(symbol);
+    var response = await client.Margin.GetAllCrossMarginPairsMarketData(new GetAllCrossMarginPairsMarketDataRequest
+    {
+        Symbol = "BNBUSDT",
+    });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1MarginAllPairsResponse>
 }
-catch (SdkException<GetAllCrossMarginPairsMarketDataError> ex)
+catch (ApiException<GetAllCrossMarginPairsMarketDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -6862,14 +6539,12 @@ catch (SdkException<GetAllCrossMarginPairsMarketDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string</code> | Trading symbol, e.g. BNBUSDT |
+<code>[GetAllCrossMarginPairsMarketDataRequest](Requests/Margin/GetAllCrossMarginPairsMarketDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -6881,7 +6556,7 @@ catch (SdkException<GetAllCrossMarginPairsMarketDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginAllPairsResponse](Models/SapiV1MarginAllPairsResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetAllCrossMarginPairsMarketDataError](Errors/GetAllCrossMarginPairsMarketDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetAllCrossMarginPairsMarketDataError](Errors/GetAllCrossMarginPairsMarketDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -6892,7 +6567,7 @@ catch (SdkException<GetAllCrossMarginPairsMarketDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1MarginIsolatedAllPairsResponse&gt;&gt; GetAllIsolatedMarginSymbolUserData(string symbol, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1MarginIsolatedAllPairsResponse&gt;&gt; GetAllIsolatedMarginSymbolUserData(GetAllIsolatedMarginSymbolUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -6915,10 +6590,16 @@ Weight(IP): 10
 ```csharp
 try
 {
-    var response = await client.Margin.GetAllIsolatedMarginSymbolUserData(symbol, timestamp, signature, recvWindow);
+    var response = await client.Margin.GetAllIsolatedMarginSymbolUserData(new GetAllIsolatedMarginSymbolUserDataRequest
+    {
+        Symbol = "BNBUSDT",
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1MarginIsolatedAllPairsResponse>
 }
-catch (SdkException<GetAllIsolatedMarginSymbolUserDataError> ex)
+catch (ApiException<GetAllIsolatedMarginSymbolUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -6930,17 +6611,12 @@ catch (SdkException<GetAllIsolatedMarginSymbolUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string</code> | Trading symbol, e.g. BNBUSDT |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetAllIsolatedMarginSymbolUserDataRequest](Requests/Margin/GetAllIsolatedMarginSymbolUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -6952,7 +6628,7 @@ catch (SdkException<GetAllIsolatedMarginSymbolUserDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginIsolatedAllPairsResponse](Models/SapiV1MarginIsolatedAllPairsResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetAllIsolatedMarginSymbolUserDataError](Errors/GetAllIsolatedMarginSymbolUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetAllIsolatedMarginSymbolUserDataError](Errors/GetAllIsolatedMarginSymbolUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -6963,7 +6639,7 @@ catch (SdkException<GetAllIsolatedMarginSymbolUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1MarginAllAssetsResponse&gt;&gt; GetAllMarginAssetsMarketData(string asset, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1MarginAllAssetsResponse&gt;&gt; GetAllMarginAssetsMarketData(GetAllMarginAssetsMarketDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -6986,10 +6662,13 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.Margin.GetAllMarginAssetsMarketData(asset);
+    var response = await client.Margin.GetAllMarginAssetsMarketData(new GetAllMarginAssetsMarketDataRequest
+    {
+        Asset = "BTC",
+    });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1MarginAllAssetsResponse>
 }
-catch (SdkException<GetAllMarginAssetsMarketDataError> ex)
+catch (ApiException<GetAllMarginAssetsMarketDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -7001,14 +6680,12 @@ catch (SdkException<GetAllMarginAssetsMarketDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>asset</code> | <code>string</code> | - |
+<code>[GetAllMarginAssetsMarketDataRequest](Requests/Margin/GetAllMarginAssetsMarketDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -7020,7 +6697,7 @@ catch (SdkException<GetAllMarginAssetsMarketDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginAllAssetsResponse](Models/SapiV1MarginAllAssetsResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetAllMarginAssetsMarketDataError](Errors/GetAllMarginAssetsMarketDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetAllMarginAssetsMarketDataError](Errors/GetAllMarginAssetsMarketDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -7031,7 +6708,7 @@ catch (SdkException<GetAllMarginAssetsMarketDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;BnbBurnStatus&gt; GetBnbBurnStatusUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;BnbBurnStatus&gt; GetBnbBurnStatusUserData(GetBnbBurnStatusUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -7054,10 +6731,15 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.Margin.GetBnbBurnStatusUserData(timestamp, signature, recvWindow);
+    var response = await client.Margin.GetBnbBurnStatusUserData(new GetBnbBurnStatusUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type BnbBurnStatus
 }
-catch (SdkException<GetBnbBurnStatusUserDataError> ex)
+catch (ApiException<GetBnbBurnStatusUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -7069,16 +6751,12 @@ catch (SdkException<GetBnbBurnStatusUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetBnbBurnStatusUserDataRequest](Requests/Margin/GetBnbBurnStatusUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -7090,7 +6768,7 @@ catch (SdkException<GetBnbBurnStatusUserDataError> ex)
 
 **OnSuccess**: <code>[BnbBurnStatus](Models/BnbBurnStatus.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetBnbBurnStatusUserDataError](Errors/GetBnbBurnStatusUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetBnbBurnStatusUserDataError](Errors/GetBnbBurnStatusUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -7101,7 +6779,7 @@ catch (SdkException<GetBnbBurnStatusUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1MarginTransferResponse&gt; GetCrossMarginTransferHistoryUserData(long timestamp, string signature, string? asset, Type2? type, long? startTime, long? endTime, int? current, int? size, string? isolatedSymbol, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1MarginTransferResponse&gt; GetCrossMarginTransferHistoryUserData(GetCrossMarginTransferHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -7128,19 +6806,19 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.Margin.GetCrossMarginTransferHistoryUserData(timestamp,
-        signature,
-        asset,
-        type,
-        startTime,
-        endTime,
-        current,
-        size,
-        isolatedSymbol,
-        recvWindow);
+    var response = await client.Margin.GetCrossMarginTransferHistoryUserData(
+        new GetCrossMarginTransferHistoryUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            Asset = "BNB",
+            Current = 1,
+            Size = 100,
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1MarginTransferResponse
 }
-catch (SdkException<GetCrossMarginTransferHistoryUserDataError> ex)
+catch (ApiException<GetCrossMarginTransferHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -7152,23 +6830,12 @@ catch (SdkException<GetCrossMarginTransferHistoryUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>asset</code> | <code>string?</code> | - |
-| <code>type</code> | <code>[Type2?](Models/Enums/Type2.cs)</code> | - |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>current</code> | <code>int?</code> | Current querying page. Start from 1. Default:1 |
-| <code>size</code> | <code>int?</code> | Default:10 Max:100 |
-| <code>isolatedSymbol</code> | <code>string?</code> | Isolated symbol |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetCrossMarginTransferHistoryUserDataRequest](Requests/Margin/GetCrossMarginTransferHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -7180,7 +6847,7 @@ catch (SdkException<GetCrossMarginTransferHistoryUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1MarginTransferResponse](Models/SapiV1MarginTransferResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetCrossMarginTransferHistoryUserDataError](Errors/GetCrossMarginTransferHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetCrossMarginTransferHistoryUserDataError](Errors/GetCrossMarginTransferHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -7191,7 +6858,7 @@ catch (SdkException<GetCrossMarginTransferHistoryUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1MarginForceLiquidationRecResponse&gt; GetForceLiquidationRecordUserData(long timestamp, string signature, long? startTime, long? endTime, string? isolatedSymbol, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1MarginForceLiquidationRecResponse&gt; GetForceLiquidationRecordUserData(GetForceLiquidationRecordUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -7216,17 +6883,17 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.Margin.GetForceLiquidationRecordUserData(timestamp,
-        signature,
-        startTime,
-        endTime,
-        isolatedSymbol,
-        current,
-        size,
-        recvWindow);
+    var response = await client.Margin.GetForceLiquidationRecordUserData(new GetForceLiquidationRecordUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        Current = 1,
+        Size = 100,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1MarginForceLiquidationRecResponse
 }
-catch (SdkException<GetForceLiquidationRecordUserDataError> ex)
+catch (ApiException<GetForceLiquidationRecordUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -7238,21 +6905,12 @@ catch (SdkException<GetForceLiquidationRecordUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>isolatedSymbol</code> | <code>string?</code> | Isolated symbol |
-| <code>current</code> | <code>int?</code> | Current querying page. Start from 1. Default:1 |
-| <code>size</code> | <code>int?</code> | Default:10 Max:100 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetForceLiquidationRecordUserDataRequest](Requests/Margin/GetForceLiquidationRecordUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -7264,7 +6922,7 @@ catch (SdkException<GetForceLiquidationRecordUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1MarginForceLiquidationRecResponse](Models/SapiV1MarginForceLiquidationRecResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetForceLiquidationRecordUserDataError](Errors/GetForceLiquidationRecordUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetForceLiquidationRecordUserDataError](Errors/GetForceLiquidationRecordUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -7275,7 +6933,7 @@ catch (SdkException<GetForceLiquidationRecordUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1MarginInterestHistoryResponse&gt; GetInterestHistoryUserData(long timestamp, string signature, string? asset, string? isolatedSymbol, long? startTime, long? endTime, int? current, int? size, string? archived, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1MarginInterestHistoryResponse&gt; GetInterestHistoryUserData(GetInterestHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -7307,19 +6965,18 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.Margin.GetInterestHistoryUserData(timestamp,
-        signature,
-        asset,
-        isolatedSymbol,
-        startTime,
-        endTime,
-        current,
-        size,
-        archived,
-        recvWindow);
+    var response = await client.Margin.GetInterestHistoryUserData(new GetInterestHistoryUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        Asset = "BNB",
+        Current = 1,
+        Size = 100,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1MarginInterestHistoryResponse
 }
-catch (SdkException<GetInterestHistoryUserDataError> ex)
+catch (ApiException<GetInterestHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -7331,23 +6988,12 @@ catch (SdkException<GetInterestHistoryUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>asset</code> | <code>string?</code> | - |
-| <code>isolatedSymbol</code> | <code>string?</code> | Isolated symbol |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>current</code> | <code>int?</code> | Current querying page. Start from 1. Default:1 |
-| <code>size</code> | <code>int?</code> | Default:10 Max:100 |
-| <code>archived</code> | <code>string?</code> | Default: false. Set to true for archived data from 6 months ago |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetInterestHistoryUserDataRequest](Requests/Margin/GetInterestHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -7359,7 +7005,7 @@ catch (SdkException<GetInterestHistoryUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1MarginInterestHistoryResponse](Models/SapiV1MarginInterestHistoryResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetInterestHistoryUserDataError](Errors/GetInterestHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetInterestHistoryUserDataError](Errors/GetInterestHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -7370,7 +7016,7 @@ catch (SdkException<GetInterestHistoryUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1MarginExchangeSmallLiabilityResponse&gt;&gt; GetSmallLiabilityExchangeCoinListUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1MarginExchangeSmallLiabilityResponse&gt;&gt; GetSmallLiabilityExchangeCoinListUserData(GetSmallLiabilityExchangeCoinListUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -7395,10 +7041,16 @@ Weight(UID): 100
 ```csharp
 try
 {
-    var response = await client.Margin.GetSmallLiabilityExchangeCoinListUserData(timestamp, signature, recvWindow);
+    var response = await client.Margin.GetSmallLiabilityExchangeCoinListUserData(
+        new GetSmallLiabilityExchangeCoinListUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1MarginExchangeSmallLiabilityResponse>
 }
-catch (SdkException<GetSmallLiabilityExchangeCoinListUserDataError> ex)
+catch (ApiException<GetSmallLiabilityExchangeCoinListUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -7410,16 +7062,12 @@ catch (SdkException<GetSmallLiabilityExchangeCoinListUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetSmallLiabilityExchangeCoinListUserDataRequest](Requests/Margin/GetSmallLiabilityExchangeCoinListUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -7431,7 +7079,7 @@ catch (SdkException<GetSmallLiabilityExchangeCoinListUserDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginExchangeSmallLiabilityResponse](Models/SapiV1MarginExchangeSmallLiabilityResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetSmallLiabilityExchangeCoinListUserDataError](Errors/GetSmallLiabilityExchangeCoinListUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetSmallLiabilityExchangeCoinListUserDataError](Errors/GetSmallLiabilityExchangeCoinListUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -7442,7 +7090,7 @@ catch (SdkException<GetSmallLiabilityExchangeCoinListUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1MarginExchangeSmallLiabilityHistoryResponse&gt; GetSmallLiabilityExchangeHistoryUserData(long timestamp, string signature, int? current, int? size, long? startTime, long? endTime, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1MarginExchangeSmallLiabilityHistoryResponse&gt; GetSmallLiabilityExchangeHistoryUserData(GetSmallLiabilityExchangeHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -7467,16 +7115,18 @@ Weight(UID): 100
 ```csharp
 try
 {
-    var response = await client.Margin.GetSmallLiabilityExchangeHistoryUserData(timestamp,
-        signature,
-        current,
-        size,
-        startTime,
-        endTime,
-        recvWindow);
+    var response = await client.Margin.GetSmallLiabilityExchangeHistoryUserData(
+        new GetSmallLiabilityExchangeHistoryUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            Current = 1,
+            Size = 100,
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1MarginExchangeSmallLiabilityHistoryResponse
 }
-catch (SdkException<GetSmallLiabilityExchangeHistoryUserDataError> ex)
+catch (ApiException<GetSmallLiabilityExchangeHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -7488,20 +7138,12 @@ catch (SdkException<GetSmallLiabilityExchangeHistoryUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>current</code> | <code>int?</code> | Current querying page. Start from 1. Default:1 |
-| <code>size</code> | <code>int?</code> | Default:10 Max:100 |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetSmallLiabilityExchangeHistoryUserDataRequest](Requests/Margin/GetSmallLiabilityExchangeHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -7513,7 +7155,7 @@ catch (SdkException<GetSmallLiabilityExchangeHistoryUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1MarginExchangeSmallLiabilityHistoryResponse](Models/SapiV1MarginExchangeSmallLiabilityHistoryResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetSmallLiabilityExchangeHistoryUserDataError](Errors/GetSmallLiabilityExchangeHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetSmallLiabilityExchangeHistoryUserDataError](Errors/GetSmallLiabilityExchangeHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -7524,7 +7166,7 @@ catch (SdkException<GetSmallLiabilityExchangeHistoryUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1MarginTradeCoeffResponse&gt; GetSummaryOfMarginAccountUserData(string email, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1MarginTradeCoeffResponse&gt; GetSummaryOfMarginAccountUserData(GetSummaryOfMarginAccountUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -7549,10 +7191,16 @@ Weight(IP): 10
 ```csharp
 try
 {
-    var response = await client.Margin.GetSummaryOfMarginAccountUserData(email, timestamp, signature, recvWindow);
+    var response = await client.Margin.GetSummaryOfMarginAccountUserData(new GetSummaryOfMarginAccountUserDataRequest
+    {
+        Email = "me@email.com",
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1MarginTradeCoeffResponse
 }
-catch (SdkException<GetSummaryOfMarginAccountUserDataError> ex)
+catch (ApiException<GetSummaryOfMarginAccountUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -7564,17 +7212,12 @@ catch (SdkException<GetSummaryOfMarginAccountUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>email</code> | <code>string</code> | Email Address |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetSummaryOfMarginAccountUserDataRequest](Requests/Margin/GetSummaryOfMarginAccountUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -7586,7 +7229,7 @@ catch (SdkException<GetSummaryOfMarginAccountUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1MarginTradeCoeffResponse](Models/SapiV1MarginTradeCoeffResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetSummaryOfMarginAccountUserDataError](Errors/GetSummaryOfMarginAccountUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetSummaryOfMarginAccountUserDataError](Errors/GetSummaryOfMarginAccountUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -7597,7 +7240,7 @@ catch (SdkException<GetSummaryOfMarginAccountUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1MarginNextHourlyInterestRateResponse&gt;&gt; GetAFutureHourlyInterestRateUserData(long timestamp, string signature, string? assets, IsIsolated? isIsolated, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1MarginNextHourlyInterestRateResponse&gt;&gt; GetAFutureHourlyInterestRateUserData(GetAFutureHourlyInterestRateUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -7622,14 +7265,18 @@ Weight(UID): 100
 ```csharp
 try
 {
-    var response = await client.Margin.GetAFutureHourlyInterestRateUserData(timestamp,
-        signature,
-        assets,
-        isIsolated,
-        recvWindow);
+    var response = await client.Margin.GetAFutureHourlyInterestRateUserData(
+        new GetAFutureHourlyInterestRateUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            Assets = "BTC,ETH",
+            IsIsolated = IsIsolated.True,
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1MarginNextHourlyInterestRateResponse>
 }
-catch (SdkException<GetAFutureHourlyInterestRateUserDataError> ex)
+catch (ApiException<GetAFutureHourlyInterestRateUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -7641,18 +7288,12 @@ catch (SdkException<GetAFutureHourlyInterestRateUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>assets</code> | <code>string?</code> | List of assets, separated by commas, up to 20 |
-| <code>isIsolated</code> | <code>[IsIsolated?](Models/Enums/IsIsolated.cs)</code> | for isolated margin or not, "TRUE", "FALSE" |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetAFutureHourlyInterestRateUserDataRequest](Requests/Margin/GetAFutureHourlyInterestRateUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -7664,7 +7305,7 @@ catch (SdkException<GetAFutureHourlyInterestRateUserDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginNextHourlyInterestRateResponse](Models/SapiV1MarginNextHourlyInterestRateResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetAFutureHourlyInterestRateUserDataError](Errors/GetAFutureHourlyInterestRateUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetAFutureHourlyInterestRateUserDataError](Errors/GetAFutureHourlyInterestRateUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -7675,7 +7316,7 @@ catch (SdkException<GetAFutureHourlyInterestRateUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1MarginCapitalFlowResponse&gt;&gt; GetCrossOrIsolatedMarginCapitalFlowUserData(long timestamp, string signature, string? asset, string? symbol, Type3? type, long? startTime, long? endTime, long? fromId, long? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1MarginCapitalFlowResponse&gt;&gt; GetCrossOrIsolatedMarginCapitalFlowUserData(GetCrossOrIsolatedMarginCapitalFlowUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -7700,19 +7341,18 @@ Weight(IP): 100
 ```csharp
 try
 {
-    var response = await client.Margin.GetCrossOrIsolatedMarginCapitalFlowUserData(timestamp,
-        signature,
-        asset,
-        symbol,
-        type,
-        startTime,
-        endTime,
-        fromId,
-        limit,
-        recvWindow);
+    var response = await client.Margin.GetCrossOrIsolatedMarginCapitalFlowUserData(
+        new GetCrossOrIsolatedMarginCapitalFlowUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            Asset = "BNB",
+            Symbol = "BTCUSDT",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1MarginCapitalFlowResponse>
 }
-catch (SdkException<GetCrossOrIsolatedMarginCapitalFlowUserDataError> ex)
+catch (ApiException<GetCrossOrIsolatedMarginCapitalFlowUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -7724,23 +7364,12 @@ catch (SdkException<GetCrossOrIsolatedMarginCapitalFlowUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>asset</code> | <code>string?</code> | - |
-| <code>symbol</code> | <code>string?</code> | Required when querying isolated data |
-| <code>type</code> | <code>[Type3?](Models/Enums/Type3.cs)</code> | - |
-| <code>startTime</code> | <code>long?</code> | Only supports querying the data of the last 90 days |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>fromId</code> | <code>long?</code> | If fromId is set, the data with id > fromId will be returned. Otherwise the latest data will be returned |
-| <code>limit</code> | <code>long?</code> | The number of data items returned each time is limited. Default 500; Max 1000. |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetCrossOrIsolatedMarginCapitalFlowUserDataRequest](Requests/Margin/GetCrossOrIsolatedMarginCapitalFlowUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -7752,7 +7381,7 @@ catch (SdkException<GetCrossOrIsolatedMarginCapitalFlowUserDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginCapitalFlowResponse](Models/SapiV1MarginCapitalFlowResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetCrossOrIsolatedMarginCapitalFlowUserDataError](Errors/GetCrossOrIsolatedMarginCapitalFlowUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetCrossOrIsolatedMarginCapitalFlowUserDataError](Errors/GetCrossOrIsolatedMarginCapitalFlowUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -7763,7 +7392,7 @@ catch (SdkException<GetCrossOrIsolatedMarginCapitalFlowUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1MarginDelistScheduleResponse&gt;&gt; GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMarginMarketData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1MarginDelistScheduleResponse&gt;&gt; GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMarginMarketData(GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMarginMarketDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -7788,12 +7417,16 @@ Weight(IP): 100
 ```csharp
 try
 {
-    var response = await client.Margin.GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMarginMarketData(timestamp,
-        signature,
-        recvWindow);
+    var response = await client.Margin.GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMarginMarketData(
+        new GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMarginMarketDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1MarginDelistScheduleResponse>
 }
-catch (SdkException<GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMarginMarketDataError> ex)
+catch (ApiException<GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMarginMarketDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -7805,16 +7438,12 @@ catch (SdkException<GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMar
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMarginMarketDataRequest](Requests/Margin/GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMarginMarketDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -7826,7 +7455,7 @@ catch (SdkException<GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMar
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginDelistScheduleResponse](Models/SapiV1MarginDelistScheduleResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMarginMarketDataError](Errors/GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMarginMarketDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMarginMarketDataError](Errors/GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMarginMarketDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -7837,7 +7466,7 @@ catch (SdkException<GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMar
 </details>
 
 <details>
-<summary><code>Task&lt;MarginOcoOrder&gt; MarginAccountCancelOcoTrade(string symbol, long timestamp, string signature, IsIsolated? isIsolated, long? orderListId, string? listClientOrderId, string? newClientOrderId, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;MarginOcoOrder&gt; MarginAccountCancelOcoTrade(MarginAccountCancelOcoTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -7865,17 +7494,16 @@ Weight(UID): 1
 ```csharp
 try
 {
-    var response = await client.Margin.MarginAccountCancelOcoTrade(symbol,
-        timestamp,
-        signature,
-        isIsolated,
-        orderListId,
-        listClientOrderId,
-        newClientOrderId,
-        recvWindow);
+    var response = await client.Margin.MarginAccountCancelOcoTrade(new MarginAccountCancelOcoTradeRequest
+    {
+        Symbol = "BNBUSDT",
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type MarginOcoOrder
 }
-catch (SdkException<MarginAccountCancelOcoTradeError> ex)
+catch (ApiException<MarginAccountCancelOcoTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -7887,21 +7515,12 @@ catch (SdkException<MarginAccountCancelOcoTradeError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string</code> | Trading symbol, e.g. BNBUSDT |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>isIsolated</code> | <code>[IsIsolated?](Models/Enums/IsIsolated.cs)</code> | * `TRUE` - For isolated margin<br>* `FALSE` - Default, not for isolated margin |
-| <code>orderListId</code> | <code>long?</code> | Order list id |
-| <code>listClientOrderId</code> | <code>string?</code> | A unique Id for the entire orderList |
-| <code>newClientOrderId</code> | <code>string?</code> | Used to uniquely identify this cancel. Automatically generated by default |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[MarginAccountCancelOcoTradeRequest](Requests/Margin/MarginAccountCancelOcoTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -7913,7 +7532,7 @@ catch (SdkException<MarginAccountCancelOcoTradeError> ex)
 
 **OnSuccess**: <code>[MarginOcoOrder](Models/MarginOcoOrder.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[MarginAccountCancelOcoTradeError](Errors/MarginAccountCancelOcoTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[MarginAccountCancelOcoTradeError](Errors/MarginAccountCancelOcoTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -7924,7 +7543,7 @@ catch (SdkException<MarginAccountCancelOcoTradeError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;MarginOrder&gt; MarginAccountCancelOrderTrade(string symbol, long timestamp, string signature, IsIsolated? isIsolated, long? orderId, string? origClientOrderId, string? newClientOrderId, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;MarginOrder&gt; MarginAccountCancelOrderTrade(MarginAccountCancelOrderTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -7951,17 +7570,16 @@ Weight(IP): 10
 ```csharp
 try
 {
-    var response = await client.Margin.MarginAccountCancelOrderTrade(symbol,
-        timestamp,
-        signature,
-        isIsolated,
-        orderId,
-        origClientOrderId,
-        newClientOrderId,
-        recvWindow);
+    var response = await client.Margin.MarginAccountCancelOrderTrade(new MarginAccountCancelOrderTradeRequest
+    {
+        Symbol = "BNBUSDT",
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type MarginOrder
 }
-catch (SdkException<MarginAccountCancelOrderTradeError> ex)
+catch (ApiException<MarginAccountCancelOrderTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -7973,21 +7591,12 @@ catch (SdkException<MarginAccountCancelOrderTradeError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string</code> | Trading symbol, e.g. BNBUSDT |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>isIsolated</code> | <code>[IsIsolated?](Models/Enums/IsIsolated.cs)</code> | * `TRUE` - For isolated margin<br>* `FALSE` - Default, not for isolated margin |
-| <code>orderId</code> | <code>long?</code> | Order id |
-| <code>origClientOrderId</code> | <code>string?</code> | Order id from client |
-| <code>newClientOrderId</code> | <code>string?</code> | Used to uniquely identify this cancel. Automatically generated by default |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[MarginAccountCancelOrderTradeRequest](Requests/Margin/MarginAccountCancelOrderTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -7999,7 +7608,7 @@ catch (SdkException<MarginAccountCancelOrderTradeError> ex)
 
 **OnSuccess**: <code>[MarginOrder](Models/MarginOrder.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[MarginAccountCancelOrderTradeError](Errors/MarginAccountCancelOrderTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[MarginAccountCancelOrderTradeError](Errors/MarginAccountCancelOrderTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -8010,7 +7619,7 @@ catch (SdkException<MarginAccountCancelOrderTradeError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1MarginOpenOrdersResponse&gt;&gt; MarginAccountCancelAllOpenOrdersOnASymbolTrade(string symbol, long timestamp, string signature, IsIsolated? isIsolated, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1MarginOpenOrdersResponse&gt;&gt; MarginAccountCancelAllOpenOrdersOnASymbolTrade(MarginAccountCancelAllOpenOrdersOnASymbolTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -8025,7 +7634,6 @@ catch (SdkException<MarginAccountCancelOrderTradeError> ex)
 
 Weight(IP): 1
 
-
 </dd>
 </dl>
 
@@ -8037,14 +7645,17 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.Margin.MarginAccountCancelAllOpenOrdersOnASymbolTrade(symbol,
-        timestamp,
-        signature,
-        isIsolated,
-        recvWindow);
+    var response = await client.Margin.MarginAccountCancelAllOpenOrdersOnASymbolTrade(
+        new MarginAccountCancelAllOpenOrdersOnASymbolTradeRequest
+        {
+            Symbol = "BNBUSDT",
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1MarginOpenOrdersResponse>
 }
-catch (SdkException<MarginAccountCancelAllOpenOrdersOnASymbolTradeError> ex)
+catch (ApiException<MarginAccountCancelAllOpenOrdersOnASymbolTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -8056,18 +7667,12 @@ catch (SdkException<MarginAccountCancelAllOpenOrdersOnASymbolTradeError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string</code> | Trading symbol, e.g. BNBUSDT |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>isIsolated</code> | <code>[IsIsolated?](Models/Enums/IsIsolated.cs)</code> | * `TRUE` - For isolated margin<br>* `FALSE` - Default, not for isolated margin |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[MarginAccountCancelAllOpenOrdersOnASymbolTradeRequest](Requests/Margin/MarginAccountCancelAllOpenOrdersOnASymbolTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -8079,7 +7684,7 @@ catch (SdkException<MarginAccountCancelAllOpenOrdersOnASymbolTradeError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginOpenOrdersResponse](Models/AnyOf/SapiV1MarginOpenOrdersResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[MarginAccountCancelAllOpenOrdersOnASymbolTradeError](Errors/MarginAccountCancelAllOpenOrdersOnASymbolTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[MarginAccountCancelAllOpenOrdersOnASymbolTradeError](Errors/MarginAccountCancelAllOpenOrdersOnASymbolTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -8090,7 +7695,7 @@ catch (SdkException<MarginAccountCancelAllOpenOrdersOnASymbolTradeError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1MarginOrderOcoResponse&gt; MarginAccountNewOcoTrade(string symbol, Side side, double quantity, double price, double stopPrice, long timestamp, string signature, IsIsolated? isIsolated, string? listClientOrderId, string? limitClientOrderId, double? limitIcebergQty, string? stopClientOrderId, double? stopLimitPrice, double? stopIcebergQty, StopLimitTimeInForce? stopLimitTimeInForce, NewOrderRespType? newOrderRespType, SideEffectType? sideEffectType, SelfTradePreventionMode? selfTradePreventionMode, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1MarginOrderOcoResponse&gt; MarginAccountNewOcoTrade(MarginAccountNewOcoTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -8124,28 +7729,21 @@ Weight(UID): 6
 ```csharp
 try
 {
-    var response = await client.Margin.MarginAccountNewOcoTrade(symbol,
-        side,
-        quantity,
-        price,
-        stopPrice,
-        timestamp,
-        signature,
-        isIsolated,
-        listClientOrderId,
-        limitClientOrderId,
-        limitIcebergQty,
-        stopClientOrderId,
-        stopLimitPrice,
-        stopIcebergQty,
-        stopLimitTimeInForce,
-        newOrderRespType,
-        sideEffectType,
-        selfTradePreventionMode,
-        recvWindow);
+    var response = await client.Margin.MarginAccountNewOcoTrade(new MarginAccountNewOcoTradeRequest
+    {
+        Symbol = "BNBUSDT",
+        Side = Side.Sell,
+        Quantity = 1d,
+        Price = 218d,
+        StopPrice = 220d,
+        Timestamp = 1L,
+        Signature = "some example string",
+        SelfTradePreventionMode = SelfTradePreventionMode.ExpireTaker,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1MarginOrderOcoResponse
 }
-catch (SdkException<MarginAccountNewOcoTradeError> ex)
+catch (ApiException<MarginAccountNewOcoTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -8157,32 +7755,12 @@ catch (SdkException<MarginAccountNewOcoTradeError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string</code> | Trading symbol, e.g. BNBUSDT |
-| <code>side</code> | <code>[Side](Models/Enums/Side.cs)</code> | - |
-| <code>quantity</code> | <code>double</code> | - |
-| <code>price</code> | <code>double</code> | Order price |
-| <code>stopPrice</code> | <code>double</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>isIsolated</code> | <code>[IsIsolated?](Models/Enums/IsIsolated.cs)</code> | * `TRUE` - For isolated margin<br>* `FALSE` - Default, not for isolated margin |
-| <code>listClientOrderId</code> | <code>string?</code> | A unique Id for the entire orderList |
-| <code>limitClientOrderId</code> | <code>string?</code> | A unique Id for the limit order |
-| <code>limitIcebergQty</code> | <code>double?</code> | - |
-| <code>stopClientOrderId</code> | <code>string?</code> | A unique Id for the stop loss/stop loss limit leg |
-| <code>stopLimitPrice</code> | <code>double?</code> | If provided, stopLimitTimeInForce is required. |
-| <code>stopIcebergQty</code> | <code>double?</code> | - |
-| <code>stopLimitTimeInForce</code> | <code>[StopLimitTimeInForce?](Models/Enums/StopLimitTimeInForce.cs)</code> | - |
-| <code>newOrderRespType</code> | <code>[NewOrderRespType?](Models/Enums/NewOrderRespType.cs)</code> | Set the response JSON. |
-| <code>sideEffectType</code> | <code>[SideEffectType?](Models/Enums/SideEffectType.cs)</code> | Default `NO_SIDE_EFFECT` |
-| <code>selfTradePreventionMode</code> | <code>[SelfTradePreventionMode?](Models/Enums/SelfTradePreventionMode.cs)</code> | The allowed enums is dependent on what is configured on the symbol. The possible supported values are EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH, NONE. |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[MarginAccountNewOcoTradeRequest](Requests/Margin/MarginAccountNewOcoTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -8194,7 +7772,7 @@ catch (SdkException<MarginAccountNewOcoTradeError> ex)
 
 **OnSuccess**: <code>[SapiV1MarginOrderOcoResponse](Models/SapiV1MarginOrderOcoResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[MarginAccountNewOcoTradeError](Errors/MarginAccountNewOcoTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[MarginAccountNewOcoTradeError](Errors/MarginAccountNewOcoTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -8205,7 +7783,7 @@ catch (SdkException<MarginAccountNewOcoTradeError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1MarginOrderOtoResponse&gt; MarginAccountNewOtoTrade(string symbol, WorkingType workingType, WorkingSide workingSide, double workingPrice, double workingQuantity, double workingIcebergQty, PendingType pendingType, PendingSide pendingSide, double pendingQuantity, long timestamp, string signature, IsIsolated? isIsolated, string? listClientOrderId, NewOrderRespType? newOrderRespType, SideEffectType1? sideEffectType, SelfTradePreventionMode? selfTradePreventionMode, bool? autoRepayAtCancel, string? workingClientOrderId, WorkingTimeInForce? workingTimeInForce, string? pendingClientOrderId, double? pendingPrice, double? pendingStopPrice, double? pendingTrailingDelta, double? pendingIcebergQty, PendingTimeInForce? pendingTimeInForce, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1MarginOrderOtoResponse&gt; MarginAccountNewOtoTrade(MarginAccountNewOtoTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -8236,34 +7814,25 @@ Weight(UID): 6
 ```csharp
 try
 {
-    var response = await client.Margin.MarginAccountNewOtoTrade(symbol,
-        workingType,
-        workingSide,
-        workingPrice,
-        workingQuantity,
-        workingIcebergQty,
-        pendingType,
-        pendingSide,
-        pendingQuantity,
-        timestamp,
-        signature,
-        isIsolated,
-        listClientOrderId,
-        newOrderRespType,
-        sideEffectType,
-        selfTradePreventionMode,
-        autoRepayAtCancel,
-        workingClientOrderId,
-        workingTimeInForce,
-        pendingClientOrderId,
-        pendingPrice,
-        pendingStopPrice,
-        pendingTrailingDelta,
-        pendingIcebergQty,
-        pendingTimeInForce);
+    var response = await client.Margin.MarginAccountNewOtoTrade(new MarginAccountNewOtoTradeRequest
+    {
+        Symbol = "BNBUSDT",
+        WorkingType = WorkingType.Limit,
+        WorkingSide = WorkingSide.Buy,
+        WorkingPrice = 1.5d,
+        WorkingQuantity = 1.5d,
+        WorkingIcebergQty = 1.5d,
+        PendingType = PendingType.Limit,
+        PendingSide = PendingSide.Buy,
+        PendingQuantity = 1.5d,
+        Timestamp = 1L,
+        Signature = "some example string",
+        SelfTradePreventionMode = SelfTradePreventionMode.ExpireTaker,
+        AutoRepayAtCancel = true,
+    });
     // TODO: Handle 'response' of type SapiV1MarginOrderOtoResponse
 }
-catch (SdkException<MarginAccountNewOtoTradeError> ex)
+catch (ApiException<MarginAccountNewOtoTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -8275,38 +7844,12 @@ catch (SdkException<MarginAccountNewOtoTradeError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string</code> | Trading symbol, e.g. BNBUSDT |
-| <code>workingType</code> | <code>[WorkingType](Models/Enums/WorkingType.cs)</code> | Supported values: LIMIT,LIMIT_MAKER |
-| <code>workingSide</code> | <code>[WorkingSide](Models/Enums/WorkingSide.cs)</code> | BUY,SELL |
-| <code>workingPrice</code> | <code>double</code> | - |
-| <code>workingQuantity</code> | <code>double</code> | Sets the quantity for the working order. |
-| <code>workingIcebergQty</code> | <code>double</code> | This can only be used if workingTimeInForce is GTC. |
-| <code>pendingType</code> | <code>[PendingType](Models/Enums/PendingType.cs)</code> | Supported values: Order Types Note that MARKET orders using quoteOrderQty are not supported. |
-| <code>pendingSide</code> | <code>[PendingSide](Models/Enums/PendingSide.cs)</code> | BUY,SELL |
-| <code>pendingQuantity</code> | <code>double</code> | Sets the quantity for the pending order. |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>isIsolated</code> | <code>[IsIsolated?](Models/Enums/IsIsolated.cs)</code> | * `TRUE` - For isolated margin<br>* `FALSE` - Default, not for isolated margin |
-| <code>listClientOrderId</code> | <code>string?</code> | Arbitrary unique ID among open order lists. Automatically generated if not sent.<br>A new order list with the same `listClientOrderId` is accepted only when the previous one is filled or completely expired.<br>`listClientOrderId` is distinct from the `workingClientOrderId` and the `pendingClientOrderId`. |
-| <code>newOrderRespType</code> | <code>[NewOrderRespType?](Models/Enums/NewOrderRespType.cs)</code> | Set the response JSON. |
-| <code>sideEffectType</code> | <code>[SideEffectType1?](Models/Enums/SideEffectType1.cs)</code> | Default `NO_SIDE_EFFECT` |
-| <code>selfTradePreventionMode</code> | <code>[SelfTradePreventionMode?](Models/Enums/SelfTradePreventionMode.cs)</code> | The allowed enums is dependent on what is configured on the symbol. The possible supported values are EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH, NONE. |
-| <code>autoRepayAtCancel</code> | <code>bool?</code> | Only when MARGIN_BUY order takes effect, true means that the debt generated by the order needs to be repay after the order is cancelled. The default is true |
-| <code>workingClientOrderId</code> | <code>string?</code> | Arbitrary unique ID among open orders for the working order. Automatically generated if not sent. |
-| <code>workingTimeInForce</code> | <code>[WorkingTimeInForce?](Models/Enums/WorkingTimeInForce.cs)</code> | GTC, IOC, FOK |
-| <code>pendingClientOrderId</code> | <code>string?</code> | Arbitrary unique ID among open orders for the pending order. Automatically generated if not sent. |
-| <code>pendingPrice</code> | <code>double?</code> | - |
-| <code>pendingStopPrice</code> | <code>double?</code> | - |
-| <code>pendingTrailingDelta</code> | <code>double?</code> | - |
-| <code>pendingIcebergQty</code> | <code>double?</code> | This can only be used if pendingTimeInForce is GTC. |
-| <code>pendingTimeInForce</code> | <code>[PendingTimeInForce?](Models/Enums/PendingTimeInForce.cs)</code> | GTC, IOC, FOK |
+<code>[MarginAccountNewOtoTradeRequest](Requests/Margin/MarginAccountNewOtoTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -8318,7 +7861,7 @@ catch (SdkException<MarginAccountNewOtoTradeError> ex)
 
 **OnSuccess**: <code>[SapiV1MarginOrderOtoResponse](Models/SapiV1MarginOrderOtoResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[MarginAccountNewOtoTradeError](Errors/MarginAccountNewOtoTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[MarginAccountNewOtoTradeError](Errors/MarginAccountNewOtoTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -8329,7 +7872,7 @@ catch (SdkException<MarginAccountNewOtoTradeError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1MarginOrderOtocoResponse&gt; MarginAccountNewOtocoTrade(string symbol, WorkingType workingType, WorkingSide workingSide, double workingPrice, double workingQuantity, double workingIcebergQty, PendingSide pendingSide, double pendingQuantity, PendingAboveType pendingAboveType, long timestamp, string signature, IsIsolated? isIsolated, SideEffectType1? sideEffectType, bool? autoRepayAtCancel, string? listClientOrderId, NewOrderRespType? newOrderRespType, SelfTradePreventionMode? selfTradePreventionMode, string? workingClientOrderId, WorkingTimeInForce? workingTimeInForce, string? pendingAboveClientOrderId, double? pendingAbovePrice, double? pendingAboveStopPrice, double? pendingAboveTrailingDelta, double? pendingAboveIcebergQty, PendingAboveTimeInForce? pendingAboveTimeInForce, PendingBelowType? pendingBelowType, string? pendingBelowClientOrderId, double? pendingBelowPrice, double? pendingBelowStopPrice, double? pendingBelowTrailingDelta, double? pendingBelowIcebergQty, PendingBelowTimeInForce? pendingBelowTimeInForce, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1MarginOrderOtocoResponse&gt; MarginAccountNewOtocoTrade(MarginAccountNewOtocoTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -8360,41 +7903,25 @@ Weight(UID): 6
 ```csharp
 try
 {
-    var response = await client.Margin.MarginAccountNewOtocoTrade(symbol,
-        workingType,
-        workingSide,
-        workingPrice,
-        workingQuantity,
-        workingIcebergQty,
-        pendingSide,
-        pendingQuantity,
-        pendingAboveType,
-        timestamp,
-        signature,
-        isIsolated,
-        sideEffectType,
-        autoRepayAtCancel,
-        listClientOrderId,
-        newOrderRespType,
-        selfTradePreventionMode,
-        workingClientOrderId,
-        workingTimeInForce,
-        pendingAboveClientOrderId,
-        pendingAbovePrice,
-        pendingAboveStopPrice,
-        pendingAboveTrailingDelta,
-        pendingAboveIcebergQty,
-        pendingAboveTimeInForce,
-        pendingBelowType,
-        pendingBelowClientOrderId,
-        pendingBelowPrice,
-        pendingBelowStopPrice,
-        pendingBelowTrailingDelta,
-        pendingBelowIcebergQty,
-        pendingBelowTimeInForce);
+    var response = await client.Margin.MarginAccountNewOtocoTrade(new MarginAccountNewOtocoTradeRequest
+    {
+        Symbol = "BNBUSDT",
+        WorkingType = WorkingType.Limit,
+        WorkingSide = WorkingSide.Buy,
+        WorkingPrice = 1.5d,
+        WorkingQuantity = 1.5d,
+        WorkingIcebergQty = 1.5d,
+        PendingSide = PendingSide.Buy,
+        PendingQuantity = 1.5d,
+        PendingAboveType = PendingAboveType.LimitMaker,
+        Timestamp = 1L,
+        Signature = "some example string",
+        AutoRepayAtCancel = true,
+        SelfTradePreventionMode = SelfTradePreventionMode.ExpireTaker,
+    });
     // TODO: Handle 'response' of type SapiV1MarginOrderOtocoResponse
 }
-catch (SdkException<MarginAccountNewOtocoTradeError> ex)
+catch (ApiException<MarginAccountNewOtocoTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -8406,45 +7933,12 @@ catch (SdkException<MarginAccountNewOtocoTradeError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string</code> | Trading symbol, e.g. BNBUSDT |
-| <code>workingType</code> | <code>[WorkingType](Models/Enums/WorkingType.cs)</code> | Supported values: LIMIT,LIMIT_MAKER |
-| <code>workingSide</code> | <code>[WorkingSide](Models/Enums/WorkingSide.cs)</code> | BUY,SELL |
-| <code>workingPrice</code> | <code>double</code> | - |
-| <code>workingQuantity</code> | <code>double</code> | Sets the quantity for the working order. |
-| <code>workingIcebergQty</code> | <code>double</code> | This can only be used if workingTimeInForce is GTC. |
-| <code>pendingSide</code> | <code>[PendingSide](Models/Enums/PendingSide.cs)</code> | BUY,SELL |
-| <code>pendingQuantity</code> | <code>double</code> | Sets the quantity for the pending order. |
-| <code>pendingAboveType</code> | <code>[PendingAboveType](Models/Enums/PendingAboveType.cs)</code> | Supported values: LIMIT_MAKER, STOP_LOSS, and STOP_LOSS_LIMIT |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>isIsolated</code> | <code>[IsIsolated?](Models/Enums/IsIsolated.cs)</code> | * `TRUE` - For isolated margin<br>* `FALSE` - Default, not for isolated margin |
-| <code>sideEffectType</code> | <code>[SideEffectType1?](Models/Enums/SideEffectType1.cs)</code> | Default `NO_SIDE_EFFECT` |
-| <code>autoRepayAtCancel</code> | <code>bool?</code> | Only when MARGIN_BUY order takes effect, true means that the debt generated by the order needs to be repay after the order is cancelled. The default is true |
-| <code>listClientOrderId</code> | <code>string?</code> | Arbitrary unique ID among open order lists. Automatically generated if not sent.<br>A new order list with the same `listClientOrderId` is accepted only when the previous one is filled or completely expired.<br>`listClientOrderId` is distinct from the `workingClientOrderId` and the `pendingClientOrderId`. |
-| <code>newOrderRespType</code> | <code>[NewOrderRespType?](Models/Enums/NewOrderRespType.cs)</code> | Set the response JSON. |
-| <code>selfTradePreventionMode</code> | <code>[SelfTradePreventionMode?](Models/Enums/SelfTradePreventionMode.cs)</code> | The allowed enums is dependent on what is configured on the symbol. The possible supported values are EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH, NONE. |
-| <code>workingClientOrderId</code> | <code>string?</code> | Arbitrary unique ID among open orders for the working order. Automatically generated if not sent. |
-| <code>workingTimeInForce</code> | <code>[WorkingTimeInForce?](Models/Enums/WorkingTimeInForce.cs)</code> | GTC, IOC, FOK |
-| <code>pendingAboveClientOrderId</code> | <code>string?</code> | Arbitrary unique ID among open orders for the pending above order. Automatically generated if not sent. |
-| <code>pendingAbovePrice</code> | <code>double?</code> | - |
-| <code>pendingAboveStopPrice</code> | <code>double?</code> | - |
-| <code>pendingAboveTrailingDelta</code> | <code>double?</code> | - |
-| <code>pendingAboveIcebergQty</code> | <code>double?</code> | This can only be used if pendingAboveTimeInForce is GTC. |
-| <code>pendingAboveTimeInForce</code> | <code>[PendingAboveTimeInForce?](Models/Enums/PendingAboveTimeInForce.cs)</code> | - |
-| <code>pendingBelowType</code> | <code>[PendingBelowType?](Models/Enums/PendingBelowType.cs)</code> | Supported values: LIMIT_MAKER, STOP_LOSS, and STOP_LOSS_LIMIT |
-| <code>pendingBelowClientOrderId</code> | <code>string?</code> | Arbitrary unique ID among open orders for the pending below order. Automatically generated if not sent. |
-| <code>pendingBelowPrice</code> | <code>double?</code> | - |
-| <code>pendingBelowStopPrice</code> | <code>double?</code> | - |
-| <code>pendingBelowTrailingDelta</code> | <code>double?</code> | - |
-| <code>pendingBelowIcebergQty</code> | <code>double?</code> | This can only be used if pendingBelowTimeInForce is GTC. |
-| <code>pendingBelowTimeInForce</code> | <code>[PendingBelowTimeInForce?](Models/Enums/PendingBelowTimeInForce.cs)</code> | - |
+<code>[MarginAccountNewOtocoTradeRequest](Requests/Margin/MarginAccountNewOtocoTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -8456,7 +7950,7 @@ catch (SdkException<MarginAccountNewOtocoTradeError> ex)
 
 **OnSuccess**: <code>[SapiV1MarginOrderOtocoResponse](Models/SapiV1MarginOrderOtocoResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[MarginAccountNewOtocoTradeError](Errors/MarginAccountNewOtocoTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[MarginAccountNewOtocoTradeError](Errors/MarginAccountNewOtocoTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -8467,7 +7961,7 @@ catch (SdkException<MarginAccountNewOtocoTradeError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1MarginOrderResponse&gt; MarginAccountNewOrderTrade(string symbol, Side side, Type1 type, double quantity, bool autoRepayAtCancel, long timestamp, string signature, IsIsolated? isIsolated, double? quoteOrderQty, double? price, double? stopPrice, string? newClientOrderId, double? icebergQty, NewOrderRespType? newOrderRespType, SideEffectType? sideEffectType, TimeInForce? timeInForce, SelfTradePreventionMode? selfTradePreventionMode, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1MarginOrderResponse&gt; MarginAccountNewOrderTrade(MarginAccountNewOrderTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -8492,27 +7986,24 @@ Weight(UID): 6
 ```csharp
 try
 {
-    var response = await client.Margin.MarginAccountNewOrderTrade(symbol,
-        side,
-        type,
-        quantity,
-        autoRepayAtCancel,
-        timestamp,
-        signature,
-        isIsolated,
-        quoteOrderQty,
-        price,
-        stopPrice,
-        newClientOrderId,
-        icebergQty,
-        newOrderRespType,
-        sideEffectType,
-        timeInForce,
-        selfTradePreventionMode,
-        recvWindow);
+    var response = await client.Margin.MarginAccountNewOrderTrade(new MarginAccountNewOrderTradeRequest
+    {
+        Symbol = "BNBUSDT",
+        Side = Side.Sell,
+        Type = Type1.Limit,
+        Quantity = 1d,
+        AutoRepayAtCancel = true,
+        Timestamp = 1L,
+        Signature = "some example string",
+        Price = 219d,
+        StopPrice = 221.01d,
+        TimeInForce = TimeInForce.Gtc,
+        SelfTradePreventionMode = SelfTradePreventionMode.ExpireTaker,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1MarginOrderResponse
 }
-catch (SdkException<MarginAccountNewOrderTradeError> ex)
+catch (ApiException<MarginAccountNewOrderTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -8524,31 +8015,12 @@ catch (SdkException<MarginAccountNewOrderTradeError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string</code> | Trading symbol, e.g. BNBUSDT |
-| <code>side</code> | <code>[Side](Models/Enums/Side.cs)</code> | - |
-| <code>type</code> | <code>[Type1](Models/Enums/Type1.cs)</code> | Order type |
-| <code>quantity</code> | <code>double</code> | - |
-| <code>autoRepayAtCancel</code> | <code>bool</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>isIsolated</code> | <code>[IsIsolated?](Models/Enums/IsIsolated.cs)</code> | * `TRUE` - For isolated margin<br>* `FALSE` - Default, not for isolated margin |
-| <code>quoteOrderQty</code> | <code>double?</code> | Quote quantity |
-| <code>price</code> | <code>double?</code> | Order price |
-| <code>stopPrice</code> | <code>double?</code> | Used with STOP_LOSS, STOP_LOSS_LIMIT, TAKE_PROFIT, and TAKE_PROFIT_LIMIT orders. |
-| <code>newClientOrderId</code> | <code>string?</code> | Used to uniquely identify this cancel. Automatically generated by default |
-| <code>icebergQty</code> | <code>double?</code> | Used with LIMIT, STOP_LOSS_LIMIT, and TAKE_PROFIT_LIMIT to create an iceberg order. |
-| <code>newOrderRespType</code> | <code>[NewOrderRespType?](Models/Enums/NewOrderRespType.cs)</code> | Set the response JSON. |
-| <code>sideEffectType</code> | <code>[SideEffectType?](Models/Enums/SideEffectType.cs)</code> | Default `NO_SIDE_EFFECT` |
-| <code>timeInForce</code> | <code>[TimeInForce?](Models/Enums/TimeInForce.cs)</code> | Order time in force |
-| <code>selfTradePreventionMode</code> | <code>[SelfTradePreventionMode?](Models/Enums/SelfTradePreventionMode.cs)</code> | The allowed enums is dependent on what is configured on the symbol. The possible supported values are EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH, NONE. |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[MarginAccountNewOrderTradeRequest](Requests/Margin/MarginAccountNewOrderTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -8560,7 +8032,7 @@ catch (SdkException<MarginAccountNewOrderTradeError> ex)
 
 **OnSuccess**: <code>[SapiV1MarginOrderResponse](Models/AnyOf/SapiV1MarginOrderResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[MarginAccountNewOrderTradeError](Errors/MarginAccountNewOrderTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[MarginAccountNewOrderTradeError](Errors/MarginAccountNewOrderTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -8571,7 +8043,7 @@ catch (SdkException<MarginAccountNewOrderTradeError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1MarginInterestRateHistoryResponse&gt;&gt; MarginInterestRateHistoryUserData(string asset, long timestamp, string signature, int? vipLevel, long? startTime, long? endTime, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1MarginInterestRateHistoryResponse&gt;&gt; MarginInterestRateHistoryUserData(MarginInterestRateHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -8596,16 +8068,17 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.Margin.MarginInterestRateHistoryUserData(asset,
-        timestamp,
-        signature,
-        vipLevel,
-        startTime,
-        endTime,
-        recvWindow);
+    var response = await client.Margin.MarginInterestRateHistoryUserData(new MarginInterestRateHistoryUserDataRequest
+    {
+        Asset = "BTC",
+        Timestamp = 1L,
+        Signature = "some example string",
+        VipLevel = 1,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1MarginInterestRateHistoryResponse>
 }
-catch (SdkException<MarginInterestRateHistoryUserDataError> ex)
+catch (ApiException<MarginInterestRateHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -8617,20 +8090,12 @@ catch (SdkException<MarginInterestRateHistoryUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>asset</code> | <code>string</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>vipLevel</code> | <code>int?</code> | Defaults to user's vip level |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[MarginInterestRateHistoryUserDataRequest](Requests/Margin/MarginInterestRateHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -8642,7 +8107,7 @@ catch (SdkException<MarginInterestRateHistoryUserDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginInterestRateHistoryResponse](Models/SapiV1MarginInterestRateHistoryResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[MarginInterestRateHistoryUserDataError](Errors/MarginInterestRateHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[MarginInterestRateHistoryUserDataError](Errors/MarginInterestRateHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -8653,7 +8118,7 @@ catch (SdkException<MarginInterestRateHistoryUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1MarginBorrowRepayResponse&gt; MarginAccountBorrowRepayMargin(string asset, string isIsolated, string symbol, double amount, string type, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1MarginBorrowRepayResponse&gt; MarginAccountBorrowRepayMargin(MarginAccountBorrowRepayMarginRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -8678,17 +8143,20 @@ Weight(UID): 3000
 ```csharp
 try
 {
-    var response = await client.Margin.MarginAccountBorrowRepayMargin(asset,
-        isIsolated,
-        symbol,
-        amount,
-        type,
-        timestamp,
-        signature,
-        recvWindow);
+    var response = await client.Margin.MarginAccountBorrowRepayMargin(new MarginAccountBorrowRepayMarginRequest
+    {
+        Asset = "BTC",
+        IsIsolated = "some example string",
+        Symbol = "BNBUSDT",
+        Amount = 1.01d,
+        Type = "some example string",
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1MarginBorrowRepayResponse
 }
-catch (SdkException<MarginAccountBorrowRepayMarginError> ex)
+catch (ApiException<MarginAccountBorrowRepayMarginError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -8700,21 +8168,12 @@ catch (SdkException<MarginAccountBorrowRepayMarginError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>asset</code> | <code>string</code> | - |
-| <code>isIsolated</code> | <code>string</code> | TRUE for isolated margin, FALSE for crossed margin |
-| <code>symbol</code> | <code>string</code> | Trading symbol, e.g. BNBUSDT |
-| <code>amount</code> | <code>double</code> | - |
-| <code>type</code> | <code>string</code> | BORROW or REPAY |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[MarginAccountBorrowRepayMarginRequest](Requests/Margin/MarginAccountBorrowRepayMarginRequest.cs)</code>
 
 </dd>
 </dl>
@@ -8726,7 +8185,7 @@ catch (SdkException<MarginAccountBorrowRepayMarginError> ex)
 
 **OnSuccess**: <code>[SapiV1MarginBorrowRepayResponse](Models/SapiV1MarginBorrowRepayResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[MarginAccountBorrowRepayMarginError](Errors/MarginAccountBorrowRepayMarginError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[MarginAccountBorrowRepayMarginError](Errors/MarginAccountBorrowRepayMarginError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -8737,7 +8196,7 @@ catch (SdkException<MarginAccountBorrowRepayMarginError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1MarginManualLiquidationResponse&gt;&gt; MarginManualLiquidationMargin(Type4 type, long timestamp, string signature, string? symbol, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1MarginManualLiquidationResponse&gt;&gt; MarginManualLiquidationMargin(MarginManualLiquidationMarginRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -8762,10 +8221,16 @@ Weight(UID): 3000
 ```csharp
 try
 {
-    var response = await client.Margin.MarginManualLiquidationMargin(type, timestamp, signature, symbol);
+    var response = await client.Margin.MarginManualLiquidationMargin(new MarginManualLiquidationMarginRequest
+    {
+        Type = Type4.Margin,
+        Timestamp = 1L,
+        Signature = "some example string",
+        Symbol = "BTCUSDT",
+    });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1MarginManualLiquidationResponse>
 }
-catch (SdkException<MarginManualLiquidationMarginError> ex)
+catch (ApiException<MarginManualLiquidationMarginError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -8777,17 +8242,12 @@ catch (SdkException<MarginManualLiquidationMarginError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>type</code> | <code>[Type4](Models/Enums/Type4.cs)</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>symbol</code> | <code>string?</code> | - |
+<code>[MarginManualLiquidationMarginRequest](Requests/Margin/MarginManualLiquidationMarginRequest.cs)</code>
 
 </dd>
 </dl>
@@ -8799,7 +8259,7 @@ catch (SdkException<MarginManualLiquidationMarginError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginManualLiquidationResponse](Models/SapiV1MarginManualLiquidationResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[MarginManualLiquidationMarginError](Errors/MarginManualLiquidationMarginError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[MarginManualLiquidationMarginError](Errors/MarginManualLiquidationMarginError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -8810,7 +8270,7 @@ catch (SdkException<MarginManualLiquidationMarginError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1MarginAccountResponse&gt; QueryCrossMarginAccountDetailsUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1MarginAccountResponse&gt; QueryCrossMarginAccountDetailsUserData(QueryCrossMarginAccountDetailsUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -8833,10 +8293,16 @@ Weight(IP): 10
 ```csharp
 try
 {
-    var response = await client.Margin.QueryCrossMarginAccountDetailsUserData(timestamp, signature, recvWindow);
+    var response = await client.Margin.QueryCrossMarginAccountDetailsUserData(
+        new QueryCrossMarginAccountDetailsUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1MarginAccountResponse
 }
-catch (SdkException<QueryCrossMarginAccountDetailsUserDataError> ex)
+catch (ApiException<QueryCrossMarginAccountDetailsUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -8848,16 +8314,12 @@ catch (SdkException<QueryCrossMarginAccountDetailsUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryCrossMarginAccountDetailsUserDataRequest](Requests/Margin/QueryCrossMarginAccountDetailsUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -8869,7 +8331,7 @@ catch (SdkException<QueryCrossMarginAccountDetailsUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1MarginAccountResponse](Models/SapiV1MarginAccountResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryCrossMarginAccountDetailsUserDataError](Errors/QueryCrossMarginAccountDetailsUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryCrossMarginAccountDetailsUserDataError](Errors/QueryCrossMarginAccountDetailsUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -8880,7 +8342,7 @@ catch (SdkException<QueryCrossMarginAccountDetailsUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1MarginCrossMarginDataResponse&gt;&gt; QueryCrossMarginFeeDataUserData(long timestamp, string signature, int? vipLevel, string? coin, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1MarginCrossMarginDataResponse&gt;&gt; QueryCrossMarginFeeDataUserData(QueryCrossMarginFeeDataUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -8905,14 +8367,17 @@ Weight(IP): 1 when coin is specified; 5 when the coin parameter is omitted
 ```csharp
 try
 {
-    var response = await client.Margin.QueryCrossMarginFeeDataUserData(timestamp,
-        signature,
-        vipLevel,
-        coin,
-        recvWindow);
+    var response = await client.Margin.QueryCrossMarginFeeDataUserData(new QueryCrossMarginFeeDataUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        VipLevel = 1,
+        Coin = "BNB",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1MarginCrossMarginDataResponse>
 }
-catch (SdkException<QueryCrossMarginFeeDataUserDataError> ex)
+catch (ApiException<QueryCrossMarginFeeDataUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -8924,18 +8389,12 @@ catch (SdkException<QueryCrossMarginFeeDataUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>vipLevel</code> | <code>int?</code> | Defaults to user's vip level |
-| <code>coin</code> | <code>string?</code> | Coin name |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryCrossMarginFeeDataUserDataRequest](Requests/Margin/QueryCrossMarginFeeDataUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -8947,7 +8406,7 @@ catch (SdkException<QueryCrossMarginFeeDataUserDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginCrossMarginDataResponse](Models/SapiV1MarginCrossMarginDataResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryCrossMarginFeeDataUserDataError](Errors/QueryCrossMarginFeeDataUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryCrossMarginFeeDataUserDataError](Errors/QueryCrossMarginFeeDataUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -8958,7 +8417,7 @@ catch (SdkException<QueryCrossMarginFeeDataUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1MarginRateLimitOrderResponse&gt;&gt; QueryCurrentMarginOrderCountUsageTrade(long timestamp, string signature, string? isIsolated, string? symbol, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1MarginRateLimitOrderResponse&gt;&gt; QueryCurrentMarginOrderCountUsageTrade(QueryCurrentMarginOrderCountUsageTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -8983,14 +8442,16 @@ Weight(IP): 20
 ```csharp
 try
 {
-    var response = await client.Margin.QueryCurrentMarginOrderCountUsageTrade(timestamp,
-        signature,
-        isIsolated,
-        symbol,
-        recvWindow);
+    var response = await client.Margin.QueryCurrentMarginOrderCountUsageTrade(
+        new QueryCurrentMarginOrderCountUsageTradeRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1MarginRateLimitOrderResponse>
 }
-catch (SdkException<QueryCurrentMarginOrderCountUsageTradeError> ex)
+catch (ApiException<QueryCurrentMarginOrderCountUsageTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -9002,18 +8463,12 @@ catch (SdkException<QueryCurrentMarginOrderCountUsageTradeError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>isIsolated</code> | <code>string?</code> | * `TRUE` - For isolated margin<br>* `FALSE` - Default, not for isolated margin |
-| <code>symbol</code> | <code>string?</code> | isolated symbol, mandatory for isolated margin |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryCurrentMarginOrderCountUsageTradeRequest](Requests/Margin/QueryCurrentMarginOrderCountUsageTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -9025,7 +8480,7 @@ catch (SdkException<QueryCurrentMarginOrderCountUsageTradeError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginRateLimitOrderResponse](Models/SapiV1MarginRateLimitOrderResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryCurrentMarginOrderCountUsageTradeError](Errors/QueryCurrentMarginOrderCountUsageTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryCurrentMarginOrderCountUsageTradeError](Errors/QueryCurrentMarginOrderCountUsageTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -9036,7 +8491,7 @@ catch (SdkException<QueryCurrentMarginOrderCountUsageTradeError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1MarginIsolatedAccountLimitResponse&gt; QueryEnabledIsolatedMarginAccountLimitUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1MarginIsolatedAccountLimitResponse&gt; QueryEnabledIsolatedMarginAccountLimitUserData(QueryEnabledIsolatedMarginAccountLimitUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -9061,10 +8516,16 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.Margin.QueryEnabledIsolatedMarginAccountLimitUserData(timestamp, signature, recvWindow);
+    var response = await client.Margin.QueryEnabledIsolatedMarginAccountLimitUserData(
+        new QueryEnabledIsolatedMarginAccountLimitUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1MarginIsolatedAccountLimitResponse
 }
-catch (SdkException<QueryEnabledIsolatedMarginAccountLimitUserDataError> ex)
+catch (ApiException<QueryEnabledIsolatedMarginAccountLimitUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -9076,16 +8537,12 @@ catch (SdkException<QueryEnabledIsolatedMarginAccountLimitUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryEnabledIsolatedMarginAccountLimitUserDataRequest](Requests/Margin/QueryEnabledIsolatedMarginAccountLimitUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -9097,7 +8554,7 @@ catch (SdkException<QueryEnabledIsolatedMarginAccountLimitUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1MarginIsolatedAccountLimitResponse](Models/SapiV1MarginIsolatedAccountLimitResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryEnabledIsolatedMarginAccountLimitUserDataError](Errors/QueryEnabledIsolatedMarginAccountLimitUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryEnabledIsolatedMarginAccountLimitUserDataError](Errors/QueryEnabledIsolatedMarginAccountLimitUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -9108,7 +8565,7 @@ catch (SdkException<QueryEnabledIsolatedMarginAccountLimitUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IsolatedMarginAccountInfo&gt; QueryIsolatedMarginAccountInfoUserData(long timestamp, string signature, string? symbols, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IsolatedMarginAccountInfo&gt; QueryIsolatedMarginAccountInfoUserData(QueryIsolatedMarginAccountInfoUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -9134,13 +8591,17 @@ Weight(IP): 10
 ```csharp
 try
 {
-    var response = await client.Margin.QueryIsolatedMarginAccountInfoUserData(timestamp,
-        signature,
-        symbols,
-        recvWindow);
+    var response = await client.Margin.QueryIsolatedMarginAccountInfoUserData(
+        new QueryIsolatedMarginAccountInfoUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            Symbols = "BTCUSDT,BNBUSDT,ADAUSDT",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type IsolatedMarginAccountInfo
 }
-catch (SdkException<QueryIsolatedMarginAccountInfoUserDataError> ex)
+catch (ApiException<QueryIsolatedMarginAccountInfoUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -9152,17 +8613,12 @@ catch (SdkException<QueryIsolatedMarginAccountInfoUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>symbols</code> | <code>string?</code> | Max 5 symbols can be sent; separated by ',' |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryIsolatedMarginAccountInfoUserDataRequest](Requests/Margin/QueryIsolatedMarginAccountInfoUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -9174,7 +8630,7 @@ catch (SdkException<QueryIsolatedMarginAccountInfoUserDataError> ex)
 
 **OnSuccess**: <code>[IsolatedMarginAccountInfo](Models/IsolatedMarginAccountInfo.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryIsolatedMarginAccountInfoUserDataError](Errors/QueryIsolatedMarginAccountInfoUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryIsolatedMarginAccountInfoUserDataError](Errors/QueryIsolatedMarginAccountInfoUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -9185,7 +8641,7 @@ catch (SdkException<QueryIsolatedMarginAccountInfoUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1MarginIsolatedMarginDataResponse&gt;&gt; QueryIsolatedMarginFeeDataUserData(long timestamp, string signature, int? vipLevel, string? symbol, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1MarginIsolatedMarginDataResponse&gt;&gt; QueryIsolatedMarginFeeDataUserData(QueryIsolatedMarginFeeDataUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -9210,14 +8666,17 @@ Weight(IP): 1 when a single is specified; 10 when the symbol parameter is omitte
 ```csharp
 try
 {
-    var response = await client.Margin.QueryIsolatedMarginFeeDataUserData(timestamp,
-        signature,
-        vipLevel,
-        symbol,
-        recvWindow);
+    var response = await client.Margin.QueryIsolatedMarginFeeDataUserData(new QueryIsolatedMarginFeeDataUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        VipLevel = 1,
+        Symbol = "BNBUSDT",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1MarginIsolatedMarginDataResponse>
 }
-catch (SdkException<QueryIsolatedMarginFeeDataUserDataError> ex)
+catch (ApiException<QueryIsolatedMarginFeeDataUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -9229,18 +8688,12 @@ catch (SdkException<QueryIsolatedMarginFeeDataUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>vipLevel</code> | <code>int?</code> | Defaults to user's vip level |
-| <code>symbol</code> | <code>string?</code> | Trading symbol, e.g. BNBUSDT |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryIsolatedMarginFeeDataUserDataRequest](Requests/Margin/QueryIsolatedMarginFeeDataUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -9252,7 +8705,7 @@ catch (SdkException<QueryIsolatedMarginFeeDataUserDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginIsolatedMarginDataResponse](Models/SapiV1MarginIsolatedMarginDataResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryIsolatedMarginFeeDataUserDataError](Errors/QueryIsolatedMarginFeeDataUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryIsolatedMarginFeeDataUserDataError](Errors/QueryIsolatedMarginFeeDataUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -9263,7 +8716,7 @@ catch (SdkException<QueryIsolatedMarginFeeDataUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1MarginIsolatedMarginTierResponse&gt;&gt; QueryIsolatedMarginTierDataUserData(string symbol, long timestamp, string signature, string? tier, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1MarginIsolatedMarginTierResponse&gt;&gt; QueryIsolatedMarginTierDataUserData(QueryIsolatedMarginTierDataUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -9288,14 +8741,18 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.Margin.QueryIsolatedMarginTierDataUserData(symbol,
-        timestamp,
-        signature,
-        tier,
-        recvWindow);
+    var response = await client.Margin.QueryIsolatedMarginTierDataUserData(
+        new QueryIsolatedMarginTierDataUserDataRequest
+        {
+            Symbol = "BNBUSDT",
+            Timestamp = 1L,
+            Signature = "some example string",
+            Tier = "1",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1MarginIsolatedMarginTierResponse>
 }
-catch (SdkException<QueryIsolatedMarginTierDataUserDataError> ex)
+catch (ApiException<QueryIsolatedMarginTierDataUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -9307,18 +8764,12 @@ catch (SdkException<QueryIsolatedMarginTierDataUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string</code> | Trading symbol, e.g. BNBUSDT |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>tier</code> | <code>string?</code> | All margin tier data will be returned if tier is omitted |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryIsolatedMarginTierDataUserDataRequest](Requests/Margin/QueryIsolatedMarginTierDataUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -9330,7 +8781,7 @@ catch (SdkException<QueryIsolatedMarginTierDataUserDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginIsolatedMarginTierResponse](Models/SapiV1MarginIsolatedMarginTierResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryIsolatedMarginTierDataUserDataError](Errors/QueryIsolatedMarginTierDataUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryIsolatedMarginTierDataUserDataError](Errors/QueryIsolatedMarginTierDataUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -9341,7 +8792,7 @@ catch (SdkException<QueryIsolatedMarginTierDataUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1MarginLeverageBracketResponse&gt;&gt; QueryLiabilityCoinLeverageBracketInCrossMarginProModeMarketData(RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1MarginLeverageBracketResponse&gt;&gt; QueryLiabilityCoinLeverageBracketInCrossMarginProModeMarketData(RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -9369,7 +8820,7 @@ try
     var response = await client.Margin.QueryLiabilityCoinLeverageBracketInCrossMarginProModeMarketData();
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1MarginLeverageBracketResponse>
 }
-catch (SdkException<QueryLiabilityCoinLeverageBracketInCrossMarginProModeMarketDataError> ex)
+catch (ApiException<QueryLiabilityCoinLeverageBracketInCrossMarginProModeMarketDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -9388,7 +8839,7 @@ catch (SdkException<QueryLiabilityCoinLeverageBracketInCrossMarginProModeMarketD
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginLeverageBracketResponse](Models/SapiV1MarginLeverageBracketResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryLiabilityCoinLeverageBracketInCrossMarginProModeMarketDataError](Errors/QueryLiabilityCoinLeverageBracketInCrossMarginProModeMarketDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryLiabilityCoinLeverageBracketInCrossMarginProModeMarketDataError](Errors/QueryLiabilityCoinLeverageBracketInCrossMarginProModeMarketDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -9399,7 +8850,7 @@ catch (SdkException<QueryLiabilityCoinLeverageBracketInCrossMarginProModeMarketD
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;MarginOrderDetail&gt;&gt; QueryMarginAccountSAllOrdersUserData(string symbol, long timestamp, string signature, IsIsolated? isIsolated, long? orderId, long? startTime, long? endTime, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;MarginOrderDetail&gt;&gt; QueryMarginAccountSAllOrdersUserData(QueryMarginAccountSAllOrdersUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -9427,18 +8878,18 @@ Request Limit: 60 times/min per IP
 ```csharp
 try
 {
-    var response = await client.Margin.QueryMarginAccountSAllOrdersUserData(symbol,
-        timestamp,
-        signature,
-        isIsolated,
-        orderId,
-        startTime,
-        endTime,
-        limit,
-        recvWindow);
+    var response = await client.Margin.QueryMarginAccountSAllOrdersUserData(
+        new QueryMarginAccountSAllOrdersUserDataRequest
+        {
+            Symbol = "BNBUSDT",
+            Timestamp = 1L,
+            Signature = "some example string",
+            Limit = 5,
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type IReadOnlyList<MarginOrderDetail>
 }
-catch (SdkException<QueryMarginAccountSAllOrdersUserDataError> ex)
+catch (ApiException<QueryMarginAccountSAllOrdersUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -9450,22 +8901,12 @@ catch (SdkException<QueryMarginAccountSAllOrdersUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string</code> | Trading symbol, e.g. BNBUSDT |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>isIsolated</code> | <code>[IsIsolated?](Models/Enums/IsIsolated.cs)</code> | * `TRUE` - For isolated margin<br>* `FALSE` - Default, not for isolated margin |
-| <code>orderId</code> | <code>long?</code> | Order id |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>limit</code> | <code>int?</code> | Default 500; max 1000. |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryMarginAccountSAllOrdersUserDataRequest](Requests/Margin/QueryMarginAccountSAllOrdersUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -9477,7 +8918,7 @@ catch (SdkException<QueryMarginAccountSAllOrdersUserDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[MarginOrderDetail](Models/MarginOrderDetail.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryMarginAccountSAllOrdersUserDataError](Errors/QueryMarginAccountSAllOrdersUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryMarginAccountSAllOrdersUserDataError](Errors/QueryMarginAccountSAllOrdersUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -9488,7 +8929,7 @@ catch (SdkException<QueryMarginAccountSAllOrdersUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1MarginOrderListResponse&gt; QueryMarginAccountSOcoUserData(long timestamp, string signature, IsIsolated? isIsolated, string? symbol, long? orderListId, string? origClientOrderId, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1MarginOrderListResponse&gt; QueryMarginAccountSOcoUserData(QueryMarginAccountSOcoUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -9515,16 +8956,15 @@ Weight(IP): 10
 ```csharp
 try
 {
-    var response = await client.Margin.QueryMarginAccountSOcoUserData(timestamp,
-        signature,
-        isIsolated,
-        symbol,
-        orderListId,
-        origClientOrderId,
-        recvWindow);
+    var response = await client.Margin.QueryMarginAccountSOcoUserData(new QueryMarginAccountSOcoUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1MarginOrderListResponse
 }
-catch (SdkException<QueryMarginAccountSOcoUserDataError> ex)
+catch (ApiException<QueryMarginAccountSOcoUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -9536,20 +8976,12 @@ catch (SdkException<QueryMarginAccountSOcoUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>isIsolated</code> | <code>[IsIsolated?](Models/Enums/IsIsolated.cs)</code> | * `TRUE` - For isolated margin<br>* `FALSE` - Default, not for isolated margin |
-| <code>symbol</code> | <code>string?</code> | Mandatory for isolated margin, not supported for cross margin |
-| <code>orderListId</code> | <code>long?</code> | Order list id |
-| <code>origClientOrderId</code> | <code>string?</code> | Order id from client |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryMarginAccountSOcoUserDataRequest](Requests/Margin/QueryMarginAccountSOcoUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -9561,7 +8993,7 @@ catch (SdkException<QueryMarginAccountSOcoUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1MarginOrderListResponse](Models/SapiV1MarginOrderListResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryMarginAccountSOcoUserDataError](Errors/QueryMarginAccountSOcoUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryMarginAccountSOcoUserDataError](Errors/QueryMarginAccountSOcoUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -9572,7 +9004,7 @@ catch (SdkException<QueryMarginAccountSOcoUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1MarginOpenOrderListResponse&gt;&gt; QueryMarginAccountSOpenOcoUserData(long timestamp, string signature, IsIsolated? isIsolated, string? symbol, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1MarginOpenOrderListResponse&gt;&gt; QueryMarginAccountSOpenOcoUserData(QueryMarginAccountSOpenOcoUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -9595,14 +9027,15 @@ Weight(IP): 10
 ```csharp
 try
 {
-    var response = await client.Margin.QueryMarginAccountSOpenOcoUserData(timestamp,
-        signature,
-        isIsolated,
-        symbol,
-        recvWindow);
+    var response = await client.Margin.QueryMarginAccountSOpenOcoUserData(new QueryMarginAccountSOpenOcoUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1MarginOpenOrderListResponse>
 }
-catch (SdkException<QueryMarginAccountSOpenOcoUserDataError> ex)
+catch (ApiException<QueryMarginAccountSOpenOcoUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -9614,18 +9047,12 @@ catch (SdkException<QueryMarginAccountSOpenOcoUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>isIsolated</code> | <code>[IsIsolated?](Models/Enums/IsIsolated.cs)</code> | * `TRUE` - For isolated margin<br>* `FALSE` - Default, not for isolated margin |
-| <code>symbol</code> | <code>string?</code> | Mandatory for isolated margin, not supported for cross margin |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryMarginAccountSOpenOcoUserDataRequest](Requests/Margin/QueryMarginAccountSOpenOcoUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -9637,7 +9064,7 @@ catch (SdkException<QueryMarginAccountSOpenOcoUserDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginOpenOrderListResponse](Models/SapiV1MarginOpenOrderListResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryMarginAccountSOpenOcoUserDataError](Errors/QueryMarginAccountSOpenOcoUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryMarginAccountSOpenOcoUserDataError](Errors/QueryMarginAccountSOpenOcoUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -9648,7 +9075,7 @@ catch (SdkException<QueryMarginAccountSOpenOcoUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;MarginOrderDetail&gt;&gt; QueryMarginAccountSOpenOrdersUserData(long timestamp, string signature, string? symbol, IsIsolated? isIsolated, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;MarginOrderDetail&gt;&gt; QueryMarginAccountSOpenOrdersUserData(QueryMarginAccountSOpenOrdersUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -9675,14 +9102,17 @@ Weight(IP): 10
 ```csharp
 try
 {
-    var response = await client.Margin.QueryMarginAccountSOpenOrdersUserData(timestamp,
-        signature,
-        symbol,
-        isIsolated,
-        recvWindow);
+    var response = await client.Margin.QueryMarginAccountSOpenOrdersUserData(
+        new QueryMarginAccountSOpenOrdersUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            Symbol = "BNBUSDT",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type IReadOnlyList<MarginOrderDetail>
 }
-catch (SdkException<QueryMarginAccountSOpenOrdersUserDataError> ex)
+catch (ApiException<QueryMarginAccountSOpenOrdersUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -9694,18 +9124,12 @@ catch (SdkException<QueryMarginAccountSOpenOrdersUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>symbol</code> | <code>string?</code> | Trading symbol, e.g. BNBUSDT |
-| <code>isIsolated</code> | <code>[IsIsolated?](Models/Enums/IsIsolated.cs)</code> | * `TRUE` - For isolated margin<br>* `FALSE` - Default, not for isolated margin |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryMarginAccountSOpenOrdersUserDataRequest](Requests/Margin/QueryMarginAccountSOpenOrdersUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -9717,7 +9141,7 @@ catch (SdkException<QueryMarginAccountSOpenOrdersUserDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[MarginOrderDetail](Models/MarginOrderDetail.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryMarginAccountSOpenOrdersUserDataError](Errors/QueryMarginAccountSOpenOrdersUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryMarginAccountSOpenOrdersUserDataError](Errors/QueryMarginAccountSOpenOrdersUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -9728,7 +9152,7 @@ catch (SdkException<QueryMarginAccountSOpenOrdersUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;MarginOrderDetail&gt; QueryMarginAccountSOrderUserData(string symbol, long timestamp, string signature, IsIsolated? isIsolated, long? orderId, string? origClientOrderId, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;MarginOrderDetail&gt; QueryMarginAccountSOrderUserData(QueryMarginAccountSOrderUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -9754,16 +9178,16 @@ Weight(IP): 10
 ```csharp
 try
 {
-    var response = await client.Margin.QueryMarginAccountSOrderUserData(symbol,
-        timestamp,
-        signature,
-        isIsolated,
-        orderId,
-        origClientOrderId,
-        recvWindow);
+    var response = await client.Margin.QueryMarginAccountSOrderUserData(new QueryMarginAccountSOrderUserDataRequest
+    {
+        Symbol = "BNBUSDT",
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type MarginOrderDetail
 }
-catch (SdkException<QueryMarginAccountSOrderUserDataError> ex)
+catch (ApiException<QueryMarginAccountSOrderUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -9775,20 +9199,12 @@ catch (SdkException<QueryMarginAccountSOrderUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string</code> | Trading symbol, e.g. BNBUSDT |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>isIsolated</code> | <code>[IsIsolated?](Models/Enums/IsIsolated.cs)</code> | * `TRUE` - For isolated margin<br>* `FALSE` - Default, not for isolated margin |
-| <code>orderId</code> | <code>long?</code> | Order id |
-| <code>origClientOrderId</code> | <code>string?</code> | Order id from client |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryMarginAccountSOrderUserDataRequest](Requests/Margin/QueryMarginAccountSOrderUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -9800,7 +9216,7 @@ catch (SdkException<QueryMarginAccountSOrderUserDataError> ex)
 
 **OnSuccess**: <code>[MarginOrderDetail](Models/MarginOrderDetail.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryMarginAccountSOrderUserDataError](Errors/QueryMarginAccountSOrderUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryMarginAccountSOrderUserDataError](Errors/QueryMarginAccountSOrderUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -9811,7 +9227,7 @@ catch (SdkException<QueryMarginAccountSOrderUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;MarginTrade&gt;&gt; QueryMarginAccountSTradeListUserData(string symbol, long timestamp, string signature, IsIsolated? isIsolated, long? startTime, long? endTime, long? fromId, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;MarginTrade&gt;&gt; QueryMarginAccountSTradeListUserData(QueryMarginAccountSTradeListUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -9836,18 +9252,18 @@ Weight(IP): 10
 ```csharp
 try
 {
-    var response = await client.Margin.QueryMarginAccountSTradeListUserData(symbol,
-        timestamp,
-        signature,
-        isIsolated,
-        startTime,
-        endTime,
-        fromId,
-        limit,
-        recvWindow);
+    var response = await client.Margin.QueryMarginAccountSTradeListUserData(
+        new QueryMarginAccountSTradeListUserDataRequest
+        {
+            Symbol = "BNBUSDT",
+            Timestamp = 1L,
+            Signature = "some example string",
+            Limit = 5,
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type IReadOnlyList<MarginTrade>
 }
-catch (SdkException<QueryMarginAccountSTradeListUserDataError> ex)
+catch (ApiException<QueryMarginAccountSTradeListUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -9859,22 +9275,12 @@ catch (SdkException<QueryMarginAccountSTradeListUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string</code> | Trading symbol, e.g. BNBUSDT |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>isIsolated</code> | <code>[IsIsolated?](Models/Enums/IsIsolated.cs)</code> | * `TRUE` - For isolated margin<br>* `FALSE` - Default, not for isolated margin |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>fromId</code> | <code>long?</code> | Trade id to fetch from. Default gets most recent trades. |
-| <code>limit</code> | <code>int?</code> | Default 500; max 1000. |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryMarginAccountSTradeListUserDataRequest](Requests/Margin/QueryMarginAccountSTradeListUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -9886,7 +9292,7 @@ catch (SdkException<QueryMarginAccountSTradeListUserDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[MarginTrade](Models/MarginTrade.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryMarginAccountSTradeListUserDataError](Errors/QueryMarginAccountSTradeListUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryMarginAccountSTradeListUserDataError](Errors/QueryMarginAccountSTradeListUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -9897,7 +9303,7 @@ catch (SdkException<QueryMarginAccountSTradeListUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1MarginAllOrderListResponse&gt;&gt; QueryMarginAccountSAllOcoUserData(long timestamp, string signature, IsIsolated? isIsolated, string? symbol, string? fromId, long? startTime, long? endTime, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1MarginAllOrderListResponse&gt;&gt; QueryMarginAccountSAllOcoUserData(QueryMarginAccountSAllOcoUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -9922,18 +9328,15 @@ Weight(IP): 200
 ```csharp
 try
 {
-    var response = await client.Margin.QueryMarginAccountSAllOcoUserData(timestamp,
-        signature,
-        isIsolated,
-        symbol,
-        fromId,
-        startTime,
-        endTime,
-        limit,
-        recvWindow);
+    var response = await client.Margin.QueryMarginAccountSAllOcoUserData(new QueryMarginAccountSAllOcoUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1MarginAllOrderListResponse>
 }
-catch (SdkException<QueryMarginAccountSAllOcoUserDataError> ex)
+catch (ApiException<QueryMarginAccountSAllOcoUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -9945,22 +9348,12 @@ catch (SdkException<QueryMarginAccountSAllOcoUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>isIsolated</code> | <code>[IsIsolated?](Models/Enums/IsIsolated.cs)</code> | * `TRUE` - For isolated margin<br>* `FALSE` - Default, not for isolated margin |
-| <code>symbol</code> | <code>string?</code> | Mandatory for isolated margin, not supported for cross margin |
-| <code>fromId</code> | <code>string?</code> | If supplied, neither `startTime` or `endTime` can be provided |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>limit</code> | <code>int?</code> | Default Value: 500; Max Value: 1000 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryMarginAccountSAllOcoUserDataRequest](Requests/Margin/QueryMarginAccountSAllOcoUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -9972,7 +9365,7 @@ catch (SdkException<QueryMarginAccountSAllOcoUserDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginAllOrderListResponse](Models/SapiV1MarginAllOrderListResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryMarginAccountSAllOcoUserDataError](Errors/QueryMarginAccountSAllOcoUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryMarginAccountSAllOcoUserDataError](Errors/QueryMarginAccountSAllOcoUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -9983,7 +9376,7 @@ catch (SdkException<QueryMarginAccountSAllOcoUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1MarginAvailableInventoryResponse&gt; QueryMarginAvailableInventoryUserData(Type4 type, long timestamp, string signature, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1MarginAvailableInventoryResponse&gt; QueryMarginAvailableInventoryUserData(QueryMarginAvailableInventoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -10008,10 +9401,16 @@ Weight(UID): 50
 ```csharp
 try
 {
-    var response = await client.Margin.QueryMarginAvailableInventoryUserData(type, timestamp, signature);
+    var response = await client.Margin.QueryMarginAvailableInventoryUserData(
+        new QueryMarginAvailableInventoryUserDataRequest
+        {
+            Type = Type4.Margin,
+            Timestamp = 1L,
+            Signature = "some example string",
+        });
     // TODO: Handle 'response' of type SapiV1MarginAvailableInventoryResponse
 }
-catch (SdkException<QueryMarginAvailableInventoryUserDataError> ex)
+catch (ApiException<QueryMarginAvailableInventoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -10023,16 +9422,12 @@ catch (SdkException<QueryMarginAvailableInventoryUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>type</code> | <code>[Type4](Models/Enums/Type4.cs)</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
+<code>[QueryMarginAvailableInventoryUserDataRequest](Requests/Margin/QueryMarginAvailableInventoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -10044,7 +9439,7 @@ catch (SdkException<QueryMarginAvailableInventoryUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1MarginAvailableInventoryResponse](Models/SapiV1MarginAvailableInventoryResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryMarginAvailableInventoryUserDataError](Errors/QueryMarginAvailableInventoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryMarginAvailableInventoryUserDataError](Errors/QueryMarginAvailableInventoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -10055,7 +9450,7 @@ catch (SdkException<QueryMarginAvailableInventoryUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1MarginPriceIndexResponse&gt; QueryMarginPriceIndexMarketData(string symbol, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1MarginPriceIndexResponse&gt; QueryMarginPriceIndexMarketData(QueryMarginPriceIndexMarketDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -10078,10 +9473,13 @@ Weight(IP): 10
 ```csharp
 try
 {
-    var response = await client.Margin.QueryMarginPriceIndexMarketData(symbol);
+    var response = await client.Margin.QueryMarginPriceIndexMarketData(new QueryMarginPriceIndexMarketDataRequest
+    {
+        Symbol = "BNBUSDT",
+    });
     // TODO: Handle 'response' of type SapiV1MarginPriceIndexResponse
 }
-catch (SdkException<QueryMarginPriceIndexMarketDataError> ex)
+catch (ApiException<QueryMarginPriceIndexMarketDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -10093,14 +9491,12 @@ catch (SdkException<QueryMarginPriceIndexMarketDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string</code> | Trading symbol, e.g. BNBUSDT |
+<code>[QueryMarginPriceIndexMarketDataRequest](Requests/Margin/QueryMarginPriceIndexMarketDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -10112,7 +9508,7 @@ catch (SdkException<QueryMarginPriceIndexMarketDataError> ex)
 
 **OnSuccess**: <code>[SapiV1MarginPriceIndexResponse](Models/SapiV1MarginPriceIndexResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryMarginPriceIndexMarketDataError](Errors/QueryMarginPriceIndexMarketDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryMarginPriceIndexMarketDataError](Errors/QueryMarginPriceIndexMarketDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -10123,7 +9519,7 @@ catch (SdkException<QueryMarginPriceIndexMarketDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1MarginMaxBorrowableResponse&gt; QueryMaxBorrowUserData(string asset, long timestamp, string signature, string? isolatedSymbol, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1MarginMaxBorrowableResponse&gt; QueryMaxBorrowUserData(QueryMaxBorrowUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -10149,10 +9545,16 @@ Weight(IP): 50
 ```csharp
 try
 {
-    var response = await client.Margin.QueryMaxBorrowUserData(asset, timestamp, signature, isolatedSymbol, recvWindow);
+    var response = await client.Margin.QueryMaxBorrowUserData(new QueryMaxBorrowUserDataRequest
+    {
+        Asset = "BTC",
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1MarginMaxBorrowableResponse
 }
-catch (SdkException<QueryMaxBorrowUserDataError> ex)
+catch (ApiException<QueryMaxBorrowUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -10164,18 +9566,12 @@ catch (SdkException<QueryMaxBorrowUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>asset</code> | <code>string</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>isolatedSymbol</code> | <code>string?</code> | Isolated symbol |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryMaxBorrowUserDataRequest](Requests/Margin/QueryMaxBorrowUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -10187,7 +9583,7 @@ catch (SdkException<QueryMaxBorrowUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1MarginMaxBorrowableResponse](Models/SapiV1MarginMaxBorrowableResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryMaxBorrowUserDataError](Errors/QueryMaxBorrowUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryMaxBorrowUserDataError](Errors/QueryMaxBorrowUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -10198,7 +9594,7 @@ catch (SdkException<QueryMaxBorrowUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1MarginMaxTransferableResponse&gt; QueryMaxTransferOutAmountUserData(string asset, long timestamp, string signature, string? isolatedSymbol, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1MarginMaxTransferableResponse&gt; QueryMaxTransferOutAmountUserData(QueryMaxTransferOutAmountUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -10223,14 +9619,16 @@ Weight(IP): 50
 ```csharp
 try
 {
-    var response = await client.Margin.QueryMaxTransferOutAmountUserData(asset,
-        timestamp,
-        signature,
-        isolatedSymbol,
-        recvWindow);
+    var response = await client.Margin.QueryMaxTransferOutAmountUserData(new QueryMaxTransferOutAmountUserDataRequest
+    {
+        Asset = "BTC",
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1MarginMaxTransferableResponse
 }
-catch (SdkException<QueryMaxTransferOutAmountUserDataError> ex)
+catch (ApiException<QueryMaxTransferOutAmountUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -10242,18 +9640,12 @@ catch (SdkException<QueryMaxTransferOutAmountUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>asset</code> | <code>string</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>isolatedSymbol</code> | <code>string?</code> | Isolated symbol |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryMaxTransferOutAmountUserDataRequest](Requests/Margin/QueryMaxTransferOutAmountUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -10265,7 +9657,7 @@ catch (SdkException<QueryMaxTransferOutAmountUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1MarginMaxTransferableResponse](Models/SapiV1MarginMaxTransferableResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryMaxTransferOutAmountUserDataError](Errors/QueryMaxTransferOutAmountUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryMaxTransferOutAmountUserDataError](Errors/QueryMaxTransferOutAmountUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -10276,7 +9668,7 @@ catch (SdkException<QueryMaxTransferOutAmountUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1MarginBorrowRepayResponse1&gt; QueryBorrowRepayRecordsInMarginAccountUserData(string asset, string type, long timestamp, string signature, string? isolatedSymbol, long? txId, long? startTime, long? endTime, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1MarginBorrowRepayResponse1&gt; QueryBorrowRepayRecordsInMarginAccountUserData(QueryBorrowRepayRecordsInMarginAccountUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -10306,20 +9698,20 @@ Weight(IP): 10
 ```csharp
 try
 {
-    var response = await client.Margin.QueryBorrowRepayRecordsInMarginAccountUserData(asset,
-        type,
-        timestamp,
-        signature,
-        isolatedSymbol,
-        txId,
-        startTime,
-        endTime,
-        current,
-        size,
-        recvWindow);
+    var response = await client.Margin.QueryBorrowRepayRecordsInMarginAccountUserData(
+        new QueryBorrowRepayRecordsInMarginAccountUserDataRequest
+        {
+            Asset = "BTC",
+            Type = "some example string",
+            Timestamp = 1L,
+            Signature = "some example string",
+            Current = 1,
+            Size = 100,
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1MarginBorrowRepayResponse1
 }
-catch (SdkException<QueryBorrowRepayRecordsInMarginAccountUserDataError> ex)
+catch (ApiException<QueryBorrowRepayRecordsInMarginAccountUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -10331,24 +9723,12 @@ catch (SdkException<QueryBorrowRepayRecordsInMarginAccountUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>asset</code> | <code>string</code> | - |
-| <code>type</code> | <code>string</code> | BORROW or REPAY |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>isolatedSymbol</code> | <code>string?</code> | Isolated symbol |
-| <code>txId</code> | <code>long?</code> | tranId in POST /sapi/v1/margin/loan |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>current</code> | <code>int?</code> | Current querying page. Start from 1. Default:1 |
-| <code>size</code> | <code>int?</code> | Default:10 Max:100 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryBorrowRepayRecordsInMarginAccountUserDataRequest](Requests/Margin/QueryBorrowRepayRecordsInMarginAccountUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -10360,7 +9740,7 @@ catch (SdkException<QueryBorrowRepayRecordsInMarginAccountUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1MarginBorrowRepayResponse1](Models/SapiV1MarginBorrowRepayResponse1.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryBorrowRepayRecordsInMarginAccountUserDataError](Errors/QueryBorrowRepayRecordsInMarginAccountUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryBorrowRepayRecordsInMarginAccountUserDataError](Errors/QueryBorrowRepayRecordsInMarginAccountUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -10371,7 +9751,7 @@ catch (SdkException<QueryBorrowRepayRecordsInMarginAccountUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;BnbBurnStatus&gt; ToggleBnbBurnOnSpotTradeAndMarginInterestUserData(long timestamp, string signature, SpotBnbBurn? spotBnbBurn, InterestBnbBurn? interestBnbBurn, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;BnbBurnStatus&gt; ToggleBnbBurnOnSpotTradeAndMarginInterestUserData(ToggleBnbBurnOnSpotTradeAndMarginInterestUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -10396,14 +9776,18 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.Margin.ToggleBnbBurnOnSpotTradeAndMarginInterestUserData(timestamp,
-        signature,
-        spotBnbBurn,
-        interestBnbBurn,
-        recvWindow);
+    var response = await client.Margin.ToggleBnbBurnOnSpotTradeAndMarginInterestUserData(
+        new ToggleBnbBurnOnSpotTradeAndMarginInterestUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            SpotBnbBurn = SpotBnbBurn.True,
+            InterestBnbBurn = InterestBnbBurn.False,
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type BnbBurnStatus
 }
-catch (SdkException<ToggleBnbBurnOnSpotTradeAndMarginInterestUserDataError> ex)
+catch (ApiException<ToggleBnbBurnOnSpotTradeAndMarginInterestUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -10415,18 +9799,12 @@ catch (SdkException<ToggleBnbBurnOnSpotTradeAndMarginInterestUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>spotBnbBurn</code> | <code>[SpotBnbBurn?](Models/Enums/SpotBnbBurn.cs)</code> | Determines whether to use BNB to pay for trading fees on SPOT |
-| <code>interestBnbBurn</code> | <code>[InterestBnbBurn?](Models/Enums/InterestBnbBurn.cs)</code> | Determines whether to use BNB to pay for margin loan's interest |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[ToggleBnbBurnOnSpotTradeAndMarginInterestUserDataRequest](Requests/Margin/ToggleBnbBurnOnSpotTradeAndMarginInterestUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -10438,7 +9816,7 @@ catch (SdkException<ToggleBnbBurnOnSpotTradeAndMarginInterestUserDataError> ex)
 
 **OnSuccess**: <code>[BnbBurnStatus](Models/BnbBurnStatus.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[ToggleBnbBurnOnSpotTradeAndMarginInterestUserDataError](Errors/ToggleBnbBurnOnSpotTradeAndMarginInterestUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[ToggleBnbBurnOnSpotTradeAndMarginInterestUserDataError](Errors/ToggleBnbBurnOnSpotTradeAndMarginInterestUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -10453,7 +9831,7 @@ catch (SdkException<ToggleBnbBurnOnSpotTradeAndMarginInterestUserDataError> ex)
 > Source: [MarginStream](Api/MarginStream.cs)
 
 <details>
-<summary><code>Task&lt;object&gt; CloseAListenKeyUserStream2(string? listenKey, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;object&gt; CloseAListenKeyUserStream2(CloseAListenKeyUserStream2Request request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -10478,10 +9856,13 @@ Weight: 1
 ```csharp
 try
 {
-    var response = await client.MarginStream.CloseAListenKeyUserStream2(listenKey);
+    var response = await client.MarginStream.CloseAListenKeyUserStream2(new CloseAListenKeyUserStream2Request
+    {
+        ListenKey = "pqia91ma19a5s61cv6a81va65sdf19v8a65a1a5s61cv6a81va65sdf19v8a65a1",
+    });
     // TODO: Handle 'response' of type object
 }
-catch (SdkException<CloseAListenKeyUserStream2Error> ex)
+catch (ApiException<CloseAListenKeyUserStream2Error> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -10493,14 +9874,12 @@ catch (SdkException<CloseAListenKeyUserStream2Error> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>listenKey</code> | <code>string?</code> | User websocket listen key |
+<code>[CloseAListenKeyUserStream2Request](Requests/MarginStream/CloseAListenKeyUserStream2Request.cs)</code>
 
 </dd>
 </dl>
@@ -10512,7 +9891,7 @@ catch (SdkException<CloseAListenKeyUserStream2Error> ex)
 
 **OnSuccess**: <code>object</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[CloseAListenKeyUserStream2Error](Errors/CloseAListenKeyUserStream2Error.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CloseAListenKeyUserStream2Error](Errors/CloseAListenKeyUserStream2Error.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -10523,7 +9902,7 @@ catch (SdkException<CloseAListenKeyUserStream2Error> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1UserDataStreamResponse&gt; CreateAListenKeyUserStream2(RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1UserDataStreamResponse&gt; CreateAListenKeyUserStream2(RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -10552,7 +9931,7 @@ try
     var response = await client.MarginStream.CreateAListenKeyUserStream2();
     // TODO: Handle 'response' of type SapiV1UserDataStreamResponse
 }
-catch (SdkException<RawError> ex)
+catch (ApiException<RawError> ex)
 {
     // TODO: Handle 'ex.Error' of type RawError
 }
@@ -10568,7 +9947,7 @@ catch (SdkException<RawError> ex)
 
 **OnSuccess**: <code>[SapiV1UserDataStreamResponse](Models/SapiV1UserDataStreamResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[RawError](Core/ErrorResponse/RawError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[RawError](Core/ErrorResponse/RawError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -10579,7 +9958,7 @@ catch (SdkException<RawError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;object&gt; PingKeepAliveAListenKeyUserStream2(string? listenKey, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;object&gt; PingKeepAliveAListenKeyUserStream2(PingKeepAliveAListenKeyUserStream2Request request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -10604,10 +9983,14 @@ Weight: 1
 ```csharp
 try
 {
-    var response = await client.MarginStream.PingKeepAliveAListenKeyUserStream2(listenKey);
+    var response = await client.MarginStream.PingKeepAliveAListenKeyUserStream2(
+        new PingKeepAliveAListenKeyUserStream2Request
+        {
+            ListenKey = "pqia91ma19a5s61cv6a81va65sdf19v8a65a1a5s61cv6a81va65sdf19v8a65a1",
+        });
     // TODO: Handle 'response' of type object
 }
-catch (SdkException<PingKeepAliveAListenKeyUserStream2Error> ex)
+catch (ApiException<PingKeepAliveAListenKeyUserStream2Error> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -10619,14 +10002,12 @@ catch (SdkException<PingKeepAliveAListenKeyUserStream2Error> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>listenKey</code> | <code>string?</code> | User websocket listen key |
+<code>[PingKeepAliveAListenKeyUserStream2Request](Requests/MarginStream/PingKeepAliveAListenKeyUserStream2Request.cs)</code>
 
 </dd>
 </dl>
@@ -10638,7 +10019,7 @@ catch (SdkException<PingKeepAliveAListenKeyUserStream2Error> ex)
 
 **OnSuccess**: <code>object</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[PingKeepAliveAListenKeyUserStream2Error](Errors/PingKeepAliveAListenKeyUserStream2Error.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[PingKeepAliveAListenKeyUserStream2Error](Errors/PingKeepAliveAListenKeyUserStream2Error.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -10653,7 +10034,7 @@ catch (SdkException<PingKeepAliveAListenKeyUserStream2Error> ex)
 > Source: [Market](Api/Market.cs)
 
 <details>
-<summary><code>Task&lt;ApiV3Ticker24HrResponse&gt; HrTickerPriceChangeStatistics24(string? symbol, string? symbols, TypeEnum? type, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;ApiV3Ticker24HrResponse&gt; HrTickerPriceChangeStatistics24(HrTickerPriceChangeStatistics24Request request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -10682,10 +10063,15 @@ Weight(IP):
 ```csharp
 try
 {
-    var response = await client.Market.HrTickerPriceChangeStatistics24(symbol, symbols, type);
+    var response = await client.Market.HrTickerPriceChangeStatistics24(new HrTickerPriceChangeStatistics24Request
+    {
+        Symbol = "BNBUSDT",
+        Symbols = "[\"BTCUSDT\",\"BNBBTC\"]",
+        Type = TypeEnum.Full,
+    });
     // TODO: Handle 'response' of type ApiV3Ticker24HrResponse
 }
-catch (SdkException<HrTickerPriceChangeStatistics24Error> ex)
+catch (ApiException<HrTickerPriceChangeStatistics24Error> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -10697,16 +10083,12 @@ catch (SdkException<HrTickerPriceChangeStatistics24Error> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string?</code> | Trading symbol, e.g. BNBUSDT |
-| <code>symbols</code> | <code>string?</code> | - |
-| <code>type</code> | <code>[TypeEnum?](Models/Enums/TypeEnum.cs)</code> | Supported values: FULL or MINI.<br>If none provided, the default is FULL |
+<code>[HrTickerPriceChangeStatistics24Request](Requests/Market/HrTickerPriceChangeStatistics24Request.cs)</code>
 
 </dd>
 </dl>
@@ -10718,7 +10100,7 @@ catch (SdkException<HrTickerPriceChangeStatistics24Error> ex)
 
 **OnSuccess**: <code>[ApiV3Ticker24HrResponse](Models/AnyOf/ApiV3Ticker24HrResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[HrTickerPriceChangeStatistics24Error](Errors/HrTickerPriceChangeStatistics24Error.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[HrTickerPriceChangeStatistics24Error](Errors/HrTickerPriceChangeStatistics24Error.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -10729,7 +10111,7 @@ catch (SdkException<HrTickerPriceChangeStatistics24Error> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;ApiV3TimeResponse&gt; CheckServerTime(RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;ApiV3TimeResponse&gt; CheckServerTime(RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -10757,7 +10139,7 @@ try
     var response = await client.Market.CheckServerTime();
     // TODO: Handle 'response' of type ApiV3TimeResponse
 }
-catch (SdkException<RawError> ex)
+catch (ApiException<RawError> ex)
 {
     // TODO: Handle 'ex.Error' of type RawError
 }
@@ -10773,7 +10155,7 @@ catch (SdkException<RawError> ex)
 
 **OnSuccess**: <code>[ApiV3TimeResponse](Models/ApiV3TimeResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[RawError](Core/ErrorResponse/RawError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[RawError](Core/ErrorResponse/RawError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -10784,7 +10166,7 @@ catch (SdkException<RawError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;AggTrade&gt;&gt; CompressedAggregateTradesList(string symbol, long? fromId, long? startTime, long? endTime, int? limit, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;AggTrade&gt;&gt; CompressedAggregateTradesList(CompressedAggregateTradesListRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -10819,10 +10201,14 @@ Weight(IP): 2
 ```csharp
 try
 {
-    var response = await client.Market.CompressedAggregateTradesList(symbol, fromId, startTime, endTime, limit);
+    var response = await client.Market.CompressedAggregateTradesList(new CompressedAggregateTradesListRequest
+    {
+        Symbol = "BNBUSDT",
+        Limit = 5,
+    });
     // TODO: Handle 'response' of type IReadOnlyList<AggTrade>
 }
-catch (SdkException<CompressedAggregateTradesListError> ex)
+catch (ApiException<CompressedAggregateTradesListError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -10834,18 +10220,12 @@ catch (SdkException<CompressedAggregateTradesListError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string</code> | Trading symbol, e.g. BNBUSDT |
-| <code>fromId</code> | <code>long?</code> | Trade id to fetch from. Default gets most recent trades. |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>limit</code> | <code>int?</code> | Default 500; max 1000. |
+<code>[CompressedAggregateTradesListRequest](Requests/Market/CompressedAggregateTradesListRequest.cs)</code>
 
 </dd>
 </dl>
@@ -10857,7 +10237,7 @@ catch (SdkException<CompressedAggregateTradesListError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[AggTrade](Models/AggTrade.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[CompressedAggregateTradesListError](Errors/CompressedAggregateTradesListError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CompressedAggregateTradesListError](Errors/CompressedAggregateTradesListError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -10868,7 +10248,7 @@ catch (SdkException<CompressedAggregateTradesListError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;ApiV3AvgPriceResponse&gt; CurrentAveragePrice(string symbol, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;ApiV3AvgPriceResponse&gt; CurrentAveragePrice(CurrentAveragePriceRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -10893,10 +10273,10 @@ Weight(IP): 2
 ```csharp
 try
 {
-    var response = await client.Market.CurrentAveragePrice(symbol);
+    var response = await client.Market.CurrentAveragePrice(new CurrentAveragePriceRequest { Symbol = "BNBUSDT" });
     // TODO: Handle 'response' of type ApiV3AvgPriceResponse
 }
-catch (SdkException<CurrentAveragePriceError> ex)
+catch (ApiException<CurrentAveragePriceError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -10908,14 +10288,12 @@ catch (SdkException<CurrentAveragePriceError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string</code> | Trading symbol, e.g. BNBUSDT |
+<code>[CurrentAveragePriceRequest](Requests/Market/CurrentAveragePriceRequest.cs)</code>
 
 </dd>
 </dl>
@@ -10927,7 +10305,7 @@ catch (SdkException<CurrentAveragePriceError> ex)
 
 **OnSuccess**: <code>[ApiV3AvgPriceResponse](Models/ApiV3AvgPriceResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[CurrentAveragePriceError](Errors/CurrentAveragePriceError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CurrentAveragePriceError](Errors/CurrentAveragePriceError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -10938,7 +10316,7 @@ catch (SdkException<CurrentAveragePriceError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;ApiV3ExchangeInfoResponse&gt; ExchangeInformation(string? symbol, string? symbols, string? permissions, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;ApiV3ExchangeInfoResponse&gt; ExchangeInformation(ExchangeInformationRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -10974,10 +10352,15 @@ Weight(IP): 10
 ```csharp
 try
 {
-    var response = await client.Market.ExchangeInformation(symbol, symbols, permissions);
+    var response = await client.Market.ExchangeInformation(new ExchangeInformationRequest
+    {
+        Symbol = "BNBUSDT",
+        Symbols = "[\"BTCUSDT\",\"BNBBTC\"]",
+        Permissions = "'SPOT' or ['MARGIN','LEVERAGED']",
+    });
     // TODO: Handle 'response' of type ApiV3ExchangeInfoResponse
 }
-catch (SdkException<ExchangeInformationError> ex)
+catch (ApiException<ExchangeInformationError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -10989,16 +10372,12 @@ catch (SdkException<ExchangeInformationError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string?</code> | Trading symbol, e.g. BNBUSDT |
-| <code>symbols</code> | <code>string?</code> | - |
-| <code>permissions</code> | <code>string?</code> | - |
+<code>[ExchangeInformationRequest](Requests/Market/ExchangeInformationRequest.cs)</code>
 
 </dd>
 </dl>
@@ -11010,7 +10389,7 @@ catch (SdkException<ExchangeInformationError> ex)
 
 **OnSuccess**: <code>[ApiV3ExchangeInfoResponse](Models/ApiV3ExchangeInfoResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[ExchangeInformationError](Errors/ExchangeInformationError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[ExchangeInformationError](Errors/ExchangeInformationError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -11021,7 +10400,7 @@ catch (SdkException<ExchangeInformationError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;IReadOnlyList&lt;ApiV3KlinesResponse&gt;&gt;&gt; KlineCandlestickData(string symbol, Interval interval, long? startTime, long? endTime, string? timeZone, int? limit, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;IReadOnlyList&lt;ApiV3KlinesResponse&gt;&gt;&gt; KlineCandlestickData(KlineCandlestickDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -11049,10 +10428,15 @@ Weight(IP): 2
 ```csharp
 try
 {
-    var response = await client.Market.KlineCandlestickData(symbol, interval, startTime, endTime, timeZone, limit);
+    var response = await client.Market.KlineCandlestickData(new KlineCandlestickDataRequest
+    {
+        Symbol = "BNBUSDT",
+        Interval = Interval._1S,
+        Limit = 5,
+    });
     // TODO: Handle 'response' of type IReadOnlyList<IReadOnlyList<ApiV3KlinesResponse>>
 }
-catch (SdkException<KlineCandlestickDataError> ex)
+catch (ApiException<KlineCandlestickDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -11064,19 +10448,12 @@ catch (SdkException<KlineCandlestickDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string</code> | Trading symbol, e.g. BNBUSDT |
-| <code>interval</code> | <code>[Interval](Models/Enums/Interval.cs)</code> | kline intervals |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>timeZone</code> | <code>string?</code> | Default: 0 (UTC) |
-| <code>limit</code> | <code>int?</code> | Default 500; max 1000. |
+<code>[KlineCandlestickDataRequest](Requests/Market/KlineCandlestickDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -11088,7 +10465,7 @@ catch (SdkException<KlineCandlestickDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;IReadOnlyList&lt;[ApiV3KlinesResponse](Models/AnyOf/ApiV3KlinesResponse.cs)&gt;&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[KlineCandlestickDataError](Errors/KlineCandlestickDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[KlineCandlestickDataError](Errors/KlineCandlestickDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -11099,7 +10476,7 @@ catch (SdkException<KlineCandlestickDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;Trade&gt;&gt; OldTradeLookup(string symbol, int? limit, long? fromId, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;Trade&gt;&gt; OldTradeLookup(OldTradeLookupRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -11124,10 +10501,10 @@ Weight(IP): 10
 ```csharp
 try
 {
-    var response = await client.Market.OldTradeLookup(symbol, limit, fromId);
+    var response = await client.Market.OldTradeLookup(new OldTradeLookupRequest { Symbol = "BNBUSDT", Limit = 5 });
     // TODO: Handle 'response' of type IReadOnlyList<Trade>
 }
-catch (SdkException<RawError> ex)
+catch (ApiException<RawError> ex)
 {
     // TODO: Handle 'ex.Error' of type RawError
 }
@@ -11136,16 +10513,12 @@ catch (SdkException<RawError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string</code> | Trading symbol, e.g. BNBUSDT |
-| <code>limit</code> | <code>int?</code> | Default 500; max 1000. |
-| <code>fromId</code> | <code>long?</code> | Trade id to fetch from. Default gets most recent trades. |
+<code>[OldTradeLookupRequest](Requests/Market/OldTradeLookupRequest.cs)</code>
 
 </dd>
 </dl>
@@ -11157,7 +10530,7 @@ catch (SdkException<RawError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[Trade](Models/Trade.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[RawError](Core/ErrorResponse/RawError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[RawError](Core/ErrorResponse/RawError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -11168,7 +10541,7 @@ catch (SdkException<RawError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;ApiV3DepthResponse&gt; OrderBook(string symbol, int? limit = 100, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;ApiV3DepthResponse&gt; OrderBook(OrderBookRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -11196,10 +10569,10 @@ catch (SdkException<RawError> ex)
 ```csharp
 try
 {
-    var response = await client.Market.OrderBook(symbol);
+    var response = await client.Market.OrderBook(new OrderBookRequest { Symbol = "BNBUSDT", Limit = 100 });
     // TODO: Handle 'response' of type ApiV3DepthResponse
 }
-catch (SdkException<OrderBookError> ex)
+catch (ApiException<OrderBookError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -11211,15 +10584,12 @@ catch (SdkException<OrderBookError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string</code> | Trading symbol, e.g. BNBUSDT |
-| <code>limit</code> | <code>int?</code> | If limit > 5000, then the response will truncate to 5000<br>**Default**: 100 |
+<code>[OrderBookRequest](Requests/Market/OrderBookRequest.cs)</code>
 
 </dd>
 </dl>
@@ -11231,7 +10601,7 @@ catch (SdkException<OrderBookError> ex)
 
 **OnSuccess**: <code>[ApiV3DepthResponse](Models/ApiV3DepthResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[OrderBookError](Errors/OrderBookError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[OrderBookError](Errors/OrderBookError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -11242,7 +10612,7 @@ catch (SdkException<OrderBookError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;Trade&gt;&gt; RecentTradesList(string symbol, int? limit, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;Trade&gt;&gt; RecentTradesList(RecentTradesListRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -11267,10 +10637,10 @@ Weight(IP): 10
 ```csharp
 try
 {
-    var response = await client.Market.RecentTradesList(symbol, limit);
+    var response = await client.Market.RecentTradesList(new RecentTradesListRequest { Symbol = "BNBUSDT", Limit = 5 });
     // TODO: Handle 'response' of type IReadOnlyList<Trade>
 }
-catch (SdkException<RecentTradesListError> ex)
+catch (ApiException<RecentTradesListError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -11282,15 +10652,12 @@ catch (SdkException<RecentTradesListError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string</code> | Trading symbol, e.g. BNBUSDT |
-| <code>limit</code> | <code>int?</code> | Default 500; max 1000. |
+<code>[RecentTradesListRequest](Requests/Market/RecentTradesListRequest.cs)</code>
 
 </dd>
 </dl>
@@ -11302,7 +10669,7 @@ catch (SdkException<RecentTradesListError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[Trade](Models/Trade.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[RecentTradesListError](Errors/RecentTradesListError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[RecentTradesListError](Errors/RecentTradesListError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -11313,7 +10680,7 @@ catch (SdkException<RecentTradesListError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;ApiV3TickerResponse&gt; RollingWindowPriceChangeStatistics(string? symbol, string? symbols, string? windowSize, string? type, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;ApiV3TickerResponse&gt; RollingWindowPriceChangeStatistics(RollingWindowPriceChangeStatisticsRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -11344,10 +10711,14 @@ The weight for this request will cap at 200 once the number of symbols in the re
 ```csharp
 try
 {
-    var response = await client.Market.RollingWindowPriceChangeStatistics(symbol, symbols, windowSize, type);
+    var response = await client.Market.RollingWindowPriceChangeStatistics(new RollingWindowPriceChangeStatisticsRequest
+    {
+        Symbol = "BNBUSDT",
+        Symbols = "[\"BTCUSDT\",\"BNBBTC\"]",
+    });
     // TODO: Handle 'response' of type ApiV3TickerResponse
 }
-catch (SdkException<RollingWindowPriceChangeStatisticsError> ex)
+catch (ApiException<RollingWindowPriceChangeStatisticsError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -11359,17 +10730,12 @@ catch (SdkException<RollingWindowPriceChangeStatisticsError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string?</code> | Trading symbol, e.g. BNBUSDT |
-| <code>symbols</code> | <code>string?</code> | - |
-| <code>windowSize</code> | <code>string?</code> | Defaults to 1d if no parameter provided.<br>Supported windowSize values:<br>1m,2m....59m for minutes<br>1h, 2h....23h - for hours<br>1d...7d - for days.<br><br>Units cannot be combined (e.g. 1d2h is not allowed) |
-| <code>type</code> | <code>string?</code> | Supported values: FULL or MINI.<br>If none provided, the default is FULL |
+<code>[RollingWindowPriceChangeStatisticsRequest](Requests/Market/RollingWindowPriceChangeStatisticsRequest.cs)</code>
 
 </dd>
 </dl>
@@ -11381,7 +10747,7 @@ catch (SdkException<RollingWindowPriceChangeStatisticsError> ex)
 
 **OnSuccess**: <code>[ApiV3TickerResponse](Models/ApiV3TickerResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[RollingWindowPriceChangeStatisticsError](Errors/RollingWindowPriceChangeStatisticsError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[RollingWindowPriceChangeStatisticsError](Errors/RollingWindowPriceChangeStatisticsError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -11392,7 +10758,7 @@ catch (SdkException<RollingWindowPriceChangeStatisticsError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;ApiV3TickerBookTickerResponse&gt; SymbolOrderBookTicker(string? symbol, string? symbols, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;ApiV3TickerBookTickerResponse&gt; SymbolOrderBookTicker(SymbolOrderBookTickerRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -11421,10 +10787,14 @@ Weight(IP):
 ```csharp
 try
 {
-    var response = await client.Market.SymbolOrderBookTicker(symbol, symbols);
+    var response = await client.Market.SymbolOrderBookTicker(new SymbolOrderBookTickerRequest
+    {
+        Symbol = "BNBUSDT",
+        Symbols = "[\"BTCUSDT\",\"BNBBTC\"]",
+    });
     // TODO: Handle 'response' of type ApiV3TickerBookTickerResponse
 }
-catch (SdkException<SymbolOrderBookTickerError> ex)
+catch (ApiException<SymbolOrderBookTickerError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -11436,15 +10806,12 @@ catch (SdkException<SymbolOrderBookTickerError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string?</code> | Trading symbol, e.g. BNBUSDT |
-| <code>symbols</code> | <code>string?</code> | - |
+<code>[SymbolOrderBookTickerRequest](Requests/Market/SymbolOrderBookTickerRequest.cs)</code>
 
 </dd>
 </dl>
@@ -11456,7 +10823,7 @@ catch (SdkException<SymbolOrderBookTickerError> ex)
 
 **OnSuccess**: <code>[ApiV3TickerBookTickerResponse](Models/AnyOf/ApiV3TickerBookTickerResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[SymbolOrderBookTickerError](Errors/SymbolOrderBookTickerError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SymbolOrderBookTickerError](Errors/SymbolOrderBookTickerError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -11467,7 +10834,7 @@ catch (SdkException<SymbolOrderBookTickerError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;ApiV3TickerPriceResponse&gt; SymbolPriceTicker(string? symbol, string? symbols, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;ApiV3TickerPriceResponse&gt; SymbolPriceTicker(SymbolPriceTickerRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -11496,10 +10863,14 @@ Weight(IP):
 ```csharp
 try
 {
-    var response = await client.Market.SymbolPriceTicker(symbol, symbols);
+    var response = await client.Market.SymbolPriceTicker(new SymbolPriceTickerRequest
+    {
+        Symbol = "BNBUSDT",
+        Symbols = "[\"BTCUSDT\",\"BNBBTC\"]",
+    });
     // TODO: Handle 'response' of type ApiV3TickerPriceResponse
 }
-catch (SdkException<SymbolPriceTickerError> ex)
+catch (ApiException<SymbolPriceTickerError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -11511,15 +10882,12 @@ catch (SdkException<SymbolPriceTickerError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string?</code> | Trading symbol, e.g. BNBUSDT |
-| <code>symbols</code> | <code>string?</code> | - |
+<code>[SymbolPriceTickerRequest](Requests/Market/SymbolPriceTickerRequest.cs)</code>
 
 </dd>
 </dl>
@@ -11531,7 +10899,7 @@ catch (SdkException<SymbolPriceTickerError> ex)
 
 **OnSuccess**: <code>[ApiV3TickerPriceResponse](Models/AnyOf/ApiV3TickerPriceResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[SymbolPriceTickerError](Errors/SymbolPriceTickerError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SymbolPriceTickerError](Errors/SymbolPriceTickerError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -11542,7 +10910,7 @@ catch (SdkException<SymbolPriceTickerError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;object&gt; TestConnectivity(RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;object&gt; TestConnectivity(RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -11570,7 +10938,7 @@ try
     var response = await client.Market.TestConnectivity();
     // TODO: Handle 'response' of type object
 }
-catch (SdkException<RawError> ex)
+catch (ApiException<RawError> ex)
 {
     // TODO: Handle 'ex.Error' of type RawError
 }
@@ -11586,7 +10954,7 @@ catch (SdkException<RawError> ex)
 
 **OnSuccess**: <code>object</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[RawError](Core/ErrorResponse/RawError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[RawError](Core/ErrorResponse/RawError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -11597,7 +10965,7 @@ catch (SdkException<RawError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;ApiV3TickerTradingDayResponse&gt; TradingDayTicker(string? symbol, string? symbols, string? timeZone, TypeEnum? type, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;ApiV3TickerTradingDayResponse&gt; TradingDayTicker(TradingDayTickerRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -11629,10 +10997,15 @@ Weight:
 ```csharp
 try
 {
-    var response = await client.Market.TradingDayTicker(symbol, symbols, timeZone, type);
+    var response = await client.Market.TradingDayTicker(new TradingDayTickerRequest
+    {
+        Symbol = "BNBUSDT",
+        Symbols = "[\"BTCUSDT\",\"BNBBTC\"]",
+        Type = TypeEnum.Full,
+    });
     // TODO: Handle 'response' of type ApiV3TickerTradingDayResponse
 }
-catch (SdkException<TradingDayTickerError> ex)
+catch (ApiException<TradingDayTickerError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -11644,17 +11017,12 @@ catch (SdkException<TradingDayTickerError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string?</code> | Trading symbol, e.g. BNBUSDT |
-| <code>symbols</code> | <code>string?</code> | - |
-| <code>timeZone</code> | <code>string?</code> | Default: 0 (UTC) |
-| <code>type</code> | <code>[TypeEnum?](Models/Enums/TypeEnum.cs)</code> | Supported values: FULL or MINI.<br>If none provided, the default is FULL |
+<code>[TradingDayTickerRequest](Requests/Market/TradingDayTickerRequest.cs)</code>
 
 </dd>
 </dl>
@@ -11666,7 +11034,7 @@ catch (SdkException<TradingDayTickerError> ex)
 
 **OnSuccess**: <code>[ApiV3TickerTradingDayResponse](Models/AnyOf/ApiV3TickerTradingDayResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[TradingDayTickerError](Errors/TradingDayTickerError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[TradingDayTickerError](Errors/TradingDayTickerError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -11677,7 +11045,7 @@ catch (SdkException<TradingDayTickerError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;IReadOnlyList&lt;ApiV3UiKlinesResponse&gt;&gt;&gt; UiKlines(string symbol, Interval interval, long? startTime, long? endTime, string? timeZone, int? limit, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;IReadOnlyList&lt;ApiV3UiKlinesResponse&gt;&gt;&gt; UiKlines(UiKlinesRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -11704,10 +11072,15 @@ Weight(IP): 2
 ```csharp
 try
 {
-    var response = await client.Market.UiKlines(symbol, interval, startTime, endTime, timeZone, limit);
+    var response = await client.Market.UiKlines(new UiKlinesRequest
+    {
+        Symbol = "BNBUSDT",
+        Interval = Interval._1S,
+        Limit = 5,
+    });
     // TODO: Handle 'response' of type IReadOnlyList<IReadOnlyList<ApiV3UiKlinesResponse>>
 }
-catch (SdkException<UiKlinesError> ex)
+catch (ApiException<UiKlinesError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -11719,19 +11092,12 @@ catch (SdkException<UiKlinesError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string</code> | Trading symbol, e.g. BNBUSDT |
-| <code>interval</code> | <code>[Interval](Models/Enums/Interval.cs)</code> | kline intervals |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>timeZone</code> | <code>string?</code> | Default: 0 (UTC) |
-| <code>limit</code> | <code>int?</code> | Default 500; max 1000. |
+<code>[UiKlinesRequest](Requests/Market/UiKlinesRequest.cs)</code>
 
 </dd>
 </dl>
@@ -11743,7 +11109,7 @@ catch (SdkException<UiKlinesError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;IReadOnlyList&lt;[ApiV3UiKlinesResponse](Models/AnyOf/ApiV3UiKlinesResponse.cs)&gt;&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[UiKlinesError](Errors/UiKlinesError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[UiKlinesError](Errors/UiKlinesError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -11758,7 +11124,7 @@ catch (SdkException<UiKlinesError> ex)
 > Source: [Mining](Api/Mining.cs)
 
 <details>
-<summary><code>Task&lt;SapiV1MiningStatisticsUserListResponse&gt; AccountListUserData(string algo, string userName, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1MiningStatisticsUserListResponse&gt; AccountListUserData(AccountListUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -11781,10 +11147,17 @@ Weight(IP): 5
 ```csharp
 try
 {
-    var response = await client.Mining.AccountListUserData(algo, userName, timestamp, signature, recvWindow);
+    var response = await client.Mining.AccountListUserData(new AccountListUserDataRequest
+    {
+        Algo = "some example string",
+        UserName = "some example string",
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1MiningStatisticsUserListResponse
 }
-catch (SdkException<AccountListUserDataError> ex)
+catch (ApiException<AccountListUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -11796,18 +11169,12 @@ catch (SdkException<AccountListUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>algo</code> | <code>string</code> | Algorithm(sha256) |
-| <code>userName</code> | <code>string</code> | Mining Account |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[AccountListUserDataRequest](Requests/Mining/AccountListUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -11819,7 +11186,7 @@ catch (SdkException<AccountListUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1MiningStatisticsUserListResponse](Models/SapiV1MiningStatisticsUserListResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[AccountListUserDataError](Errors/AccountListUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[AccountListUserDataError](Errors/AccountListUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -11830,7 +11197,7 @@ catch (SdkException<AccountListUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1MiningPubAlgoListResponse&gt; AcquiringAlgorithmMarketData(RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1MiningPubAlgoListResponse&gt; AcquiringAlgorithmMarketData(RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -11856,7 +11223,7 @@ try
     var response = await client.Mining.AcquiringAlgorithmMarketData();
     // TODO: Handle 'response' of type SapiV1MiningPubAlgoListResponse
 }
-catch (SdkException<AcquiringAlgorithmMarketDataError> ex)
+catch (ApiException<AcquiringAlgorithmMarketDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -11875,7 +11242,7 @@ catch (SdkException<AcquiringAlgorithmMarketDataError> ex)
 
 **OnSuccess**: <code>[SapiV1MiningPubAlgoListResponse](Models/SapiV1MiningPubAlgoListResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[AcquiringAlgorithmMarketDataError](Errors/AcquiringAlgorithmMarketDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[AcquiringAlgorithmMarketDataError](Errors/AcquiringAlgorithmMarketDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -11886,7 +11253,7 @@ catch (SdkException<AcquiringAlgorithmMarketDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1MiningPubCoinListResponse&gt; AcquiringCoinNameMarketData(RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1MiningPubCoinListResponse&gt; AcquiringCoinNameMarketData(RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -11912,7 +11279,7 @@ try
     var response = await client.Mining.AcquiringCoinNameMarketData();
     // TODO: Handle 'response' of type SapiV1MiningPubCoinListResponse
 }
-catch (SdkException<AcquiringCoinNameMarketDataError> ex)
+catch (ApiException<AcquiringCoinNameMarketDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -11931,7 +11298,7 @@ catch (SdkException<AcquiringCoinNameMarketDataError> ex)
 
 **OnSuccess**: <code>[SapiV1MiningPubCoinListResponse](Models/SapiV1MiningPubCoinListResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[AcquiringCoinNameMarketDataError](Errors/AcquiringCoinNameMarketDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[AcquiringCoinNameMarketDataError](Errors/AcquiringCoinNameMarketDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -11942,7 +11309,7 @@ catch (SdkException<AcquiringCoinNameMarketDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1MiningHashTransferConfigCancelResponse&gt; CancelHashrateResaleConfigurationUserData(string configId, string userName, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1MiningHashTransferConfigCancelResponse&gt; CancelHashrateResaleConfigurationUserData(CancelHashrateResaleConfigurationUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -11965,14 +11332,18 @@ Weight(IP): 5
 ```csharp
 try
 {
-    var response = await client.Mining.CancelHashrateResaleConfigurationUserData(configId,
-        userName,
-        timestamp,
-        signature,
-        recvWindow);
+    var response = await client.Mining.CancelHashrateResaleConfigurationUserData(
+        new CancelHashrateResaleConfigurationUserDataRequest
+        {
+            ConfigId = "some example string",
+            UserName = "some example string",
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1MiningHashTransferConfigCancelResponse
 }
-catch (SdkException<CancelHashrateResaleConfigurationUserDataError> ex)
+catch (ApiException<CancelHashrateResaleConfigurationUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -11984,18 +11355,12 @@ catch (SdkException<CancelHashrateResaleConfigurationUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>configId</code> | <code>string</code> | Mining ID |
-| <code>userName</code> | <code>string</code> | Mining Account |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[CancelHashrateResaleConfigurationUserDataRequest](Requests/Mining/CancelHashrateResaleConfigurationUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -12007,7 +11372,7 @@ catch (SdkException<CancelHashrateResaleConfigurationUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1MiningHashTransferConfigCancelResponse](Models/SapiV1MiningHashTransferConfigCancelResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[CancelHashrateResaleConfigurationUserDataError](Errors/CancelHashrateResaleConfigurationUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CancelHashrateResaleConfigurationUserDataError](Errors/CancelHashrateResaleConfigurationUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -12018,7 +11383,7 @@ catch (SdkException<CancelHashrateResaleConfigurationUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1MiningPaymentListResponse&gt; EarningsListUserData(string algo, string userName, long timestamp, string signature, string? coin, string? startDate, string? endDate, int? pageIndex, string? pageSize, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1MiningPaymentListResponse&gt; EarningsListUserData(EarningsListUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -12041,19 +11406,18 @@ Weight(IP): 5
 ```csharp
 try
 {
-    var response = await client.Mining.EarningsListUserData(algo,
-        userName,
-        timestamp,
-        signature,
-        coin,
-        startDate,
-        endDate,
-        pageIndex,
-        pageSize,
-        recvWindow);
+    var response = await client.Mining.EarningsListUserData(new EarningsListUserDataRequest
+    {
+        Algo = "some example string",
+        UserName = "some example string",
+        Timestamp = 1L,
+        Signature = "some example string",
+        Coin = "BNB",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1MiningPaymentListResponse
 }
-catch (SdkException<EarningsListUserDataError> ex)
+catch (ApiException<EarningsListUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -12065,23 +11429,12 @@ catch (SdkException<EarningsListUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>algo</code> | <code>string</code> | Algorithm(sha256) |
-| <code>userName</code> | <code>string</code> | Mining Account |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>coin</code> | <code>string?</code> | Coin name |
-| <code>startDate</code> | <code>string?</code> | Search date, millisecond timestamp, while empty query all |
-| <code>endDate</code> | <code>string?</code> | Search date, millisecond timestamp, while empty query all |
-| <code>pageIndex</code> | <code>int?</code> | Page number, default is first page, start form 1 |
-| <code>pageSize</code> | <code>string?</code> | Number of pages, minimum 10, maximum 200 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[EarningsListUserDataRequest](Requests/Mining/EarningsListUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -12093,7 +11446,7 @@ catch (SdkException<EarningsListUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1MiningPaymentListResponse](Models/SapiV1MiningPaymentListResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[EarningsListUserDataError](Errors/EarningsListUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[EarningsListUserDataError](Errors/EarningsListUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -12104,7 +11457,7 @@ catch (SdkException<EarningsListUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1MiningPaymentOtherResponse&gt; ExtraBonusListUserData(string algo, string userName, long timestamp, string signature, string? coin, string? startDate, string? endDate, int? pageIndex, string? pageSize, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1MiningPaymentOtherResponse&gt; ExtraBonusListUserData(ExtraBonusListUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -12127,19 +11480,18 @@ Weight(IP): 5
 ```csharp
 try
 {
-    var response = await client.Mining.ExtraBonusListUserData(algo,
-        userName,
-        timestamp,
-        signature,
-        coin,
-        startDate,
-        endDate,
-        pageIndex,
-        pageSize,
-        recvWindow);
+    var response = await client.Mining.ExtraBonusListUserData(new ExtraBonusListUserDataRequest
+    {
+        Algo = "some example string",
+        UserName = "some example string",
+        Timestamp = 1L,
+        Signature = "some example string",
+        Coin = "BNB",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1MiningPaymentOtherResponse
 }
-catch (SdkException<ExtraBonusListUserDataError> ex)
+catch (ApiException<ExtraBonusListUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -12151,23 +11503,12 @@ catch (SdkException<ExtraBonusListUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>algo</code> | <code>string</code> | Algorithm(sha256) |
-| <code>userName</code> | <code>string</code> | Mining Account |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>coin</code> | <code>string?</code> | Coin name |
-| <code>startDate</code> | <code>string?</code> | Search date, millisecond timestamp, while empty query all |
-| <code>endDate</code> | <code>string?</code> | Search date, millisecond timestamp, while empty query all |
-| <code>pageIndex</code> | <code>int?</code> | Page number, default is first page, start form 1 |
-| <code>pageSize</code> | <code>string?</code> | Number of pages, minimum 10, maximum 200 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[ExtraBonusListUserDataRequest](Requests/Mining/ExtraBonusListUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -12179,7 +11520,7 @@ catch (SdkException<ExtraBonusListUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1MiningPaymentOtherResponse](Models/SapiV1MiningPaymentOtherResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[ExtraBonusListUserDataError](Errors/ExtraBonusListUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[ExtraBonusListUserDataError](Errors/ExtraBonusListUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -12190,7 +11531,7 @@ catch (SdkException<ExtraBonusListUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1MiningHashTransferProfitDetailsResponse&gt; HashrateResaleDetailsUserData(string configId, string userName, long timestamp, string signature, int? pageIndex, string? pageSize, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1MiningHashTransferProfitDetailsResponse&gt; HashrateResaleDetailsUserData(HashrateResaleDetailsUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -12213,16 +11554,17 @@ Weight(IP): 5
 ```csharp
 try
 {
-    var response = await client.Mining.HashrateResaleDetailsUserData(configId,
-        userName,
-        timestamp,
-        signature,
-        pageIndex,
-        pageSize,
-        recvWindow);
+    var response = await client.Mining.HashrateResaleDetailsUserData(new HashrateResaleDetailsUserDataRequest
+    {
+        ConfigId = "some example string",
+        UserName = "some example string",
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1MiningHashTransferProfitDetailsResponse
 }
-catch (SdkException<HashrateResaleDetailsUserDataError> ex)
+catch (ApiException<HashrateResaleDetailsUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -12234,20 +11576,12 @@ catch (SdkException<HashrateResaleDetailsUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>configId</code> | <code>string</code> | Mining ID |
-| <code>userName</code> | <code>string</code> | Mining Account |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>pageIndex</code> | <code>int?</code> | Page number, default is first page, start form 1 |
-| <code>pageSize</code> | <code>string?</code> | Number of pages, minimum 10, maximum 200 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[HashrateResaleDetailsUserDataRequest](Requests/Mining/HashrateResaleDetailsUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -12259,7 +11593,7 @@ catch (SdkException<HashrateResaleDetailsUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1MiningHashTransferProfitDetailsResponse](Models/SapiV1MiningHashTransferProfitDetailsResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[HashrateResaleDetailsUserDataError](Errors/HashrateResaleDetailsUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[HashrateResaleDetailsUserDataError](Errors/HashrateResaleDetailsUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -12270,7 +11604,7 @@ catch (SdkException<HashrateResaleDetailsUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1MiningHashTransferConfigDetailsListResponse&gt; HashrateResaleListUserData(long timestamp, string signature, int? pageIndex, string? pageSize, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1MiningHashTransferConfigDetailsListResponse&gt; HashrateResaleListUserData(HashrateResaleListUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -12293,14 +11627,15 @@ Weight(IP): 5
 ```csharp
 try
 {
-    var response = await client.Mining.HashrateResaleListUserData(timestamp,
-        signature,
-        pageIndex,
-        pageSize,
-        recvWindow);
+    var response = await client.Mining.HashrateResaleListUserData(new HashrateResaleListUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1MiningHashTransferConfigDetailsListResponse
 }
-catch (SdkException<HashrateResaleListUserDataError> ex)
+catch (ApiException<HashrateResaleListUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -12312,18 +11647,12 @@ catch (SdkException<HashrateResaleListUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>pageIndex</code> | <code>int?</code> | Page number, default is first page, start form 1 |
-| <code>pageSize</code> | <code>string?</code> | Number of pages, minimum 10, maximum 200 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[HashrateResaleListUserDataRequest](Requests/Mining/HashrateResaleListUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -12335,7 +11664,7 @@ catch (SdkException<HashrateResaleListUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1MiningHashTransferConfigDetailsListResponse](Models/SapiV1MiningHashTransferConfigDetailsListResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[HashrateResaleListUserDataError](Errors/HashrateResaleListUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[HashrateResaleListUserDataError](Errors/HashrateResaleListUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -12346,7 +11675,7 @@ catch (SdkException<HashrateResaleListUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1MiningHashTransferConfigResponse&gt; HashrateResaleRequestUserData(string userName, string algo, string toPoolUser, string hashRate, long timestamp, string signature, string? startDate, string? endDate, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1MiningHashTransferConfigResponse&gt; HashrateResaleRequestUserData(HashrateResaleRequestUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -12369,18 +11698,19 @@ Weight(IP): 5
 ```csharp
 try
 {
-    var response = await client.Mining.HashrateResaleRequestUserData(userName,
-        algo,
-        toPoolUser,
-        hashRate,
-        timestamp,
-        signature,
-        startDate,
-        endDate,
-        recvWindow);
+    var response = await client.Mining.HashrateResaleRequestUserData(new HashrateResaleRequestUserDataRequest
+    {
+        UserName = "some example string",
+        Algo = "some example string",
+        ToPoolUser = "some example string",
+        HashRate = "some example string",
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1MiningHashTransferConfigResponse
 }
-catch (SdkException<HashrateResaleRequestUserDataError> ex)
+catch (ApiException<HashrateResaleRequestUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -12392,22 +11722,12 @@ catch (SdkException<HashrateResaleRequestUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>userName</code> | <code>string</code> | Mining Account |
-| <code>algo</code> | <code>string</code> | Algorithm(sha256) |
-| <code>toPoolUser</code> | <code>string</code> | Mining Account |
-| <code>hashRate</code> | <code>string</code> | Resale hashrate h/s must be transferred (BTC is greater than 500000000000 ETH is greater than 500000) |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>startDate</code> | <code>string?</code> | Search date, millisecond timestamp, while empty query all |
-| <code>endDate</code> | <code>string?</code> | Search date, millisecond timestamp, while empty query all |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[HashrateResaleRequestUserDataRequest](Requests/Mining/HashrateResaleRequestUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -12419,7 +11739,7 @@ catch (SdkException<HashrateResaleRequestUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1MiningHashTransferConfigResponse](Models/SapiV1MiningHashTransferConfigResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[HashrateResaleRequestUserDataError](Errors/HashrateResaleRequestUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[HashrateResaleRequestUserDataError](Errors/HashrateResaleRequestUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -12430,7 +11750,7 @@ catch (SdkException<HashrateResaleRequestUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1MiningPaymentUidResponse&gt; MiningAccountEarningUserData(string algo, long timestamp, string signature, string? startDate, string? endDate, int? pageIndex, string? pageSize, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1MiningPaymentUidResponse&gt; MiningAccountEarningUserData(MiningAccountEarningUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -12453,17 +11773,16 @@ Weight(IP): 5
 ```csharp
 try
 {
-    var response = await client.Mining.MiningAccountEarningUserData(algo,
-        timestamp,
-        signature,
-        startDate,
-        endDate,
-        pageIndex,
-        pageSize,
-        recvWindow);
+    var response = await client.Mining.MiningAccountEarningUserData(new MiningAccountEarningUserDataRequest
+    {
+        Algo = "some example string",
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1MiningPaymentUidResponse
 }
-catch (SdkException<MiningAccountEarningUserDataError> ex)
+catch (ApiException<MiningAccountEarningUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -12475,21 +11794,12 @@ catch (SdkException<MiningAccountEarningUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>algo</code> | <code>string</code> | Algorithm(sha256) |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>startDate</code> | <code>string?</code> | Search date, millisecond timestamp, while empty query all |
-| <code>endDate</code> | <code>string?</code> | Search date, millisecond timestamp, while empty query all |
-| <code>pageIndex</code> | <code>int?</code> | Page number, default is first page, start form 1 |
-| <code>pageSize</code> | <code>string?</code> | Number of pages, minimum 10, maximum 200 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[MiningAccountEarningUserDataRequest](Requests/Mining/MiningAccountEarningUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -12501,7 +11811,7 @@ catch (SdkException<MiningAccountEarningUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1MiningPaymentUidResponse](Models/SapiV1MiningPaymentUidResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[MiningAccountEarningUserDataError](Errors/MiningAccountEarningUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[MiningAccountEarningUserDataError](Errors/MiningAccountEarningUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -12512,7 +11822,7 @@ catch (SdkException<MiningAccountEarningUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1MiningWorkerDetailResponse&gt; RequestForDetailMinerListUserData(string algo, string userName, string workerName, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1MiningWorkerDetailResponse&gt; RequestForDetailMinerListUserData(RequestForDetailMinerListUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -12535,15 +11845,18 @@ Weight(IP): 5
 ```csharp
 try
 {
-    var response = await client.Mining.RequestForDetailMinerListUserData(algo,
-        userName,
-        workerName,
-        timestamp,
-        signature,
-        recvWindow);
+    var response = await client.Mining.RequestForDetailMinerListUserData(new RequestForDetailMinerListUserDataRequest
+    {
+        Algo = "some example string",
+        UserName = "some example string",
+        WorkerName = "some example string",
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1MiningWorkerDetailResponse
 }
-catch (SdkException<RequestForDetailMinerListUserDataError> ex)
+catch (ApiException<RequestForDetailMinerListUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -12555,19 +11868,12 @@ catch (SdkException<RequestForDetailMinerListUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>algo</code> | <code>string</code> | Algorithm(sha256) |
-| <code>userName</code> | <code>string</code> | Mining Account |
-| <code>workerName</code> | <code>string</code> | Miner’s name |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[RequestForDetailMinerListUserDataRequest](Requests/Mining/RequestForDetailMinerListUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -12579,7 +11885,7 @@ catch (SdkException<RequestForDetailMinerListUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1MiningWorkerDetailResponse](Models/SapiV1MiningWorkerDetailResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[RequestForDetailMinerListUserDataError](Errors/RequestForDetailMinerListUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[RequestForDetailMinerListUserDataError](Errors/RequestForDetailMinerListUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -12590,7 +11896,7 @@ catch (SdkException<RequestForDetailMinerListUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1MiningWorkerListResponse&gt; RequestForMinerListUserData(string algo, string userName, long timestamp, string signature, int? pageIndex, int? sort, int? sortColumn, int? workerStatus, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1MiningWorkerListResponse&gt; RequestForMinerListUserData(RequestForMinerListUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -12613,18 +11919,17 @@ Weight(IP): 5
 ```csharp
 try
 {
-    var response = await client.Mining.RequestForMinerListUserData(algo,
-        userName,
-        timestamp,
-        signature,
-        pageIndex,
-        sort,
-        sortColumn,
-        workerStatus,
-        recvWindow);
+    var response = await client.Mining.RequestForMinerListUserData(new RequestForMinerListUserDataRequest
+    {
+        Algo = "some example string",
+        UserName = "some example string",
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1MiningWorkerListResponse
 }
-catch (SdkException<RequestForMinerListUserDataError> ex)
+catch (ApiException<RequestForMinerListUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -12636,22 +11941,12 @@ catch (SdkException<RequestForMinerListUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>algo</code> | <code>string</code> | Algorithm(sha256) |
-| <code>userName</code> | <code>string</code> | Mining Account |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>pageIndex</code> | <code>int?</code> | Page number, default is first page, start form 1 |
-| <code>sort</code> | <code>int?</code> | sort sequence(default=0)0 positive sequence, 1 negative sequence |
-| <code>sortColumn</code> | <code>int?</code> | Sort by( default 1): 1: miner name, 2: real-time computing power, 3: daily average computing power, 4: real-time rejection rate, 5: last submission time |
-| <code>workerStatus</code> | <code>int?</code> | miners status(default=0)0 all, 1 valid, 2 invalid, 3 failure |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[RequestForMinerListUserDataRequest](Requests/Mining/RequestForMinerListUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -12663,7 +11958,7 @@ catch (SdkException<RequestForMinerListUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1MiningWorkerListResponse](Models/SapiV1MiningWorkerListResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[RequestForMinerListUserDataError](Errors/RequestForMinerListUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[RequestForMinerListUserDataError](Errors/RequestForMinerListUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -12674,7 +11969,7 @@ catch (SdkException<RequestForMinerListUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1MiningStatisticsUserStatusResponse&gt; StatisticListUserData(string algo, string userName, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1MiningStatisticsUserStatusResponse&gt; StatisticListUserData(StatisticListUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -12697,10 +11992,17 @@ Weight(IP): 5
 ```csharp
 try
 {
-    var response = await client.Mining.StatisticListUserData(algo, userName, timestamp, signature, recvWindow);
+    var response = await client.Mining.StatisticListUserData(new StatisticListUserDataRequest
+    {
+        Algo = "some example string",
+        UserName = "some example string",
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1MiningStatisticsUserStatusResponse
 }
-catch (SdkException<StatisticListUserDataError> ex)
+catch (ApiException<StatisticListUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -12712,18 +12014,12 @@ catch (SdkException<StatisticListUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>algo</code> | <code>string</code> | Algorithm(sha256) |
-| <code>userName</code> | <code>string</code> | Mining Account |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[StatisticListUserDataRequest](Requests/Mining/StatisticListUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -12735,7 +12031,7 @@ catch (SdkException<StatisticListUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1MiningStatisticsUserStatusResponse](Models/SapiV1MiningStatisticsUserStatusResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[StatisticListUserDataError](Errors/StatisticListUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[StatisticListUserDataError](Errors/StatisticListUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -12750,7 +12046,7 @@ catch (SdkException<StatisticListUserDataError> ex)
 > Source: [Nft](Api/Nft.cs)
 
 <details>
-<summary><code>Task&lt;SapiV1NftUserGetAssetResponse&gt; GetNftAssetUserData(long timestamp, string signature, int? limit, int? page, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1NftUserGetAssetResponse&gt; GetNftAssetUserData(GetNftAssetUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -12773,10 +12069,17 @@ Weight(UID): 3000
 ```csharp
 try
 {
-    var response = await client.Nft.GetNftAssetUserData(timestamp, signature, limit, page, recvWindow);
+    var response = await client.Nft.GetNftAssetUserData(new GetNftAssetUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        Limit = 50,
+        Page = 1,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1NftUserGetAssetResponse
 }
-catch (SdkException<GetNftAssetUserDataError> ex)
+catch (ApiException<GetNftAssetUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -12788,18 +12091,12 @@ catch (SdkException<GetNftAssetUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>limit</code> | <code>int?</code> | Default 50, Max 50 |
-| <code>page</code> | <code>int?</code> | Default 1 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetNftAssetUserDataRequest](Requests/Nft/GetNftAssetUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -12811,7 +12108,7 @@ catch (SdkException<GetNftAssetUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1NftUserGetAssetResponse](Models/SapiV1NftUserGetAssetResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetNftAssetUserDataError](Errors/GetNftAssetUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetNftAssetUserDataError](Errors/GetNftAssetUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -12822,7 +12119,7 @@ catch (SdkException<GetNftAssetUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1NftHistoryDepositResponse&gt; GetNftDepositHistoryUserData(long timestamp, string signature, long? startTime, long? endTime, int? limit, int? page, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1NftHistoryDepositResponse&gt; GetNftDepositHistoryUserData(GetNftDepositHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -12848,16 +12145,17 @@ Weight(UID): 3000
 ```csharp
 try
 {
-    var response = await client.Nft.GetNftDepositHistoryUserData(timestamp,
-        signature,
-        startTime,
-        endTime,
-        limit,
-        page,
-        recvWindow);
+    var response = await client.Nft.GetNftDepositHistoryUserData(new GetNftDepositHistoryUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        Limit = 50,
+        Page = 1,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1NftHistoryDepositResponse
 }
-catch (SdkException<GetNftDepositHistoryUserDataError> ex)
+catch (ApiException<GetNftDepositHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -12869,20 +12167,12 @@ catch (SdkException<GetNftDepositHistoryUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>limit</code> | <code>int?</code> | Default 50, Max 50 |
-| <code>page</code> | <code>int?</code> | Default 1 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetNftDepositHistoryUserDataRequest](Requests/Nft/GetNftDepositHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -12894,7 +12184,7 @@ catch (SdkException<GetNftDepositHistoryUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1NftHistoryDepositResponse](Models/SapiV1NftHistoryDepositResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetNftDepositHistoryUserDataError](Errors/GetNftDepositHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetNftDepositHistoryUserDataError](Errors/GetNftDepositHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -12905,7 +12195,7 @@ catch (SdkException<GetNftDepositHistoryUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1NftHistoryTransactionsResponse&gt; GetNftTransactionHistoryUserData(int orderType, long timestamp, string signature, long? startTime, long? endTime, int? limit, int? page, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1NftHistoryTransactionsResponse&gt; GetNftTransactionHistoryUserData(GetNftTransactionHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -12931,17 +12221,18 @@ Weight(UID): 3000
 ```csharp
 try
 {
-    var response = await client.Nft.GetNftTransactionHistoryUserData(orderType,
-        timestamp,
-        signature,
-        startTime,
-        endTime,
-        limit,
-        page,
-        recvWindow);
+    var response = await client.Nft.GetNftTransactionHistoryUserData(new GetNftTransactionHistoryUserDataRequest
+    {
+        OrderType = 1,
+        Timestamp = 1L,
+        Signature = "some example string",
+        Limit = 50,
+        Page = 1,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1NftHistoryTransactionsResponse
 }
-catch (SdkException<GetNftTransactionHistoryUserDataError> ex)
+catch (ApiException<GetNftTransactionHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -12953,21 +12244,12 @@ catch (SdkException<GetNftTransactionHistoryUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>orderType</code> | <code>int</code> | 0: purchase order, 1: sell order, 2: royalty income, 3: primary market order, 4: mint fee |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>limit</code> | <code>int?</code> | Default 50, Max 50 |
-| <code>page</code> | <code>int?</code> | Default 1 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetNftTransactionHistoryUserDataRequest](Requests/Nft/GetNftTransactionHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -12979,7 +12261,7 @@ catch (SdkException<GetNftTransactionHistoryUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1NftHistoryTransactionsResponse](Models/SapiV1NftHistoryTransactionsResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetNftTransactionHistoryUserDataError](Errors/GetNftTransactionHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetNftTransactionHistoryUserDataError](Errors/GetNftTransactionHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -12990,7 +12272,7 @@ catch (SdkException<GetNftTransactionHistoryUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1NftHistoryWithdrawResponse&gt; GetNftWithdrawHistoryUserData(long timestamp, string signature, long? startTime, long? endTime, int? limit, int? page, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1NftHistoryWithdrawResponse&gt; GetNftWithdrawHistoryUserData(GetNftWithdrawHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -13016,16 +12298,17 @@ Weight(UID): 3000
 ```csharp
 try
 {
-    var response = await client.Nft.GetNftWithdrawHistoryUserData(timestamp,
-        signature,
-        startTime,
-        endTime,
-        limit,
-        page,
-        recvWindow);
+    var response = await client.Nft.GetNftWithdrawHistoryUserData(new GetNftWithdrawHistoryUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        Limit = 50,
+        Page = 1,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1NftHistoryWithdrawResponse
 }
-catch (SdkException<GetNftWithdrawHistoryUserDataError> ex)
+catch (ApiException<GetNftWithdrawHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -13037,20 +12320,12 @@ catch (SdkException<GetNftWithdrawHistoryUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>limit</code> | <code>int?</code> | Default 50, Max 50 |
-| <code>page</code> | <code>int?</code> | Default 1 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetNftWithdrawHistoryUserDataRequest](Requests/Nft/GetNftWithdrawHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -13062,7 +12337,7 @@ catch (SdkException<GetNftWithdrawHistoryUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1NftHistoryWithdrawResponse](Models/SapiV1NftHistoryWithdrawResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetNftWithdrawHistoryUserDataError](Errors/GetNftWithdrawHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetNftWithdrawHistoryUserDataError](Errors/GetNftWithdrawHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -13077,7 +12352,7 @@ catch (SdkException<GetNftWithdrawHistoryUserDataError> ex)
 > Source: [Pay](Api/Pay.cs)
 
 <details>
-<summary><code>Task&lt;SapiV1PayTransactionsResponse&gt; GetPayTradeHistoryUserData(long timestamp, string signature, long? startTime, long? endTime, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1PayTransactionsResponse&gt; GetPayTradeHistoryUserData(GetPayTradeHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -13104,15 +12379,16 @@ Weight(UID): 3000
 ```csharp
 try
 {
-    var response = await client.Pay.GetPayTradeHistoryUserData(timestamp,
-        signature,
-        startTime,
-        endTime,
-        limit,
-        recvWindow);
+    var response = await client.Pay.GetPayTradeHistoryUserData(new GetPayTradeHistoryUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        Limit = 100,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1PayTransactionsResponse
 }
-catch (SdkException<GetPayTradeHistoryUserDataError> ex)
+catch (ApiException<GetPayTradeHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -13124,19 +12400,12 @@ catch (SdkException<GetPayTradeHistoryUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>limit</code> | <code>int?</code> | default 100, max 100 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetPayTradeHistoryUserDataRequest](Requests/Pay/GetPayTradeHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -13148,7 +12417,7 @@ catch (SdkException<GetPayTradeHistoryUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1PayTransactionsResponse](Models/SapiV1PayTransactionsResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetPayTradeHistoryUserDataError](Errors/GetPayTradeHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetPayTradeHistoryUserDataError](Errors/GetPayTradeHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -13163,7 +12432,7 @@ catch (SdkException<GetPayTradeHistoryUserDataError> ex)
 > Source: [PortfolioMargin](Api/PortfolioMargin.cs)
 
 <details>
-<summary><code>Task&lt;SapiV1PortfolioBnbTransferResponse&gt; BnbTransferUserData(TransferSide transferSide, double amount, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1PortfolioBnbTransferResponse&gt; BnbTransferUserData(BnbTransferUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -13188,14 +12457,17 @@ Weight(IP): 1500
 ```csharp
 try
 {
-    var response = await client.PortfolioMargin.BnbTransferUserData(transferSide,
-        amount,
-        timestamp,
-        signature,
-        recvWindow);
+    var response = await client.PortfolioMargin.BnbTransferUserData(new BnbTransferUserDataRequest
+    {
+        TransferSide = TransferSide.ToUm,
+        Amount = 1.01d,
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1PortfolioBnbTransferResponse
 }
-catch (SdkException<BnbTransferUserDataError> ex)
+catch (ApiException<BnbTransferUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -13207,18 +12479,12 @@ catch (SdkException<BnbTransferUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>transferSide</code> | <code>[TransferSide](Models/Enums/TransferSide.cs)</code> | - |
-| <code>amount</code> | <code>double</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[BnbTransferUserDataRequest](Requests/PortfolioMargin/BnbTransferUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -13230,7 +12496,7 @@ catch (SdkException<BnbTransferUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1PortfolioBnbTransferResponse](Models/SapiV1PortfolioBnbTransferResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[BnbTransferUserDataError](Errors/BnbTransferUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[BnbTransferUserDataError](Errors/BnbTransferUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -13241,7 +12507,7 @@ catch (SdkException<BnbTransferUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1PortfolioRepayFuturesSwitchResponse&gt; ChangeAutoRepayFuturesStatusUserData(bool autoRepay, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1PortfolioRepayFuturesSwitchResponse&gt; ChangeAutoRepayFuturesStatusUserData(ChangeAutoRepayFuturesStatusUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -13266,13 +12532,17 @@ Weight(IP): 1500
 ```csharp
 try
 {
-    var response = await client.PortfolioMargin.ChangeAutoRepayFuturesStatusUserData(autoRepay,
-        timestamp,
-        signature,
-        recvWindow);
+    var response = await client.PortfolioMargin.ChangeAutoRepayFuturesStatusUserData(
+        new ChangeAutoRepayFuturesStatusUserDataRequest
+        {
+            AutoRepay = true,
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1PortfolioRepayFuturesSwitchResponse
 }
-catch (SdkException<ChangeAutoRepayFuturesStatusUserDataError> ex)
+catch (ApiException<ChangeAutoRepayFuturesStatusUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -13284,17 +12554,12 @@ catch (SdkException<ChangeAutoRepayFuturesStatusUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>autoRepay</code> | <code>bool</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[ChangeAutoRepayFuturesStatusUserDataRequest](Requests/PortfolioMargin/ChangeAutoRepayFuturesStatusUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -13306,7 +12571,7 @@ catch (SdkException<ChangeAutoRepayFuturesStatusUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1PortfolioRepayFuturesSwitchResponse](Models/SapiV1PortfolioRepayFuturesSwitchResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[ChangeAutoRepayFuturesStatusUserDataError](Errors/ChangeAutoRepayFuturesStatusUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[ChangeAutoRepayFuturesStatusUserDataError](Errors/ChangeAutoRepayFuturesStatusUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -13317,7 +12582,7 @@ catch (SdkException<ChangeAutoRepayFuturesStatusUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1PortfolioAutoCollectionResponse&gt; FundAutoCollectionUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1PortfolioAutoCollectionResponse&gt; FundAutoCollectionUserData(FundAutoCollectionUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -13342,10 +12607,15 @@ Weight(IP): 1500
 ```csharp
 try
 {
-    var response = await client.PortfolioMargin.FundAutoCollectionUserData(timestamp, signature, recvWindow);
+    var response = await client.PortfolioMargin.FundAutoCollectionUserData(new FundAutoCollectionUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1PortfolioAutoCollectionResponse
 }
-catch (SdkException<FundAutoCollectionUserDataError> ex)
+catch (ApiException<FundAutoCollectionUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -13357,16 +12627,12 @@ catch (SdkException<FundAutoCollectionUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[FundAutoCollectionUserDataRequest](Requests/PortfolioMargin/FundAutoCollectionUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -13378,7 +12644,7 @@ catch (SdkException<FundAutoCollectionUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1PortfolioAutoCollectionResponse](Models/SapiV1PortfolioAutoCollectionResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[FundAutoCollectionUserDataError](Errors/FundAutoCollectionUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[FundAutoCollectionUserDataError](Errors/FundAutoCollectionUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -13389,7 +12655,7 @@ catch (SdkException<FundAutoCollectionUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1PortfolioAssetCollectionResponse&gt; FundCollectionByAssetUserData(string asset, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1PortfolioAssetCollectionResponse&gt; FundCollectionByAssetUserData(FundCollectionByAssetUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -13414,10 +12680,16 @@ Weight(IP): 60
 ```csharp
 try
 {
-    var response = await client.PortfolioMargin.FundCollectionByAssetUserData(asset, timestamp, signature, recvWindow);
+    var response = await client.PortfolioMargin.FundCollectionByAssetUserData(new FundCollectionByAssetUserDataRequest
+    {
+        Asset = "BTC",
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1PortfolioAssetCollectionResponse
 }
-catch (SdkException<FundCollectionByAssetUserDataError> ex)
+catch (ApiException<FundCollectionByAssetUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -13429,17 +12701,12 @@ catch (SdkException<FundCollectionByAssetUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>asset</code> | <code>string</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[FundCollectionByAssetUserDataRequest](Requests/PortfolioMargin/FundCollectionByAssetUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -13451,7 +12718,7 @@ catch (SdkException<FundCollectionByAssetUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1PortfolioAssetCollectionResponse](Models/SapiV1PortfolioAssetCollectionResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[FundCollectionByAssetUserDataError](Errors/FundCollectionByAssetUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[FundCollectionByAssetUserDataError](Errors/FundCollectionByAssetUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -13462,7 +12729,7 @@ catch (SdkException<FundCollectionByAssetUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1PortfolioRepayFuturesSwitchResponse1&gt; GetAutoRepayFuturesStatusUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1PortfolioRepayFuturesSwitchResponse1&gt; GetAutoRepayFuturesStatusUserData(GetAutoRepayFuturesStatusUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -13487,10 +12754,16 @@ Weight(IP): 30
 ```csharp
 try
 {
-    var response = await client.PortfolioMargin.GetAutoRepayFuturesStatusUserData(timestamp, signature, recvWindow);
+    var response = await client.PortfolioMargin.GetAutoRepayFuturesStatusUserData(
+        new GetAutoRepayFuturesStatusUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1PortfolioRepayFuturesSwitchResponse1
 }
-catch (SdkException<GetAutoRepayFuturesStatusUserDataError> ex)
+catch (ApiException<GetAutoRepayFuturesStatusUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -13502,16 +12775,12 @@ catch (SdkException<GetAutoRepayFuturesStatusUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetAutoRepayFuturesStatusUserDataRequest](Requests/PortfolioMargin/GetAutoRepayFuturesStatusUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -13523,7 +12792,7 @@ catch (SdkException<GetAutoRepayFuturesStatusUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1PortfolioRepayFuturesSwitchResponse1](Models/SapiV1PortfolioRepayFuturesSwitchResponse1.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetAutoRepayFuturesStatusUserDataError](Errors/GetAutoRepayFuturesStatusUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetAutoRepayFuturesStatusUserDataError](Errors/GetAutoRepayFuturesStatusUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -13534,7 +12803,7 @@ catch (SdkException<GetAutoRepayFuturesStatusUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1PortfolioMarginAssetLeverageResponse&gt;&gt; GetPortfolioMarginAssetLeverageUserData(RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1PortfolioMarginAssetLeverageResponse&gt;&gt; GetPortfolioMarginAssetLeverageUserData(RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -13560,7 +12829,7 @@ try
     var response = await client.PortfolioMargin.GetPortfolioMarginAssetLeverageUserData();
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1PortfolioMarginAssetLeverageResponse>
 }
-catch (SdkException<GetPortfolioMarginAssetLeverageUserDataError> ex)
+catch (ApiException<GetPortfolioMarginAssetLeverageUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -13579,7 +12848,7 @@ catch (SdkException<GetPortfolioMarginAssetLeverageUserDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1PortfolioMarginAssetLeverageResponse](Models/SapiV1PortfolioMarginAssetLeverageResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetPortfolioMarginAssetLeverageUserDataError](Errors/GetPortfolioMarginAssetLeverageUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetPortfolioMarginAssetLeverageUserDataError](Errors/GetPortfolioMarginAssetLeverageUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -13590,7 +12859,7 @@ catch (SdkException<GetPortfolioMarginAssetLeverageUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1PortfolioAccountResponse&gt; PortfolioMarginAccountUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1PortfolioAccountResponse&gt; PortfolioMarginAccountUserData(PortfolioMarginAccountUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -13615,10 +12884,15 @@ Get the account info
 ```csharp
 try
 {
-    var response = await client.PortfolioMargin.PortfolioMarginAccountUserData(timestamp, signature, recvWindow);
+    var response = await client.PortfolioMargin.PortfolioMarginAccountUserData(new PortfolioMarginAccountUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1PortfolioAccountResponse
 }
-catch (SdkException<PortfolioMarginAccountUserDataError> ex)
+catch (ApiException<PortfolioMarginAccountUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -13630,16 +12904,12 @@ catch (SdkException<PortfolioMarginAccountUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[PortfolioMarginAccountUserDataRequest](Requests/PortfolioMargin/PortfolioMarginAccountUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -13651,7 +12921,7 @@ catch (SdkException<PortfolioMarginAccountUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1PortfolioAccountResponse](Models/SapiV1PortfolioAccountResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[PortfolioMarginAccountUserDataError](Errors/PortfolioMarginAccountUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[PortfolioMarginAccountUserDataError](Errors/PortfolioMarginAccountUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -13662,7 +12932,7 @@ catch (SdkException<PortfolioMarginAccountUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1PortfolioPmLoanResponse&gt; PortfolioMarginBankruptcyLoanAmountUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1PortfolioPmLoanResponse&gt; PortfolioMarginBankruptcyLoanAmountUserData(PortfolioMarginBankruptcyLoanAmountUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -13687,12 +12957,16 @@ Weight(UID): 500
 ```csharp
 try
 {
-    var response = await client.PortfolioMargin.PortfolioMarginBankruptcyLoanAmountUserData(timestamp,
-        signature,
-        recvWindow);
+    var response = await client.PortfolioMargin.PortfolioMarginBankruptcyLoanAmountUserData(
+        new PortfolioMarginBankruptcyLoanAmountUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1PortfolioPmLoanResponse
 }
-catch (SdkException<PortfolioMarginBankruptcyLoanAmountUserDataError> ex)
+catch (ApiException<PortfolioMarginBankruptcyLoanAmountUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -13704,16 +12978,12 @@ catch (SdkException<PortfolioMarginBankruptcyLoanAmountUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[PortfolioMarginBankruptcyLoanAmountUserDataRequest](Requests/PortfolioMargin/PortfolioMarginBankruptcyLoanAmountUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -13725,7 +12995,7 @@ catch (SdkException<PortfolioMarginBankruptcyLoanAmountUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1PortfolioPmLoanResponse](Models/SapiV1PortfolioPmLoanResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[PortfolioMarginBankruptcyLoanAmountUserDataError](Errors/PortfolioMarginBankruptcyLoanAmountUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[PortfolioMarginBankruptcyLoanAmountUserDataError](Errors/PortfolioMarginBankruptcyLoanAmountUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -13736,7 +13006,7 @@ catch (SdkException<PortfolioMarginBankruptcyLoanAmountUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1PortfolioRepayResponse&gt; PortfolioMarginBankruptcyLoanRepayUserData(long timestamp, string signature, string? from, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1PortfolioRepayResponse&gt; PortfolioMarginBankruptcyLoanRepayUserData(PortfolioMarginBankruptcyLoanRepayUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -13761,13 +13031,17 @@ Weight(UID): 3000
 ```csharp
 try
 {
-    var response = await client.PortfolioMargin.PortfolioMarginBankruptcyLoanRepayUserData(timestamp,
-        signature,
-        from,
-        recvWindow);
+    var response = await client.PortfolioMargin.PortfolioMarginBankruptcyLoanRepayUserData(
+        new PortfolioMarginBankruptcyLoanRepayUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            From = "SPOT",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1PortfolioRepayResponse
 }
-catch (SdkException<PortfolioMarginBankruptcyLoanRepayUserDataError> ex)
+catch (ApiException<PortfolioMarginBankruptcyLoanRepayUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -13779,17 +13053,12 @@ catch (SdkException<PortfolioMarginBankruptcyLoanRepayUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>from</code> | <code>string?</code> | - |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[PortfolioMarginBankruptcyLoanRepayUserDataRequest](Requests/PortfolioMargin/PortfolioMarginBankruptcyLoanRepayUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -13801,7 +13070,7 @@ catch (SdkException<PortfolioMarginBankruptcyLoanRepayUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1PortfolioRepayResponse](Models/SapiV1PortfolioRepayResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[PortfolioMarginBankruptcyLoanRepayUserDataError](Errors/PortfolioMarginBankruptcyLoanRepayUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[PortfolioMarginBankruptcyLoanRepayUserDataError](Errors/PortfolioMarginBankruptcyLoanRepayUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -13812,7 +13081,7 @@ catch (SdkException<PortfolioMarginBankruptcyLoanRepayUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1PortfolioCollateralRateResponse&gt;&gt; PortfolioMarginCollateralRateMarketData(RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1PortfolioCollateralRateResponse&gt;&gt; PortfolioMarginCollateralRateMarketData(RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -13840,7 +13109,7 @@ try
     var response = await client.PortfolioMargin.PortfolioMarginCollateralRateMarketData();
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1PortfolioCollateralRateResponse>
 }
-catch (SdkException<PortfolioMarginCollateralRateMarketDataError> ex)
+catch (ApiException<PortfolioMarginCollateralRateMarketDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -13859,7 +13128,7 @@ catch (SdkException<PortfolioMarginCollateralRateMarketDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1PortfolioCollateralRateResponse](Models/SapiV1PortfolioCollateralRateResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[PortfolioMarginCollateralRateMarketDataError](Errors/PortfolioMarginCollateralRateMarketDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[PortfolioMarginCollateralRateMarketDataError](Errors/PortfolioMarginCollateralRateMarketDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -13870,7 +13139,7 @@ catch (SdkException<PortfolioMarginCollateralRateMarketDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV2PortfolioCollateralRateResponse&gt;&gt; PortfolioMarginProTieredCollateralRateUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV2PortfolioCollateralRateResponse&gt;&gt; PortfolioMarginProTieredCollateralRateUserData(PortfolioMarginProTieredCollateralRateUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -13895,12 +13164,16 @@ Weight(IP): 50
 ```csharp
 try
 {
-    var response = await client.PortfolioMargin.PortfolioMarginProTieredCollateralRateUserData(timestamp,
-        signature,
-        recvWindow);
+    var response = await client.PortfolioMargin.PortfolioMarginProTieredCollateralRateUserData(
+        new PortfolioMarginProTieredCollateralRateUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV2PortfolioCollateralRateResponse>
 }
-catch (SdkException<PortfolioMarginProTieredCollateralRateUserDataError> ex)
+catch (ApiException<PortfolioMarginProTieredCollateralRateUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -13912,16 +13185,12 @@ catch (SdkException<PortfolioMarginProTieredCollateralRateUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[PortfolioMarginProTieredCollateralRateUserDataRequest](Requests/PortfolioMargin/PortfolioMarginProTieredCollateralRateUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -13933,7 +13202,7 @@ catch (SdkException<PortfolioMarginProTieredCollateralRateUserDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV2PortfolioCollateralRateResponse](Models/SapiV2PortfolioCollateralRateResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[PortfolioMarginProTieredCollateralRateUserDataError](Errors/PortfolioMarginProTieredCollateralRateUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[PortfolioMarginProTieredCollateralRateUserDataError](Errors/PortfolioMarginProTieredCollateralRateUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -13944,7 +13213,7 @@ catch (SdkException<PortfolioMarginProTieredCollateralRateUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1PortfolioInterestHistoryResponse&gt;&gt; QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUserData(string asset, long timestamp, string signature, long? startTime, long? endTime, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1PortfolioInterestHistoryResponse&gt;&gt; QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUserData(QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -13969,16 +13238,18 @@ Weight(IP): 50
 ```csharp
 try
 {
-    var response = await client.PortfolioMargin.QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUserData(asset,
-        timestamp,
-        signature,
-        startTime,
-        endTime,
-        size,
-        recvWindow);
+    var response = await client.PortfolioMargin.QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUserData(
+        new QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUserDataRequest
+        {
+            Asset = "BTC",
+            Timestamp = 1L,
+            Signature = "some example string",
+            Size = 100,
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1PortfolioInterestHistoryResponse>
 }
-catch (SdkException<QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUserDataError> ex)
+catch (ApiException<QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -13990,20 +13261,12 @@ catch (SdkException<QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUse
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>asset</code> | <code>string</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>size</code> | <code>int?</code> | Default:10 Max:100 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUserDataRequest](Requests/PortfolioMargin/QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -14015,7 +13278,7 @@ catch (SdkException<QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUse
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1PortfolioInterestHistoryResponse](Models/SapiV1PortfolioInterestHistoryResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUserDataError](Errors/QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUserDataError](Errors/QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -14026,7 +13289,7 @@ catch (SdkException<QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUse
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1PortfolioAssetIndexPriceResponse&gt;&gt; QueryPortfolioMarginAssetIndexPriceMarketData(string? asset, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1PortfolioAssetIndexPriceResponse&gt;&gt; QueryPortfolioMarginAssetIndexPriceMarketData(QueryPortfolioMarginAssetIndexPriceMarketDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -14053,10 +13316,11 @@ Weight(IP):
 ```csharp
 try
 {
-    var response = await client.PortfolioMargin.QueryPortfolioMarginAssetIndexPriceMarketData(asset);
+    var response = await client.PortfolioMargin.QueryPortfolioMarginAssetIndexPriceMarketData(
+        new QueryPortfolioMarginAssetIndexPriceMarketDataRequest { Asset = "BTC" });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1PortfolioAssetIndexPriceResponse>
 }
-catch (SdkException<QueryPortfolioMarginAssetIndexPriceMarketDataError> ex)
+catch (ApiException<QueryPortfolioMarginAssetIndexPriceMarketDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -14068,14 +13332,12 @@ catch (SdkException<QueryPortfolioMarginAssetIndexPriceMarketDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>asset</code> | <code>string?</code> | - |
+<code>[QueryPortfolioMarginAssetIndexPriceMarketDataRequest](Requests/PortfolioMargin/QueryPortfolioMarginAssetIndexPriceMarketDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -14087,7 +13349,7 @@ catch (SdkException<QueryPortfolioMarginAssetIndexPriceMarketDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1PortfolioAssetIndexPriceResponse](Models/SapiV1PortfolioAssetIndexPriceResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryPortfolioMarginAssetIndexPriceMarketDataError](Errors/QueryPortfolioMarginAssetIndexPriceMarketDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryPortfolioMarginAssetIndexPriceMarketDataError](Errors/QueryPortfolioMarginAssetIndexPriceMarketDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -14098,7 +13360,7 @@ catch (SdkException<QueryPortfolioMarginAssetIndexPriceMarketDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1PortfolioRepayFuturesNegativeBalanceResponse&gt; RepayFuturesNegativeBalanceUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1PortfolioRepayFuturesNegativeBalanceResponse&gt; RepayFuturesNegativeBalanceUserData(RepayFuturesNegativeBalanceUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -14123,10 +13385,16 @@ Weight(IP): 1500
 ```csharp
 try
 {
-    var response = await client.PortfolioMargin.RepayFuturesNegativeBalanceUserData(timestamp, signature, recvWindow);
+    var response = await client.PortfolioMargin.RepayFuturesNegativeBalanceUserData(
+        new RepayFuturesNegativeBalanceUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1PortfolioRepayFuturesNegativeBalanceResponse
 }
-catch (SdkException<RepayFuturesNegativeBalanceUserDataError> ex)
+catch (ApiException<RepayFuturesNegativeBalanceUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -14138,16 +13406,12 @@ catch (SdkException<RepayFuturesNegativeBalanceUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[RepayFuturesNegativeBalanceUserDataRequest](Requests/PortfolioMargin/RepayFuturesNegativeBalanceUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -14159,7 +13423,7 @@ catch (SdkException<RepayFuturesNegativeBalanceUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1PortfolioRepayFuturesNegativeBalanceResponse](Models/SapiV1PortfolioRepayFuturesNegativeBalanceResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[RepayFuturesNegativeBalanceUserDataError](Errors/RepayFuturesNegativeBalanceUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[RepayFuturesNegativeBalanceUserDataError](Errors/RepayFuturesNegativeBalanceUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -14174,7 +13438,7 @@ catch (SdkException<RepayFuturesNegativeBalanceUserDataError> ex)
 > Source: [Rebate](Api/Rebate.cs)
 
 <details>
-<summary><code>Task&lt;SapiV1RebateTaxQueryResponse&gt; GetSpotRebateHistoryRecordsUserData(long timestamp, string signature, long? startTime, long? endTime, int? page, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1RebateTaxQueryResponse&gt; GetSpotRebateHistoryRecordsUserData(GetSpotRebateHistoryRecordsUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -14201,15 +13465,17 @@ Weight(UID): 3000
 ```csharp
 try
 {
-    var response = await client.Rebate.GetSpotRebateHistoryRecordsUserData(timestamp,
-        signature,
-        startTime,
-        endTime,
-        page,
-        recvWindow);
+    var response = await client.Rebate.GetSpotRebateHistoryRecordsUserData(
+        new GetSpotRebateHistoryRecordsUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            Page = 1,
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1RebateTaxQueryResponse
 }
-catch (SdkException<GetSpotRebateHistoryRecordsUserDataError> ex)
+catch (ApiException<GetSpotRebateHistoryRecordsUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -14221,19 +13487,12 @@ catch (SdkException<GetSpotRebateHistoryRecordsUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>page</code> | <code>int?</code> | default 1 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetSpotRebateHistoryRecordsUserDataRequest](Requests/Rebate/GetSpotRebateHistoryRecordsUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -14245,7 +13504,7 @@ catch (SdkException<GetSpotRebateHistoryRecordsUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1RebateTaxQueryResponse](Models/SapiV1RebateTaxQueryResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetSpotRebateHistoryRecordsUserDataError](Errors/GetSpotRebateHistoryRecordsUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetSpotRebateHistoryRecordsUserDataError](Errors/GetSpotRebateHistoryRecordsUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -14260,7 +13519,7 @@ catch (SdkException<GetSpotRebateHistoryRecordsUserDataError> ex)
 > Source: [Savings](Api/Savings.cs)
 
 <details>
-<summary><code>Task&lt;SapiV1LendingPositionChangedResponse&gt; ChangeFixedActivityPositionToDailyPositionUserData(string projectId, string lot, long timestamp, string signature, string? positionId, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1LendingPositionChangedResponse&gt; ChangeFixedActivityPositionToDailyPositionUserData(ChangeFixedActivityPositionToDailyPositionUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -14285,15 +13544,18 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.Savings.ChangeFixedActivityPositionToDailyPositionUserData(projectId,
-        lot,
-        timestamp,
-        signature,
-        positionId,
-        recvWindow);
+    var response = await client.Savings.ChangeFixedActivityPositionToDailyPositionUserData(
+        new ChangeFixedActivityPositionToDailyPositionUserDataRequest
+        {
+            ProjectId = "some example string",
+            Lot = "some example string",
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1LendingPositionChangedResponse
 }
-catch (SdkException<ChangeFixedActivityPositionToDailyPositionUserDataError> ex)
+catch (ApiException<ChangeFixedActivityPositionToDailyPositionUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -14305,19 +13567,12 @@ catch (SdkException<ChangeFixedActivityPositionToDailyPositionUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>projectId</code> | <code>string</code> | - |
-| <code>lot</code> | <code>string</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>positionId</code> | <code>string?</code> | - |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[ChangeFixedActivityPositionToDailyPositionUserDataRequest](Requests/Savings/ChangeFixedActivityPositionToDailyPositionUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -14329,7 +13584,7 @@ catch (SdkException<ChangeFixedActivityPositionToDailyPositionUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1LendingPositionChangedResponse](Models/SapiV1LendingPositionChangedResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[ChangeFixedActivityPositionToDailyPositionUserDataError](Errors/ChangeFixedActivityPositionToDailyPositionUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[ChangeFixedActivityPositionToDailyPositionUserDataError](Errors/ChangeFixedActivityPositionToDailyPositionUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -14340,7 +13595,7 @@ catch (SdkException<ChangeFixedActivityPositionToDailyPositionUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1LendingProjectListResponse&gt;&gt; GetFixedActivityProjectListUserData(Type8 type, long timestamp, string signature, string? asset, Status? status, bool? isSortAsc, SortBy? sortBy, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1LendingProjectListResponse&gt;&gt; GetFixedActivityProjectListUserData(GetFixedActivityProjectListUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -14363,19 +13618,20 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.Savings.GetFixedActivityProjectListUserData(type,
-        timestamp,
-        signature,
-        asset,
-        status,
-        isSortAsc,
-        sortBy,
-        current,
-        size,
-        recvWindow);
+    var response = await client.Savings.GetFixedActivityProjectListUserData(
+        new GetFixedActivityProjectListUserDataRequest
+        {
+            Type = Type8.Activity,
+            Timestamp = 1L,
+            Signature = "some example string",
+            Asset = "BNB",
+            Current = 1,
+            Size = 100,
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1LendingProjectListResponse>
 }
-catch (SdkException<GetFixedActivityProjectListUserDataError> ex)
+catch (ApiException<GetFixedActivityProjectListUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -14387,23 +13643,12 @@ catch (SdkException<GetFixedActivityProjectListUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>type</code> | <code>[Type8](Models/Enums/Type8.cs)</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>asset</code> | <code>string?</code> | - |
-| <code>status</code> | <code>[Status?](Models/Enums/Status.cs)</code> | Default `ALL` |
-| <code>isSortAsc</code> | <code>bool?</code> | default "true" |
-| <code>sortBy</code> | <code>[SortBy?](Models/Enums/SortBy.cs)</code> | Default `START_TIME` |
-| <code>current</code> | <code>int?</code> | Current querying page. Start from 1. Default:1 |
-| <code>size</code> | <code>int?</code> | Default:10 Max:100 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetFixedActivityProjectListUserDataRequest](Requests/Savings/GetFixedActivityProjectListUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -14415,7 +13660,7 @@ catch (SdkException<GetFixedActivityProjectListUserDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1LendingProjectListResponse](Models/SapiV1LendingProjectListResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetFixedActivityProjectListUserDataError](Errors/GetFixedActivityProjectListUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetFixedActivityProjectListUserDataError](Errors/GetFixedActivityProjectListUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -14426,7 +13671,7 @@ catch (SdkException<GetFixedActivityProjectListUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1LendingProjectPositionListResponse&gt;&gt; GetFixedActivityProjectPositionUserData(string asset, long timestamp, string signature, string? projectId, Status? status, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1LendingProjectPositionListResponse&gt;&gt; GetFixedActivityProjectPositionUserData(GetFixedActivityProjectPositionUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -14449,15 +13694,17 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.Savings.GetFixedActivityProjectPositionUserData(asset,
-        timestamp,
-        signature,
-        projectId,
-        status,
-        recvWindow);
+    var response = await client.Savings.GetFixedActivityProjectPositionUserData(
+        new GetFixedActivityProjectPositionUserDataRequest
+        {
+            Asset = "BTC",
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1LendingProjectPositionListResponse>
 }
-catch (SdkException<GetFixedActivityProjectPositionUserDataError> ex)
+catch (ApiException<GetFixedActivityProjectPositionUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -14469,19 +13716,12 @@ catch (SdkException<GetFixedActivityProjectPositionUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>asset</code> | <code>string</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>projectId</code> | <code>string?</code> | - |
-| <code>status</code> | <code>[Status?](Models/Enums/Status.cs)</code> | Default `ALL` |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetFixedActivityProjectPositionUserDataRequest](Requests/Savings/GetFixedActivityProjectPositionUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -14493,7 +13733,7 @@ catch (SdkException<GetFixedActivityProjectPositionUserDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1LendingProjectPositionListResponse](Models/SapiV1LendingProjectPositionListResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetFixedActivityProjectPositionUserDataError](Errors/GetFixedActivityProjectPositionUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetFixedActivityProjectPositionUserDataError](Errors/GetFixedActivityProjectPositionUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -14504,7 +13744,7 @@ catch (SdkException<GetFixedActivityProjectPositionUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1LendingCustomizedFixedPurchaseResponse&gt; PurchaseFixedActivityProjectUserData(string projectId, string lot, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1LendingCustomizedFixedPurchaseResponse&gt; PurchaseFixedActivityProjectUserData(PurchaseFixedActivityProjectUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -14527,14 +13767,18 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.Savings.PurchaseFixedActivityProjectUserData(projectId,
-        lot,
-        timestamp,
-        signature,
-        recvWindow);
+    var response = await client.Savings.PurchaseFixedActivityProjectUserData(
+        new PurchaseFixedActivityProjectUserDataRequest
+        {
+            ProjectId = "some example string",
+            Lot = "some example string",
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1LendingCustomizedFixedPurchaseResponse
 }
-catch (SdkException<PurchaseFixedActivityProjectUserDataError> ex)
+catch (ApiException<PurchaseFixedActivityProjectUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -14546,18 +13790,12 @@ catch (SdkException<PurchaseFixedActivityProjectUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>projectId</code> | <code>string</code> | - |
-| <code>lot</code> | <code>string</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[PurchaseFixedActivityProjectUserDataRequest](Requests/Savings/PurchaseFixedActivityProjectUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -14569,7 +13807,7 @@ catch (SdkException<PurchaseFixedActivityProjectUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1LendingCustomizedFixedPurchaseResponse](Models/SapiV1LendingCustomizedFixedPurchaseResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[PurchaseFixedActivityProjectUserDataError](Errors/PurchaseFixedActivityProjectUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[PurchaseFixedActivityProjectUserDataError](Errors/PurchaseFixedActivityProjectUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -14584,7 +13822,7 @@ catch (SdkException<PurchaseFixedActivityProjectUserDataError> ex)
 > Source: [SimpleEarn](Api/SimpleEarn.cs)
 
 <details>
-<summary><code>Task&lt;SapiV1SimpleEarnFlexibleHistoryCollateralRecordResponse&gt; GetCollateralRecordUserData(long timestamp, string signature, string? productId, long? startTime, long? endTime, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1SimpleEarnFlexibleHistoryCollateralRecordResponse&gt; GetCollateralRecordUserData(GetCollateralRecordUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -14607,17 +13845,17 @@ Weight(IP): 150
 ```csharp
 try
 {
-    var response = await client.SimpleEarn.GetCollateralRecordUserData(timestamp,
-        signature,
-        productId,
-        startTime,
-        endTime,
-        current,
-        size,
-        recvWindow);
+    var response = await client.SimpleEarn.GetCollateralRecordUserData(new GetCollateralRecordUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        Current = 1,
+        Size = 100,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1SimpleEarnFlexibleHistoryCollateralRecordResponse
 }
-catch (SdkException<GetCollateralRecordUserDataError> ex)
+catch (ApiException<GetCollateralRecordUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -14629,21 +13867,12 @@ catch (SdkException<GetCollateralRecordUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>productId</code> | <code>string?</code> | - |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>current</code> | <code>int?</code> | Current querying page. Start from 1. Default:1 |
-| <code>size</code> | <code>int?</code> | Default:10 Max:100 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetCollateralRecordUserDataRequest](Requests/SimpleEarn/GetCollateralRecordUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -14655,7 +13884,7 @@ catch (SdkException<GetCollateralRecordUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1SimpleEarnFlexibleHistoryCollateralRecordResponse](Models/SapiV1SimpleEarnFlexibleHistoryCollateralRecordResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetCollateralRecordUserDataError](Errors/GetCollateralRecordUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetCollateralRecordUserDataError](Errors/GetCollateralRecordUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -14666,7 +13895,7 @@ catch (SdkException<GetCollateralRecordUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1SimpleEarnFlexiblePersonalLeftQuotaResponse&gt; GetFlexiblePersonalLeftQuotaUserData(string productId, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1SimpleEarnFlexiblePersonalLeftQuotaResponse&gt; GetFlexiblePersonalLeftQuotaUserData(GetFlexiblePersonalLeftQuotaUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -14689,13 +13918,17 @@ Weight(IP): 150
 ```csharp
 try
 {
-    var response = await client.SimpleEarn.GetFlexiblePersonalLeftQuotaUserData(productId,
-        timestamp,
-        signature,
-        recvWindow);
+    var response = await client.SimpleEarn.GetFlexiblePersonalLeftQuotaUserData(
+        new GetFlexiblePersonalLeftQuotaUserDataRequest
+        {
+            ProductId = "some example string",
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1SimpleEarnFlexiblePersonalLeftQuotaResponse
 }
-catch (SdkException<GetFlexiblePersonalLeftQuotaUserDataError> ex)
+catch (ApiException<GetFlexiblePersonalLeftQuotaUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -14707,17 +13940,12 @@ catch (SdkException<GetFlexiblePersonalLeftQuotaUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>productId</code> | <code>string</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetFlexiblePersonalLeftQuotaUserDataRequest](Requests/SimpleEarn/GetFlexiblePersonalLeftQuotaUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -14729,7 +13957,7 @@ catch (SdkException<GetFlexiblePersonalLeftQuotaUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1SimpleEarnFlexiblePersonalLeftQuotaResponse](Models/SapiV1SimpleEarnFlexiblePersonalLeftQuotaResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetFlexiblePersonalLeftQuotaUserDataError](Errors/GetFlexiblePersonalLeftQuotaUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetFlexiblePersonalLeftQuotaUserDataError](Errors/GetFlexiblePersonalLeftQuotaUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -14740,7 +13968,7 @@ catch (SdkException<GetFlexiblePersonalLeftQuotaUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1SimpleEarnFlexiblePositionResponse&gt; GetFlexibleProductPositionUserData(long timestamp, string signature, string? asset, string? productId, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1SimpleEarnFlexiblePositionResponse&gt; GetFlexibleProductPositionUserData(GetFlexibleProductPositionUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -14763,16 +13991,18 @@ Weight(IP): 150
 ```csharp
 try
 {
-    var response = await client.SimpleEarn.GetFlexibleProductPositionUserData(timestamp,
-        signature,
-        asset,
-        productId,
-        current,
-        size,
-        recvWindow);
+    var response = await client.SimpleEarn.GetFlexibleProductPositionUserData(
+        new GetFlexibleProductPositionUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            Current = 1,
+            Size = 100,
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1SimpleEarnFlexiblePositionResponse
 }
-catch (SdkException<GetFlexibleProductPositionUserDataError> ex)
+catch (ApiException<GetFlexibleProductPositionUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -14784,20 +14014,12 @@ catch (SdkException<GetFlexibleProductPositionUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>asset</code> | <code>string?</code> | - |
-| <code>productId</code> | <code>string?</code> | - |
-| <code>current</code> | <code>int?</code> | Current querying page. Start from 1. Default:1 |
-| <code>size</code> | <code>int?</code> | Default:10 Max:100 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetFlexibleProductPositionUserDataRequest](Requests/SimpleEarn/GetFlexibleProductPositionUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -14809,7 +14031,7 @@ catch (SdkException<GetFlexibleProductPositionUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1SimpleEarnFlexiblePositionResponse](Models/SapiV1SimpleEarnFlexiblePositionResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetFlexibleProductPositionUserDataError](Errors/GetFlexibleProductPositionUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetFlexibleProductPositionUserDataError](Errors/GetFlexibleProductPositionUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -14820,7 +14042,7 @@ catch (SdkException<GetFlexibleProductPositionUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1SimpleEarnFlexibleHistoryRedemptionRecordResponse&gt; GetFlexibleRedemptionRecordUserData(string? productId, string? redeemId, string? asset, long? startTime, long? endTime, int? current, int? size, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1SimpleEarnFlexibleHistoryRedemptionRecordResponse&gt; GetFlexibleRedemptionRecordUserData(GetFlexibleRedemptionRecordUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -14843,16 +14065,11 @@ Weight(IP): 150
 ```csharp
 try
 {
-    var response = await client.SimpleEarn.GetFlexibleRedemptionRecordUserData(productId,
-        redeemId,
-        asset,
-        startTime,
-        endTime,
-        current,
-        size);
+    var response = await client.SimpleEarn.GetFlexibleRedemptionRecordUserData(
+        new GetFlexibleRedemptionRecordUserDataRequest { Current = 1, Size = 100 });
     // TODO: Handle 'response' of type SapiV1SimpleEarnFlexibleHistoryRedemptionRecordResponse
 }
-catch (SdkException<GetFlexibleRedemptionRecordUserDataError> ex)
+catch (ApiException<GetFlexibleRedemptionRecordUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -14864,20 +14081,12 @@ catch (SdkException<GetFlexibleRedemptionRecordUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>productId</code> | <code>string?</code> | - |
-| <code>redeemId</code> | <code>string?</code> | - |
-| <code>asset</code> | <code>string?</code> | - |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>current</code> | <code>int?</code> | Current querying page. Start from 1. Default:1 |
-| <code>size</code> | <code>int?</code> | Default:10 Max:100 |
+<code>[GetFlexibleRedemptionRecordUserDataRequest](Requests/SimpleEarn/GetFlexibleRedemptionRecordUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -14889,7 +14098,7 @@ catch (SdkException<GetFlexibleRedemptionRecordUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1SimpleEarnFlexibleHistoryRedemptionRecordResponse](Models/SapiV1SimpleEarnFlexibleHistoryRedemptionRecordResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetFlexibleRedemptionRecordUserDataError](Errors/GetFlexibleRedemptionRecordUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetFlexibleRedemptionRecordUserDataError](Errors/GetFlexibleRedemptionRecordUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -14900,7 +14109,7 @@ catch (SdkException<GetFlexibleRedemptionRecordUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1SimpleEarnFlexibleHistoryRewardsRecordResponse&gt; GetFlexibleRewardsHistoryUserData(string type, string? productId, string? asset, long? startTime, long? endTime, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1SimpleEarnFlexibleHistoryRewardsRecordResponse&gt; GetFlexibleRewardsHistoryUserData(GetFlexibleRewardsHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -14923,14 +14132,11 @@ Weight(IP): 150
 ```csharp
 try
 {
-    var response = await client.SimpleEarn.GetFlexibleRewardsHistoryUserData(type,
-        productId,
-        asset,
-        startTime,
-        endTime);
+    var response = await client.SimpleEarn.GetFlexibleRewardsHistoryUserData(
+        new GetFlexibleRewardsHistoryUserDataRequest { Type = "some example string" });
     // TODO: Handle 'response' of type SapiV1SimpleEarnFlexibleHistoryRewardsRecordResponse
 }
-catch (SdkException<GetFlexibleRewardsHistoryUserDataError> ex)
+catch (ApiException<GetFlexibleRewardsHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -14942,18 +14148,12 @@ catch (SdkException<GetFlexibleRewardsHistoryUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>type</code> | <code>string</code> | "BONUS", "REALTIME", "REWARDS" |
-| <code>productId</code> | <code>string?</code> | - |
-| <code>asset</code> | <code>string?</code> | - |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
+<code>[GetFlexibleRewardsHistoryUserDataRequest](Requests/SimpleEarn/GetFlexibleRewardsHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -14965,7 +14165,7 @@ catch (SdkException<GetFlexibleRewardsHistoryUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1SimpleEarnFlexibleHistoryRewardsRecordResponse](Models/SapiV1SimpleEarnFlexibleHistoryRewardsRecordResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetFlexibleRewardsHistoryUserDataError](Errors/GetFlexibleRewardsHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetFlexibleRewardsHistoryUserDataError](Errors/GetFlexibleRewardsHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -14976,7 +14176,7 @@ catch (SdkException<GetFlexibleRewardsHistoryUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1SimpleEarnFlexibleSubscriptionPreviewResponse&gt; GetFlexibleSubscriptionPreviewUserData(string productId, double amount, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1SimpleEarnFlexibleSubscriptionPreviewResponse&gt; GetFlexibleSubscriptionPreviewUserData(GetFlexibleSubscriptionPreviewUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -14999,14 +14199,18 @@ Weight(IP): 150
 ```csharp
 try
 {
-    var response = await client.SimpleEarn.GetFlexibleSubscriptionPreviewUserData(productId,
-        amount,
-        timestamp,
-        signature,
-        recvWindow);
+    var response = await client.SimpleEarn.GetFlexibleSubscriptionPreviewUserData(
+        new GetFlexibleSubscriptionPreviewUserDataRequest
+        {
+            ProductId = "some example string",
+            Amount = 1.5d,
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1SimpleEarnFlexibleSubscriptionPreviewResponse
 }
-catch (SdkException<GetFlexibleSubscriptionPreviewUserDataError> ex)
+catch (ApiException<GetFlexibleSubscriptionPreviewUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -15018,18 +14222,12 @@ catch (SdkException<GetFlexibleSubscriptionPreviewUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>productId</code> | <code>string</code> | - |
-| <code>amount</code> | <code>double</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetFlexibleSubscriptionPreviewUserDataRequest](Requests/SimpleEarn/GetFlexibleSubscriptionPreviewUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -15041,7 +14239,7 @@ catch (SdkException<GetFlexibleSubscriptionPreviewUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1SimpleEarnFlexibleSubscriptionPreviewResponse](Models/SapiV1SimpleEarnFlexibleSubscriptionPreviewResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetFlexibleSubscriptionPreviewUserDataError](Errors/GetFlexibleSubscriptionPreviewUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetFlexibleSubscriptionPreviewUserDataError](Errors/GetFlexibleSubscriptionPreviewUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -15052,7 +14250,7 @@ catch (SdkException<GetFlexibleSubscriptionPreviewUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1SimpleEarnFlexibleHistorySubscriptionRecordResponse&gt; GetFlexibleSubscriptionRecordUserData(long timestamp, string signature, string? productId, string? purchaseId, string? asset, long? startTime, long? endTime, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1SimpleEarnFlexibleHistorySubscriptionRecordResponse&gt; GetFlexibleSubscriptionRecordUserData(GetFlexibleSubscriptionRecordUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -15075,19 +14273,18 @@ Weight(IP): 150
 ```csharp
 try
 {
-    var response = await client.SimpleEarn.GetFlexibleSubscriptionRecordUserData(timestamp,
-        signature,
-        productId,
-        purchaseId,
-        asset,
-        startTime,
-        endTime,
-        current,
-        size,
-        recvWindow);
+    var response = await client.SimpleEarn.GetFlexibleSubscriptionRecordUserData(
+        new GetFlexibleSubscriptionRecordUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            Current = 1,
+            Size = 100,
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1SimpleEarnFlexibleHistorySubscriptionRecordResponse
 }
-catch (SdkException<GetFlexibleSubscriptionRecordUserDataError> ex)
+catch (ApiException<GetFlexibleSubscriptionRecordUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -15099,23 +14296,12 @@ catch (SdkException<GetFlexibleSubscriptionRecordUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>productId</code> | <code>string?</code> | - |
-| <code>purchaseId</code> | <code>string?</code> | - |
-| <code>asset</code> | <code>string?</code> | - |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>current</code> | <code>int?</code> | Current querying page. Start from 1. Default:1 |
-| <code>size</code> | <code>int?</code> | Default:10 Max:100 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetFlexibleSubscriptionRecordUserDataRequest](Requests/SimpleEarn/GetFlexibleSubscriptionRecordUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -15127,7 +14313,7 @@ catch (SdkException<GetFlexibleSubscriptionRecordUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1SimpleEarnFlexibleHistorySubscriptionRecordResponse](Models/SapiV1SimpleEarnFlexibleHistorySubscriptionRecordResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetFlexibleSubscriptionRecordUserDataError](Errors/GetFlexibleSubscriptionRecordUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetFlexibleSubscriptionRecordUserDataError](Errors/GetFlexibleSubscriptionRecordUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -15138,7 +14324,7 @@ catch (SdkException<GetFlexibleSubscriptionRecordUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1SimpleEarnLockedPersonalLeftQuotaResponse&gt; GetLockedPersonalLeftQuotaUserData(string projectId, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1SimpleEarnLockedPersonalLeftQuotaResponse&gt; GetLockedPersonalLeftQuotaUserData(GetLockedPersonalLeftQuotaUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -15161,13 +14347,17 @@ Weight(IP): 150
 ```csharp
 try
 {
-    var response = await client.SimpleEarn.GetLockedPersonalLeftQuotaUserData(projectId,
-        timestamp,
-        signature,
-        recvWindow);
+    var response = await client.SimpleEarn.GetLockedPersonalLeftQuotaUserData(
+        new GetLockedPersonalLeftQuotaUserDataRequest
+        {
+            ProjectId = "some example string",
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1SimpleEarnLockedPersonalLeftQuotaResponse
 }
-catch (SdkException<GetLockedPersonalLeftQuotaUserDataError> ex)
+catch (ApiException<GetLockedPersonalLeftQuotaUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -15179,17 +14369,12 @@ catch (SdkException<GetLockedPersonalLeftQuotaUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>projectId</code> | <code>string</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetLockedPersonalLeftQuotaUserDataRequest](Requests/SimpleEarn/GetLockedPersonalLeftQuotaUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -15201,7 +14386,7 @@ catch (SdkException<GetLockedPersonalLeftQuotaUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1SimpleEarnLockedPersonalLeftQuotaResponse](Models/SapiV1SimpleEarnLockedPersonalLeftQuotaResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetLockedPersonalLeftQuotaUserDataError](Errors/GetLockedPersonalLeftQuotaUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetLockedPersonalLeftQuotaUserDataError](Errors/GetLockedPersonalLeftQuotaUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -15212,7 +14397,7 @@ catch (SdkException<GetLockedPersonalLeftQuotaUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1SimpleEarnLockedPositionResponse&gt; GetLockedProductPositionUserData(long timestamp, string signature, string? asset, string? positionId, string? projectId, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1SimpleEarnLockedPositionResponse&gt; GetLockedProductPositionUserData(GetLockedProductPositionUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -15235,17 +14420,17 @@ Weight(IP): 150
 ```csharp
 try
 {
-    var response = await client.SimpleEarn.GetLockedProductPositionUserData(timestamp,
-        signature,
-        asset,
-        positionId,
-        projectId,
-        current,
-        size,
-        recvWindow);
+    var response = await client.SimpleEarn.GetLockedProductPositionUserData(new GetLockedProductPositionUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        Current = 1,
+        Size = 100,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1SimpleEarnLockedPositionResponse
 }
-catch (SdkException<GetLockedProductPositionUserDataError> ex)
+catch (ApiException<GetLockedProductPositionUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -15257,21 +14442,12 @@ catch (SdkException<GetLockedProductPositionUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>asset</code> | <code>string?</code> | - |
-| <code>positionId</code> | <code>string?</code> | - |
-| <code>projectId</code> | <code>string?</code> | - |
-| <code>current</code> | <code>int?</code> | Current querying page. Start from 1. Default:1 |
-| <code>size</code> | <code>int?</code> | Default:10 Max:100 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetLockedProductPositionUserDataRequest](Requests/SimpleEarn/GetLockedProductPositionUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -15283,7 +14459,7 @@ catch (SdkException<GetLockedProductPositionUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1SimpleEarnLockedPositionResponse](Models/SapiV1SimpleEarnLockedPositionResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetLockedProductPositionUserDataError](Errors/GetLockedProductPositionUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetLockedProductPositionUserDataError](Errors/GetLockedProductPositionUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -15294,7 +14470,7 @@ catch (SdkException<GetLockedProductPositionUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1SimpleEarnLockedHistoryRedemptionRecordResponse&gt; GetLockedRedemptionRecordUserData(long timestamp, string signature, string? positionId, string? redeemId, string? asset, long? startTime, long? endTime, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1SimpleEarnLockedHistoryRedemptionRecordResponse&gt; GetLockedRedemptionRecordUserData(GetLockedRedemptionRecordUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -15317,19 +14493,18 @@ Weight(IP): 150
 ```csharp
 try
 {
-    var response = await client.SimpleEarn.GetLockedRedemptionRecordUserData(timestamp,
-        signature,
-        positionId,
-        redeemId,
-        asset,
-        startTime,
-        endTime,
-        current,
-        size,
-        recvWindow);
+    var response = await client.SimpleEarn.GetLockedRedemptionRecordUserData(
+        new GetLockedRedemptionRecordUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            Current = 1,
+            Size = 100,
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1SimpleEarnLockedHistoryRedemptionRecordResponse
 }
-catch (SdkException<GetLockedRedemptionRecordUserDataError> ex)
+catch (ApiException<GetLockedRedemptionRecordUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -15341,23 +14516,12 @@ catch (SdkException<GetLockedRedemptionRecordUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>positionId</code> | <code>string?</code> | - |
-| <code>redeemId</code> | <code>string?</code> | - |
-| <code>asset</code> | <code>string?</code> | - |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>current</code> | <code>int?</code> | Current querying page. Start from 1. Default:1 |
-| <code>size</code> | <code>int?</code> | Default:10 Max:100 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetLockedRedemptionRecordUserDataRequest](Requests/SimpleEarn/GetLockedRedemptionRecordUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -15369,7 +14533,7 @@ catch (SdkException<GetLockedRedemptionRecordUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1SimpleEarnLockedHistoryRedemptionRecordResponse](Models/SapiV1SimpleEarnLockedHistoryRedemptionRecordResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetLockedRedemptionRecordUserDataError](Errors/GetLockedRedemptionRecordUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetLockedRedemptionRecordUserDataError](Errors/GetLockedRedemptionRecordUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -15380,7 +14544,7 @@ catch (SdkException<GetLockedRedemptionRecordUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1SimpleEarnLockedHistoryRewardsRecordResponse&gt; GetLockedRewardsHistoryUserData(long timestamp, string signature, string? positionId, string? asset, long? startTime, long? endTime, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1SimpleEarnLockedHistoryRewardsRecordResponse&gt; GetLockedRewardsHistoryUserData(GetLockedRewardsHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -15403,17 +14567,16 @@ Weight(IP): 150
 ```csharp
 try
 {
-    var response = await client.SimpleEarn.GetLockedRewardsHistoryUserData(timestamp,
-        signature,
-        positionId,
-        asset,
-        startTime,
-        endTime,
-        size,
-        recvWindow);
+    var response = await client.SimpleEarn.GetLockedRewardsHistoryUserData(new GetLockedRewardsHistoryUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        Size = 100,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1SimpleEarnLockedHistoryRewardsRecordResponse
 }
-catch (SdkException<GetLockedRewardsHistoryUserDataError> ex)
+catch (ApiException<GetLockedRewardsHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -15425,21 +14588,12 @@ catch (SdkException<GetLockedRewardsHistoryUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>positionId</code> | <code>string?</code> | - |
-| <code>asset</code> | <code>string?</code> | - |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>size</code> | <code>int?</code> | Default:10 Max:100 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetLockedRewardsHistoryUserDataRequest](Requests/SimpleEarn/GetLockedRewardsHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -15451,7 +14605,7 @@ catch (SdkException<GetLockedRewardsHistoryUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1SimpleEarnLockedHistoryRewardsRecordResponse](Models/SapiV1SimpleEarnLockedHistoryRewardsRecordResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetLockedRewardsHistoryUserDataError](Errors/GetLockedRewardsHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetLockedRewardsHistoryUserDataError](Errors/GetLockedRewardsHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -15462,7 +14616,7 @@ catch (SdkException<GetLockedRewardsHistoryUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1SimpleEarnLockedSubscriptionPreviewResponse&gt;&gt; GetLockedSubscriptionPreviewUserData(string projectId, double amount, long timestamp, string signature, bool? autoSubscribe, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1SimpleEarnLockedSubscriptionPreviewResponse&gt;&gt; GetLockedSubscriptionPreviewUserData(GetLockedSubscriptionPreviewUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -15485,15 +14639,18 @@ Weight(IP): 150
 ```csharp
 try
 {
-    var response = await client.SimpleEarn.GetLockedSubscriptionPreviewUserData(projectId,
-        amount,
-        timestamp,
-        signature,
-        autoSubscribe,
-        recvWindow);
+    var response = await client.SimpleEarn.GetLockedSubscriptionPreviewUserData(
+        new GetLockedSubscriptionPreviewUserDataRequest
+        {
+            ProjectId = "some example string",
+            Amount = 1.5d,
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1SimpleEarnLockedSubscriptionPreviewResponse>
 }
-catch (SdkException<GetLockedSubscriptionPreviewUserDataError> ex)
+catch (ApiException<GetLockedSubscriptionPreviewUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -15505,19 +14662,12 @@ catch (SdkException<GetLockedSubscriptionPreviewUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>projectId</code> | <code>string</code> | - |
-| <code>amount</code> | <code>double</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>autoSubscribe</code> | <code>bool?</code> | true or false, default true. |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetLockedSubscriptionPreviewUserDataRequest](Requests/SimpleEarn/GetLockedSubscriptionPreviewUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -15529,7 +14679,7 @@ catch (SdkException<GetLockedSubscriptionPreviewUserDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1SimpleEarnLockedSubscriptionPreviewResponse](Models/SapiV1SimpleEarnLockedSubscriptionPreviewResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetLockedSubscriptionPreviewUserDataError](Errors/GetLockedSubscriptionPreviewUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetLockedSubscriptionPreviewUserDataError](Errors/GetLockedSubscriptionPreviewUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -15540,7 +14690,7 @@ catch (SdkException<GetLockedSubscriptionPreviewUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1SimpleEarnLockedHistorySubscriptionRecordResponse&gt; GetLockedSubscriptionRecordUserData(long timestamp, string signature, string? purchaseId, string? asset, long? startTime, long? endTime, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1SimpleEarnLockedHistorySubscriptionRecordResponse&gt; GetLockedSubscriptionRecordUserData(GetLockedSubscriptionRecordUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -15563,18 +14713,18 @@ Weight(IP): 150
 ```csharp
 try
 {
-    var response = await client.SimpleEarn.GetLockedSubscriptionRecordUserData(timestamp,
-        signature,
-        purchaseId,
-        asset,
-        startTime,
-        endTime,
-        current,
-        size,
-        recvWindow);
+    var response = await client.SimpleEarn.GetLockedSubscriptionRecordUserData(
+        new GetLockedSubscriptionRecordUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            Current = 1,
+            Size = 100,
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1SimpleEarnLockedHistorySubscriptionRecordResponse
 }
-catch (SdkException<GetLockedSubscriptionRecordUserDataError> ex)
+catch (ApiException<GetLockedSubscriptionRecordUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -15586,22 +14736,12 @@ catch (SdkException<GetLockedSubscriptionRecordUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>purchaseId</code> | <code>string?</code> | - |
-| <code>asset</code> | <code>string?</code> | - |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>current</code> | <code>int?</code> | Current querying page. Start from 1. Default:1 |
-| <code>size</code> | <code>int?</code> | Default:10 Max:100 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetLockedSubscriptionRecordUserDataRequest](Requests/SimpleEarn/GetLockedSubscriptionRecordUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -15613,7 +14753,7 @@ catch (SdkException<GetLockedSubscriptionRecordUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1SimpleEarnLockedHistorySubscriptionRecordResponse](Models/SapiV1SimpleEarnLockedHistorySubscriptionRecordResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetLockedSubscriptionRecordUserDataError](Errors/GetLockedSubscriptionRecordUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetLockedSubscriptionRecordUserDataError](Errors/GetLockedSubscriptionRecordUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -15624,7 +14764,7 @@ catch (SdkException<GetLockedSubscriptionRecordUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1SimpleEarnFlexibleHistoryRateHistoryResponse&gt; GetRateHistoryUserData(string productId, long timestamp, string signature, long? startTime, long? endTime, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1SimpleEarnFlexibleHistoryRateHistoryResponse&gt; GetRateHistoryUserData(GetRateHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -15647,17 +14787,18 @@ Weight(IP): 150
 ```csharp
 try
 {
-    var response = await client.SimpleEarn.GetRateHistoryUserData(productId,
-        timestamp,
-        signature,
-        startTime,
-        endTime,
-        current,
-        size,
-        recvWindow);
+    var response = await client.SimpleEarn.GetRateHistoryUserData(new GetRateHistoryUserDataRequest
+    {
+        ProductId = "some example string",
+        Timestamp = 1L,
+        Signature = "some example string",
+        Current = 1,
+        Size = 100,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1SimpleEarnFlexibleHistoryRateHistoryResponse
 }
-catch (SdkException<GetRateHistoryUserDataError> ex)
+catch (ApiException<GetRateHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -15669,21 +14810,12 @@ catch (SdkException<GetRateHistoryUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>productId</code> | <code>string</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>current</code> | <code>int?</code> | Current querying page. Start from 1. Default:1 |
-| <code>size</code> | <code>int?</code> | Default:10 Max:100 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetRateHistoryUserDataRequest](Requests/SimpleEarn/GetRateHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -15695,7 +14827,7 @@ catch (SdkException<GetRateHistoryUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1SimpleEarnFlexibleHistoryRateHistoryResponse](Models/SapiV1SimpleEarnFlexibleHistoryRateHistoryResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetRateHistoryUserDataError](Errors/GetRateHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetRateHistoryUserDataError](Errors/GetRateHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -15706,7 +14838,7 @@ catch (SdkException<GetRateHistoryUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1SimpleEarnFlexibleListResponse&gt; GetSimpleEarnFlexibleProductListUserData(long timestamp, string signature, string? asset, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1SimpleEarnFlexibleListResponse&gt; GetSimpleEarnFlexibleProductListUserData(GetSimpleEarnFlexibleProductListUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -15731,15 +14863,19 @@ Weight(IP): 150
 ```csharp
 try
 {
-    var response = await client.SimpleEarn.GetSimpleEarnFlexibleProductListUserData(timestamp,
-        signature,
-        asset,
-        current,
-        size,
-        recvWindow);
+    var response = await client.SimpleEarn.GetSimpleEarnFlexibleProductListUserData(
+        new GetSimpleEarnFlexibleProductListUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            Asset = "BTC",
+            Current = 1,
+            Size = 100,
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1SimpleEarnFlexibleListResponse
 }
-catch (SdkException<GetSimpleEarnFlexibleProductListUserDataError> ex)
+catch (ApiException<GetSimpleEarnFlexibleProductListUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -15751,19 +14887,12 @@ catch (SdkException<GetSimpleEarnFlexibleProductListUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>asset</code> | <code>string?</code> | - |
-| <code>current</code> | <code>int?</code> | Current querying page. Start from 1. Default:1 |
-| <code>size</code> | <code>int?</code> | Default:10 Max:100 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetSimpleEarnFlexibleProductListUserDataRequest](Requests/SimpleEarn/GetSimpleEarnFlexibleProductListUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -15775,7 +14904,7 @@ catch (SdkException<GetSimpleEarnFlexibleProductListUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1SimpleEarnFlexibleListResponse](Models/SapiV1SimpleEarnFlexibleListResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetSimpleEarnFlexibleProductListUserDataError](Errors/GetSimpleEarnFlexibleProductListUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetSimpleEarnFlexibleProductListUserDataError](Errors/GetSimpleEarnFlexibleProductListUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -15786,7 +14915,7 @@ catch (SdkException<GetSimpleEarnFlexibleProductListUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1SimpleEarnLockedListResponse&gt; GetSimpleEarnLockedProductListUserData(long timestamp, string signature, string? asset, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1SimpleEarnLockedListResponse&gt; GetSimpleEarnLockedProductListUserData(GetSimpleEarnLockedProductListUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -15809,15 +14938,19 @@ Weight(IP): 150
 ```csharp
 try
 {
-    var response = await client.SimpleEarn.GetSimpleEarnLockedProductListUserData(timestamp,
-        signature,
-        asset,
-        current,
-        size,
-        recvWindow);
+    var response = await client.SimpleEarn.GetSimpleEarnLockedProductListUserData(
+        new GetSimpleEarnLockedProductListUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            Asset = "BNB",
+            Current = 1,
+            Size = 100,
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1SimpleEarnLockedListResponse
 }
-catch (SdkException<GetSimpleEarnLockedProductListUserDataError> ex)
+catch (ApiException<GetSimpleEarnLockedProductListUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -15829,19 +14962,12 @@ catch (SdkException<GetSimpleEarnLockedProductListUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>asset</code> | <code>string?</code> | - |
-| <code>current</code> | <code>int?</code> | Current querying page. Start from 1. Default:1 |
-| <code>size</code> | <code>int?</code> | Default:10 Max:100 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetSimpleEarnLockedProductListUserDataRequest](Requests/SimpleEarn/GetSimpleEarnLockedProductListUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -15853,7 +14979,7 @@ catch (SdkException<GetSimpleEarnLockedProductListUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1SimpleEarnLockedListResponse](Models/SapiV1SimpleEarnLockedListResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetSimpleEarnLockedProductListUserDataError](Errors/GetSimpleEarnLockedProductListUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetSimpleEarnLockedProductListUserDataError](Errors/GetSimpleEarnLockedProductListUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -15864,7 +14990,7 @@ catch (SdkException<GetSimpleEarnLockedProductListUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1SimpleEarnFlexibleRedeemResponse&gt; RedeemFlexibleProductTrade(string productId, long timestamp, string signature, bool? redeemAll, double? amount, string? destAccount, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1SimpleEarnFlexibleRedeemResponse&gt; RedeemFlexibleProductTrade(RedeemFlexibleProductTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -15889,16 +15015,16 @@ Rate Limit: 1/3s per account
 ```csharp
 try
 {
-    var response = await client.SimpleEarn.RedeemFlexibleProductTrade(productId,
-        timestamp,
-        signature,
-        redeemAll,
-        amount,
-        destAccount,
-        recvWindow);
+    var response = await client.SimpleEarn.RedeemFlexibleProductTrade(new RedeemFlexibleProductTradeRequest
+    {
+        ProductId = "some example string",
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1SimpleEarnFlexibleRedeemResponse
 }
-catch (SdkException<RedeemFlexibleProductTradeError> ex)
+catch (ApiException<RedeemFlexibleProductTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -15910,20 +15036,12 @@ catch (SdkException<RedeemFlexibleProductTradeError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>productId</code> | <code>string</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>redeemAll</code> | <code>bool?</code> | true or false, default to false |
-| <code>amount</code> | <code>double?</code> | if redeemAll is false, amount is mandatory |
-| <code>destAccount</code> | <code>string?</code> | SPOT,FUND,ALL, default SPOT |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[RedeemFlexibleProductTradeRequest](Requests/SimpleEarn/RedeemFlexibleProductTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -15935,7 +15053,7 @@ catch (SdkException<RedeemFlexibleProductTradeError> ex)
 
 **OnSuccess**: <code>[SapiV1SimpleEarnFlexibleRedeemResponse](Models/SapiV1SimpleEarnFlexibleRedeemResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[RedeemFlexibleProductTradeError](Errors/RedeemFlexibleProductTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[RedeemFlexibleProductTradeError](Errors/RedeemFlexibleProductTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -15946,7 +15064,7 @@ catch (SdkException<RedeemFlexibleProductTradeError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1SimpleEarnLockedRedeemResponse&gt; RedeemLockedProductTrade(string positionId, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1SimpleEarnLockedRedeemResponse&gt; RedeemLockedProductTrade(RedeemLockedProductTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -15971,10 +15089,16 @@ Rate Limit: 1/3s per account
 ```csharp
 try
 {
-    var response = await client.SimpleEarn.RedeemLockedProductTrade(positionId, timestamp, signature, recvWindow);
+    var response = await client.SimpleEarn.RedeemLockedProductTrade(new RedeemLockedProductTradeRequest
+    {
+        PositionId = "some example string",
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1SimpleEarnLockedRedeemResponse
 }
-catch (SdkException<RedeemLockedProductTradeError> ex)
+catch (ApiException<RedeemLockedProductTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -15986,17 +15110,12 @@ catch (SdkException<RedeemLockedProductTradeError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>positionId</code> | <code>string</code> | 1234 |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[RedeemLockedProductTradeRequest](Requests/SimpleEarn/RedeemLockedProductTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -16008,7 +15127,7 @@ catch (SdkException<RedeemLockedProductTradeError> ex)
 
 **OnSuccess**: <code>[SapiV1SimpleEarnLockedRedeemResponse](Models/SapiV1SimpleEarnLockedRedeemResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[RedeemLockedProductTradeError](Errors/RedeemLockedProductTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[RedeemLockedProductTradeError](Errors/RedeemLockedProductTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -16019,7 +15138,7 @@ catch (SdkException<RedeemLockedProductTradeError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1SimpleEarnFlexibleSetAutoSubscribeResponse&gt; SetFlexibleAutoSubscribeUserData(string productId, bool autoSubscribe, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1SimpleEarnFlexibleSetAutoSubscribeResponse&gt; SetFlexibleAutoSubscribeUserData(SetFlexibleAutoSubscribeUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -16042,14 +15161,17 @@ Weight(IP): 150
 ```csharp
 try
 {
-    var response = await client.SimpleEarn.SetFlexibleAutoSubscribeUserData(productId,
-        autoSubscribe,
-        timestamp,
-        signature,
-        recvWindow);
+    var response = await client.SimpleEarn.SetFlexibleAutoSubscribeUserData(new SetFlexibleAutoSubscribeUserDataRequest
+    {
+        ProductId = "some example string",
+        AutoSubscribe = true,
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1SimpleEarnFlexibleSetAutoSubscribeResponse
 }
-catch (SdkException<SetFlexibleAutoSubscribeUserDataError> ex)
+catch (ApiException<SetFlexibleAutoSubscribeUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -16061,18 +15183,12 @@ catch (SdkException<SetFlexibleAutoSubscribeUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>productId</code> | <code>string</code> | - |
-| <code>autoSubscribe</code> | <code>bool</code> | true or false |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[SetFlexibleAutoSubscribeUserDataRequest](Requests/SimpleEarn/SetFlexibleAutoSubscribeUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -16084,7 +15200,7 @@ catch (SdkException<SetFlexibleAutoSubscribeUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1SimpleEarnFlexibleSetAutoSubscribeResponse](Models/SapiV1SimpleEarnFlexibleSetAutoSubscribeResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[SetFlexibleAutoSubscribeUserDataError](Errors/SetFlexibleAutoSubscribeUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SetFlexibleAutoSubscribeUserDataError](Errors/SetFlexibleAutoSubscribeUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -16095,7 +15211,7 @@ catch (SdkException<SetFlexibleAutoSubscribeUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1SimpleEarnLockedSetAutoSubscribeResponse&gt; SetLockedAutoSubscribeUserData(string positionId, bool autoSubscribe, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1SimpleEarnLockedSetAutoSubscribeResponse&gt; SetLockedAutoSubscribeUserData(SetLockedAutoSubscribeUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -16118,14 +15234,17 @@ Weight(IP): 150
 ```csharp
 try
 {
-    var response = await client.SimpleEarn.SetLockedAutoSubscribeUserData(positionId,
-        autoSubscribe,
-        timestamp,
-        signature,
-        recvWindow);
+    var response = await client.SimpleEarn.SetLockedAutoSubscribeUserData(new SetLockedAutoSubscribeUserDataRequest
+    {
+        PositionId = "some example string",
+        AutoSubscribe = true,
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1SimpleEarnLockedSetAutoSubscribeResponse
 }
-catch (SdkException<SetLockedAutoSubscribeUserDataError> ex)
+catch (ApiException<SetLockedAutoSubscribeUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -16137,18 +15256,12 @@ catch (SdkException<SetLockedAutoSubscribeUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>positionId</code> | <code>string</code> | - |
-| <code>autoSubscribe</code> | <code>bool</code> | true or false |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[SetLockedAutoSubscribeUserDataRequest](Requests/SimpleEarn/SetLockedAutoSubscribeUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -16160,7 +15273,7 @@ catch (SdkException<SetLockedAutoSubscribeUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1SimpleEarnLockedSetAutoSubscribeResponse](Models/SapiV1SimpleEarnLockedSetAutoSubscribeResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[SetLockedAutoSubscribeUserDataError](Errors/SetLockedAutoSubscribeUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SetLockedAutoSubscribeUserDataError](Errors/SetLockedAutoSubscribeUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -16171,7 +15284,7 @@ catch (SdkException<SetLockedAutoSubscribeUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1SimpleEarnLockedSetRedeemOptionResponse&gt; SetLockedProductRedeemOptionUserData(string positionId, long timestamp, string signature, RedeemTo? redeemTo, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1SimpleEarnLockedSetRedeemOptionResponse&gt; SetLockedProductRedeemOptionUserData(SetLockedProductRedeemOptionUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -16196,14 +15309,17 @@ Weight(IP): 50
 ```csharp
 try
 {
-    var response = await client.SimpleEarn.SetLockedProductRedeemOptionUserData(positionId,
-        timestamp,
-        signature,
-        redeemTo,
-        recvWindow);
+    var response = await client.SimpleEarn.SetLockedProductRedeemOptionUserData(
+        new SetLockedProductRedeemOptionUserDataRequest
+        {
+            PositionId = "some example string",
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1SimpleEarnLockedSetRedeemOptionResponse
 }
-catch (SdkException<SetLockedProductRedeemOptionUserDataError> ex)
+catch (ApiException<SetLockedProductRedeemOptionUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -16215,18 +15331,12 @@ catch (SdkException<SetLockedProductRedeemOptionUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>positionId</code> | <code>string</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>redeemTo</code> | <code>[RedeemTo?](Models/Enums/RedeemTo.cs)</code> | SPOT,FLEXIBLE, default FLEXIBLE |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[SetLockedProductRedeemOptionUserDataRequest](Requests/SimpleEarn/SetLockedProductRedeemOptionUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -16238,7 +15348,7 @@ catch (SdkException<SetLockedProductRedeemOptionUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1SimpleEarnLockedSetRedeemOptionResponse](Models/SapiV1SimpleEarnLockedSetRedeemOptionResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[SetLockedProductRedeemOptionUserDataError](Errors/SetLockedProductRedeemOptionUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SetLockedProductRedeemOptionUserDataError](Errors/SetLockedProductRedeemOptionUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -16249,7 +15359,7 @@ catch (SdkException<SetLockedProductRedeemOptionUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1SimpleEarnAccountResponse&gt; SimpleAccountUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1SimpleEarnAccountResponse&gt; SimpleAccountUserData(SimpleAccountUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -16272,10 +15382,15 @@ Weight(IP): 150
 ```csharp
 try
 {
-    var response = await client.SimpleEarn.SimpleAccountUserData(timestamp, signature, recvWindow);
+    var response = await client.SimpleEarn.SimpleAccountUserData(new SimpleAccountUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1SimpleEarnAccountResponse
 }
-catch (SdkException<SimpleAccountUserDataError> ex)
+catch (ApiException<SimpleAccountUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -16287,16 +15402,12 @@ catch (SdkException<SimpleAccountUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[SimpleAccountUserDataRequest](Requests/SimpleEarn/SimpleAccountUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -16308,7 +15419,7 @@ catch (SdkException<SimpleAccountUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1SimpleEarnAccountResponse](Models/SapiV1SimpleEarnAccountResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[SimpleAccountUserDataError](Errors/SimpleAccountUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SimpleAccountUserDataError](Errors/SimpleAccountUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -16319,7 +15430,7 @@ catch (SdkException<SimpleAccountUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1SimpleEarnFlexibleSubscribeResponse&gt; SubscribeFlexibleProductTrade(string productId, double amount, long timestamp, string signature, bool? autoSubscribe, string? sourceAccount, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1SimpleEarnFlexibleSubscribeResponse&gt; SubscribeFlexibleProductTrade(SubscribeFlexibleProductTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -16344,16 +15455,17 @@ Rate Limit: 1/3s per account
 ```csharp
 try
 {
-    var response = await client.SimpleEarn.SubscribeFlexibleProductTrade(productId,
-        amount,
-        timestamp,
-        signature,
-        autoSubscribe,
-        sourceAccount,
-        recvWindow);
+    var response = await client.SimpleEarn.SubscribeFlexibleProductTrade(new SubscribeFlexibleProductTradeRequest
+    {
+        ProductId = "some example string",
+        Amount = 1.5d,
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1SimpleEarnFlexibleSubscribeResponse
 }
-catch (SdkException<SubscribeFlexibleProductTradeError> ex)
+catch (ApiException<SubscribeFlexibleProductTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -16365,20 +15477,12 @@ catch (SdkException<SubscribeFlexibleProductTradeError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>productId</code> | <code>string</code> | - |
-| <code>amount</code> | <code>double</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>autoSubscribe</code> | <code>bool?</code> | true or false, default true. |
-| <code>sourceAccount</code> | <code>string?</code> | SPOT,FUND,ALL, default SPOT |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[SubscribeFlexibleProductTradeRequest](Requests/SimpleEarn/SubscribeFlexibleProductTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -16390,7 +15494,7 @@ catch (SdkException<SubscribeFlexibleProductTradeError> ex)
 
 **OnSuccess**: <code>[SapiV1SimpleEarnFlexibleSubscribeResponse](Models/SapiV1SimpleEarnFlexibleSubscribeResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[SubscribeFlexibleProductTradeError](Errors/SubscribeFlexibleProductTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SubscribeFlexibleProductTradeError](Errors/SubscribeFlexibleProductTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -16401,7 +15505,7 @@ catch (SdkException<SubscribeFlexibleProductTradeError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1SimpleEarnLockedSubscribeResponse&gt; SubscribeLockedProductTrade(string projectId, double amount, long timestamp, string signature, bool? autoSubscribe, string? sourceAccount, RedeemTo? redeemTo, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1SimpleEarnLockedSubscribeResponse&gt; SubscribeLockedProductTrade(SubscribeLockedProductTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -16426,17 +15530,17 @@ Rate Limit: 1/3s per account
 ```csharp
 try
 {
-    var response = await client.SimpleEarn.SubscribeLockedProductTrade(projectId,
-        amount,
-        timestamp,
-        signature,
-        autoSubscribe,
-        sourceAccount,
-        redeemTo,
-        recvWindow);
+    var response = await client.SimpleEarn.SubscribeLockedProductTrade(new SubscribeLockedProductTradeRequest
+    {
+        ProjectId = "some example string",
+        Amount = 1.5d,
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1SimpleEarnLockedSubscribeResponse
 }
-catch (SdkException<SubscribeLockedProductTradeError> ex)
+catch (ApiException<SubscribeLockedProductTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -16448,21 +15552,12 @@ catch (SdkException<SubscribeLockedProductTradeError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>projectId</code> | <code>string</code> | - |
-| <code>amount</code> | <code>double</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>autoSubscribe</code> | <code>bool?</code> | true or false, default true. |
-| <code>sourceAccount</code> | <code>string?</code> | SPOT,FUND,ALL, default SPOT |
-| <code>redeemTo</code> | <code>[RedeemTo?](Models/Enums/RedeemTo.cs)</code> | SPOT,FLEXIBLE, default FLEXIBLE |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[SubscribeLockedProductTradeRequest](Requests/SimpleEarn/SubscribeLockedProductTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -16474,7 +15569,7 @@ catch (SdkException<SubscribeLockedProductTradeError> ex)
 
 **OnSuccess**: <code>[SapiV1SimpleEarnLockedSubscribeResponse](Models/SapiV1SimpleEarnLockedSubscribeResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[SubscribeLockedProductTradeError](Errors/SubscribeLockedProductTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SubscribeLockedProductTradeError](Errors/SubscribeLockedProductTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -16489,7 +15584,7 @@ catch (SdkException<SubscribeLockedProductTradeError> ex)
 > Source: [SpotAlgo](Api/SpotAlgo.cs)
 
 <details>
-<summary><code>Task&lt;SapiV1AlgoSpotOrderResponse&gt; CancelAlgoOrder(long algoId, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1AlgoSpotOrderResponse&gt; CancelAlgoOrder(CancelAlgoOrderRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -16514,10 +15609,16 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.SpotAlgo.CancelAlgoOrder(algoId, timestamp, signature, recvWindow);
+    var response = await client.SpotAlgo.CancelAlgoOrder(new CancelAlgoOrderRequest
+    {
+        AlgoId = 1L,
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1AlgoSpotOrderResponse
 }
-catch (SdkException<CancelAlgoOrderError> ex)
+catch (ApiException<CancelAlgoOrderError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -16529,17 +15630,12 @@ catch (SdkException<CancelAlgoOrderError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>algoId</code> | <code>long</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[CancelAlgoOrderRequest](Requests/SpotAlgo/CancelAlgoOrderRequest.cs)</code>
 
 </dd>
 </dl>
@@ -16551,7 +15647,7 @@ catch (SdkException<CancelAlgoOrderError> ex)
 
 **OnSuccess**: <code>[SapiV1AlgoSpotOrderResponse](Models/SapiV1AlgoSpotOrderResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[CancelAlgoOrderError](Errors/CancelAlgoOrderError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CancelAlgoOrderError](Errors/CancelAlgoOrderError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -16562,7 +15658,7 @@ catch (SdkException<CancelAlgoOrderError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1AlgoSpotOpenOrdersResponse&gt; QueryCurrentAlgoOpenOrders(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1AlgoSpotOpenOrdersResponse&gt; QueryCurrentAlgoOpenOrders(QueryCurrentAlgoOpenOrdersRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -16587,10 +15683,15 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.SpotAlgo.QueryCurrentAlgoOpenOrders(timestamp, signature, recvWindow);
+    var response = await client.SpotAlgo.QueryCurrentAlgoOpenOrders(new QueryCurrentAlgoOpenOrdersRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1AlgoSpotOpenOrdersResponse
 }
-catch (SdkException<QueryCurrentAlgoOpenOrdersError> ex)
+catch (ApiException<QueryCurrentAlgoOpenOrdersError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -16602,16 +15703,12 @@ catch (SdkException<QueryCurrentAlgoOpenOrdersError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryCurrentAlgoOpenOrdersRequest](Requests/SpotAlgo/QueryCurrentAlgoOpenOrdersRequest.cs)</code>
 
 </dd>
 </dl>
@@ -16623,7 +15720,7 @@ catch (SdkException<QueryCurrentAlgoOpenOrdersError> ex)
 
 **OnSuccess**: <code>[SapiV1AlgoSpotOpenOrdersResponse](Models/SapiV1AlgoSpotOpenOrdersResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryCurrentAlgoOpenOrdersError](Errors/QueryCurrentAlgoOpenOrdersError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryCurrentAlgoOpenOrdersError](Errors/QueryCurrentAlgoOpenOrdersError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -16634,7 +15731,7 @@ catch (SdkException<QueryCurrentAlgoOpenOrdersError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1AlgoSpotHistoricalOrdersResponse&gt; QueryHistoricalAlgoOrders(string symbol, Side side, long timestamp, string signature, long? startTime, long? endTime, int? page, string? pageSize, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1AlgoSpotHistoricalOrdersResponse&gt; QueryHistoricalAlgoOrders(QueryHistoricalAlgoOrdersRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -16659,18 +15756,18 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.SpotAlgo.QueryHistoricalAlgoOrders(symbol,
-        side,
-        timestamp,
-        signature,
-        startTime,
-        endTime,
-        page,
-        pageSize,
-        recvWindow);
+    var response = await client.SpotAlgo.QueryHistoricalAlgoOrders(new QueryHistoricalAlgoOrdersRequest
+    {
+        Symbol = "BNBUSDT",
+        Side = Side.Sell,
+        Timestamp = 1L,
+        Signature = "some example string",
+        Page = 1,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1AlgoSpotHistoricalOrdersResponse
 }
-catch (SdkException<QueryHistoricalAlgoOrdersError> ex)
+catch (ApiException<QueryHistoricalAlgoOrdersError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -16682,22 +15779,12 @@ catch (SdkException<QueryHistoricalAlgoOrdersError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string</code> | Trading symbol, e.g. BNBUSDT |
-| <code>side</code> | <code>[Side](Models/Enums/Side.cs)</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>page</code> | <code>int?</code> | Default 1 |
-| <code>pageSize</code> | <code>string?</code> | MIN 1, MAX 100; Default 100 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryHistoricalAlgoOrdersRequest](Requests/SpotAlgo/QueryHistoricalAlgoOrdersRequest.cs)</code>
 
 </dd>
 </dl>
@@ -16709,7 +15796,7 @@ catch (SdkException<QueryHistoricalAlgoOrdersError> ex)
 
 **OnSuccess**: <code>[SapiV1AlgoSpotHistoricalOrdersResponse](Models/SapiV1AlgoSpotHistoricalOrdersResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryHistoricalAlgoOrdersError](Errors/QueryHistoricalAlgoOrdersError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryHistoricalAlgoOrdersError](Errors/QueryHistoricalAlgoOrdersError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -16720,7 +15807,7 @@ catch (SdkException<QueryHistoricalAlgoOrdersError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1AlgoSpotSubOrdersResponse&gt; QuerySubOrders(long algoId, long timestamp, string signature, int? page, string? pageSize, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1AlgoSpotSubOrdersResponse&gt; QuerySubOrders(QuerySubOrdersRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -16745,10 +15832,17 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.SpotAlgo.QuerySubOrders(algoId, timestamp, signature, page, pageSize, recvWindow);
+    var response = await client.SpotAlgo.QuerySubOrders(new QuerySubOrdersRequest
+    {
+        AlgoId = 1L,
+        Timestamp = 1L,
+        Signature = "some example string",
+        Page = 1,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1AlgoSpotSubOrdersResponse
 }
-catch (SdkException<QuerySubOrdersError> ex)
+catch (ApiException<QuerySubOrdersError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -16760,19 +15854,12 @@ catch (SdkException<QuerySubOrdersError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>algoId</code> | <code>long</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>page</code> | <code>int?</code> | Default 1 |
-| <code>pageSize</code> | <code>string?</code> | MIN 1, MAX 100; Default 100 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QuerySubOrdersRequest](Requests/SpotAlgo/QuerySubOrdersRequest.cs)</code>
 
 </dd>
 </dl>
@@ -16784,7 +15871,7 @@ catch (SdkException<QuerySubOrdersError> ex)
 
 **OnSuccess**: <code>[SapiV1AlgoSpotSubOrdersResponse](Models/SapiV1AlgoSpotSubOrdersResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QuerySubOrdersError](Errors/QuerySubOrdersError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QuerySubOrdersError](Errors/QuerySubOrdersError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -16795,7 +15882,7 @@ catch (SdkException<QuerySubOrdersError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1AlgoSpotNewOrderTwapResponse&gt; TimeWeightedAveragePriceTwapNewOrder(string symbol, Side side, double quantity, int duration, long timestamp, string signature, string? clientAlgoId, double? limitPrice, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1AlgoSpotNewOrderTwapResponse&gt; TimeWeightedAveragePriceTwapNewOrder(TimeWeightedAveragePriceTwapNewOrderRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -16820,18 +15907,20 @@ Weight(UID): 3000
 ```csharp
 try
 {
-    var response = await client.SpotAlgo.TimeWeightedAveragePriceTwapNewOrder(symbol,
-        side,
-        quantity,
-        duration,
-        timestamp,
-        signature,
-        clientAlgoId,
-        limitPrice,
-        recvWindow);
+    var response = await client.SpotAlgo.TimeWeightedAveragePriceTwapNewOrder(
+        new TimeWeightedAveragePriceTwapNewOrderRequest
+        {
+            Symbol = "BNBUSDT",
+            Side = Side.Sell,
+            Quantity = 1d,
+            Duration = 300,
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1AlgoSpotNewOrderTwapResponse
 }
-catch (SdkException<TimeWeightedAveragePriceTwapNewOrderError> ex)
+catch (ApiException<TimeWeightedAveragePriceTwapNewOrderError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -16843,22 +15932,12 @@ catch (SdkException<TimeWeightedAveragePriceTwapNewOrderError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string</code> | Trading symbol, e.g. BNBUSDT |
-| <code>side</code> | <code>[Side](Models/Enums/Side.cs)</code> | - |
-| <code>quantity</code> | <code>double</code> | - |
-| <code>duration</code> | <code>int</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>clientAlgoId</code> | <code>string?</code> | - |
-| <code>limitPrice</code> | <code>double?</code> | - |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[TimeWeightedAveragePriceTwapNewOrderRequest](Requests/SpotAlgo/TimeWeightedAveragePriceTwapNewOrderRequest.cs)</code>
 
 </dd>
 </dl>
@@ -16870,7 +15949,7 @@ catch (SdkException<TimeWeightedAveragePriceTwapNewOrderError> ex)
 
 **OnSuccess**: <code>[SapiV1AlgoSpotNewOrderTwapResponse](Models/SapiV1AlgoSpotNewOrderTwapResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[TimeWeightedAveragePriceTwapNewOrderError](Errors/TimeWeightedAveragePriceTwapNewOrderError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[TimeWeightedAveragePriceTwapNewOrderError](Errors/TimeWeightedAveragePriceTwapNewOrderError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -16885,7 +15964,7 @@ catch (SdkException<TimeWeightedAveragePriceTwapNewOrderError> ex)
 > Source: [Staking](Api/Staking.cs)
 
 <details>
-<summary><code>Task&lt;SapiV2EthStakingAccountResponse&gt; EthStakingAccountV2UserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV2EthStakingAccountResponse&gt; EthStakingAccountV2UserData(EthStakingAccountV2UserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -16908,10 +15987,15 @@ Weight(IP): 150
 ```csharp
 try
 {
-    var response = await client.Staking.EthStakingAccountV2UserData(timestamp, signature, recvWindow);
+    var response = await client.Staking.EthStakingAccountV2UserData(new EthStakingAccountV2UserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV2EthStakingAccountResponse
 }
-catch (SdkException<EthStakingAccountV2UserDataError> ex)
+catch (ApiException<EthStakingAccountV2UserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -16923,16 +16007,12 @@ catch (SdkException<EthStakingAccountV2UserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[EthStakingAccountV2UserDataRequest](Requests/Staking/EthStakingAccountV2UserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -16944,7 +16024,7 @@ catch (SdkException<EthStakingAccountV2UserDataError> ex)
 
 **OnSuccess**: <code>[SapiV2EthStakingAccountResponse](Models/SapiV2EthStakingAccountResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[EthStakingAccountV2UserDataError](Errors/EthStakingAccountV2UserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[EthStakingAccountV2UserDataError](Errors/EthStakingAccountV2UserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -16955,7 +16035,7 @@ catch (SdkException<EthStakingAccountV2UserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1EthStakingEthHistoryRewardsHistoryResponse&gt; GetBethRewardsDistributionHistoryUserData(long timestamp, string signature, long? startTime, long? endTime, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1EthStakingEthHistoryRewardsHistoryResponse&gt; GetBethRewardsDistributionHistoryUserData(GetBethRewardsDistributionHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -16983,16 +16063,18 @@ Weight(IP): 150
 ```csharp
 try
 {
-    var response = await client.Staking.GetBethRewardsDistributionHistoryUserData(timestamp,
-        signature,
-        startTime,
-        endTime,
-        current,
-        size,
-        recvWindow);
+    var response = await client.Staking.GetBethRewardsDistributionHistoryUserData(
+        new GetBethRewardsDistributionHistoryUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            Current = 1,
+            Size = 100,
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1EthStakingEthHistoryRewardsHistoryResponse
 }
-catch (SdkException<GetBethRewardsDistributionHistoryUserDataError> ex)
+catch (ApiException<GetBethRewardsDistributionHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -17004,20 +16086,12 @@ catch (SdkException<GetBethRewardsDistributionHistoryUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>current</code> | <code>int?</code> | Current querying page. Start from 1. Default:1 |
-| <code>size</code> | <code>int?</code> | Default:10 Max:100 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetBethRewardsDistributionHistoryUserDataRequest](Requests/Staking/GetBethRewardsDistributionHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -17029,7 +16103,7 @@ catch (SdkException<GetBethRewardsDistributionHistoryUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1EthStakingEthHistoryRewardsHistoryResponse](Models/SapiV1EthStakingEthHistoryRewardsHistoryResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetBethRewardsDistributionHistoryUserDataError](Errors/GetBethRewardsDistributionHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetBethRewardsDistributionHistoryUserDataError](Errors/GetBethRewardsDistributionHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -17040,7 +16114,7 @@ catch (SdkException<GetBethRewardsDistributionHistoryUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1EthStakingEthHistoryRedemptionHistoryResponse&gt; GetEthRedemptionHistoryUserData(long timestamp, string signature, long? startTime, long? endTime, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1EthStakingEthHistoryRedemptionHistoryResponse&gt; GetEthRedemptionHistoryUserData(GetEthRedemptionHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -17068,16 +16142,17 @@ Weight(IP): 150
 ```csharp
 try
 {
-    var response = await client.Staking.GetEthRedemptionHistoryUserData(timestamp,
-        signature,
-        startTime,
-        endTime,
-        current,
-        size,
-        recvWindow);
+    var response = await client.Staking.GetEthRedemptionHistoryUserData(new GetEthRedemptionHistoryUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        Current = 1,
+        Size = 100,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1EthStakingEthHistoryRedemptionHistoryResponse
 }
-catch (SdkException<GetEthRedemptionHistoryUserDataError> ex)
+catch (ApiException<GetEthRedemptionHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -17089,20 +16164,12 @@ catch (SdkException<GetEthRedemptionHistoryUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>current</code> | <code>int?</code> | Current querying page. Start from 1. Default:1 |
-| <code>size</code> | <code>int?</code> | Default:10 Max:100 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetEthRedemptionHistoryUserDataRequest](Requests/Staking/GetEthRedemptionHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -17114,7 +16181,7 @@ catch (SdkException<GetEthRedemptionHistoryUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1EthStakingEthHistoryRedemptionHistoryResponse](Models/SapiV1EthStakingEthHistoryRedemptionHistoryResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetEthRedemptionHistoryUserDataError](Errors/GetEthRedemptionHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetEthRedemptionHistoryUserDataError](Errors/GetEthRedemptionHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -17125,7 +16192,7 @@ catch (SdkException<GetEthRedemptionHistoryUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1EthStakingEthHistoryStakingHistoryResponse&gt; GetEthStakingHistoryUserData(long timestamp, string signature, long? startTime, long? endTime, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1EthStakingEthHistoryStakingHistoryResponse&gt; GetEthStakingHistoryUserData(GetEthStakingHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -17153,16 +16220,17 @@ Weight(IP): 150
 ```csharp
 try
 {
-    var response = await client.Staking.GetEthStakingHistoryUserData(timestamp,
-        signature,
-        startTime,
-        endTime,
-        current,
-        size,
-        recvWindow);
+    var response = await client.Staking.GetEthStakingHistoryUserData(new GetEthStakingHistoryUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        Current = 1,
+        Size = 100,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1EthStakingEthHistoryStakingHistoryResponse
 }
-catch (SdkException<GetEthStakingHistoryUserDataError> ex)
+catch (ApiException<GetEthStakingHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -17174,20 +16242,12 @@ catch (SdkException<GetEthStakingHistoryUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>current</code> | <code>int?</code> | Current querying page. Start from 1. Default:1 |
-| <code>size</code> | <code>int?</code> | Default:10 Max:100 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetEthStakingHistoryUserDataRequest](Requests/Staking/GetEthStakingHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -17199,7 +16259,7 @@ catch (SdkException<GetEthStakingHistoryUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1EthStakingEthHistoryStakingHistoryResponse](Models/SapiV1EthStakingEthHistoryStakingHistoryResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetEthStakingHistoryUserDataError](Errors/GetEthStakingHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetEthStakingHistoryUserDataError](Errors/GetEthStakingHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -17210,7 +16270,7 @@ catch (SdkException<GetEthStakingHistoryUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1EthStakingEthHistoryRateHistoryResponse&gt; GetWbethRateHistoryUserData(long timestamp, string signature, long? startTime, long? endTime, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1EthStakingEthHistoryRateHistoryResponse&gt; GetWbethRateHistoryUserData(GetWbethRateHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -17238,16 +16298,17 @@ Weight(IP): 150
 ```csharp
 try
 {
-    var response = await client.Staking.GetWbethRateHistoryUserData(timestamp,
-        signature,
-        startTime,
-        endTime,
-        current,
-        size,
-        recvWindow);
+    var response = await client.Staking.GetWbethRateHistoryUserData(new GetWbethRateHistoryUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        Current = 1,
+        Size = 100,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1EthStakingEthHistoryRateHistoryResponse
 }
-catch (SdkException<GetWbethRateHistoryUserDataError> ex)
+catch (ApiException<GetWbethRateHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -17259,20 +16320,12 @@ catch (SdkException<GetWbethRateHistoryUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>current</code> | <code>int?</code> | Current querying page. Start from 1. Default:1 |
-| <code>size</code> | <code>int?</code> | Default:10 Max:100 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetWbethRateHistoryUserDataRequest](Requests/Staking/GetWbethRateHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -17284,7 +16337,7 @@ catch (SdkException<GetWbethRateHistoryUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1EthStakingEthHistoryRateHistoryResponse](Models/SapiV1EthStakingEthHistoryRateHistoryResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetWbethRateHistoryUserDataError](Errors/GetWbethRateHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetWbethRateHistoryUserDataError](Errors/GetWbethRateHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -17295,7 +16348,7 @@ catch (SdkException<GetWbethRateHistoryUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1EthStakingEthHistoryWbethRewardsHistoryResponse&gt; GetWbethRewardsHistoryUserData(long timestamp, string signature, long? startTime, long? endTime, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1EthStakingEthHistoryWbethRewardsHistoryResponse&gt; GetWbethRewardsHistoryUserData(GetWbethRewardsHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -17323,16 +16376,17 @@ Weight(IP): 150
 ```csharp
 try
 {
-    var response = await client.Staking.GetWbethRewardsHistoryUserData(timestamp,
-        signature,
-        startTime,
-        endTime,
-        current,
-        size,
-        recvWindow);
+    var response = await client.Staking.GetWbethRewardsHistoryUserData(new GetWbethRewardsHistoryUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        Current = 1,
+        Size = 100,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1EthStakingEthHistoryWbethRewardsHistoryResponse
 }
-catch (SdkException<GetWbethRewardsHistoryUserDataError> ex)
+catch (ApiException<GetWbethRewardsHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -17344,20 +16398,12 @@ catch (SdkException<GetWbethRewardsHistoryUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>current</code> | <code>int?</code> | Current querying page. Start from 1. Default:1 |
-| <code>size</code> | <code>int?</code> | Default:10 Max:100 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetWbethRewardsHistoryUserDataRequest](Requests/Staking/GetWbethRewardsHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -17369,7 +16415,7 @@ catch (SdkException<GetWbethRewardsHistoryUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1EthStakingEthHistoryWbethRewardsHistoryResponse](Models/SapiV1EthStakingEthHistoryWbethRewardsHistoryResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetWbethRewardsHistoryUserDataError](Errors/GetWbethRewardsHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetWbethRewardsHistoryUserDataError](Errors/GetWbethRewardsHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -17380,7 +16426,7 @@ catch (SdkException<GetWbethRewardsHistoryUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1EthStakingWbethHistoryUnwrapHistoryResponse&gt; GetWbethUnwrapHistoryUserData(long timestamp, string signature, long? startTime, long? endTime, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1EthStakingWbethHistoryUnwrapHistoryResponse&gt; GetWbethUnwrapHistoryUserData(GetWbethUnwrapHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -17408,16 +16454,17 @@ Weight(IP): 150
 ```csharp
 try
 {
-    var response = await client.Staking.GetWbethUnwrapHistoryUserData(timestamp,
-        signature,
-        startTime,
-        endTime,
-        current,
-        size,
-        recvWindow);
+    var response = await client.Staking.GetWbethUnwrapHistoryUserData(new GetWbethUnwrapHistoryUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        Current = 1,
+        Size = 100,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1EthStakingWbethHistoryUnwrapHistoryResponse
 }
-catch (SdkException<GetWbethUnwrapHistoryUserDataError> ex)
+catch (ApiException<GetWbethUnwrapHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -17429,20 +16476,12 @@ catch (SdkException<GetWbethUnwrapHistoryUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>current</code> | <code>int?</code> | Current querying page. Start from 1. Default:1 |
-| <code>size</code> | <code>int?</code> | Default:10 Max:100 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetWbethUnwrapHistoryUserDataRequest](Requests/Staking/GetWbethUnwrapHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -17454,7 +16493,7 @@ catch (SdkException<GetWbethUnwrapHistoryUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1EthStakingWbethHistoryUnwrapHistoryResponse](Models/SapiV1EthStakingWbethHistoryUnwrapHistoryResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetWbethUnwrapHistoryUserDataError](Errors/GetWbethUnwrapHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetWbethUnwrapHistoryUserDataError](Errors/GetWbethUnwrapHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -17465,7 +16504,7 @@ catch (SdkException<GetWbethUnwrapHistoryUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1EthStakingWbethHistoryWrapHistoryResponse&gt; GetWbethWrapHistoryUserData(long timestamp, string signature, long? startTime, long? endTime, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1EthStakingWbethHistoryWrapHistoryResponse&gt; GetWbethWrapHistoryUserData(GetWbethWrapHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -17493,16 +16532,17 @@ Weight(IP): 150
 ```csharp
 try
 {
-    var response = await client.Staking.GetWbethWrapHistoryUserData(timestamp,
-        signature,
-        startTime,
-        endTime,
-        current,
-        size,
-        recvWindow);
+    var response = await client.Staking.GetWbethWrapHistoryUserData(new GetWbethWrapHistoryUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        Current = 1,
+        Size = 100,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1EthStakingWbethHistoryWrapHistoryResponse
 }
-catch (SdkException<GetWbethWrapHistoryUserDataError> ex)
+catch (ApiException<GetWbethWrapHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -17514,20 +16554,12 @@ catch (SdkException<GetWbethWrapHistoryUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>current</code> | <code>int?</code> | Current querying page. Start from 1. Default:1 |
-| <code>size</code> | <code>int?</code> | Default:10 Max:100 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetWbethWrapHistoryUserDataRequest](Requests/Staking/GetWbethWrapHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -17539,7 +16571,7 @@ catch (SdkException<GetWbethWrapHistoryUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1EthStakingWbethHistoryWrapHistoryResponse](Models/SapiV1EthStakingWbethHistoryWrapHistoryResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetWbethWrapHistoryUserDataError](Errors/GetWbethWrapHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetWbethWrapHistoryUserDataError](Errors/GetWbethWrapHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -17550,7 +16582,7 @@ catch (SdkException<GetWbethWrapHistoryUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1EthStakingEthQuotaResponse&gt; GetCurrentEthStakingQuotaUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1EthStakingEthQuotaResponse&gt; GetCurrentEthStakingQuotaUserData(GetCurrentEthStakingQuotaUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -17573,10 +16605,15 @@ Weight(IP): 150
 ```csharp
 try
 {
-    var response = await client.Staking.GetCurrentEthStakingQuotaUserData(timestamp, signature, recvWindow);
+    var response = await client.Staking.GetCurrentEthStakingQuotaUserData(new GetCurrentEthStakingQuotaUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1EthStakingEthQuotaResponse
 }
-catch (SdkException<GetCurrentEthStakingQuotaUserDataError> ex)
+catch (ApiException<GetCurrentEthStakingQuotaUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -17588,16 +16625,12 @@ catch (SdkException<GetCurrentEthStakingQuotaUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetCurrentEthStakingQuotaUserDataRequest](Requests/Staking/GetCurrentEthStakingQuotaUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -17609,7 +16642,7 @@ catch (SdkException<GetCurrentEthStakingQuotaUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1EthStakingEthQuotaResponse](Models/SapiV1EthStakingEthQuotaResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetCurrentEthStakingQuotaUserDataError](Errors/GetCurrentEthStakingQuotaUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetCurrentEthStakingQuotaUserDataError](Errors/GetCurrentEthStakingQuotaUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -17620,7 +16653,7 @@ catch (SdkException<GetCurrentEthStakingQuotaUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1EthStakingEthRedeemResponse&gt; RedeemEthTrade(double amount, long timestamp, string signature, string? asset, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1EthStakingEthRedeemResponse&gt; RedeemEthTrade(RedeemEthTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -17647,10 +16680,16 @@ Weight(IP): 150
 ```csharp
 try
 {
-    var response = await client.Staking.RedeemEthTrade(amount, timestamp, signature, asset, recvWindow);
+    var response = await client.Staking.RedeemEthTrade(new RedeemEthTradeRequest
+    {
+        Amount = 1.5d,
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1EthStakingEthRedeemResponse
 }
-catch (SdkException<RedeemEthTradeError> ex)
+catch (ApiException<RedeemEthTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -17662,18 +16701,12 @@ catch (SdkException<RedeemEthTradeError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>amount</code> | <code>double</code> | Amount in BETH, limit 8 decimals |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>asset</code> | <code>string?</code> | WBETH or BETH, default to BETH |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[RedeemEthTradeRequest](Requests/Staking/RedeemEthTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -17685,7 +16718,7 @@ catch (SdkException<RedeemEthTradeError> ex)
 
 **OnSuccess**: <code>[SapiV1EthStakingEthRedeemResponse](Models/SapiV1EthStakingEthRedeemResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[RedeemEthTradeError](Errors/RedeemEthTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[RedeemEthTradeError](Errors/RedeemEthTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -17696,7 +16729,7 @@ catch (SdkException<RedeemEthTradeError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV2EthStakingEthStakeResponse&gt; SubscribeEthStakingV2Trade(double amount, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV2EthStakingEthStakeResponse&gt; SubscribeEthStakingV2Trade(SubscribeEthStakingV2TradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -17723,10 +16756,16 @@ Weight(IP): 150
 ```csharp
 try
 {
-    var response = await client.Staking.SubscribeEthStakingV2Trade(amount, timestamp, signature, recvWindow);
+    var response = await client.Staking.SubscribeEthStakingV2Trade(new SubscribeEthStakingV2TradeRequest
+    {
+        Amount = 1.5d,
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV2EthStakingEthStakeResponse
 }
-catch (SdkException<SubscribeEthStakingV2TradeError> ex)
+catch (ApiException<SubscribeEthStakingV2TradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -17738,17 +16777,12 @@ catch (SdkException<SubscribeEthStakingV2TradeError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>amount</code> | <code>double</code> | Amount in ETH, limit 4 decimals |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[SubscribeEthStakingV2TradeRequest](Requests/Staking/SubscribeEthStakingV2TradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -17760,7 +16794,7 @@ catch (SdkException<SubscribeEthStakingV2TradeError> ex)
 
 **OnSuccess**: <code>[SapiV2EthStakingEthStakeResponse](Models/SapiV2EthStakingEthStakeResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[SubscribeEthStakingV2TradeError](Errors/SubscribeEthStakingV2TradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SubscribeEthStakingV2TradeError](Errors/SubscribeEthStakingV2TradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -17771,7 +16805,7 @@ catch (SdkException<SubscribeEthStakingV2TradeError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1EthStakingWbethWrapResponse&gt; WrapBethTrade(double amount, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1EthStakingWbethWrapResponse&gt; WrapBethTrade(WrapBethTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -17796,10 +16830,16 @@ Weight(IP): 150
 ```csharp
 try
 {
-    var response = await client.Staking.WrapBethTrade(amount, timestamp, signature, recvWindow);
+    var response = await client.Staking.WrapBethTrade(new WrapBethTradeRequest
+    {
+        Amount = 1.5d,
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1EthStakingWbethWrapResponse
 }
-catch (SdkException<WrapBethTradeError> ex)
+catch (ApiException<WrapBethTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -17811,17 +16851,12 @@ catch (SdkException<WrapBethTradeError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>amount</code> | <code>double</code> | Amount in BETH, limit 4 decimals |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[WrapBethTradeRequest](Requests/Staking/WrapBethTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -17833,7 +16868,7 @@ catch (SdkException<WrapBethTradeError> ex)
 
 **OnSuccess**: <code>[SapiV1EthStakingWbethWrapResponse](Models/SapiV1EthStakingWbethWrapResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[WrapBethTradeError](Errors/WrapBethTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[WrapBethTradeError](Errors/WrapBethTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -17843,12 +16878,12 @@ catch (SdkException<WrapBethTradeError> ex)
 
 </details>
 
-## StreamApi
+## Stream
 
-> Source: [StreamApi](Api/StreamApi.cs)
+> Source: [Stream](Api/Stream.cs)
 
 <details>
-<summary><code>Task&lt;object&gt; CloseAListenKeyUserStream(string? listenKey, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;object&gt; CloseAListenKeyUserStream(CloseAListenKeyUserStreamRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -17873,10 +16908,13 @@ Weight: 2
 ```csharp
 try
 {
-    var response = await client.StreamApi.CloseAListenKeyUserStream(listenKey);
+    var response = await client.Stream.CloseAListenKeyUserStream(new CloseAListenKeyUserStreamRequest
+    {
+        ListenKey = "pqia91ma19a5s61cv6a81va65sdf19v8a65a1a5s61cv6a81va65sdf19v8a65a1",
+    });
     // TODO: Handle 'response' of type object
 }
-catch (SdkException<CloseAListenKeyUserStreamError> ex)
+catch (ApiException<CloseAListenKeyUserStreamError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -17888,14 +16926,12 @@ catch (SdkException<CloseAListenKeyUserStreamError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>listenKey</code> | <code>string?</code> | User websocket listen key |
+<code>[CloseAListenKeyUserStreamRequest](Requests/Stream/CloseAListenKeyUserStreamRequest.cs)</code>
 
 </dd>
 </dl>
@@ -17907,7 +16943,7 @@ catch (SdkException<CloseAListenKeyUserStreamError> ex)
 
 **OnSuccess**: <code>object</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[CloseAListenKeyUserStreamError](Errors/CloseAListenKeyUserStreamError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CloseAListenKeyUserStreamError](Errors/CloseAListenKeyUserStreamError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -17918,7 +16954,7 @@ catch (SdkException<CloseAListenKeyUserStreamError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;ApiV3UserDataStreamResponse&gt; CreateAListenKeyUserStream(RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;ApiV3UserDataStreamResponse&gt; CreateAListenKeyUserStream(RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -17944,10 +16980,10 @@ Weight: 2
 ```csharp
 try
 {
-    var response = await client.StreamApi.CreateAListenKeyUserStream();
+    var response = await client.Stream.CreateAListenKeyUserStream();
     // TODO: Handle 'response' of type ApiV3UserDataStreamResponse
 }
-catch (SdkException<RawError> ex)
+catch (ApiException<RawError> ex)
 {
     // TODO: Handle 'ex.Error' of type RawError
 }
@@ -17963,7 +16999,7 @@ catch (SdkException<RawError> ex)
 
 **OnSuccess**: <code>[ApiV3UserDataStreamResponse](Models/ApiV3UserDataStreamResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[RawError](Core/ErrorResponse/RawError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[RawError](Core/ErrorResponse/RawError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -17974,7 +17010,7 @@ catch (SdkException<RawError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;object&gt; PingKeepAliveAListenKeyUserStream(string? listenKey, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;object&gt; PingKeepAliveAListenKeyUserStream(PingKeepAliveAListenKeyUserStreamRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -17999,10 +17035,13 @@ Weight: 2
 ```csharp
 try
 {
-    var response = await client.StreamApi.PingKeepAliveAListenKeyUserStream(listenKey);
+    var response = await client.Stream.PingKeepAliveAListenKeyUserStream(new PingKeepAliveAListenKeyUserStreamRequest
+    {
+        ListenKey = "pqia91ma19a5s61cv6a81va65sdf19v8a65a1a5s61cv6a81va65sdf19v8a65a1",
+    });
     // TODO: Handle 'response' of type object
 }
-catch (SdkException<PingKeepAliveAListenKeyUserStreamError> ex)
+catch (ApiException<PingKeepAliveAListenKeyUserStreamError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -18014,14 +17053,12 @@ catch (SdkException<PingKeepAliveAListenKeyUserStreamError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>listenKey</code> | <code>string?</code> | User websocket listen key |
+<code>[PingKeepAliveAListenKeyUserStreamRequest](Requests/Stream/PingKeepAliveAListenKeyUserStreamRequest.cs)</code>
 
 </dd>
 </dl>
@@ -18033,7 +17070,7 @@ catch (SdkException<PingKeepAliveAListenKeyUserStreamError> ex)
 
 **OnSuccess**: <code>object</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[PingKeepAliveAListenKeyUserStreamError](Errors/PingKeepAliveAListenKeyUserStreamError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[PingKeepAliveAListenKeyUserStreamError](Errors/PingKeepAliveAListenKeyUserStreamError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -18048,7 +17085,7 @@ catch (SdkException<PingKeepAliveAListenKeyUserStreamError> ex)
 > Source: [SubAccountApi](Api/SubAccountApi.cs)
 
 <details>
-<summary><code>Task&lt;SapiV1SubAccountVirtualSubAccountResponse&gt; CreateAVirtualSubAccountForMasterAccount(string subAccountString, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1SubAccountVirtualSubAccountResponse&gt; CreateAVirtualSubAccountForMasterAccount(CreateAVirtualSubAccountForMasterAccountRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -18074,13 +17111,17 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.SubAccountApi.CreateAVirtualSubAccountForMasterAccount(subAccountString,
-        timestamp,
-        signature,
-        recvWindow);
+    var response = await client.SubAccountApi.CreateAVirtualSubAccountForMasterAccount(
+        new CreateAVirtualSubAccountForMasterAccountRequest
+        {
+            SubAccountString = "some example string",
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1SubAccountVirtualSubAccountResponse
 }
-catch (SdkException<CreateAVirtualSubAccountForMasterAccountError> ex)
+catch (ApiException<CreateAVirtualSubAccountForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -18092,17 +17133,12 @@ catch (SdkException<CreateAVirtualSubAccountForMasterAccountError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>subAccountString</code> | <code>string</code> | Please input a string. We will create a virtual email using that string for you to register |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[CreateAVirtualSubAccountForMasterAccountRequest](Requests/SubAccountApi/CreateAVirtualSubAccountForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -18114,7 +17150,7 @@ catch (SdkException<CreateAVirtualSubAccountForMasterAccountError> ex)
 
 **OnSuccess**: <code>[SapiV1SubAccountVirtualSubAccountResponse](Models/SapiV1SubAccountVirtualSubAccountResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[CreateAVirtualSubAccountForMasterAccountError](Errors/CreateAVirtualSubAccountForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CreateAVirtualSubAccountForMasterAccountError](Errors/CreateAVirtualSubAccountForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -18125,7 +17161,7 @@ catch (SdkException<CreateAVirtualSubAccountForMasterAccountError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1SubAccountSubAccountApiIpRestrictionIpListResponse&gt; DeleteIpListForASubAccountApiKeyForMasterAccount(string email, string subAccountApiKey, long timestamp, string signature, string? ipAddress, string? thirdPartyName, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1SubAccountSubAccountApiIpRestrictionIpListResponse&gt; DeleteIpListForASubAccountApiKeyForMasterAccount(DeleteIpListForASubAccountApiKeyForMasterAccountRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -18148,16 +17184,18 @@ Weight(UID): 3000
 ```csharp
 try
 {
-    var response = await client.SubAccountApi.DeleteIpListForASubAccountApiKeyForMasterAccount(email,
-        subAccountApiKey,
-        timestamp,
-        signature,
-        ipAddress,
-        thirdPartyName,
-        recvWindow);
+    var response = await client.SubAccountApi.DeleteIpListForASubAccountApiKeyForMasterAccount(
+        new DeleteIpListForASubAccountApiKeyForMasterAccountRequest
+        {
+            Email = "some example string",
+            SubAccountApiKey = "some example string",
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1SubAccountSubAccountApiIpRestrictionIpListResponse
 }
-catch (SdkException<DeleteIpListForASubAccountApiKeyForMasterAccountError> ex)
+catch (ApiException<DeleteIpListForASubAccountApiKeyForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -18169,20 +17207,12 @@ catch (SdkException<DeleteIpListForASubAccountApiKeyForMasterAccountError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>email</code> | <code>string</code> | Sub-account email |
-| <code>subAccountApiKey</code> | <code>string</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>ipAddress</code> | <code>string?</code> | Can be added in batches, separated by commas |
-| <code>thirdPartyName</code> | <code>string?</code> | third party IP list name |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[DeleteIpListForASubAccountApiKeyForMasterAccountRequest](Requests/SubAccountApi/DeleteIpListForASubAccountApiKeyForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -18194,7 +17224,7 @@ catch (SdkException<DeleteIpListForASubAccountApiKeyForMasterAccountError> ex)
 
 **OnSuccess**: <code>[SapiV1SubAccountSubAccountApiIpRestrictionIpListResponse](Models/SapiV1SubAccountSubAccountApiIpRestrictionIpListResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[DeleteIpListForASubAccountApiKeyForMasterAccountError](Errors/DeleteIpListForASubAccountApiKeyForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[DeleteIpListForASubAccountApiKeyForMasterAccountError](Errors/DeleteIpListForASubAccountApiKeyForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -18205,7 +17235,7 @@ catch (SdkException<DeleteIpListForASubAccountApiKeyForMasterAccountError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1ManagedSubaccountDepositResponse&gt; DepositAssetsIntoTheManagedSubAccountForInvestorMasterAccount(string toEmail, string asset, double amount, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1ManagedSubaccountDepositResponse&gt; DepositAssetsIntoTheManagedSubAccountForInvestorMasterAccount(DepositAssetsIntoTheManagedSubAccountForInvestorMasterAccountRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -18228,15 +17258,19 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.SubAccountApi.DepositAssetsIntoTheManagedSubAccountForInvestorMasterAccount(toEmail,
-        asset,
-        amount,
-        timestamp,
-        signature,
-        recvWindow);
+    var response = await client.SubAccountApi.DepositAssetsIntoTheManagedSubAccountForInvestorMasterAccount(
+        new DepositAssetsIntoTheManagedSubAccountForInvestorMasterAccountRequest
+        {
+            ToEmail = "some example string",
+            Asset = "BTC",
+            Amount = 1.01d,
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1ManagedSubaccountDepositResponse
 }
-catch (SdkException<DepositAssetsIntoTheManagedSubAccountForInvestorMasterAccountError> ex)
+catch (ApiException<DepositAssetsIntoTheManagedSubAccountForInvestorMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -18248,19 +17282,12 @@ catch (SdkException<DepositAssetsIntoTheManagedSubAccountForInvestorMasterAccoun
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>toEmail</code> | <code>string</code> | Recipient email |
-| <code>asset</code> | <code>string</code> | - |
-| <code>amount</code> | <code>double</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[DepositAssetsIntoTheManagedSubAccountForInvestorMasterAccountRequest](Requests/SubAccountApi/DepositAssetsIntoTheManagedSubAccountForInvestorMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -18272,7 +17299,7 @@ catch (SdkException<DepositAssetsIntoTheManagedSubAccountForInvestorMasterAccoun
 
 **OnSuccess**: <code>[SapiV1ManagedSubaccountDepositResponse](Models/SapiV1ManagedSubaccountDepositResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[DepositAssetsIntoTheManagedSubAccountForInvestorMasterAccountError](Errors/DepositAssetsIntoTheManagedSubAccountForInvestorMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[DepositAssetsIntoTheManagedSubAccountForInvestorMasterAccountError](Errors/DepositAssetsIntoTheManagedSubAccountForInvestorMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -18283,7 +17310,7 @@ catch (SdkException<DepositAssetsIntoTheManagedSubAccountForInvestorMasterAccoun
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1SubAccountFuturesAccountResponse&gt; DetailOnSubAccountSFuturesAccountForMasterAccount(string email, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1SubAccountFuturesAccountResponse&gt; DetailOnSubAccountSFuturesAccountForMasterAccount(DetailOnSubAccountSFuturesAccountForMasterAccountRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -18306,13 +17333,17 @@ Weight(IP): 10
 ```csharp
 try
 {
-    var response = await client.SubAccountApi.DetailOnSubAccountSFuturesAccountForMasterAccount(email,
-        timestamp,
-        signature,
-        recvWindow);
+    var response = await client.SubAccountApi.DetailOnSubAccountSFuturesAccountForMasterAccount(
+        new DetailOnSubAccountSFuturesAccountForMasterAccountRequest
+        {
+            Email = "alice@test.com",
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1SubAccountFuturesAccountResponse
 }
-catch (SdkException<DetailOnSubAccountSFuturesAccountForMasterAccountError> ex)
+catch (ApiException<DetailOnSubAccountSFuturesAccountForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -18324,17 +17355,12 @@ catch (SdkException<DetailOnSubAccountSFuturesAccountForMasterAccountError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>email</code> | <code>string</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[DetailOnSubAccountSFuturesAccountForMasterAccountRequest](Requests/SubAccountApi/DetailOnSubAccountSFuturesAccountForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -18346,7 +17372,7 @@ catch (SdkException<DetailOnSubAccountSFuturesAccountForMasterAccountError> ex)
 
 **OnSuccess**: <code>[SapiV1SubAccountFuturesAccountResponse](Models/SapiV1SubAccountFuturesAccountResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[DetailOnSubAccountSFuturesAccountForMasterAccountError](Errors/DetailOnSubAccountSFuturesAccountForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[DetailOnSubAccountSFuturesAccountForMasterAccountError](Errors/DetailOnSubAccountSFuturesAccountForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -18357,7 +17383,7 @@ catch (SdkException<DetailOnSubAccountSFuturesAccountForMasterAccountError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV2SubAccountFuturesAccountResponse&gt; DetailOnSubAccountSFuturesAccountV2ForMasterAccount(string email, int futuresType, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV2SubAccountFuturesAccountResponse&gt; DetailOnSubAccountSFuturesAccountV2ForMasterAccount(DetailOnSubAccountSFuturesAccountV2ForMasterAccountRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -18380,14 +17406,18 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.SubAccountApi.DetailOnSubAccountSFuturesAccountV2ForMasterAccount(email,
-        futuresType,
-        timestamp,
-        signature,
-        recvWindow);
+    var response = await client.SubAccountApi.DetailOnSubAccountSFuturesAccountV2ForMasterAccount(
+        new DetailOnSubAccountSFuturesAccountV2ForMasterAccountRequest
+        {
+            Email = "some example string",
+            FuturesType = 1,
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV2SubAccountFuturesAccountResponse
 }
-catch (SdkException<DetailOnSubAccountSFuturesAccountV2ForMasterAccountError> ex)
+catch (ApiException<DetailOnSubAccountSFuturesAccountV2ForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -18399,18 +17429,12 @@ catch (SdkException<DetailOnSubAccountSFuturesAccountV2ForMasterAccountError> ex
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>email</code> | <code>string</code> | Sub-account email |
-| <code>futuresType</code> | <code>int</code> | * `1` - USDT Margined Futures<br>* `2` - COIN Margined Futures |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[DetailOnSubAccountSFuturesAccountV2ForMasterAccountRequest](Requests/SubAccountApi/DetailOnSubAccountSFuturesAccountV2ForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -18422,7 +17446,7 @@ catch (SdkException<DetailOnSubAccountSFuturesAccountV2ForMasterAccountError> ex
 
 **OnSuccess**: <code>[SapiV2SubAccountFuturesAccountResponse](Models/AnyOf/SapiV2SubAccountFuturesAccountResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[DetailOnSubAccountSFuturesAccountV2ForMasterAccountError](Errors/DetailOnSubAccountSFuturesAccountV2ForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[DetailOnSubAccountSFuturesAccountV2ForMasterAccountError](Errors/DetailOnSubAccountSFuturesAccountV2ForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -18433,7 +17457,7 @@ catch (SdkException<DetailOnSubAccountSFuturesAccountV2ForMasterAccountError> ex
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1SubAccountMarginAccountResponse&gt; DetailOnSubAccountSMarginAccountForMasterAccount(string email, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1SubAccountMarginAccountResponse&gt; DetailOnSubAccountSMarginAccountForMasterAccount(DetailOnSubAccountSMarginAccountForMasterAccountRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -18456,13 +17480,17 @@ Weight(IP): 10
 ```csharp
 try
 {
-    var response = await client.SubAccountApi.DetailOnSubAccountSMarginAccountForMasterAccount(email,
-        timestamp,
-        signature,
-        recvWindow);
+    var response = await client.SubAccountApi.DetailOnSubAccountSMarginAccountForMasterAccount(
+        new DetailOnSubAccountSMarginAccountForMasterAccountRequest
+        {
+            Email = "some example string",
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1SubAccountMarginAccountResponse
 }
-catch (SdkException<DetailOnSubAccountSMarginAccountForMasterAccountError> ex)
+catch (ApiException<DetailOnSubAccountSMarginAccountForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -18474,17 +17502,12 @@ catch (SdkException<DetailOnSubAccountSMarginAccountForMasterAccountError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>email</code> | <code>string</code> | Sub-account email |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[DetailOnSubAccountSMarginAccountForMasterAccountRequest](Requests/SubAccountApi/DetailOnSubAccountSMarginAccountForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -18496,7 +17519,7 @@ catch (SdkException<DetailOnSubAccountSMarginAccountForMasterAccountError> ex)
 
 **OnSuccess**: <code>[SapiV1SubAccountMarginAccountResponse](Models/SapiV1SubAccountMarginAccountResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[DetailOnSubAccountSMarginAccountForMasterAccountError](Errors/DetailOnSubAccountSMarginAccountForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[DetailOnSubAccountSMarginAccountForMasterAccountError](Errors/DetailOnSubAccountSMarginAccountForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -18507,7 +17530,7 @@ catch (SdkException<DetailOnSubAccountSMarginAccountForMasterAccountError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1SubAccountFuturesEnableResponse&gt; EnableFuturesForSubAccountForMasterAccount(string email, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1SubAccountFuturesEnableResponse&gt; EnableFuturesForSubAccountForMasterAccount(EnableFuturesForSubAccountForMasterAccountRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -18530,13 +17553,17 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.SubAccountApi.EnableFuturesForSubAccountForMasterAccount(email,
-        timestamp,
-        signature,
-        recvWindow);
+    var response = await client.SubAccountApi.EnableFuturesForSubAccountForMasterAccount(
+        new EnableFuturesForSubAccountForMasterAccountRequest
+        {
+            Email = "some example string",
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1SubAccountFuturesEnableResponse
 }
-catch (SdkException<EnableFuturesForSubAccountForMasterAccountError> ex)
+catch (ApiException<EnableFuturesForSubAccountForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -18548,17 +17575,12 @@ catch (SdkException<EnableFuturesForSubAccountForMasterAccountError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>email</code> | <code>string</code> | Sub-account email |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[EnableFuturesForSubAccountForMasterAccountRequest](Requests/SubAccountApi/EnableFuturesForSubAccountForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -18570,7 +17592,7 @@ catch (SdkException<EnableFuturesForSubAccountForMasterAccountError> ex)
 
 **OnSuccess**: <code>[SapiV1SubAccountFuturesEnableResponse](Models/SapiV1SubAccountFuturesEnableResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[EnableFuturesForSubAccountForMasterAccountError](Errors/EnableFuturesForSubAccountForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[EnableFuturesForSubAccountForMasterAccountError](Errors/EnableFuturesForSubAccountForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -18581,7 +17603,7 @@ catch (SdkException<EnableFuturesForSubAccountForMasterAccountError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1SubAccountBlvtEnableResponse&gt; EnableLeverageTokenForSubAccountForMasterAccount(string email, bool enableBlvt, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1SubAccountBlvtEnableResponse&gt; EnableLeverageTokenForSubAccountForMasterAccount(EnableLeverageTokenForSubAccountForMasterAccountRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -18604,14 +17626,18 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.SubAccountApi.EnableLeverageTokenForSubAccountForMasterAccount(email,
-        enableBlvt,
-        timestamp,
-        signature,
-        recvWindow);
+    var response = await client.SubAccountApi.EnableLeverageTokenForSubAccountForMasterAccount(
+        new EnableLeverageTokenForSubAccountForMasterAccountRequest
+        {
+            Email = "some example string",
+            EnableBlvt = true,
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1SubAccountBlvtEnableResponse
 }
-catch (SdkException<EnableLeverageTokenForSubAccountForMasterAccountError> ex)
+catch (ApiException<EnableLeverageTokenForSubAccountForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -18623,18 +17649,12 @@ catch (SdkException<EnableLeverageTokenForSubAccountForMasterAccountError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>email</code> | <code>string</code> | Sub-account email |
-| <code>enableBlvt</code> | <code>bool</code> | Only true for now |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[EnableLeverageTokenForSubAccountForMasterAccountRequest](Requests/SubAccountApi/EnableLeverageTokenForSubAccountForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -18646,7 +17666,7 @@ catch (SdkException<EnableLeverageTokenForSubAccountForMasterAccountError> ex)
 
 **OnSuccess**: <code>[SapiV1SubAccountBlvtEnableResponse](Models/SapiV1SubAccountBlvtEnableResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[EnableLeverageTokenForSubAccountForMasterAccountError](Errors/EnableLeverageTokenForSubAccountForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[EnableLeverageTokenForSubAccountForMasterAccountError](Errors/EnableLeverageTokenForSubAccountForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -18657,7 +17677,7 @@ catch (SdkException<EnableLeverageTokenForSubAccountForMasterAccountError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1SubAccountMarginEnableResponse&gt; EnableMarginForSubAccountForMasterAccount(string email, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1SubAccountMarginEnableResponse&gt; EnableMarginForSubAccountForMasterAccount(EnableMarginForSubAccountForMasterAccountRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -18680,13 +17700,17 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.SubAccountApi.EnableMarginForSubAccountForMasterAccount(email,
-        timestamp,
-        signature,
-        recvWindow);
+    var response = await client.SubAccountApi.EnableMarginForSubAccountForMasterAccount(
+        new EnableMarginForSubAccountForMasterAccountRequest
+        {
+            Email = "some example string",
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1SubAccountMarginEnableResponse
 }
-catch (SdkException<EnableMarginForSubAccountForMasterAccountError> ex)
+catch (ApiException<EnableMarginForSubAccountForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -18698,17 +17722,12 @@ catch (SdkException<EnableMarginForSubAccountForMasterAccountError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>email</code> | <code>string</code> | Sub-account email |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[EnableMarginForSubAccountForMasterAccountRequest](Requests/SubAccountApi/EnableMarginForSubAccountForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -18720,7 +17739,7 @@ catch (SdkException<EnableMarginForSubAccountForMasterAccountError> ex)
 
 **OnSuccess**: <code>[SapiV1SubAccountMarginEnableResponse](Models/SapiV1SubAccountMarginEnableResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[EnableMarginForSubAccountForMasterAccountError](Errors/EnableMarginForSubAccountForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[EnableMarginForSubAccountForMasterAccountError](Errors/EnableMarginForSubAccountForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -18731,7 +17750,7 @@ catch (SdkException<EnableMarginForSubAccountForMasterAccountError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1SubAccountEoptionsEnableResponse&gt; EnableOptionsForSubAccountForMasterAccountUserData(string email, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1SubAccountEoptionsEnableResponse&gt; EnableOptionsForSubAccountForMasterAccountUserData(EnableOptionsForSubAccountForMasterAccountUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -18756,13 +17775,17 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.SubAccountApi.EnableOptionsForSubAccountForMasterAccountUserData(email,
-        timestamp,
-        signature,
-        recvWindow);
+    var response = await client.SubAccountApi.EnableOptionsForSubAccountForMasterAccountUserData(
+        new EnableOptionsForSubAccountForMasterAccountUserDataRequest
+        {
+            Email = "some example string",
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1SubAccountEoptionsEnableResponse
 }
-catch (SdkException<EnableOptionsForSubAccountForMasterAccountUserDataError> ex)
+catch (ApiException<EnableOptionsForSubAccountForMasterAccountUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -18774,17 +17797,12 @@ catch (SdkException<EnableOptionsForSubAccountForMasterAccountUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>email</code> | <code>string</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[EnableOptionsForSubAccountForMasterAccountUserDataRequest](Requests/SubAccountApi/EnableOptionsForSubAccountForMasterAccountUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -18796,7 +17814,7 @@ catch (SdkException<EnableOptionsForSubAccountForMasterAccountUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1SubAccountEoptionsEnableResponse](Models/SapiV1SubAccountEoptionsEnableResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[EnableOptionsForSubAccountForMasterAccountUserDataError](Errors/EnableOptionsForSubAccountForMasterAccountUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[EnableOptionsForSubAccountForMasterAccountUserDataError](Errors/EnableOptionsForSubAccountForMasterAccountUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -18807,7 +17825,7 @@ catch (SdkException<EnableOptionsForSubAccountForMasterAccountUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1SubAccountFuturesPositionRiskResponse&gt;&gt; FuturesPositionRiskOfSubAccountForMasterAccount(string email, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1SubAccountFuturesPositionRiskResponse&gt;&gt; FuturesPositionRiskOfSubAccountForMasterAccount(FuturesPositionRiskOfSubAccountForMasterAccountRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -18830,13 +17848,17 @@ Weight(IP): 10
 ```csharp
 try
 {
-    var response = await client.SubAccountApi.FuturesPositionRiskOfSubAccountForMasterAccount(email,
-        timestamp,
-        signature,
-        recvWindow);
+    var response = await client.SubAccountApi.FuturesPositionRiskOfSubAccountForMasterAccount(
+        new FuturesPositionRiskOfSubAccountForMasterAccountRequest
+        {
+            Email = "some example string",
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1SubAccountFuturesPositionRiskResponse>
 }
-catch (SdkException<FuturesPositionRiskOfSubAccountForMasterAccountError> ex)
+catch (ApiException<FuturesPositionRiskOfSubAccountForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -18848,17 +17870,12 @@ catch (SdkException<FuturesPositionRiskOfSubAccountForMasterAccountError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>email</code> | <code>string</code> | Sub-account email |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[FuturesPositionRiskOfSubAccountForMasterAccountRequest](Requests/SubAccountApi/FuturesPositionRiskOfSubAccountForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -18870,7 +17887,7 @@ catch (SdkException<FuturesPositionRiskOfSubAccountForMasterAccountError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1SubAccountFuturesPositionRiskResponse](Models/SapiV1SubAccountFuturesPositionRiskResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[FuturesPositionRiskOfSubAccountForMasterAccountError](Errors/FuturesPositionRiskOfSubAccountForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[FuturesPositionRiskOfSubAccountForMasterAccountError](Errors/FuturesPositionRiskOfSubAccountForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -18881,7 +17898,7 @@ catch (SdkException<FuturesPositionRiskOfSubAccountForMasterAccountError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV2SubAccountFuturesPositionRiskResponse&gt; FuturesPositionRiskOfSubAccountV2ForMasterAccount(string email, int futuresType, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV2SubAccountFuturesPositionRiskResponse&gt; FuturesPositionRiskOfSubAccountV2ForMasterAccount(FuturesPositionRiskOfSubAccountV2ForMasterAccountRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -18904,14 +17921,18 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.SubAccountApi.FuturesPositionRiskOfSubAccountV2ForMasterAccount(email,
-        futuresType,
-        timestamp,
-        signature,
-        recvWindow);
+    var response = await client.SubAccountApi.FuturesPositionRiskOfSubAccountV2ForMasterAccount(
+        new FuturesPositionRiskOfSubAccountV2ForMasterAccountRequest
+        {
+            Email = "some example string",
+            FuturesType = 1,
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV2SubAccountFuturesPositionRiskResponse
 }
-catch (SdkException<FuturesPositionRiskOfSubAccountV2ForMasterAccountError> ex)
+catch (ApiException<FuturesPositionRiskOfSubAccountV2ForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -18923,18 +17944,12 @@ catch (SdkException<FuturesPositionRiskOfSubAccountV2ForMasterAccountError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>email</code> | <code>string</code> | Sub-account email |
-| <code>futuresType</code> | <code>int</code> | * `1` - USDT Margined Futures<br>* `2` - COIN Margined Futures |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[FuturesPositionRiskOfSubAccountV2ForMasterAccountRequest](Requests/SubAccountApi/FuturesPositionRiskOfSubAccountV2ForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -18946,7 +17961,7 @@ catch (SdkException<FuturesPositionRiskOfSubAccountV2ForMasterAccountError> ex)
 
 **OnSuccess**: <code>[SapiV2SubAccountFuturesPositionRiskResponse](Models/AnyOf/SapiV2SubAccountFuturesPositionRiskResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[FuturesPositionRiskOfSubAccountV2ForMasterAccountError](Errors/FuturesPositionRiskOfSubAccountV2ForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[FuturesPositionRiskOfSubAccountV2ForMasterAccountError](Errors/FuturesPositionRiskOfSubAccountV2ForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -18957,7 +17972,7 @@ catch (SdkException<FuturesPositionRiskOfSubAccountV2ForMasterAccountError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1SubAccountSubAccountApiIpRestrictionResponse&gt; GetIpRestrictionForASubAccountApiKeyForMasterAccount(string email, string subAccountApiKey, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1SubAccountSubAccountApiIpRestrictionResponse&gt; GetIpRestrictionForASubAccountApiKeyForMasterAccount(GetIpRestrictionForASubAccountApiKeyForMasterAccountRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -18980,14 +17995,18 @@ Weight(UID): 3000
 ```csharp
 try
 {
-    var response = await client.SubAccountApi.GetIpRestrictionForASubAccountApiKeyForMasterAccount(email,
-        subAccountApiKey,
-        timestamp,
-        signature,
-        recvWindow);
+    var response = await client.SubAccountApi.GetIpRestrictionForASubAccountApiKeyForMasterAccount(
+        new GetIpRestrictionForASubAccountApiKeyForMasterAccountRequest
+        {
+            Email = "some example string",
+            SubAccountApiKey = "some example string",
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1SubAccountSubAccountApiIpRestrictionResponse
 }
-catch (SdkException<GetIpRestrictionForASubAccountApiKeyForMasterAccountError> ex)
+catch (ApiException<GetIpRestrictionForASubAccountApiKeyForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -18999,18 +18018,12 @@ catch (SdkException<GetIpRestrictionForASubAccountApiKeyForMasterAccountError> e
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>email</code> | <code>string</code> | Sub-account email |
-| <code>subAccountApiKey</code> | <code>string</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetIpRestrictionForASubAccountApiKeyForMasterAccountRequest](Requests/SubAccountApi/GetIpRestrictionForASubAccountApiKeyForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -19022,7 +18035,7 @@ catch (SdkException<GetIpRestrictionForASubAccountApiKeyForMasterAccountError> e
 
 **OnSuccess**: <code>[SapiV1SubAccountSubAccountApiIpRestrictionResponse](Models/SapiV1SubAccountSubAccountApiIpRestrictionResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetIpRestrictionForASubAccountApiKeyForMasterAccountError](Errors/GetIpRestrictionForASubAccountApiKeyForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetIpRestrictionForASubAccountApiKeyForMasterAccountError](Errors/GetIpRestrictionForASubAccountApiKeyForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -19033,7 +18046,7 @@ catch (SdkException<GetIpRestrictionForASubAccountApiKeyForMasterAccountError> e
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1ManagedSubaccountDepositAddressResponse&gt; GetManagedSubAccountDepositAddressForInvestorMasterAccount(string email, string coin, long timestamp, string signature, string? network, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1ManagedSubaccountDepositAddressResponse&gt; GetManagedSubAccountDepositAddressForInvestorMasterAccount(GetManagedSubAccountDepositAddressForInvestorMasterAccountRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -19058,15 +18071,19 @@ Weight(UID): 1
 ```csharp
 try
 {
-    var response = await client.SubAccountApi.GetManagedSubAccountDepositAddressForInvestorMasterAccount(email,
-        coin,
-        timestamp,
-        signature,
-        network,
-        recvWindow);
+    var response = await client.SubAccountApi.GetManagedSubAccountDepositAddressForInvestorMasterAccount(
+        new GetManagedSubAccountDepositAddressForInvestorMasterAccountRequest
+        {
+            Email = "some example string",
+            Coin = "BNB",
+            Timestamp = 1L,
+            Signature = "some example string",
+            Network = "BTC",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1ManagedSubaccountDepositAddressResponse
 }
-catch (SdkException<GetManagedSubAccountDepositAddressForInvestorMasterAccountError> ex)
+catch (ApiException<GetManagedSubAccountDepositAddressForInvestorMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -19078,19 +18095,12 @@ catch (SdkException<GetManagedSubAccountDepositAddressForInvestorMasterAccountEr
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>email</code> | <code>string</code> | - |
-| <code>coin</code> | <code>string</code> | Coin name |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>network</code> | <code>string?</code> | - |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetManagedSubAccountDepositAddressForInvestorMasterAccountRequest](Requests/SubAccountApi/GetManagedSubAccountDepositAddressForInvestorMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -19102,7 +18112,7 @@ catch (SdkException<GetManagedSubAccountDepositAddressForInvestorMasterAccountEr
 
 **OnSuccess**: <code>[SapiV1ManagedSubaccountDepositAddressResponse](Models/SapiV1ManagedSubaccountDepositAddressResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetManagedSubAccountDepositAddressForInvestorMasterAccountError](Errors/GetManagedSubAccountDepositAddressForInvestorMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetManagedSubAccountDepositAddressForInvestorMasterAccountError](Errors/GetManagedSubAccountDepositAddressForInvestorMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -19113,7 +18123,7 @@ catch (SdkException<GetManagedSubAccountDepositAddressForInvestorMasterAccountEr
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1ManagedSubaccountAssetResponse&gt;&gt; ManagedSubAccountAssetDetailsForInvestorMasterAccount(string email, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1ManagedSubaccountAssetResponse&gt;&gt; ManagedSubAccountAssetDetailsForInvestorMasterAccount(ManagedSubAccountAssetDetailsForInvestorMasterAccountRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -19136,13 +18146,17 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.SubAccountApi.ManagedSubAccountAssetDetailsForInvestorMasterAccount(email,
-        timestamp,
-        signature,
-        recvWindow);
+    var response = await client.SubAccountApi.ManagedSubAccountAssetDetailsForInvestorMasterAccount(
+        new ManagedSubAccountAssetDetailsForInvestorMasterAccountRequest
+        {
+            Email = "some example string",
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1ManagedSubaccountAssetResponse>
 }
-catch (SdkException<ManagedSubAccountAssetDetailsForInvestorMasterAccountError> ex)
+catch (ApiException<ManagedSubAccountAssetDetailsForInvestorMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -19154,17 +18168,12 @@ catch (SdkException<ManagedSubAccountAssetDetailsForInvestorMasterAccountError> 
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>email</code> | <code>string</code> | Sub-account email |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[ManagedSubAccountAssetDetailsForInvestorMasterAccountRequest](Requests/SubAccountApi/ManagedSubAccountAssetDetailsForInvestorMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -19176,7 +18185,7 @@ catch (SdkException<ManagedSubAccountAssetDetailsForInvestorMasterAccountError> 
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1ManagedSubaccountAssetResponse](Models/SapiV1ManagedSubaccountAssetResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[ManagedSubAccountAssetDetailsForInvestorMasterAccountError](Errors/ManagedSubAccountAssetDetailsForInvestorMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[ManagedSubAccountAssetDetailsForInvestorMasterAccountError](Errors/ManagedSubAccountAssetDetailsForInvestorMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -19187,7 +18196,7 @@ catch (SdkException<ManagedSubAccountAssetDetailsForInvestorMasterAccountError> 
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1ManagedSubaccountAccountSnapshotResponse&gt; ManagedSubAccountSnapshotForInvestorMasterAccount(string email, string type, long timestamp, string signature, long? startTime, long? endTime, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1ManagedSubaccountAccountSnapshotResponse&gt; ManagedSubAccountSnapshotForInvestorMasterAccount(ManagedSubAccountSnapshotForInvestorMasterAccountRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -19214,17 +18223,18 @@ Weight(IP): 2400
 ```csharp
 try
 {
-    var response = await client.SubAccountApi.ManagedSubAccountSnapshotForInvestorMasterAccount(email,
-        type,
-        timestamp,
-        signature,
-        startTime,
-        endTime,
-        limit,
-        recvWindow);
+    var response = await client.SubAccountApi.ManagedSubAccountSnapshotForInvestorMasterAccount(
+        new ManagedSubAccountSnapshotForInvestorMasterAccountRequest
+        {
+            Email = "some example string",
+            Type = "SPOT",
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1ManagedSubaccountAccountSnapshotResponse
 }
-catch (SdkException<ManagedSubAccountSnapshotForInvestorMasterAccountError> ex)
+catch (ApiException<ManagedSubAccountSnapshotForInvestorMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -19236,21 +18246,12 @@ catch (SdkException<ManagedSubAccountSnapshotForInvestorMasterAccountError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>email</code> | <code>string</code> | Sub-account email |
-| <code>type</code> | <code>string</code> | "SPOT", "MARGIN"(cross), "FUTURES"(UM) |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>limit</code> | <code>int?</code> | min 7, max 30, default 7 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[ManagedSubAccountSnapshotForInvestorMasterAccountRequest](Requests/SubAccountApi/ManagedSubAccountSnapshotForInvestorMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -19262,7 +18263,7 @@ catch (SdkException<ManagedSubAccountSnapshotForInvestorMasterAccountError> ex)
 
 **OnSuccess**: <code>[SapiV1ManagedSubaccountAccountSnapshotResponse](Models/SapiV1ManagedSubaccountAccountSnapshotResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[ManagedSubAccountSnapshotForInvestorMasterAccountError](Errors/ManagedSubAccountSnapshotForInvestorMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[ManagedSubAccountSnapshotForInvestorMasterAccountError](Errors/ManagedSubAccountSnapshotForInvestorMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -19273,7 +18274,7 @@ catch (SdkException<ManagedSubAccountSnapshotForInvestorMasterAccountError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1SubAccountMarginTransferResponse&gt; MarginTransferForSubAccountForMasterAccount(string email, string asset, double amount, int type, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1SubAccountMarginTransferResponse&gt; MarginTransferForSubAccountForMasterAccount(MarginTransferForSubAccountForMasterAccountRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -19296,16 +18297,20 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.SubAccountApi.MarginTransferForSubAccountForMasterAccount(email,
-        asset,
-        amount,
-        type,
-        timestamp,
-        signature,
-        recvWindow);
+    var response = await client.SubAccountApi.MarginTransferForSubAccountForMasterAccount(
+        new MarginTransferForSubAccountForMasterAccountRequest
+        {
+            Email = "some example string",
+            Asset = "BTC",
+            Amount = 1.01d,
+            Type = 1,
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1SubAccountMarginTransferResponse
 }
-catch (SdkException<MarginTransferForSubAccountForMasterAccountError> ex)
+catch (ApiException<MarginTransferForSubAccountForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -19317,20 +18322,12 @@ catch (SdkException<MarginTransferForSubAccountForMasterAccountError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>email</code> | <code>string</code> | Sub-account email |
-| <code>asset</code> | <code>string</code> | - |
-| <code>amount</code> | <code>double</code> | - |
-| <code>type</code> | <code>int</code> | * `1` - transfer from subaccount's spot account to margin account<br>* `2` - transfer from subaccount's margin account to its spot account |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[MarginTransferForSubAccountForMasterAccountRequest](Requests/SubAccountApi/MarginTransferForSubAccountForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -19342,7 +18339,7 @@ catch (SdkException<MarginTransferForSubAccountForMasterAccountError> ex)
 
 **OnSuccess**: <code>[SapiV1SubAccountMarginTransferResponse](Models/SapiV1SubAccountMarginTransferResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[MarginTransferForSubAccountForMasterAccountError](Errors/MarginTransferForSubAccountForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[MarginTransferForSubAccountForMasterAccountError](Errors/MarginTransferForSubAccountForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -19353,7 +18350,7 @@ catch (SdkException<MarginTransferForSubAccountForMasterAccountError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1ManagedSubaccountQueryTransLogForInvestorResponse&gt; QueryManagedSubAccountTransferLogForInvestorMasterAccount(string email, long timestamp, string signature, long? startTime, long? endTime, int? page, int? limit, string? transfers, string? transferFunctionAccountType, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1ManagedSubaccountQueryTransLogForInvestorResponse&gt; QueryManagedSubAccountTransferLogForInvestorMasterAccount(QueryManagedSubAccountTransferLogForInvestorMasterAccountRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -19378,19 +18375,21 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.SubAccountApi.QueryManagedSubAccountTransferLogForInvestorMasterAccount(email,
-        timestamp,
-        signature,
-        startTime,
-        endTime,
-        page,
-        limit,
-        transfers,
-        transferFunctionAccountType,
-        recvWindow);
+    var response = await client.SubAccountApi.QueryManagedSubAccountTransferLogForInvestorMasterAccount(
+        new QueryManagedSubAccountTransferLogForInvestorMasterAccountRequest
+        {
+            Email = "some example string",
+            Timestamp = 1L,
+            Signature = "some example string",
+            Page = 1,
+            Limit = 5,
+            Transfers = "FROM",
+            TransferFunctionAccountType = "SPOT",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1ManagedSubaccountQueryTransLogForInvestorResponse
 }
-catch (SdkException<QueryManagedSubAccountTransferLogForInvestorMasterAccountError> ex)
+catch (ApiException<QueryManagedSubAccountTransferLogForInvestorMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -19402,23 +18401,12 @@ catch (SdkException<QueryManagedSubAccountTransferLogForInvestorMasterAccountErr
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>email</code> | <code>string</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>page</code> | <code>int?</code> | Default 1 |
-| <code>limit</code> | <code>int?</code> | Default 500; max 1000. |
-| <code>transfers</code> | <code>string?</code> | Transfer Direction (FROM/TO) |
-| <code>transferFunctionAccountType</code> | <code>string?</code> | Transfer function account type (SPOT/MARGIN/ISOLATED_MARGIN/USDT_FUTURE/COIN_FUTURE) |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryManagedSubAccountTransferLogForInvestorMasterAccountRequest](Requests/SubAccountApi/QueryManagedSubAccountTransferLogForInvestorMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -19430,7 +18418,7 @@ catch (SdkException<QueryManagedSubAccountTransferLogForInvestorMasterAccountErr
 
 **OnSuccess**: <code>[SapiV1ManagedSubaccountQueryTransLogForInvestorResponse](Models/SapiV1ManagedSubaccountQueryTransLogForInvestorResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryManagedSubAccountTransferLogForInvestorMasterAccountError](Errors/QueryManagedSubAccountTransferLogForInvestorMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryManagedSubAccountTransferLogForInvestorMasterAccountError](Errors/QueryManagedSubAccountTransferLogForInvestorMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -19441,7 +18429,7 @@ catch (SdkException<QueryManagedSubAccountTransferLogForInvestorMasterAccountErr
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1ManagedSubaccountQueryTransLogForTradeParentResponse&gt; QueryManagedSubAccountTransferLogForTradingTeamMasterAccount(string email, long timestamp, string signature, long? startTime, long? endTime, int? page, int? limit, string? transfers, string? transferFunctionAccountType, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1ManagedSubaccountQueryTransLogForTradeParentResponse&gt; QueryManagedSubAccountTransferLogForTradingTeamMasterAccount(QueryManagedSubAccountTransferLogForTradingTeamMasterAccountRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -19466,19 +18454,21 @@ Weight(IP): 60
 ```csharp
 try
 {
-    var response = await client.SubAccountApi.QueryManagedSubAccountTransferLogForTradingTeamMasterAccount(email,
-        timestamp,
-        signature,
-        startTime,
-        endTime,
-        page,
-        limit,
-        transfers,
-        transferFunctionAccountType,
-        recvWindow);
+    var response = await client.SubAccountApi.QueryManagedSubAccountTransferLogForTradingTeamMasterAccount(
+        new QueryManagedSubAccountTransferLogForTradingTeamMasterAccountRequest
+        {
+            Email = "some example string",
+            Timestamp = 1L,
+            Signature = "some example string",
+            Page = 1,
+            Limit = 5,
+            Transfers = "FROM",
+            TransferFunctionAccountType = "SPOT",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1ManagedSubaccountQueryTransLogForTradeParentResponse
 }
-catch (SdkException<QueryManagedSubAccountTransferLogForTradingTeamMasterAccountError> ex)
+catch (ApiException<QueryManagedSubAccountTransferLogForTradingTeamMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -19490,23 +18480,12 @@ catch (SdkException<QueryManagedSubAccountTransferLogForTradingTeamMasterAccount
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>email</code> | <code>string</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>page</code> | <code>int?</code> | Default 1 |
-| <code>limit</code> | <code>int?</code> | Default 500; max 1000. |
-| <code>transfers</code> | <code>string?</code> | Transfer Direction (FROM/TO) |
-| <code>transferFunctionAccountType</code> | <code>string?</code> | Transfer function account type (SPOT/MARGIN/ISOLATED_MARGIN/USDT_FUTURE/COIN_FUTURE) |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryManagedSubAccountTransferLogForTradingTeamMasterAccountRequest](Requests/SubAccountApi/QueryManagedSubAccountTransferLogForTradingTeamMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -19518,7 +18497,7 @@ catch (SdkException<QueryManagedSubAccountTransferLogForTradingTeamMasterAccount
 
 **OnSuccess**: <code>[SapiV1ManagedSubaccountQueryTransLogForTradeParentResponse](Models/SapiV1ManagedSubaccountQueryTransLogForTradeParentResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryManagedSubAccountTransferLogForTradingTeamMasterAccountError](Errors/QueryManagedSubAccountTransferLogForTradingTeamMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryManagedSubAccountTransferLogForTradingTeamMasterAccountError](Errors/QueryManagedSubAccountTransferLogForTradingTeamMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -19529,7 +18508,7 @@ catch (SdkException<QueryManagedSubAccountTransferLogForTradingTeamMasterAccount
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1ManagedSubaccountQueryTransLogResponse&gt; QueryManagedSubAccountTransferLogForTradingTeamSubAccountUserData(Transfers transfers, TransferFunctionAccountType transferFunctionAccountType, long timestamp, string signature, long? startTime, long? endTime, int? page, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1ManagedSubaccountQueryTransLogResponse&gt; QueryManagedSubAccountTransferLogForTradingTeamSubAccountUserData(QueryManagedSubAccountTransferLogForTradingTeamSubAccountUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -19554,18 +18533,20 @@ Weight(UID): 60
 ```csharp
 try
 {
-    var response = await client.SubAccountApi.QueryManagedSubAccountTransferLogForTradingTeamSubAccountUserData(transfers,
-        transferFunctionAccountType,
-        timestamp,
-        signature,
-        startTime,
-        endTime,
-        page,
-        limit,
-        recvWindow);
+    var response = await client.SubAccountApi.QueryManagedSubAccountTransferLogForTradingTeamSubAccountUserData(
+        new QueryManagedSubAccountTransferLogForTradingTeamSubAccountUserDataRequest
+        {
+            Transfers = Transfers.From,
+            TransferFunctionAccountType = TransferFunctionAccountType.Spot,
+            Timestamp = 1L,
+            Signature = "some example string",
+            Page = 1,
+            Limit = 5,
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1ManagedSubaccountQueryTransLogResponse
 }
-catch (SdkException<QueryManagedSubAccountTransferLogForTradingTeamSubAccountUserDataError> ex)
+catch (ApiException<QueryManagedSubAccountTransferLogForTradingTeamSubAccountUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -19577,22 +18558,12 @@ catch (SdkException<QueryManagedSubAccountTransferLogForTradingTeamSubAccountUse
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>transfers</code> | <code>[Transfers](Models/Enums/Transfers.cs)</code> | Transfer Direction |
-| <code>transferFunctionAccountType</code> | <code>[TransferFunctionAccountType](Models/Enums/TransferFunctionAccountType.cs)</code> | Transfer function account type |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>page</code> | <code>int?</code> | Default 1 |
-| <code>limit</code> | <code>int?</code> | Default 500; max 1000. |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryManagedSubAccountTransferLogForTradingTeamSubAccountUserDataRequest](Requests/SubAccountApi/QueryManagedSubAccountTransferLogForTradingTeamSubAccountUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -19604,7 +18575,7 @@ catch (SdkException<QueryManagedSubAccountTransferLogForTradingTeamSubAccountUse
 
 **OnSuccess**: <code>[SapiV1ManagedSubaccountQueryTransLogResponse](Models/SapiV1ManagedSubaccountQueryTransLogResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryManagedSubAccountTransferLogForTradingTeamSubAccountUserDataError](Errors/QueryManagedSubAccountTransferLogForTradingTeamSubAccountUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryManagedSubAccountTransferLogForTradingTeamSubAccountUserDataError](Errors/QueryManagedSubAccountTransferLogForTradingTeamSubAccountUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -19615,7 +18586,7 @@ catch (SdkException<QueryManagedSubAccountTransferLogForTradingTeamSubAccountUse
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1ManagedSubaccountFetchFutureAssetResponse&gt; QueryManagedSubAccountFuturesAssetDetailsForInvestorMasterAccount(string email, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1ManagedSubaccountFetchFutureAssetResponse&gt; QueryManagedSubAccountFuturesAssetDetailsForInvestorMasterAccount(QueryManagedSubAccountFuturesAssetDetailsForInvestorMasterAccountRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -19638,13 +18609,17 @@ Investor can use this api to query managed sub account futures asset details
 ```csharp
 try
 {
-    var response = await client.SubAccountApi.QueryManagedSubAccountFuturesAssetDetailsForInvestorMasterAccount(email,
-        timestamp,
-        signature,
-        recvWindow);
+    var response = await client.SubAccountApi.QueryManagedSubAccountFuturesAssetDetailsForInvestorMasterAccount(
+        new QueryManagedSubAccountFuturesAssetDetailsForInvestorMasterAccountRequest
+        {
+            Email = "some example string",
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1ManagedSubaccountFetchFutureAssetResponse
 }
-catch (SdkException<QueryManagedSubAccountFuturesAssetDetailsForInvestorMasterAccountError> ex)
+catch (ApiException<QueryManagedSubAccountFuturesAssetDetailsForInvestorMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -19656,17 +18631,12 @@ catch (SdkException<QueryManagedSubAccountFuturesAssetDetailsForInvestorMasterAc
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>email</code> | <code>string</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryManagedSubAccountFuturesAssetDetailsForInvestorMasterAccountRequest](Requests/SubAccountApi/QueryManagedSubAccountFuturesAssetDetailsForInvestorMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -19678,7 +18648,7 @@ catch (SdkException<QueryManagedSubAccountFuturesAssetDetailsForInvestorMasterAc
 
 **OnSuccess**: <code>[SapiV1ManagedSubaccountFetchFutureAssetResponse](Models/SapiV1ManagedSubaccountFetchFutureAssetResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryManagedSubAccountFuturesAssetDetailsForInvestorMasterAccountError](Errors/QueryManagedSubAccountFuturesAssetDetailsForInvestorMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryManagedSubAccountFuturesAssetDetailsForInvestorMasterAccountError](Errors/QueryManagedSubAccountFuturesAssetDetailsForInvestorMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -19689,7 +18659,7 @@ catch (SdkException<QueryManagedSubAccountFuturesAssetDetailsForInvestorMasterAc
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1ManagedSubaccountInfoResponse&gt; QueryManagedSubAccountListForInvestor(string email, long timestamp, string signature, int? page, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1ManagedSubaccountInfoResponse&gt; QueryManagedSubAccountListForInvestor(QueryManagedSubAccountListForInvestorRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -19714,15 +18684,19 @@ Weight(UID): 60
 ```csharp
 try
 {
-    var response = await client.SubAccountApi.QueryManagedSubAccountListForInvestor(email,
-        timestamp,
-        signature,
-        page,
-        limit,
-        recvWindow);
+    var response = await client.SubAccountApi.QueryManagedSubAccountListForInvestor(
+        new QueryManagedSubAccountListForInvestorRequest
+        {
+            Email = "some example string",
+            Timestamp = 1L,
+            Signature = "some example string",
+            Page = 1,
+            Limit = 5,
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1ManagedSubaccountInfoResponse
 }
-catch (SdkException<QueryManagedSubAccountListForInvestorError> ex)
+catch (ApiException<QueryManagedSubAccountListForInvestorError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -19734,19 +18708,12 @@ catch (SdkException<QueryManagedSubAccountListForInvestorError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>email</code> | <code>string</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>page</code> | <code>int?</code> | Default 1 |
-| <code>limit</code> | <code>int?</code> | Default 500; max 1000. |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryManagedSubAccountListForInvestorRequest](Requests/SubAccountApi/QueryManagedSubAccountListForInvestorRequest.cs)</code>
 
 </dd>
 </dl>
@@ -19758,7 +18725,7 @@ catch (SdkException<QueryManagedSubAccountListForInvestorError> ex)
 
 **OnSuccess**: <code>[SapiV1ManagedSubaccountInfoResponse](Models/SapiV1ManagedSubaccountInfoResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryManagedSubAccountListForInvestorError](Errors/QueryManagedSubAccountListForInvestorError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryManagedSubAccountListForInvestorError](Errors/QueryManagedSubAccountListForInvestorError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -19769,7 +18736,7 @@ catch (SdkException<QueryManagedSubAccountListForInvestorError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1ManagedSubaccountMarginAssetResponse&gt; QueryManagedSubAccountMarginAssetDetailsForInvestorMasterAccount(string email, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1ManagedSubaccountMarginAssetResponse&gt; QueryManagedSubAccountMarginAssetDetailsForInvestorMasterAccount(QueryManagedSubAccountMarginAssetDetailsForInvestorMasterAccountRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -19792,13 +18759,17 @@ Investor can use this api to query managed sub account margin asset details
 ```csharp
 try
 {
-    var response = await client.SubAccountApi.QueryManagedSubAccountMarginAssetDetailsForInvestorMasterAccount(email,
-        timestamp,
-        signature,
-        recvWindow);
+    var response = await client.SubAccountApi.QueryManagedSubAccountMarginAssetDetailsForInvestorMasterAccount(
+        new QueryManagedSubAccountMarginAssetDetailsForInvestorMasterAccountRequest
+        {
+            Email = "some example string",
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1ManagedSubaccountMarginAssetResponse
 }
-catch (SdkException<QueryManagedSubAccountMarginAssetDetailsForInvestorMasterAccountError> ex)
+catch (ApiException<QueryManagedSubAccountMarginAssetDetailsForInvestorMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -19810,17 +18781,12 @@ catch (SdkException<QueryManagedSubAccountMarginAssetDetailsForInvestorMasterAcc
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>email</code> | <code>string</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryManagedSubAccountMarginAssetDetailsForInvestorMasterAccountRequest](Requests/SubAccountApi/QueryManagedSubAccountMarginAssetDetailsForInvestorMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -19832,7 +18798,7 @@ catch (SdkException<QueryManagedSubAccountMarginAssetDetailsForInvestorMasterAcc
 
 **OnSuccess**: <code>[SapiV1ManagedSubaccountMarginAssetResponse](Models/SapiV1ManagedSubaccountMarginAssetResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryManagedSubAccountMarginAssetDetailsForInvestorMasterAccountError](Errors/QueryManagedSubAccountMarginAssetDetailsForInvestorMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryManagedSubAccountMarginAssetDetailsForInvestorMasterAccountError](Errors/QueryManagedSubAccountMarginAssetDetailsForInvestorMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -19843,7 +18809,7 @@ catch (SdkException<QueryManagedSubAccountMarginAssetDetailsForInvestorMasterAcc
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV4SubAccountAssetsResponse&gt; QuerySubAccountAssetsForMasterAccount(string email, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV4SubAccountAssetsResponse&gt; QuerySubAccountAssetsForMasterAccount(QuerySubAccountAssetsForMasterAccountRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -19868,13 +18834,17 @@ Weight(UID): 60
 ```csharp
 try
 {
-    var response = await client.SubAccountApi.QuerySubAccountAssetsForMasterAccount(email,
-        timestamp,
-        signature,
-        recvWindow);
+    var response = await client.SubAccountApi.QuerySubAccountAssetsForMasterAccount(
+        new QuerySubAccountAssetsForMasterAccountRequest
+        {
+            Email = "some example string",
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV4SubAccountAssetsResponse
 }
-catch (SdkException<QuerySubAccountAssetsForMasterAccountError> ex)
+catch (ApiException<QuerySubAccountAssetsForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -19886,17 +18856,12 @@ catch (SdkException<QuerySubAccountAssetsForMasterAccountError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>email</code> | <code>string</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QuerySubAccountAssetsForMasterAccountRequest](Requests/SubAccountApi/QuerySubAccountAssetsForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -19908,7 +18873,7 @@ catch (SdkException<QuerySubAccountAssetsForMasterAccountError> ex)
 
 **OnSuccess**: <code>[SapiV4SubAccountAssetsResponse](Models/SapiV4SubAccountAssetsResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QuerySubAccountAssetsForMasterAccountError](Errors/QuerySubAccountAssetsForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QuerySubAccountAssetsForMasterAccountError](Errors/QuerySubAccountAssetsForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -19919,7 +18884,7 @@ catch (SdkException<QuerySubAccountAssetsForMasterAccountError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1SubAccountListResponse&gt; QuerySubAccountListForMasterAccount(long timestamp, string signature, string? email, IsFreeze? isFreeze, int? page, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1SubAccountListResponse&gt; QuerySubAccountListForMasterAccount(QuerySubAccountListForMasterAccountRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -19942,16 +18907,18 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.SubAccountApi.QuerySubAccountListForMasterAccount(timestamp,
-        signature,
-        email,
-        isFreeze,
-        page,
-        limit,
-        recvWindow);
+    var response = await client.SubAccountApi.QuerySubAccountListForMasterAccount(
+        new QuerySubAccountListForMasterAccountRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            Page = 1,
+            Limit = 1,
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1SubAccountListResponse
 }
-catch (SdkException<QuerySubAccountListForMasterAccountError> ex)
+catch (ApiException<QuerySubAccountListForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -19963,20 +18930,12 @@ catch (SdkException<QuerySubAccountListForMasterAccountError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>email</code> | <code>string?</code> | Sub-account email |
-| <code>isFreeze</code> | <code>[IsFreeze?](Models/Enums/IsFreeze.cs)</code> | - |
-| <code>page</code> | <code>int?</code> | Default 1 |
-| <code>limit</code> | <code>int?</code> | Default 1; max 200 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QuerySubAccountListForMasterAccountRequest](Requests/SubAccountApi/QuerySubAccountListForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -19988,7 +18947,7 @@ catch (SdkException<QuerySubAccountListForMasterAccountError> ex)
 
 **OnSuccess**: <code>[SapiV1SubAccountListResponse](Models/SapiV1SubAccountListResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QuerySubAccountListForMasterAccountError](Errors/QuerySubAccountListForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QuerySubAccountListForMasterAccountError](Errors/QuerySubAccountListForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -19999,7 +18958,7 @@ catch (SdkException<QuerySubAccountListForMasterAccountError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1SubAccountTransactionStatisticsResponse&gt; QuerySubAccountTransactionStatisticsForMasterAccount(string email, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1SubAccountTransactionStatisticsResponse&gt; QuerySubAccountTransactionStatisticsForMasterAccount(QuerySubAccountTransactionStatisticsForMasterAccountRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -20024,13 +18983,17 @@ Weight(UID): 60
 ```csharp
 try
 {
-    var response = await client.SubAccountApi.QuerySubAccountTransactionStatisticsForMasterAccount(email,
-        timestamp,
-        signature,
-        recvWindow);
+    var response = await client.SubAccountApi.QuerySubAccountTransactionStatisticsForMasterAccount(
+        new QuerySubAccountTransactionStatisticsForMasterAccountRequest
+        {
+            Email = "some example string",
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1SubAccountTransactionStatisticsResponse
 }
-catch (SdkException<QuerySubAccountTransactionStatisticsForMasterAccountError> ex)
+catch (ApiException<QuerySubAccountTransactionStatisticsForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -20042,17 +19005,12 @@ catch (SdkException<QuerySubAccountTransactionStatisticsForMasterAccountError> e
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>email</code> | <code>string</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QuerySubAccountTransactionStatisticsForMasterAccountRequest](Requests/SubAccountApi/QuerySubAccountTransactionStatisticsForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -20064,7 +19022,7 @@ catch (SdkException<QuerySubAccountTransactionStatisticsForMasterAccountError> e
 
 **OnSuccess**: <code>[SapiV1SubAccountTransactionStatisticsResponse](Models/SapiV1SubAccountTransactionStatisticsResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QuerySubAccountTransactionStatisticsForMasterAccountError](Errors/QuerySubAccountTransactionStatisticsForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QuerySubAccountTransactionStatisticsForMasterAccountError](Errors/QuerySubAccountTransactionStatisticsForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -20075,7 +19033,7 @@ catch (SdkException<QuerySubAccountTransactionStatisticsForMasterAccountError> e
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV3SubAccountAssetsResponse&gt; SubAccountAssetsForMasterAccount(string email, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV3SubAccountAssetsResponse&gt; SubAccountAssetsForMasterAccount(SubAccountAssetsForMasterAccountRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -20100,10 +19058,17 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.SubAccountApi.SubAccountAssetsForMasterAccount(email, timestamp, signature, recvWindow);
+    var response = await client.SubAccountApi.SubAccountAssetsForMasterAccount(
+        new SubAccountAssetsForMasterAccountRequest
+        {
+            Email = "some example string",
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV3SubAccountAssetsResponse
 }
-catch (SdkException<SubAccountAssetsForMasterAccountError> ex)
+catch (ApiException<SubAccountAssetsForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -20115,17 +19080,12 @@ catch (SdkException<SubAccountAssetsForMasterAccountError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>email</code> | <code>string</code> | Sub-account email |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[SubAccountAssetsForMasterAccountRequest](Requests/SubAccountApi/SubAccountAssetsForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -20137,7 +19097,7 @@ catch (SdkException<SubAccountAssetsForMasterAccountError> ex)
 
 **OnSuccess**: <code>[SapiV3SubAccountAssetsResponse](Models/SapiV3SubAccountAssetsResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[SubAccountAssetsForMasterAccountError](Errors/SubAccountAssetsForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SubAccountAssetsForMasterAccountError](Errors/SubAccountAssetsForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -20148,7 +19108,7 @@ catch (SdkException<SubAccountAssetsForMasterAccountError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1CapitalDepositSubHisrecResponse&gt;&gt; SubAccountDepositHistoryForMasterAccount(string email, long timestamp, string signature, string? coin, int? status, long? startTime, long? endTime, long? limit, int? offset, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1CapitalDepositSubHisrecResponse&gt;&gt; SubAccountDepositHistoryForMasterAccount(SubAccountDepositHistoryForMasterAccountRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -20173,19 +19133,18 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.SubAccountApi.SubAccountDepositHistoryForMasterAccount(email,
-        timestamp,
-        signature,
-        coin,
-        status,
-        startTime,
-        endTime,
-        limit,
-        offset,
-        recvWindow);
+    var response = await client.SubAccountApi.SubAccountDepositHistoryForMasterAccount(
+        new SubAccountDepositHistoryForMasterAccountRequest
+        {
+            Email = "some example string",
+            Timestamp = 1L,
+            Signature = "some example string",
+            Coin = "BNB",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1CapitalDepositSubHisrecResponse>
 }
-catch (SdkException<SubAccountDepositHistoryForMasterAccountError> ex)
+catch (ApiException<SubAccountDepositHistoryForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -20197,23 +19156,12 @@ catch (SdkException<SubAccountDepositHistoryForMasterAccountError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>email</code> | <code>string</code> | Sub-account email |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>coin</code> | <code>string?</code> | Coin name |
-| <code>status</code> | <code>int?</code> | 0(0:pending,6: credited but cannot withdraw, 1:success) |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>limit</code> | <code>long?</code> | - |
-| <code>offset</code> | <code>int?</code> | - |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[SubAccountDepositHistoryForMasterAccountRequest](Requests/SubAccountApi/SubAccountDepositHistoryForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -20225,7 +19173,7 @@ catch (SdkException<SubAccountDepositHistoryForMasterAccountError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1CapitalDepositSubHisrecResponse](Models/SapiV1CapitalDepositSubHisrecResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[SubAccountDepositHistoryForMasterAccountError](Errors/SubAccountDepositHistoryForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SubAccountDepositHistoryForMasterAccountError](Errors/SubAccountDepositHistoryForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -20236,7 +19184,7 @@ catch (SdkException<SubAccountDepositHistoryForMasterAccountError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1SubAccountFuturesInternalTransferResponse1&gt; SubAccountFuturesAssetTransferForMasterAccount(string fromEmail, string toEmail, int futuresType, string asset, double amount, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1SubAccountFuturesInternalTransferResponse1&gt; SubAccountFuturesAssetTransferForMasterAccount(SubAccountFuturesAssetTransferForMasterAccountRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -20261,17 +19209,21 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.SubAccountApi.SubAccountFuturesAssetTransferForMasterAccount(fromEmail,
-        toEmail,
-        futuresType,
-        asset,
-        amount,
-        timestamp,
-        signature,
-        recvWindow);
+    var response = await client.SubAccountApi.SubAccountFuturesAssetTransferForMasterAccount(
+        new SubAccountFuturesAssetTransferForMasterAccountRequest
+        {
+            FromEmail = "some example string",
+            ToEmail = "some example string",
+            FuturesType = 2,
+            Asset = "BTC",
+            Amount = 1.01d,
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1SubAccountFuturesInternalTransferResponse1
 }
-catch (SdkException<SubAccountFuturesAssetTransferForMasterAccountError> ex)
+catch (ApiException<SubAccountFuturesAssetTransferForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -20283,21 +19235,12 @@ catch (SdkException<SubAccountFuturesAssetTransferForMasterAccountError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>fromEmail</code> | <code>string</code> | Sender email |
-| <code>toEmail</code> | <code>string</code> | Recipient email |
-| <code>futuresType</code> | <code>int</code> | 1:USDT-margined Futures,2: Coin-margined Futures |
-| <code>asset</code> | <code>string</code> | - |
-| <code>amount</code> | <code>double</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[SubAccountFuturesAssetTransferForMasterAccountRequest](Requests/SubAccountApi/SubAccountFuturesAssetTransferForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -20309,7 +19252,7 @@ catch (SdkException<SubAccountFuturesAssetTransferForMasterAccountError> ex)
 
 **OnSuccess**: <code>[SapiV1SubAccountFuturesInternalTransferResponse1](Models/SapiV1SubAccountFuturesInternalTransferResponse1.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[SubAccountFuturesAssetTransferForMasterAccountError](Errors/SubAccountFuturesAssetTransferForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SubAccountFuturesAssetTransferForMasterAccountError](Errors/SubAccountFuturesAssetTransferForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -20320,7 +19263,7 @@ catch (SdkException<SubAccountFuturesAssetTransferForMasterAccountError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1SubAccountFuturesInternalTransferResponse&gt; SubAccountFuturesAssetTransferHistoryForMasterAccount(string email, int futuresType, long timestamp, string signature, long? startTime, long? endTime, int? page, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1SubAccountFuturesInternalTransferResponse&gt; SubAccountFuturesAssetTransferHistoryForMasterAccount(SubAccountFuturesAssetTransferHistoryForMasterAccountRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -20343,18 +19286,19 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.SubAccountApi.SubAccountFuturesAssetTransferHistoryForMasterAccount(email,
-        futuresType,
-        timestamp,
-        signature,
-        startTime,
-        endTime,
-        page,
-        limit,
-        recvWindow);
+    var response = await client.SubAccountApi.SubAccountFuturesAssetTransferHistoryForMasterAccount(
+        new SubAccountFuturesAssetTransferHistoryForMasterAccountRequest
+        {
+            Email = "some example string",
+            FuturesType = 2,
+            Timestamp = 1L,
+            Signature = "some example string",
+            Page = 1,
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1SubAccountFuturesInternalTransferResponse
 }
-catch (SdkException<SubAccountFuturesAssetTransferHistoryForMasterAccountError> ex)
+catch (ApiException<SubAccountFuturesAssetTransferHistoryForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -20366,22 +19310,12 @@ catch (SdkException<SubAccountFuturesAssetTransferHistoryForMasterAccountError> 
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>email</code> | <code>string</code> | Sub-account email |
-| <code>futuresType</code> | <code>int</code> | 1:USDT-margined Futures, 2: Coin-margined Futures |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>page</code> | <code>int?</code> | Default 1 |
-| <code>limit</code> | <code>int?</code> | Default value: 50, Max value: 500 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[SubAccountFuturesAssetTransferHistoryForMasterAccountRequest](Requests/SubAccountApi/SubAccountFuturesAssetTransferHistoryForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -20393,7 +19327,7 @@ catch (SdkException<SubAccountFuturesAssetTransferHistoryForMasterAccountError> 
 
 **OnSuccess**: <code>[SapiV1SubAccountFuturesInternalTransferResponse](Models/SapiV1SubAccountFuturesInternalTransferResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[SubAccountFuturesAssetTransferHistoryForMasterAccountError](Errors/SubAccountFuturesAssetTransferHistoryForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SubAccountFuturesAssetTransferHistoryForMasterAccountError](Errors/SubAccountFuturesAssetTransferHistoryForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -20404,7 +19338,7 @@ catch (SdkException<SubAccountFuturesAssetTransferHistoryForMasterAccountError> 
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1SubAccountSubTransferHistoryResponse&gt;&gt; SubAccountSpotAssetTransferHistoryForMasterAccount(long timestamp, string signature, string? fromEmail, string? toEmail, long? startTime, long? endTime, int? page, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1SubAccountSubTransferHistoryResponse&gt;&gt; SubAccountSpotAssetTransferHistoryForMasterAccount(SubAccountSpotAssetTransferHistoryForMasterAccountRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -20430,18 +19364,18 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.SubAccountApi.SubAccountSpotAssetTransferHistoryForMasterAccount(timestamp,
-        signature,
-        fromEmail,
-        toEmail,
-        startTime,
-        endTime,
-        page,
-        limit,
-        recvWindow);
+    var response = await client.SubAccountApi.SubAccountSpotAssetTransferHistoryForMasterAccount(
+        new SubAccountSpotAssetTransferHistoryForMasterAccountRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            Page = 1,
+            Limit = 1,
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1SubAccountSubTransferHistoryResponse>
 }
-catch (SdkException<SubAccountSpotAssetTransferHistoryForMasterAccountError> ex)
+catch (ApiException<SubAccountSpotAssetTransferHistoryForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -20453,22 +19387,12 @@ catch (SdkException<SubAccountSpotAssetTransferHistoryForMasterAccountError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>fromEmail</code> | <code>string?</code> | Sub-account email |
-| <code>toEmail</code> | <code>string?</code> | Sub-account email |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>page</code> | <code>int?</code> | Default 1 |
-| <code>limit</code> | <code>int?</code> | Default 1 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[SubAccountSpotAssetTransferHistoryForMasterAccountRequest](Requests/SubAccountApi/SubAccountSpotAssetTransferHistoryForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -20480,7 +19404,7 @@ catch (SdkException<SubAccountSpotAssetTransferHistoryForMasterAccountError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1SubAccountSubTransferHistoryResponse](Models/SapiV1SubAccountSubTransferHistoryResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[SubAccountSpotAssetTransferHistoryForMasterAccountError](Errors/SubAccountSpotAssetTransferHistoryForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SubAccountSpotAssetTransferHistoryForMasterAccountError](Errors/SubAccountSpotAssetTransferHistoryForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -20491,7 +19415,7 @@ catch (SdkException<SubAccountSpotAssetTransferHistoryForMasterAccountError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1SubAccountSpotSummaryResponse&gt; SubAccountSpotAssetsSummaryForMasterAccount(long timestamp, string signature, string? email, int? page, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1SubAccountSpotSummaryResponse&gt; SubAccountSpotAssetsSummaryForMasterAccount(SubAccountSpotAssetsSummaryForMasterAccountRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -20516,15 +19440,17 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.SubAccountApi.SubAccountSpotAssetsSummaryForMasterAccount(timestamp,
-        signature,
-        email,
-        page,
-        size,
-        recvWindow);
+    var response = await client.SubAccountApi.SubAccountSpotAssetsSummaryForMasterAccount(
+        new SubAccountSpotAssetsSummaryForMasterAccountRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            Page = 1,
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1SubAccountSpotSummaryResponse
 }
-catch (SdkException<SubAccountSpotAssetsSummaryForMasterAccountError> ex)
+catch (ApiException<SubAccountSpotAssetsSummaryForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -20536,19 +19462,12 @@ catch (SdkException<SubAccountSpotAssetsSummaryForMasterAccountError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>email</code> | <code>string?</code> | Sub-account email |
-| <code>page</code> | <code>int?</code> | Default 1 |
-| <code>size</code> | <code>int?</code> | Default:10 Max:20 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[SubAccountSpotAssetsSummaryForMasterAccountRequest](Requests/SubAccountApi/SubAccountSpotAssetsSummaryForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -20560,7 +19479,7 @@ catch (SdkException<SubAccountSpotAssetsSummaryForMasterAccountError> ex)
 
 **OnSuccess**: <code>[SapiV1SubAccountSpotSummaryResponse](Models/SapiV1SubAccountSpotSummaryResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[SubAccountSpotAssetsSummaryForMasterAccountError](Errors/SubAccountSpotAssetsSummaryForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SubAccountSpotAssetsSummaryForMasterAccountError](Errors/SubAccountSpotAssetsSummaryForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -20571,7 +19490,7 @@ catch (SdkException<SubAccountSpotAssetsSummaryForMasterAccountError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1CapitalDepositSubAddressResponse&gt; SubAccountSpotAssetsSummaryForMasterAccount2(string email, string coin, long timestamp, string signature, string? network, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1CapitalDepositSubAddressResponse&gt; SubAccountSpotAssetsSummaryForMasterAccount2(SubAccountSpotAssetsSummaryForMasterAccount2Request request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -20596,15 +19515,19 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.SubAccountApi.SubAccountSpotAssetsSummaryForMasterAccount2(email,
-        coin,
-        timestamp,
-        signature,
-        network,
-        recvWindow);
+    var response = await client.SubAccountApi.SubAccountSpotAssetsSummaryForMasterAccount2(
+        new SubAccountSpotAssetsSummaryForMasterAccount2Request
+        {
+            Email = "some example string",
+            Coin = "BNB",
+            Timestamp = 1L,
+            Signature = "some example string",
+            Network = "BTC",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1CapitalDepositSubAddressResponse
 }
-catch (SdkException<SubAccountSpotAssetsSummaryForMasterAccount2Error> ex)
+catch (ApiException<SubAccountSpotAssetsSummaryForMasterAccount2Error> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -20616,19 +19539,12 @@ catch (SdkException<SubAccountSpotAssetsSummaryForMasterAccount2Error> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>email</code> | <code>string</code> | Sub-account email |
-| <code>coin</code> | <code>string</code> | Coin name |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>network</code> | <code>string?</code> | - |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[SubAccountSpotAssetsSummaryForMasterAccount2Request](Requests/SubAccountApi/SubAccountSpotAssetsSummaryForMasterAccount2Request.cs)</code>
 
 </dd>
 </dl>
@@ -20640,7 +19556,7 @@ catch (SdkException<SubAccountSpotAssetsSummaryForMasterAccount2Error> ex)
 
 **OnSuccess**: <code>[SapiV1CapitalDepositSubAddressResponse](Models/SapiV1CapitalDepositSubAddressResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[SubAccountSpotAssetsSummaryForMasterAccount2Error](Errors/SubAccountSpotAssetsSummaryForMasterAccount2Error.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SubAccountSpotAssetsSummaryForMasterAccount2Error](Errors/SubAccountSpotAssetsSummaryForMasterAccount2Error.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -20651,7 +19567,7 @@ catch (SdkException<SubAccountSpotAssetsSummaryForMasterAccount2Error> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1SubAccountTransferSubUserHistoryResponse&gt;&gt; SubAccountTransferHistoryForSubAccount(long timestamp, string signature, string? asset, int? type, long? startTime, long? endTime, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1SubAccountTransferSubUserHistoryResponse&gt;&gt; SubAccountTransferHistoryForSubAccount(SubAccountTransferHistoryForSubAccountRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -20677,17 +19593,18 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.SubAccountApi.SubAccountTransferHistoryForSubAccount(timestamp,
-        signature,
-        asset,
-        type,
-        startTime,
-        endTime,
-        limit,
-        recvWindow);
+    var response = await client.SubAccountApi.SubAccountTransferHistoryForSubAccount(
+        new SubAccountTransferHistoryForSubAccountRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            Asset = "BNB",
+            Limit = 5,
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1SubAccountTransferSubUserHistoryResponse>
 }
-catch (SdkException<SubAccountTransferHistoryForSubAccountError> ex)
+catch (ApiException<SubAccountTransferHistoryForSubAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -20699,21 +19616,12 @@ catch (SdkException<SubAccountTransferHistoryForSubAccountError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>asset</code> | <code>string?</code> | - |
-| <code>type</code> | <code>int?</code> | * `1` - transfer in<br>* `2` - transfer out |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>limit</code> | <code>int?</code> | Default 500; max 1000. |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[SubAccountTransferHistoryForSubAccountRequest](Requests/SubAccountApi/SubAccountTransferHistoryForSubAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -20725,7 +19633,7 @@ catch (SdkException<SubAccountTransferHistoryForSubAccountError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1SubAccountTransferSubUserHistoryResponse](Models/SapiV1SubAccountTransferSubUserHistoryResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[SubAccountTransferHistoryForSubAccountError](Errors/SubAccountTransferHistoryForSubAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SubAccountTransferHistoryForSubAccountError](Errors/SubAccountTransferHistoryForSubAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -20736,7 +19644,7 @@ catch (SdkException<SubAccountTransferHistoryForSubAccountError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1SubAccountStatusResponse&gt;&gt; SubAccountSStatusOnMarginFuturesForMasterAccount(long timestamp, string signature, string? email, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1SubAccountStatusResponse&gt;&gt; SubAccountSStatusOnMarginFuturesForMasterAccount(SubAccountSStatusOnMarginFuturesForMasterAccountRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -20761,13 +19669,16 @@ Weight(IP): 10
 ```csharp
 try
 {
-    var response = await client.SubAccountApi.SubAccountSStatusOnMarginFuturesForMasterAccount(timestamp,
-        signature,
-        email,
-        recvWindow);
+    var response = await client.SubAccountApi.SubAccountSStatusOnMarginFuturesForMasterAccount(
+        new SubAccountSStatusOnMarginFuturesForMasterAccountRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1SubAccountStatusResponse>
 }
-catch (SdkException<SubAccountSStatusOnMarginFuturesForMasterAccountError> ex)
+catch (ApiException<SubAccountSStatusOnMarginFuturesForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -20779,17 +19690,12 @@ catch (SdkException<SubAccountSStatusOnMarginFuturesForMasterAccountError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>email</code> | <code>string?</code> | Sub-account email |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[SubAccountSStatusOnMarginFuturesForMasterAccountRequest](Requests/SubAccountApi/SubAccountSStatusOnMarginFuturesForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -20801,7 +19707,7 @@ catch (SdkException<SubAccountSStatusOnMarginFuturesForMasterAccountError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1SubAccountStatusResponse](Models/SapiV1SubAccountStatusResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[SubAccountSStatusOnMarginFuturesForMasterAccountError](Errors/SubAccountSStatusOnMarginFuturesForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SubAccountSStatusOnMarginFuturesForMasterAccountError](Errors/SubAccountSStatusOnMarginFuturesForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -20812,7 +19718,7 @@ catch (SdkException<SubAccountSStatusOnMarginFuturesForMasterAccountError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1SubAccountFuturesAccountSummaryResponse&gt; SummaryOfSubAccountSFuturesAccountForMasterAccount(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1SubAccountFuturesAccountSummaryResponse&gt; SummaryOfSubAccountSFuturesAccountForMasterAccount(SummaryOfSubAccountSFuturesAccountForMasterAccountRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -20835,12 +19741,16 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.SubAccountApi.SummaryOfSubAccountSFuturesAccountForMasterAccount(timestamp,
-        signature,
-        recvWindow);
+    var response = await client.SubAccountApi.SummaryOfSubAccountSFuturesAccountForMasterAccount(
+        new SummaryOfSubAccountSFuturesAccountForMasterAccountRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1SubAccountFuturesAccountSummaryResponse
 }
-catch (SdkException<SummaryOfSubAccountSFuturesAccountForMasterAccountError> ex)
+catch (ApiException<SummaryOfSubAccountSFuturesAccountForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -20852,16 +19762,12 @@ catch (SdkException<SummaryOfSubAccountSFuturesAccountForMasterAccountError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[SummaryOfSubAccountSFuturesAccountForMasterAccountRequest](Requests/SubAccountApi/SummaryOfSubAccountSFuturesAccountForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -20873,7 +19779,7 @@ catch (SdkException<SummaryOfSubAccountSFuturesAccountForMasterAccountError> ex)
 
 **OnSuccess**: <code>[SapiV1SubAccountFuturesAccountSummaryResponse](Models/SapiV1SubAccountFuturesAccountSummaryResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[SummaryOfSubAccountSFuturesAccountForMasterAccountError](Errors/SummaryOfSubAccountSFuturesAccountForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SummaryOfSubAccountSFuturesAccountForMasterAccountError](Errors/SummaryOfSubAccountSFuturesAccountForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -20884,7 +19790,7 @@ catch (SdkException<SummaryOfSubAccountSFuturesAccountForMasterAccountError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV2SubAccountFuturesAccountSummaryResponse&gt; SummaryOfSubAccountSFuturesAccountV2ForMasterAccount(int futuresType, long timestamp, string signature, int? page, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV2SubAccountFuturesAccountSummaryResponse&gt; SummaryOfSubAccountSFuturesAccountV2ForMasterAccount(SummaryOfSubAccountSFuturesAccountV2ForMasterAccountRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -20907,15 +19813,18 @@ Weight(IP): 10
 ```csharp
 try
 {
-    var response = await client.SubAccountApi.SummaryOfSubAccountSFuturesAccountV2ForMasterAccount(futuresType,
-        timestamp,
-        signature,
-        page,
-        limit,
-        recvWindow);
+    var response = await client.SubAccountApi.SummaryOfSubAccountSFuturesAccountV2ForMasterAccount(
+        new SummaryOfSubAccountSFuturesAccountV2ForMasterAccountRequest
+        {
+            FuturesType = 1,
+            Timestamp = 1L,
+            Signature = "some example string",
+            Page = 1,
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV2SubAccountFuturesAccountSummaryResponse
 }
-catch (SdkException<SummaryOfSubAccountSFuturesAccountV2ForMasterAccountError> ex)
+catch (ApiException<SummaryOfSubAccountSFuturesAccountV2ForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -20927,19 +19836,12 @@ catch (SdkException<SummaryOfSubAccountSFuturesAccountV2ForMasterAccountError> e
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>futuresType</code> | <code>int</code> | * `1` - USDT Margined Futures<br>* `2` - COIN Margined Futures |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>page</code> | <code>int?</code> | Default 1 |
-| <code>limit</code> | <code>int?</code> | Default 10, Max 20 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[SummaryOfSubAccountSFuturesAccountV2ForMasterAccountRequest](Requests/SubAccountApi/SummaryOfSubAccountSFuturesAccountV2ForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -20951,7 +19853,7 @@ catch (SdkException<SummaryOfSubAccountSFuturesAccountV2ForMasterAccountError> e
 
 **OnSuccess**: <code>[SapiV2SubAccountFuturesAccountSummaryResponse](Models/AnyOf/SapiV2SubAccountFuturesAccountSummaryResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[SummaryOfSubAccountSFuturesAccountV2ForMasterAccountError](Errors/SummaryOfSubAccountSFuturesAccountV2ForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SummaryOfSubAccountSFuturesAccountV2ForMasterAccountError](Errors/SummaryOfSubAccountSFuturesAccountV2ForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -20962,7 +19864,7 @@ catch (SdkException<SummaryOfSubAccountSFuturesAccountV2ForMasterAccountError> e
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1SubAccountMarginAccountSummaryResponse&gt; SummaryOfSubAccountSMarginAccountForMasterAccount(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1SubAccountMarginAccountSummaryResponse&gt; SummaryOfSubAccountSMarginAccountForMasterAccount(SummaryOfSubAccountSMarginAccountForMasterAccountRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -20985,12 +19887,16 @@ Weight(IP): 10
 ```csharp
 try
 {
-    var response = await client.SubAccountApi.SummaryOfSubAccountSMarginAccountForMasterAccount(timestamp,
-        signature,
-        recvWindow);
+    var response = await client.SubAccountApi.SummaryOfSubAccountSMarginAccountForMasterAccount(
+        new SummaryOfSubAccountSMarginAccountForMasterAccountRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1SubAccountMarginAccountSummaryResponse
 }
-catch (SdkException<SummaryOfSubAccountSMarginAccountForMasterAccountError> ex)
+catch (ApiException<SummaryOfSubAccountSMarginAccountForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -21002,16 +19908,12 @@ catch (SdkException<SummaryOfSubAccountSMarginAccountForMasterAccountError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[SummaryOfSubAccountSMarginAccountForMasterAccountRequest](Requests/SubAccountApi/SummaryOfSubAccountSMarginAccountForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -21023,7 +19925,7 @@ catch (SdkException<SummaryOfSubAccountSMarginAccountForMasterAccountError> ex)
 
 **OnSuccess**: <code>[SapiV1SubAccountMarginAccountSummaryResponse](Models/SapiV1SubAccountMarginAccountSummaryResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[SummaryOfSubAccountSMarginAccountForMasterAccountError](Errors/SummaryOfSubAccountSMarginAccountForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SummaryOfSubAccountSMarginAccountForMasterAccountError](Errors/SummaryOfSubAccountSMarginAccountForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -21034,7 +19936,7 @@ catch (SdkException<SummaryOfSubAccountSMarginAccountForMasterAccountError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1SubAccountFuturesTransferResponse&gt; TransferForSubAccountForMasterAccount(string email, string asset, double amount, int type, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1SubAccountFuturesTransferResponse&gt; TransferForSubAccountForMasterAccount(TransferForSubAccountForMasterAccountRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -21057,16 +19959,20 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.SubAccountApi.TransferForSubAccountForMasterAccount(email,
-        asset,
-        amount,
-        type,
-        timestamp,
-        signature,
-        recvWindow);
+    var response = await client.SubAccountApi.TransferForSubAccountForMasterAccount(
+        new TransferForSubAccountForMasterAccountRequest
+        {
+            Email = "some example string",
+            Asset = "BTC",
+            Amount = 1.01d,
+            Type = 1,
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1SubAccountFuturesTransferResponse
 }
-catch (SdkException<TransferForSubAccountForMasterAccountError> ex)
+catch (ApiException<TransferForSubAccountForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -21078,20 +19984,12 @@ catch (SdkException<TransferForSubAccountForMasterAccountError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>email</code> | <code>string</code> | Sub-account email |
-| <code>asset</code> | <code>string</code> | - |
-| <code>amount</code> | <code>double</code> | - |
-| <code>type</code> | <code>int</code> | * `1` - transfer from subaccount's spot account to its USDT-margined futures account<br>* `2` - transfer from subaccount's USDT-margined futures account to its spot account<br>* `3` - transfer from subaccount's spot account to its COIN-margined futures account<br>* `4` - transfer from subaccount's COIN-margined futures account to its spot account |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[TransferForSubAccountForMasterAccountRequest](Requests/SubAccountApi/TransferForSubAccountForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -21103,7 +20001,7 @@ catch (SdkException<TransferForSubAccountForMasterAccountError> ex)
 
 **OnSuccess**: <code>[SapiV1SubAccountFuturesTransferResponse](Models/SapiV1SubAccountFuturesTransferResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[TransferForSubAccountForMasterAccountError](Errors/TransferForSubAccountForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[TransferForSubAccountForMasterAccountError](Errors/TransferForSubAccountForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -21114,7 +20012,7 @@ catch (SdkException<TransferForSubAccountForMasterAccountError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1SubAccountTransferSubToMasterResponse&gt; TransferToMasterForSubAccount(string asset, double amount, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1SubAccountTransferSubToMasterResponse&gt; TransferToMasterForSubAccount(TransferToMasterForSubAccountRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -21137,14 +20035,17 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.SubAccountApi.TransferToMasterForSubAccount(asset,
-        amount,
-        timestamp,
-        signature,
-        recvWindow);
+    var response = await client.SubAccountApi.TransferToMasterForSubAccount(new TransferToMasterForSubAccountRequest
+    {
+        Asset = "BTC",
+        Amount = 1.01d,
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1SubAccountTransferSubToMasterResponse
 }
-catch (SdkException<TransferToMasterForSubAccountError> ex)
+catch (ApiException<TransferToMasterForSubAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -21156,18 +20057,12 @@ catch (SdkException<TransferToMasterForSubAccountError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>asset</code> | <code>string</code> | - |
-| <code>amount</code> | <code>double</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[TransferToMasterForSubAccountRequest](Requests/SubAccountApi/TransferToMasterForSubAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -21179,7 +20074,7 @@ catch (SdkException<TransferToMasterForSubAccountError> ex)
 
 **OnSuccess**: <code>[SapiV1SubAccountTransferSubToMasterResponse](Models/SapiV1SubAccountTransferSubToMasterResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[TransferToMasterForSubAccountError](Errors/TransferToMasterForSubAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[TransferToMasterForSubAccountError](Errors/TransferToMasterForSubAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -21190,7 +20085,7 @@ catch (SdkException<TransferToMasterForSubAccountError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1SubAccountTransferSubToSubResponse&gt; TransferToSubAccountOfSameMasterForSubAccount(string toEmail, string asset, double amount, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1SubAccountTransferSubToSubResponse&gt; TransferToSubAccountOfSameMasterForSubAccount(TransferToSubAccountOfSameMasterForSubAccountRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -21213,15 +20108,19 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.SubAccountApi.TransferToSubAccountOfSameMasterForSubAccount(toEmail,
-        asset,
-        amount,
-        timestamp,
-        signature,
-        recvWindow);
+    var response = await client.SubAccountApi.TransferToSubAccountOfSameMasterForSubAccount(
+        new TransferToSubAccountOfSameMasterForSubAccountRequest
+        {
+            ToEmail = "some example string",
+            Asset = "BTC",
+            Amount = 1.01d,
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1SubAccountTransferSubToSubResponse
 }
-catch (SdkException<TransferToSubAccountOfSameMasterForSubAccountError> ex)
+catch (ApiException<TransferToSubAccountOfSameMasterForSubAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -21233,19 +20132,12 @@ catch (SdkException<TransferToSubAccountOfSameMasterForSubAccountError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>toEmail</code> | <code>string</code> | Recipient email |
-| <code>asset</code> | <code>string</code> | - |
-| <code>amount</code> | <code>double</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[TransferToSubAccountOfSameMasterForSubAccountRequest](Requests/SubAccountApi/TransferToSubAccountOfSameMasterForSubAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -21257,7 +20149,7 @@ catch (SdkException<TransferToSubAccountOfSameMasterForSubAccountError> ex)
 
 **OnSuccess**: <code>[SapiV1SubAccountTransferSubToSubResponse](Models/SapiV1SubAccountTransferSubToSubResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[TransferToSubAccountOfSameMasterForSubAccountError](Errors/TransferToSubAccountOfSameMasterForSubAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[TransferToSubAccountOfSameMasterForSubAccountError](Errors/TransferToSubAccountOfSameMasterForSubAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -21268,7 +20160,7 @@ catch (SdkException<TransferToSubAccountOfSameMasterForSubAccountError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1SubAccountUniversalTransferResponse1&gt; UniversalTransferForMasterAccount(FromAccountType fromAccountType, ToAccountType toAccountType, string asset, double amount, long timestamp, string signature, string? fromEmail, string? toEmail, string? clientTranId, string? symbol, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1SubAccountUniversalTransferResponse1&gt; UniversalTransferForMasterAccount(UniversalTransferForMasterAccountRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -21299,20 +20191,21 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.SubAccountApi.UniversalTransferForMasterAccount(fromAccountType,
-        toAccountType,
-        asset,
-        amount,
-        timestamp,
-        signature,
-        fromEmail,
-        toEmail,
-        clientTranId,
-        symbol,
-        recvWindow);
+    var response = await client.SubAccountApi.UniversalTransferForMasterAccount(
+        new UniversalTransferForMasterAccountRequest
+        {
+            FromAccountType = FromAccountType.Spot,
+            ToAccountType = ToAccountType.Spot,
+            Asset = "BTC",
+            Amount = 1.01d,
+            Timestamp = 1L,
+            Signature = "some example string",
+            Symbol = "BNBUSDT",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1SubAccountUniversalTransferResponse1
 }
-catch (SdkException<UniversalTransferForMasterAccountError> ex)
+catch (ApiException<UniversalTransferForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -21324,24 +20217,12 @@ catch (SdkException<UniversalTransferForMasterAccountError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>fromAccountType</code> | <code>[FromAccountType](Models/Enums/FromAccountType.cs)</code> | - |
-| <code>toAccountType</code> | <code>[ToAccountType](Models/Enums/ToAccountType.cs)</code> | - |
-| <code>asset</code> | <code>string</code> | - |
-| <code>amount</code> | <code>double</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>fromEmail</code> | <code>string?</code> | Sub-account email |
-| <code>toEmail</code> | <code>string?</code> | Sub-account email |
-| <code>clientTranId</code> | <code>string?</code> | - |
-| <code>symbol</code> | <code>string?</code> | Only supported under ISOLATED_MARGIN type |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[UniversalTransferForMasterAccountRequest](Requests/SubAccountApi/UniversalTransferForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -21353,7 +20234,7 @@ catch (SdkException<UniversalTransferForMasterAccountError> ex)
 
 **OnSuccess**: <code>[SapiV1SubAccountUniversalTransferResponse1](Models/SapiV1SubAccountUniversalTransferResponse1.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[UniversalTransferForMasterAccountError](Errors/UniversalTransferForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[UniversalTransferForMasterAccountError](Errors/UniversalTransferForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -21364,7 +20245,7 @@ catch (SdkException<UniversalTransferForMasterAccountError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1SubAccountUniversalTransferResponse&gt;&gt; UniversalTransferHistoryForMasterAccount(long timestamp, string signature, string? fromEmail, string? toEmail, string? clientTranId, long? startTime, long? endTime, int? page, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1SubAccountUniversalTransferResponse&gt;&gt; UniversalTransferHistoryForMasterAccount(UniversalTransferHistoryForMasterAccountRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -21392,19 +20273,17 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.SubAccountApi.UniversalTransferHistoryForMasterAccount(timestamp,
-        signature,
-        fromEmail,
-        toEmail,
-        clientTranId,
-        startTime,
-        endTime,
-        page,
-        limit,
-        recvWindow);
+    var response = await client.SubAccountApi.UniversalTransferHistoryForMasterAccount(
+        new UniversalTransferHistoryForMasterAccountRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            Page = 1,
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1SubAccountUniversalTransferResponse>
 }
-catch (SdkException<UniversalTransferHistoryForMasterAccountError> ex)
+catch (ApiException<UniversalTransferHistoryForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -21416,23 +20295,12 @@ catch (SdkException<UniversalTransferHistoryForMasterAccountError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>fromEmail</code> | <code>string?</code> | Sub-account email |
-| <code>toEmail</code> | <code>string?</code> | Sub-account email |
-| <code>clientTranId</code> | <code>string?</code> | - |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>page</code> | <code>int?</code> | Default 1 |
-| <code>limit</code> | <code>int?</code> | Default 500, Max 500 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[UniversalTransferHistoryForMasterAccountRequest](Requests/SubAccountApi/UniversalTransferHistoryForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -21444,7 +20312,7 @@ catch (SdkException<UniversalTransferHistoryForMasterAccountError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1SubAccountUniversalTransferResponse](Models/SapiV1SubAccountUniversalTransferResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[UniversalTransferHistoryForMasterAccountError](Errors/UniversalTransferHistoryForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[UniversalTransferHistoryForMasterAccountError](Errors/UniversalTransferHistoryForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -21455,7 +20323,7 @@ catch (SdkException<UniversalTransferHistoryForMasterAccountError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV2SubAccountSubAccountApiIpRestrictionResponse&gt; UpdateIpRestrictionForSubAccountApiKeyForMasterAccount(string email, string subAccountApiKey, string status, long timestamp, string signature, string? thirdPartyName, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV2SubAccountSubAccountApiIpRestrictionResponse&gt; UpdateIpRestrictionForSubAccountApiKeyForMasterAccount(UpdateIpRestrictionForSubAccountApiKeyForMasterAccountRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -21480,16 +20348,19 @@ Weight(UID): 3000
 ```csharp
 try
 {
-    var response = await client.SubAccountApi.UpdateIpRestrictionForSubAccountApiKeyForMasterAccount(email,
-        subAccountApiKey,
-        status,
-        timestamp,
-        signature,
-        thirdPartyName,
-        recvWindow);
+    var response = await client.SubAccountApi.UpdateIpRestrictionForSubAccountApiKeyForMasterAccount(
+        new UpdateIpRestrictionForSubAccountApiKeyForMasterAccountRequest
+        {
+            Email = "some example string",
+            SubAccountApiKey = "some example string",
+            Status = "1",
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV2SubAccountSubAccountApiIpRestrictionResponse
 }
-catch (SdkException<UpdateIpRestrictionForSubAccountApiKeyForMasterAccountError> ex)
+catch (ApiException<UpdateIpRestrictionForSubAccountApiKeyForMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -21501,20 +20372,12 @@ catch (SdkException<UpdateIpRestrictionForSubAccountApiKeyForMasterAccountError>
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>email</code> | <code>string</code> | Sub-account email |
-| <code>subAccountApiKey</code> | <code>string</code> | - |
-| <code>status</code> | <code>string</code> | IP Restriction status. 1 = IP Unrestricted. 2 = Restrict access to trusted IPs only. 3 = Restrict access to users' trusted third party IPs only |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>thirdPartyName</code> | <code>string?</code> | third party IP list name |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[UpdateIpRestrictionForSubAccountApiKeyForMasterAccountRequest](Requests/SubAccountApi/UpdateIpRestrictionForSubAccountApiKeyForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -21526,7 +20389,7 @@ catch (SdkException<UpdateIpRestrictionForSubAccountApiKeyForMasterAccountError>
 
 **OnSuccess**: <code>[SapiV2SubAccountSubAccountApiIpRestrictionResponse](Models/SapiV2SubAccountSubAccountApiIpRestrictionResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[UpdateIpRestrictionForSubAccountApiKeyForMasterAccountError](Errors/UpdateIpRestrictionForSubAccountApiKeyForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[UpdateIpRestrictionForSubAccountApiKeyForMasterAccountError](Errors/UpdateIpRestrictionForSubAccountApiKeyForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -21537,7 +20400,7 @@ catch (SdkException<UpdateIpRestrictionForSubAccountApiKeyForMasterAccountError>
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1ManagedSubaccountWithdrawResponse&gt; WithdrawlAssetsFromTheManagedSubAccountForInvestorMasterAccount(string fromEmail, string asset, double amount, long timestamp, string signature, long? transferDate, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1ManagedSubaccountWithdrawResponse&gt; WithdrawlAssetsFromTheManagedSubAccountForInvestorMasterAccount(WithdrawlAssetsFromTheManagedSubAccountForInvestorMasterAccountRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -21560,16 +20423,19 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.SubAccountApi.WithdrawlAssetsFromTheManagedSubAccountForInvestorMasterAccount(fromEmail,
-        asset,
-        amount,
-        timestamp,
-        signature,
-        transferDate,
-        recvWindow);
+    var response = await client.SubAccountApi.WithdrawlAssetsFromTheManagedSubAccountForInvestorMasterAccount(
+        new WithdrawlAssetsFromTheManagedSubAccountForInvestorMasterAccountRequest
+        {
+            FromEmail = "some example string",
+            Asset = "BTC",
+            Amount = 1.01d,
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1ManagedSubaccountWithdrawResponse
 }
-catch (SdkException<WithdrawlAssetsFromTheManagedSubAccountForInvestorMasterAccountError> ex)
+catch (ApiException<WithdrawlAssetsFromTheManagedSubAccountForInvestorMasterAccountError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -21581,20 +20447,12 @@ catch (SdkException<WithdrawlAssetsFromTheManagedSubAccountForInvestorMasterAcco
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>fromEmail</code> | <code>string</code> | Sender email |
-| <code>asset</code> | <code>string</code> | - |
-| <code>amount</code> | <code>double</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>transferDate</code> | <code>long?</code> | Withdrawals is automatically occur on the transfer date(UTC0). If a date is not selected, the withdrawal occurs right now |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[WithdrawlAssetsFromTheManagedSubAccountForInvestorMasterAccountRequest](Requests/SubAccountApi/WithdrawlAssetsFromTheManagedSubAccountForInvestorMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -21606,7 +20464,7 @@ catch (SdkException<WithdrawlAssetsFromTheManagedSubAccountForInvestorMasterAcco
 
 **OnSuccess**: <code>[SapiV1ManagedSubaccountWithdrawResponse](Models/SapiV1ManagedSubaccountWithdrawResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[WithdrawlAssetsFromTheManagedSubAccountForInvestorMasterAccountError](Errors/WithdrawlAssetsFromTheManagedSubAccountForInvestorMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[WithdrawlAssetsFromTheManagedSubAccountForInvestorMasterAccountError](Errors/WithdrawlAssetsFromTheManagedSubAccountForInvestorMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -21621,7 +20479,7 @@ catch (SdkException<WithdrawlAssetsFromTheManagedSubAccountForInvestorMasterAcco
 > Source: [TradeApi](Api/TradeApi.cs)
 
 <details>
-<summary><code>Task&lt;Account&gt; AccountInformationUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;Account&gt; AccountInformationUserData(AccountInformationUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -21646,10 +20504,15 @@ Weight(IP): 20
 ```csharp
 try
 {
-    var response = await client.TradeApi.AccountInformationUserData(timestamp, signature, recvWindow);
+    var response = await client.TradeApi.AccountInformationUserData(new AccountInformationUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type Account
 }
-catch (SdkException<AccountInformationUserDataError> ex)
+catch (ApiException<AccountInformationUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -21661,16 +20524,12 @@ catch (SdkException<AccountInformationUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[AccountInformationUserDataRequest](Requests/TradeApi/AccountInformationUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -21682,7 +20541,7 @@ catch (SdkException<AccountInformationUserDataError> ex)
 
 **OnSuccess**: <code>[Account](Models/Account.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[AccountInformationUserDataError](Errors/AccountInformationUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[AccountInformationUserDataError](Errors/AccountInformationUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -21693,7 +20552,7 @@ catch (SdkException<AccountInformationUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;MyTrade&gt;&gt; AccountTradeListUserData(string symbol, long timestamp, string signature, long? orderId, long? startTime, long? endTime, long? fromId, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;MyTrade&gt;&gt; AccountTradeListUserData(AccountTradeListUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -21737,18 +20596,17 @@ Weight(IP): 20
 ```csharp
 try
 {
-    var response = await client.TradeApi.AccountTradeListUserData(symbol,
-        timestamp,
-        signature,
-        orderId,
-        startTime,
-        endTime,
-        fromId,
-        limit,
-        recvWindow);
+    var response = await client.TradeApi.AccountTradeListUserData(new AccountTradeListUserDataRequest
+    {
+        Symbol = "BNBUSDT",
+        Timestamp = 1L,
+        Signature = "some example string",
+        Limit = 5,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type IReadOnlyList<MyTrade>
 }
-catch (SdkException<AccountTradeListUserDataError> ex)
+catch (ApiException<AccountTradeListUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -21760,22 +20618,12 @@ catch (SdkException<AccountTradeListUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string</code> | Trading symbol, e.g. BNBUSDT |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>orderId</code> | <code>long?</code> | This can only be used in combination with symbol. |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>fromId</code> | <code>long?</code> | Trade id to fetch from. Default gets most recent trades. |
-| <code>limit</code> | <code>int?</code> | Default 500; max 1000. |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[AccountTradeListUserDataRequest](Requests/TradeApi/AccountTradeListUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -21787,7 +20635,7 @@ catch (SdkException<AccountTradeListUserDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[MyTrade](Models/MyTrade.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[AccountTradeListUserDataError](Errors/AccountTradeListUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[AccountTradeListUserDataError](Errors/AccountTradeListUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -21798,7 +20646,7 @@ catch (SdkException<AccountTradeListUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;OrderDetails&gt;&gt; AllOrdersUserData(string symbol, long timestamp, string signature, long? orderId, long? startTime, long? endTime, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;OrderDetails&gt;&gt; AllOrdersUserData(AllOrdersUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -21827,17 +20675,17 @@ Weight(IP): 20
 ```csharp
 try
 {
-    var response = await client.TradeApi.AllOrdersUserData(symbol,
-        timestamp,
-        signature,
-        orderId,
-        startTime,
-        endTime,
-        limit,
-        recvWindow);
+    var response = await client.TradeApi.AllOrdersUserData(new AllOrdersUserDataRequest
+    {
+        Symbol = "BNBUSDT",
+        Timestamp = 1L,
+        Signature = "some example string",
+        Limit = 5,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type IReadOnlyList<OrderDetails>
 }
-catch (SdkException<AllOrdersUserDataError> ex)
+catch (ApiException<AllOrdersUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -21849,21 +20697,12 @@ catch (SdkException<AllOrdersUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string</code> | Trading symbol, e.g. BNBUSDT |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>orderId</code> | <code>long?</code> | Order id |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>limit</code> | <code>int?</code> | Default 500; max 1000. |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[AllOrdersUserDataRequest](Requests/TradeApi/AllOrdersUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -21875,7 +20714,7 @@ catch (SdkException<AllOrdersUserDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[OrderDetails](Models/OrderDetails.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[AllOrdersUserDataError](Errors/AllOrdersUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[AllOrdersUserDataError](Errors/AllOrdersUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -21886,7 +20725,7 @@ catch (SdkException<AllOrdersUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;OcoOrder&gt; CancelOcoTrade(string symbol, long timestamp, string signature, long? orderListId, string? listClientOrderId, string? newClientOrderId, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;OcoOrder&gt; CancelOcoTrade(CancelOcoTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -21913,16 +20752,16 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.TradeApi.CancelOcoTrade(symbol,
-        timestamp,
-        signature,
-        orderListId,
-        listClientOrderId,
-        newClientOrderId,
-        recvWindow);
+    var response = await client.TradeApi.CancelOcoTrade(new CancelOcoTradeRequest
+    {
+        Symbol = "BNBUSDT",
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type OcoOrder
 }
-catch (SdkException<CancelOcoTradeError> ex)
+catch (ApiException<CancelOcoTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -21934,20 +20773,12 @@ catch (SdkException<CancelOcoTradeError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string</code> | Trading symbol, e.g. BNBUSDT |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>orderListId</code> | <code>long?</code> | Order list id |
-| <code>listClientOrderId</code> | <code>string?</code> | A unique Id for the entire orderList |
-| <code>newClientOrderId</code> | <code>string?</code> | Used to uniquely identify this cancel. Automatically generated by default |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[CancelOcoTradeRequest](Requests/TradeApi/CancelOcoTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -21959,7 +20790,7 @@ catch (SdkException<CancelOcoTradeError> ex)
 
 **OnSuccess**: <code>[OcoOrder](Models/OcoOrder.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[CancelOcoTradeError](Errors/CancelOcoTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CancelOcoTradeError](Errors/CancelOcoTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -21970,7 +20801,7 @@ catch (SdkException<CancelOcoTradeError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;Order&gt; CancelOrderTrade(string symbol, long timestamp, string signature, long? orderId, string? origClientOrderId, string? newClientOrderId, CancelRestrictions? cancelRestrictions, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;Order&gt; CancelOrderTrade(CancelOrderTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -21997,17 +20828,17 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.TradeApi.CancelOrderTrade(symbol,
-        timestamp,
-        signature,
-        orderId,
-        origClientOrderId,
-        newClientOrderId,
-        cancelRestrictions,
-        recvWindow);
+    var response = await client.TradeApi.CancelOrderTrade(new CancelOrderTradeRequest
+    {
+        Symbol = "BNBUSDT",
+        Timestamp = 1L,
+        Signature = "some example string",
+        CancelRestrictions = CancelRestrictions.OnlyNew,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type Order
 }
-catch (SdkException<CancelOrderTradeError> ex)
+catch (ApiException<CancelOrderTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -22019,21 +20850,12 @@ catch (SdkException<CancelOrderTradeError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string</code> | Trading symbol, e.g. BNBUSDT |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>orderId</code> | <code>long?</code> | Order id |
-| <code>origClientOrderId</code> | <code>string?</code> | Order id from client |
-| <code>newClientOrderId</code> | <code>string?</code> | Used to uniquely identify this cancel. Automatically generated by default |
-| <code>cancelRestrictions</code> | <code>[CancelRestrictions?](Models/Enums/CancelRestrictions.cs)</code> | - |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[CancelOrderTradeRequest](Requests/TradeApi/CancelOrderTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -22045,7 +20867,7 @@ catch (SdkException<CancelOrderTradeError> ex)
 
 **OnSuccess**: <code>[Order](Models/Order.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[CancelOrderTradeError](Errors/CancelOrderTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CancelOrderTradeError](Errors/CancelOrderTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -22056,7 +20878,7 @@ catch (SdkException<CancelOrderTradeError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;ApiV3OpenOrdersResponse&gt;&gt; CancelAllOpenOrdersOnASymbolTrade(string symbol, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;ApiV3OpenOrdersResponse&gt;&gt; CancelAllOpenOrdersOnASymbolTrade(CancelAllOpenOrdersOnASymbolTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -22082,10 +20904,16 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.TradeApi.CancelAllOpenOrdersOnASymbolTrade(symbol, timestamp, signature, recvWindow);
+    var response = await client.TradeApi.CancelAllOpenOrdersOnASymbolTrade(new CancelAllOpenOrdersOnASymbolTradeRequest
+    {
+        Symbol = "BNBUSDT",
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type IReadOnlyList<ApiV3OpenOrdersResponse>
 }
-catch (SdkException<CancelAllOpenOrdersOnASymbolTradeError> ex)
+catch (ApiException<CancelAllOpenOrdersOnASymbolTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -22097,17 +20925,12 @@ catch (SdkException<CancelAllOpenOrdersOnASymbolTradeError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string</code> | Trading symbol, e.g. BNBUSDT |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[CancelAllOpenOrdersOnASymbolTradeRequest](Requests/TradeApi/CancelAllOpenOrdersOnASymbolTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -22119,7 +20942,7 @@ catch (SdkException<CancelAllOpenOrdersOnASymbolTradeError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[ApiV3OpenOrdersResponse](Models/AnyOf/ApiV3OpenOrdersResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[CancelAllOpenOrdersOnASymbolTradeError](Errors/CancelAllOpenOrdersOnASymbolTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CancelAllOpenOrdersOnASymbolTradeError](Errors/CancelAllOpenOrdersOnASymbolTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -22130,7 +20953,7 @@ catch (SdkException<CancelAllOpenOrdersOnASymbolTradeError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;ApiV3OrderCancelReplaceResponse&gt; CancelAnExistingOrderAndSendANewOrderTrade(string symbol, Side side, Type1 type, string cancelReplaceMode, long timestamp, string signature, CancelRestrictions? cancelRestrictions, TimeInForce? timeInForce, double? quantity, double? quoteOrderQty, double? price, string? cancelNewClientOrderId, string? cancelOrigClientOrderId, long? cancelOrderId, string? newClientOrderId, long? strategyId, long? strategyType, double? stopPrice, double? trailingDelta, double? icebergQty, NewOrderRespType? newOrderRespType, SelfTradePreventionMode? selfTradePreventionMode, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;ApiV3OrderCancelReplaceResponse&gt; CancelAnExistingOrderAndSendANewOrderTrade(CancelAnExistingOrderAndSendANewOrderTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -22159,32 +20982,27 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.TradeApi.CancelAnExistingOrderAndSendANewOrderTrade(symbol,
-        side,
-        type,
-        cancelReplaceMode,
-        timestamp,
-        signature,
-        cancelRestrictions,
-        timeInForce,
-        quantity,
-        quoteOrderQty,
-        price,
-        cancelNewClientOrderId,
-        cancelOrigClientOrderId,
-        cancelOrderId,
-        newClientOrderId,
-        strategyId,
-        strategyType,
-        stopPrice,
-        trailingDelta,
-        icebergQty,
-        newOrderRespType,
-        selfTradePreventionMode,
-        recvWindow);
+    var response = await client.TradeApi.CancelAnExistingOrderAndSendANewOrderTrade(
+        new CancelAnExistingOrderAndSendANewOrderTradeRequest
+        {
+            Symbol = "BNBUSDT",
+            Side = Side.Sell,
+            Type = Type1.Limit,
+            CancelReplaceMode = "STOP_ON_FAILURE",
+            Timestamp = 1L,
+            Signature = "some example string",
+            CancelRestrictions = CancelRestrictions.OnlyNew,
+            TimeInForce = TimeInForce.Gtc,
+            Quantity = 1d,
+            Price = 219d,
+            CancelOrderId = 12L,
+            StopPrice = 221.01d,
+            SelfTradePreventionMode = SelfTradePreventionMode.ExpireTaker,
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type ApiV3OrderCancelReplaceResponse
 }
-catch (SdkException<CancelAnExistingOrderAndSendANewOrderTradeError> ex)
+catch (ApiException<CancelAnExistingOrderAndSendANewOrderTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -22196,36 +21014,12 @@ catch (SdkException<CancelAnExistingOrderAndSendANewOrderTradeError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string</code> | Trading symbol, e.g. BNBUSDT |
-| <code>side</code> | <code>[Side](Models/Enums/Side.cs)</code> | - |
-| <code>type</code> | <code>[Type1](Models/Enums/Type1.cs)</code> | Order type |
-| <code>cancelReplaceMode</code> | <code>string</code> | - `STOP_ON_FAILURE` If the cancel request fails, the new order placement will not be attempted.<br>- `ALLOW_FAILURES` If new order placement will be attempted even if cancel request fails. |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>cancelRestrictions</code> | <code>[CancelRestrictions?](Models/Enums/CancelRestrictions.cs)</code> | - |
-| <code>timeInForce</code> | <code>[TimeInForce?](Models/Enums/TimeInForce.cs)</code> | Order time in force |
-| <code>quantity</code> | <code>double?</code> | Order quantity |
-| <code>quoteOrderQty</code> | <code>double?</code> | Quote quantity |
-| <code>price</code> | <code>double?</code> | Order price |
-| <code>cancelNewClientOrderId</code> | <code>string?</code> | Used to uniquely identify this cancel. Automatically generated by default |
-| <code>cancelOrigClientOrderId</code> | <code>string?</code> | Either the cancelOrigClientOrderId or cancelOrderId must be provided. If both are provided, cancelOrderId takes precedence. |
-| <code>cancelOrderId</code> | <code>long?</code> | Either the cancelOrigClientOrderId or cancelOrderId must be provided. If both are provided, cancelOrderId takes precedence. |
-| <code>newClientOrderId</code> | <code>string?</code> | Used to uniquely identify this cancel. Automatically generated by default |
-| <code>strategyId</code> | <code>long?</code> | - |
-| <code>strategyType</code> | <code>long?</code> | The value cannot be less than 1000000. |
-| <code>stopPrice</code> | <code>double?</code> | Used with STOP_LOSS, STOP_LOSS_LIMIT, TAKE_PROFIT, and TAKE_PROFIT_LIMIT orders. |
-| <code>trailingDelta</code> | <code>double?</code> | Used with STOP_LOSS, STOP_LOSS_LIMIT, TAKE_PROFIT, and TAKE_PROFIT_LIMIT orders. |
-| <code>icebergQty</code> | <code>double?</code> | Used with LIMIT, STOP_LOSS_LIMIT, and TAKE_PROFIT_LIMIT to create an iceberg order. |
-| <code>newOrderRespType</code> | <code>[NewOrderRespType?](Models/Enums/NewOrderRespType.cs)</code> | Set the response JSON. MARKET and LIMIT order types default to FULL, all other orders default to ACK. |
-| <code>selfTradePreventionMode</code> | <code>[SelfTradePreventionMode?](Models/Enums/SelfTradePreventionMode.cs)</code> | The allowed enums is dependent on what is configured on the symbol. The possible supported values are EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH, NONE. |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[CancelAnExistingOrderAndSendANewOrderTradeRequest](Requests/TradeApi/CancelAnExistingOrderAndSendANewOrderTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -22237,7 +21031,7 @@ catch (SdkException<CancelAnExistingOrderAndSendANewOrderTradeError> ex)
 
 **OnSuccess**: <code>[ApiV3OrderCancelReplaceResponse](Models/ApiV3OrderCancelReplaceResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[CancelAnExistingOrderAndSendANewOrderTradeError](Errors/CancelAnExistingOrderAndSendANewOrderTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CancelAnExistingOrderAndSendANewOrderTradeError](Errors/CancelAnExistingOrderAndSendANewOrderTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -22248,7 +21042,7 @@ catch (SdkException<CancelAnExistingOrderAndSendANewOrderTradeError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;OrderDetails&gt;&gt; CurrentOpenOrdersUserData(long timestamp, string signature, string? symbol, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;OrderDetails&gt;&gt; CurrentOpenOrdersUserData(CurrentOpenOrdersUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -22275,10 +21069,16 @@ Weight(IP):
 ```csharp
 try
 {
-    var response = await client.TradeApi.CurrentOpenOrdersUserData(timestamp, signature, symbol, recvWindow);
+    var response = await client.TradeApi.CurrentOpenOrdersUserData(new CurrentOpenOrdersUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        Symbol = "BNBUSDT",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type IReadOnlyList<OrderDetails>
 }
-catch (SdkException<CurrentOpenOrdersUserDataError> ex)
+catch (ApiException<CurrentOpenOrdersUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -22290,17 +21090,12 @@ catch (SdkException<CurrentOpenOrdersUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>symbol</code> | <code>string?</code> | Trading symbol, e.g. BNBUSDT |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[CurrentOpenOrdersUserDataRequest](Requests/TradeApi/CurrentOpenOrdersUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -22312,7 +21107,7 @@ catch (SdkException<CurrentOpenOrdersUserDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[OrderDetails](Models/OrderDetails.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[CurrentOpenOrdersUserDataError](Errors/CurrentOpenOrdersUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CurrentOpenOrdersUserDataError](Errors/CurrentOpenOrdersUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -22323,7 +21118,7 @@ catch (SdkException<CurrentOpenOrdersUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;ApiV3OrderResponse&gt; NewOrderTrade(string symbol, Side side, Type1 type, long timestamp, string signature, TimeInForce? timeInForce, double? quantity, double? quoteOrderQty, double? price, string? newClientOrderId, long? strategyId, long? strategyType, double? stopPrice, double? trailingDelta, double? icebergQty, NewOrderRespType? newOrderRespType, SelfTradePreventionMode? selfTradePreventionMode, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;ApiV3OrderResponse&gt; NewOrderTrade(NewOrderTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -22363,27 +21158,23 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.TradeApi.NewOrderTrade(symbol,
-        side,
-        type,
-        timestamp,
-        signature,
-        timeInForce,
-        quantity,
-        quoteOrderQty,
-        price,
-        newClientOrderId,
-        strategyId,
-        strategyType,
-        stopPrice,
-        trailingDelta,
-        icebergQty,
-        newOrderRespType,
-        selfTradePreventionMode,
-        recvWindow);
+    var response = await client.TradeApi.NewOrderTrade(new NewOrderTradeRequest
+    {
+        Symbol = "BNBUSDT",
+        Side = Side.Sell,
+        Type = Type1.Limit,
+        Timestamp = 1L,
+        Signature = "some example string",
+        TimeInForce = TimeInForce.Gtc,
+        Quantity = 1d,
+        Price = 219d,
+        StopPrice = 221.01d,
+        SelfTradePreventionMode = SelfTradePreventionMode.ExpireTaker,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type ApiV3OrderResponse
 }
-catch (SdkException<NewOrderTradeError> ex)
+catch (ApiException<NewOrderTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -22395,31 +21186,12 @@ catch (SdkException<NewOrderTradeError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string</code> | Trading symbol, e.g. BNBUSDT |
-| <code>side</code> | <code>[Side](Models/Enums/Side.cs)</code> | - |
-| <code>type</code> | <code>[Type1](Models/Enums/Type1.cs)</code> | Order type |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>timeInForce</code> | <code>[TimeInForce?](Models/Enums/TimeInForce.cs)</code> | Order time in force |
-| <code>quantity</code> | <code>double?</code> | Order quantity |
-| <code>quoteOrderQty</code> | <code>double?</code> | Quote quantity |
-| <code>price</code> | <code>double?</code> | Order price |
-| <code>newClientOrderId</code> | <code>string?</code> | Used to uniquely identify this cancel. Automatically generated by default |
-| <code>strategyId</code> | <code>long?</code> | - |
-| <code>strategyType</code> | <code>long?</code> | The value cannot be less than 1000000. |
-| <code>stopPrice</code> | <code>double?</code> | Used with STOP_LOSS, STOP_LOSS_LIMIT, TAKE_PROFIT, and TAKE_PROFIT_LIMIT orders. |
-| <code>trailingDelta</code> | <code>double?</code> | Used with STOP_LOSS, STOP_LOSS_LIMIT, TAKE_PROFIT, and TAKE_PROFIT_LIMIT orders. |
-| <code>icebergQty</code> | <code>double?</code> | Used with LIMIT, STOP_LOSS_LIMIT, and TAKE_PROFIT_LIMIT to create an iceberg order. |
-| <code>newOrderRespType</code> | <code>[NewOrderRespType?](Models/Enums/NewOrderRespType.cs)</code> | Set the response JSON. MARKET and LIMIT order types default to FULL, all other orders default to ACK. |
-| <code>selfTradePreventionMode</code> | <code>[SelfTradePreventionMode?](Models/Enums/SelfTradePreventionMode.cs)</code> | The allowed enums is dependent on what is configured on the symbol. The possible supported values are EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH, NONE. |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[NewOrderTradeRequest](Requests/TradeApi/NewOrderTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -22431,7 +21203,7 @@ catch (SdkException<NewOrderTradeError> ex)
 
 **OnSuccess**: <code>[ApiV3OrderResponse](Models/AnyOf/ApiV3OrderResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[NewOrderTradeError](Errors/NewOrderTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[NewOrderTradeError](Errors/NewOrderTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -22442,7 +21214,7 @@ catch (SdkException<NewOrderTradeError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;ApiV3OrderListOtoResponse&gt; NewOrderListOtoTrade(string symbol, WorkingType workingType, WorkingSide workingSide, double workingPrice, double workingQuantity, double workingIcebergQty, PendingType pendingType, PendingSide pendingSide, double pendingQuantity, long timestamp, string signature, string? listClientOrderId, NewOrderRespType? newOrderRespType, SelfTradePreventionMode? selfTradePreventionMode, string? workingClientOrderId, WorkingTimeInForce? workingTimeInForce, double? workingStrategyId, long? workingStrategyType, string? pendingClientOrderId, double? pendingPrice, double? pendingStopPrice, double? pendingTrailingDelta, double? pendingIcebergQty, PendingTimeInForce? pendingTimeInForce, double? pendingStrategyId, long? pendingStrategyType, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;ApiV3OrderListOtoResponse&gt; NewOrderListOtoTrade(NewOrderListOtoTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -22473,35 +21245,24 @@ Weight: 1
 ```csharp
 try
 {
-    var response = await client.TradeApi.NewOrderListOtoTrade(symbol,
-        workingType,
-        workingSide,
-        workingPrice,
-        workingQuantity,
-        workingIcebergQty,
-        pendingType,
-        pendingSide,
-        pendingQuantity,
-        timestamp,
-        signature,
-        listClientOrderId,
-        newOrderRespType,
-        selfTradePreventionMode,
-        workingClientOrderId,
-        workingTimeInForce,
-        workingStrategyId,
-        workingStrategyType,
-        pendingClientOrderId,
-        pendingPrice,
-        pendingStopPrice,
-        pendingTrailingDelta,
-        pendingIcebergQty,
-        pendingTimeInForce,
-        pendingStrategyId,
-        pendingStrategyType);
+    var response = await client.TradeApi.NewOrderListOtoTrade(new NewOrderListOtoTradeRequest
+    {
+        Symbol = "BNBUSDT",
+        WorkingType = WorkingType.Limit,
+        WorkingSide = WorkingSide.Buy,
+        WorkingPrice = 1.5d,
+        WorkingQuantity = 1.5d,
+        WorkingIcebergQty = 1.5d,
+        PendingType = PendingType.Limit,
+        PendingSide = PendingSide.Buy,
+        PendingQuantity = 1.5d,
+        Timestamp = 1L,
+        Signature = "some example string",
+        SelfTradePreventionMode = SelfTradePreventionMode.ExpireTaker,
+    });
     // TODO: Handle 'response' of type ApiV3OrderListOtoResponse
 }
-catch (SdkException<NewOrderListOtoTradeError> ex)
+catch (ApiException<NewOrderListOtoTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -22513,39 +21274,12 @@ catch (SdkException<NewOrderListOtoTradeError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string</code> | Trading symbol, e.g. BNBUSDT |
-| <code>workingType</code> | <code>[WorkingType](Models/Enums/WorkingType.cs)</code> | Supported values: LIMIT,LIMIT_MAKER |
-| <code>workingSide</code> | <code>[WorkingSide](Models/Enums/WorkingSide.cs)</code> | BUY,SELL |
-| <code>workingPrice</code> | <code>double</code> | - |
-| <code>workingQuantity</code> | <code>double</code> | Sets the quantity for the working order. |
-| <code>workingIcebergQty</code> | <code>double</code> | This can only be used if workingTimeInForce is GTC. |
-| <code>pendingType</code> | <code>[PendingType](Models/Enums/PendingType.cs)</code> | Supported values: Order Types Note that MARKET orders using quoteOrderQty are not supported. |
-| <code>pendingSide</code> | <code>[PendingSide](Models/Enums/PendingSide.cs)</code> | BUY,SELL |
-| <code>pendingQuantity</code> | <code>double</code> | Sets the quantity for the pending order. |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>listClientOrderId</code> | <code>string?</code> | Arbitrary unique ID among open order lists. Automatically generated if not sent.<br>A new order list with the same `listClientOrderId` is accepted only when the previous one is filled or completely expired.<br>`listClientOrderId` is distinct from the `workingClientOrderId` and the `pendingClientOrderId`. |
-| <code>newOrderRespType</code> | <code>[NewOrderRespType?](Models/Enums/NewOrderRespType.cs)</code> | Set the response JSON. |
-| <code>selfTradePreventionMode</code> | <code>[SelfTradePreventionMode?](Models/Enums/SelfTradePreventionMode.cs)</code> | The allowed enums is dependent on what is configured on the symbol. The possible supported values are EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH, NONE. |
-| <code>workingClientOrderId</code> | <code>string?</code> | Arbitrary unique ID among open orders for the working order. Automatically generated if not sent. |
-| <code>workingTimeInForce</code> | <code>[WorkingTimeInForce?](Models/Enums/WorkingTimeInForce.cs)</code> | GTC, IOC, FOK |
-| <code>workingStrategyId</code> | <code>double?</code> | Arbitrary numeric value identifying the working order within an order strategy. |
-| <code>workingStrategyType</code> | <code>long?</code> | Arbitrary numeric value identifying the working order strategy.<br>Values smaller than 1000000 are reserved and cannot be used. |
-| <code>pendingClientOrderId</code> | <code>string?</code> | Arbitrary unique ID among open orders for the pending order. Automatically generated if not sent. |
-| <code>pendingPrice</code> | <code>double?</code> | - |
-| <code>pendingStopPrice</code> | <code>double?</code> | - |
-| <code>pendingTrailingDelta</code> | <code>double?</code> | - |
-| <code>pendingIcebergQty</code> | <code>double?</code> | This can only be used if pendingTimeInForce is GTC. |
-| <code>pendingTimeInForce</code> | <code>[PendingTimeInForce?](Models/Enums/PendingTimeInForce.cs)</code> | GTC, IOC, FOK |
-| <code>pendingStrategyId</code> | <code>double?</code> | Arbitrary numeric value identifying the pending order within an order strategy. |
-| <code>pendingStrategyType</code> | <code>long?</code> | Arbitrary numeric value identifying the pending order strategy.<br>Values smaller than 1000000 are reserved and cannot be used. |
+<code>[NewOrderListOtoTradeRequest](Requests/TradeApi/NewOrderListOtoTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -22557,7 +21291,7 @@ catch (SdkException<NewOrderListOtoTradeError> ex)
 
 **OnSuccess**: <code>[ApiV3OrderListOtoResponse](Models/ApiV3OrderListOtoResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[NewOrderListOtoTradeError](Errors/NewOrderListOtoTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[NewOrderListOtoTradeError](Errors/NewOrderListOtoTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -22568,7 +21302,7 @@ catch (SdkException<NewOrderListOtoTradeError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;ApiV3OrderListOtocoResponse&gt; NewOrderListOtocoTrade(string symbol, WorkingType workingType, WorkingSide workingSide, double workingPrice, double workingQuantity, double workingIcebergQty, PendingSide pendingSide, double pendingQuantity, PendingAboveType pendingAboveType, long timestamp, string signature, string? listClientOrderId, NewOrderRespType? newOrderRespType, SelfTradePreventionMode? selfTradePreventionMode, string? workingClientOrderId, WorkingTimeInForce? workingTimeInForce, double? workingStrategyId, long? workingStrategyType, string? pendingAboveClientOrderId, double? pendingAbovePrice, double? pendingAboveStopPrice, double? pendingAboveTrailingDelta, double? pendingAboveIcebergQty, PendingAboveTimeInForce? pendingAboveTimeInForce, double? pendingAboveStrategyId, long? pendingAboveStrategyType, PendingBelowType? pendingBelowType, string? pendingBelowClientOrderId, double? pendingBelowPrice, double? pendingBelowStopPrice, double? pendingBelowTrailingDelta, double? pendingBelowIcebergQty, PendingBelowTimeInForce? pendingBelowTimeInForce, double? pendingBelowStrategyId, long? pendingBelowStrategyType, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;ApiV3OrderListOtocoResponse&gt; NewOrderListOtocoTrade(NewOrderListOtocoTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -22599,45 +21333,25 @@ Weight: 1
 ```csharp
 try
 {
-    var response = await client.TradeApi.NewOrderListOtocoTrade(symbol,
-        workingType,
-        workingSide,
-        workingPrice,
-        workingQuantity,
-        workingIcebergQty,
-        pendingSide,
-        pendingQuantity,
-        pendingAboveType,
-        timestamp,
-        signature,
-        listClientOrderId,
-        newOrderRespType,
-        selfTradePreventionMode,
-        workingClientOrderId,
-        workingTimeInForce,
-        workingStrategyId,
-        workingStrategyType,
-        pendingAboveClientOrderId,
-        pendingAbovePrice,
-        pendingAboveStopPrice,
-        pendingAboveTrailingDelta,
-        pendingAboveIcebergQty,
-        pendingAboveTimeInForce,
-        pendingAboveStrategyId,
-        pendingAboveStrategyType,
-        pendingBelowType,
-        pendingBelowClientOrderId,
-        pendingBelowPrice,
-        pendingBelowStopPrice,
-        pendingBelowTrailingDelta,
-        pendingBelowIcebergQty,
-        pendingBelowTimeInForce,
-        pendingBelowStrategyId,
-        pendingBelowStrategyType,
-        recvWindow);
+    var response = await client.TradeApi.NewOrderListOtocoTrade(new NewOrderListOtocoTradeRequest
+    {
+        Symbol = "BNBUSDT",
+        WorkingType = WorkingType.Limit,
+        WorkingSide = WorkingSide.Buy,
+        WorkingPrice = 1.5d,
+        WorkingQuantity = 1.5d,
+        WorkingIcebergQty = 1.5d,
+        PendingSide = PendingSide.Buy,
+        PendingQuantity = 1.5d,
+        PendingAboveType = PendingAboveType.LimitMaker,
+        Timestamp = 1L,
+        Signature = "some example string",
+        SelfTradePreventionMode = SelfTradePreventionMode.ExpireTaker,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type ApiV3OrderListOtocoResponse
 }
-catch (SdkException<NewOrderListOtocoTradeError> ex)
+catch (ApiException<NewOrderListOtocoTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -22649,49 +21363,12 @@ catch (SdkException<NewOrderListOtocoTradeError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string</code> | Trading symbol, e.g. BNBUSDT |
-| <code>workingType</code> | <code>[WorkingType](Models/Enums/WorkingType.cs)</code> | Supported values: LIMIT,LIMIT_MAKER |
-| <code>workingSide</code> | <code>[WorkingSide](Models/Enums/WorkingSide.cs)</code> | BUY,SELL |
-| <code>workingPrice</code> | <code>double</code> | - |
-| <code>workingQuantity</code> | <code>double</code> | Sets the quantity for the working order. |
-| <code>workingIcebergQty</code> | <code>double</code> | This can only be used if workingTimeInForce is GTC. |
-| <code>pendingSide</code> | <code>[PendingSide](Models/Enums/PendingSide.cs)</code> | BUY,SELL |
-| <code>pendingQuantity</code> | <code>double</code> | Sets the quantity for the pending order. |
-| <code>pendingAboveType</code> | <code>[PendingAboveType](Models/Enums/PendingAboveType.cs)</code> | Supported values: LIMIT_MAKER, STOP_LOSS, and STOP_LOSS_LIMIT |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>listClientOrderId</code> | <code>string?</code> | Arbitrary unique ID among open order lists. Automatically generated if not sent.<br>A new order list with the same `listClientOrderId` is accepted only when the previous one is filled or completely expired.<br>`listClientOrderId` is distinct from the `workingClientOrderId` and the `pendingClientOrderId`. |
-| <code>newOrderRespType</code> | <code>[NewOrderRespType?](Models/Enums/NewOrderRespType.cs)</code> | Set the response JSON. |
-| <code>selfTradePreventionMode</code> | <code>[SelfTradePreventionMode?](Models/Enums/SelfTradePreventionMode.cs)</code> | The allowed enums is dependent on what is configured on the symbol. The possible supported values are EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH, NONE. |
-| <code>workingClientOrderId</code> | <code>string?</code> | Arbitrary unique ID among open orders for the working order. Automatically generated if not sent. |
-| <code>workingTimeInForce</code> | <code>[WorkingTimeInForce?](Models/Enums/WorkingTimeInForce.cs)</code> | GTC, IOC, FOK |
-| <code>workingStrategyId</code> | <code>double?</code> | Arbitrary numeric value identifying the working order within an order strategy. |
-| <code>workingStrategyType</code> | <code>long?</code> | Arbitrary numeric value identifying the working order strategy.<br>Values smaller than 1000000 are reserved and cannot be used. |
-| <code>pendingAboveClientOrderId</code> | <code>string?</code> | Arbitrary unique ID among open orders for the pending above order. Automatically generated if not sent. |
-| <code>pendingAbovePrice</code> | <code>double?</code> | - |
-| <code>pendingAboveStopPrice</code> | <code>double?</code> | - |
-| <code>pendingAboveTrailingDelta</code> | <code>double?</code> | - |
-| <code>pendingAboveIcebergQty</code> | <code>double?</code> | This can only be used if pendingAboveTimeInForce is GTC. |
-| <code>pendingAboveTimeInForce</code> | <code>[PendingAboveTimeInForce?](Models/Enums/PendingAboveTimeInForce.cs)</code> | - |
-| <code>pendingAboveStrategyId</code> | <code>double?</code> | Arbitrary numeric value identifying the pending above order within an order strategy. |
-| <code>pendingAboveStrategyType</code> | <code>long?</code> | Arbitrary numeric value identifying the pending above order strategy.<br>Values smaller than 1000000 are reserved and cannot be used. |
-| <code>pendingBelowType</code> | <code>[PendingBelowType?](Models/Enums/PendingBelowType.cs)</code> | Supported values: LIMIT_MAKER, STOP_LOSS, and STOP_LOSS_LIMIT |
-| <code>pendingBelowClientOrderId</code> | <code>string?</code> | Arbitrary unique ID among open orders for the pending below order. Automatically generated if not sent. |
-| <code>pendingBelowPrice</code> | <code>double?</code> | - |
-| <code>pendingBelowStopPrice</code> | <code>double?</code> | - |
-| <code>pendingBelowTrailingDelta</code> | <code>double?</code> | - |
-| <code>pendingBelowIcebergQty</code> | <code>double?</code> | This can only be used if pendingBelowTimeInForce is GTC. |
-| <code>pendingBelowTimeInForce</code> | <code>[PendingBelowTimeInForce?](Models/Enums/PendingBelowTimeInForce.cs)</code> | - |
-| <code>pendingBelowStrategyId</code> | <code>double?</code> | Arbitrary numeric value identifying the pending below order within an order strategy. |
-| <code>pendingBelowStrategyType</code> | <code>long?</code> | Arbitrary numeric value identifying the pending below order strategy.<br>Values smaller than 1000000 are reserved and cannot be used. |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[NewOrderListOtocoTradeRequest](Requests/TradeApi/NewOrderListOtocoTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -22703,7 +21380,7 @@ catch (SdkException<NewOrderListOtocoTradeError> ex)
 
 **OnSuccess**: <code>[ApiV3OrderListOtocoResponse](Models/ApiV3OrderListOtocoResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[NewOrderListOtocoTradeError](Errors/NewOrderListOtocoTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[NewOrderListOtocoTradeError](Errors/NewOrderListOtocoTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -22714,7 +21391,7 @@ catch (SdkException<NewOrderListOtocoTradeError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;ApiV3OrderListOcoResponse&gt; NewOrderListOcoTrade(string symbol, Side side, double quantity, string aboveType, string belowType, long timestamp, string signature, string? listClientOrderId, string? aboveClientOrderId, double? aboveIcebergQty, double? abovePrice, double? aboveStopPrice, double? aboveTrailingDelta, AboveTimeInForce? aboveTimeInForce, double? aboveStrategyId, long? aboveStrategyType, string? belowClientOrderId, double? belowIcebergQty, double? belowPrice, double? belowStopPrice, double? belowTrailingDelta, BelowTimeInForce? belowTimeInForce, double? belowStrategyId, long? belowStrategyType, NewOrderRespType? newOrderRespType, SelfTradePreventionMode? selfTradePreventionMode, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;ApiV3OrderListOcoResponse&gt; NewOrderListOcoTrade(NewOrderListOcoTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -22746,36 +21423,23 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.TradeApi.NewOrderListOcoTrade(symbol,
-        side,
-        quantity,
-        aboveType,
-        belowType,
-        timestamp,
-        signature,
-        listClientOrderId,
-        aboveClientOrderId,
-        aboveIcebergQty,
-        abovePrice,
-        aboveStopPrice,
-        aboveTrailingDelta,
-        aboveTimeInForce,
-        aboveStrategyId,
-        aboveStrategyType,
-        belowClientOrderId,
-        belowIcebergQty,
-        belowPrice,
-        belowStopPrice,
-        belowTrailingDelta,
-        belowTimeInForce,
-        belowStrategyId,
-        belowStrategyType,
-        newOrderRespType,
-        selfTradePreventionMode,
-        recvWindow);
+    var response = await client.TradeApi.NewOrderListOcoTrade(new NewOrderListOcoTradeRequest
+    {
+        Symbol = "BNBUSDT",
+        Side = Side.Sell,
+        Quantity = 1d,
+        AboveType = "some example string",
+        BelowType = "some example string",
+        Timestamp = 1L,
+        Signature = "some example string",
+        AboveTimeInForce = AboveTimeInForce.Gtc,
+        BelowTimeInForce = BelowTimeInForce.Gtc,
+        SelfTradePreventionMode = SelfTradePreventionMode.ExpireTaker,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type ApiV3OrderListOcoResponse
 }
-catch (SdkException<NewOrderListOcoTradeError> ex)
+catch (ApiException<NewOrderListOcoTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -22787,40 +21451,12 @@ catch (SdkException<NewOrderListOcoTradeError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string</code> | Trading symbol, e.g. BNBUSDT |
-| <code>side</code> | <code>[Side](Models/Enums/Side.cs)</code> | - |
-| <code>quantity</code> | <code>double</code> | - |
-| <code>aboveType</code> | <code>string</code> | Supported values : `STOP_LOSS_LIMIT`, `STOP_LOSS`, `LIMIT_MAKER` |
-| <code>belowType</code> | <code>string</code> | Supported values : `STOP_LOSS_LIMIT`, `STOP_LOSS`, `LIMIT_MAKER` |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>listClientOrderId</code> | <code>string?</code> | Arbitrary unique ID among open order lists. Automatically generated if not sent.<br>A new order list with the same `listClientOrderId` is accepted only when the previous one is filled or completely expired.<br>`listClientOrderId` is distinct from the `aboveClientOrderId` and the `belowCLientOrderId`. |
-| <code>aboveClientOrderId</code> | <code>string?</code> | Arbitrary unique ID among open orders for the above order. Automatically generated if not sent |
-| <code>aboveIcebergQty</code> | <code>double?</code> | Note that this can only be used if `aboveTimeInForce` is `GTC`. |
-| <code>abovePrice</code> | <code>double?</code> | - |
-| <code>aboveStopPrice</code> | <code>double?</code> | Can be used if `aboveType` is `STOP_LOSS` or `STOP_LOSS_LIMIT`.<br>Either `aboveStopPrice` or `aboveTrailingDelta` or both, must be specified. |
-| <code>aboveTrailingDelta</code> | <code>double?</code> | - |
-| <code>aboveTimeInForce</code> | <code>[AboveTimeInForce?](Models/Enums/AboveTimeInForce.cs)</code> | Required if the `aboveType` is `STOP_LOSS_LIMIT`. |
-| <code>aboveStrategyId</code> | <code>double?</code> | Arbitrary numeric value identifying the above order within an order strategy. |
-| <code>aboveStrategyType</code> | <code>long?</code> | Arbitrary numeric value identifying the above order strategy.<br>Values smaller than 1000000 are reserved and cannot be used. |
-| <code>belowClientOrderId</code> | <code>string?</code> | Arbitrary unique ID among open orders for the below order. Automatically generated if not sent |
-| <code>belowIcebergQty</code> | <code>double?</code> | Note that this can only be used if `belowTimeInForce` is `GTC`. |
-| <code>belowPrice</code> | <code>double?</code> | Can be used if `belowType` is `STOP_LOSS_LIMIT` or `LIMIT_MAKER` to specify the limit price. |
-| <code>belowStopPrice</code> | <code>double?</code> | Can be used if `belowType` is `STOP_LOSS` or `STOP_LOSS_LIMIT`.<br>Either `belowStopPrice` or `belowTrailingDelta` or both, must be specified. |
-| <code>belowTrailingDelta</code> | <code>double?</code> | - |
-| <code>belowTimeInForce</code> | <code>[BelowTimeInForce?](Models/Enums/BelowTimeInForce.cs)</code> | Required if the `belowType` is `STOP_LOSS_LIMIT`. |
-| <code>belowStrategyId</code> | <code>double?</code> | Arbitrary numeric value identifying the below order within an order strategy. |
-| <code>belowStrategyType</code> | <code>long?</code> | Arbitrary numeric value identifying the below order strategy.<br>Values smaller than 1000000 are reserved and cannot be used. |
-| <code>newOrderRespType</code> | <code>[NewOrderRespType?](Models/Enums/NewOrderRespType.cs)</code> | Set the response JSON. MARKET and LIMIT order types default to FULL, all other orders default to ACK. |
-| <code>selfTradePreventionMode</code> | <code>[SelfTradePreventionMode?](Models/Enums/SelfTradePreventionMode.cs)</code> | The allowed enums is dependent on what is configured on the symbol. The possible supported values are EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH, NONE. |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[NewOrderListOcoTradeRequest](Requests/TradeApi/NewOrderListOcoTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -22832,7 +21468,7 @@ catch (SdkException<NewOrderListOcoTradeError> ex)
 
 **OnSuccess**: <code>[ApiV3OrderListOcoResponse](Models/ApiV3OrderListOcoResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[NewOrderListOcoTradeError](Errors/NewOrderListOcoTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[NewOrderListOcoTradeError](Errors/NewOrderListOcoTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -22843,7 +21479,7 @@ catch (SdkException<NewOrderListOcoTradeError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;ApiV3SorOrderResponse&gt; NewOrderUsingSorTrade(string symbol, Side side, Type1 type, double quantity, long timestamp, string signature, TimeInForce? timeInForce, double? price, string? newClientOrderId, long? strategyId, long? strategyType, double? icebergQty, NewOrderRespType? newOrderRespType, SelfTradePreventionMode? selfTradePreventionMode, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;ApiV3SorOrderResponse&gt; NewOrderUsingSorTrade(NewOrderUsingSorTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -22866,24 +21502,21 @@ Weight(IP): 6
 ```csharp
 try
 {
-    var response = await client.TradeApi.NewOrderUsingSorTrade(symbol,
-        side,
-        type,
-        quantity,
-        timestamp,
-        signature,
-        timeInForce,
-        price,
-        newClientOrderId,
-        strategyId,
-        strategyType,
-        icebergQty,
-        newOrderRespType,
-        selfTradePreventionMode,
-        recvWindow);
+    var response = await client.TradeApi.NewOrderUsingSorTrade(new NewOrderUsingSorTradeRequest
+    {
+        Symbol = "BNBUSDT",
+        Side = Side.Sell,
+        Type = Type1.Limit,
+        Quantity = 1d,
+        Timestamp = 1L,
+        Signature = "some example string",
+        TimeInForce = TimeInForce.Gtc,
+        SelfTradePreventionMode = SelfTradePreventionMode.ExpireTaker,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type ApiV3SorOrderResponse
 }
-catch (SdkException<NewOrderUsingSorTradeError> ex)
+catch (ApiException<NewOrderUsingSorTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -22895,28 +21528,12 @@ catch (SdkException<NewOrderUsingSorTradeError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string</code> | Trading symbol, e.g. BNBUSDT |
-| <code>side</code> | <code>[Side](Models/Enums/Side.cs)</code> | - |
-| <code>type</code> | <code>[Type1](Models/Enums/Type1.cs)</code> | Order type |
-| <code>quantity</code> | <code>double</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>timeInForce</code> | <code>[TimeInForce?](Models/Enums/TimeInForce.cs)</code> | Order time in force |
-| <code>price</code> | <code>double?</code> | - |
-| <code>newClientOrderId</code> | <code>string?</code> | Used to uniquely identify this cancel. Automatically generated by default |
-| <code>strategyId</code> | <code>long?</code> | - |
-| <code>strategyType</code> | <code>long?</code> | The value cannot be less than 1000000. |
-| <code>icebergQty</code> | <code>double?</code> | Used with LIMIT, STOP_LOSS_LIMIT, and TAKE_PROFIT_LIMIT to create an iceberg order. |
-| <code>newOrderRespType</code> | <code>[NewOrderRespType?](Models/Enums/NewOrderRespType.cs)</code> | Set the response JSON. MARKET and LIMIT order types default to FULL, all other orders default to ACK. |
-| <code>selfTradePreventionMode</code> | <code>[SelfTradePreventionMode?](Models/Enums/SelfTradePreventionMode.cs)</code> | The allowed enums is dependent on what is configured on the symbol. The possible supported values are EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH, NONE. |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[NewOrderUsingSorTradeRequest](Requests/TradeApi/NewOrderUsingSorTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -22928,7 +21545,7 @@ catch (SdkException<NewOrderUsingSorTradeError> ex)
 
 **OnSuccess**: <code>[ApiV3SorOrderResponse](Models/ApiV3SorOrderResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[NewOrderUsingSorTradeError](Errors/NewOrderUsingSorTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[NewOrderUsingSorTradeError](Errors/NewOrderUsingSorTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -22939,7 +21556,7 @@ catch (SdkException<NewOrderUsingSorTradeError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;ApiV3MyAllocationsResponse&gt;&gt; QueryAllocationsUserData(string symbol, long timestamp, string signature, long? startTime, long? endTime, long? fromAllocationId, int? limit, long? orderId, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;ApiV3MyAllocationsResponse&gt;&gt; QueryAllocationsUserData(QueryAllocationsUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -22976,18 +21593,17 @@ Note: The time between startTime and endTime can't be longer than 24 hours.
 ```csharp
 try
 {
-    var response = await client.TradeApi.QueryAllocationsUserData(symbol,
-        timestamp,
-        signature,
-        startTime,
-        endTime,
-        fromAllocationId,
-        limit,
-        orderId,
-        recvWindow);
+    var response = await client.TradeApi.QueryAllocationsUserData(new QueryAllocationsUserDataRequest
+    {
+        Symbol = "BNBUSDT",
+        Timestamp = 1L,
+        Signature = "some example string",
+        Limit = 5,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type IReadOnlyList<ApiV3MyAllocationsResponse>
 }
-catch (SdkException<QueryAllocationsUserDataError> ex)
+catch (ApiException<QueryAllocationsUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -22999,22 +21615,12 @@ catch (SdkException<QueryAllocationsUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string</code> | Trading symbol, e.g. BNBUSDT |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>fromAllocationId</code> | <code>long?</code> | - |
-| <code>limit</code> | <code>int?</code> | Default 500; max 1000. |
-| <code>orderId</code> | <code>long?</code> | Order id |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryAllocationsUserDataRequest](Requests/TradeApi/QueryAllocationsUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -23026,7 +21632,7 @@ catch (SdkException<QueryAllocationsUserDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[ApiV3MyAllocationsResponse](Models/ApiV3MyAllocationsResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryAllocationsUserDataError](Errors/QueryAllocationsUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryAllocationsUserDataError](Errors/QueryAllocationsUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -23037,7 +21643,7 @@ catch (SdkException<QueryAllocationsUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;ApiV3AccountCommissionResponse&gt; QueryCommissionRatesUserData(string symbol, long timestamp, string signature, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;ApiV3AccountCommissionResponse&gt; QueryCommissionRatesUserData(QueryCommissionRatesUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -23062,10 +21668,15 @@ Weight: 20
 ```csharp
 try
 {
-    var response = await client.TradeApi.QueryCommissionRatesUserData(symbol, timestamp, signature);
+    var response = await client.TradeApi.QueryCommissionRatesUserData(new QueryCommissionRatesUserDataRequest
+    {
+        Symbol = "BNBUSDT",
+        Timestamp = 1L,
+        Signature = "some example string",
+    });
     // TODO: Handle 'response' of type ApiV3AccountCommissionResponse
 }
-catch (SdkException<QueryCommissionRatesUserDataError> ex)
+catch (ApiException<QueryCommissionRatesUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -23077,16 +21688,12 @@ catch (SdkException<QueryCommissionRatesUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string</code> | Trading symbol, e.g. BNBUSDT |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
+<code>[QueryCommissionRatesUserDataRequest](Requests/TradeApi/QueryCommissionRatesUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -23098,7 +21705,7 @@ catch (SdkException<QueryCommissionRatesUserDataError> ex)
 
 **OnSuccess**: <code>[ApiV3AccountCommissionResponse](Models/ApiV3AccountCommissionResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryCommissionRatesUserDataError](Errors/QueryCommissionRatesUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryCommissionRatesUserDataError](Errors/QueryCommissionRatesUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -23109,7 +21716,7 @@ catch (SdkException<QueryCommissionRatesUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;ApiV3RateLimitOrderResponse&gt;&gt; QueryCurrentOrderCountUsageTrade(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;ApiV3RateLimitOrderResponse&gt;&gt; QueryCurrentOrderCountUsageTrade(QueryCurrentOrderCountUsageTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -23134,10 +21741,15 @@ Weight(IP): 40
 ```csharp
 try
 {
-    var response = await client.TradeApi.QueryCurrentOrderCountUsageTrade(timestamp, signature, recvWindow);
+    var response = await client.TradeApi.QueryCurrentOrderCountUsageTrade(new QueryCurrentOrderCountUsageTradeRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type IReadOnlyList<ApiV3RateLimitOrderResponse>
 }
-catch (SdkException<QueryCurrentOrderCountUsageTradeError> ex)
+catch (ApiException<QueryCurrentOrderCountUsageTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -23149,16 +21761,12 @@ catch (SdkException<QueryCurrentOrderCountUsageTradeError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryCurrentOrderCountUsageTradeRequest](Requests/TradeApi/QueryCurrentOrderCountUsageTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -23170,7 +21778,7 @@ catch (SdkException<QueryCurrentOrderCountUsageTradeError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[ApiV3RateLimitOrderResponse](Models/ApiV3RateLimitOrderResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryCurrentOrderCountUsageTradeError](Errors/QueryCurrentOrderCountUsageTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryCurrentOrderCountUsageTradeError](Errors/QueryCurrentOrderCountUsageTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -23181,7 +21789,7 @@ catch (SdkException<QueryCurrentOrderCountUsageTradeError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;ApiV3OrderListResponse&gt; QueryOcoUserData(long timestamp, string signature, long? orderListId, string? origClientOrderId, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;ApiV3OrderListResponse&gt; QueryOcoUserData(QueryOcoUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -23206,14 +21814,15 @@ Weight(IP): 4
 ```csharp
 try
 {
-    var response = await client.TradeApi.QueryOcoUserData(timestamp,
-        signature,
-        orderListId,
-        origClientOrderId,
-        recvWindow);
+    var response = await client.TradeApi.QueryOcoUserData(new QueryOcoUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type ApiV3OrderListResponse
 }
-catch (SdkException<QueryOcoUserDataError> ex)
+catch (ApiException<QueryOcoUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -23225,18 +21834,12 @@ catch (SdkException<QueryOcoUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>orderListId</code> | <code>long?</code> | Order list id |
-| <code>origClientOrderId</code> | <code>string?</code> | Order id from client |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryOcoUserDataRequest](Requests/TradeApi/QueryOcoUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -23248,7 +21851,7 @@ catch (SdkException<QueryOcoUserDataError> ex)
 
 **OnSuccess**: <code>[ApiV3OrderListResponse](Models/ApiV3OrderListResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryOcoUserDataError](Errors/QueryOcoUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryOcoUserDataError](Errors/QueryOcoUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -23259,7 +21862,7 @@ catch (SdkException<QueryOcoUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;ApiV3OpenOrderListResponse&gt;&gt; QueryOpenOcoUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;ApiV3OpenOrderListResponse&gt;&gt; QueryOpenOcoUserData(QueryOpenOcoUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -23282,10 +21885,15 @@ Weight(IP): 6
 ```csharp
 try
 {
-    var response = await client.TradeApi.QueryOpenOcoUserData(timestamp, signature, recvWindow);
+    var response = await client.TradeApi.QueryOpenOcoUserData(new QueryOpenOcoUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type IReadOnlyList<ApiV3OpenOrderListResponse>
 }
-catch (SdkException<QueryOpenOcoUserDataError> ex)
+catch (ApiException<QueryOpenOcoUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -23297,16 +21905,12 @@ catch (SdkException<QueryOpenOcoUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryOpenOcoUserDataRequest](Requests/TradeApi/QueryOpenOcoUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -23318,7 +21922,7 @@ catch (SdkException<QueryOpenOcoUserDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[ApiV3OpenOrderListResponse](Models/ApiV3OpenOrderListResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryOpenOcoUserDataError](Errors/QueryOpenOcoUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryOpenOcoUserDataError](Errors/QueryOpenOcoUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -23329,7 +21933,7 @@ catch (SdkException<QueryOpenOcoUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;OrderDetails&gt; QueryOrderUserData(string symbol, long timestamp, string signature, long? orderId, string? origClientOrderId, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;OrderDetails&gt; QueryOrderUserData(QueryOrderUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -23357,15 +21961,16 @@ Weight(IP): 4
 ```csharp
 try
 {
-    var response = await client.TradeApi.QueryOrderUserData(symbol,
-        timestamp,
-        signature,
-        orderId,
-        origClientOrderId,
-        recvWindow);
+    var response = await client.TradeApi.QueryOrderUserData(new QueryOrderUserDataRequest
+    {
+        Symbol = "BNBUSDT",
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type OrderDetails
 }
-catch (SdkException<QueryOrderUserDataError> ex)
+catch (ApiException<QueryOrderUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -23377,19 +21982,12 @@ catch (SdkException<QueryOrderUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string</code> | Trading symbol, e.g. BNBUSDT |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>orderId</code> | <code>long?</code> | Order id |
-| <code>origClientOrderId</code> | <code>string?</code> | Order id from client |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryOrderUserDataRequest](Requests/TradeApi/QueryOrderUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -23401,7 +21999,7 @@ catch (SdkException<QueryOrderUserDataError> ex)
 
 **OnSuccess**: <code>[OrderDetails](Models/OrderDetails.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryOrderUserDataError](Errors/QueryOrderUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryOrderUserDataError](Errors/QueryOrderUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -23412,7 +22010,7 @@ catch (SdkException<QueryOrderUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;ApiV3MyPreventedMatchesResponse&gt;&gt; QueryPreventedMatches(string symbol, long timestamp, string signature, long? preventedMatchId, long? orderId, long? fromPreventedMatchId, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;ApiV3MyPreventedMatchesResponse&gt;&gt; QueryPreventedMatches(QueryPreventedMatchesRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -23451,17 +22049,19 @@ Querying by orderId:               20
 ```csharp
 try
 {
-    var response = await client.TradeApi.QueryPreventedMatches(symbol,
-        timestamp,
-        signature,
-        preventedMatchId,
-        orderId,
-        fromPreventedMatchId,
-        limit,
-        recvWindow);
+    var response = await client.TradeApi.QueryPreventedMatches(new QueryPreventedMatchesRequest
+    {
+        Symbol = "BNBUSDT",
+        Timestamp = 1L,
+        Signature = "some example string",
+        PreventedMatchId = 1L,
+        FromPreventedMatchId = 1L,
+        Limit = 5,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type IReadOnlyList<ApiV3MyPreventedMatchesResponse>
 }
-catch (SdkException<QueryPreventedMatchesError> ex)
+catch (ApiException<QueryPreventedMatchesError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -23473,21 +22073,12 @@ catch (SdkException<QueryPreventedMatchesError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string</code> | Trading symbol, e.g. BNBUSDT |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>preventedMatchId</code> | <code>long?</code> | - |
-| <code>orderId</code> | <code>long?</code> | Order id |
-| <code>fromPreventedMatchId</code> | <code>long?</code> | - |
-| <code>limit</code> | <code>int?</code> | Default 500; max 1000. |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryPreventedMatchesRequest](Requests/TradeApi/QueryPreventedMatchesRequest.cs)</code>
 
 </dd>
 </dl>
@@ -23499,7 +22090,7 @@ catch (SdkException<QueryPreventedMatchesError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[ApiV3MyPreventedMatchesResponse](Models/ApiV3MyPreventedMatchesResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryPreventedMatchesError](Errors/QueryPreventedMatchesError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryPreventedMatchesError](Errors/QueryPreventedMatchesError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -23510,7 +22101,7 @@ catch (SdkException<QueryPreventedMatchesError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;ApiV3AllOrderListResponse&gt;&gt; QueryAllOcoUserData(long timestamp, string signature, long? fromId, long? startTime, long? endTime, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;ApiV3AllOrderListResponse&gt;&gt; QueryAllOcoUserData(QueryAllOcoUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -23535,16 +22126,16 @@ Weight(IP): 20
 ```csharp
 try
 {
-    var response = await client.TradeApi.QueryAllOcoUserData(timestamp,
-        signature,
-        fromId,
-        startTime,
-        endTime,
-        limit,
-        recvWindow);
+    var response = await client.TradeApi.QueryAllOcoUserData(new QueryAllOcoUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        Limit = 5,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type IReadOnlyList<ApiV3AllOrderListResponse>
 }
-catch (SdkException<QueryAllOcoUserDataError> ex)
+catch (ApiException<QueryAllOcoUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -23556,20 +22147,12 @@ catch (SdkException<QueryAllOcoUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>fromId</code> | <code>long?</code> | Trade id to fetch from. Default gets most recent trades. |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>limit</code> | <code>int?</code> | Default 500; max 1000. |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryAllOcoUserDataRequest](Requests/TradeApi/QueryAllOcoUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -23581,7 +22164,7 @@ catch (SdkException<QueryAllOcoUserDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[ApiV3AllOrderListResponse](Models/ApiV3AllOrderListResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryAllOcoUserDataError](Errors/QueryAllOcoUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryAllOcoUserDataError](Errors/QueryAllOcoUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -23592,7 +22175,7 @@ catch (SdkException<QueryAllOcoUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;object&gt; TestNewOrderTrade(string symbol, Side side, Type1 type, long timestamp, string signature, TimeInForce? timeInForce, double? quantity, double? quoteOrderQty, double? price, string? newClientOrderId, long? strategyId, long? strategyType, double? stopPrice, double? trailingDelta, double? icebergQty, NewOrderRespType? newOrderRespType, long? recvWindow, bool? computeCommissionRates, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;object&gt; TestNewOrderTrade(TestNewOrderTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -23620,27 +22203,23 @@ Weight(IP):
 ```csharp
 try
 {
-    var response = await client.TradeApi.TestNewOrderTrade(symbol,
-        side,
-        type,
-        timestamp,
-        signature,
-        timeInForce,
-        quantity,
-        quoteOrderQty,
-        price,
-        newClientOrderId,
-        strategyId,
-        strategyType,
-        stopPrice,
-        trailingDelta,
-        icebergQty,
-        newOrderRespType,
-        recvWindow,
-        computeCommissionRates);
+    var response = await client.TradeApi.TestNewOrderTrade(new TestNewOrderTradeRequest
+    {
+        Symbol = "BNBUSDT",
+        Side = Side.Sell,
+        Type = Type1.Limit,
+        Timestamp = 1L,
+        Signature = "some example string",
+        TimeInForce = TimeInForce.Gtc,
+        Quantity = 1d,
+        Price = 219d,
+        StopPrice = 221.01d,
+        RecvWindow = 5000L,
+        ComputeCommissionRates = false,
+    });
     // TODO: Handle 'response' of type object
 }
-catch (SdkException<TestNewOrderTradeError> ex)
+catch (ApiException<TestNewOrderTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -23652,31 +22231,12 @@ catch (SdkException<TestNewOrderTradeError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string</code> | Trading symbol, e.g. BNBUSDT |
-| <code>side</code> | <code>[Side](Models/Enums/Side.cs)</code> | - |
-| <code>type</code> | <code>[Type1](Models/Enums/Type1.cs)</code> | Order type |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>timeInForce</code> | <code>[TimeInForce?](Models/Enums/TimeInForce.cs)</code> | Order time in force |
-| <code>quantity</code> | <code>double?</code> | Order quantity |
-| <code>quoteOrderQty</code> | <code>double?</code> | Quote quantity |
-| <code>price</code> | <code>double?</code> | Order price |
-| <code>newClientOrderId</code> | <code>string?</code> | Used to uniquely identify this cancel. Automatically generated by default |
-| <code>strategyId</code> | <code>long?</code> | - |
-| <code>strategyType</code> | <code>long?</code> | The value cannot be less than 1000000. |
-| <code>stopPrice</code> | <code>double?</code> | Used with STOP_LOSS, STOP_LOSS_LIMIT, TAKE_PROFIT, and TAKE_PROFIT_LIMIT orders. |
-| <code>trailingDelta</code> | <code>double?</code> | Used with STOP_LOSS, STOP_LOSS_LIMIT, TAKE_PROFIT, and TAKE_PROFIT_LIMIT orders. |
-| <code>icebergQty</code> | <code>double?</code> | Used with LIMIT, STOP_LOSS_LIMIT, and TAKE_PROFIT_LIMIT to create an iceberg order. |
-| <code>newOrderRespType</code> | <code>[NewOrderRespType?](Models/Enums/NewOrderRespType.cs)</code> | Set the response JSON. MARKET and LIMIT order types default to FULL, all other orders default to ACK. |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
-| <code>computeCommissionRates</code> | <code>bool?</code> | Default: false |
+<code>[TestNewOrderTradeRequest](Requests/TradeApi/TestNewOrderTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -23688,7 +22248,7 @@ catch (SdkException<TestNewOrderTradeError> ex)
 
 **OnSuccess**: <code>object</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[TestNewOrderTradeError](Errors/TestNewOrderTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[TestNewOrderTradeError](Errors/TestNewOrderTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -23699,7 +22259,7 @@ catch (SdkException<TestNewOrderTradeError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;object&gt; TestNewOrderUsingSorTrade(string symbol, Side side, Type1 type, double quantity, long timestamp, string signature, TimeInForce? timeInForce, double? price, string? newClientOrderId, long? strategyId, long? strategyType, double? icebergQty, NewOrderRespType? newOrderRespType, SelfTradePreventionMode? selfTradePreventionMode, bool? computeCommissionRates, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;object&gt; TestNewOrderUsingSorTrade(TestNewOrderUsingSorTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -23727,25 +22287,22 @@ Weight(IP):
 ```csharp
 try
 {
-    var response = await client.TradeApi.TestNewOrderUsingSorTrade(symbol,
-        side,
-        type,
-        quantity,
-        timestamp,
-        signature,
-        timeInForce,
-        price,
-        newClientOrderId,
-        strategyId,
-        strategyType,
-        icebergQty,
-        newOrderRespType,
-        selfTradePreventionMode,
-        computeCommissionRates,
-        recvWindow);
+    var response = await client.TradeApi.TestNewOrderUsingSorTrade(new TestNewOrderUsingSorTradeRequest
+    {
+        Symbol = "BNBUSDT",
+        Side = Side.Sell,
+        Type = Type1.Limit,
+        Quantity = 1d,
+        Timestamp = 1L,
+        Signature = "some example string",
+        TimeInForce = TimeInForce.Gtc,
+        SelfTradePreventionMode = SelfTradePreventionMode.ExpireTaker,
+        ComputeCommissionRates = false,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type object
 }
-catch (SdkException<TestNewOrderUsingSorTradeError> ex)
+catch (ApiException<TestNewOrderUsingSorTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -23757,29 +22314,12 @@ catch (SdkException<TestNewOrderUsingSorTradeError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>symbol</code> | <code>string</code> | Trading symbol, e.g. BNBUSDT |
-| <code>side</code> | <code>[Side](Models/Enums/Side.cs)</code> | - |
-| <code>type</code> | <code>[Type1](Models/Enums/Type1.cs)</code> | Order type |
-| <code>quantity</code> | <code>double</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>timeInForce</code> | <code>[TimeInForce?](Models/Enums/TimeInForce.cs)</code> | Order time in force |
-| <code>price</code> | <code>double?</code> | - |
-| <code>newClientOrderId</code> | <code>string?</code> | Used to uniquely identify this cancel. Automatically generated by default |
-| <code>strategyId</code> | <code>long?</code> | - |
-| <code>strategyType</code> | <code>long?</code> | The value cannot be less than 1000000. |
-| <code>icebergQty</code> | <code>double?</code> | Used with LIMIT, STOP_LOSS_LIMIT, and TAKE_PROFIT_LIMIT to create an iceberg order. |
-| <code>newOrderRespType</code> | <code>[NewOrderRespType?](Models/Enums/NewOrderRespType.cs)</code> | Set the response JSON. MARKET and LIMIT order types default to FULL, all other orders default to ACK. |
-| <code>selfTradePreventionMode</code> | <code>[SelfTradePreventionMode?](Models/Enums/SelfTradePreventionMode.cs)</code> | The allowed enums is dependent on what is configured on the symbol. The possible supported values are EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH, NONE. |
-| <code>computeCommissionRates</code> | <code>bool?</code> | Default: false |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[TestNewOrderUsingSorTradeRequest](Requests/TradeApi/TestNewOrderUsingSorTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -23791,7 +22331,7 @@ catch (SdkException<TestNewOrderUsingSorTradeError> ex)
 
 **OnSuccess**: <code>object</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[TestNewOrderUsingSorTradeError](Errors/TestNewOrderUsingSorTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[TestNewOrderUsingSorTradeError](Errors/TestNewOrderUsingSorTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -23806,7 +22346,7 @@ catch (SdkException<TestNewOrderUsingSorTradeError> ex)
 > Source: [VipLoans](Api/VipLoans.cs)
 
 <details>
-<summary><code>Task&lt;SapiV1LoanVipCollateralAccountResponse&gt; CheckLockedValueOfVipCollateralAccountUserData(long timestamp, string signature, long? orderId, long? collateralAccountId, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1LoanVipCollateralAccountResponse&gt; CheckLockedValueOfVipCollateralAccountUserData(CheckLockedValueOfVipCollateralAccountUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -23831,14 +22371,16 @@ Weight(IP): 6000
 ```csharp
 try
 {
-    var response = await client.VipLoans.CheckLockedValueOfVipCollateralAccountUserData(timestamp,
-        signature,
-        orderId,
-        collateralAccountId,
-        recvWindow);
+    var response = await client.VipLoans.CheckLockedValueOfVipCollateralAccountUserData(
+        new CheckLockedValueOfVipCollateralAccountUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1LoanVipCollateralAccountResponse
 }
-catch (SdkException<CheckLockedValueOfVipCollateralAccountUserDataError> ex)
+catch (ApiException<CheckLockedValueOfVipCollateralAccountUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -23850,18 +22392,12 @@ catch (SdkException<CheckLockedValueOfVipCollateralAccountUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>orderId</code> | <code>long?</code> | Order id |
-| <code>collateralAccountId</code> | <code>long?</code> | - |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[CheckLockedValueOfVipCollateralAccountUserDataRequest](Requests/VipLoans/CheckLockedValueOfVipCollateralAccountUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -23873,7 +22409,7 @@ catch (SdkException<CheckLockedValueOfVipCollateralAccountUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1LoanVipCollateralAccountResponse](Models/SapiV1LoanVipCollateralAccountResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[CheckLockedValueOfVipCollateralAccountUserDataError](Errors/CheckLockedValueOfVipCollateralAccountUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CheckLockedValueOfVipCollateralAccountUserDataError](Errors/CheckLockedValueOfVipCollateralAccountUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -23884,7 +22420,7 @@ catch (SdkException<CheckLockedValueOfVipCollateralAccountUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1LoanVipRequestInterestRateResponse&gt;&gt; GetBorrowInterestRateUserData(long timestamp, string signature, string? loanCoin, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1LoanVipRequestInterestRateResponse&gt;&gt; GetBorrowInterestRateUserData(GetBorrowInterestRateUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -23909,10 +22445,16 @@ Weight(UID): 400
 ```csharp
 try
 {
-    var response = await client.VipLoans.GetBorrowInterestRateUserData(timestamp, signature, loanCoin, recvWindow);
+    var response = await client.VipLoans.GetBorrowInterestRateUserData(new GetBorrowInterestRateUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        LoanCoin = "BUSD",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1LoanVipRequestInterestRateResponse>
 }
-catch (SdkException<GetBorrowInterestRateUserDataError> ex)
+catch (ApiException<GetBorrowInterestRateUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -23924,17 +22466,12 @@ catch (SdkException<GetBorrowInterestRateUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>loanCoin</code> | <code>string?</code> | Max 10 assets, Multiple split by "," |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetBorrowInterestRateUserDataRequest](Requests/VipLoans/GetBorrowInterestRateUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -23946,7 +22483,7 @@ catch (SdkException<GetBorrowInterestRateUserDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1LoanVipRequestInterestRateResponse](Models/SapiV1LoanVipRequestInterestRateResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetBorrowInterestRateUserDataError](Errors/GetBorrowInterestRateUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetBorrowInterestRateUserDataError](Errors/GetBorrowInterestRateUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -23957,7 +22494,7 @@ catch (SdkException<GetBorrowInterestRateUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1LoanVipCollateralDataResponse&gt; GetCollateralAssetDataUserData(long timestamp, string signature, string? collateralCoin, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1LoanVipCollateralDataResponse&gt; GetCollateralAssetDataUserData(GetCollateralAssetDataUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -23982,13 +22519,16 @@ Weight(IP): 400
 ```csharp
 try
 {
-    var response = await client.VipLoans.GetCollateralAssetDataUserData(timestamp,
-        signature,
-        collateralCoin,
-        recvWindow);
+    var response = await client.VipLoans.GetCollateralAssetDataUserData(new GetCollateralAssetDataUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        CollateralCoin = "BNB",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1LoanVipCollateralDataResponse
 }
-catch (SdkException<GetCollateralAssetDataUserDataError> ex)
+catch (ApiException<GetCollateralAssetDataUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -24000,17 +22540,12 @@ catch (SdkException<GetCollateralAssetDataUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>collateralCoin</code> | <code>string?</code> | Coin used as collateral |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetCollateralAssetDataUserDataRequest](Requests/VipLoans/GetCollateralAssetDataUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -24022,7 +22557,7 @@ catch (SdkException<GetCollateralAssetDataUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1LoanVipCollateralDataResponse](Models/SapiV1LoanVipCollateralDataResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetCollateralAssetDataUserDataError](Errors/GetCollateralAssetDataUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetCollateralAssetDataUserDataError](Errors/GetCollateralAssetDataUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -24033,7 +22568,7 @@ catch (SdkException<GetCollateralAssetDataUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1LoanVipLoanableDataResponse&gt; GetLoanableAssetsData(long timestamp, string signature, string? loanCoin, int? vipLevel, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1LoanVipLoanableDataResponse&gt; GetLoanableAssetsData(GetLoanableAssetsDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -24058,10 +22593,17 @@ Weight(IP): 400
 ```csharp
 try
 {
-    var response = await client.VipLoans.GetLoanableAssetsData(timestamp, signature, loanCoin, vipLevel, recvWindow);
+    var response = await client.VipLoans.GetLoanableAssetsData(new GetLoanableAssetsDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        LoanCoin = "BUSD",
+        VipLevel = 1,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1LoanVipLoanableDataResponse
 }
-catch (SdkException<GetLoanableAssetsDataError> ex)
+catch (ApiException<GetLoanableAssetsDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -24073,18 +22615,12 @@ catch (SdkException<GetLoanableAssetsDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>loanCoin</code> | <code>string?</code> | Coin loaned |
-| <code>vipLevel</code> | <code>int?</code> | Defaults to user's vip level |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetLoanableAssetsDataRequest](Requests/VipLoans/GetLoanableAssetsDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -24096,7 +22632,7 @@ catch (SdkException<GetLoanableAssetsDataError> ex)
 
 **OnSuccess**: <code>[SapiV1LoanVipLoanableDataResponse](Models/SapiV1LoanVipLoanableDataResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetLoanableAssetsDataError](Errors/GetLoanableAssetsDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetLoanableAssetsDataError](Errors/GetLoanableAssetsDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -24107,7 +22643,7 @@ catch (SdkException<GetLoanableAssetsDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1LoanVipOngoingOrdersResponse&gt; GetVipLoanOngoingOrdersUserData(long timestamp, string signature, long? orderId, long? collateralAccountId, string? loanCoin, string? collateralCoin, int? current, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1LoanVipOngoingOrdersResponse&gt; GetVipLoanOngoingOrdersUserData(GetVipLoanOngoingOrdersUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -24132,18 +22668,19 @@ Weight(IP): 400
 ```csharp
 try
 {
-    var response = await client.VipLoans.GetVipLoanOngoingOrdersUserData(timestamp,
-        signature,
-        orderId,
-        collateralAccountId,
-        loanCoin,
-        collateralCoin,
-        current,
-        limit,
-        recvWindow);
+    var response = await client.VipLoans.GetVipLoanOngoingOrdersUserData(new GetVipLoanOngoingOrdersUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        LoanCoin = "BUSD",
+        CollateralCoin = "BNB",
+        Current = 1,
+        Limit = 10,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1LoanVipOngoingOrdersResponse
 }
-catch (SdkException<GetVipLoanOngoingOrdersUserDataError> ex)
+catch (ApiException<GetVipLoanOngoingOrdersUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -24155,22 +22692,12 @@ catch (SdkException<GetVipLoanOngoingOrdersUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>orderId</code> | <code>long?</code> | Order id |
-| <code>collateralAccountId</code> | <code>long?</code> | - |
-| <code>loanCoin</code> | <code>string?</code> | Coin loaned |
-| <code>collateralCoin</code> | <code>string?</code> | Coin used as collateral |
-| <code>current</code> | <code>int?</code> | Current querying page. Start from 1. Default:1 |
-| <code>limit</code> | <code>int?</code> | Default 10; max 100. |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetVipLoanOngoingOrdersUserDataRequest](Requests/VipLoans/GetVipLoanOngoingOrdersUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -24182,7 +22709,7 @@ catch (SdkException<GetVipLoanOngoingOrdersUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1LoanVipOngoingOrdersResponse](Models/SapiV1LoanVipOngoingOrdersResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetVipLoanOngoingOrdersUserDataError](Errors/GetVipLoanOngoingOrdersUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetVipLoanOngoingOrdersUserDataError](Errors/GetVipLoanOngoingOrdersUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -24193,7 +22720,7 @@ catch (SdkException<GetVipLoanOngoingOrdersUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1LoanVipRepayHistoryResponse&gt; GetVipLoanRepaymentHistoryUserData(long timestamp, string signature, long? orderId, string? loanCoin, long? startTime, long? endTime, int? current, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1LoanVipRepayHistoryResponse&gt; GetVipLoanRepaymentHistoryUserData(GetVipLoanRepaymentHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -24218,18 +22745,19 @@ Weight(IP): 400
 ```csharp
 try
 {
-    var response = await client.VipLoans.GetVipLoanRepaymentHistoryUserData(timestamp,
-        signature,
-        orderId,
-        loanCoin,
-        startTime,
-        endTime,
-        current,
-        limit,
-        recvWindow);
+    var response = await client.VipLoans.GetVipLoanRepaymentHistoryUserData(
+        new GetVipLoanRepaymentHistoryUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            LoanCoin = "BUSD",
+            Current = 1,
+            Limit = 10,
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1LoanVipRepayHistoryResponse
 }
-catch (SdkException<GetVipLoanRepaymentHistoryUserDataError> ex)
+catch (ApiException<GetVipLoanRepaymentHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -24241,22 +22769,12 @@ catch (SdkException<GetVipLoanRepaymentHistoryUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>orderId</code> | <code>long?</code> | Order id |
-| <code>loanCoin</code> | <code>string?</code> | Coin loaned |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>current</code> | <code>int?</code> | Current querying page. Start from 1. Default:1 |
-| <code>limit</code> | <code>int?</code> | Default 10; max 100. |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetVipLoanRepaymentHistoryUserDataRequest](Requests/VipLoans/GetVipLoanRepaymentHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -24268,7 +22786,7 @@ catch (SdkException<GetVipLoanRepaymentHistoryUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1LoanVipRepayHistoryResponse](Models/SapiV1LoanVipRepayHistoryResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetVipLoanRepaymentHistoryUserDataError](Errors/GetVipLoanRepaymentHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetVipLoanRepaymentHistoryUserDataError](Errors/GetVipLoanRepaymentHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -24279,7 +22797,7 @@ catch (SdkException<GetVipLoanRepaymentHistoryUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1LoanVipRequestDataResponse&gt; QueryApplicationStatusUserData(long timestamp, string signature, int? current, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1LoanVipRequestDataResponse&gt; QueryApplicationStatusUserData(QueryApplicationStatusUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -24304,14 +22822,17 @@ Weight(UID): 400
 ```csharp
 try
 {
-    var response = await client.VipLoans.QueryApplicationStatusUserData(timestamp,
-        signature,
-        current,
-        limit,
-        recvWindow);
+    var response = await client.VipLoans.QueryApplicationStatusUserData(new QueryApplicationStatusUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        Current = 1,
+        Limit = 5,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1LoanVipRequestDataResponse
 }
-catch (SdkException<QueryApplicationStatusUserDataError> ex)
+catch (ApiException<QueryApplicationStatusUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -24323,18 +22844,12 @@ catch (SdkException<QueryApplicationStatusUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>current</code> | <code>int?</code> | Current querying page. Start from 1. Default:1 |
-| <code>limit</code> | <code>int?</code> | Default 500; max 1000. |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryApplicationStatusUserDataRequest](Requests/VipLoans/QueryApplicationStatusUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -24346,7 +22861,7 @@ catch (SdkException<QueryApplicationStatusUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1LoanVipRequestDataResponse](Models/SapiV1LoanVipRequestDataResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryApplicationStatusUserDataError](Errors/QueryApplicationStatusUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryApplicationStatusUserDataError](Errors/QueryApplicationStatusUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -24357,7 +22872,7 @@ catch (SdkException<QueryApplicationStatusUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1LoanVipBorrowResponse&gt; VipLoanBorrow(long loanAccountId, double loanAmount, string collateralAccountId, string collateralCoin, IsFlexibleRate isFlexibleRate, long timestamp, string signature, string? loanCoin, int? loanTerm, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1LoanVipBorrowResponse&gt; VipLoanBorrow(VipLoanBorrowRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -24382,19 +22897,21 @@ Weight(UID): 6000
 ```csharp
 try
 {
-    var response = await client.VipLoans.VipLoanBorrow(loanAccountId,
-        loanAmount,
-        collateralAccountId,
-        collateralCoin,
-        isFlexibleRate,
-        timestamp,
-        signature,
-        loanCoin,
-        loanTerm,
-        recvWindow);
+    var response = await client.VipLoans.VipLoanBorrow(new VipLoanBorrowRequest
+    {
+        LoanAccountId = 1L,
+        LoanAmount = 1.5d,
+        CollateralAccountId = "some example string",
+        CollateralCoin = "some example string",
+        IsFlexibleRate = IsFlexibleRate.True,
+        Timestamp = 1L,
+        Signature = "some example string",
+        LoanCoin = "BUSD",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1LoanVipBorrowResponse
 }
-catch (SdkException<VipLoanBorrowError> ex)
+catch (ApiException<VipLoanBorrowError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -24406,23 +22923,12 @@ catch (SdkException<VipLoanBorrowError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>loanAccountId</code> | <code>long</code> | - |
-| <code>loanAmount</code> | <code>double</code> | - |
-| <code>collateralAccountId</code> | <code>string</code> | - |
-| <code>collateralCoin</code> | <code>string</code> | - |
-| <code>isFlexibleRate</code> | <code>[IsFlexibleRate](Models/Enums/IsFlexibleRate.cs)</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>loanCoin</code> | <code>string?</code> | Coin loaned |
-| <code>loanTerm</code> | <code>int?</code> | - |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[VipLoanBorrowRequest](Requests/VipLoans/VipLoanBorrowRequest.cs)</code>
 
 </dd>
 </dl>
@@ -24434,7 +22940,7 @@ catch (SdkException<VipLoanBorrowError> ex)
 
 **OnSuccess**: <code>[SapiV1LoanVipBorrowResponse](Models/SapiV1LoanVipBorrowResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[VipLoanBorrowError](Errors/VipLoanBorrowError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[VipLoanBorrowError](Errors/VipLoanBorrowError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -24445,7 +22951,7 @@ catch (SdkException<VipLoanBorrowError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1LoanVipRenewResponse&gt; VipLoanRenew(long timestamp, string signature, long? orderId, int? loanTerm, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1LoanVipRenewResponse&gt; VipLoanRenew(VipLoanRenewRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -24470,10 +22976,16 @@ Weight(UID): 6000
 ```csharp
 try
 {
-    var response = await client.VipLoans.VipLoanRenew(timestamp, signature, orderId, loanTerm, recvWindow);
+    var response = await client.VipLoans.VipLoanRenew(new VipLoanRenewRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        LoanTerm = 30,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1LoanVipRenewResponse
 }
-catch (SdkException<VipLoanRenewError> ex)
+catch (ApiException<VipLoanRenewError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -24485,18 +22997,12 @@ catch (SdkException<VipLoanRenewError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>orderId</code> | <code>long?</code> | Order id |
-| <code>loanTerm</code> | <code>int?</code> | - |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[VipLoanRenewRequest](Requests/VipLoans/VipLoanRenewRequest.cs)</code>
 
 </dd>
 </dl>
@@ -24508,7 +23014,7 @@ catch (SdkException<VipLoanRenewError> ex)
 
 **OnSuccess**: <code>[SapiV1LoanVipRenewResponse](Models/SapiV1LoanVipRenewResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[VipLoanRenewError](Errors/VipLoanRenewError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[VipLoanRenewError](Errors/VipLoanRenewError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -24519,7 +23025,7 @@ catch (SdkException<VipLoanRenewError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1LoanVipRepayResponse&gt; VipLoanRepayTrade(double amount, long timestamp, string signature, long? orderId, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1LoanVipRepayResponse&gt; VipLoanRepayTrade(VipLoanRepayTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -24544,10 +23050,16 @@ Weight(UID): 6000
 ```csharp
 try
 {
-    var response = await client.VipLoans.VipLoanRepayTrade(amount, timestamp, signature, orderId, recvWindow);
+    var response = await client.VipLoans.VipLoanRepayTrade(new VipLoanRepayTradeRequest
+    {
+        Amount = 1.01d,
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1LoanVipRepayResponse
 }
-catch (SdkException<VipLoanRepayTradeError> ex)
+catch (ApiException<VipLoanRepayTradeError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -24559,18 +23071,12 @@ catch (SdkException<VipLoanRepayTradeError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>amount</code> | <code>double</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>orderId</code> | <code>long?</code> | Order id |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[VipLoanRepayTradeRequest](Requests/VipLoans/VipLoanRepayTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -24582,7 +23088,7 @@ catch (SdkException<VipLoanRepayTradeError> ex)
 
 **OnSuccess**: <code>[SapiV1LoanVipRepayResponse](Models/SapiV1LoanVipRepayResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[VipLoanRepayTradeError](Errors/VipLoanRepayTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[VipLoanRepayTradeError](Errors/VipLoanRepayTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -24597,7 +23103,7 @@ catch (SdkException<VipLoanRepayTradeError> ex)
 > Source: [Wallet](Api/Wallet.cs)
 
 <details>
-<summary><code>Task&lt;SapiV1AccountApiTradingStatusResponse&gt; AccountApiTradingStatusUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1AccountApiTradingStatusResponse&gt; AccountApiTradingStatusUserData(AccountApiTradingStatusUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -24622,10 +23128,15 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.Wallet.AccountApiTradingStatusUserData(timestamp, signature, recvWindow);
+    var response = await client.Wallet.AccountApiTradingStatusUserData(new AccountApiTradingStatusUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1AccountApiTradingStatusResponse
 }
-catch (SdkException<AccountApiTradingStatusUserDataError> ex)
+catch (ApiException<AccountApiTradingStatusUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -24637,16 +23148,12 @@ catch (SdkException<AccountApiTradingStatusUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[AccountApiTradingStatusUserDataRequest](Requests/Wallet/AccountApiTradingStatusUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -24658,7 +23165,7 @@ catch (SdkException<AccountApiTradingStatusUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1AccountApiTradingStatusResponse](Models/SapiV1AccountApiTradingStatusResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[AccountApiTradingStatusUserDataError](Errors/AccountApiTradingStatusUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[AccountApiTradingStatusUserDataError](Errors/AccountApiTradingStatusUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -24669,7 +23176,7 @@ catch (SdkException<AccountApiTradingStatusUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1AccountStatusResponse&gt; AccountStatusUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1AccountStatusResponse&gt; AccountStatusUserData(AccountStatusUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -24694,10 +23201,15 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.Wallet.AccountStatusUserData(timestamp, signature, recvWindow);
+    var response = await client.Wallet.AccountStatusUserData(new AccountStatusUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1AccountStatusResponse
 }
-catch (SdkException<AccountStatusUserDataError> ex)
+catch (ApiException<AccountStatusUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -24709,16 +23221,12 @@ catch (SdkException<AccountStatusUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[AccountStatusUserDataRequest](Requests/Wallet/AccountStatusUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -24730,7 +23238,7 @@ catch (SdkException<AccountStatusUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1AccountStatusResponse](Models/SapiV1AccountStatusResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[AccountStatusUserDataError](Errors/AccountStatusUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[AccountStatusUserDataError](Errors/AccountStatusUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -24741,7 +23249,7 @@ catch (SdkException<AccountStatusUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1AccountInfoResponse&gt; AccountInfoUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1AccountInfoResponse&gt; AccountInfoUserData(AccountInfoUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -24766,10 +23274,15 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.Wallet.AccountInfoUserData(timestamp, signature, recvWindow);
+    var response = await client.Wallet.AccountInfoUserData(new AccountInfoUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1AccountInfoResponse
 }
-catch (SdkException<AccountInfoUserDataError> ex)
+catch (ApiException<AccountInfoUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -24781,16 +23294,12 @@ catch (SdkException<AccountInfoUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[AccountInfoUserDataRequest](Requests/Wallet/AccountInfoUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -24802,7 +23311,7 @@ catch (SdkException<AccountInfoUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1AccountInfoResponse](Models/SapiV1AccountInfoResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[AccountInfoUserDataError](Errors/AccountInfoUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[AccountInfoUserDataError](Errors/AccountInfoUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -24813,7 +23322,7 @@ catch (SdkException<AccountInfoUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1CapitalConfigGetallResponse&gt;&gt; AllCoinsInformationUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1CapitalConfigGetallResponse&gt;&gt; AllCoinsInformationUserData(AllCoinsInformationUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -24838,10 +23347,15 @@ Weight(IP): 10
 ```csharp
 try
 {
-    var response = await client.Wallet.AllCoinsInformationUserData(timestamp, signature, recvWindow);
+    var response = await client.Wallet.AllCoinsInformationUserData(new AllCoinsInformationUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1CapitalConfigGetallResponse>
 }
-catch (SdkException<AllCoinsInformationUserDataError> ex)
+catch (ApiException<AllCoinsInformationUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -24853,16 +23367,12 @@ catch (SdkException<AllCoinsInformationUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[AllCoinsInformationUserDataRequest](Requests/Wallet/AllCoinsInformationUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -24874,7 +23384,7 @@ catch (SdkException<AllCoinsInformationUserDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1CapitalConfigGetallResponse](Models/SapiV1CapitalConfigGetallResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[AllCoinsInformationUserDataError](Errors/AllCoinsInformationUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[AllCoinsInformationUserDataError](Errors/AllCoinsInformationUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -24885,7 +23395,7 @@ catch (SdkException<AllCoinsInformationUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1AssetAssetDetailResponse&gt; AssetDetailUserData(long timestamp, string signature, string? asset, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1AssetAssetDetailResponse&gt; AssetDetailUserData(AssetDetailUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -24912,10 +23422,16 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.Wallet.AssetDetailUserData(timestamp, signature, asset, recvWindow);
+    var response = await client.Wallet.AssetDetailUserData(new AssetDetailUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        Asset = "BNB",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1AssetAssetDetailResponse
 }
-catch (SdkException<AssetDetailUserDataError> ex)
+catch (ApiException<AssetDetailUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -24927,17 +23443,12 @@ catch (SdkException<AssetDetailUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>asset</code> | <code>string?</code> | - |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[AssetDetailUserDataRequest](Requests/Wallet/AssetDetailUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -24949,7 +23460,7 @@ catch (SdkException<AssetDetailUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1AssetAssetDetailResponse](Models/SapiV1AssetAssetDetailResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[AssetDetailUserDataError](Errors/AssetDetailUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[AssetDetailUserDataError](Errors/AssetDetailUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -24960,7 +23471,7 @@ catch (SdkException<AssetDetailUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1AssetAssetDividendResponse&gt; AssetDividendRecordUserData(long timestamp, string signature, string? asset, long? startTime, long? endTime, long? recvWindow, int? limit = 20, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1AssetAssetDividendResponse&gt; AssetDividendRecordUserData(AssetDividendRecordUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -24985,15 +23496,16 @@ Weight(IP): 10
 ```csharp
 try
 {
-    var response = await client.Wallet.AssetDividendRecordUserData(timestamp,
-        signature,
-        asset,
-        startTime,
-        endTime,
-        recvWindow);
+    var response = await client.Wallet.AssetDividendRecordUserData(new AssetDividendRecordUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        Asset = "BNB",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1AssetAssetDividendResponse
 }
-catch (SdkException<AssetDividendRecordUserDataError> ex)
+catch (ApiException<AssetDividendRecordUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -25005,20 +23517,12 @@ catch (SdkException<AssetDividendRecordUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>asset</code> | <code>string?</code> | - |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
-| <code>limit</code> | <code>int?</code> | **Default**: 20 |
+<code>[AssetDividendRecordUserDataRequest](Requests/Wallet/AssetDividendRecordUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -25030,7 +23534,7 @@ catch (SdkException<AssetDividendRecordUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1AssetAssetDividendResponse](Models/SapiV1AssetAssetDividendResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[AssetDividendRecordUserDataError](Errors/AssetDividendRecordUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[AssetDividendRecordUserDataError](Errors/AssetDividendRecordUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -25041,7 +23545,7 @@ catch (SdkException<AssetDividendRecordUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1AssetConvertTransferResponse&gt; ConvertTransferUserData(string clientTranId, string asset, double amount, string targetAsset, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1AssetConvertTransferResponse&gt; ConvertTransferUserData(ConvertTransferUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -25067,16 +23571,19 @@ Weight(UID): 5
 ```csharp
 try
 {
-    var response = await client.Wallet.ConvertTransferUserData(clientTranId,
-        asset,
-        amount,
-        targetAsset,
-        timestamp,
-        signature,
-        recvWindow);
+    var response = await client.Wallet.ConvertTransferUserData(new ConvertTransferUserDataRequest
+    {
+        ClientTranId = "some example string",
+        Asset = "BTC",
+        Amount = 1.01d,
+        TargetAsset = "BNB",
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1AssetConvertTransferResponse
 }
-catch (SdkException<ConvertTransferUserDataError> ex)
+catch (ApiException<ConvertTransferUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -25088,20 +23595,12 @@ catch (SdkException<ConvertTransferUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>clientTranId</code> | <code>string</code> | The unique flag, the min length is 20 |
-| <code>asset</code> | <code>string</code> | - |
-| <code>amount</code> | <code>double</code> | - |
-| <code>targetAsset</code> | <code>string</code> | Target asset you want to convert |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[ConvertTransferUserDataRequest](Requests/Wallet/ConvertTransferUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -25113,7 +23612,7 @@ catch (SdkException<ConvertTransferUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1AssetConvertTransferResponse](Models/SapiV1AssetConvertTransferResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[ConvertTransferUserDataError](Errors/ConvertTransferUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[ConvertTransferUserDataError](Errors/ConvertTransferUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -25124,7 +23623,7 @@ catch (SdkException<ConvertTransferUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1AccountSnapshotResponse&gt; DailyAccountSnapshotUserData(Type6 type, long timestamp, string signature, long? startTime, long? endTime, long? recvWindow, int? limit = 7, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1AccountSnapshotResponse&gt; DailyAccountSnapshotUserData(DailyAccountSnapshotUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -25151,15 +23650,16 @@ Weight(IP): 2400
 ```csharp
 try
 {
-    var response = await client.Wallet.DailyAccountSnapshotUserData(type,
-        timestamp,
-        signature,
-        startTime,
-        endTime,
-        recvWindow);
+    var response = await client.Wallet.DailyAccountSnapshotUserData(new DailyAccountSnapshotUserDataRequest
+    {
+        Type = Type6.Spot,
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1AccountSnapshotResponse
 }
-catch (SdkException<DailyAccountSnapshotUserDataError> ex)
+catch (ApiException<DailyAccountSnapshotUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -25171,20 +23671,12 @@ catch (SdkException<DailyAccountSnapshotUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>type</code> | <code>[Type6](Models/Enums/Type6.cs)</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
-| <code>limit</code> | <code>int?</code> | **Default**: 7 |
+<code>[DailyAccountSnapshotUserDataRequest](Requests/Wallet/DailyAccountSnapshotUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -25196,7 +23688,7 @@ catch (SdkException<DailyAccountSnapshotUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1AccountSnapshotResponse](Models/AnyOf/SapiV1AccountSnapshotResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[DailyAccountSnapshotUserDataError](Errors/DailyAccountSnapshotUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[DailyAccountSnapshotUserDataError](Errors/DailyAccountSnapshotUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -25207,7 +23699,7 @@ catch (SdkException<DailyAccountSnapshotUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1CapitalDepositAddressResponse&gt; DepositAddressSupportingNetworkUserData(string coin, long timestamp, string signature, string? network, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1CapitalDepositAddressResponse&gt; DepositAddressSupportingNetworkUserData(DepositAddressSupportingNetworkUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -25235,14 +23727,18 @@ Weight(IP): 10
 ```csharp
 try
 {
-    var response = await client.Wallet.DepositAddressSupportingNetworkUserData(coin,
-        timestamp,
-        signature,
-        network,
-        recvWindow);
+    var response = await client.Wallet.DepositAddressSupportingNetworkUserData(
+        new DepositAddressSupportingNetworkUserDataRequest
+        {
+            Coin = "BNB",
+            Timestamp = 1L,
+            Signature = "some example string",
+            Network = "BTC",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1CapitalDepositAddressResponse
 }
-catch (SdkException<DepositAddressSupportingNetworkUserDataError> ex)
+catch (ApiException<DepositAddressSupportingNetworkUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -25254,18 +23750,12 @@ catch (SdkException<DepositAddressSupportingNetworkUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>coin</code> | <code>string</code> | Coin name |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>network</code> | <code>string?</code> | - |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[DepositAddressSupportingNetworkUserDataRequest](Requests/Wallet/DepositAddressSupportingNetworkUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -25277,7 +23767,7 @@ catch (SdkException<DepositAddressSupportingNetworkUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1CapitalDepositAddressResponse](Models/SapiV1CapitalDepositAddressResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[DepositAddressSupportingNetworkUserDataError](Errors/DepositAddressSupportingNetworkUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[DepositAddressSupportingNetworkUserDataError](Errors/DepositAddressSupportingNetworkUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -25288,7 +23778,7 @@ catch (SdkException<DepositAddressSupportingNetworkUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1CapitalDepositHisrecResponse&gt;&gt; DepositHistorySupportingNetworkUserData(long timestamp, string signature, string? coin, int? status, long? startTime, long? endTime, int? offset, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1CapitalDepositHisrecResponse&gt;&gt; DepositHistorySupportingNetworkUserData(DepositHistorySupportingNetworkUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -25316,18 +23806,18 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.Wallet.DepositHistorySupportingNetworkUserData(timestamp,
-        signature,
-        coin,
-        status,
-        startTime,
-        endTime,
-        offset,
-        limit,
-        recvWindow);
+    var response = await client.Wallet.DepositHistorySupportingNetworkUserData(
+        new DepositHistorySupportingNetworkUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            Coin = "BNB",
+            Limit = 5,
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1CapitalDepositHisrecResponse>
 }
-catch (SdkException<DepositHistorySupportingNetworkUserDataError> ex)
+catch (ApiException<DepositHistorySupportingNetworkUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -25339,22 +23829,12 @@ catch (SdkException<DepositHistorySupportingNetworkUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>coin</code> | <code>string?</code> | Coin name |
-| <code>status</code> | <code>int?</code> | * `0` - pending<br>* `6` - credited but cannot withdraw<br>* `1` - success |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>offset</code> | <code>int?</code> | - |
-| <code>limit</code> | <code>int?</code> | Default 500; max 1000. |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[DepositHistorySupportingNetworkUserDataRequest](Requests/Wallet/DepositHistorySupportingNetworkUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -25366,7 +23846,7 @@ catch (SdkException<DepositHistorySupportingNetworkUserDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1CapitalDepositHisrecResponse](Models/SapiV1CapitalDepositHisrecResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[DepositHistorySupportingNetworkUserDataError](Errors/DepositHistorySupportingNetworkUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[DepositHistorySupportingNetworkUserDataError](Errors/DepositHistorySupportingNetworkUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -25377,7 +23857,7 @@ catch (SdkException<DepositHistorySupportingNetworkUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;object&gt; DisableFastWithdrawSwitchUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;object&gt; DisableFastWithdrawSwitchUserData(DisableFastWithdrawSwitchUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -25403,10 +23883,15 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.Wallet.DisableFastWithdrawSwitchUserData(timestamp, signature, recvWindow);
+    var response = await client.Wallet.DisableFastWithdrawSwitchUserData(new DisableFastWithdrawSwitchUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type object
 }
-catch (SdkException<DisableFastWithdrawSwitchUserDataError> ex)
+catch (ApiException<DisableFastWithdrawSwitchUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -25418,16 +23903,12 @@ catch (SdkException<DisableFastWithdrawSwitchUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[DisableFastWithdrawSwitchUserDataRequest](Requests/Wallet/DisableFastWithdrawSwitchUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -25439,7 +23920,7 @@ catch (SdkException<DisableFastWithdrawSwitchUserDataError> ex)
 
 **OnSuccess**: <code>object</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[DisableFastWithdrawSwitchUserDataError](Errors/DisableFastWithdrawSwitchUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[DisableFastWithdrawSwitchUserDataError](Errors/DisableFastWithdrawSwitchUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -25450,7 +23931,7 @@ catch (SdkException<DisableFastWithdrawSwitchUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1AssetDustResponse&gt; DustTransferUserData(IReadOnlyList&lt;string&gt; asset, long timestamp, string signature, AccountType? accountType, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1AssetDustResponse&gt; DustTransferUserData(DustTransferUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -25475,10 +23956,16 @@ Weight(UID): 10
 ```csharp
 try
 {
-    var response = await client.Wallet.DustTransferUserData(asset, timestamp, signature, accountType, recvWindow);
+    var response = await client.Wallet.DustTransferUserData(new DustTransferUserDataRequest
+    {
+        Asset = ["some example string"],
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1AssetDustResponse
 }
-catch (SdkException<DustTransferUserDataError> ex)
+catch (ApiException<DustTransferUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -25490,18 +23977,12 @@ catch (SdkException<DustTransferUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>asset</code> | <code>IReadOnlyList&lt;string&gt;</code> | The asset being converted. For example, asset=BTC&asset=USDT |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>accountType</code> | <code>[AccountType?](Models/Enums/AccountType.cs)</code> | SPOT or MARGIN, default SPOT |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[DustTransferUserDataRequest](Requests/Wallet/DustTransferUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -25513,7 +23994,7 @@ catch (SdkException<DustTransferUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1AssetDustResponse](Models/SapiV1AssetDustResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[DustTransferUserDataError](Errors/DustTransferUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[DustTransferUserDataError](Errors/DustTransferUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -25524,7 +24005,7 @@ catch (SdkException<DustTransferUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1AssetDribbletResponse&gt; DustLogUserData(long timestamp, string signature, AccountType? accountType, long? startTime, long? endTime, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1AssetDribbletResponse&gt; DustLogUserData(DustLogUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -25547,15 +24028,15 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.Wallet.DustLogUserData(timestamp,
-        signature,
-        accountType,
-        startTime,
-        endTime,
-        recvWindow);
+    var response = await client.Wallet.DustLogUserData(new DustLogUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1AssetDribbletResponse
 }
-catch (SdkException<DustLogUserDataError> ex)
+catch (ApiException<DustLogUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -25567,19 +24048,12 @@ catch (SdkException<DustLogUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>accountType</code> | <code>[AccountType?](Models/Enums/AccountType.cs)</code> | SPOT or MARGIN, default SPOT |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[DustLogUserDataRequest](Requests/Wallet/DustLogUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -25591,7 +24065,7 @@ catch (SdkException<DustLogUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1AssetDribbletResponse](Models/SapiV1AssetDribbletResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[DustLogUserDataError](Errors/DustLogUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[DustLogUserDataError](Errors/DustLogUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -25602,7 +24076,7 @@ catch (SdkException<DustLogUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;object&gt; EnableFastWithdrawSwitchUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;object&gt; EnableFastWithdrawSwitchUserData(EnableFastWithdrawSwitchUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -25628,10 +24102,15 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.Wallet.EnableFastWithdrawSwitchUserData(timestamp, signature, recvWindow);
+    var response = await client.Wallet.EnableFastWithdrawSwitchUserData(new EnableFastWithdrawSwitchUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type object
 }
-catch (SdkException<EnableFastWithdrawSwitchUserDataError> ex)
+catch (ApiException<EnableFastWithdrawSwitchUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -25643,16 +24122,12 @@ catch (SdkException<EnableFastWithdrawSwitchUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[EnableFastWithdrawSwitchUserDataRequest](Requests/Wallet/EnableFastWithdrawSwitchUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -25664,7 +24139,7 @@ catch (SdkException<EnableFastWithdrawSwitchUserDataError> ex)
 
 **OnSuccess**: <code>object</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[EnableFastWithdrawSwitchUserDataError](Errors/EnableFastWithdrawSwitchUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[EnableFastWithdrawSwitchUserDataError](Errors/EnableFastWithdrawSwitchUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -25675,7 +24150,7 @@ catch (SdkException<EnableFastWithdrawSwitchUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1CapitalDepositAddressListResponse&gt;&gt; FetchDepositAddressListWithNetworkUserData(string coin, long timestamp, string signature, string? network, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1CapitalDepositAddressListResponse&gt;&gt; FetchDepositAddressListWithNetworkUserData(FetchDepositAddressListWithNetworkUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -25700,14 +24175,18 @@ Weight(IP): 10
 ```csharp
 try
 {
-    var response = await client.Wallet.FetchDepositAddressListWithNetworkUserData(coin,
-        timestamp,
-        signature,
-        network,
-        recvWindow);
+    var response = await client.Wallet.FetchDepositAddressListWithNetworkUserData(
+        new FetchDepositAddressListWithNetworkUserDataRequest
+        {
+            Coin = "BTC",
+            Timestamp = 1L,
+            Signature = "some example string",
+            Network = "BTC",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1CapitalDepositAddressListResponse>
 }
-catch (SdkException<FetchDepositAddressListWithNetworkUserDataError> ex)
+catch (ApiException<FetchDepositAddressListWithNetworkUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -25719,18 +24198,12 @@ catch (SdkException<FetchDepositAddressListWithNetworkUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>coin</code> | <code>string</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>network</code> | <code>string?</code> | - |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[FetchDepositAddressListWithNetworkUserDataRequest](Requests/Wallet/FetchDepositAddressListWithNetworkUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -25742,7 +24215,7 @@ catch (SdkException<FetchDepositAddressListWithNetworkUserDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1CapitalDepositAddressListResponse](Models/SapiV1CapitalDepositAddressListResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[FetchDepositAddressListWithNetworkUserDataError](Errors/FetchDepositAddressListWithNetworkUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[FetchDepositAddressListWithNetworkUserDataError](Errors/FetchDepositAddressListWithNetworkUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -25753,7 +24226,7 @@ catch (SdkException<FetchDepositAddressListWithNetworkUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1CapitalWithdrawAddressListResponse&gt;&gt; FetchWithdrawAddressListUserData(RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1CapitalWithdrawAddressListResponse&gt;&gt; FetchWithdrawAddressListUserData(RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -25781,7 +24254,7 @@ try
     var response = await client.Wallet.FetchWithdrawAddressListUserData();
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1CapitalWithdrawAddressListResponse>
 }
-catch (SdkException<FetchWithdrawAddressListUserDataError> ex)
+catch (ApiException<FetchWithdrawAddressListUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -25800,7 +24273,7 @@ catch (SdkException<FetchWithdrawAddressListUserDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1CapitalWithdrawAddressListResponse](Models/SapiV1CapitalWithdrawAddressListResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[FetchWithdrawAddressListUserDataError](Errors/FetchWithdrawAddressListUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[FetchWithdrawAddressListUserDataError](Errors/FetchWithdrawAddressListUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -25811,7 +24284,7 @@ catch (SdkException<FetchWithdrawAddressListUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1AssetGetFundingAssetResponse&gt;&gt; FundingWalletUserData(long timestamp, string signature, string? asset, NeedBtcValuation? needBtcValuation, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1AssetGetFundingAssetResponse&gt;&gt; FundingWalletUserData(FundingWalletUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -25836,10 +24309,16 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.Wallet.FundingWalletUserData(timestamp, signature, asset, needBtcValuation, recvWindow);
+    var response = await client.Wallet.FundingWalletUserData(new FundingWalletUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        Asset = "BNB",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1AssetGetFundingAssetResponse>
 }
-catch (SdkException<FundingWalletUserDataError> ex)
+catch (ApiException<FundingWalletUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -25851,18 +24330,12 @@ catch (SdkException<FundingWalletUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>asset</code> | <code>string?</code> | - |
-| <code>needBtcValuation</code> | <code>[NeedBtcValuation?](Models/Enums/NeedBtcValuation.cs)</code> | - |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[FundingWalletUserDataRequest](Requests/Wallet/FundingWalletUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -25874,7 +24347,7 @@ catch (SdkException<FundingWalletUserDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1AssetGetFundingAssetResponse](Models/SapiV1AssetGetFundingAssetResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[FundingWalletUserDataError](Errors/FundingWalletUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[FundingWalletUserDataError](Errors/FundingWalletUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -25885,7 +24358,7 @@ catch (SdkException<FundingWalletUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1AccountApiRestrictionsResponse&gt; GetApiKeyPermissionUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1AccountApiRestrictionsResponse&gt; GetApiKeyPermissionUserData(GetApiKeyPermissionUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -25908,10 +24381,15 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.Wallet.GetApiKeyPermissionUserData(timestamp, signature, recvWindow);
+    var response = await client.Wallet.GetApiKeyPermissionUserData(new GetApiKeyPermissionUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1AccountApiRestrictionsResponse
 }
-catch (SdkException<GetApiKeyPermissionUserDataError> ex)
+catch (ApiException<GetApiKeyPermissionUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -25923,16 +24401,12 @@ catch (SdkException<GetApiKeyPermissionUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetApiKeyPermissionUserDataRequest](Requests/Wallet/GetApiKeyPermissionUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -25944,7 +24418,7 @@ catch (SdkException<GetApiKeyPermissionUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1AccountApiRestrictionsResponse](Models/SapiV1AccountApiRestrictionsResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetApiKeyPermissionUserDataError](Errors/GetApiKeyPermissionUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetApiKeyPermissionUserDataError](Errors/GetApiKeyPermissionUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -25955,7 +24429,7 @@ catch (SdkException<GetApiKeyPermissionUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1AssetDustBtcResponse&gt; GetAssetsThatCanBeConvertedIntoBnbUserData(long timestamp, string signature, AccountType? accountType, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1AssetDustBtcResponse&gt; GetAssetsThatCanBeConvertedIntoBnbUserData(GetAssetsThatCanBeConvertedIntoBnbUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -25978,13 +24452,16 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.Wallet.GetAssetsThatCanBeConvertedIntoBnbUserData(timestamp,
-        signature,
-        accountType,
-        recvWindow);
+    var response = await client.Wallet.GetAssetsThatCanBeConvertedIntoBnbUserData(
+        new GetAssetsThatCanBeConvertedIntoBnbUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1AssetDustBtcResponse
 }
-catch (SdkException<GetAssetsThatCanBeConvertedIntoBnbUserDataError> ex)
+catch (ApiException<GetAssetsThatCanBeConvertedIntoBnbUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -25996,17 +24473,12 @@ catch (SdkException<GetAssetsThatCanBeConvertedIntoBnbUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>accountType</code> | <code>[AccountType?](Models/Enums/AccountType.cs)</code> | SPOT or MARGIN, default SPOT |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetAssetsThatCanBeConvertedIntoBnbUserDataRequest](Requests/Wallet/GetAssetsThatCanBeConvertedIntoBnbUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -26018,7 +24490,7 @@ catch (SdkException<GetAssetsThatCanBeConvertedIntoBnbUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1AssetDustBtcResponse](Models/SapiV1AssetDustBtcResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetAssetsThatCanBeConvertedIntoBnbUserDataError](Errors/GetAssetsThatCanBeConvertedIntoBnbUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetAssetsThatCanBeConvertedIntoBnbUserDataError](Errors/GetAssetsThatCanBeConvertedIntoBnbUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -26029,7 +24501,7 @@ catch (SdkException<GetAssetsThatCanBeConvertedIntoBnbUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1AssetLedgerTransferCloudMiningQueryByPageResponse&gt; GetCloudMiningPaymentAndRefundHistoryUserData(long startTime, long endTime, long timestamp, string signature, long? tranId, string? clientTranId, string? asset, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1AssetLedgerTransferCloudMiningQueryByPageResponse&gt; GetCloudMiningPaymentAndRefundHistoryUserData(GetCloudMiningPaymentAndRefundHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -26054,19 +24526,22 @@ Weight(UID): 600
 ```csharp
 try
 {
-    var response = await client.Wallet.GetCloudMiningPaymentAndRefundHistoryUserData(startTime,
-        endTime,
-        timestamp,
-        signature,
-        tranId,
-        clientTranId,
-        asset,
-        current,
-        size,
-        recvWindow);
+    var response = await client.Wallet.GetCloudMiningPaymentAndRefundHistoryUserData(
+        new GetCloudMiningPaymentAndRefundHistoryUserDataRequest
+        {
+            StartTime = 1L,
+            EndTime = 1L,
+            Timestamp = 1L,
+            Signature = "some example string",
+            TranId = 118263615991L,
+            Asset = "BTC",
+            Current = 1,
+            Size = 100,
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1AssetLedgerTransferCloudMiningQueryByPageResponse
 }
-catch (SdkException<GetCloudMiningPaymentAndRefundHistoryUserDataError> ex)
+catch (ApiException<GetCloudMiningPaymentAndRefundHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -26078,23 +24553,12 @@ catch (SdkException<GetCloudMiningPaymentAndRefundHistoryUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>startTime</code> | <code>long</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long</code> | UTC timestamp in ms |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>tranId</code> | <code>long?</code> | The transaction id |
-| <code>clientTranId</code> | <code>string?</code> | The unique flag |
-| <code>asset</code> | <code>string?</code> | If it is blank, we will query all assets |
-| <code>current</code> | <code>int?</code> | Current querying page. Start from 1. Default:1 |
-| <code>size</code> | <code>int?</code> | Default:10 Max:100 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetCloudMiningPaymentAndRefundHistoryUserDataRequest](Requests/Wallet/GetCloudMiningPaymentAndRefundHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -26106,7 +24570,7 @@ catch (SdkException<GetCloudMiningPaymentAndRefundHistoryUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1AssetLedgerTransferCloudMiningQueryByPageResponse](Models/SapiV1AssetLedgerTransferCloudMiningQueryByPageResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetCloudMiningPaymentAndRefundHistoryUserDataError](Errors/GetCloudMiningPaymentAndRefundHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetCloudMiningPaymentAndRefundHistoryUserDataError](Errors/GetCloudMiningPaymentAndRefundHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -26117,7 +24581,7 @@ catch (SdkException<GetCloudMiningPaymentAndRefundHistoryUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1SpotDelistScheduleResponse&gt;&gt; GetSymbolsDelistScheduleForSpotMarketData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1SpotDelistScheduleResponse&gt;&gt; GetSymbolsDelistScheduleForSpotMarketData(GetSymbolsDelistScheduleForSpotMarketDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -26142,10 +24606,16 @@ Weight(IP): 100
 ```csharp
 try
 {
-    var response = await client.Wallet.GetSymbolsDelistScheduleForSpotMarketData(timestamp, signature, recvWindow);
+    var response = await client.Wallet.GetSymbolsDelistScheduleForSpotMarketData(
+        new GetSymbolsDelistScheduleForSpotMarketDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1SpotDelistScheduleResponse>
 }
-catch (SdkException<GetSymbolsDelistScheduleForSpotMarketDataError> ex)
+catch (ApiException<GetSymbolsDelistScheduleForSpotMarketDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -26157,16 +24627,12 @@ catch (SdkException<GetSymbolsDelistScheduleForSpotMarketDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[GetSymbolsDelistScheduleForSpotMarketDataRequest](Requests/Wallet/GetSymbolsDelistScheduleForSpotMarketDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -26178,7 +24644,7 @@ catch (SdkException<GetSymbolsDelistScheduleForSpotMarketDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1SpotDelistScheduleResponse](Models/SapiV1SpotDelistScheduleResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[GetSymbolsDelistScheduleForSpotMarketDataError](Errors/GetSymbolsDelistScheduleForSpotMarketDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetSymbolsDelistScheduleForSpotMarketDataError](Errors/GetSymbolsDelistScheduleForSpotMarketDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -26189,7 +24655,7 @@ catch (SdkException<GetSymbolsDelistScheduleForSpotMarketDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1CapitalDepositCreditApplyResponse&gt; OneClickArrivalDepositApplyUserData(long timestamp, string signature, long? depositId, string? txId, long? subAccountId, long? subUserId, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1CapitalDepositCreditApplyResponse&gt; OneClickArrivalDepositApplyUserData(OneClickArrivalDepositApplyUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -26214,16 +24680,16 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.Wallet.OneClickArrivalDepositApplyUserData(timestamp,
-        signature,
-        depositId,
-        txId,
-        subAccountId,
-        subUserId,
-        recvWindow);
+    var response = await client.Wallet.OneClickArrivalDepositApplyUserData(
+        new OneClickArrivalDepositApplyUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1CapitalDepositCreditApplyResponse
 }
-catch (SdkException<OneClickArrivalDepositApplyUserDataError> ex)
+catch (ApiException<OneClickArrivalDepositApplyUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -26235,20 +24701,12 @@ catch (SdkException<OneClickArrivalDepositApplyUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>depositId</code> | <code>long?</code> | Deposit record Id, priority use |
-| <code>txId</code> | <code>string?</code> | Deposit txId, used when depositId is not specified |
-| <code>subAccountId</code> | <code>long?</code> | - |
-| <code>subUserId</code> | <code>long?</code> | - |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[OneClickArrivalDepositApplyUserDataRequest](Requests/Wallet/OneClickArrivalDepositApplyUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -26260,7 +24718,7 @@ catch (SdkException<OneClickArrivalDepositApplyUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1CapitalDepositCreditApplyResponse](Models/SapiV1CapitalDepositCreditApplyResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[OneClickArrivalDepositApplyUserDataError](Errors/OneClickArrivalDepositApplyUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[OneClickArrivalDepositApplyUserDataError](Errors/OneClickArrivalDepositApplyUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -26271,7 +24729,7 @@ catch (SdkException<OneClickArrivalDepositApplyUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1AssetConvertTransferQueryByPageResponse&gt; QueryConvertTransferUserData(long startTime, long endTime, long timestamp, string signature, long? tranId, string? asset, AccountType3? accountType, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1AssetConvertTransferQueryByPageResponse&gt; QueryConvertTransferUserData(QueryConvertTransferUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -26294,19 +24752,21 @@ Weight(UID): 5
 ```csharp
 try
 {
-    var response = await client.Wallet.QueryConvertTransferUserData(startTime,
-        endTime,
-        timestamp,
-        signature,
-        tranId,
-        asset,
-        accountType,
-        current,
-        size,
-        recvWindow);
+    var response = await client.Wallet.QueryConvertTransferUserData(new QueryConvertTransferUserDataRequest
+    {
+        StartTime = 1L,
+        EndTime = 1L,
+        Timestamp = 1L,
+        Signature = "some example string",
+        TranId = 118263615991L,
+        Asset = "BTC",
+        Current = 1,
+        Size = 100,
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1AssetConvertTransferQueryByPageResponse
 }
-catch (SdkException<QueryConvertTransferUserDataError> ex)
+catch (ApiException<QueryConvertTransferUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -26318,23 +24778,12 @@ catch (SdkException<QueryConvertTransferUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>startTime</code> | <code>long</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long</code> | UTC timestamp in ms |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>tranId</code> | <code>long?</code> | The transaction id |
-| <code>asset</code> | <code>string?</code> | If it is blank, we will match deducted asset and target asset. |
-| <code>accountType</code> | <code>[AccountType3?](Models/Enums/AccountType3.cs)</code> | MAIN: main account. CARD: funding account. If it is blank, we will query spot and card wallet, otherwise, we just query the corresponding wallet |
-| <code>current</code> | <code>int?</code> | Current querying page. Start from 1. Default:1 |
-| <code>size</code> | <code>int?</code> | Default:10 Max:100 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryConvertTransferUserDataRequest](Requests/Wallet/QueryConvertTransferUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -26346,7 +24795,7 @@ catch (SdkException<QueryConvertTransferUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1AssetConvertTransferQueryByPageResponse](Models/SapiV1AssetConvertTransferQueryByPageResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryConvertTransferUserDataError](Errors/QueryConvertTransferUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryConvertTransferUserDataError](Errors/QueryConvertTransferUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -26357,7 +24806,7 @@ catch (SdkException<QueryConvertTransferUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1AssetCustodyTransferHistoryResponse&gt; QueryUserDelegationHistoryForMasterAccountUserData(string email, long startTime, long endTime, string asset, long timestamp, string signature, string? type, int? current, int? size, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1AssetCustodyTransferHistoryResponse&gt; QueryUserDelegationHistoryForMasterAccountUserData(QueryUserDelegationHistoryForMasterAccountUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -26382,19 +24831,23 @@ Weight(IP): 60
 ```csharp
 try
 {
-    var response = await client.Wallet.QueryUserDelegationHistoryForMasterAccountUserData(email,
-        startTime,
-        endTime,
-        asset,
-        timestamp,
-        signature,
-        type,
-        current,
-        size,
-        recvWindow);
+    var response = await client.Wallet.QueryUserDelegationHistoryForMasterAccountUserData(
+        new QueryUserDelegationHistoryForMasterAccountUserDataRequest
+        {
+            Email = "alice@test.com",
+            StartTime = 1695205406000L,
+            EndTime = 1695205396000L,
+            Asset = "BTC",
+            Timestamp = 1L,
+            Signature = "some example string",
+            Type = "Delegate",
+            Current = 1,
+            Size = 100,
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1AssetCustodyTransferHistoryResponse
 }
-catch (SdkException<QueryUserDelegationHistoryForMasterAccountUserDataError> ex)
+catch (ApiException<QueryUserDelegationHistoryForMasterAccountUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -26406,23 +24859,12 @@ catch (SdkException<QueryUserDelegationHistoryForMasterAccountUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>email</code> | <code>string</code> | - |
-| <code>startTime</code> | <code>long</code> | - |
-| <code>endTime</code> | <code>long</code> | - |
-| <code>asset</code> | <code>string</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>type</code> | <code>string?</code> | - |
-| <code>current</code> | <code>int?</code> | Current querying page. Start from 1. Default:1 |
-| <code>size</code> | <code>int?</code> | Default:10 Max:100 |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryUserDelegationHistoryForMasterAccountUserDataRequest](Requests/Wallet/QueryUserDelegationHistoryForMasterAccountUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -26434,7 +24876,7 @@ catch (SdkException<QueryUserDelegationHistoryForMasterAccountUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1AssetCustodyTransferHistoryResponse](Models/SapiV1AssetCustodyTransferHistoryResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryUserDelegationHistoryForMasterAccountUserDataError](Errors/QueryUserDelegationHistoryForMasterAccountUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryUserDelegationHistoryForMasterAccountUserDataError](Errors/QueryUserDelegationHistoryForMasterAccountUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -26445,7 +24887,7 @@ catch (SdkException<QueryUserDelegationHistoryForMasterAccountUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1AssetTransferResponse&gt; QueryUserUniversalTransferHistoryUserData(Type7 type, long timestamp, string signature, long? startTime, long? endTime, int? current, int? size, string? fromSymbol, string? toSymbol, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1AssetTransferResponse&gt; QueryUserUniversalTransferHistoryUserData(QueryUserUniversalTransferHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -26473,19 +24915,21 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.Wallet.QueryUserUniversalTransferHistoryUserData(type,
-        timestamp,
-        signature,
-        startTime,
-        endTime,
-        current,
-        size,
-        fromSymbol,
-        toSymbol,
-        recvWindow);
+    var response = await client.Wallet.QueryUserUniversalTransferHistoryUserData(
+        new QueryUserUniversalTransferHistoryUserDataRequest
+        {
+            Type = Type7.MainC2C,
+            Timestamp = 1L,
+            Signature = "some example string",
+            Current = 1,
+            Size = 100,
+            FromSymbol = "BNBUSDT",
+            ToSymbol = "BNBUSDT",
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type SapiV1AssetTransferResponse
 }
-catch (SdkException<QueryUserUniversalTransferHistoryUserDataError> ex)
+catch (ApiException<QueryUserUniversalTransferHistoryUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -26497,23 +24941,12 @@ catch (SdkException<QueryUserUniversalTransferHistoryUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>type</code> | <code>[Type7](Models/Enums/Type7.cs)</code> | Universal transfer type |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>current</code> | <code>int?</code> | Current querying page. Start from 1. Default:1 |
-| <code>size</code> | <code>int?</code> | Default:10 Max:100 |
-| <code>fromSymbol</code> | <code>string?</code> | Must be sent when type are ISOLATEDMARGIN_MARGIN and ISOLATEDMARGIN_ISOLATEDMARGIN |
-| <code>toSymbol</code> | <code>string?</code> | Must be sent when type are MARGIN_ISOLATEDMARGIN and ISOLATEDMARGIN_ISOLATEDMARGIN |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryUserUniversalTransferHistoryUserDataRequest](Requests/Wallet/QueryUserUniversalTransferHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -26525,7 +24958,7 @@ catch (SdkException<QueryUserUniversalTransferHistoryUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1AssetTransferResponse](Models/SapiV1AssetTransferResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryUserUniversalTransferHistoryUserDataError](Errors/QueryUserUniversalTransferHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryUserUniversalTransferHistoryUserDataError](Errors/QueryUserUniversalTransferHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -26536,7 +24969,7 @@ catch (SdkException<QueryUserUniversalTransferHistoryUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1AssetWalletBalanceResponse&gt;&gt; QueryUserWalletBalanceUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1AssetWalletBalanceResponse&gt;&gt; QueryUserWalletBalanceUserData(QueryUserWalletBalanceUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -26561,10 +24994,15 @@ Weight(IP): 60
 ```csharp
 try
 {
-    var response = await client.Wallet.QueryUserWalletBalanceUserData(timestamp, signature, recvWindow);
+    var response = await client.Wallet.QueryUserWalletBalanceUserData(new QueryUserWalletBalanceUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1AssetWalletBalanceResponse>
 }
-catch (SdkException<QueryUserWalletBalanceUserDataError> ex)
+catch (ApiException<QueryUserWalletBalanceUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -26576,16 +25014,12 @@ catch (SdkException<QueryUserWalletBalanceUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[QueryUserWalletBalanceUserDataRequest](Requests/Wallet/QueryUserWalletBalanceUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -26597,7 +25031,7 @@ catch (SdkException<QueryUserWalletBalanceUserDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1AssetWalletBalanceResponse](Models/SapiV1AssetWalletBalanceResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryUserWalletBalanceUserDataError](Errors/QueryUserWalletBalanceUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryUserWalletBalanceUserDataError](Errors/QueryUserWalletBalanceUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -26608,7 +25042,7 @@ catch (SdkException<QueryUserWalletBalanceUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1CapitalContractConvertibleCoinsResponse&gt; QueryAutoConvertingStableCoinsUserData(RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1CapitalContractConvertibleCoinsResponse&gt; QueryAutoConvertingStableCoinsUserData(RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -26636,7 +25070,7 @@ try
     var response = await client.Wallet.QueryAutoConvertingStableCoinsUserData();
     // TODO: Handle 'response' of type SapiV1CapitalContractConvertibleCoinsResponse
 }
-catch (SdkException<QueryAutoConvertingStableCoinsUserDataError> ex)
+catch (ApiException<QueryAutoConvertingStableCoinsUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -26655,7 +25089,7 @@ catch (SdkException<QueryAutoConvertingStableCoinsUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1CapitalContractConvertibleCoinsResponse](Models/SapiV1CapitalContractConvertibleCoinsResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[QueryAutoConvertingStableCoinsUserDataError](Errors/QueryAutoConvertingStableCoinsUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryAutoConvertingStableCoinsUserDataError](Errors/QueryAutoConvertingStableCoinsUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -26666,7 +25100,7 @@ catch (SdkException<QueryAutoConvertingStableCoinsUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;object&gt; SwitchOnOffBusdAndStableCoinsConversionUserDataUserData(string coin, bool enable, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;object&gt; SwitchOnOffBusdAndStableCoinsConversionUserDataUserData(SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -26691,10 +25125,15 @@ Weight(UID): 600'
 ```csharp
 try
 {
-    var response = await client.Wallet.SwitchOnOffBusdAndStableCoinsConversionUserDataUserData(coin, enable);
+    var response = await client.Wallet.SwitchOnOffBusdAndStableCoinsConversionUserDataUserData(
+        new SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataRequest
+        {
+            Coin = "some example string",
+            Enable = true,
+        });
     // TODO: Handle 'response' of type object
 }
-catch (SdkException<SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataError> ex)
+catch (ApiException<SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -26706,15 +25145,12 @@ catch (SdkException<SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataError
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>coin</code> | <code>string</code> | Must be USDC, USDP or TUSD |
-| <code>enable</code> | <code>bool</code> | true: turn on the auto-conversion. false: turn off the auto-conversion |
+<code>[SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataRequest](Requests/Wallet/SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -26726,7 +25162,7 @@ catch (SdkException<SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataError
 
 **OnSuccess**: <code>object</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataError](Errors/SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataError](Errors/SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -26737,7 +25173,7 @@ catch (SdkException<SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataError
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1SystemStatusResponse&gt; SystemStatusSystem(RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1SystemStatusResponse&gt; SystemStatusSystem(RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -26765,7 +25201,7 @@ try
     var response = await client.Wallet.SystemStatusSystem();
     // TODO: Handle 'response' of type SapiV1SystemStatusResponse
 }
-catch (SdkException<RawError> ex)
+catch (ApiException<RawError> ex)
 {
     // TODO: Handle 'ex.Error' of type RawError
 }
@@ -26781,7 +25217,7 @@ catch (SdkException<RawError> ex)
 
 **OnSuccess**: <code>[SapiV1SystemStatusResponse](Models/SapiV1SystemStatusResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[RawError](Core/ErrorResponse/RawError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[RawError](Core/ErrorResponse/RawError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -26792,7 +25228,7 @@ catch (SdkException<RawError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1AssetTradeFeeResponse&gt;&gt; TradeFeeUserData(long timestamp, string signature, string? symbol, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1AssetTradeFeeResponse&gt;&gt; TradeFeeUserData(TradeFeeUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -26817,10 +25253,16 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.Wallet.TradeFeeUserData(timestamp, signature, symbol, recvWindow);
+    var response = await client.Wallet.TradeFeeUserData(new TradeFeeUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        Symbol = "BNBUSDT",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1AssetTradeFeeResponse>
 }
-catch (SdkException<TradeFeeUserDataError> ex)
+catch (ApiException<TradeFeeUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -26832,17 +25274,12 @@ catch (SdkException<TradeFeeUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>symbol</code> | <code>string?</code> | Trading symbol, e.g. BNBUSDT |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[TradeFeeUserDataRequest](Requests/Wallet/TradeFeeUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -26854,7 +25291,7 @@ catch (SdkException<TradeFeeUserDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1AssetTradeFeeResponse](Models/SapiV1AssetTradeFeeResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[TradeFeeUserDataError](Errors/TradeFeeUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[TradeFeeUserDataError](Errors/TradeFeeUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -26865,7 +25302,7 @@ catch (SdkException<TradeFeeUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV3AssetGetUserAssetResponse&gt;&gt; UserAssetUserData(long timestamp, string signature, string? asset, NeedBtcValuation? needBtcValuation, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV3AssetGetUserAssetResponse&gt;&gt; UserAssetUserData(UserAssetUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -26890,10 +25327,16 @@ Weight(IP): 5
 ```csharp
 try
 {
-    var response = await client.Wallet.UserAssetUserData(timestamp, signature, asset, needBtcValuation, recvWindow);
+    var response = await client.Wallet.UserAssetUserData(new UserAssetUserDataRequest
+    {
+        Timestamp = 1L,
+        Signature = "some example string",
+        Asset = "BNB",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV3AssetGetUserAssetResponse>
 }
-catch (SdkException<UserAssetUserDataError> ex)
+catch (ApiException<UserAssetUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -26905,18 +25348,12 @@ catch (SdkException<UserAssetUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>asset</code> | <code>string?</code> | - |
-| <code>needBtcValuation</code> | <code>[NeedBtcValuation?](Models/Enums/NeedBtcValuation.cs)</code> | - |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[UserAssetUserDataRequest](Requests/Wallet/UserAssetUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -26928,7 +25365,7 @@ catch (SdkException<UserAssetUserDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV3AssetGetUserAssetResponse](Models/SapiV3AssetGetUserAssetResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[UserAssetUserDataError](Errors/UserAssetUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[UserAssetUserDataError](Errors/UserAssetUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -26939,7 +25376,7 @@ catch (SdkException<UserAssetUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1AssetTransferResponse1&gt; UserUniversalTransferUserData(Type7 type, string asset, double amount, long timestamp, string signature, string? fromSymbol, string? toSymbol, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1AssetTransferResponse1&gt; UserUniversalTransferUserData(UserUniversalTransferUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -27002,17 +25439,20 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.Wallet.UserUniversalTransferUserData(type,
-        asset,
-        amount,
-        timestamp,
-        signature,
-        fromSymbol,
-        toSymbol,
-        recvWindow);
+    var response = await client.Wallet.UserUniversalTransferUserData(new UserUniversalTransferUserDataRequest
+    {
+        Type = Type7.MainC2C,
+        Asset = "BTC",
+        Amount = 1.01d,
+        Timestamp = 1L,
+        Signature = "some example string",
+        FromSymbol = "BNBUSDT",
+        ToSymbol = "BNBUSDT",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1AssetTransferResponse1
 }
-catch (SdkException<UserUniversalTransferUserDataError> ex)
+catch (ApiException<UserUniversalTransferUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -27024,21 +25464,12 @@ catch (SdkException<UserUniversalTransferUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>type</code> | <code>[Type7](Models/Enums/Type7.cs)</code> | Universal transfer type |
-| <code>asset</code> | <code>string</code> | - |
-| <code>amount</code> | <code>double</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>fromSymbol</code> | <code>string?</code> | Must be sent when type are ISOLATEDMARGIN_MARGIN and ISOLATEDMARGIN_ISOLATEDMARGIN |
-| <code>toSymbol</code> | <code>string?</code> | Must be sent when type are MARGIN_ISOLATEDMARGIN and ISOLATEDMARGIN_ISOLATEDMARGIN |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[UserUniversalTransferUserDataRequest](Requests/Wallet/UserUniversalTransferUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -27050,7 +25481,7 @@ catch (SdkException<UserUniversalTransferUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1AssetTransferResponse1](Models/SapiV1AssetTransferResponse1.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[UserUniversalTransferUserDataError](Errors/UserUniversalTransferUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[UserUniversalTransferUserDataError](Errors/UserUniversalTransferUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -27061,7 +25492,7 @@ catch (SdkException<UserUniversalTransferUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;SapiV1CapitalWithdrawApplyResponse&gt; WithdrawUserData(string coin, string address, double amount, long timestamp, string signature, string? withdrawOrderId, string? network, string? addressTag, string? name, int? walletType, long? recvWindow, bool? transactionFeeFlag = false, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;SapiV1CapitalWithdrawApplyResponse&gt; WithdrawUserData(WithdrawUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -27089,20 +25520,19 @@ Weight(IP): 1
 ```csharp
 try
 {
-    var response = await client.Wallet.WithdrawUserData(coin,
-        address,
-        amount,
-        timestamp,
-        signature,
-        withdrawOrderId,
-        network,
-        addressTag,
-        name,
-        walletType,
-        recvWindow);
+    var response = await client.Wallet.WithdrawUserData(new WithdrawUserDataRequest
+    {
+        Coin = "BNB",
+        Address = "some example string",
+        Amount = 1.01d,
+        Timestamp = 1L,
+        Signature = "some example string",
+        Network = "BTC",
+        RecvWindow = 5000L,
+    });
     // TODO: Handle 'response' of type SapiV1CapitalWithdrawApplyResponse
 }
-catch (SdkException<WithdrawUserDataError> ex)
+catch (ApiException<WithdrawUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -27114,25 +25544,12 @@ catch (SdkException<WithdrawUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>coin</code> | <code>string</code> | Coin name |
-| <code>address</code> | <code>string</code> | - |
-| <code>amount</code> | <code>double</code> | - |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>withdrawOrderId</code> | <code>string?</code> | Client id for withdraw |
-| <code>network</code> | <code>string?</code> | - |
-| <code>addressTag</code> | <code>string?</code> | Secondary address identifier for coins like XRP,XMR etc. |
-| <code>name</code> | <code>string?</code> | - |
-| <code>walletType</code> | <code>int?</code> | The wallet type for withdraw，0-Spot wallet, 1- Funding wallet. Default is Spot wallet |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
-| <code>transactionFeeFlag</code> | <code>bool?</code> | When making internal transfer<br>- `true` ->  returning the fee to the destination account;<br>- `false` -> returning the fee back to the departure account.<br>**Default**: false |
+<code>[WithdrawUserDataRequest](Requests/Wallet/WithdrawUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -27144,7 +25561,7 @@ catch (SdkException<WithdrawUserDataError> ex)
 
 **OnSuccess**: <code>[SapiV1CapitalWithdrawApplyResponse](Models/SapiV1CapitalWithdrawApplyResponse.cs)</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[WithdrawUserDataError](Errors/WithdrawUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[WithdrawUserDataError](Errors/WithdrawUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -27155,7 +25572,7 @@ catch (SdkException<WithdrawUserDataError> ex)
 </details>
 
 <details>
-<summary><code>Task&lt;IReadOnlyList&lt;SapiV1CapitalWithdrawHistoryResponse&gt;&gt; WithdrawHistorySupportingNetworkUserData(long timestamp, string signature, string? coin, string? withdrawOrderId, int? status, long? startTime, long? endTime, int? offset, int? limit, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default);</code></summary>
+<summary><code>Task&lt;IReadOnlyList&lt;SapiV1CapitalWithdrawHistoryResponse&gt;&gt; WithdrawHistorySupportingNetworkUserData(WithdrawHistorySupportingNetworkUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
 
 <dl>
 <dd>
@@ -27189,19 +25606,18 @@ Request Limit: 10 requests per second
 ```csharp
 try
 {
-    var response = await client.Wallet.WithdrawHistorySupportingNetworkUserData(timestamp,
-        signature,
-        coin,
-        withdrawOrderId,
-        status,
-        startTime,
-        endTime,
-        offset,
-        limit,
-        recvWindow);
+    var response = await client.Wallet.WithdrawHistorySupportingNetworkUserData(
+        new WithdrawHistorySupportingNetworkUserDataRequest
+        {
+            Timestamp = 1L,
+            Signature = "some example string",
+            Coin = "BNB",
+            Limit = 5,
+            RecvWindow = 5000L,
+        });
     // TODO: Handle 'response' of type IReadOnlyList<SapiV1CapitalWithdrawHistoryResponse>
 }
-catch (SdkException<WithdrawHistorySupportingNetworkUserDataError> ex)
+catch (ApiException<WithdrawHistorySupportingNetworkUserDataError> ex)
 {
     if (ex.Error.TryGetError(out var error))
     {
@@ -27213,23 +25629,12 @@ catch (SdkException<WithdrawHistorySupportingNetworkUserDataError> ex)
 </dd>
 </dl>
 
-### Parameters
+### Request
 
 <dl>
 <dd>
 
-| Name | Type | Description |
-| --- | --- | --- |
-| <code>timestamp</code> | <code>long</code> | UTC timestamp in ms |
-| <code>signature</code> | <code>string</code> | Signature |
-| <code>coin</code> | <code>string?</code> | Coin name |
-| <code>withdrawOrderId</code> | <code>string?</code> | - |
-| <code>status</code> | <code>int?</code> | * `0` - Email Sent<br>* `1` - Cancelled<br>* `2` - Awaiting Approval<br>* `3` - Rejected<br>* `4` - Processing<br>* `5` - Failure<br>* `6` - Completed |
-| <code>startTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>endTime</code> | <code>long?</code> | UTC timestamp in ms |
-| <code>offset</code> | <code>int?</code> | - |
-| <code>limit</code> | <code>int?</code> | Default 500; max 1000. |
-| <code>recvWindow</code> | <code>long?</code> | The value cannot be greater than 60000 |
+<code>[WithdrawHistorySupportingNetworkUserDataRequest](Requests/Wallet/WithdrawHistorySupportingNetworkUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -27241,7 +25646,7 @@ catch (SdkException<WithdrawHistorySupportingNetworkUserDataError> ex)
 
 **OnSuccess**: <code>IReadOnlyList&lt;[SapiV1CapitalWithdrawHistoryResponse](Models/SapiV1CapitalWithdrawHistoryResponse.cs)&gt;</code>
 
-**OnError**: <code>[SdkException](Core/Exceptions/SdkException.cs)&lt;[WithdrawHistorySupportingNetworkUserDataError](Errors/WithdrawHistorySupportingNetworkUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[WithdrawHistorySupportingNetworkUserDataError](Errors/WithdrawHistorySupportingNetworkUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>

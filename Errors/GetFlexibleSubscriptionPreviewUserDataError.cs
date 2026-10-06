@@ -1,17 +1,16 @@
-using System.Net.Http;
-using System.Threading;
 using System.Threading.Tasks;
-using BinancePublicSpotApi.Core.ErrorResponse;
-using BinancePublicSpotApi.Core.Models;
-using BinancePublicSpotApi.Models;
+using Binance.Core.ErrorResponse;
+using Binance.Core.Models;
+using Binance.Models;
 
-namespace BinancePublicSpotApi.Errors;
+namespace Binance.Errors;
 
 public sealed class GetFlexibleSubscriptionPreviewUserDataError : ApiError
 {
     private readonly Optional<Error> _errorValue;
 
-    private GetFlexibleSubscriptionPreviewUserDataError(Optional<Error> errorValue, Optional<RawError> fallback) : base(fallback)
+    private GetFlexibleSubscriptionPreviewUserDataError(Optional<Error> errorValue,
+        Optional<RawError> fallback) : base(fallback)
     {
         _errorValue = errorValue;
     }
@@ -24,23 +23,12 @@ public sealed class GetFlexibleSubscriptionPreviewUserDataError : ApiError
 
     public bool TryGetError(out Error value) => _errorValue.TryGetValue(out value);
 
-    internal static Task<GetFlexibleSubscriptionPreviewUserDataError> Create(HttpResponseMessage response,
-        CancellationToken ct) =>
-        (int)response.StatusCode switch
+    private static Task<GetFlexibleSubscriptionPreviewUserDataError> Create(FailedResponse response) =>
+        response.StatusCode switch
         {
-            400 or 401 => FromJson<Error>(response, ct).As(AsError),
-            _ => FromRawBody(response, ct).As(AsFallback)
+            400 or 401 => response.Json<Error>().As(AsError),
+            _ => response.RawBody().As(AsFallback)
         };
-}
 
-internal sealed class GetFlexibleSubscriptionPreviewUserDataErrorResponse : IErrorResponse<GetFlexibleSubscriptionPreviewUserDataError>
-{
-    public static GetFlexibleSubscriptionPreviewUserDataErrorResponse Instance { get; } = new();
-
-    private GetFlexibleSubscriptionPreviewUserDataErrorResponse()
-    {
-    }
-
-    public Task<GetFlexibleSubscriptionPreviewUserDataError> Map(HttpResponseMessage response, CancellationToken ct) =>
-        GetFlexibleSubscriptionPreviewUserDataError.Create(response, ct);
+    internal static ApiErrorResponse<GetFlexibleSubscriptionPreviewUserDataError> Response { get; } = new(Create);
 }

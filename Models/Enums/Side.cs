@@ -1,10 +1,11 @@
+using System;
 using System.Text.Json.Serialization;
-using BinancePublicSpotApi.Core.Enum;
+using Binance.Core.Enum;
 
-namespace BinancePublicSpotApi.Models.Enums;
+namespace Binance.Models.Enums;
 
 [JsonConverter(typeof(StringEnumConverter<Side>))]
-public sealed record Side : StringEnum<Side>
+public sealed record Side : OpenStringEnum<Side>
 {
     private Side(string value) : base(value)
     {
@@ -14,5 +15,18 @@ public sealed record Side : StringEnum<Side>
 
     public static readonly Side Buy = new("BUY");
 
-    public static Side FromValue(string value) => FromValueCore(value);
+    public TResult Match<TResult>(Func<TResult> onSell, Func<TResult> onBuy, Func<string, TResult> otherwise) =>
+        this switch
+        {
+            _ when this == Sell => onSell(),
+            _ when this == Buy => onBuy(),
+            _ => otherwise(Value)
+        };
+
+    public void Match(Action onSell, Action onBuy, Action<string> otherwise)
+    {
+        if (this == Sell) onSell();
+        else if (this == Buy) onBuy();
+        else otherwise(Value);
+    }
 }

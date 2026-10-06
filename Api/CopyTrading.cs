@@ -1,15 +1,16 @@
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using BinancePublicSpotApi.Core;
-using BinancePublicSpotApi.Core.Exceptions;
-using BinancePublicSpotApi.Core.Models;
-using BinancePublicSpotApi.Core.Request;
-using BinancePublicSpotApi.Core.Response;
-using BinancePublicSpotApi.Errors;
-using BinancePublicSpotApi.Models;
+using Binance.Core;
+using Binance.Core.Exceptions;
+using Binance.Core.Models;
+using Binance.Core.Request;
+using Binance.Core.Response;
+using Binance.Errors;
+using Binance.Models;
+using Binance.Requests.CopyTrading;
 
-namespace BinancePublicSpotApi.Api;
+namespace Binance.Api;
 
 /// <summary>
 /// Copy Trading Endpoints
@@ -30,70 +31,68 @@ public sealed class CopyTrading
     /// <summary>
     /// Get Futures Lead Trader Status(TRADE)
     /// </summary>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1CopyTradingFuturesUserStatusResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="GetFuturesLeadTraderStatusTradeError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="GetFuturesLeadTraderStatusTradeError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Get Futures Lead Trader Status
     /// <para>
     /// Weight(UID): 20
     /// </para>
     /// </remarks>
-    public Task<SapiV1CopyTradingFuturesUserStatusResponse> GetFuturesLeadTraderStatusTrade(long timestamp,
-        string signature,
-        long? recvWindow,
+    public Task<SapiV1CopyTradingFuturesUserStatusResponse> GetFuturesLeadTraderStatusTrade(GetFuturesLeadTraderStatusTradeRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/copyTrading/futures/userStatus"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/copyTrading/futures/userStatus"),
             [],
-            [new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1CopyTradingFuturesUserStatusResponse>(),
-            GetFuturesLeadTraderStatusTradeErrorResponse.Instance,
+            GetFuturesLeadTraderStatusTradeError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Get Futures Lead Trading Symbol Whitelist(USER_DATA)
     /// </summary>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1CopyTradingFuturesLeadSymbolResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="GetFuturesLeadTradingSymbolWhitelistUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="GetFuturesLeadTradingSymbolWhitelistUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Get Futures Lead Trading Symbol Whitelist
     /// <para>
     /// Weight(IP): 20
     /// </para>
     /// </remarks>
-    public Task<SapiV1CopyTradingFuturesLeadSymbolResponse> GetFuturesLeadTradingSymbolWhitelistUserData(long timestamp,
-        string signature,
-        long? recvWindow,
+    public Task<SapiV1CopyTradingFuturesLeadSymbolResponse> GetFuturesLeadTradingSymbolWhitelistUserData(GetFuturesLeadTradingSymbolWhitelistUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/copyTrading/futures/leadSymbol"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/copyTrading/futures/leadSymbol"),
             [],
-            [new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1CopyTradingFuturesLeadSymbolResponse>(),
-            GetFuturesLeadTradingSymbolWhitelistUserDataErrorResponse.Instance,
+            GetFuturesLeadTradingSymbolWhitelistUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 }

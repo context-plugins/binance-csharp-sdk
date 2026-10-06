@@ -1,10 +1,11 @@
+using System;
 using System.Text.Json.Serialization;
-using BinancePublicSpotApi.Core.Enum;
+using Binance.Core.Enum;
 
-namespace BinancePublicSpotApi.Models.Enums;
+namespace Binance.Models.Enums;
 
 [JsonConverter(typeof(StringEnumConverter<PositionSide>))]
-public sealed record PositionSide : StringEnum<PositionSide>
+public sealed record PositionSide : OpenStringEnum<PositionSide>
 {
     private PositionSide(string value) : base(value)
     {
@@ -16,5 +17,23 @@ public sealed record PositionSide : StringEnum<PositionSide>
 
     public static readonly PositionSide Short = new("SHORT");
 
-    public static PositionSide FromValue(string value) => FromValueCore(value);
+    public TResult Match<TResult>(Func<TResult> onBoth,
+        Func<TResult> onLong,
+        Func<TResult> onShort,
+        Func<string, TResult> otherwise) =>
+        this switch
+        {
+            _ when this == Both => onBoth(),
+            _ when this == Long => onLong(),
+            _ when this == Short => onShort(),
+            _ => otherwise(Value)
+        };
+
+    public void Match(Action onBoth, Action onLong, Action onShort, Action<string> otherwise)
+    {
+        if (this == Both) onBoth();
+        else if (this == Long) onLong();
+        else if (this == Short) onShort();
+        else otherwise(Value);
+    }
 }

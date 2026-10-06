@@ -1,10 +1,11 @@
+using System;
 using System.Text.Json.Serialization;
-using BinancePublicSpotApi.Core.Enum;
+using Binance.Core.Enum;
 
-namespace BinancePublicSpotApi.Models.Enums;
+namespace Binance.Models.Enums;
 
 [JsonConverter(typeof(StringEnumConverter<SideEffectType>))]
-public sealed record SideEffectType : StringEnum<SideEffectType>
+public sealed record SideEffectType : OpenStringEnum<SideEffectType>
 {
     private SideEffectType(string value) : base(value)
     {
@@ -16,5 +17,23 @@ public sealed record SideEffectType : StringEnum<SideEffectType>
 
     public static readonly SideEffectType AutoRepay = new("AUTO_REPAY");
 
-    public static SideEffectType FromValue(string value) => FromValueCore(value);
+    public TResult Match<TResult>(Func<TResult> onNoSideEffect,
+        Func<TResult> onMarginBuy,
+        Func<TResult> onAutoRepay,
+        Func<string, TResult> otherwise) =>
+        this switch
+        {
+            _ when this == NoSideEffect => onNoSideEffect(),
+            _ when this == MarginBuy => onMarginBuy(),
+            _ when this == AutoRepay => onAutoRepay(),
+            _ => otherwise(Value)
+        };
+
+    public void Match(Action onNoSideEffect, Action onMarginBuy, Action onAutoRepay, Action<string> otherwise)
+    {
+        if (this == NoSideEffect) onNoSideEffect();
+        else if (this == MarginBuy) onMarginBuy();
+        else if (this == AutoRepay) onAutoRepay();
+        else otherwise(Value);
+    }
 }

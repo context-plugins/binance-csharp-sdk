@@ -1,10 +1,10 @@
 using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using BinancePublicSpotApi.Core.Extensions;
-using BinancePublicSpotApi.Core.Models;
+using Binance.Core.Extensions;
+using Binance.Core.Models;
 
-namespace BinancePublicSpotApi.Models.AnyOf;
+namespace Binance.Models.AnyOf;
 
 [JsonConverter(typeof(SapiV2SubAccountFuturesAccountResponseConverter))]
 public record SapiV2SubAccountFuturesAccountResponse
@@ -47,19 +47,24 @@ file sealed class SapiV2SubAccountFuturesAccountResponseConverter : JsonConverte
     {
         using var doc = JsonDocument.ParseValue(ref reader);
         var root = doc.RootElement;
-        if (JsonSerializer.TryDeserialize<SubAccountUsdtFuturesDetails>(root,
+        if (JsonSerializer.TryDeserialize<SubAccountUsdtFuturesDetails>(
+            root,
             options,
             out var subAccountUsdtFuturesDetailsValue))
         {
-            return SapiV2SubAccountFuturesAccountResponse.SubAccountUsdtFuturesDetails(subAccountUsdtFuturesDetailsValue);
+            return SapiV2SubAccountFuturesAccountResponse.SubAccountUsdtFuturesDetails(
+                subAccountUsdtFuturesDetailsValue);
         }
-        if (JsonSerializer.TryDeserialize<SubAccountCoinFuturesDetails>(root,
+        if (JsonSerializer.TryDeserialize<SubAccountCoinFuturesDetails>(
+            root,
             options,
             out var subAccountCoinFuturesDetailsValue))
         {
-            return SapiV2SubAccountFuturesAccountResponse.SubAccountCoinFuturesDetails(subAccountCoinFuturesDetailsValue);
+            return SapiV2SubAccountFuturesAccountResponse.SubAccountCoinFuturesDetails(
+                subAccountCoinFuturesDetailsValue);
         }
-        throw new JsonException($"JSON does not match SubAccountUsdtFuturesDetails or SubAccountCoinFuturesDetails schemas: {root.ToString()}");
+        throw new JsonException(
+            $"JSON does not match SubAccountUsdtFuturesDetails or SubAccountCoinFuturesDetails schemas: {root.ToString()}");
     }
 
     public override void Write(Utf8JsonWriter writer,
@@ -76,7 +81,8 @@ file sealed class SapiV2SubAccountFuturesAccountResponseConverter : JsonConverte
         }
         else
         {
-            throw new JsonException($"{nameof(SapiV2SubAccountFuturesAccountResponse)} contains no valid value to serialize.");
+            throw new JsonException(
+                $"{nameof(SapiV2SubAccountFuturesAccountResponse)} contains no valid value to serialize.");
         }
     }
 }

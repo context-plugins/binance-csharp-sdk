@@ -1,6 +1,6 @@
 using System;
 
-namespace BinancePublicSpotApi.Core.Webhooks.Signing;
+namespace Binance.Core.Webhooks.Signing;
 
 internal abstract record SignatureDigestEncoding
 {

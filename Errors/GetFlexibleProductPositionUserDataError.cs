@@ -1,17 +1,16 @@
-using System.Net.Http;
-using System.Threading;
 using System.Threading.Tasks;
-using BinancePublicSpotApi.Core.ErrorResponse;
-using BinancePublicSpotApi.Core.Models;
-using BinancePublicSpotApi.Models;
+using Binance.Core.ErrorResponse;
+using Binance.Core.Models;
+using Binance.Models;
 
-namespace BinancePublicSpotApi.Errors;
+namespace Binance.Errors;
 
 public sealed class GetFlexibleProductPositionUserDataError : ApiError
 {
     private readonly Optional<Error> _errorValue;
 
-    private GetFlexibleProductPositionUserDataError(Optional<Error> errorValue, Optional<RawError> fallback) : base(fallback)
+    private GetFlexibleProductPositionUserDataError(Optional<Error> errorValue,
+        Optional<RawError> fallback) : base(fallback)
     {
         _errorValue = errorValue;
     }
@@ -24,23 +23,12 @@ public sealed class GetFlexibleProductPositionUserDataError : ApiError
 
     public bool TryGetError(out Error value) => _errorValue.TryGetValue(out value);
 
-    internal static Task<GetFlexibleProductPositionUserDataError> Create(HttpResponseMessage response,
-        CancellationToken ct) =>
-        (int)response.StatusCode switch
+    private static Task<GetFlexibleProductPositionUserDataError> Create(FailedResponse response) =>
+        response.StatusCode switch
         {
-            400 or 401 => FromJson<Error>(response, ct).As(AsError),
-            _ => FromRawBody(response, ct).As(AsFallback)
+            400 or 401 => response.Json<Error>().As(AsError),
+            _ => response.RawBody().As(AsFallback)
         };
-}
 
-internal sealed class GetFlexibleProductPositionUserDataErrorResponse : IErrorResponse<GetFlexibleProductPositionUserDataError>
-{
-    public static GetFlexibleProductPositionUserDataErrorResponse Instance { get; } = new();
-
-    private GetFlexibleProductPositionUserDataErrorResponse()
-    {
-    }
-
-    public Task<GetFlexibleProductPositionUserDataError> Map(HttpResponseMessage response, CancellationToken ct) =>
-        GetFlexibleProductPositionUserDataError.Create(response, ct);
+    internal static ApiErrorResponse<GetFlexibleProductPositionUserDataError> Response { get; } = new(Create);
 }

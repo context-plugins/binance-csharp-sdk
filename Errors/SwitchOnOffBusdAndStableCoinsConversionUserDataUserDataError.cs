@@ -1,11 +1,9 @@
-using System.Net.Http;
-using System.Threading;
 using System.Threading.Tasks;
-using BinancePublicSpotApi.Core.ErrorResponse;
-using BinancePublicSpotApi.Core.Models;
-using BinancePublicSpotApi.Models;
+using Binance.Core.ErrorResponse;
+using Binance.Core.Models;
+using Binance.Models;
 
-namespace BinancePublicSpotApi.Errors;
+namespace Binance.Errors;
 
 public sealed class SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataError : ApiError
 {
@@ -25,24 +23,13 @@ public sealed class SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataError
 
     public bool TryGetError(out Error value) => _errorValue.TryGetValue(out value);
 
-    internal static Task<SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataError> Create(HttpResponseMessage response,
-        CancellationToken ct) =>
-        (int)response.StatusCode switch
+    private static Task<SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataError> Create(FailedResponse response) =>
+        response.StatusCode switch
         {
-            400 or 401 => FromJson<Error>(response, ct).As(AsError),
-            _ => FromRawBody(response, ct).As(AsFallback)
+            400 or 401 => response.Json<Error>().As(AsError),
+            _ => response.RawBody().As(AsFallback)
         };
-}
 
-internal sealed class SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataErrorResponse : IErrorResponse<SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataError>
-{
-    public static SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataErrorResponse Instance { get; } = new();
-
-    private SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataErrorResponse()
-    {
-    }
-
-    public Task<SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataError> Map(HttpResponseMessage response,
-        CancellationToken ct) =>
-        SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataError.Create(response, ct);
+    internal static ApiErrorResponse<SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataError> Response { get; } = new(
+        Create);
 }

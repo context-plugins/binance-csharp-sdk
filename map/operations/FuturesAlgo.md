@@ -9,15 +9,16 @@ Accessor: `client.FuturesAlgo` · Source: `Api/FuturesAlgo.cs` · 6 operations
 ### CancelAlgoOrderTrade
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `CancelAlgoOrderTrade(long algoId, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `algoId` ← `algoId`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `CancelAlgoOrderTrade(CancelAlgoOrderTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `AlgoId`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `algoId` ← `AlgoId`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1AlgoFuturesOrderResponse`
-- **Error**: `SdkException<CancelAlgoOrderTradeError>` — **Case A (typed)**
+- **Error**: `ApiException<CancelAlgoOrderTradeError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `CancelAlgoOrderTradeRequest` | `Requests/FuturesAlgo/CancelAlgoOrderTradeRequest.cs` |
 | `SapiV1AlgoFuturesOrderResponse` | `Models/SapiV1AlgoFuturesOrderResponse.cs` |
 | `CancelAlgoOrderTradeError` | `Errors/CancelAlgoOrderTradeError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -25,15 +26,16 @@ Accessor: `client.FuturesAlgo` · Source: `Api/FuturesAlgo.cs` · 6 operations
 ### QueryCurrentAlgoOpenOrdersUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `QueryCurrentAlgoOpenOrdersUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `QueryCurrentAlgoOpenOrdersUserData(QueryCurrentAlgoOpenOrdersUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1AlgoFuturesOpenOrdersResponse`
-- **Error**: `SdkException<QueryCurrentAlgoOpenOrdersUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<QueryCurrentAlgoOpenOrdersUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `QueryCurrentAlgoOpenOrdersUserDataRequest` | `Requests/FuturesAlgo/QueryCurrentAlgoOpenOrdersUserDataRequest.cs` |
 | `SapiV1AlgoFuturesOpenOrdersResponse` | `Models/SapiV1AlgoFuturesOpenOrdersResponse.cs` |
 | `QueryCurrentAlgoOpenOrdersUserDataError` | `Errors/QueryCurrentAlgoOpenOrdersUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -41,15 +43,16 @@ Accessor: `client.FuturesAlgo` · Source: `Api/FuturesAlgo.cs` · 6 operations
 ### QueryHistoricalAlgoOrdersUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `QueryHistoricalAlgoOrdersUserData(long timestamp, string signature, string? symbol, Side? side, long? startTime, long? endTime, int? page, string? pageSize, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 7 params (`symbol` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `symbol` ← `symbol`, `side` ← `side`, `startTime` ← `startTime`, `endTime` ← `endTime`, `page` ← `page`, `pageSize` ← `pageSize`, `recvWindow` ← `recvWindow`
+- **Signature**: `QueryHistoricalAlgoOrdersUserData(QueryHistoricalAlgoOrdersUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `symbol` ← `Symbol`, `side` ← `Side`, `startTime` ← `StartTime`, `endTime` ← `EndTime`, `page` ← `Page`, `pageSize` ← `PageSize`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1AlgoFuturesHistoricalOrdersResponse`
-- **Error**: `SdkException<QueryHistoricalAlgoOrdersUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<QueryHistoricalAlgoOrdersUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `QueryHistoricalAlgoOrdersUserDataRequest` | `Requests/FuturesAlgo/QueryHistoricalAlgoOrdersUserDataRequest.cs` |
 | `Side` | `Models/Enums/Side.cs` |
 | `SapiV1AlgoFuturesHistoricalOrdersResponse` | `Models/SapiV1AlgoFuturesHistoricalOrdersResponse.cs` |
 | `QueryHistoricalAlgoOrdersUserDataError` | `Errors/QueryHistoricalAlgoOrdersUserDataError.cs` |
@@ -58,17 +61,16 @@ Accessor: `client.FuturesAlgo` · Source: `Api/FuturesAlgo.cs` · 6 operations
 ### QuerySubOrdersUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `QuerySubOrdersUserData(long algoId, long timestamp, string signature, int? page, string? pageSize, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `page` — nullable, no default → **must pass explicitly**
-  - `pageSize` — nullable, no default → **must pass explicitly**
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `algoId` ← `algoId`, `timestamp` ← `timestamp`, `signature` ← `signature`, `page` ← `page`, `pageSize` ← `pageSize`, `recvWindow` ← `recvWindow`
+- **Signature**: `QuerySubOrdersUserData(QuerySubOrdersUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `AlgoId`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `algoId` ← `AlgoId`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `page` ← `Page`, `pageSize` ← `PageSize`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1AlgoFuturesSubOrdersResponse`
-- **Error**: `SdkException<QuerySubOrdersUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<QuerySubOrdersUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `QuerySubOrdersUserDataRequest` | `Requests/FuturesAlgo/QuerySubOrdersUserDataRequest.cs` |
 | `SapiV1AlgoFuturesSubOrdersResponse` | `Models/SapiV1AlgoFuturesSubOrdersResponse.cs` |
 | `QuerySubOrdersUserDataError` | `Errors/QuerySubOrdersUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -76,15 +78,16 @@ Accessor: `client.FuturesAlgo` · Source: `Api/FuturesAlgo.cs` · 6 operations
 ### TimeWeightedAveragePriceTwapNewOrderTrade
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `TimeWeightedAveragePriceTwapNewOrderTrade(string symbol, Side side, double quantity, long duration, long timestamp, string signature, PositionSide? positionSide, string? clientAlgoId, bool? reduceOnly, double? limitPrice, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 5 params (`positionSide` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `symbol` ← `symbol`, `side` ← `side`, `quantity` ← `quantity`, `duration` ← `duration`, `timestamp` ← `timestamp`, `signature` ← `signature`, `positionSide` ← `positionSide`, `clientAlgoId` ← `clientAlgoId`, `reduceOnly` ← `reduceOnly`, `limitPrice` ← `limitPrice`, `recvWindow` ← `recvWindow`
+- **Signature**: `TimeWeightedAveragePriceTwapNewOrderTrade(TimeWeightedAveragePriceTwapNewOrderTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Symbol`, `Side`, `Quantity`, `Duration`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `symbol` ← `Symbol`, `side` ← `Side`, `quantity` ← `Quantity`, `duration` ← `Duration`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `positionSide` ← `PositionSide`, `clientAlgoId` ← `ClientAlgoId`, `reduceOnly` ← `ReduceOnly`, `limitPrice` ← `LimitPrice`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1AlgoFuturesNewOrderTwapResponse`
-- **Error**: `SdkException<TimeWeightedAveragePriceTwapNewOrderTradeError>` — **Case A (typed)**
+- **Error**: `ApiException<TimeWeightedAveragePriceTwapNewOrderTradeError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `TimeWeightedAveragePriceTwapNewOrderTradeRequest` | `Requests/FuturesAlgo/TimeWeightedAveragePriceTwapNewOrderTradeRequest.cs` |
 | `Side` | `Models/Enums/Side.cs` |
 | `PositionSide` | `Models/Enums/PositionSide.cs` |
 | `SapiV1AlgoFuturesNewOrderTwapResponse` | `Models/SapiV1AlgoFuturesNewOrderTwapResponse.cs` |
@@ -94,15 +97,16 @@ Accessor: `client.FuturesAlgo` · Source: `Api/FuturesAlgo.cs` · 6 operations
 ### VolumeParticipationVpNewOrderTrade
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `VolumeParticipationVpNewOrderTrade(string symbol, Side side, double quantity, Urgency urgency, long timestamp, string signature, PositionSide? positionSide, string? clientAlgoId, bool? reduceOnly, double? limitPrice, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 5 params (`positionSide` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `symbol` ← `symbol`, `side` ← `side`, `quantity` ← `quantity`, `urgency` ← `urgency`, `timestamp` ← `timestamp`, `signature` ← `signature`, `positionSide` ← `positionSide`, `clientAlgoId` ← `clientAlgoId`, `reduceOnly` ← `reduceOnly`, `limitPrice` ← `limitPrice`, `recvWindow` ← `recvWindow`
+- **Signature**: `VolumeParticipationVpNewOrderTrade(VolumeParticipationVpNewOrderTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Symbol`, `Side`, `Quantity`, `Urgency`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `symbol` ← `Symbol`, `side` ← `Side`, `quantity` ← `Quantity`, `urgency` ← `Urgency`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `positionSide` ← `PositionSide`, `clientAlgoId` ← `ClientAlgoId`, `reduceOnly` ← `ReduceOnly`, `limitPrice` ← `LimitPrice`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1AlgoFuturesNewOrderVpResponse`
-- **Error**: `SdkException<VolumeParticipationVpNewOrderTradeError>` — **Case A (typed)**
+- **Error**: `ApiException<VolumeParticipationVpNewOrderTradeError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `VolumeParticipationVpNewOrderTradeRequest` | `Requests/FuturesAlgo/VolumeParticipationVpNewOrderTradeRequest.cs` |
 | `Side` | `Models/Enums/Side.cs` |
 | `Urgency` | `Models/Enums/Urgency.cs` |
 | `PositionSide` | `Models/Enums/PositionSide.cs` |

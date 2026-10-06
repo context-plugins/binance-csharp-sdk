@@ -1,10 +1,11 @@
+using System;
 using System.Text.Json.Serialization;
-using BinancePublicSpotApi.Core.Enum;
+using Binance.Core.Enum;
 
-namespace BinancePublicSpotApi.Models.Enums;
+namespace Binance.Models.Enums;
 
 [JsonConverter(typeof(StringEnumConverter<PendingType>))]
-public sealed record PendingType : StringEnum<PendingType>
+public sealed record PendingType : OpenStringEnum<PendingType>
 {
     private PendingType(string value) : base(value)
     {
@@ -24,5 +25,42 @@ public sealed record PendingType : StringEnum<PendingType>
 
     public static readonly PendingType LimitMaker = new("LIMIT_MAKER");
 
-    public static PendingType FromValue(string value) => FromValueCore(value);
+    public TResult Match<TResult>(Func<TResult> onLimit,
+        Func<TResult> onMarket,
+        Func<TResult> onStopLoss,
+        Func<TResult> onStopLossLimit,
+        Func<TResult> onTakeProfit,
+        Func<TResult> onTakeProfitLimit,
+        Func<TResult> onLimitMaker,
+        Func<string, TResult> otherwise) =>
+        this switch
+        {
+            _ when this == Limit => onLimit(),
+            _ when this == Market => onMarket(),
+            _ when this == StopLoss => onStopLoss(),
+            _ when this == StopLossLimit => onStopLossLimit(),
+            _ when this == TakeProfit => onTakeProfit(),
+            _ when this == TakeProfitLimit => onTakeProfitLimit(),
+            _ when this == LimitMaker => onLimitMaker(),
+            _ => otherwise(Value)
+        };
+
+    public void Match(Action onLimit,
+        Action onMarket,
+        Action onStopLoss,
+        Action onStopLossLimit,
+        Action onTakeProfit,
+        Action onTakeProfitLimit,
+        Action onLimitMaker,
+        Action<string> otherwise)
+    {
+        if (this == Limit) onLimit();
+        else if (this == Market) onMarket();
+        else if (this == StopLoss) onStopLoss();
+        else if (this == StopLossLimit) onStopLossLimit();
+        else if (this == TakeProfit) onTakeProfit();
+        else if (this == TakeProfitLimit) onTakeProfitLimit();
+        else if (this == LimitMaker) onLimitMaker();
+        else otherwise(Value);
+    }
 }

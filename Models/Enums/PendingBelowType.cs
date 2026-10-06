@@ -1,10 +1,11 @@
+using System;
 using System.Text.Json.Serialization;
-using BinancePublicSpotApi.Core.Enum;
+using Binance.Core.Enum;
 
-namespace BinancePublicSpotApi.Models.Enums;
+namespace Binance.Models.Enums;
 
 [JsonConverter(typeof(StringEnumConverter<PendingBelowType>))]
-public sealed record PendingBelowType : StringEnum<PendingBelowType>
+public sealed record PendingBelowType : OpenStringEnum<PendingBelowType>
 {
     private PendingBelowType(string value) : base(value)
     {
@@ -16,5 +17,23 @@ public sealed record PendingBelowType : StringEnum<PendingBelowType>
 
     public static readonly PendingBelowType StopLossLimit = new("STOP_LOSS_LIMIT");
 
-    public static PendingBelowType FromValue(string value) => FromValueCore(value);
+    public TResult Match<TResult>(Func<TResult> onLimitMaker,
+        Func<TResult> onStopLoss,
+        Func<TResult> onStopLossLimit,
+        Func<string, TResult> otherwise) =>
+        this switch
+        {
+            _ when this == LimitMaker => onLimitMaker(),
+            _ when this == StopLoss => onStopLoss(),
+            _ when this == StopLossLimit => onStopLossLimit(),
+            _ => otherwise(Value)
+        };
+
+    public void Match(Action onLimitMaker, Action onStopLoss, Action onStopLossLimit, Action<string> otherwise)
+    {
+        if (this == LimitMaker) onLimitMaker();
+        else if (this == StopLoss) onStopLoss();
+        else if (this == StopLossLimit) onStopLossLimit();
+        else otherwise(Value);
+    }
 }

@@ -1,10 +1,11 @@
+using System;
 using System.Text.Json.Serialization;
-using BinancePublicSpotApi.Core.Enum;
+using Binance.Core.Enum;
 
-namespace BinancePublicSpotApi.Models.Enums;
+namespace Binance.Models.Enums;
 
 [JsonConverter(typeof(StringEnumConverter<WorkingTimeInForce>))]
-public sealed record WorkingTimeInForce : StringEnum<WorkingTimeInForce>
+public sealed record WorkingTimeInForce : OpenStringEnum<WorkingTimeInForce>
 {
     private WorkingTimeInForce(string value) : base(value)
     {
@@ -16,5 +17,23 @@ public sealed record WorkingTimeInForce : StringEnum<WorkingTimeInForce>
 
     public static readonly WorkingTimeInForce Fok = new("FOK");
 
-    public static WorkingTimeInForce FromValue(string value) => FromValueCore(value);
+    public TResult Match<TResult>(Func<TResult> onGtc,
+        Func<TResult> onIoc,
+        Func<TResult> onFok,
+        Func<string, TResult> otherwise) =>
+        this switch
+        {
+            _ when this == Gtc => onGtc(),
+            _ when this == Ioc => onIoc(),
+            _ when this == Fok => onFok(),
+            _ => otherwise(Value)
+        };
+
+    public void Match(Action onGtc, Action onIoc, Action onFok, Action<string> otherwise)
+    {
+        if (this == Gtc) onGtc();
+        else if (this == Ioc) onIoc();
+        else if (this == Fok) onFok();
+        else otherwise(Value);
+    }
 }

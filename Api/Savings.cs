@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using BinancePublicSpotApi.Core;
-using BinancePublicSpotApi.Core.Exceptions;
-using BinancePublicSpotApi.Core.Models;
-using BinancePublicSpotApi.Core.Request;
-using BinancePublicSpotApi.Core.Response;
-using BinancePublicSpotApi.Errors;
-using BinancePublicSpotApi.Models;
-using BinancePublicSpotApi.Models.Enums;
+using Binance.Core;
+using Binance.Core.Exceptions;
+using Binance.Core.Models;
+using Binance.Core.Request;
+using Binance.Core.Response;
+using Binance.Errors;
+using Binance.Models;
+using Binance.Requests.Savings;
 
-namespace BinancePublicSpotApi.Api;
+namespace Binance.Api;
 
 /// <summary>
 /// Savings Endpoints
@@ -33,16 +33,11 @@ public sealed class Savings
     /// <summary>
     /// Change Fixed/Activity Position to Daily Position (USER_DATA)
     /// </summary>
-    /// <param name="projectId"></param>
-    /// <param name="lot"></param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="positionId"></param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1LendingPositionChangedResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="ChangeFixedActivityPositionToDailyPositionUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="ChangeFixedActivityPositionToDailyPositionUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// <list type="bullet">
     ///   <item><description>PositionId is mandatory parameter for fixed position.</description></item>
@@ -51,160 +46,131 @@ public sealed class Savings
     /// Weight(IP): 1
     /// </para>
     /// </remarks>
-    public Task<SapiV1LendingPositionChangedResponse> ChangeFixedActivityPositionToDailyPositionUserData(string projectId,
-        string lot,
-        long timestamp,
-        string signature,
-        string? positionId,
-        long? recvWindow,
+    public Task<SapiV1LendingPositionChangedResponse> ChangeFixedActivityPositionToDailyPositionUserData(ChangeFixedActivityPositionToDailyPositionUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/lending/positionChanged"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/lending/positionChanged"),
             [],
-            [new Param("projectId", projectId),
-                new Param("lot", lot),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("positionId", positionId),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("projectId", request.ProjectId),
+                new Param("lot", request.Lot),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("positionId", request.PositionId),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [new HeaderParam("Idempotency-Key", Guid.NewGuid())],
             HttpMethod.Post,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1LendingPositionChangedResponse>(),
-            ChangeFixedActivityPositionToDailyPositionUserDataErrorResponse.Instance,
+            ChangeFixedActivityPositionToDailyPositionUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Get Fixed/Activity Project List(USER_DATA)
     /// </summary>
-    /// <param name="type"></param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="asset"></param>
-    /// <param name="status">Default <c>ALL</c></param>
-    /// <param name="isSortAsc">default "true"</param>
-    /// <param name="sortBy">Default <c>START_TIME</c></param>
-    /// <param name="current">Current querying page. Start from 1. Default:1</param>
-    /// <param name="size">Default:10 Max:100</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="IReadOnlyList{T}"/> of <see cref="SapiV1LendingProjectListResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="GetFixedActivityProjectListUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="GetFixedActivityProjectListUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Weight(IP): 1
     /// </remarks>
-    public Task<IReadOnlyList<SapiV1LendingProjectListResponse>> GetFixedActivityProjectListUserData(Type8 type,
-        long timestamp,
-        string signature,
-        string? asset,
-        Status? status,
-        bool? isSortAsc,
-        SortBy? sortBy,
-        int? current,
-        int? size,
-        long? recvWindow,
+    public Task<IReadOnlyList<SapiV1LendingProjectListResponse>> GetFixedActivityProjectListUserData(GetFixedActivityProjectListUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/lending/project/list"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/lending/project/list"),
             [],
-            [new Param("type", type),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("asset", asset),
-                new Param("status", status),
-                new Param("isSortAsc", isSortAsc),
-                new Param("sortBy", sortBy),
-                new Param("current", current),
-                new Param("size", size),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("type", request.Type),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("asset", request.Asset),
+                new Param("status", request.Status),
+                new Param("isSortAsc", request.IsSortAsc),
+                new Param("sortBy", request.SortBy),
+                new Param("current", request.Current),
+                new Param("size", request.Size),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<IReadOnlyList<SapiV1LendingProjectListResponse>>(),
-            GetFixedActivityProjectListUserDataErrorResponse.Instance,
+            GetFixedActivityProjectListUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Get Fixed/Activity Project Position (USER_DATA)
     /// </summary>
-    /// <param name="asset"></param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="projectId"></param>
-    /// <param name="status">Default <c>ALL</c></param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="IReadOnlyList{T}"/> of <see cref="SapiV1LendingProjectPositionListResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="GetFixedActivityProjectPositionUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="GetFixedActivityProjectPositionUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Weight(IP): 1
     /// </remarks>
-    public Task<IReadOnlyList<SapiV1LendingProjectPositionListResponse>> GetFixedActivityProjectPositionUserData(string asset,
-        long timestamp,
-        string signature,
-        string? projectId,
-        Status? status,
-        long? recvWindow,
+    public Task<IReadOnlyList<SapiV1LendingProjectPositionListResponse>> GetFixedActivityProjectPositionUserData(GetFixedActivityProjectPositionUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/lending/project/position/list"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/lending/project/position/list"),
             [],
-            [new Param("asset", asset),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("projectId", projectId),
-                new Param("status", status),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("asset", request.Asset),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("projectId", request.ProjectId),
+                new Param("status", request.Status),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<IReadOnlyList<SapiV1LendingProjectPositionListResponse>>(),
-            GetFixedActivityProjectPositionUserDataErrorResponse.Instance,
+            GetFixedActivityProjectPositionUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Purchase Fixed/Activity Project (USER_DATA)
     /// </summary>
-    /// <param name="projectId"></param>
-    /// <param name="lot"></param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1LendingCustomizedFixedPurchaseResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="PurchaseFixedActivityProjectUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="PurchaseFixedActivityProjectUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Weight(IP): 1
     /// </remarks>
-    public Task<SapiV1LendingCustomizedFixedPurchaseResponse> PurchaseFixedActivityProjectUserData(string projectId,
-        string lot,
-        long timestamp,
-        string signature,
-        long? recvWindow,
+    public Task<SapiV1LendingCustomizedFixedPurchaseResponse> PurchaseFixedActivityProjectUserData(PurchaseFixedActivityProjectUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/lending/customizedFixed/purchase"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/lending/customizedFixed/purchase"),
             [],
-            [new Param("projectId", projectId),
-                new Param("lot", lot),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("projectId", request.ProjectId),
+                new Param("lot", request.Lot),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [new HeaderParam("Idempotency-Key", Guid.NewGuid())],
             HttpMethod.Post,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1LendingCustomizedFixedPurchaseResponse>(),
-            PurchaseFixedActivityProjectUserDataErrorResponse.Instance,
+            PurchaseFixedActivityProjectUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 }

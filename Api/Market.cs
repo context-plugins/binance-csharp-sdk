@@ -2,18 +2,18 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using BinancePublicSpotApi.Core;
-using BinancePublicSpotApi.Core.ErrorResponse;
-using BinancePublicSpotApi.Core.Exceptions;
-using BinancePublicSpotApi.Core.Models;
-using BinancePublicSpotApi.Core.Request;
-using BinancePublicSpotApi.Core.Response;
-using BinancePublicSpotApi.Errors;
-using BinancePublicSpotApi.Models;
-using BinancePublicSpotApi.Models.AnyOf;
-using BinancePublicSpotApi.Models.Enums;
+using Binance.Core;
+using Binance.Core.ErrorResponse;
+using Binance.Core.Exceptions;
+using Binance.Core.Models;
+using Binance.Core.Request;
+using Binance.Core.Response;
+using Binance.Errors;
+using Binance.Models;
+using Binance.Models.AnyOf;
+using Binance.Requests.Market;
 
-namespace BinancePublicSpotApi.Api;
+namespace Binance.Api;
 
 /// <summary>
 /// Market Data
@@ -32,13 +32,11 @@ public sealed class Market
     /// <summary>
     /// 24hr Ticker Price Change Statistics
     /// </summary>
-    /// <param name="symbol">Trading symbol, e.g. BNBUSDT</param>
-    /// <param name="symbols"></param>
-    /// <param name="type">Supported values: FULL or MINI. If none provided, the default is FULL</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="ApiV3Ticker24HrResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="HrTickerPriceChangeStatistics24Error"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="HrTickerPriceChangeStatistics24Error"/> when the server returns an error response.</exception>
     /// <remarks>
     /// 24 hour rolling window price change statistics. Careful when accessing this with no symbol.
     /// <list type="bullet">
@@ -50,30 +48,33 @@ public sealed class Market
     /// - <c>80</c> when the symbol parameter is omitted;
     /// </para>
     /// </remarks>
-    public Task<ApiV3Ticker24HrResponse> HrTickerPriceChangeStatistics24(string? symbol,
-        string? symbols,
-        TypeEnum? type,
+    public Task<ApiV3Ticker24HrResponse> HrTickerPriceChangeStatistics24(HrTickerPriceChangeStatistics24Request request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/api/v3/ticker/24hr"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/api/v3/ticker/24hr"),
             [],
-            [new Param("symbol", symbol), new Param("symbols", symbols), new Param("type", type)],
+            [
+                new Param("symbol", request.Symbol),
+                new Param("symbols", request.Symbols),
+                new Param("type", request.Type),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<ApiV3Ticker24HrResponse>(),
-            HrTickerPriceChangeStatistics24ErrorResponse.Instance,
+            HrTickerPriceChangeStatistics24Error.Response,
             [],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Check Server Time
     /// </summary>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="ApiV3TimeResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="RawError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="RawError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Test connectivity to the Rest API and get the current server time.
     /// <para>
@@ -81,8 +82,9 @@ public sealed class Market
     /// </para>
     /// </remarks>
     public Task<ApiV3TimeResponse> CheckServerTime(RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/api/v3/time"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/api/v3/time"),
             [],
             [],
             [],
@@ -92,20 +94,16 @@ public sealed class Market
             RawErrorResponse.Instance,
             [],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Compressed/Aggregate Trades List
     /// </summary>
-    /// <param name="symbol">Trading symbol, e.g. BNBUSDT</param>
-    /// <param name="fromId">Trade id to fetch from. Default gets most recent trades.</param>
-    /// <param name="startTime">UTC timestamp in ms</param>
-    /// <param name="endTime">UTC timestamp in ms</param>
-    /// <param name="limit">Default 500; max 1000.</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="IReadOnlyList{T}"/> of <see cref="AggTrade"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="CompressedAggregateTradesListError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="CompressedAggregateTradesListError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Get compressed, aggregate trades. Trades that fill at the time, from the same order, with the same price will have the quantity aggregated.
     /// - If <c>fromId</c>, <c>startTime</c>, and <c>endTime</c> are not sent, the most recent aggregate trades will be returned.
@@ -126,68 +124,66 @@ public sealed class Market
     /// Weight(IP): 2
     /// </para>
     /// </remarks>
-    public Task<IReadOnlyList<AggTrade>> CompressedAggregateTradesList(string symbol,
-        long? fromId,
-        long? startTime,
-        long? endTime,
-        int? limit,
+    public Task<IReadOnlyList<AggTrade>> CompressedAggregateTradesList(CompressedAggregateTradesListRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/api/v3/aggTrades"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/api/v3/aggTrades"),
             [],
-            [new Param("symbol", symbol),
-                new Param("fromId", fromId),
-                new Param("startTime", startTime),
-                new Param("endTime", endTime),
-                new Param("limit", limit)],
+            [
+                new Param("symbol", request.Symbol),
+                new Param("fromId", request.FromId),
+                new Param("startTime", request.StartTime),
+                new Param("endTime", request.EndTime),
+                new Param("limit", request.Limit),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<IReadOnlyList<AggTrade>>(),
-            CompressedAggregateTradesListErrorResponse.Instance,
+            CompressedAggregateTradesListError.Response,
             [],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Current Average Price
     /// </summary>
-    /// <param name="symbol">Trading symbol, e.g. BNBUSDT</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="ApiV3AvgPriceResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="CurrentAveragePriceError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="CurrentAveragePriceError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Current average price for a symbol.
     /// <para>
     /// Weight(IP): 2
     /// </para>
     /// </remarks>
-    public Task<ApiV3AvgPriceResponse> CurrentAveragePrice(string symbol,
+    public Task<ApiV3AvgPriceResponse> CurrentAveragePrice(CurrentAveragePriceRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/api/v3/avgPrice"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/api/v3/avgPrice"),
             [],
-            [new Param("symbol", symbol)],
+            [new Param("symbol", request.Symbol)],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<ApiV3AvgPriceResponse>(),
-            CurrentAveragePriceErrorResponse.Instance,
+            CurrentAveragePriceError.Response,
             [],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Exchange Information
     /// </summary>
-    /// <param name="symbol">Trading symbol, e.g. BNBUSDT</param>
-    /// <param name="symbols"></param>
-    /// <param name="permissions"></param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="ApiV3ExchangeInfoResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="ExchangeInformationError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="ExchangeInformationError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Current exchange trading rules and symbol information
     /// <list type="bullet">
@@ -210,36 +206,34 @@ public sealed class Market
     /// Weight(IP): 10
     /// </para>
     /// </remarks>
-    public Task<ApiV3ExchangeInfoResponse> ExchangeInformation(string? symbol,
-        string? symbols,
-        string? permissions,
+    public Task<ApiV3ExchangeInfoResponse> ExchangeInformation(ExchangeInformationRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/api/v3/exchangeInfo"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/api/v3/exchangeInfo"),
             [],
-            [new Param("symbol", symbol), new Param("symbols", symbols), new Param("permissions", permissions)],
+            [
+                new Param("symbol", request.Symbol),
+                new Param("symbols", request.Symbols),
+                new Param("permissions", request.Permissions),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<ApiV3ExchangeInfoResponse>(),
-            ExchangeInformationErrorResponse.Instance,
+            ExchangeInformationError.Response,
             [],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Kline/Candlestick Data
     /// </summary>
-    /// <param name="symbol">Trading symbol, e.g. BNBUSDT</param>
-    /// <param name="interval">kline intervals</param>
-    /// <param name="startTime">UTC timestamp in ms</param>
-    /// <param name="endTime">UTC timestamp in ms</param>
-    /// <param name="timeZone">Default: 0 (UTC)</param>
-    /// <param name="limit">Default 500; max 1000.</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="IReadOnlyList{T}"/> of <see cref="IReadOnlyList{T}"/> of <see cref="ApiV3KlinesResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="KlineCandlestickDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="KlineCandlestickDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Kline/candlestick bars for a symbol.
     /// Klines are uniquely identified by their open time.
@@ -250,55 +244,54 @@ public sealed class Market
     /// Weight(IP): 2
     /// </para>
     /// </remarks>
-    public Task<IReadOnlyList<IReadOnlyList<ApiV3KlinesResponse>>> KlineCandlestickData(string symbol,
-        Interval interval,
-        long? startTime,
-        long? endTime,
-        string? timeZone,
-        int? limit,
+    public Task<IReadOnlyList<IReadOnlyList<ApiV3KlinesResponse>>> KlineCandlestickData(KlineCandlestickDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/api/v3/klines"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/api/v3/klines"),
             [],
-            [new Param("symbol", symbol),
-                new Param("interval", interval),
-                new Param("startTime", startTime),
-                new Param("endTime", endTime),
-                new Param("timeZone", timeZone),
-                new Param("limit", limit)],
+            [
+                new Param("symbol", request.Symbol),
+                new Param("interval", request.Interval),
+                new Param("startTime", request.StartTime),
+                new Param("endTime", request.EndTime),
+                new Param("timeZone", request.TimeZone),
+                new Param("limit", request.Limit),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<IReadOnlyList<IReadOnlyList<ApiV3KlinesResponse>>>(),
-            KlineCandlestickDataErrorResponse.Instance,
+            KlineCandlestickDataError.Response,
             [],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Old Trade Lookup
     /// </summary>
-    /// <param name="symbol">Trading symbol, e.g. BNBUSDT</param>
-    /// <param name="limit">Default 500; max 1000.</param>
-    /// <param name="fromId">Trade id to fetch from. Default gets most recent trades.</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="IReadOnlyList{T}"/> of <see cref="Trade"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="RawError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="RawError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Get older market trades.
     /// <para>
     /// Weight(IP): 10
     /// </para>
     /// </remarks>
-    public Task<IReadOnlyList<Trade>> OldTradeLookup(string symbol,
-        int? limit,
-        long? fromId,
+    public Task<IReadOnlyList<Trade>> OldTradeLookup(OldTradeLookupRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/api/v3/historicalTrades"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/api/v3/historicalTrades"),
             [],
-            [new Param("symbol", symbol), new Param("limit", limit), new Param("fromId", fromId)],
+            [
+                new Param("symbol", request.Symbol),
+                new Param("limit", request.Limit),
+                new Param("fromId", request.FromId),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
@@ -306,17 +299,16 @@ public sealed class Market
             RawErrorResponse.Instance,
             [],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Order Book
     /// </summary>
-    /// <param name="symbol">Trading symbol, e.g. BNBUSDT</param>
-    /// <param name="limit">If limit &gt; 5000, then the response will truncate to 5000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="ApiV3DepthResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="OrderBookError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="OrderBookError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// | Limit               | Weight(IP)  |
     /// |---------------------|-------------|
@@ -325,64 +317,60 @@ public sealed class Market
     /// | 501-1000            | 50          |
     /// | 1001-5000           | 250         |
     /// </remarks>
-    public Task<ApiV3DepthResponse> OrderBook(string symbol,
-        int? limit = 100,
+    public Task<ApiV3DepthResponse> OrderBook(OrderBookRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/api/v3/depth"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/api/v3/depth"),
             [],
-            [new Param("symbol", symbol), new Param("limit", limit)],
+            [new Param("symbol", request.Symbol), new Param("limit", request.Limit)],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<ApiV3DepthResponse>(),
-            OrderBookErrorResponse.Instance,
+            OrderBookError.Response,
             [],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Recent Trades List
     /// </summary>
-    /// <param name="symbol">Trading symbol, e.g. BNBUSDT</param>
-    /// <param name="limit">Default 500; max 1000.</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="IReadOnlyList{T}"/> of <see cref="Trade"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="RecentTradesListError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="RecentTradesListError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Get recent trades.
     /// <para>
     /// Weight(IP): 10
     /// </para>
     /// </remarks>
-    public Task<IReadOnlyList<Trade>> RecentTradesList(string symbol,
-        int? limit,
+    public Task<IReadOnlyList<Trade>> RecentTradesList(RecentTradesListRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/api/v3/trades"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/api/v3/trades"),
             [],
-            [new Param("symbol", symbol), new Param("limit", limit)],
+            [new Param("symbol", request.Symbol), new Param("limit", request.Limit)],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<IReadOnlyList<Trade>>(),
-            RecentTradesListErrorResponse.Instance,
+            RecentTradesListError.Response,
             [],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Rolling window price change statistics
     /// </summary>
-    /// <param name="symbol">Trading symbol, e.g. BNBUSDT</param>
-    /// <param name="symbols"></param>
-    /// <param name="windowSize">Defaults to 1d if no parameter provided. Supported windowSize values: 1m,2m....59m for minutes 1h, 2h....23h - for hours 1d...7d - for days.  Units cannot be combined (e.g. 1d2h is not allowed)</param>
-    /// <param name="type">Supported values: FULL or MINI. If none provided, the default is FULL</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="ApiV3TickerResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="RollingWindowPriceChangeStatisticsError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="RollingWindowPriceChangeStatisticsError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// The window used to compute statistics is typically slightly wider than requested windowSize.
     /// <para>
@@ -398,36 +386,35 @@ public sealed class Market
     /// The weight for this request will cap at 200 once the number of symbols in the request is more than 50.
     /// </para>
     /// </remarks>
-    public Task<ApiV3TickerResponse> RollingWindowPriceChangeStatistics(string? symbol,
-        string? symbols,
-        string? windowSize,
-        string? type,
+    public Task<ApiV3TickerResponse> RollingWindowPriceChangeStatistics(RollingWindowPriceChangeStatisticsRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/api/v3/ticker"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/api/v3/ticker"),
             [],
-            [new Param("symbol", symbol),
-                new Param("symbols", symbols),
-                new Param("windowSize", windowSize),
-                new Param("type", type)],
+            [
+                new Param("symbol", request.Symbol),
+                new Param("symbols", request.Symbols),
+                new Param("windowSize", request.WindowSize),
+                new Param("type", request.Type),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<ApiV3TickerResponse>(),
-            RollingWindowPriceChangeStatisticsErrorResponse.Instance,
+            RollingWindowPriceChangeStatisticsError.Response,
             [],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Symbol Order Book Ticker
     /// </summary>
-    /// <param name="symbol">Trading symbol, e.g. BNBUSDT</param>
-    /// <param name="symbols"></param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="ApiV3TickerBookTickerResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="SymbolOrderBookTickerError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="SymbolOrderBookTickerError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Best price/qty on the order book for a symbol or symbols.
     /// <list type="bullet">
@@ -439,31 +426,30 @@ public sealed class Market
     /// - <c>4</c> when the symbol parameter is omitted;
     /// </para>
     /// </remarks>
-    public Task<ApiV3TickerBookTickerResponse> SymbolOrderBookTicker(string? symbol,
-        string? symbols,
+    public Task<ApiV3TickerBookTickerResponse> SymbolOrderBookTicker(SymbolOrderBookTickerRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/api/v3/ticker/bookTicker"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/api/v3/ticker/bookTicker"),
             [],
-            [new Param("symbol", symbol), new Param("symbols", symbols)],
+            [new Param("symbol", request.Symbol), new Param("symbols", request.Symbols)],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<ApiV3TickerBookTickerResponse>(),
-            SymbolOrderBookTickerErrorResponse.Instance,
+            SymbolOrderBookTickerError.Response,
             [],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Symbol Price Ticker
     /// </summary>
-    /// <param name="symbol">Trading symbol, e.g. BNBUSDT</param>
-    /// <param name="symbols"></param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="ApiV3TickerPriceResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="SymbolPriceTickerError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="SymbolPriceTickerError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Latest price for a symbol or symbols.
     /// <list type="bullet">
@@ -475,37 +461,39 @@ public sealed class Market
     /// - <c>4</c> when the symbol parameter is omitted;
     /// </para>
     /// </remarks>
-    public Task<ApiV3TickerPriceResponse> SymbolPriceTicker(string? symbol,
-        string? symbols,
+    public Task<ApiV3TickerPriceResponse> SymbolPriceTicker(SymbolPriceTickerRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/api/v3/ticker/price"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/api/v3/ticker/price"),
             [],
-            [new Param("symbol", symbol), new Param("symbols", symbols)],
+            [new Param("symbol", request.Symbol), new Param("symbols", request.Symbols)],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<ApiV3TickerPriceResponse>(),
-            SymbolPriceTickerErrorResponse.Instance,
+            SymbolPriceTickerError.Response,
             [],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Test Connectivity
     /// </summary>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="object"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="RawError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="RawError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Test connectivity to the Rest API.
     /// <para>
     /// Weight(IP): 1
     /// </para>
     /// </remarks>
-    public Task<object> TestConnectivity(RequestOptions? requestOptions = null, CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/api/v3/ping"),
+    public Task<object> TestConnectivity(RequestOptions? requestOptions = null,
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/api/v3/ping"),
             [],
             [],
             [],
@@ -515,19 +503,16 @@ public sealed class Market
             RawErrorResponse.Instance,
             [],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Trading Day Ticker
     /// </summary>
-    /// <param name="symbol">Trading symbol, e.g. BNBUSDT</param>
-    /// <param name="symbols"></param>
-    /// <param name="timeZone">Default: 0 (UTC)</param>
-    /// <param name="type">Supported values: FULL or MINI. If none provided, the default is FULL</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="ApiV3TickerTradingDayResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="TradingDayTickerError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="TradingDayTickerError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Price change statistics for a trading day.
     /// <para>
@@ -542,40 +527,35 @@ public sealed class Market
     /// - The weight for this request will cap at <c>200</c> once the number of symbols in the request is more than <c>50</c>.
     /// </para>
     /// </remarks>
-    public Task<ApiV3TickerTradingDayResponse> TradingDayTicker(string? symbol,
-        string? symbols,
-        string? timeZone,
-        TypeEnum? type,
+    public Task<ApiV3TickerTradingDayResponse> TradingDayTicker(TradingDayTickerRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/api/v3/ticker/tradingDay"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/api/v3/ticker/tradingDay"),
             [],
-            [new Param("symbol", symbol),
-                new Param("symbols", symbols),
-                new Param("timeZone", timeZone),
-                new Param("type", type)],
+            [
+                new Param("symbol", request.Symbol),
+                new Param("symbols", request.Symbols),
+                new Param("timeZone", request.TimeZone),
+                new Param("type", request.Type),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<ApiV3TickerTradingDayResponse>(),
-            TradingDayTickerErrorResponse.Instance,
+            TradingDayTickerError.Response,
             [],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// UIKlines
     /// </summary>
-    /// <param name="symbol">Trading symbol, e.g. BNBUSDT</param>
-    /// <param name="interval">kline intervals</param>
-    /// <param name="startTime">UTC timestamp in ms</param>
-    /// <param name="endTime">UTC timestamp in ms</param>
-    /// <param name="timeZone">Default: 0 (UTC)</param>
-    /// <param name="limit">Default 500; max 1000.</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="IReadOnlyList{T}"/> of <see cref="IReadOnlyList{T}"/> of <see cref="ApiV3UiKlinesResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="UiKlinesError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="UiKlinesError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// The request is similar to klines having the same parameters and response.
     /// <para>
@@ -585,28 +565,26 @@ public sealed class Market
     /// Weight(IP): 2
     /// </para>
     /// </remarks>
-    public Task<IReadOnlyList<IReadOnlyList<ApiV3UiKlinesResponse>>> UiKlines(string symbol,
-        Interval interval,
-        long? startTime,
-        long? endTime,
-        string? timeZone,
-        int? limit,
+    public Task<IReadOnlyList<IReadOnlyList<ApiV3UiKlinesResponse>>> UiKlines(UiKlinesRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/api/v3/uiKlines"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/api/v3/uiKlines"),
             [],
-            [new Param("symbol", symbol),
-                new Param("interval", interval),
-                new Param("startTime", startTime),
-                new Param("endTime", endTime),
-                new Param("timeZone", timeZone),
-                new Param("limit", limit)],
+            [
+                new Param("symbol", request.Symbol),
+                new Param("interval", request.Interval),
+                new Param("startTime", request.StartTime),
+                new Param("endTime", request.EndTime),
+                new Param("timeZone", request.TimeZone),
+                new Param("limit", request.Limit),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<IReadOnlyList<IReadOnlyList<ApiV3UiKlinesResponse>>>(),
-            UiKlinesErrorResponse.Instance,
+            UiKlinesError.Response,
             [],
             requestOptions,
-            ct);
+            cancellationToken);
 }

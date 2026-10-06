@@ -1,4 +1,4 @@
-namespace BinancePublicSpotApi.Core.Validation;
+namespace Binance.Core.Validation;
 
 public enum FormatKind
 {

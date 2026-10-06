@@ -1,10 +1,11 @@
+using System;
 using System.Text.Json.Serialization;
-using BinancePublicSpotApi.Core.Enum;
+using Binance.Core.Enum;
 
-namespace BinancePublicSpotApi.Models.Enums;
+namespace Binance.Models.Enums;
 
 [JsonConverter(typeof(StringEnumConverter<OptionType>))]
-public sealed record OptionType : StringEnum<OptionType>
+public sealed record OptionType : OpenStringEnum<OptionType>
 {
     private OptionType(string value) : base(value)
     {
@@ -14,5 +15,18 @@ public sealed record OptionType : StringEnum<OptionType>
 
     public static readonly OptionType Put = new("PUT");
 
-    public static OptionType FromValue(string value) => FromValueCore(value);
+    public TResult Match<TResult>(Func<TResult> onCall, Func<TResult> onPut, Func<string, TResult> otherwise) =>
+        this switch
+        {
+            _ when this == Call => onCall(),
+            _ when this == Put => onPut(),
+            _ => otherwise(Value)
+        };
+
+    public void Match(Action onCall, Action onPut, Action<string> otherwise)
+    {
+        if (this == Call) onCall();
+        else if (this == Put) onPut();
+        else otherwise(Value);
+    }
 }

@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
-using BinancePublicSpotApi.Core.Models;
+using Binance.Core.Models;
 
-namespace BinancePublicSpotApi.Models;
+namespace Binance.Models;
 
 public record SapiV1MarginIsolatedMarginDataResponse
 {

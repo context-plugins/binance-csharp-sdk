@@ -2,7 +2,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace BinancePublicSpotApi.Core.Authentication;
+namespace Binance.Core.Authentication;
 
 internal sealed class NoneAuthScheme : IAuthScheme
 {

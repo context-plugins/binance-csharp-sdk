@@ -2,15 +2,16 @@ using System;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using BinancePublicSpotApi.Core;
-using BinancePublicSpotApi.Core.Exceptions;
-using BinancePublicSpotApi.Core.Models;
-using BinancePublicSpotApi.Core.Request;
-using BinancePublicSpotApi.Core.Response;
-using BinancePublicSpotApi.Errors;
-using BinancePublicSpotApi.Models;
+using Binance.Core;
+using Binance.Core.Exceptions;
+using Binance.Core.Models;
+using Binance.Core.Request;
+using Binance.Core.Response;
+using Binance.Errors;
+using Binance.Models;
+using Binance.Requests.Mining;
 
-namespace BinancePublicSpotApi.Api;
+namespace Binance.Api;
 
 /// <summary>
 /// Mining Endpoints
@@ -31,538 +32,437 @@ public sealed class Mining
     /// <summary>
     /// Account List (USER_DATA)
     /// </summary>
-    /// <param name="algo">Algorithm(sha256)</param>
-    /// <param name="userName">Mining Account</param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1MiningStatisticsUserListResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="AccountListUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="AccountListUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Weight(IP): 5
     /// </remarks>
-    public Task<SapiV1MiningStatisticsUserListResponse> AccountListUserData(string algo,
-        string userName,
-        long timestamp,
-        string signature,
-        long? recvWindow,
+    public Task<SapiV1MiningStatisticsUserListResponse> AccountListUserData(AccountListUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/mining/statistics/user/list"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/mining/statistics/user/list"),
             [],
-            [new Param("algo", algo),
-                new Param("userName", userName),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("algo", request.Algo),
+                new Param("userName", request.UserName),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1MiningStatisticsUserListResponse>(),
-            AccountListUserDataErrorResponse.Instance,
+            AccountListUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Acquiring Algorithm (MARKET_DATA)
     /// </summary>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1MiningPubAlgoListResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="AcquiringAlgorithmMarketDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="AcquiringAlgorithmMarketDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Weight(IP): 1
     /// </remarks>
     public Task<SapiV1MiningPubAlgoListResponse> AcquiringAlgorithmMarketData(RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/mining/pub/algoList"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/mining/pub/algoList"),
             [],
             [],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1MiningPubAlgoListResponse>(),
-            AcquiringAlgorithmMarketDataErrorResponse.Instance,
+            AcquiringAlgorithmMarketDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Acquiring CoinName (MARKET_DATA)
     /// </summary>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1MiningPubCoinListResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="AcquiringCoinNameMarketDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="AcquiringCoinNameMarketDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Weight(IP): 1
     /// </remarks>
     public Task<SapiV1MiningPubCoinListResponse> AcquiringCoinNameMarketData(RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/mining/pub/coinList"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/mining/pub/coinList"),
             [],
             [],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1MiningPubCoinListResponse>(),
-            AcquiringCoinNameMarketDataErrorResponse.Instance,
+            AcquiringCoinNameMarketDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Cancel Hashrate Resale configuration (USER_DATA)
     /// </summary>
-    /// <param name="configId">Mining ID</param>
-    /// <param name="userName">Mining Account</param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1MiningHashTransferConfigCancelResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="CancelHashrateResaleConfigurationUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="CancelHashrateResaleConfigurationUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Weight(IP): 5
     /// </remarks>
-    public Task<SapiV1MiningHashTransferConfigCancelResponse> CancelHashrateResaleConfigurationUserData(string configId,
-        string userName,
-        long timestamp,
-        string signature,
-        long? recvWindow,
+    public Task<SapiV1MiningHashTransferConfigCancelResponse> CancelHashrateResaleConfigurationUserData(CancelHashrateResaleConfigurationUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/mining/hash-transfer/config/cancel"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/mining/hash-transfer/config/cancel"),
             [],
-            [new Param("configId", configId),
-                new Param("userName", userName),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("configId", request.ConfigId),
+                new Param("userName", request.UserName),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [new HeaderParam("Idempotency-Key", Guid.NewGuid())],
             HttpMethod.Post,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1MiningHashTransferConfigCancelResponse>(),
-            CancelHashrateResaleConfigurationUserDataErrorResponse.Instance,
+            CancelHashrateResaleConfigurationUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Earnings List (USER_DATA)
     /// </summary>
-    /// <param name="algo">Algorithm(sha256)</param>
-    /// <param name="userName">Mining Account</param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="coin">Coin name</param>
-    /// <param name="startDate">Search date, millisecond timestamp, while empty query all</param>
-    /// <param name="endDate">Search date, millisecond timestamp, while empty query all</param>
-    /// <param name="pageIndex">Page number, default is first page, start form 1</param>
-    /// <param name="pageSize">Number of pages, minimum 10, maximum 200</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1MiningPaymentListResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="EarningsListUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="EarningsListUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Weight(IP): 5
     /// </remarks>
-    public Task<SapiV1MiningPaymentListResponse> EarningsListUserData(string algo,
-        string userName,
-        long timestamp,
-        string signature,
-        string? coin,
-        string? startDate,
-        string? endDate,
-        int? pageIndex,
-        string? pageSize,
-        long? recvWindow,
+    public Task<SapiV1MiningPaymentListResponse> EarningsListUserData(EarningsListUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/mining/payment/list"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/mining/payment/list"),
             [],
-            [new Param("algo", algo),
-                new Param("userName", userName),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("coin", coin),
-                new Param("startDate", startDate),
-                new Param("endDate", endDate),
-                new Param("pageIndex", pageIndex),
-                new Param("pageSize", pageSize),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("algo", request.Algo),
+                new Param("userName", request.UserName),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("coin", request.Coin),
+                new Param("startDate", request.StartDate),
+                new Param("endDate", request.EndDate),
+                new Param("pageIndex", request.PageIndex),
+                new Param("pageSize", request.PageSize),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1MiningPaymentListResponse>(),
-            EarningsListUserDataErrorResponse.Instance,
+            EarningsListUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Extra Bonus List (USER_DATA)
     /// </summary>
-    /// <param name="algo">Algorithm(sha256)</param>
-    /// <param name="userName">Mining Account</param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="coin">Coin name</param>
-    /// <param name="startDate">Search date, millisecond timestamp, while empty query all</param>
-    /// <param name="endDate">Search date, millisecond timestamp, while empty query all</param>
-    /// <param name="pageIndex">Page number, default is first page, start form 1</param>
-    /// <param name="pageSize">Number of pages, minimum 10, maximum 200</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1MiningPaymentOtherResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="ExtraBonusListUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="ExtraBonusListUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Weight(IP): 5
     /// </remarks>
-    public Task<SapiV1MiningPaymentOtherResponse> ExtraBonusListUserData(string algo,
-        string userName,
-        long timestamp,
-        string signature,
-        string? coin,
-        string? startDate,
-        string? endDate,
-        int? pageIndex,
-        string? pageSize,
-        long? recvWindow,
+    public Task<SapiV1MiningPaymentOtherResponse> ExtraBonusListUserData(ExtraBonusListUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/mining/payment/other"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/mining/payment/other"),
             [],
-            [new Param("algo", algo),
-                new Param("userName", userName),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("coin", coin),
-                new Param("startDate", startDate),
-                new Param("endDate", endDate),
-                new Param("pageIndex", pageIndex),
-                new Param("pageSize", pageSize),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("algo", request.Algo),
+                new Param("userName", request.UserName),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("coin", request.Coin),
+                new Param("startDate", request.StartDate),
+                new Param("endDate", request.EndDate),
+                new Param("pageIndex", request.PageIndex),
+                new Param("pageSize", request.PageSize),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1MiningPaymentOtherResponse>(),
-            ExtraBonusListUserDataErrorResponse.Instance,
+            ExtraBonusListUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Hashrate Resale Details (USER_DATA)
     /// </summary>
-    /// <param name="configId">Mining ID</param>
-    /// <param name="userName">Mining Account</param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="pageIndex">Page number, default is first page, start form 1</param>
-    /// <param name="pageSize">Number of pages, minimum 10, maximum 200</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1MiningHashTransferProfitDetailsResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="HashrateResaleDetailsUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="HashrateResaleDetailsUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Weight(IP): 5
     /// </remarks>
-    public Task<SapiV1MiningHashTransferProfitDetailsResponse> HashrateResaleDetailsUserData(string configId,
-        string userName,
-        long timestamp,
-        string signature,
-        int? pageIndex,
-        string? pageSize,
-        long? recvWindow,
+    public Task<SapiV1MiningHashTransferProfitDetailsResponse> HashrateResaleDetailsUserData(HashrateResaleDetailsUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/mining/hash-transfer/profit/details"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/mining/hash-transfer/profit/details"),
             [],
-            [new Param("configId", configId),
-                new Param("userName", userName),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("pageIndex", pageIndex),
-                new Param("pageSize", pageSize),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("configId", request.ConfigId),
+                new Param("userName", request.UserName),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("pageIndex", request.PageIndex),
+                new Param("pageSize", request.PageSize),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1MiningHashTransferProfitDetailsResponse>(),
-            HashrateResaleDetailsUserDataErrorResponse.Instance,
+            HashrateResaleDetailsUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Hashrate Resale List (USER_DATA)
     /// </summary>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="pageIndex">Page number, default is first page, start form 1</param>
-    /// <param name="pageSize">Number of pages, minimum 10, maximum 200</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1MiningHashTransferConfigDetailsListResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="HashrateResaleListUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="HashrateResaleListUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Weight(IP): 5
     /// </remarks>
-    public Task<SapiV1MiningHashTransferConfigDetailsListResponse> HashrateResaleListUserData(long timestamp,
-        string signature,
-        int? pageIndex,
-        string? pageSize,
-        long? recvWindow,
+    public Task<SapiV1MiningHashTransferConfigDetailsListResponse> HashrateResaleListUserData(HashrateResaleListUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/mining/hash-transfer/config/details/list"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/mining/hash-transfer/config/details/list"),
             [],
-            [new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("pageIndex", pageIndex),
-                new Param("pageSize", pageSize),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("pageIndex", request.PageIndex),
+                new Param("pageSize", request.PageSize),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1MiningHashTransferConfigDetailsListResponse>(),
-            HashrateResaleListUserDataErrorResponse.Instance,
+            HashrateResaleListUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Hashrate Resale Request (USER_DATA)
     /// </summary>
-    /// <param name="userName">Mining Account</param>
-    /// <param name="algo">Algorithm(sha256)</param>
-    /// <param name="toPoolUser">Mining Account</param>
-    /// <param name="hashRate">Resale hashrate h/s must be transferred (BTC is greater than 500000000000 ETH is greater than 500000)</param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="startDate">Search date, millisecond timestamp, while empty query all</param>
-    /// <param name="endDate">Search date, millisecond timestamp, while empty query all</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1MiningHashTransferConfigResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="HashrateResaleRequestUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="HashrateResaleRequestUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Weight(IP): 5
     /// </remarks>
-    public Task<SapiV1MiningHashTransferConfigResponse> HashrateResaleRequestUserData(string userName,
-        string algo,
-        string toPoolUser,
-        string hashRate,
-        long timestamp,
-        string signature,
-        string? startDate,
-        string? endDate,
-        long? recvWindow,
+    public Task<SapiV1MiningHashTransferConfigResponse> HashrateResaleRequestUserData(HashrateResaleRequestUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/mining/hash-transfer/config"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/mining/hash-transfer/config"),
             [],
-            [new Param("userName", userName),
-                new Param("algo", algo),
-                new Param("toPoolUser", toPoolUser),
-                new Param("hashRate", hashRate),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("startDate", startDate),
-                new Param("endDate", endDate),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("userName", request.UserName),
+                new Param("algo", request.Algo),
+                new Param("toPoolUser", request.ToPoolUser),
+                new Param("hashRate", request.HashRate),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("startDate", request.StartDate),
+                new Param("endDate", request.EndDate),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [new HeaderParam("Idempotency-Key", Guid.NewGuid())],
             HttpMethod.Post,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1MiningHashTransferConfigResponse>(),
-            HashrateResaleRequestUserDataErrorResponse.Instance,
+            HashrateResaleRequestUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Mining Account Earning (USER_DATA)
     /// </summary>
-    /// <param name="algo">Algorithm(sha256)</param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="startDate">Search date, millisecond timestamp, while empty query all</param>
-    /// <param name="endDate">Search date, millisecond timestamp, while empty query all</param>
-    /// <param name="pageIndex">Page number, default is first page, start form 1</param>
-    /// <param name="pageSize">Number of pages, minimum 10, maximum 200</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1MiningPaymentUidResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="MiningAccountEarningUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="MiningAccountEarningUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Weight(IP): 5
     /// </remarks>
-    public Task<SapiV1MiningPaymentUidResponse> MiningAccountEarningUserData(string algo,
-        long timestamp,
-        string signature,
-        string? startDate,
-        string? endDate,
-        int? pageIndex,
-        string? pageSize,
-        long? recvWindow,
+    public Task<SapiV1MiningPaymentUidResponse> MiningAccountEarningUserData(MiningAccountEarningUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/mining/payment/uid"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/mining/payment/uid"),
             [],
-            [new Param("algo", algo),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("startDate", startDate),
-                new Param("endDate", endDate),
-                new Param("pageIndex", pageIndex),
-                new Param("pageSize", pageSize),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("algo", request.Algo),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("startDate", request.StartDate),
+                new Param("endDate", request.EndDate),
+                new Param("pageIndex", request.PageIndex),
+                new Param("pageSize", request.PageSize),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1MiningPaymentUidResponse>(),
-            MiningAccountEarningUserDataErrorResponse.Instance,
+            MiningAccountEarningUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Request for Detail Miner List (USER_DATA)
     /// </summary>
-    /// <param name="algo">Algorithm(sha256)</param>
-    /// <param name="userName">Mining Account</param>
-    /// <param name="workerName">Miner’s name</param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1MiningWorkerDetailResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="RequestForDetailMinerListUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="RequestForDetailMinerListUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Weight(IP): 5
     /// </remarks>
-    public Task<SapiV1MiningWorkerDetailResponse> RequestForDetailMinerListUserData(string algo,
-        string userName,
-        string workerName,
-        long timestamp,
-        string signature,
-        long? recvWindow,
+    public Task<SapiV1MiningWorkerDetailResponse> RequestForDetailMinerListUserData(RequestForDetailMinerListUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/mining/worker/detail"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/mining/worker/detail"),
             [],
-            [new Param("algo", algo),
-                new Param("userName", userName),
-                new Param("workerName", workerName),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("algo", request.Algo),
+                new Param("userName", request.UserName),
+                new Param("workerName", request.WorkerName),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1MiningWorkerDetailResponse>(),
-            RequestForDetailMinerListUserDataErrorResponse.Instance,
+            RequestForDetailMinerListUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Request for Miner List (USER_DATA)
     /// </summary>
-    /// <param name="algo">Algorithm(sha256)</param>
-    /// <param name="userName">Mining Account</param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="pageIndex">Page number, default is first page, start form 1</param>
-    /// <param name="sort">sort sequence(default=0)0 positive sequence, 1 negative sequence</param>
-    /// <param name="sortColumn">Sort by( default 1): 1: miner name, 2: real-time computing power, 3: daily average computing power, 4: real-time rejection rate, 5: last submission time</param>
-    /// <param name="workerStatus">miners status(default=0)0 all, 1 valid, 2 invalid, 3 failure</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1MiningWorkerListResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="RequestForMinerListUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="RequestForMinerListUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Weight(IP): 5
     /// </remarks>
-    public Task<SapiV1MiningWorkerListResponse> RequestForMinerListUserData(string algo,
-        string userName,
-        long timestamp,
-        string signature,
-        int? pageIndex,
-        int? sort,
-        int? sortColumn,
-        int? workerStatus,
-        long? recvWindow,
+    public Task<SapiV1MiningWorkerListResponse> RequestForMinerListUserData(RequestForMinerListUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/mining/worker/list"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/mining/worker/list"),
             [],
-            [new Param("algo", algo),
-                new Param("userName", userName),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("pageIndex", pageIndex),
-                new Param("sort", sort),
-                new Param("sortColumn", sortColumn),
-                new Param("workerStatus", workerStatus),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("algo", request.Algo),
+                new Param("userName", request.UserName),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("pageIndex", request.PageIndex),
+                new Param("sort", request.Sort),
+                new Param("sortColumn", request.SortColumn),
+                new Param("workerStatus", request.WorkerStatus),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1MiningWorkerListResponse>(),
-            RequestForMinerListUserDataErrorResponse.Instance,
+            RequestForMinerListUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Statistic List (USER_DATA)
     /// </summary>
-    /// <param name="algo">Algorithm(sha256)</param>
-    /// <param name="userName">Mining Account</param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1MiningStatisticsUserStatusResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="StatisticListUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="StatisticListUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Weight(IP): 5
     /// </remarks>
-    public Task<SapiV1MiningStatisticsUserStatusResponse> StatisticListUserData(string algo,
-        string userName,
-        long timestamp,
-        string signature,
-        long? recvWindow,
+    public Task<SapiV1MiningStatisticsUserStatusResponse> StatisticListUserData(StatisticListUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/mining/statistics/user/status"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/mining/statistics/user/status"),
             [],
-            [new Param("algo", algo),
-                new Param("userName", userName),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("algo", request.Algo),
+                new Param("userName", request.UserName),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1MiningStatisticsUserStatusResponse>(),
-            StatisticListUserDataErrorResponse.Instance,
+            StatisticListUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 }

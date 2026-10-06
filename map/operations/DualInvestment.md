@@ -9,15 +9,16 @@ Accessor: `client.DualInvestment` · Source: `Api/DualInvestment.cs` · 5 operat
 ### ChangeAutoCompoundStatusUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `ChangeAutoCompoundStatusUserData(long positionId, AutoCompoundPlan autoCompoundPlan, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `positionId` ← `positionId`, `autoCompoundPlan` ← `autoCompoundPlan`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `ChangeAutoCompoundStatusUserData(ChangeAutoCompoundStatusUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `PositionId`, `AutoCompoundPlan`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `positionId` ← `PositionId`, `autoCompoundPlan` ← `AutoCompoundPlan`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1DciProductAutoCompoundEditStatusResponse`
-- **Error**: `SdkException<ChangeAutoCompoundStatusUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<ChangeAutoCompoundStatusUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `ChangeAutoCompoundStatusUserDataRequest` | `Requests/DualInvestment/ChangeAutoCompoundStatusUserDataRequest.cs` |
 | `AutoCompoundPlan` | `Models/Enums/AutoCompoundPlan.cs` |
 | `SapiV1DciProductAutoCompoundEditStatusResponse` | `Models/SapiV1DciProductAutoCompoundEditStatusResponse.cs` |
 | `ChangeAutoCompoundStatusUserDataError` | `Errors/ChangeAutoCompoundStatusUserDataError.cs` |
@@ -26,15 +27,16 @@ Accessor: `client.DualInvestment` · Source: `Api/DualInvestment.cs` · 5 operat
 ### CheckDualInvestmentAccountsUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `CheckDualInvestmentAccountsUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `CheckDualInvestmentAccountsUserData(CheckDualInvestmentAccountsUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1DciProductAccountsResponse`
-- **Error**: `SdkException<CheckDualInvestmentAccountsUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<CheckDualInvestmentAccountsUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `CheckDualInvestmentAccountsUserDataRequest` | `Requests/DualInvestment/CheckDualInvestmentAccountsUserDataRequest.cs` |
 | `SapiV1DciProductAccountsResponse` | `Models/SapiV1DciProductAccountsResponse.cs` |
 | `CheckDualInvestmentAccountsUserDataError` | `Errors/CheckDualInvestmentAccountsUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -42,15 +44,16 @@ Accessor: `client.DualInvestment` · Source: `Api/DualInvestment.cs` · 5 operat
 ### GetDualInvestmentPositionsUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetDualInvestmentPositionsUserData(long timestamp, string signature, Status2? status, string? pageSize, int? pageIndex, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - 4 params (`status` … `recvWindow`) — nullable, no default → **must pass explicitly** (pass `null` to skip)
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `status` ← `status`, `pageSize` ← `pageSize`, `pageIndex` ← `pageIndex`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetDualInvestmentPositionsUserData(GetDualInvestmentPositionsUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `status` ← `Status`, `pageSize` ← `PageSize`, `pageIndex` ← `PageIndex`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1DciProductPositionsResponse`
-- **Error**: `SdkException<GetDualInvestmentPositionsUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetDualInvestmentPositionsUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetDualInvestmentPositionsUserDataRequest` | `Requests/DualInvestment/GetDualInvestmentPositionsUserDataRequest.cs` |
 | `Status2` | `Models/Enums/Status2.cs` |
 | `SapiV1DciProductPositionsResponse` | `Models/SapiV1DciProductPositionsResponse.cs` |
 | `GetDualInvestmentPositionsUserDataError` | `Errors/GetDualInvestmentPositionsUserDataError.cs` |
@@ -59,17 +62,16 @@ Accessor: `client.DualInvestment` · Source: `Api/DualInvestment.cs` · 5 operat
 ### GetDualInvestmentProductListUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `GetDualInvestmentProductListUserData(OptionType optionType, string exercisedCoin, string investCoin, long timestamp, string signature, string? pageSize, int? pageIndex, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `pageSize` — nullable, no default → **must pass explicitly**
-  - `pageIndex` — nullable, no default → **must pass explicitly**
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `optionType` ← `optionType`, `exercisedCoin` ← `exercisedCoin`, `investCoin` ← `investCoin`, `timestamp` ← `timestamp`, `signature` ← `signature`, `pageSize` ← `pageSize`, `pageIndex` ← `pageIndex`, `recvWindow` ← `recvWindow`
+- **Signature**: `GetDualInvestmentProductListUserData(GetDualInvestmentProductListUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `OptionType`, `ExercisedCoin`, `InvestCoin`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `optionType` ← `OptionType`, `exercisedCoin` ← `ExercisedCoin`, `investCoin` ← `InvestCoin`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `pageSize` ← `PageSize`, `pageIndex` ← `PageIndex`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1DciProductListResponse`
-- **Error**: `SdkException<GetDualInvestmentProductListUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<GetDualInvestmentProductListUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `GetDualInvestmentProductListUserDataRequest` | `Requests/DualInvestment/GetDualInvestmentProductListUserDataRequest.cs` |
 | `OptionType` | `Models/Enums/OptionType.cs` |
 | `SapiV1DciProductListResponse` | `Models/SapiV1DciProductListResponse.cs` |
 | `GetDualInvestmentProductListUserDataError` | `Errors/GetDualInvestmentProductListUserDataError.cs` |
@@ -78,15 +80,16 @@ Accessor: `client.DualInvestment` · Source: `Api/DualInvestment.cs` · 5 operat
 ### SubscribeDualInvestmentProductsUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `SubscribeDualInvestmentProductsUserData(string id, string orderId, double depositAmount, AutoCompoundPlan autoCompoundPlan, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `id` ← `id`, `orderId` ← `orderId`, `depositAmount` ← `depositAmount`, `autoCompoundPlan` ← `autoCompoundPlan`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `SubscribeDualInvestmentProductsUserData(SubscribeDualInvestmentProductsUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Id`, `OrderId`, `DepositAmount`, `AutoCompoundPlan`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `id` ← `Id`, `orderId` ← `OrderId`, `depositAmount` ← `DepositAmount`, `autoCompoundPlan` ← `AutoCompoundPlan`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1DciProductSubscribeResponse`
-- **Error**: `SdkException<SubscribeDualInvestmentProductsUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<SubscribeDualInvestmentProductsUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `SubscribeDualInvestmentProductsUserDataRequest` | `Requests/DualInvestment/SubscribeDualInvestmentProductsUserDataRequest.cs` |
 | `AutoCompoundPlan` | `Models/Enums/AutoCompoundPlan.cs` |
 | `SapiV1DciProductSubscribeResponse` | `Models/SapiV1DciProductSubscribeResponse.cs` |
 | `SubscribeDualInvestmentProductsUserDataError` | `Errors/SubscribeDualInvestmentProductsUserDataError.cs` |

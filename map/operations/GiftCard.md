@@ -9,15 +9,16 @@ Accessor: `client.GiftCard` · Source: `Api/GiftCard.cs` · 6 operations
 ### BuyABinanceCodeTrade
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `BuyABinanceCodeTrade(string baseToken, string faceToken, double baseTokenAmount, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `baseToken` ← `baseToken`, `faceToken` ← `faceToken`, `baseTokenAmount` ← `baseTokenAmount`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `BuyABinanceCodeTrade(BuyABinanceCodeTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `BaseToken`, `FaceToken`, `BaseTokenAmount`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `baseToken` ← `BaseToken`, `faceToken` ← `FaceToken`, `baseTokenAmount` ← `BaseTokenAmount`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1GiftcardBuyCodeResponse`
-- **Error**: `SdkException<BuyABinanceCodeTradeError>` — **Case A (typed)**
+- **Error**: `ApiException<BuyABinanceCodeTradeError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `BuyABinanceCodeTradeRequest` | `Requests/GiftCard/BuyABinanceCodeTradeRequest.cs` |
 | `SapiV1GiftcardBuyCodeResponse` | `Models/SapiV1GiftcardBuyCodeResponse.cs` |
 | `BuyABinanceCodeTradeError` | `Errors/BuyABinanceCodeTradeError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -25,15 +26,16 @@ Accessor: `client.GiftCard` · Source: `Api/GiftCard.cs` · 6 operations
 ### CreateABinanceCodeUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `CreateABinanceCodeUserData(string token, double amount, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `token` ← `token`, `amount` ← `amount`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `CreateABinanceCodeUserData(CreateABinanceCodeUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Token`, `Amount`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `token` ← `Token`, `amount` ← `Amount`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1GiftcardCreateCodeResponse`
-- **Error**: `SdkException<CreateABinanceCodeUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<CreateABinanceCodeUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `CreateABinanceCodeUserDataRequest` | `Requests/GiftCard/CreateABinanceCodeUserDataRequest.cs` |
 | `SapiV1GiftcardCreateCodeResponse` | `Models/SapiV1GiftcardCreateCodeResponse.cs` |
 | `CreateABinanceCodeUserDataError` | `Errors/CreateABinanceCodeUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -41,15 +43,16 @@ Accessor: `client.GiftCard` · Source: `Api/GiftCard.cs` · 6 operations
 ### FetchRsaPublicKeyUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `FetchRsaPublicKeyUserData(long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `FetchRsaPublicKeyUserData(FetchRsaPublicKeyUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1GiftcardCryptographyRsaPublicKeyResponse`
-- **Error**: `SdkException<FetchRsaPublicKeyUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<FetchRsaPublicKeyUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `FetchRsaPublicKeyUserDataRequest` | `Requests/GiftCard/FetchRsaPublicKeyUserDataRequest.cs` |
 | `SapiV1GiftcardCryptographyRsaPublicKeyResponse` | `Models/SapiV1GiftcardCryptographyRsaPublicKeyResponse.cs` |
 | `FetchRsaPublicKeyUserDataError` | `Errors/FetchRsaPublicKeyUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -57,15 +60,16 @@ Accessor: `client.GiftCard` · Source: `Api/GiftCard.cs` · 6 operations
 ### FetchTokenLimitUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `FetchTokenLimitUserData(string baseToken, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `baseToken` ← `baseToken`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `FetchTokenLimitUserData(FetchTokenLimitUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `BaseToken`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `baseToken` ← `BaseToken`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1GiftcardBuyCodeTokenLimitResponse`
-- **Error**: `SdkException<FetchTokenLimitUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<FetchTokenLimitUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `FetchTokenLimitUserDataRequest` | `Requests/GiftCard/FetchTokenLimitUserDataRequest.cs` |
 | `SapiV1GiftcardBuyCodeTokenLimitResponse` | `Models/SapiV1GiftcardBuyCodeTokenLimitResponse.cs` |
 | `FetchTokenLimitUserDataError` | `Errors/FetchTokenLimitUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -73,16 +77,16 @@ Accessor: `client.GiftCard` · Source: `Api/GiftCard.cs` · 6 operations
 ### RedeemABinanceCodeUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `RedeemABinanceCodeUserData(string code, long timestamp, string signature, string? externalUid, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `externalUid` — nullable, no default → **must pass explicitly**
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `code` ← `code`, `timestamp` ← `timestamp`, `signature` ← `signature`, `externalUid` ← `externalUid`, `recvWindow` ← `recvWindow`
+- **Signature**: `RedeemABinanceCodeUserData(RedeemABinanceCodeUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `Code`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `code` ← `Code`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `externalUid` ← `ExternalUid`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1GiftcardRedeemCodeResponse`
-- **Error**: `SdkException<RedeemABinanceCodeUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<RedeemABinanceCodeUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `RedeemABinanceCodeUserDataRequest` | `Requests/GiftCard/RedeemABinanceCodeUserDataRequest.cs` |
 | `SapiV1GiftcardRedeemCodeResponse` | `Models/SapiV1GiftcardRedeemCodeResponse.cs` |
 | `RedeemABinanceCodeUserDataError` | `Errors/RedeemABinanceCodeUserDataError.cs` |
 | `Error` | `Models/Error.cs` |
@@ -90,15 +94,16 @@ Accessor: `client.GiftCard` · Source: `Api/GiftCard.cs` · 6 operations
 ### VerifyABinanceCodeUserData
 
 - **Auth**: `options.ApiKeyAuth`
-- **Signature**: `VerifyABinanceCodeUserData(string referenceNo, long timestamp, string signature, long? recvWindow, RequestOptions? requestOptions = null, CancellationToken ct = default)`
-  - `recvWindow` — nullable, no default → **must pass explicitly**
-- **Query params (wire ← C#)**: `referenceNo` ← `referenceNo`, `timestamp` ← `timestamp`, `signature` ← `signature`, `recvWindow` ← `recvWindow`
+- **Signature**: `VerifyABinanceCodeUserData(VerifyABinanceCodeUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default)`
+  - required: `ReferenceNo`, `Timestamp`, `Signature`
+- **Query params (wire ← C#)**: `referenceNo` ← `ReferenceNo`, `timestamp` ← `Timestamp`, `signature` ← `Signature`, `recvWindow` ← `RecvWindow`
 - **Returns**: `SapiV1GiftcardVerifyResponse`
-- **Error**: `SdkException<VerifyABinanceCodeUserDataError>` — **Case A (typed)**
+- **Error**: `ApiException<VerifyABinanceCodeUserDataError>` — **Case A (typed)**
 - **Error accessors**: `TryGetError(out Error)` [400, 401] · `TryGetRawError(out RawError)` [fallback]
 
 | Type | Source |
 | --- | --- |
+| `VerifyABinanceCodeUserDataRequest` | `Requests/GiftCard/VerifyABinanceCodeUserDataRequest.cs` |
 | `SapiV1GiftcardVerifyResponse` | `Models/SapiV1GiftcardVerifyResponse.cs` |
 | `VerifyABinanceCodeUserDataError` | `Errors/VerifyABinanceCodeUserDataError.cs` |
 | `Error` | `Models/Error.cs` |

@@ -1,17 +1,16 @@
-using System.Net.Http;
-using System.Threading;
 using System.Threading.Tasks;
-using BinancePublicSpotApi.Core.ErrorResponse;
-using BinancePublicSpotApi.Core.Models;
-using BinancePublicSpotApi.Models;
+using Binance.Core.ErrorResponse;
+using Binance.Core.Models;
+using Binance.Models;
 
-namespace BinancePublicSpotApi.Errors;
+namespace Binance.Errors;
 
 public sealed class PortfolioMarginCollateralRateMarketDataError : ApiError
 {
     private readonly Optional<Error> _errorValue;
 
-    private PortfolioMarginCollateralRateMarketDataError(Optional<Error> errorValue, Optional<RawError> fallback) : base(fallback)
+    private PortfolioMarginCollateralRateMarketDataError(Optional<Error> errorValue,
+        Optional<RawError> fallback) : base(fallback)
     {
         _errorValue = errorValue;
     }
@@ -24,23 +23,12 @@ public sealed class PortfolioMarginCollateralRateMarketDataError : ApiError
 
     public bool TryGetError(out Error value) => _errorValue.TryGetValue(out value);
 
-    internal static Task<PortfolioMarginCollateralRateMarketDataError> Create(HttpResponseMessage response,
-        CancellationToken ct) =>
-        (int)response.StatusCode switch
+    private static Task<PortfolioMarginCollateralRateMarketDataError> Create(FailedResponse response) =>
+        response.StatusCode switch
         {
-            400 => FromJson<Error>(response, ct).As(AsError),
-            _ => FromRawBody(response, ct).As(AsFallback)
+            400 => response.Json<Error>().As(AsError),
+            _ => response.RawBody().As(AsFallback)
         };
-}
 
-internal sealed class PortfolioMarginCollateralRateMarketDataErrorResponse : IErrorResponse<PortfolioMarginCollateralRateMarketDataError>
-{
-    public static PortfolioMarginCollateralRateMarketDataErrorResponse Instance { get; } = new();
-
-    private PortfolioMarginCollateralRateMarketDataErrorResponse()
-    {
-    }
-
-    public Task<PortfolioMarginCollateralRateMarketDataError> Map(HttpResponseMessage response,
-        CancellationToken ct) => PortfolioMarginCollateralRateMarketDataError.Create(response, ct);
+    internal static ApiErrorResponse<PortfolioMarginCollateralRateMarketDataError> Response { get; } = new(Create);
 }

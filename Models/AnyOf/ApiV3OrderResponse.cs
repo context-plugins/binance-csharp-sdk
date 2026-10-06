@@ -1,10 +1,10 @@
 using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using BinancePublicSpotApi.Core.Extensions;
-using BinancePublicSpotApi.Core.Models;
+using Binance.Core.Extensions;
+using Binance.Core.Models;
 
-namespace BinancePublicSpotApi.Models.AnyOf;
+namespace Binance.Models.AnyOf;
 
 [JsonConverter(typeof(ApiV3OrderResponseConverter))]
 public record ApiV3OrderResponse
@@ -33,14 +33,12 @@ public record ApiV3OrderResponse
     public static ApiV3OrderResponse OrderResponseFull(OrderResponseFull value) =>
         new(default, default, Optional<OrderResponseFull>.Some(value));
 
-    public bool TryGetOrderResponseAck(out OrderResponseAck value) =>
-        _orderResponseAckValue.TryGetValue(out value);
+    public bool TryGetOrderResponseAck(out OrderResponseAck value) => _orderResponseAckValue.TryGetValue(out value);
 
     public bool TryGetOrderResponseResult(out OrderResponseResult value) =>
         _orderResponseResultValue.TryGetValue(out value);
 
-    public bool TryGetOrderResponseFull(out OrderResponseFull value) =>
-        _orderResponseFullValue.TryGetValue(out value);
+    public bool TryGetOrderResponseFull(out OrderResponseFull value) => _orderResponseFullValue.TryGetValue(out value);
 
     public static implicit operator ApiV3OrderResponse(OrderResponseAck value) => OrderResponseAck(value);
 
@@ -69,7 +67,8 @@ file sealed class ApiV3OrderResponseConverter : JsonConverter<ApiV3OrderResponse
         {
             return ApiV3OrderResponse.OrderResponseFull(orderResponseFullValue);
         }
-        throw new JsonException($"JSON does not match OrderResponseAck or OrderResponseResult or OrderResponseFull schemas: {root.ToString()}");
+        throw new JsonException(
+            $"JSON does not match OrderResponseAck or OrderResponseResult or OrderResponseFull schemas: {root.ToString()}");
     }
 
     public override void Write(Utf8JsonWriter writer, ApiV3OrderResponse value, JsonSerializerOptions options)

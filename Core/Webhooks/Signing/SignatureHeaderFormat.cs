@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace BinancePublicSpotApi.Core.Webhooks.Signing;
+namespace Binance.Core.Webhooks.Signing;
 
 internal abstract record SignatureHeaderFormat
 {

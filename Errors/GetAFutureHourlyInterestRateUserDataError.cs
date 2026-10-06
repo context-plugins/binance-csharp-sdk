@@ -1,17 +1,16 @@
-using System.Net.Http;
-using System.Threading;
 using System.Threading.Tasks;
-using BinancePublicSpotApi.Core.ErrorResponse;
-using BinancePublicSpotApi.Core.Models;
-using BinancePublicSpotApi.Models;
+using Binance.Core.ErrorResponse;
+using Binance.Core.Models;
+using Binance.Models;
 
-namespace BinancePublicSpotApi.Errors;
+namespace Binance.Errors;
 
 public sealed class GetAFutureHourlyInterestRateUserDataError : ApiError
 {
     private readonly Optional<Error> _errorValue;
 
-    private GetAFutureHourlyInterestRateUserDataError(Optional<Error> errorValue, Optional<RawError> fallback) : base(fallback)
+    private GetAFutureHourlyInterestRateUserDataError(Optional<Error> errorValue,
+        Optional<RawError> fallback) : base(fallback)
     {
         _errorValue = errorValue;
     }
@@ -24,23 +23,12 @@ public sealed class GetAFutureHourlyInterestRateUserDataError : ApiError
 
     public bool TryGetError(out Error value) => _errorValue.TryGetValue(out value);
 
-    internal static Task<GetAFutureHourlyInterestRateUserDataError> Create(HttpResponseMessage response,
-        CancellationToken ct) =>
-        (int)response.StatusCode switch
+    private static Task<GetAFutureHourlyInterestRateUserDataError> Create(FailedResponse response) =>
+        response.StatusCode switch
         {
-            400 or 401 => FromJson<Error>(response, ct).As(AsError),
-            _ => FromRawBody(response, ct).As(AsFallback)
+            400 or 401 => response.Json<Error>().As(AsError),
+            _ => response.RawBody().As(AsFallback)
         };
-}
 
-internal sealed class GetAFutureHourlyInterestRateUserDataErrorResponse : IErrorResponse<GetAFutureHourlyInterestRateUserDataError>
-{
-    public static GetAFutureHourlyInterestRateUserDataErrorResponse Instance { get; } = new();
-
-    private GetAFutureHourlyInterestRateUserDataErrorResponse()
-    {
-    }
-
-    public Task<GetAFutureHourlyInterestRateUserDataError> Map(HttpResponseMessage response, CancellationToken ct) =>
-        GetAFutureHourlyInterestRateUserDataError.Create(response, ct);
+    internal static ApiErrorResponse<GetAFutureHourlyInterestRateUserDataError> Response { get; } = new(Create);
 }

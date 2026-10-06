@@ -2,16 +2,16 @@ using System;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using BinancePublicSpotApi.Core;
-using BinancePublicSpotApi.Core.Exceptions;
-using BinancePublicSpotApi.Core.Models;
-using BinancePublicSpotApi.Core.Request;
-using BinancePublicSpotApi.Core.Response;
-using BinancePublicSpotApi.Errors;
-using BinancePublicSpotApi.Models;
-using BinancePublicSpotApi.Models.Enums;
+using Binance.Core;
+using Binance.Core.Exceptions;
+using Binance.Core.Models;
+using Binance.Core.Request;
+using Binance.Core.Response;
+using Binance.Errors;
+using Binance.Models;
+using Binance.Requests.FuturesAlgo;
 
-namespace BinancePublicSpotApi.Api;
+namespace Binance.Api;
 
 /// <summary>
 /// Futures Algo Endpoints
@@ -32,14 +32,11 @@ public sealed class FuturesAlgo
     /// <summary>
     /// Cancel Algo Order(TRADE)
     /// </summary>
-    /// <param name="algoId">Eg. 14511</param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1AlgoFuturesOrderResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="CancelAlgoOrderTradeError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="CancelAlgoOrderTradeError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Cancel an active order.
     /// - You need to enable Futures Trading Permission for the api key which requests this endpoint.
@@ -48,37 +45,35 @@ public sealed class FuturesAlgo
     /// Weight(IP): 1
     /// </para>
     /// </remarks>
-    public Task<SapiV1AlgoFuturesOrderResponse> CancelAlgoOrderTrade(long algoId,
-        long timestamp,
-        string signature,
-        long? recvWindow,
+    public Task<SapiV1AlgoFuturesOrderResponse> CancelAlgoOrderTrade(CancelAlgoOrderTradeRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/algo/futures/order"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/algo/futures/order"),
             [],
-            [new Param("algoId", algoId),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("algoId", request.AlgoId),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [new HeaderParam("Idempotency-Key", Guid.NewGuid())],
             HttpMethod.Delete,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1AlgoFuturesOrderResponse>(),
-            CancelAlgoOrderTradeErrorResponse.Instance,
+            CancelAlgoOrderTradeError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Query Current Algo Open Orders (USER_DATA)
     /// </summary>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1AlgoFuturesOpenOrdersResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="QueryCurrentAlgoOpenOrdersUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="QueryCurrentAlgoOpenOrdersUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// <list type="bullet">
     ///   <item><description>You need to enable Futures Trading Permission for the api key which requests this endpoint.</description></item>
@@ -88,41 +83,34 @@ public sealed class FuturesAlgo
     /// Weight(IP): 1
     /// </para>
     /// </remarks>
-    public Task<SapiV1AlgoFuturesOpenOrdersResponse> QueryCurrentAlgoOpenOrdersUserData(long timestamp,
-        string signature,
-        long? recvWindow,
+    public Task<SapiV1AlgoFuturesOpenOrdersResponse> QueryCurrentAlgoOpenOrdersUserData(QueryCurrentAlgoOpenOrdersUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/algo/futures/openOrders"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/algo/futures/openOrders"),
             [],
-            [new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1AlgoFuturesOpenOrdersResponse>(),
-            QueryCurrentAlgoOpenOrdersUserDataErrorResponse.Instance,
+            QueryCurrentAlgoOpenOrdersUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Query Historical Algo Orders (USER_DATA)
     /// </summary>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="symbol">Trading symbol, e.g. BNBUSDT</param>
-    /// <param name="side"></param>
-    /// <param name="startTime">UTC timestamp in ms</param>
-    /// <param name="endTime">UTC timestamp in ms</param>
-    /// <param name="page">Default 1</param>
-    /// <param name="pageSize">MIN 1, MAX 100; Default 100</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1AlgoFuturesHistoricalOrdersResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="QueryHistoricalAlgoOrdersUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="QueryHistoricalAlgoOrdersUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// <list type="bullet">
     ///   <item><description>You need to enable Futures Trading Permission for the api key which requests this endpoint.</description></item>
@@ -132,50 +120,40 @@ public sealed class FuturesAlgo
     /// Weight(IP): 1
     /// </para>
     /// </remarks>
-    public Task<SapiV1AlgoFuturesHistoricalOrdersResponse> QueryHistoricalAlgoOrdersUserData(long timestamp,
-        string signature,
-        string? symbol,
-        Side? side,
-        long? startTime,
-        long? endTime,
-        int? page,
-        string? pageSize,
-        long? recvWindow,
+    public Task<SapiV1AlgoFuturesHistoricalOrdersResponse> QueryHistoricalAlgoOrdersUserData(QueryHistoricalAlgoOrdersUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/algo/futures/historicalOrders"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/algo/futures/historicalOrders"),
             [],
-            [new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("symbol", symbol),
-                new Param("side", side),
-                new Param("startTime", startTime),
-                new Param("endTime", endTime),
-                new Param("page", page),
-                new Param("pageSize", pageSize),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("symbol", request.Symbol),
+                new Param("side", request.Side),
+                new Param("startTime", request.StartTime),
+                new Param("endTime", request.EndTime),
+                new Param("page", request.Page),
+                new Param("pageSize", request.PageSize),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1AlgoFuturesHistoricalOrdersResponse>(),
-            QueryHistoricalAlgoOrdersUserDataErrorResponse.Instance,
+            QueryHistoricalAlgoOrdersUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Query Sub Orders (USER_DATA)
     /// </summary>
-    /// <param name="algoId"></param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="page">Default 1</param>
-    /// <param name="pageSize">MIN 1, MAX 100; Default 100</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1AlgoFuturesSubOrdersResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="QuerySubOrdersUserDataError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="QuerySubOrdersUserDataError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// <list type="bullet">
     ///   <item><description>You need to enable Futures Trading Permission for the api key which requests this endpoint.</description></item>
@@ -185,49 +163,37 @@ public sealed class FuturesAlgo
     /// Weight(IP): 1
     /// </para>
     /// </remarks>
-    public Task<SapiV1AlgoFuturesSubOrdersResponse> QuerySubOrdersUserData(long algoId,
-        long timestamp,
-        string signature,
-        int? page,
-        string? pageSize,
-        long? recvWindow,
+    public Task<SapiV1AlgoFuturesSubOrdersResponse> QuerySubOrdersUserData(QuerySubOrdersUserDataRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/algo/futures/subOrders"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/algo/futures/subOrders"),
             [],
-            [new Param("algoId", algoId),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("page", page),
-                new Param("pageSize", pageSize),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("algoId", request.AlgoId),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("page", request.Page),
+                new Param("pageSize", request.PageSize),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [],
             HttpMethod.Get,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1AlgoFuturesSubOrdersResponse>(),
-            QuerySubOrdersUserDataErrorResponse.Instance,
+            QuerySubOrdersUserDataError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Time-Weighted Average Price(Twap) New Order (TRADE)
     /// </summary>
-    /// <param name="symbol">Trading symbol, e.g. BNBUSDT</param>
-    /// <param name="side"></param>
-    /// <param name="quantity">Quantity of base asset; The notional (quantity * mark price(base asset)) must be more than the equivalent of 10,000 USDT and less than the equivalent of 1,000,000 USDT</param>
-    /// <param name="duration">Duration for TWAP orders in seconds. [300, 86400];Less than 5min =&gt; defaults to 5 min; Greater than 24h =&gt; defaults to 24h</param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="positionSide">Default BOTH for One-way Mode ; LONG or SHORT for Hedge Mode. It must be sent in Hedge Mode.</param>
-    /// <param name="clientAlgoId">A unique id among Algo orders (length should be 32 characters)， If it is not sent, we will give default value</param>
-    /// <param name="reduceOnly">'true' or 'false'. Default 'false'; Cannot be sent in Hedge Mode; Cannot be sent when you open a position</param>
-    /// <param name="limitPrice">Limit price of the order; If it is not sent, will place order by market price by default</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1AlgoFuturesNewOrderTwapResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="TimeWeightedAveragePriceTwapNewOrderTradeError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="TimeWeightedAveragePriceTwapNewOrderTradeError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Send in a Twap new order. Only support on USDⓈ-M Contracts.
     /// <para>
@@ -246,59 +212,42 @@ public sealed class FuturesAlgo
     /// Weight(UID): 3000
     /// </para>
     /// </remarks>
-    public Task<SapiV1AlgoFuturesNewOrderTwapResponse> TimeWeightedAveragePriceTwapNewOrderTrade(string symbol,
-        Side side,
-        double quantity,
-        long duration,
-        long timestamp,
-        string signature,
-        PositionSide? positionSide,
-        string? clientAlgoId,
-        bool? reduceOnly,
-        double? limitPrice,
-        long? recvWindow,
+    public Task<SapiV1AlgoFuturesNewOrderTwapResponse> TimeWeightedAveragePriceTwapNewOrderTrade(TimeWeightedAveragePriceTwapNewOrderTradeRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/algo/futures/newOrderTwap"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/algo/futures/newOrderTwap"),
             [],
-            [new Param("symbol", symbol),
-                new Param("side", side),
-                new Param("quantity", quantity),
-                new Param("duration", duration),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("positionSide", positionSide),
-                new Param("clientAlgoId", clientAlgoId),
-                new Param("reduceOnly", reduceOnly),
-                new Param("limitPrice", limitPrice),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("symbol", request.Symbol),
+                new Param("side", request.Side),
+                new Param("quantity", request.Quantity),
+                new Param("duration", request.Duration),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("positionSide", request.PositionSide),
+                new Param("clientAlgoId", request.ClientAlgoId),
+                new Param("reduceOnly", request.ReduceOnly),
+                new Param("limitPrice", request.LimitPrice),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [new HeaderParam("Idempotency-Key", Guid.NewGuid())],
             HttpMethod.Post,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1AlgoFuturesNewOrderTwapResponse>(),
-            TimeWeightedAveragePriceTwapNewOrderTradeErrorResponse.Instance,
+            TimeWeightedAveragePriceTwapNewOrderTradeError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 
     /// <summary>
     /// Volume Participation(VP) New Order (TRADE)
     /// </summary>
-    /// <param name="symbol">Trading symbol, e.g. BNBUSDT</param>
-    /// <param name="side"></param>
-    /// <param name="quantity">Quantity of base asset; The notional (quantity * mark price(base asset)) must be more than the equivalent of 10,000 USDT and less than the equivalent of 1,000,000 USDT</param>
-    /// <param name="urgency">Represent the relative speed of the current execution; ENUM: LOW, MEDIUM, HIGH</param>
-    /// <param name="timestamp">UTC timestamp in ms</param>
-    /// <param name="signature">Signature</param>
-    /// <param name="positionSide">Default BOTH for One-way Mode ; LONG or SHORT for Hedge Mode. It must be sent in Hedge Mode.</param>
-    /// <param name="clientAlgoId">A unique id among Algo orders (length should be 32 characters)， If it is not sent, we will give default value</param>
-    /// <param name="reduceOnly">'true' or 'false'. Default 'false'; Cannot be sent in Hedge Mode; Cannot be sent when you open a position</param>
-    /// <param name="limitPrice">Limit price of the order; If it is not sent, will place order by market price by default</param>
-    /// <param name="recvWindow">The value cannot be greater than 60000</param>
+    /// <param name="request">The operation's inputs</param>
     /// <param name="requestOptions">Per-request options, such as an overriding log level for this call</param>
-    /// <param name="ct">Cancellation token</param>
+    /// <param name="cancellationToken">Cancellation token</param>
     /// <returns>A <see cref="Task{TResult}"/> of <see cref="SapiV1AlgoFuturesNewOrderVpResponse"/> instance.</returns>
-    /// <exception cref="SdkException{TResult}"> of <see cref="VolumeParticipationVpNewOrderTradeError"/> when the server returns an error response.</exception>
+    /// <exception cref="ApiException{TError}"> of <see cref="VolumeParticipationVpNewOrderTradeError"/> when the server returns an error response.</exception>
     /// <remarks>
     /// Send in a VP new order. Only support on USDⓈ-M Contracts.
     /// <list type="bullet">
@@ -314,38 +263,31 @@ public sealed class FuturesAlgo
     /// Weight(UID): 3000
     /// </para>
     /// </remarks>
-    public Task<SapiV1AlgoFuturesNewOrderVpResponse> VolumeParticipationVpNewOrderTrade(string symbol,
-        Side side,
-        double quantity,
-        Urgency urgency,
-        long timestamp,
-        string signature,
-        PositionSide? positionSide,
-        string? clientAlgoId,
-        bool? reduceOnly,
-        double? limitPrice,
-        long? recvWindow,
+    public Task<SapiV1AlgoFuturesNewOrderVpResponse> VolumeParticipationVpNewOrderTrade(VolumeParticipationVpNewOrderTradeRequest request,
         RequestOptions? requestOptions = null,
-        CancellationToken ct = default) =>
-        _rawClient.Execute(_server.Default("/sapi/v1/algo/futures/newOrderVp"),
+        CancellationToken cancellationToken = default) =>
+        _rawClient.Execute(
+            _server.Default("/sapi/v1/algo/futures/newOrderVp"),
             [],
-            [new Param("symbol", symbol),
-                new Param("side", side),
-                new Param("quantity", quantity),
-                new Param("urgency", urgency),
-                new Param("timestamp", timestamp),
-                new Param("signature", signature),
-                new Param("positionSide", positionSide),
-                new Param("clientAlgoId", clientAlgoId),
-                new Param("reduceOnly", reduceOnly),
-                new Param("limitPrice", limitPrice),
-                new Param("recvWindow", recvWindow)],
+            [
+                new Param("symbol", request.Symbol),
+                new Param("side", request.Side),
+                new Param("quantity", request.Quantity),
+                new Param("urgency", request.Urgency),
+                new Param("timestamp", request.Timestamp),
+                new Param("signature", request.Signature),
+                new Param("positionSide", request.PositionSide),
+                new Param("clientAlgoId", request.ClientAlgoId),
+                new Param("reduceOnly", request.ReduceOnly),
+                new Param("limitPrice", request.LimitPrice),
+                new Param("recvWindow", request.RecvWindow),
+            ],
             [new HeaderParam("Idempotency-Key", Guid.NewGuid())],
             HttpMethod.Post,
             EmptyBody.Instance,
             JsonResponse.Create<SapiV1AlgoFuturesNewOrderVpResponse>(),
-            VolumeParticipationVpNewOrderTradeErrorResponse.Instance,
+            VolumeParticipationVpNewOrderTradeError.Response,
             [_auth.ApiKeyAuth],
             requestOptions,
-            ct);
+            cancellationToken);
 }
