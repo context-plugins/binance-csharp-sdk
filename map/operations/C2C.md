@@ -2,7 +2,7 @@
 
 # C2C — operations
 
-Accessor: `client.C2C` · Source: `Api/C2C.cs` · 1 operation
+Accessor: `client.C2C` · Source: `src/Binance/Api/C2C.cs` · 1 operation
 
 **Type sources**: the file declaring each type an operation names (`RawError` excluded — see sdk-map.md).
 
@@ -18,9 +18,9 @@ Accessor: `client.C2C` · Source: `Api/C2C.cs` · 1 operation
 
 | Type | Source |
 | --- | --- |
-| `GetC2CTradeHistoryUserDataRequest` | `Requests/C2C/GetC2CTradeHistoryUserDataRequest.cs` |
-| `TradeType` | `Models/Enums/TradeType.cs` |
-| `SapiV1C2COrderMatchListUserOrderHistoryResponse` | `Models/SapiV1C2COrderMatchListUserOrderHistoryResponse.cs` |
-| `GetC2CTradeHistoryUserDataError` | `Errors/GetC2CTradeHistoryUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetC2CTradeHistoryUserDataRequest` | `src/Binance/Requests/C2C/GetC2CTradeHistoryUserDataRequest.cs` |
+| `TradeType` | `src/Binance/Models/Enums/TradeType.cs` |
+| `SapiV1C2COrderMatchListUserOrderHistoryResponse` | `src/Binance/Models/SapiV1C2COrderMatchListUserOrderHistoryResponse.cs` |
+| `GetC2CTradeHistoryUserDataError` | `src/Binance/Errors/GetC2CTradeHistoryUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 

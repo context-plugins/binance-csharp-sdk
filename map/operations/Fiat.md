@@ -2,7 +2,7 @@
 
 # Fiat — operations
 
-Accessor: `client.Fiat` · Source: `Api/Fiat.cs` · 2 operations
+Accessor: `client.Fiat` · Source: `src/Binance/Api/Fiat.cs` · 2 operations
 
 **Type sources**: the file declaring each type an operation names (`RawError` excluded — see sdk-map.md).
 
@@ -18,10 +18,10 @@ Accessor: `client.Fiat` · Source: `Api/Fiat.cs` · 2 operations
 
 | Type | Source |
 | --- | --- |
-| `FiatDepositWithdrawHistoryUserDataRequest` | `Requests/Fiat/FiatDepositWithdrawHistoryUserDataRequest.cs` |
-| `SapiV1FiatOrdersResponse` | `Models/SapiV1FiatOrdersResponse.cs` |
-| `FiatDepositWithdrawHistoryUserDataError` | `Errors/FiatDepositWithdrawHistoryUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `FiatDepositWithdrawHistoryUserDataRequest` | `src/Binance/Requests/Fiat/FiatDepositWithdrawHistoryUserDataRequest.cs` |
+| `SapiV1FiatOrdersResponse` | `src/Binance/Models/SapiV1FiatOrdersResponse.cs` |
+| `FiatDepositWithdrawHistoryUserDataError` | `src/Binance/Errors/FiatDepositWithdrawHistoryUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### FiatPaymentsHistoryUserData
 
@@ -35,8 +35,8 @@ Accessor: `client.Fiat` · Source: `Api/Fiat.cs` · 2 operations
 
 | Type | Source |
 | --- | --- |
-| `FiatPaymentsHistoryUserDataRequest` | `Requests/Fiat/FiatPaymentsHistoryUserDataRequest.cs` |
-| `SapiV1FiatPaymentsResponse` | `Models/SapiV1FiatPaymentsResponse.cs` |
-| `FiatPaymentsHistoryUserDataError` | `Errors/FiatPaymentsHistoryUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `FiatPaymentsHistoryUserDataRequest` | `src/Binance/Requests/Fiat/FiatPaymentsHistoryUserDataRequest.cs` |
+| `SapiV1FiatPaymentsResponse` | `src/Binance/Models/SapiV1FiatPaymentsResponse.cs` |
+| `FiatPaymentsHistoryUserDataError` | `src/Binance/Errors/FiatPaymentsHistoryUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 

@@ -2,7 +2,7 @@
 
 # ConvertApi — operations
 
-Accessor: `client.ConvertApi` · Source: `Api/ConvertApi.cs` · 9 operations
+Accessor: `client.ConvertApi` · Source: `src/Binance/Api/ConvertApi.cs` · 9 operations
 
 **Type sources**: the file declaring each type an operation names (`RawError` excluded — see sdk-map.md).
 
@@ -18,10 +18,10 @@ Accessor: `client.ConvertApi` · Source: `Api/ConvertApi.cs` · 9 operations
 
 | Type | Source |
 | --- | --- |
-| `AcceptQuoteTradeRequest` | `Requests/ConvertApi/AcceptQuoteTradeRequest.cs` |
-| `SapiV1ConvertAcceptQuoteResponse` | `Models/SapiV1ConvertAcceptQuoteResponse.cs` |
-| `AcceptQuoteTradeError` | `Errors/AcceptQuoteTradeError.cs` |
-| `Error` | `Models/Error.cs` |
+| `AcceptQuoteTradeRequest` | `src/Binance/Requests/ConvertApi/AcceptQuoteTradeRequest.cs` |
+| `SapiV1ConvertAcceptQuoteResponse` | `src/Binance/Models/SapiV1ConvertAcceptQuoteResponse.cs` |
+| `AcceptQuoteTradeError` | `src/Binance/Errors/AcceptQuoteTradeError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### CancelLimitOrderUserData
 
@@ -35,10 +35,10 @@ Accessor: `client.ConvertApi` · Source: `Api/ConvertApi.cs` · 9 operations
 
 | Type | Source |
 | --- | --- |
-| `CancelLimitOrderUserDataRequest` | `Requests/ConvertApi/CancelLimitOrderUserDataRequest.cs` |
-| `SapiV1ConvertLimitCancelOrderResponse` | `Models/SapiV1ConvertLimitCancelOrderResponse.cs` |
-| `CancelLimitOrderUserDataError` | `Errors/CancelLimitOrderUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `CancelLimitOrderUserDataRequest` | `src/Binance/Requests/ConvertApi/CancelLimitOrderUserDataRequest.cs` |
+| `SapiV1ConvertLimitCancelOrderResponse` | `src/Binance/Models/SapiV1ConvertLimitCancelOrderResponse.cs` |
+| `CancelLimitOrderUserDataError` | `src/Binance/Errors/CancelLimitOrderUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetConvertTradeHistoryUserData
 
@@ -52,10 +52,10 @@ Accessor: `client.ConvertApi` · Source: `Api/ConvertApi.cs` · 9 operations
 
 | Type | Source |
 | --- | --- |
-| `GetConvertTradeHistoryUserDataRequest` | `Requests/ConvertApi/GetConvertTradeHistoryUserDataRequest.cs` |
-| `SapiV1ConvertTradeFlowResponse` | `Models/SapiV1ConvertTradeFlowResponse.cs` |
-| `GetConvertTradeHistoryUserDataError` | `Errors/GetConvertTradeHistoryUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetConvertTradeHistoryUserDataRequest` | `src/Binance/Requests/ConvertApi/GetConvertTradeHistoryUserDataRequest.cs` |
+| `SapiV1ConvertTradeFlowResponse` | `src/Binance/Models/SapiV1ConvertTradeFlowResponse.cs` |
+| `GetConvertTradeHistoryUserDataError` | `src/Binance/Errors/GetConvertTradeHistoryUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### ListAllConvertPairs
 
@@ -67,10 +67,10 @@ Accessor: `client.ConvertApi` · Source: `Api/ConvertApi.cs` · 9 operations
 
 | Type | Source |
 | --- | --- |
-| `ListAllConvertPairsRequest` | `Requests/ConvertApi/ListAllConvertPairsRequest.cs` |
-| `SapiV1ConvertExchangeInfoResponse` | `Models/SapiV1ConvertExchangeInfoResponse.cs` |
-| `ListAllConvertPairsError` | `Errors/ListAllConvertPairsError.cs` |
-| `Error` | `Models/Error.cs` |
+| `ListAllConvertPairsRequest` | `src/Binance/Requests/ConvertApi/ListAllConvertPairsRequest.cs` |
+| `SapiV1ConvertExchangeInfoResponse` | `src/Binance/Models/SapiV1ConvertExchangeInfoResponse.cs` |
+| `ListAllConvertPairsError` | `src/Binance/Errors/ListAllConvertPairsError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### OrderStatusUserData
 
@@ -84,10 +84,10 @@ Accessor: `client.ConvertApi` · Source: `Api/ConvertApi.cs` · 9 operations
 
 | Type | Source |
 | --- | --- |
-| `OrderStatusUserDataRequest` | `Requests/ConvertApi/OrderStatusUserDataRequest.cs` |
-| `SapiV1ConvertOrderStatusResponse` | `Models/SapiV1ConvertOrderStatusResponse.cs` |
-| `OrderStatusUserDataError` | `Errors/OrderStatusUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `OrderStatusUserDataRequest` | `src/Binance/Requests/ConvertApi/OrderStatusUserDataRequest.cs` |
+| `SapiV1ConvertOrderStatusResponse` | `src/Binance/Models/SapiV1ConvertOrderStatusResponse.cs` |
+| `OrderStatusUserDataError` | `src/Binance/Errors/OrderStatusUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### PlaceLimitOrderUserData
 
@@ -101,13 +101,13 @@ Accessor: `client.ConvertApi` · Source: `Api/ConvertApi.cs` · 9 operations
 
 | Type | Source |
 | --- | --- |
-| `PlaceLimitOrderUserDataRequest` | `Requests/ConvertApi/PlaceLimitOrderUserDataRequest.cs` |
-| `Side` | `Models/Enums/Side.cs` |
-| `WalletType` | `Models/Enums/WalletType.cs` |
-| `ExpiredType` | `Models/Enums/ExpiredType.cs` |
-| `SapiV1ConvertLimitPlaceOrderResponse` | `Models/SapiV1ConvertLimitPlaceOrderResponse.cs` |
-| `PlaceLimitOrderUserDataError` | `Errors/PlaceLimitOrderUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `PlaceLimitOrderUserDataRequest` | `src/Binance/Requests/ConvertApi/PlaceLimitOrderUserDataRequest.cs` |
+| `Side` | `src/Binance/Models/Enums/Side.cs` |
+| `WalletType` | `src/Binance/Models/Enums/WalletType.cs` |
+| `ExpiredType` | `src/Binance/Models/Enums/ExpiredType.cs` |
+| `SapiV1ConvertLimitPlaceOrderResponse` | `src/Binance/Models/SapiV1ConvertLimitPlaceOrderResponse.cs` |
+| `PlaceLimitOrderUserDataError` | `src/Binance/Errors/PlaceLimitOrderUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryLimitOpenOrdersUserData
 
@@ -121,10 +121,10 @@ Accessor: `client.ConvertApi` · Source: `Api/ConvertApi.cs` · 9 operations
 
 | Type | Source |
 | --- | --- |
-| `QueryLimitOpenOrdersUserDataRequest` | `Requests/ConvertApi/QueryLimitOpenOrdersUserDataRequest.cs` |
-| `SapiV1ConvertLimitQueryOpenOrdersResponse` | `Models/SapiV1ConvertLimitQueryOpenOrdersResponse.cs` |
-| `QueryLimitOpenOrdersUserDataError` | `Errors/QueryLimitOpenOrdersUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryLimitOpenOrdersUserDataRequest` | `src/Binance/Requests/ConvertApi/QueryLimitOpenOrdersUserDataRequest.cs` |
+| `SapiV1ConvertLimitQueryOpenOrdersResponse` | `src/Binance/Models/SapiV1ConvertLimitQueryOpenOrdersResponse.cs` |
+| `QueryLimitOpenOrdersUserDataError` | `src/Binance/Errors/QueryLimitOpenOrdersUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryOrderQuantityPrecisionPerAssetUserData
 
@@ -138,10 +138,10 @@ Accessor: `client.ConvertApi` · Source: `Api/ConvertApi.cs` · 9 operations
 
 | Type | Source |
 | --- | --- |
-| `QueryOrderQuantityPrecisionPerAssetUserDataRequest` | `Requests/ConvertApi/QueryOrderQuantityPrecisionPerAssetUserDataRequest.cs` |
-| `SapiV1ConvertAssetInfoResponse` | `Models/SapiV1ConvertAssetInfoResponse.cs` |
-| `QueryOrderQuantityPrecisionPerAssetUserDataError` | `Errors/QueryOrderQuantityPrecisionPerAssetUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryOrderQuantityPrecisionPerAssetUserDataRequest` | `src/Binance/Requests/ConvertApi/QueryOrderQuantityPrecisionPerAssetUserDataRequest.cs` |
+| `SapiV1ConvertAssetInfoResponse` | `src/Binance/Models/SapiV1ConvertAssetInfoResponse.cs` |
+| `QueryOrderQuantityPrecisionPerAssetUserDataError` | `src/Binance/Errors/QueryOrderQuantityPrecisionPerAssetUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### SendQuoteRequestUserData
 
@@ -155,8 +155,8 @@ Accessor: `client.ConvertApi` · Source: `Api/ConvertApi.cs` · 9 operations
 
 | Type | Source |
 | --- | --- |
-| `SendQuoteRequestUserDataRequest` | `Requests/ConvertApi/SendQuoteRequestUserDataRequest.cs` |
-| `SapiV1ConvertGetQuoteResponse` | `Models/SapiV1ConvertGetQuoteResponse.cs` |
-| `SendQuoteRequestUserDataError` | `Errors/SendQuoteRequestUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `SendQuoteRequestUserDataRequest` | `src/Binance/Requests/ConvertApi/SendQuoteRequestUserDataRequest.cs` |
+| `SapiV1ConvertGetQuoteResponse` | `src/Binance/Models/SapiV1ConvertGetQuoteResponse.cs` |
+| `SendQuoteRequestUserDataError` | `src/Binance/Errors/SendQuoteRequestUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 

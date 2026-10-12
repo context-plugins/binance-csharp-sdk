@@ -2,7 +2,7 @@
 
 # CryptoLoans — operations
 
-Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
+Accessor: `client.CryptoLoans` · Source: `src/Binance/Api/CryptoLoans.cs` · 21 operations
 
 **Type sources**: the file declaring each type an operation names (`RawError` excluded — see sdk-map.md).
 
@@ -18,11 +18,11 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 
 | Type | Source |
 | --- | --- |
-| `AdjustLtvFlexibleLoanAdjustLtvTradeRequest` | `Requests/CryptoLoans/AdjustLtvFlexibleLoanAdjustLtvTradeRequest.cs` |
-| `Direction` | `Models/Enums/Direction.cs` |
-| `SapiV2LoanFlexibleAdjustLtvResponse` | `Models/SapiV2LoanFlexibleAdjustLtvResponse.cs` |
-| `AdjustLtvFlexibleLoanAdjustLtvTradeError` | `Errors/AdjustLtvFlexibleLoanAdjustLtvTradeError.cs` |
-| `Error` | `Models/Error.cs` |
+| `AdjustLtvFlexibleLoanAdjustLtvTradeRequest` | `src/Binance/Requests/CryptoLoans/AdjustLtvFlexibleLoanAdjustLtvTradeRequest.cs` |
+| `Direction` | `src/Binance/Models/Enums/Direction.cs` |
+| `SapiV2LoanFlexibleAdjustLtvResponse` | `src/Binance/Models/SapiV2LoanFlexibleAdjustLtvResponse.cs` |
+| `AdjustLtvFlexibleLoanAdjustLtvTradeError` | `src/Binance/Errors/AdjustLtvFlexibleLoanAdjustLtvTradeError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserData
 
@@ -36,10 +36,10 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 
 | Type | Source |
 | --- | --- |
-| `AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserDataRequest` | `Requests/CryptoLoans/AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserDataRequest.cs` |
-| `SapiV2LoanFlexibleLtvAdjustmentHistoryResponse` | `Models/SapiV2LoanFlexibleLtvAdjustmentHistoryResponse.cs` |
-| `AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserDataError` | `Errors/AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserDataRequest` | `src/Binance/Requests/CryptoLoans/AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserDataRequest.cs` |
+| `SapiV2LoanFlexibleLtvAdjustmentHistoryResponse` | `src/Binance/Models/SapiV2LoanFlexibleLtvAdjustmentHistoryResponse.cs` |
+| `AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserDataError` | `src/Binance/Errors/AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### BorrowFlexibleLoanBorrowTrade
 
@@ -53,10 +53,10 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 
 | Type | Source |
 | --- | --- |
-| `BorrowFlexibleLoanBorrowTradeRequest` | `Requests/CryptoLoans/BorrowFlexibleLoanBorrowTradeRequest.cs` |
-| `SapiV2LoanFlexibleBorrowResponse` | `Models/SapiV2LoanFlexibleBorrowResponse.cs` |
-| `BorrowFlexibleLoanBorrowTradeError` | `Errors/BorrowFlexibleLoanBorrowTradeError.cs` |
-| `Error` | `Models/Error.cs` |
+| `BorrowFlexibleLoanBorrowTradeRequest` | `src/Binance/Requests/CryptoLoans/BorrowFlexibleLoanBorrowTradeRequest.cs` |
+| `SapiV2LoanFlexibleBorrowResponse` | `src/Binance/Models/SapiV2LoanFlexibleBorrowResponse.cs` |
+| `BorrowFlexibleLoanBorrowTradeError` | `src/Binance/Errors/BorrowFlexibleLoanBorrowTradeError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### BorrowGetFlexibleLoanBorrowHistoryUserData
 
@@ -70,10 +70,10 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 
 | Type | Source |
 | --- | --- |
-| `BorrowGetFlexibleLoanBorrowHistoryUserDataRequest` | `Requests/CryptoLoans/BorrowGetFlexibleLoanBorrowHistoryUserDataRequest.cs` |
-| `SapiV2LoanFlexibleBorrowHistoryResponse` | `Models/SapiV2LoanFlexibleBorrowHistoryResponse.cs` |
-| `BorrowGetFlexibleLoanBorrowHistoryUserDataError` | `Errors/BorrowGetFlexibleLoanBorrowHistoryUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `BorrowGetFlexibleLoanBorrowHistoryUserDataRequest` | `src/Binance/Requests/CryptoLoans/BorrowGetFlexibleLoanBorrowHistoryUserDataRequest.cs` |
+| `SapiV2LoanFlexibleBorrowHistoryResponse` | `src/Binance/Models/SapiV2LoanFlexibleBorrowHistoryResponse.cs` |
+| `BorrowGetFlexibleLoanBorrowHistoryUserDataError` | `src/Binance/Errors/BorrowGetFlexibleLoanBorrowHistoryUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### BorrowGetFlexibleLoanOngoingOrdersUserData
 
@@ -87,10 +87,10 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 
 | Type | Source |
 | --- | --- |
-| `BorrowGetFlexibleLoanOngoingOrdersUserDataRequest` | `Requests/CryptoLoans/BorrowGetFlexibleLoanOngoingOrdersUserDataRequest.cs` |
-| `SapiV2LoanFlexibleOngoingOrdersResponse` | `Models/SapiV2LoanFlexibleOngoingOrdersResponse.cs` |
-| `BorrowGetFlexibleLoanOngoingOrdersUserDataError` | `Errors/BorrowGetFlexibleLoanOngoingOrdersUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `BorrowGetFlexibleLoanOngoingOrdersUserDataRequest` | `src/Binance/Requests/CryptoLoans/BorrowGetFlexibleLoanOngoingOrdersUserDataRequest.cs` |
+| `SapiV2LoanFlexibleOngoingOrdersResponse` | `src/Binance/Models/SapiV2LoanFlexibleOngoingOrdersResponse.cs` |
+| `BorrowGetFlexibleLoanOngoingOrdersUserDataError` | `src/Binance/Errors/BorrowGetFlexibleLoanOngoingOrdersUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### CheckCollateralRepayRateUserData
 
@@ -104,10 +104,10 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 
 | Type | Source |
 | --- | --- |
-| `CheckCollateralRepayRateUserDataRequest` | `Requests/CryptoLoans/CheckCollateralRepayRateUserDataRequest.cs` |
-| `SapiV1LoanRepayCollateralRateResponse` | `Models/SapiV1LoanRepayCollateralRateResponse.cs` |
-| `CheckCollateralRepayRateUserDataError` | `Errors/CheckCollateralRepayRateUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `CheckCollateralRepayRateUserDataRequest` | `src/Binance/Requests/CryptoLoans/CheckCollateralRepayRateUserDataRequest.cs` |
+| `SapiV1LoanRepayCollateralRateResponse` | `src/Binance/Models/SapiV1LoanRepayCollateralRateResponse.cs` |
+| `CheckCollateralRepayRateUserDataError` | `src/Binance/Errors/CheckCollateralRepayRateUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### CryptoLoanAdjustLtvTrade
 
@@ -121,11 +121,11 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 
 | Type | Source |
 | --- | --- |
-| `CryptoLoanAdjustLtvTradeRequest` | `Requests/CryptoLoans/CryptoLoanAdjustLtvTradeRequest.cs` |
-| `Direction` | `Models/Enums/Direction.cs` |
-| `SapiV1LoanAdjustLtvResponse` | `Models/SapiV1LoanAdjustLtvResponse.cs` |
-| `CryptoLoanAdjustLtvTradeError` | `Errors/CryptoLoanAdjustLtvTradeError.cs` |
-| `Error` | `Models/Error.cs` |
+| `CryptoLoanAdjustLtvTradeRequest` | `src/Binance/Requests/CryptoLoans/CryptoLoanAdjustLtvTradeRequest.cs` |
+| `Direction` | `src/Binance/Models/Enums/Direction.cs` |
+| `SapiV1LoanAdjustLtvResponse` | `src/Binance/Models/SapiV1LoanAdjustLtvResponse.cs` |
+| `CryptoLoanAdjustLtvTradeError` | `src/Binance/Errors/CryptoLoanAdjustLtvTradeError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### CryptoLoanBorrowTrade
 
@@ -139,10 +139,10 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 
 | Type | Source |
 | --- | --- |
-| `CryptoLoanBorrowTradeRequest` | `Requests/CryptoLoans/CryptoLoanBorrowTradeRequest.cs` |
-| `SapiV1LoanBorrowResponse` | `Models/SapiV1LoanBorrowResponse.cs` |
-| `CryptoLoanBorrowTradeError` | `Errors/CryptoLoanBorrowTradeError.cs` |
-| `Error` | `Models/Error.cs` |
+| `CryptoLoanBorrowTradeRequest` | `src/Binance/Requests/CryptoLoans/CryptoLoanBorrowTradeRequest.cs` |
+| `SapiV1LoanBorrowResponse` | `src/Binance/Models/SapiV1LoanBorrowResponse.cs` |
+| `CryptoLoanBorrowTradeError` | `src/Binance/Errors/CryptoLoanBorrowTradeError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### CryptoLoanCustomizeMarginCallTrade
 
@@ -156,10 +156,10 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 
 | Type | Source |
 | --- | --- |
-| `CryptoLoanCustomizeMarginCallTradeRequest` | `Requests/CryptoLoans/CryptoLoanCustomizeMarginCallTradeRequest.cs` |
-| `SapiV1LoanCustomizeMarginCallResponse` | `Models/SapiV1LoanCustomizeMarginCallResponse.cs` |
-| `CryptoLoanCustomizeMarginCallTradeError` | `Errors/CryptoLoanCustomizeMarginCallTradeError.cs` |
-| `Error` | `Models/Error.cs` |
+| `CryptoLoanCustomizeMarginCallTradeRequest` | `src/Binance/Requests/CryptoLoans/CryptoLoanCustomizeMarginCallTradeRequest.cs` |
+| `SapiV1LoanCustomizeMarginCallResponse` | `src/Binance/Models/SapiV1LoanCustomizeMarginCallResponse.cs` |
+| `CryptoLoanCustomizeMarginCallTradeError` | `src/Binance/Errors/CryptoLoanCustomizeMarginCallTradeError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### CryptoLoanRepayTrade
 
@@ -173,10 +173,10 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 
 | Type | Source |
 | --- | --- |
-| `CryptoLoanRepayTradeRequest` | `Requests/CryptoLoans/CryptoLoanRepayTradeRequest.cs` |
-| `SapiV1LoanRepayResponse` | `Models/AnyOf/SapiV1LoanRepayResponse.cs` |
-| `CryptoLoanRepayTradeError` | `Errors/CryptoLoanRepayTradeError.cs` |
-| `Error` | `Models/Error.cs` |
+| `CryptoLoanRepayTradeRequest` | `src/Binance/Requests/CryptoLoans/CryptoLoanRepayTradeRequest.cs` |
+| `SapiV1LoanRepayResponse` | `src/Binance/Models/AnyOf/SapiV1LoanRepayResponse.cs` |
+| `CryptoLoanRepayTradeError` | `src/Binance/Errors/CryptoLoanRepayTradeError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetCollateralAssetsDataUserData
 
@@ -190,10 +190,10 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 
 | Type | Source |
 | --- | --- |
-| `GetCollateralAssetsDataUserDataRequest` | `Requests/CryptoLoans/GetCollateralAssetsDataUserDataRequest.cs` |
-| `SapiV1LoanCollateralDataResponse` | `Models/SapiV1LoanCollateralDataResponse.cs` |
-| `GetCollateralAssetsDataUserDataError` | `Errors/GetCollateralAssetsDataUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetCollateralAssetsDataUserDataRequest` | `src/Binance/Requests/CryptoLoans/GetCollateralAssetsDataUserDataRequest.cs` |
+| `SapiV1LoanCollateralDataResponse` | `src/Binance/Models/SapiV1LoanCollateralDataResponse.cs` |
+| `GetCollateralAssetsDataUserDataError` | `src/Binance/Errors/GetCollateralAssetsDataUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetCryptoLoansBorrowHistoryUserData
 
@@ -207,10 +207,10 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 
 | Type | Source |
 | --- | --- |
-| `GetCryptoLoansBorrowHistoryUserDataRequest` | `Requests/CryptoLoans/GetCryptoLoansBorrowHistoryUserDataRequest.cs` |
-| `SapiV1LoanBorrowHistoryResponse` | `Models/SapiV1LoanBorrowHistoryResponse.cs` |
-| `GetCryptoLoansBorrowHistoryUserDataError` | `Errors/GetCryptoLoansBorrowHistoryUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetCryptoLoansBorrowHistoryUserDataRequest` | `src/Binance/Requests/CryptoLoans/GetCryptoLoansBorrowHistoryUserDataRequest.cs` |
+| `SapiV1LoanBorrowHistoryResponse` | `src/Binance/Models/SapiV1LoanBorrowHistoryResponse.cs` |
+| `GetCryptoLoansBorrowHistoryUserDataError` | `src/Binance/Errors/GetCryptoLoansBorrowHistoryUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetCryptoLoansIncomeHistoryUserData
 
@@ -224,11 +224,11 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 
 | Type | Source |
 | --- | --- |
-| `GetCryptoLoansIncomeHistoryUserDataRequest` | `Requests/CryptoLoans/GetCryptoLoansIncomeHistoryUserDataRequest.cs` |
-| `Type9` | `Models/Enums/Type9.cs` |
-| `SapiV1LoanIncomeResponse` | `Models/SapiV1LoanIncomeResponse.cs` |
-| `GetCryptoLoansIncomeHistoryUserDataError` | `Errors/GetCryptoLoansIncomeHistoryUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetCryptoLoansIncomeHistoryUserDataRequest` | `src/Binance/Requests/CryptoLoans/GetCryptoLoansIncomeHistoryUserDataRequest.cs` |
+| `Type9` | `src/Binance/Models/Enums/Type9.cs` |
+| `SapiV1LoanIncomeResponse` | `src/Binance/Models/SapiV1LoanIncomeResponse.cs` |
+| `GetCryptoLoansIncomeHistoryUserDataError` | `src/Binance/Errors/GetCryptoLoansIncomeHistoryUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetFlexibleLoanAssetsDataUserData
 
@@ -242,10 +242,10 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 
 | Type | Source |
 | --- | --- |
-| `GetFlexibleLoanAssetsDataUserDataRequest` | `Requests/CryptoLoans/GetFlexibleLoanAssetsDataUserDataRequest.cs` |
-| `SapiV2LoanFlexibleLoanableDataResponse` | `Models/SapiV2LoanFlexibleLoanableDataResponse.cs` |
-| `GetFlexibleLoanAssetsDataUserDataError` | `Errors/GetFlexibleLoanAssetsDataUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetFlexibleLoanAssetsDataUserDataRequest` | `src/Binance/Requests/CryptoLoans/GetFlexibleLoanAssetsDataUserDataRequest.cs` |
+| `SapiV2LoanFlexibleLoanableDataResponse` | `src/Binance/Models/SapiV2LoanFlexibleLoanableDataResponse.cs` |
+| `GetFlexibleLoanAssetsDataUserDataError` | `src/Binance/Errors/GetFlexibleLoanAssetsDataUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetFlexibleLoanCollateralAssetsDataUserData
 
@@ -259,10 +259,10 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 
 | Type | Source |
 | --- | --- |
-| `GetFlexibleLoanCollateralAssetsDataUserDataRequest` | `Requests/CryptoLoans/GetFlexibleLoanCollateralAssetsDataUserDataRequest.cs` |
-| `SapiV2LoanFlexibleCollateralDataResponse` | `Models/SapiV2LoanFlexibleCollateralDataResponse.cs` |
-| `GetFlexibleLoanCollateralAssetsDataUserDataError` | `Errors/GetFlexibleLoanCollateralAssetsDataUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetFlexibleLoanCollateralAssetsDataUserDataRequest` | `src/Binance/Requests/CryptoLoans/GetFlexibleLoanCollateralAssetsDataUserDataRequest.cs` |
+| `SapiV2LoanFlexibleCollateralDataResponse` | `src/Binance/Models/SapiV2LoanFlexibleCollateralDataResponse.cs` |
+| `GetFlexibleLoanCollateralAssetsDataUserDataError` | `src/Binance/Errors/GetFlexibleLoanCollateralAssetsDataUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetLoanLtvAdjustmentHistoryUserData
 
@@ -276,10 +276,10 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 
 | Type | Source |
 | --- | --- |
-| `GetLoanLtvAdjustmentHistoryUserDataRequest` | `Requests/CryptoLoans/GetLoanLtvAdjustmentHistoryUserDataRequest.cs` |
-| `SapiV1LoanLtvAdjustmentHistoryResponse` | `Models/SapiV1LoanLtvAdjustmentHistoryResponse.cs` |
-| `GetLoanLtvAdjustmentHistoryUserDataError` | `Errors/GetLoanLtvAdjustmentHistoryUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetLoanLtvAdjustmentHistoryUserDataRequest` | `src/Binance/Requests/CryptoLoans/GetLoanLtvAdjustmentHistoryUserDataRequest.cs` |
+| `SapiV1LoanLtvAdjustmentHistoryResponse` | `src/Binance/Models/SapiV1LoanLtvAdjustmentHistoryResponse.cs` |
+| `GetLoanLtvAdjustmentHistoryUserDataError` | `src/Binance/Errors/GetLoanLtvAdjustmentHistoryUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetLoanOngoingOrdersUserData
 
@@ -293,10 +293,10 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 
 | Type | Source |
 | --- | --- |
-| `GetLoanOngoingOrdersUserDataRequest` | `Requests/CryptoLoans/GetLoanOngoingOrdersUserDataRequest.cs` |
-| `SapiV1LoanOngoingOrdersResponse` | `Models/SapiV1LoanOngoingOrdersResponse.cs` |
-| `GetLoanOngoingOrdersUserDataError` | `Errors/GetLoanOngoingOrdersUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetLoanOngoingOrdersUserDataRequest` | `src/Binance/Requests/CryptoLoans/GetLoanOngoingOrdersUserDataRequest.cs` |
+| `SapiV1LoanOngoingOrdersResponse` | `src/Binance/Models/SapiV1LoanOngoingOrdersResponse.cs` |
+| `GetLoanOngoingOrdersUserDataError` | `src/Binance/Errors/GetLoanOngoingOrdersUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetLoanRepaymentHistoryUserData
 
@@ -310,10 +310,10 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 
 | Type | Source |
 | --- | --- |
-| `GetLoanRepaymentHistoryUserDataRequest` | `Requests/CryptoLoans/GetLoanRepaymentHistoryUserDataRequest.cs` |
-| `SapiV1LoanRepayHistoryResponse` | `Models/SapiV1LoanRepayHistoryResponse.cs` |
-| `GetLoanRepaymentHistoryUserDataError` | `Errors/GetLoanRepaymentHistoryUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetLoanRepaymentHistoryUserDataRequest` | `src/Binance/Requests/CryptoLoans/GetLoanRepaymentHistoryUserDataRequest.cs` |
+| `SapiV1LoanRepayHistoryResponse` | `src/Binance/Models/SapiV1LoanRepayHistoryResponse.cs` |
+| `GetLoanRepaymentHistoryUserDataError` | `src/Binance/Errors/GetLoanRepaymentHistoryUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetLoanableAssetsDataUserData
 
@@ -327,10 +327,10 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 
 | Type | Source |
 | --- | --- |
-| `GetLoanableAssetsDataUserDataRequest` | `Requests/CryptoLoans/GetLoanableAssetsDataUserDataRequest.cs` |
-| `SapiV1LoanLoanableDataResponse` | `Models/SapiV1LoanLoanableDataResponse.cs` |
-| `GetLoanableAssetsDataUserDataError` | `Errors/GetLoanableAssetsDataUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetLoanableAssetsDataUserDataRequest` | `src/Binance/Requests/CryptoLoans/GetLoanableAssetsDataUserDataRequest.cs` |
+| `SapiV1LoanLoanableDataResponse` | `src/Binance/Models/SapiV1LoanLoanableDataResponse.cs` |
+| `GetLoanableAssetsDataUserDataError` | `src/Binance/Errors/GetLoanableAssetsDataUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### RepayFlexibleLoanRepayTrade
 
@@ -344,10 +344,10 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 
 | Type | Source |
 | --- | --- |
-| `RepayFlexibleLoanRepayTradeRequest` | `Requests/CryptoLoans/RepayFlexibleLoanRepayTradeRequest.cs` |
-| `SapiV2LoanFlexibleRepayResponse` | `Models/SapiV2LoanFlexibleRepayResponse.cs` |
-| `RepayFlexibleLoanRepayTradeError` | `Errors/RepayFlexibleLoanRepayTradeError.cs` |
-| `Error` | `Models/Error.cs` |
+| `RepayFlexibleLoanRepayTradeRequest` | `src/Binance/Requests/CryptoLoans/RepayFlexibleLoanRepayTradeRequest.cs` |
+| `SapiV2LoanFlexibleRepayResponse` | `src/Binance/Models/SapiV2LoanFlexibleRepayResponse.cs` |
+| `RepayFlexibleLoanRepayTradeError` | `src/Binance/Errors/RepayFlexibleLoanRepayTradeError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### RepayGetFlexibleLoanRepaymentHistoryUserData
 
@@ -361,8 +361,8 @@ Accessor: `client.CryptoLoans` · Source: `Api/CryptoLoans.cs` · 21 operations
 
 | Type | Source |
 | --- | --- |
-| `RepayGetFlexibleLoanRepaymentHistoryUserDataRequest` | `Requests/CryptoLoans/RepayGetFlexibleLoanRepaymentHistoryUserDataRequest.cs` |
-| `SapiV2LoanFlexibleRepayHistoryResponse` | `Models/SapiV2LoanFlexibleRepayHistoryResponse.cs` |
-| `RepayGetFlexibleLoanRepaymentHistoryUserDataError` | `Errors/RepayGetFlexibleLoanRepaymentHistoryUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `RepayGetFlexibleLoanRepaymentHistoryUserDataRequest` | `src/Binance/Requests/CryptoLoans/RepayGetFlexibleLoanRepaymentHistoryUserDataRequest.cs` |
+| `SapiV2LoanFlexibleRepayHistoryResponse` | `src/Binance/Models/SapiV2LoanFlexibleRepayHistoryResponse.cs` |
+| `RepayGetFlexibleLoanRepaymentHistoryUserDataError` | `src/Binance/Errors/RepayGetFlexibleLoanRepaymentHistoryUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 

@@ -23,8 +23,30 @@ API documents:
 Add the .NET SDK as a project reference into your solution:
 
 ```bash
-dotnet add reference <path-to-sdk>/Binance.csproj
+dotnet add reference <path-to-sdk>/src/Binance/Binance.csproj
 ```
+
+The project takes its build settings from the files around it, so reference it in place. Building from source needs the .NET 10 SDK (C# 14); the package itself targets netstandard2.0.
+
+The assembly embeds its PDB, so stack traces carry SDK file and line numbers.
+
+---
+
+## Building from source
+
+```bash
+dotnet pack src/Binance/Binance.csproj -c Release
+```
+
+Release packs come from CI, where `CI=true` makes the build deterministic; to reproduce that locally add `-p:ContinuousIntegrationBuild=true`.
+
+The generator never emits `Directory.Build.targets`, so a customer-owned one at the repo root is MSBuild's auto-imported customization seam. It imports after the props and the project body into every project under the root, so put SDK-only settings under `<PropertyGroup Condition="'$(MSBuildProjectName)' == 'Binance'">`.
+
+It overrides every property the SDK reads when targets run (package metadata, `Version`, `AssemblyVersion`, compiler warnings, package references, which under central package management use `VersionOverride`). It cannot change values the SDK derives earlier: `TargetFramework(s)`, `AssemblyName` and output paths stay generator settings; turning off `GenerateDocumentationFile` also needs `<DocumentationFile />`; a `ContinuousIntegrationBuild` set there also needs `<DeterministicSourcePaths>true</DeterministicSourcePaths>`.
+
+The SDK's props files are a boundary: a parent repository's `Directory.Build.props` does not apply, while a parent `Directory.Build.targets` does.
+
+APIMatic's delivery tools do not yet preserve `Directory.Build.targets` across regeneration — list it in `.codegenignore` when publishing to GitHub.
 
 ---
 
@@ -32,7 +54,7 @@ dotnet add reference <path-to-sdk>/Binance.csproj
 
 ### Dependency Injection
 
-Register the client with `IServiceCollection` and resolve it from the container. The `HttpClient` is managed by `IHttpClientFactory`. Configure the client's behavior through [BinanceClientOptions](BinanceClientOptions.cs).
+Register the client with `IServiceCollection` and resolve it from the container. The `HttpClient` is managed by `IHttpClientFactory`. Configure the client's behavior through [BinanceClientOptions](src/Binance/BinanceClientOptions.cs).
 
 ```csharp
 services.AddBinanceClient(options =>
@@ -45,7 +67,7 @@ services.AddBinanceClient(options =>
 
 ### Direct Instantiation
 
-Create the client by passing an `HttpClient` you manage yourself. Configure the client's behavior through [BinanceClientOptions](BinanceClientOptions.cs).
+Create the client by passing an `HttpClient` you manage yourself. Configure the client's behavior through [BinanceClientOptions](src/Binance/BinanceClientOptions.cs).
 
 ```csharp
 var httpClient = new HttpClient();
@@ -172,7 +194,7 @@ Catch from specific to general: `ApiException` means the server answered, `SdkCo
 
 ## License
 
-This SDK is distributed under the [MIT License](LICENSE).
+This SDK is distributed under the [MIT License](https://licenses.nuget.org/MIT).
 
 ---
 
@@ -182,7 +204,7 @@ Refer to the [API reference](api-reference.md) for detailed information on avail
 
 ---
 
-[license-url]: LICENSE
+[license-url]: https://licenses.nuget.org/MIT
 [license-badge]: https://img.shields.io/badge/License-MIT-blue.svg
 [apimatic-url]: https://www.apimatic.io
-[apimatic-badge]: https://www.apimatic.io/hubfs/Built-with-APIMatic-badge.svg
+[apimatic-badge]: https://img.shields.io/badge/Built%20with-APIMatic-blue.svg

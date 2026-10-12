@@ -2,7 +2,7 @@
 
 # Stream — operations
 
-Accessor: `client.Stream` · Source: `Api/Stream.cs` · 3 operations
+Accessor: `client.Stream` · Source: `src/Binance/Api/Stream.cs` · 3 operations
 
 **Type sources**: the file declaring each type an operation names (`RawError` excluded — see sdk-map.md).
 
@@ -17,9 +17,9 @@ Accessor: `client.Stream` · Source: `Api/Stream.cs` · 3 operations
 
 | Type | Source |
 | --- | --- |
-| `CloseAListenKeyUserStreamRequest` | `Requests/Stream/CloseAListenKeyUserStreamRequest.cs` |
-| `CloseAListenKeyUserStreamError` | `Errors/CloseAListenKeyUserStreamError.cs` |
-| `Error` | `Models/Error.cs` |
+| `CloseAListenKeyUserStreamRequest` | `src/Binance/Requests/Stream/CloseAListenKeyUserStreamRequest.cs` |
+| `CloseAListenKeyUserStreamError` | `src/Binance/Errors/CloseAListenKeyUserStreamError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### CreateAListenKeyUserStream
 
@@ -30,7 +30,7 @@ Accessor: `client.Stream` · Source: `Api/Stream.cs` · 3 operations
 
 | Type | Source |
 | --- | --- |
-| `ApiV3UserDataStreamResponse` | `Models/ApiV3UserDataStreamResponse.cs` |
+| `ApiV3UserDataStreamResponse` | `src/Binance/Models/ApiV3UserDataStreamResponse.cs` |
 
 ### PingKeepAliveAListenKeyUserStream
 
@@ -43,7 +43,7 @@ Accessor: `client.Stream` · Source: `Api/Stream.cs` · 3 operations
 
 | Type | Source |
 | --- | --- |
-| `PingKeepAliveAListenKeyUserStreamRequest` | `Requests/Stream/PingKeepAliveAListenKeyUserStreamRequest.cs` |
-| `PingKeepAliveAListenKeyUserStreamError` | `Errors/PingKeepAliveAListenKeyUserStreamError.cs` |
-| `Error` | `Models/Error.cs` |
+| `PingKeepAliveAListenKeyUserStreamRequest` | `src/Binance/Requests/Stream/PingKeepAliveAListenKeyUserStreamRequest.cs` |
+| `PingKeepAliveAListenKeyUserStreamError` | `src/Binance/Errors/PingKeepAliveAListenKeyUserStreamError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 

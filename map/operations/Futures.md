@@ -2,7 +2,7 @@
 
 # Futures — operations
 
-Accessor: `client.Futures` · Source: `Api/Futures.cs` · 3 operations
+Accessor: `client.Futures` · Source: `src/Binance/Api/Futures.cs` · 3 operations
 
 **Type sources**: the file declaring each type an operation names (`RawError` excluded — see sdk-map.md).
 
@@ -18,10 +18,10 @@ Accessor: `client.Futures` · Source: `Api/Futures.cs` · 3 operations
 
 | Type | Source |
 | --- | --- |
-| `GetFutureAccountTransactionHistoryListUserDataRequest` | `Requests/Futures/GetFutureAccountTransactionHistoryListUserDataRequest.cs` |
-| `SapiV1FuturesTransferResponse1` | `Models/SapiV1FuturesTransferResponse1.cs` |
-| `GetFutureAccountTransactionHistoryListUserDataError` | `Errors/GetFutureAccountTransactionHistoryListUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetFutureAccountTransactionHistoryListUserDataRequest` | `src/Binance/Requests/Futures/GetFutureAccountTransactionHistoryListUserDataRequest.cs` |
+| `SapiV1FuturesTransferResponse1` | `src/Binance/Models/SapiV1FuturesTransferResponse1.cs` |
+| `GetFutureAccountTransactionHistoryListUserDataError` | `src/Binance/Errors/GetFutureAccountTransactionHistoryListUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetFutureTickLevelOrderbookHistoricalDataDownloadLinkUserData
 
@@ -35,11 +35,11 @@ Accessor: `client.Futures` · Source: `Api/Futures.cs` · 3 operations
 
 | Type | Source |
 | --- | --- |
-| `GetFutureTickLevelOrderbookHistoricalDataDownloadLinkUserDataRequest` | `Requests/Futures/GetFutureTickLevelOrderbookHistoricalDataDownloadLinkUserDataRequest.cs` |
-| `DataTypeEnum` | `Models/Enums/DataTypeEnum.cs` |
-| `SapiV1FuturesHistDataLinkResponse` | `Models/SapiV1FuturesHistDataLinkResponse.cs` |
-| `GetFutureTickLevelOrderbookHistoricalDataDownloadLinkUserDataError` | `Errors/GetFutureTickLevelOrderbookHistoricalDataDownloadLinkUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetFutureTickLevelOrderbookHistoricalDataDownloadLinkUserDataRequest` | `src/Binance/Requests/Futures/GetFutureTickLevelOrderbookHistoricalDataDownloadLinkUserDataRequest.cs` |
+| `DataTypeEnum` | `src/Binance/Models/Enums/DataTypeEnum.cs` |
+| `SapiV1FuturesHistDataLinkResponse` | `src/Binance/Models/SapiV1FuturesHistDataLinkResponse.cs` |
+| `GetFutureTickLevelOrderbookHistoricalDataDownloadLinkUserDataError` | `src/Binance/Errors/GetFutureTickLevelOrderbookHistoricalDataDownloadLinkUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### NewFutureAccountTransferUserData
 
@@ -53,8 +53,8 @@ Accessor: `client.Futures` · Source: `Api/Futures.cs` · 3 operations
 
 | Type | Source |
 | --- | --- |
-| `NewFutureAccountTransferUserDataRequest` | `Requests/Futures/NewFutureAccountTransferUserDataRequest.cs` |
-| `SapiV1FuturesTransferResponse` | `Models/SapiV1FuturesTransferResponse.cs` |
-| `NewFutureAccountTransferUserDataError` | `Errors/NewFutureAccountTransferUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `NewFutureAccountTransferUserDataRequest` | `src/Binance/Requests/Futures/NewFutureAccountTransferUserDataRequest.cs` |
+| `SapiV1FuturesTransferResponse` | `src/Binance/Models/SapiV1FuturesTransferResponse.cs` |
+| `NewFutureAccountTransferUserDataError` | `src/Binance/Errors/NewFutureAccountTransferUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 

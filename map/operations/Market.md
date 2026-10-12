@@ -2,7 +2,7 @@
 
 # Market — operations
 
-Accessor: `client.Market` · Source: `Api/Market.cs` · 15 operations
+Accessor: `client.Market` · Source: `src/Binance/Api/Market.cs` · 15 operations
 
 **Type sources**: the file declaring each type an operation names (`RawError` excluded — see sdk-map.md).
 
@@ -14,7 +14,7 @@ Accessor: `client.Market` · Source: `Api/Market.cs` · 15 operations
 
 | Type | Source |
 | --- | --- |
-| `ApiV3TimeResponse` | `Models/ApiV3TimeResponse.cs` |
+| `ApiV3TimeResponse` | `src/Binance/Models/ApiV3TimeResponse.cs` |
 
 ### CompressedAggregateTradesList
 
@@ -27,10 +27,10 @@ Accessor: `client.Market` · Source: `Api/Market.cs` · 15 operations
 
 | Type | Source |
 | --- | --- |
-| `CompressedAggregateTradesListRequest` | `Requests/Market/CompressedAggregateTradesListRequest.cs` |
-| `AggTrade` | `Models/AggTrade.cs` |
-| `CompressedAggregateTradesListError` | `Errors/CompressedAggregateTradesListError.cs` |
-| `Error` | `Models/Error.cs` |
+| `CompressedAggregateTradesListRequest` | `src/Binance/Requests/Market/CompressedAggregateTradesListRequest.cs` |
+| `AggTrade` | `src/Binance/Models/AggTrade.cs` |
+| `CompressedAggregateTradesListError` | `src/Binance/Errors/CompressedAggregateTradesListError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### CurrentAveragePrice
 
@@ -43,10 +43,10 @@ Accessor: `client.Market` · Source: `Api/Market.cs` · 15 operations
 
 | Type | Source |
 | --- | --- |
-| `CurrentAveragePriceRequest` | `Requests/Market/CurrentAveragePriceRequest.cs` |
-| `ApiV3AvgPriceResponse` | `Models/ApiV3AvgPriceResponse.cs` |
-| `CurrentAveragePriceError` | `Errors/CurrentAveragePriceError.cs` |
-| `Error` | `Models/Error.cs` |
+| `CurrentAveragePriceRequest` | `src/Binance/Requests/Market/CurrentAveragePriceRequest.cs` |
+| `ApiV3AvgPriceResponse` | `src/Binance/Models/ApiV3AvgPriceResponse.cs` |
+| `CurrentAveragePriceError` | `src/Binance/Errors/CurrentAveragePriceError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### ExchangeInformation
 
@@ -58,10 +58,10 @@ Accessor: `client.Market` · Source: `Api/Market.cs` · 15 operations
 
 | Type | Source |
 | --- | --- |
-| `ExchangeInformationRequest` | `Requests/Market/ExchangeInformationRequest.cs` |
-| `ApiV3ExchangeInfoResponse` | `Models/ApiV3ExchangeInfoResponse.cs` |
-| `ExchangeInformationError` | `Errors/ExchangeInformationError.cs` |
-| `Error` | `Models/Error.cs` |
+| `ExchangeInformationRequest` | `src/Binance/Requests/Market/ExchangeInformationRequest.cs` |
+| `ApiV3ExchangeInfoResponse` | `src/Binance/Models/ApiV3ExchangeInfoResponse.cs` |
+| `ExchangeInformationError` | `src/Binance/Errors/ExchangeInformationError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### HrTickerPriceChangeStatistics24
 
@@ -73,11 +73,11 @@ Accessor: `client.Market` · Source: `Api/Market.cs` · 15 operations
 
 | Type | Source |
 | --- | --- |
-| `HrTickerPriceChangeStatistics24Request` | `Requests/Market/HrTickerPriceChangeStatistics24Request.cs` |
-| `TypeEnum` | `Models/Enums/TypeEnum.cs` |
-| `ApiV3Ticker24HrResponse` | `Models/AnyOf/ApiV3Ticker24HrResponse.cs` |
-| `HrTickerPriceChangeStatistics24Error` | `Errors/HrTickerPriceChangeStatistics24Error.cs` |
-| `Error` | `Models/Error.cs` |
+| `HrTickerPriceChangeStatistics24Request` | `src/Binance/Requests/Market/HrTickerPriceChangeStatistics24Request.cs` |
+| `TypeEnum` | `src/Binance/Models/Enums/TypeEnum.cs` |
+| `ApiV3Ticker24HrResponse` | `src/Binance/Models/AnyOf/ApiV3Ticker24HrResponse.cs` |
+| `HrTickerPriceChangeStatistics24Error` | `src/Binance/Errors/HrTickerPriceChangeStatistics24Error.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### KlineCandlestickData
 
@@ -90,11 +90,11 @@ Accessor: `client.Market` · Source: `Api/Market.cs` · 15 operations
 
 | Type | Source |
 | --- | --- |
-| `KlineCandlestickDataRequest` | `Requests/Market/KlineCandlestickDataRequest.cs` |
-| `Interval` | `Models/Enums/Interval.cs` |
-| `ApiV3KlinesResponse` | `Models/AnyOf/ApiV3KlinesResponse.cs` |
-| `KlineCandlestickDataError` | `Errors/KlineCandlestickDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `KlineCandlestickDataRequest` | `src/Binance/Requests/Market/KlineCandlestickDataRequest.cs` |
+| `Interval` | `src/Binance/Models/Enums/Interval.cs` |
+| `ApiV3KlinesResponse` | `src/Binance/Models/AnyOf/ApiV3KlinesResponse.cs` |
+| `KlineCandlestickDataError` | `src/Binance/Errors/KlineCandlestickDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### OldTradeLookup
 
@@ -106,8 +106,8 @@ Accessor: `client.Market` · Source: `Api/Market.cs` · 15 operations
 
 | Type | Source |
 | --- | --- |
-| `OldTradeLookupRequest` | `Requests/Market/OldTradeLookupRequest.cs` |
-| `Trade` | `Models/Trade.cs` |
+| `OldTradeLookupRequest` | `src/Binance/Requests/Market/OldTradeLookupRequest.cs` |
+| `Trade` | `src/Binance/Models/Trade.cs` |
 
 ### OrderBook
 
@@ -120,10 +120,10 @@ Accessor: `client.Market` · Source: `Api/Market.cs` · 15 operations
 
 | Type | Source |
 | --- | --- |
-| `OrderBookRequest` | `Requests/Market/OrderBookRequest.cs` |
-| `ApiV3DepthResponse` | `Models/ApiV3DepthResponse.cs` |
-| `OrderBookError` | `Errors/OrderBookError.cs` |
-| `Error` | `Models/Error.cs` |
+| `OrderBookRequest` | `src/Binance/Requests/Market/OrderBookRequest.cs` |
+| `ApiV3DepthResponse` | `src/Binance/Models/ApiV3DepthResponse.cs` |
+| `OrderBookError` | `src/Binance/Errors/OrderBookError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### RecentTradesList
 
@@ -136,10 +136,10 @@ Accessor: `client.Market` · Source: `Api/Market.cs` · 15 operations
 
 | Type | Source |
 | --- | --- |
-| `RecentTradesListRequest` | `Requests/Market/RecentTradesListRequest.cs` |
-| `Trade` | `Models/Trade.cs` |
-| `RecentTradesListError` | `Errors/RecentTradesListError.cs` |
-| `Error` | `Models/Error.cs` |
+| `RecentTradesListRequest` | `src/Binance/Requests/Market/RecentTradesListRequest.cs` |
+| `Trade` | `src/Binance/Models/Trade.cs` |
+| `RecentTradesListError` | `src/Binance/Errors/RecentTradesListError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### RollingWindowPriceChangeStatistics
 
@@ -151,10 +151,10 @@ Accessor: `client.Market` · Source: `Api/Market.cs` · 15 operations
 
 | Type | Source |
 | --- | --- |
-| `RollingWindowPriceChangeStatisticsRequest` | `Requests/Market/RollingWindowPriceChangeStatisticsRequest.cs` |
-| `ApiV3TickerResponse` | `Models/ApiV3TickerResponse.cs` |
-| `RollingWindowPriceChangeStatisticsError` | `Errors/RollingWindowPriceChangeStatisticsError.cs` |
-| `Error` | `Models/Error.cs` |
+| `RollingWindowPriceChangeStatisticsRequest` | `src/Binance/Requests/Market/RollingWindowPriceChangeStatisticsRequest.cs` |
+| `ApiV3TickerResponse` | `src/Binance/Models/ApiV3TickerResponse.cs` |
+| `RollingWindowPriceChangeStatisticsError` | `src/Binance/Errors/RollingWindowPriceChangeStatisticsError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### SymbolOrderBookTicker
 
@@ -166,10 +166,10 @@ Accessor: `client.Market` · Source: `Api/Market.cs` · 15 operations
 
 | Type | Source |
 | --- | --- |
-| `SymbolOrderBookTickerRequest` | `Requests/Market/SymbolOrderBookTickerRequest.cs` |
-| `ApiV3TickerBookTickerResponse` | `Models/AnyOf/ApiV3TickerBookTickerResponse.cs` |
-| `SymbolOrderBookTickerError` | `Errors/SymbolOrderBookTickerError.cs` |
-| `Error` | `Models/Error.cs` |
+| `SymbolOrderBookTickerRequest` | `src/Binance/Requests/Market/SymbolOrderBookTickerRequest.cs` |
+| `ApiV3TickerBookTickerResponse` | `src/Binance/Models/AnyOf/ApiV3TickerBookTickerResponse.cs` |
+| `SymbolOrderBookTickerError` | `src/Binance/Errors/SymbolOrderBookTickerError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### SymbolPriceTicker
 
@@ -181,10 +181,10 @@ Accessor: `client.Market` · Source: `Api/Market.cs` · 15 operations
 
 | Type | Source |
 | --- | --- |
-| `SymbolPriceTickerRequest` | `Requests/Market/SymbolPriceTickerRequest.cs` |
-| `ApiV3TickerPriceResponse` | `Models/AnyOf/ApiV3TickerPriceResponse.cs` |
-| `SymbolPriceTickerError` | `Errors/SymbolPriceTickerError.cs` |
-| `Error` | `Models/Error.cs` |
+| `SymbolPriceTickerRequest` | `src/Binance/Requests/Market/SymbolPriceTickerRequest.cs` |
+| `ApiV3TickerPriceResponse` | `src/Binance/Models/AnyOf/ApiV3TickerPriceResponse.cs` |
+| `SymbolPriceTickerError` | `src/Binance/Errors/SymbolPriceTickerError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### TestConnectivity
 
@@ -202,11 +202,11 @@ Accessor: `client.Market` · Source: `Api/Market.cs` · 15 operations
 
 | Type | Source |
 | --- | --- |
-| `TradingDayTickerRequest` | `Requests/Market/TradingDayTickerRequest.cs` |
-| `TypeEnum` | `Models/Enums/TypeEnum.cs` |
-| `ApiV3TickerTradingDayResponse` | `Models/AnyOf/ApiV3TickerTradingDayResponse.cs` |
-| `TradingDayTickerError` | `Errors/TradingDayTickerError.cs` |
-| `Error` | `Models/Error.cs` |
+| `TradingDayTickerRequest` | `src/Binance/Requests/Market/TradingDayTickerRequest.cs` |
+| `TypeEnum` | `src/Binance/Models/Enums/TypeEnum.cs` |
+| `ApiV3TickerTradingDayResponse` | `src/Binance/Models/AnyOf/ApiV3TickerTradingDayResponse.cs` |
+| `TradingDayTickerError` | `src/Binance/Errors/TradingDayTickerError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### UiKlines
 
@@ -219,9 +219,9 @@ Accessor: `client.Market` · Source: `Api/Market.cs` · 15 operations
 
 | Type | Source |
 | --- | --- |
-| `UiKlinesRequest` | `Requests/Market/UiKlinesRequest.cs` |
-| `Interval` | `Models/Enums/Interval.cs` |
-| `ApiV3UiKlinesResponse` | `Models/AnyOf/ApiV3UiKlinesResponse.cs` |
-| `UiKlinesError` | `Errors/UiKlinesError.cs` |
-| `Error` | `Models/Error.cs` |
+| `UiKlinesRequest` | `src/Binance/Requests/Market/UiKlinesRequest.cs` |
+| `Interval` | `src/Binance/Models/Enums/Interval.cs` |
+| `ApiV3UiKlinesResponse` | `src/Binance/Models/AnyOf/ApiV3UiKlinesResponse.cs` |
+| `UiKlinesError` | `src/Binance/Errors/UiKlinesError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 

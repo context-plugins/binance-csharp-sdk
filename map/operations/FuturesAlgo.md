@@ -2,7 +2,7 @@
 
 # FuturesAlgo — operations
 
-Accessor: `client.FuturesAlgo` · Source: `Api/FuturesAlgo.cs` · 6 operations
+Accessor: `client.FuturesAlgo` · Source: `src/Binance/Api/FuturesAlgo.cs` · 6 operations
 
 **Type sources**: the file declaring each type an operation names (`RawError` excluded — see sdk-map.md).
 
@@ -18,10 +18,10 @@ Accessor: `client.FuturesAlgo` · Source: `Api/FuturesAlgo.cs` · 6 operations
 
 | Type | Source |
 | --- | --- |
-| `CancelAlgoOrderTradeRequest` | `Requests/FuturesAlgo/CancelAlgoOrderTradeRequest.cs` |
-| `SapiV1AlgoFuturesOrderResponse` | `Models/SapiV1AlgoFuturesOrderResponse.cs` |
-| `CancelAlgoOrderTradeError` | `Errors/CancelAlgoOrderTradeError.cs` |
-| `Error` | `Models/Error.cs` |
+| `CancelAlgoOrderTradeRequest` | `src/Binance/Requests/FuturesAlgo/CancelAlgoOrderTradeRequest.cs` |
+| `SapiV1AlgoFuturesOrderResponse` | `src/Binance/Models/SapiV1AlgoFuturesOrderResponse.cs` |
+| `CancelAlgoOrderTradeError` | `src/Binance/Errors/CancelAlgoOrderTradeError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryCurrentAlgoOpenOrdersUserData
 
@@ -35,10 +35,10 @@ Accessor: `client.FuturesAlgo` · Source: `Api/FuturesAlgo.cs` · 6 operations
 
 | Type | Source |
 | --- | --- |
-| `QueryCurrentAlgoOpenOrdersUserDataRequest` | `Requests/FuturesAlgo/QueryCurrentAlgoOpenOrdersUserDataRequest.cs` |
-| `SapiV1AlgoFuturesOpenOrdersResponse` | `Models/SapiV1AlgoFuturesOpenOrdersResponse.cs` |
-| `QueryCurrentAlgoOpenOrdersUserDataError` | `Errors/QueryCurrentAlgoOpenOrdersUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryCurrentAlgoOpenOrdersUserDataRequest` | `src/Binance/Requests/FuturesAlgo/QueryCurrentAlgoOpenOrdersUserDataRequest.cs` |
+| `SapiV1AlgoFuturesOpenOrdersResponse` | `src/Binance/Models/SapiV1AlgoFuturesOpenOrdersResponse.cs` |
+| `QueryCurrentAlgoOpenOrdersUserDataError` | `src/Binance/Errors/QueryCurrentAlgoOpenOrdersUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryHistoricalAlgoOrdersUserData
 
@@ -52,11 +52,11 @@ Accessor: `client.FuturesAlgo` · Source: `Api/FuturesAlgo.cs` · 6 operations
 
 | Type | Source |
 | --- | --- |
-| `QueryHistoricalAlgoOrdersUserDataRequest` | `Requests/FuturesAlgo/QueryHistoricalAlgoOrdersUserDataRequest.cs` |
-| `Side` | `Models/Enums/Side.cs` |
-| `SapiV1AlgoFuturesHistoricalOrdersResponse` | `Models/SapiV1AlgoFuturesHistoricalOrdersResponse.cs` |
-| `QueryHistoricalAlgoOrdersUserDataError` | `Errors/QueryHistoricalAlgoOrdersUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryHistoricalAlgoOrdersUserDataRequest` | `src/Binance/Requests/FuturesAlgo/QueryHistoricalAlgoOrdersUserDataRequest.cs` |
+| `Side` | `src/Binance/Models/Enums/Side.cs` |
+| `SapiV1AlgoFuturesHistoricalOrdersResponse` | `src/Binance/Models/SapiV1AlgoFuturesHistoricalOrdersResponse.cs` |
+| `QueryHistoricalAlgoOrdersUserDataError` | `src/Binance/Errors/QueryHistoricalAlgoOrdersUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QuerySubOrdersUserData
 
@@ -70,10 +70,10 @@ Accessor: `client.FuturesAlgo` · Source: `Api/FuturesAlgo.cs` · 6 operations
 
 | Type | Source |
 | --- | --- |
-| `QuerySubOrdersUserDataRequest` | `Requests/FuturesAlgo/QuerySubOrdersUserDataRequest.cs` |
-| `SapiV1AlgoFuturesSubOrdersResponse` | `Models/SapiV1AlgoFuturesSubOrdersResponse.cs` |
-| `QuerySubOrdersUserDataError` | `Errors/QuerySubOrdersUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QuerySubOrdersUserDataRequest` | `src/Binance/Requests/FuturesAlgo/QuerySubOrdersUserDataRequest.cs` |
+| `SapiV1AlgoFuturesSubOrdersResponse` | `src/Binance/Models/SapiV1AlgoFuturesSubOrdersResponse.cs` |
+| `QuerySubOrdersUserDataError` | `src/Binance/Errors/QuerySubOrdersUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### TimeWeightedAveragePriceTwapNewOrderTrade
 
@@ -87,12 +87,12 @@ Accessor: `client.FuturesAlgo` · Source: `Api/FuturesAlgo.cs` · 6 operations
 
 | Type | Source |
 | --- | --- |
-| `TimeWeightedAveragePriceTwapNewOrderTradeRequest` | `Requests/FuturesAlgo/TimeWeightedAveragePriceTwapNewOrderTradeRequest.cs` |
-| `Side` | `Models/Enums/Side.cs` |
-| `PositionSide` | `Models/Enums/PositionSide.cs` |
-| `SapiV1AlgoFuturesNewOrderTwapResponse` | `Models/SapiV1AlgoFuturesNewOrderTwapResponse.cs` |
-| `TimeWeightedAveragePriceTwapNewOrderTradeError` | `Errors/TimeWeightedAveragePriceTwapNewOrderTradeError.cs` |
-| `Error` | `Models/Error.cs` |
+| `TimeWeightedAveragePriceTwapNewOrderTradeRequest` | `src/Binance/Requests/FuturesAlgo/TimeWeightedAveragePriceTwapNewOrderTradeRequest.cs` |
+| `Side` | `src/Binance/Models/Enums/Side.cs` |
+| `PositionSide` | `src/Binance/Models/Enums/PositionSide.cs` |
+| `SapiV1AlgoFuturesNewOrderTwapResponse` | `src/Binance/Models/SapiV1AlgoFuturesNewOrderTwapResponse.cs` |
+| `TimeWeightedAveragePriceTwapNewOrderTradeError` | `src/Binance/Errors/TimeWeightedAveragePriceTwapNewOrderTradeError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### VolumeParticipationVpNewOrderTrade
 
@@ -106,11 +106,11 @@ Accessor: `client.FuturesAlgo` · Source: `Api/FuturesAlgo.cs` · 6 operations
 
 | Type | Source |
 | --- | --- |
-| `VolumeParticipationVpNewOrderTradeRequest` | `Requests/FuturesAlgo/VolumeParticipationVpNewOrderTradeRequest.cs` |
-| `Side` | `Models/Enums/Side.cs` |
-| `Urgency` | `Models/Enums/Urgency.cs` |
-| `PositionSide` | `Models/Enums/PositionSide.cs` |
-| `SapiV1AlgoFuturesNewOrderVpResponse` | `Models/SapiV1AlgoFuturesNewOrderVpResponse.cs` |
-| `VolumeParticipationVpNewOrderTradeError` | `Errors/VolumeParticipationVpNewOrderTradeError.cs` |
-| `Error` | `Models/Error.cs` |
+| `VolumeParticipationVpNewOrderTradeRequest` | `src/Binance/Requests/FuturesAlgo/VolumeParticipationVpNewOrderTradeRequest.cs` |
+| `Side` | `src/Binance/Models/Enums/Side.cs` |
+| `Urgency` | `src/Binance/Models/Enums/Urgency.cs` |
+| `PositionSide` | `src/Binance/Models/Enums/PositionSide.cs` |
+| `SapiV1AlgoFuturesNewOrderVpResponse` | `src/Binance/Models/SapiV1AlgoFuturesNewOrderVpResponse.cs` |
+| `VolumeParticipationVpNewOrderTradeError` | `src/Binance/Errors/VolumeParticipationVpNewOrderTradeError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 

@@ -2,7 +2,7 @@
 
 # VipLoans — operations
 
-Accessor: `client.VipLoans` · Source: `Api/VipLoans.cs` · 10 operations
+Accessor: `client.VipLoans` · Source: `src/Binance/Api/VipLoans.cs` · 10 operations
 
 **Type sources**: the file declaring each type an operation names (`RawError` excluded — see sdk-map.md).
 
@@ -18,10 +18,10 @@ Accessor: `client.VipLoans` · Source: `Api/VipLoans.cs` · 10 operations
 
 | Type | Source |
 | --- | --- |
-| `CheckLockedValueOfVipCollateralAccountUserDataRequest` | `Requests/VipLoans/CheckLockedValueOfVipCollateralAccountUserDataRequest.cs` |
-| `SapiV1LoanVipCollateralAccountResponse` | `Models/SapiV1LoanVipCollateralAccountResponse.cs` |
-| `CheckLockedValueOfVipCollateralAccountUserDataError` | `Errors/CheckLockedValueOfVipCollateralAccountUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `CheckLockedValueOfVipCollateralAccountUserDataRequest` | `src/Binance/Requests/VipLoans/CheckLockedValueOfVipCollateralAccountUserDataRequest.cs` |
+| `SapiV1LoanVipCollateralAccountResponse` | `src/Binance/Models/SapiV1LoanVipCollateralAccountResponse.cs` |
+| `CheckLockedValueOfVipCollateralAccountUserDataError` | `src/Binance/Errors/CheckLockedValueOfVipCollateralAccountUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetBorrowInterestRateUserData
 
@@ -35,10 +35,10 @@ Accessor: `client.VipLoans` · Source: `Api/VipLoans.cs` · 10 operations
 
 | Type | Source |
 | --- | --- |
-| `GetBorrowInterestRateUserDataRequest` | `Requests/VipLoans/GetBorrowInterestRateUserDataRequest.cs` |
-| `SapiV1LoanVipRequestInterestRateResponse` | `Models/SapiV1LoanVipRequestInterestRateResponse.cs` |
-| `GetBorrowInterestRateUserDataError` | `Errors/GetBorrowInterestRateUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetBorrowInterestRateUserDataRequest` | `src/Binance/Requests/VipLoans/GetBorrowInterestRateUserDataRequest.cs` |
+| `SapiV1LoanVipRequestInterestRateResponse` | `src/Binance/Models/SapiV1LoanVipRequestInterestRateResponse.cs` |
+| `GetBorrowInterestRateUserDataError` | `src/Binance/Errors/GetBorrowInterestRateUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetCollateralAssetDataUserData
 
@@ -52,10 +52,10 @@ Accessor: `client.VipLoans` · Source: `Api/VipLoans.cs` · 10 operations
 
 | Type | Source |
 | --- | --- |
-| `GetCollateralAssetDataUserDataRequest` | `Requests/VipLoans/GetCollateralAssetDataUserDataRequest.cs` |
-| `SapiV1LoanVipCollateralDataResponse` | `Models/SapiV1LoanVipCollateralDataResponse.cs` |
-| `GetCollateralAssetDataUserDataError` | `Errors/GetCollateralAssetDataUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetCollateralAssetDataUserDataRequest` | `src/Binance/Requests/VipLoans/GetCollateralAssetDataUserDataRequest.cs` |
+| `SapiV1LoanVipCollateralDataResponse` | `src/Binance/Models/SapiV1LoanVipCollateralDataResponse.cs` |
+| `GetCollateralAssetDataUserDataError` | `src/Binance/Errors/GetCollateralAssetDataUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetLoanableAssetsData
 
@@ -69,10 +69,10 @@ Accessor: `client.VipLoans` · Source: `Api/VipLoans.cs` · 10 operations
 
 | Type | Source |
 | --- | --- |
-| `GetLoanableAssetsDataRequest` | `Requests/VipLoans/GetLoanableAssetsDataRequest.cs` |
-| `SapiV1LoanVipLoanableDataResponse` | `Models/SapiV1LoanVipLoanableDataResponse.cs` |
-| `GetLoanableAssetsDataError` | `Errors/GetLoanableAssetsDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetLoanableAssetsDataRequest` | `src/Binance/Requests/VipLoans/GetLoanableAssetsDataRequest.cs` |
+| `SapiV1LoanVipLoanableDataResponse` | `src/Binance/Models/SapiV1LoanVipLoanableDataResponse.cs` |
+| `GetLoanableAssetsDataError` | `src/Binance/Errors/GetLoanableAssetsDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetVipLoanOngoingOrdersUserData
 
@@ -86,10 +86,10 @@ Accessor: `client.VipLoans` · Source: `Api/VipLoans.cs` · 10 operations
 
 | Type | Source |
 | --- | --- |
-| `GetVipLoanOngoingOrdersUserDataRequest` | `Requests/VipLoans/GetVipLoanOngoingOrdersUserDataRequest.cs` |
-| `SapiV1LoanVipOngoingOrdersResponse` | `Models/SapiV1LoanVipOngoingOrdersResponse.cs` |
-| `GetVipLoanOngoingOrdersUserDataError` | `Errors/GetVipLoanOngoingOrdersUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetVipLoanOngoingOrdersUserDataRequest` | `src/Binance/Requests/VipLoans/GetVipLoanOngoingOrdersUserDataRequest.cs` |
+| `SapiV1LoanVipOngoingOrdersResponse` | `src/Binance/Models/SapiV1LoanVipOngoingOrdersResponse.cs` |
+| `GetVipLoanOngoingOrdersUserDataError` | `src/Binance/Errors/GetVipLoanOngoingOrdersUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetVipLoanRepaymentHistoryUserData
 
@@ -103,10 +103,10 @@ Accessor: `client.VipLoans` · Source: `Api/VipLoans.cs` · 10 operations
 
 | Type | Source |
 | --- | --- |
-| `GetVipLoanRepaymentHistoryUserDataRequest` | `Requests/VipLoans/GetVipLoanRepaymentHistoryUserDataRequest.cs` |
-| `SapiV1LoanVipRepayHistoryResponse` | `Models/SapiV1LoanVipRepayHistoryResponse.cs` |
-| `GetVipLoanRepaymentHistoryUserDataError` | `Errors/GetVipLoanRepaymentHistoryUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetVipLoanRepaymentHistoryUserDataRequest` | `src/Binance/Requests/VipLoans/GetVipLoanRepaymentHistoryUserDataRequest.cs` |
+| `SapiV1LoanVipRepayHistoryResponse` | `src/Binance/Models/SapiV1LoanVipRepayHistoryResponse.cs` |
+| `GetVipLoanRepaymentHistoryUserDataError` | `src/Binance/Errors/GetVipLoanRepaymentHistoryUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryApplicationStatusUserData
 
@@ -120,10 +120,10 @@ Accessor: `client.VipLoans` · Source: `Api/VipLoans.cs` · 10 operations
 
 | Type | Source |
 | --- | --- |
-| `QueryApplicationStatusUserDataRequest` | `Requests/VipLoans/QueryApplicationStatusUserDataRequest.cs` |
-| `SapiV1LoanVipRequestDataResponse` | `Models/SapiV1LoanVipRequestDataResponse.cs` |
-| `QueryApplicationStatusUserDataError` | `Errors/QueryApplicationStatusUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryApplicationStatusUserDataRequest` | `src/Binance/Requests/VipLoans/QueryApplicationStatusUserDataRequest.cs` |
+| `SapiV1LoanVipRequestDataResponse` | `src/Binance/Models/SapiV1LoanVipRequestDataResponse.cs` |
+| `QueryApplicationStatusUserDataError` | `src/Binance/Errors/QueryApplicationStatusUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### VipLoanBorrow
 
@@ -137,11 +137,11 @@ Accessor: `client.VipLoans` · Source: `Api/VipLoans.cs` · 10 operations
 
 | Type | Source |
 | --- | --- |
-| `VipLoanBorrowRequest` | `Requests/VipLoans/VipLoanBorrowRequest.cs` |
-| `IsFlexibleRate` | `Models/Enums/IsFlexibleRate.cs` |
-| `SapiV1LoanVipBorrowResponse` | `Models/SapiV1LoanVipBorrowResponse.cs` |
-| `VipLoanBorrowError` | `Errors/VipLoanBorrowError.cs` |
-| `Error` | `Models/Error.cs` |
+| `VipLoanBorrowRequest` | `src/Binance/Requests/VipLoans/VipLoanBorrowRequest.cs` |
+| `IsFlexibleRate` | `src/Binance/Models/Enums/IsFlexibleRate.cs` |
+| `SapiV1LoanVipBorrowResponse` | `src/Binance/Models/SapiV1LoanVipBorrowResponse.cs` |
+| `VipLoanBorrowError` | `src/Binance/Errors/VipLoanBorrowError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### VipLoanRenew
 
@@ -155,10 +155,10 @@ Accessor: `client.VipLoans` · Source: `Api/VipLoans.cs` · 10 operations
 
 | Type | Source |
 | --- | --- |
-| `VipLoanRenewRequest` | `Requests/VipLoans/VipLoanRenewRequest.cs` |
-| `SapiV1LoanVipRenewResponse` | `Models/SapiV1LoanVipRenewResponse.cs` |
-| `VipLoanRenewError` | `Errors/VipLoanRenewError.cs` |
-| `Error` | `Models/Error.cs` |
+| `VipLoanRenewRequest` | `src/Binance/Requests/VipLoans/VipLoanRenewRequest.cs` |
+| `SapiV1LoanVipRenewResponse` | `src/Binance/Models/SapiV1LoanVipRenewResponse.cs` |
+| `VipLoanRenewError` | `src/Binance/Errors/VipLoanRenewError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### VipLoanRepayTrade
 
@@ -172,8 +172,8 @@ Accessor: `client.VipLoans` · Source: `Api/VipLoans.cs` · 10 operations
 
 | Type | Source |
 | --- | --- |
-| `VipLoanRepayTradeRequest` | `Requests/VipLoans/VipLoanRepayTradeRequest.cs` |
-| `SapiV1LoanVipRepayResponse` | `Models/SapiV1LoanVipRepayResponse.cs` |
-| `VipLoanRepayTradeError` | `Errors/VipLoanRepayTradeError.cs` |
-| `Error` | `Models/Error.cs` |
+| `VipLoanRepayTradeRequest` | `src/Binance/Requests/VipLoans/VipLoanRepayTradeRequest.cs` |
+| `SapiV1LoanVipRepayResponse` | `src/Binance/Models/SapiV1LoanVipRepayResponse.cs` |
+| `VipLoanRepayTradeError` | `src/Binance/Errors/VipLoanRepayTradeError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 

@@ -2,7 +2,7 @@
 
 # Pay — operations
 
-Accessor: `client.Pay` · Source: `Api/Pay.cs` · 1 operation
+Accessor: `client.Pay` · Source: `src/Binance/Api/Pay.cs` · 1 operation
 
 **Type sources**: the file declaring each type an operation names (`RawError` excluded — see sdk-map.md).
 
@@ -18,8 +18,8 @@ Accessor: `client.Pay` · Source: `Api/Pay.cs` · 1 operation
 
 | Type | Source |
 | --- | --- |
-| `GetPayTradeHistoryUserDataRequest` | `Requests/Pay/GetPayTradeHistoryUserDataRequest.cs` |
-| `SapiV1PayTransactionsResponse` | `Models/SapiV1PayTransactionsResponse.cs` |
-| `GetPayTradeHistoryUserDataError` | `Errors/GetPayTradeHistoryUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetPayTradeHistoryUserDataRequest` | `src/Binance/Requests/Pay/GetPayTradeHistoryUserDataRequest.cs` |
+| `SapiV1PayTransactionsResponse` | `src/Binance/Models/SapiV1PayTransactionsResponse.cs` |
+| `GetPayTradeHistoryUserDataError` | `src/Binance/Errors/GetPayTradeHistoryUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 

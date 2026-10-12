@@ -2,7 +2,7 @@
 
 # Mining — operations
 
-Accessor: `client.Mining` · Source: `Api/Mining.cs` · 13 operations
+Accessor: `client.Mining` · Source: `src/Binance/Api/Mining.cs` · 13 operations
 
 **Type sources**: the file declaring each type an operation names (`RawError` excluded — see sdk-map.md).
 
@@ -18,10 +18,10 @@ Accessor: `client.Mining` · Source: `Api/Mining.cs` · 13 operations
 
 | Type | Source |
 | --- | --- |
-| `AccountListUserDataRequest` | `Requests/Mining/AccountListUserDataRequest.cs` |
-| `SapiV1MiningStatisticsUserListResponse` | `Models/SapiV1MiningStatisticsUserListResponse.cs` |
-| `AccountListUserDataError` | `Errors/AccountListUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `AccountListUserDataRequest` | `src/Binance/Requests/Mining/AccountListUserDataRequest.cs` |
+| `SapiV1MiningStatisticsUserListResponse` | `src/Binance/Models/SapiV1MiningStatisticsUserListResponse.cs` |
+| `AccountListUserDataError` | `src/Binance/Errors/AccountListUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### AcquiringAlgorithmMarketData
 
@@ -33,9 +33,9 @@ Accessor: `client.Mining` · Source: `Api/Mining.cs` · 13 operations
 
 | Type | Source |
 | --- | --- |
-| `SapiV1MiningPubAlgoListResponse` | `Models/SapiV1MiningPubAlgoListResponse.cs` |
-| `AcquiringAlgorithmMarketDataError` | `Errors/AcquiringAlgorithmMarketDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `SapiV1MiningPubAlgoListResponse` | `src/Binance/Models/SapiV1MiningPubAlgoListResponse.cs` |
+| `AcquiringAlgorithmMarketDataError` | `src/Binance/Errors/AcquiringAlgorithmMarketDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### AcquiringCoinNameMarketData
 
@@ -47,9 +47,9 @@ Accessor: `client.Mining` · Source: `Api/Mining.cs` · 13 operations
 
 | Type | Source |
 | --- | --- |
-| `SapiV1MiningPubCoinListResponse` | `Models/SapiV1MiningPubCoinListResponse.cs` |
-| `AcquiringCoinNameMarketDataError` | `Errors/AcquiringCoinNameMarketDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `SapiV1MiningPubCoinListResponse` | `src/Binance/Models/SapiV1MiningPubCoinListResponse.cs` |
+| `AcquiringCoinNameMarketDataError` | `src/Binance/Errors/AcquiringCoinNameMarketDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### CancelHashrateResaleConfigurationUserData
 
@@ -63,10 +63,10 @@ Accessor: `client.Mining` · Source: `Api/Mining.cs` · 13 operations
 
 | Type | Source |
 | --- | --- |
-| `CancelHashrateResaleConfigurationUserDataRequest` | `Requests/Mining/CancelHashrateResaleConfigurationUserDataRequest.cs` |
-| `SapiV1MiningHashTransferConfigCancelResponse` | `Models/SapiV1MiningHashTransferConfigCancelResponse.cs` |
-| `CancelHashrateResaleConfigurationUserDataError` | `Errors/CancelHashrateResaleConfigurationUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `CancelHashrateResaleConfigurationUserDataRequest` | `src/Binance/Requests/Mining/CancelHashrateResaleConfigurationUserDataRequest.cs` |
+| `SapiV1MiningHashTransferConfigCancelResponse` | `src/Binance/Models/SapiV1MiningHashTransferConfigCancelResponse.cs` |
+| `CancelHashrateResaleConfigurationUserDataError` | `src/Binance/Errors/CancelHashrateResaleConfigurationUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### EarningsListUserData
 
@@ -80,10 +80,10 @@ Accessor: `client.Mining` · Source: `Api/Mining.cs` · 13 operations
 
 | Type | Source |
 | --- | --- |
-| `EarningsListUserDataRequest` | `Requests/Mining/EarningsListUserDataRequest.cs` |
-| `SapiV1MiningPaymentListResponse` | `Models/SapiV1MiningPaymentListResponse.cs` |
-| `EarningsListUserDataError` | `Errors/EarningsListUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `EarningsListUserDataRequest` | `src/Binance/Requests/Mining/EarningsListUserDataRequest.cs` |
+| `SapiV1MiningPaymentListResponse` | `src/Binance/Models/SapiV1MiningPaymentListResponse.cs` |
+| `EarningsListUserDataError` | `src/Binance/Errors/EarningsListUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### ExtraBonusListUserData
 
@@ -97,10 +97,10 @@ Accessor: `client.Mining` · Source: `Api/Mining.cs` · 13 operations
 
 | Type | Source |
 | --- | --- |
-| `ExtraBonusListUserDataRequest` | `Requests/Mining/ExtraBonusListUserDataRequest.cs` |
-| `SapiV1MiningPaymentOtherResponse` | `Models/SapiV1MiningPaymentOtherResponse.cs` |
-| `ExtraBonusListUserDataError` | `Errors/ExtraBonusListUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `ExtraBonusListUserDataRequest` | `src/Binance/Requests/Mining/ExtraBonusListUserDataRequest.cs` |
+| `SapiV1MiningPaymentOtherResponse` | `src/Binance/Models/SapiV1MiningPaymentOtherResponse.cs` |
+| `ExtraBonusListUserDataError` | `src/Binance/Errors/ExtraBonusListUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### HashrateResaleDetailsUserData
 
@@ -114,10 +114,10 @@ Accessor: `client.Mining` · Source: `Api/Mining.cs` · 13 operations
 
 | Type | Source |
 | --- | --- |
-| `HashrateResaleDetailsUserDataRequest` | `Requests/Mining/HashrateResaleDetailsUserDataRequest.cs` |
-| `SapiV1MiningHashTransferProfitDetailsResponse` | `Models/SapiV1MiningHashTransferProfitDetailsResponse.cs` |
-| `HashrateResaleDetailsUserDataError` | `Errors/HashrateResaleDetailsUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `HashrateResaleDetailsUserDataRequest` | `src/Binance/Requests/Mining/HashrateResaleDetailsUserDataRequest.cs` |
+| `SapiV1MiningHashTransferProfitDetailsResponse` | `src/Binance/Models/SapiV1MiningHashTransferProfitDetailsResponse.cs` |
+| `HashrateResaleDetailsUserDataError` | `src/Binance/Errors/HashrateResaleDetailsUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### HashrateResaleListUserData
 
@@ -131,10 +131,10 @@ Accessor: `client.Mining` · Source: `Api/Mining.cs` · 13 operations
 
 | Type | Source |
 | --- | --- |
-| `HashrateResaleListUserDataRequest` | `Requests/Mining/HashrateResaleListUserDataRequest.cs` |
-| `SapiV1MiningHashTransferConfigDetailsListResponse` | `Models/SapiV1MiningHashTransferConfigDetailsListResponse.cs` |
-| `HashrateResaleListUserDataError` | `Errors/HashrateResaleListUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `HashrateResaleListUserDataRequest` | `src/Binance/Requests/Mining/HashrateResaleListUserDataRequest.cs` |
+| `SapiV1MiningHashTransferConfigDetailsListResponse` | `src/Binance/Models/SapiV1MiningHashTransferConfigDetailsListResponse.cs` |
+| `HashrateResaleListUserDataError` | `src/Binance/Errors/HashrateResaleListUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### HashrateResaleRequestUserData
 
@@ -148,10 +148,10 @@ Accessor: `client.Mining` · Source: `Api/Mining.cs` · 13 operations
 
 | Type | Source |
 | --- | --- |
-| `HashrateResaleRequestUserDataRequest` | `Requests/Mining/HashrateResaleRequestUserDataRequest.cs` |
-| `SapiV1MiningHashTransferConfigResponse` | `Models/SapiV1MiningHashTransferConfigResponse.cs` |
-| `HashrateResaleRequestUserDataError` | `Errors/HashrateResaleRequestUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `HashrateResaleRequestUserDataRequest` | `src/Binance/Requests/Mining/HashrateResaleRequestUserDataRequest.cs` |
+| `SapiV1MiningHashTransferConfigResponse` | `src/Binance/Models/SapiV1MiningHashTransferConfigResponse.cs` |
+| `HashrateResaleRequestUserDataError` | `src/Binance/Errors/HashrateResaleRequestUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### MiningAccountEarningUserData
 
@@ -165,10 +165,10 @@ Accessor: `client.Mining` · Source: `Api/Mining.cs` · 13 operations
 
 | Type | Source |
 | --- | --- |
-| `MiningAccountEarningUserDataRequest` | `Requests/Mining/MiningAccountEarningUserDataRequest.cs` |
-| `SapiV1MiningPaymentUidResponse` | `Models/SapiV1MiningPaymentUidResponse.cs` |
-| `MiningAccountEarningUserDataError` | `Errors/MiningAccountEarningUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `MiningAccountEarningUserDataRequest` | `src/Binance/Requests/Mining/MiningAccountEarningUserDataRequest.cs` |
+| `SapiV1MiningPaymentUidResponse` | `src/Binance/Models/SapiV1MiningPaymentUidResponse.cs` |
+| `MiningAccountEarningUserDataError` | `src/Binance/Errors/MiningAccountEarningUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### RequestForDetailMinerListUserData
 
@@ -182,10 +182,10 @@ Accessor: `client.Mining` · Source: `Api/Mining.cs` · 13 operations
 
 | Type | Source |
 | --- | --- |
-| `RequestForDetailMinerListUserDataRequest` | `Requests/Mining/RequestForDetailMinerListUserDataRequest.cs` |
-| `SapiV1MiningWorkerDetailResponse` | `Models/SapiV1MiningWorkerDetailResponse.cs` |
-| `RequestForDetailMinerListUserDataError` | `Errors/RequestForDetailMinerListUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `RequestForDetailMinerListUserDataRequest` | `src/Binance/Requests/Mining/RequestForDetailMinerListUserDataRequest.cs` |
+| `SapiV1MiningWorkerDetailResponse` | `src/Binance/Models/SapiV1MiningWorkerDetailResponse.cs` |
+| `RequestForDetailMinerListUserDataError` | `src/Binance/Errors/RequestForDetailMinerListUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### RequestForMinerListUserData
 
@@ -199,10 +199,10 @@ Accessor: `client.Mining` · Source: `Api/Mining.cs` · 13 operations
 
 | Type | Source |
 | --- | --- |
-| `RequestForMinerListUserDataRequest` | `Requests/Mining/RequestForMinerListUserDataRequest.cs` |
-| `SapiV1MiningWorkerListResponse` | `Models/SapiV1MiningWorkerListResponse.cs` |
-| `RequestForMinerListUserDataError` | `Errors/RequestForMinerListUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `RequestForMinerListUserDataRequest` | `src/Binance/Requests/Mining/RequestForMinerListUserDataRequest.cs` |
+| `SapiV1MiningWorkerListResponse` | `src/Binance/Models/SapiV1MiningWorkerListResponse.cs` |
+| `RequestForMinerListUserDataError` | `src/Binance/Errors/RequestForMinerListUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### StatisticListUserData
 
@@ -216,8 +216,8 @@ Accessor: `client.Mining` · Source: `Api/Mining.cs` · 13 operations
 
 | Type | Source |
 | --- | --- |
-| `StatisticListUserDataRequest` | `Requests/Mining/StatisticListUserDataRequest.cs` |
-| `SapiV1MiningStatisticsUserStatusResponse` | `Models/SapiV1MiningStatisticsUserStatusResponse.cs` |
-| `StatisticListUserDataError` | `Errors/StatisticListUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `StatisticListUserDataRequest` | `src/Binance/Requests/Mining/StatisticListUserDataRequest.cs` |
+| `SapiV1MiningStatisticsUserStatusResponse` | `src/Binance/Models/SapiV1MiningStatisticsUserStatusResponse.cs` |
+| `StatisticListUserDataError` | `src/Binance/Errors/StatisticListUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 

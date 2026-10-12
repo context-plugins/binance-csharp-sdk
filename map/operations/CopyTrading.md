@@ -2,7 +2,7 @@
 
 # CopyTrading — operations
 
-Accessor: `client.CopyTrading` · Source: `Api/CopyTrading.cs` · 2 operations
+Accessor: `client.CopyTrading` · Source: `src/Binance/Api/CopyTrading.cs` · 2 operations
 
 **Type sources**: the file declaring each type an operation names (`RawError` excluded — see sdk-map.md).
 
@@ -18,10 +18,10 @@ Accessor: `client.CopyTrading` · Source: `Api/CopyTrading.cs` · 2 operations
 
 | Type | Source |
 | --- | --- |
-| `GetFuturesLeadTraderStatusTradeRequest` | `Requests/CopyTrading/GetFuturesLeadTraderStatusTradeRequest.cs` |
-| `SapiV1CopyTradingFuturesUserStatusResponse` | `Models/SapiV1CopyTradingFuturesUserStatusResponse.cs` |
-| `GetFuturesLeadTraderStatusTradeError` | `Errors/GetFuturesLeadTraderStatusTradeError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetFuturesLeadTraderStatusTradeRequest` | `src/Binance/Requests/CopyTrading/GetFuturesLeadTraderStatusTradeRequest.cs` |
+| `SapiV1CopyTradingFuturesUserStatusResponse` | `src/Binance/Models/SapiV1CopyTradingFuturesUserStatusResponse.cs` |
+| `GetFuturesLeadTraderStatusTradeError` | `src/Binance/Errors/GetFuturesLeadTraderStatusTradeError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetFuturesLeadTradingSymbolWhitelistUserData
 
@@ -35,8 +35,8 @@ Accessor: `client.CopyTrading` · Source: `Api/CopyTrading.cs` · 2 operations
 
 | Type | Source |
 | --- | --- |
-| `GetFuturesLeadTradingSymbolWhitelistUserDataRequest` | `Requests/CopyTrading/GetFuturesLeadTradingSymbolWhitelistUserDataRequest.cs` |
-| `SapiV1CopyTradingFuturesLeadSymbolResponse` | `Models/SapiV1CopyTradingFuturesLeadSymbolResponse.cs` |
-| `GetFuturesLeadTradingSymbolWhitelistUserDataError` | `Errors/GetFuturesLeadTradingSymbolWhitelistUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetFuturesLeadTradingSymbolWhitelistUserDataRequest` | `src/Binance/Requests/CopyTrading/GetFuturesLeadTradingSymbolWhitelistUserDataRequest.cs` |
+| `SapiV1CopyTradingFuturesLeadSymbolResponse` | `src/Binance/Models/SapiV1CopyTradingFuturesLeadSymbolResponse.cs` |
+| `GetFuturesLeadTradingSymbolWhitelistUserDataError` | `src/Binance/Errors/GetFuturesLeadTradingSymbolWhitelistUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 

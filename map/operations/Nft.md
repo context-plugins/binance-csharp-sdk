@@ -2,7 +2,7 @@
 
 # Nft — operations
 
-Accessor: `client.Nft` · Source: `Api/Nft.cs` · 4 operations
+Accessor: `client.Nft` · Source: `src/Binance/Api/Nft.cs` · 4 operations
 
 **Type sources**: the file declaring each type an operation names (`RawError` excluded — see sdk-map.md).
 
@@ -18,10 +18,10 @@ Accessor: `client.Nft` · Source: `Api/Nft.cs` · 4 operations
 
 | Type | Source |
 | --- | --- |
-| `GetNftAssetUserDataRequest` | `Requests/Nft/GetNftAssetUserDataRequest.cs` |
-| `SapiV1NftUserGetAssetResponse` | `Models/SapiV1NftUserGetAssetResponse.cs` |
-| `GetNftAssetUserDataError` | `Errors/GetNftAssetUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetNftAssetUserDataRequest` | `src/Binance/Requests/Nft/GetNftAssetUserDataRequest.cs` |
+| `SapiV1NftUserGetAssetResponse` | `src/Binance/Models/SapiV1NftUserGetAssetResponse.cs` |
+| `GetNftAssetUserDataError` | `src/Binance/Errors/GetNftAssetUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetNftDepositHistoryUserData
 
@@ -35,10 +35,10 @@ Accessor: `client.Nft` · Source: `Api/Nft.cs` · 4 operations
 
 | Type | Source |
 | --- | --- |
-| `GetNftDepositHistoryUserDataRequest` | `Requests/Nft/GetNftDepositHistoryUserDataRequest.cs` |
-| `SapiV1NftHistoryDepositResponse` | `Models/SapiV1NftHistoryDepositResponse.cs` |
-| `GetNftDepositHistoryUserDataError` | `Errors/GetNftDepositHistoryUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetNftDepositHistoryUserDataRequest` | `src/Binance/Requests/Nft/GetNftDepositHistoryUserDataRequest.cs` |
+| `SapiV1NftHistoryDepositResponse` | `src/Binance/Models/SapiV1NftHistoryDepositResponse.cs` |
+| `GetNftDepositHistoryUserDataError` | `src/Binance/Errors/GetNftDepositHistoryUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetNftTransactionHistoryUserData
 
@@ -52,10 +52,10 @@ Accessor: `client.Nft` · Source: `Api/Nft.cs` · 4 operations
 
 | Type | Source |
 | --- | --- |
-| `GetNftTransactionHistoryUserDataRequest` | `Requests/Nft/GetNftTransactionHistoryUserDataRequest.cs` |
-| `SapiV1NftHistoryTransactionsResponse` | `Models/SapiV1NftHistoryTransactionsResponse.cs` |
-| `GetNftTransactionHistoryUserDataError` | `Errors/GetNftTransactionHistoryUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetNftTransactionHistoryUserDataRequest` | `src/Binance/Requests/Nft/GetNftTransactionHistoryUserDataRequest.cs` |
+| `SapiV1NftHistoryTransactionsResponse` | `src/Binance/Models/SapiV1NftHistoryTransactionsResponse.cs` |
+| `GetNftTransactionHistoryUserDataError` | `src/Binance/Errors/GetNftTransactionHistoryUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetNftWithdrawHistoryUserData
 
@@ -69,8 +69,8 @@ Accessor: `client.Nft` · Source: `Api/Nft.cs` · 4 operations
 
 | Type | Source |
 | --- | --- |
-| `GetNftWithdrawHistoryUserDataRequest` | `Requests/Nft/GetNftWithdrawHistoryUserDataRequest.cs` |
-| `SapiV1NftHistoryWithdrawResponse` | `Models/SapiV1NftHistoryWithdrawResponse.cs` |
-| `GetNftWithdrawHistoryUserDataError` | `Errors/GetNftWithdrawHistoryUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetNftWithdrawHistoryUserDataRequest` | `src/Binance/Requests/Nft/GetNftWithdrawHistoryUserDataRequest.cs` |
+| `SapiV1NftHistoryWithdrawResponse` | `src/Binance/Models/SapiV1NftHistoryWithdrawResponse.cs` |
+| `GetNftWithdrawHistoryUserDataError` | `src/Binance/Errors/GetNftWithdrawHistoryUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 

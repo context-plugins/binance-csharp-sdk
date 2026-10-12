@@ -2,7 +2,7 @@
 
 # TradeApi — operations
 
-Accessor: `client.TradeApi` · Source: `Api/TradeApi.cs` · 23 operations
+Accessor: `client.TradeApi` · Source: `src/Binance/Api/TradeApi.cs` · 23 operations
 
 **Type sources**: the file declaring each type an operation names (`RawError` excluded — see sdk-map.md).
 
@@ -18,10 +18,10 @@ Accessor: `client.TradeApi` · Source: `Api/TradeApi.cs` · 23 operations
 
 | Type | Source |
 | --- | --- |
-| `AccountInformationUserDataRequest` | `Requests/TradeApi/AccountInformationUserDataRequest.cs` |
-| `Account` | `Models/Account.cs` |
-| `AccountInformationUserDataError` | `Errors/AccountInformationUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `AccountInformationUserDataRequest` | `src/Binance/Requests/TradeApi/AccountInformationUserDataRequest.cs` |
+| `Account` | `src/Binance/Models/Account.cs` |
+| `AccountInformationUserDataError` | `src/Binance/Errors/AccountInformationUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### AccountTradeListUserData
 
@@ -35,10 +35,10 @@ Accessor: `client.TradeApi` · Source: `Api/TradeApi.cs` · 23 operations
 
 | Type | Source |
 | --- | --- |
-| `AccountTradeListUserDataRequest` | `Requests/TradeApi/AccountTradeListUserDataRequest.cs` |
-| `MyTrade` | `Models/MyTrade.cs` |
-| `AccountTradeListUserDataError` | `Errors/AccountTradeListUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `AccountTradeListUserDataRequest` | `src/Binance/Requests/TradeApi/AccountTradeListUserDataRequest.cs` |
+| `MyTrade` | `src/Binance/Models/MyTrade.cs` |
+| `AccountTradeListUserDataError` | `src/Binance/Errors/AccountTradeListUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### AllOrdersUserData
 
@@ -52,10 +52,10 @@ Accessor: `client.TradeApi` · Source: `Api/TradeApi.cs` · 23 operations
 
 | Type | Source |
 | --- | --- |
-| `AllOrdersUserDataRequest` | `Requests/TradeApi/AllOrdersUserDataRequest.cs` |
-| `OrderDetails` | `Models/OrderDetails.cs` |
-| `AllOrdersUserDataError` | `Errors/AllOrdersUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `AllOrdersUserDataRequest` | `src/Binance/Requests/TradeApi/AllOrdersUserDataRequest.cs` |
+| `OrderDetails` | `src/Binance/Models/OrderDetails.cs` |
+| `AllOrdersUserDataError` | `src/Binance/Errors/AllOrdersUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### CancelAllOpenOrdersOnASymbolTrade
 
@@ -69,10 +69,10 @@ Accessor: `client.TradeApi` · Source: `Api/TradeApi.cs` · 23 operations
 
 | Type | Source |
 | --- | --- |
-| `CancelAllOpenOrdersOnASymbolTradeRequest` | `Requests/TradeApi/CancelAllOpenOrdersOnASymbolTradeRequest.cs` |
-| `ApiV3OpenOrdersResponse` | `Models/AnyOf/ApiV3OpenOrdersResponse.cs` |
-| `CancelAllOpenOrdersOnASymbolTradeError` | `Errors/CancelAllOpenOrdersOnASymbolTradeError.cs` |
-| `Error` | `Models/Error.cs` |
+| `CancelAllOpenOrdersOnASymbolTradeRequest` | `src/Binance/Requests/TradeApi/CancelAllOpenOrdersOnASymbolTradeRequest.cs` |
+| `ApiV3OpenOrdersResponse` | `src/Binance/Models/AnyOf/ApiV3OpenOrdersResponse.cs` |
+| `CancelAllOpenOrdersOnASymbolTradeError` | `src/Binance/Errors/CancelAllOpenOrdersOnASymbolTradeError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### CancelAnExistingOrderAndSendANewOrderTrade
 
@@ -86,16 +86,16 @@ Accessor: `client.TradeApi` · Source: `Api/TradeApi.cs` · 23 operations
 
 | Type | Source |
 | --- | --- |
-| `CancelAnExistingOrderAndSendANewOrderTradeRequest` | `Requests/TradeApi/CancelAnExistingOrderAndSendANewOrderTradeRequest.cs` |
-| `Side` | `Models/Enums/Side.cs` |
-| `Type1` | `Models/Enums/Type1.cs` |
-| `CancelRestrictions` | `Models/Enums/CancelRestrictions.cs` |
-| `TimeInForce` | `Models/Enums/TimeInForce.cs` |
-| `NewOrderRespType` | `Models/Enums/NewOrderRespType.cs` |
-| `SelfTradePreventionMode` | `Models/Enums/SelfTradePreventionMode.cs` |
-| `ApiV3OrderCancelReplaceResponse` | `Models/ApiV3OrderCancelReplaceResponse.cs` |
-| `CancelAnExistingOrderAndSendANewOrderTradeError` | `Errors/CancelAnExistingOrderAndSendANewOrderTradeError.cs` |
-| `Error` | `Models/Error.cs` |
+| `CancelAnExistingOrderAndSendANewOrderTradeRequest` | `src/Binance/Requests/TradeApi/CancelAnExistingOrderAndSendANewOrderTradeRequest.cs` |
+| `Side` | `src/Binance/Models/Enums/Side.cs` |
+| `Type1` | `src/Binance/Models/Enums/Type1.cs` |
+| `CancelRestrictions` | `src/Binance/Models/Enums/CancelRestrictions.cs` |
+| `TimeInForce` | `src/Binance/Models/Enums/TimeInForce.cs` |
+| `NewOrderRespType` | `src/Binance/Models/Enums/NewOrderRespType.cs` |
+| `SelfTradePreventionMode` | `src/Binance/Models/Enums/SelfTradePreventionMode.cs` |
+| `ApiV3OrderCancelReplaceResponse` | `src/Binance/Models/ApiV3OrderCancelReplaceResponse.cs` |
+| `CancelAnExistingOrderAndSendANewOrderTradeError` | `src/Binance/Errors/CancelAnExistingOrderAndSendANewOrderTradeError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### CancelOcoTrade
 
@@ -109,10 +109,10 @@ Accessor: `client.TradeApi` · Source: `Api/TradeApi.cs` · 23 operations
 
 | Type | Source |
 | --- | --- |
-| `CancelOcoTradeRequest` | `Requests/TradeApi/CancelOcoTradeRequest.cs` |
-| `OcoOrder` | `Models/OcoOrder.cs` |
-| `CancelOcoTradeError` | `Errors/CancelOcoTradeError.cs` |
-| `Error` | `Models/Error.cs` |
+| `CancelOcoTradeRequest` | `src/Binance/Requests/TradeApi/CancelOcoTradeRequest.cs` |
+| `OcoOrder` | `src/Binance/Models/OcoOrder.cs` |
+| `CancelOcoTradeError` | `src/Binance/Errors/CancelOcoTradeError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### CancelOrderTrade
 
@@ -126,11 +126,11 @@ Accessor: `client.TradeApi` · Source: `Api/TradeApi.cs` · 23 operations
 
 | Type | Source |
 | --- | --- |
-| `CancelOrderTradeRequest` | `Requests/TradeApi/CancelOrderTradeRequest.cs` |
-| `CancelRestrictions` | `Models/Enums/CancelRestrictions.cs` |
-| `Order` | `Models/Order.cs` |
-| `CancelOrderTradeError` | `Errors/CancelOrderTradeError.cs` |
-| `Error` | `Models/Error.cs` |
+| `CancelOrderTradeRequest` | `src/Binance/Requests/TradeApi/CancelOrderTradeRequest.cs` |
+| `CancelRestrictions` | `src/Binance/Models/Enums/CancelRestrictions.cs` |
+| `Order` | `src/Binance/Models/Order.cs` |
+| `CancelOrderTradeError` | `src/Binance/Errors/CancelOrderTradeError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### CurrentOpenOrdersUserData
 
@@ -144,10 +144,10 @@ Accessor: `client.TradeApi` · Source: `Api/TradeApi.cs` · 23 operations
 
 | Type | Source |
 | --- | --- |
-| `CurrentOpenOrdersUserDataRequest` | `Requests/TradeApi/CurrentOpenOrdersUserDataRequest.cs` |
-| `OrderDetails` | `Models/OrderDetails.cs` |
-| `CurrentOpenOrdersUserDataError` | `Errors/CurrentOpenOrdersUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `CurrentOpenOrdersUserDataRequest` | `src/Binance/Requests/TradeApi/CurrentOpenOrdersUserDataRequest.cs` |
+| `OrderDetails` | `src/Binance/Models/OrderDetails.cs` |
+| `CurrentOpenOrdersUserDataError` | `src/Binance/Errors/CurrentOpenOrdersUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### NewOrderListOcoTrade
 
@@ -161,15 +161,15 @@ Accessor: `client.TradeApi` · Source: `Api/TradeApi.cs` · 23 operations
 
 | Type | Source |
 | --- | --- |
-| `NewOrderListOcoTradeRequest` | `Requests/TradeApi/NewOrderListOcoTradeRequest.cs` |
-| `Side` | `Models/Enums/Side.cs` |
-| `AboveTimeInForce` | `Models/Enums/AboveTimeInForce.cs` |
-| `BelowTimeInForce` | `Models/Enums/BelowTimeInForce.cs` |
-| `NewOrderRespType` | `Models/Enums/NewOrderRespType.cs` |
-| `SelfTradePreventionMode` | `Models/Enums/SelfTradePreventionMode.cs` |
-| `ApiV3OrderListOcoResponse` | `Models/ApiV3OrderListOcoResponse.cs` |
-| `NewOrderListOcoTradeError` | `Errors/NewOrderListOcoTradeError.cs` |
-| `Error` | `Models/Error.cs` |
+| `NewOrderListOcoTradeRequest` | `src/Binance/Requests/TradeApi/NewOrderListOcoTradeRequest.cs` |
+| `Side` | `src/Binance/Models/Enums/Side.cs` |
+| `AboveTimeInForce` | `src/Binance/Models/Enums/AboveTimeInForce.cs` |
+| `BelowTimeInForce` | `src/Binance/Models/Enums/BelowTimeInForce.cs` |
+| `NewOrderRespType` | `src/Binance/Models/Enums/NewOrderRespType.cs` |
+| `SelfTradePreventionMode` | `src/Binance/Models/Enums/SelfTradePreventionMode.cs` |
+| `ApiV3OrderListOcoResponse` | `src/Binance/Models/ApiV3OrderListOcoResponse.cs` |
+| `NewOrderListOcoTradeError` | `src/Binance/Errors/NewOrderListOcoTradeError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### NewOrderListOtoTrade
 
@@ -183,18 +183,18 @@ Accessor: `client.TradeApi` · Source: `Api/TradeApi.cs` · 23 operations
 
 | Type | Source |
 | --- | --- |
-| `NewOrderListOtoTradeRequest` | `Requests/TradeApi/NewOrderListOtoTradeRequest.cs` |
-| `WorkingType` | `Models/Enums/WorkingType.cs` |
-| `WorkingSide` | `Models/Enums/WorkingSide.cs` |
-| `PendingType` | `Models/Enums/PendingType.cs` |
-| `PendingSide` | `Models/Enums/PendingSide.cs` |
-| `NewOrderRespType` | `Models/Enums/NewOrderRespType.cs` |
-| `SelfTradePreventionMode` | `Models/Enums/SelfTradePreventionMode.cs` |
-| `WorkingTimeInForce` | `Models/Enums/WorkingTimeInForce.cs` |
-| `PendingTimeInForce` | `Models/Enums/PendingTimeInForce.cs` |
-| `ApiV3OrderListOtoResponse` | `Models/ApiV3OrderListOtoResponse.cs` |
-| `NewOrderListOtoTradeError` | `Errors/NewOrderListOtoTradeError.cs` |
-| `Error` | `Models/Error.cs` |
+| `NewOrderListOtoTradeRequest` | `src/Binance/Requests/TradeApi/NewOrderListOtoTradeRequest.cs` |
+| `WorkingType` | `src/Binance/Models/Enums/WorkingType.cs` |
+| `WorkingSide` | `src/Binance/Models/Enums/WorkingSide.cs` |
+| `PendingType` | `src/Binance/Models/Enums/PendingType.cs` |
+| `PendingSide` | `src/Binance/Models/Enums/PendingSide.cs` |
+| `NewOrderRespType` | `src/Binance/Models/Enums/NewOrderRespType.cs` |
+| `SelfTradePreventionMode` | `src/Binance/Models/Enums/SelfTradePreventionMode.cs` |
+| `WorkingTimeInForce` | `src/Binance/Models/Enums/WorkingTimeInForce.cs` |
+| `PendingTimeInForce` | `src/Binance/Models/Enums/PendingTimeInForce.cs` |
+| `ApiV3OrderListOtoResponse` | `src/Binance/Models/ApiV3OrderListOtoResponse.cs` |
+| `NewOrderListOtoTradeError` | `src/Binance/Errors/NewOrderListOtoTradeError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### NewOrderListOtocoTrade
 
@@ -208,20 +208,20 @@ Accessor: `client.TradeApi` · Source: `Api/TradeApi.cs` · 23 operations
 
 | Type | Source |
 | --- | --- |
-| `NewOrderListOtocoTradeRequest` | `Requests/TradeApi/NewOrderListOtocoTradeRequest.cs` |
-| `WorkingType` | `Models/Enums/WorkingType.cs` |
-| `WorkingSide` | `Models/Enums/WorkingSide.cs` |
-| `PendingSide` | `Models/Enums/PendingSide.cs` |
-| `PendingAboveType` | `Models/Enums/PendingAboveType.cs` |
-| `NewOrderRespType` | `Models/Enums/NewOrderRespType.cs` |
-| `SelfTradePreventionMode` | `Models/Enums/SelfTradePreventionMode.cs` |
-| `WorkingTimeInForce` | `Models/Enums/WorkingTimeInForce.cs` |
-| `PendingAboveTimeInForce` | `Models/Enums/PendingAboveTimeInForce.cs` |
-| `PendingBelowType` | `Models/Enums/PendingBelowType.cs` |
-| `PendingBelowTimeInForce` | `Models/Enums/PendingBelowTimeInForce.cs` |
-| `ApiV3OrderListOtocoResponse` | `Models/ApiV3OrderListOtocoResponse.cs` |
-| `NewOrderListOtocoTradeError` | `Errors/NewOrderListOtocoTradeError.cs` |
-| `Error` | `Models/Error.cs` |
+| `NewOrderListOtocoTradeRequest` | `src/Binance/Requests/TradeApi/NewOrderListOtocoTradeRequest.cs` |
+| `WorkingType` | `src/Binance/Models/Enums/WorkingType.cs` |
+| `WorkingSide` | `src/Binance/Models/Enums/WorkingSide.cs` |
+| `PendingSide` | `src/Binance/Models/Enums/PendingSide.cs` |
+| `PendingAboveType` | `src/Binance/Models/Enums/PendingAboveType.cs` |
+| `NewOrderRespType` | `src/Binance/Models/Enums/NewOrderRespType.cs` |
+| `SelfTradePreventionMode` | `src/Binance/Models/Enums/SelfTradePreventionMode.cs` |
+| `WorkingTimeInForce` | `src/Binance/Models/Enums/WorkingTimeInForce.cs` |
+| `PendingAboveTimeInForce` | `src/Binance/Models/Enums/PendingAboveTimeInForce.cs` |
+| `PendingBelowType` | `src/Binance/Models/Enums/PendingBelowType.cs` |
+| `PendingBelowTimeInForce` | `src/Binance/Models/Enums/PendingBelowTimeInForce.cs` |
+| `ApiV3OrderListOtocoResponse` | `src/Binance/Models/ApiV3OrderListOtocoResponse.cs` |
+| `NewOrderListOtocoTradeError` | `src/Binance/Errors/NewOrderListOtocoTradeError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### NewOrderTrade
 
@@ -235,15 +235,15 @@ Accessor: `client.TradeApi` · Source: `Api/TradeApi.cs` · 23 operations
 
 | Type | Source |
 | --- | --- |
-| `NewOrderTradeRequest` | `Requests/TradeApi/NewOrderTradeRequest.cs` |
-| `Side` | `Models/Enums/Side.cs` |
-| `Type1` | `Models/Enums/Type1.cs` |
-| `TimeInForce` | `Models/Enums/TimeInForce.cs` |
-| `NewOrderRespType` | `Models/Enums/NewOrderRespType.cs` |
-| `SelfTradePreventionMode` | `Models/Enums/SelfTradePreventionMode.cs` |
-| `ApiV3OrderResponse` | `Models/AnyOf/ApiV3OrderResponse.cs` |
-| `NewOrderTradeError` | `Errors/NewOrderTradeError.cs` |
-| `Error` | `Models/Error.cs` |
+| `NewOrderTradeRequest` | `src/Binance/Requests/TradeApi/NewOrderTradeRequest.cs` |
+| `Side` | `src/Binance/Models/Enums/Side.cs` |
+| `Type1` | `src/Binance/Models/Enums/Type1.cs` |
+| `TimeInForce` | `src/Binance/Models/Enums/TimeInForce.cs` |
+| `NewOrderRespType` | `src/Binance/Models/Enums/NewOrderRespType.cs` |
+| `SelfTradePreventionMode` | `src/Binance/Models/Enums/SelfTradePreventionMode.cs` |
+| `ApiV3OrderResponse` | `src/Binance/Models/AnyOf/ApiV3OrderResponse.cs` |
+| `NewOrderTradeError` | `src/Binance/Errors/NewOrderTradeError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### NewOrderUsingSorTrade
 
@@ -257,15 +257,15 @@ Accessor: `client.TradeApi` · Source: `Api/TradeApi.cs` · 23 operations
 
 | Type | Source |
 | --- | --- |
-| `NewOrderUsingSorTradeRequest` | `Requests/TradeApi/NewOrderUsingSorTradeRequest.cs` |
-| `Side` | `Models/Enums/Side.cs` |
-| `Type1` | `Models/Enums/Type1.cs` |
-| `TimeInForce` | `Models/Enums/TimeInForce.cs` |
-| `NewOrderRespType` | `Models/Enums/NewOrderRespType.cs` |
-| `SelfTradePreventionMode` | `Models/Enums/SelfTradePreventionMode.cs` |
-| `ApiV3SorOrderResponse` | `Models/ApiV3SorOrderResponse.cs` |
-| `NewOrderUsingSorTradeError` | `Errors/NewOrderUsingSorTradeError.cs` |
-| `Error` | `Models/Error.cs` |
+| `NewOrderUsingSorTradeRequest` | `src/Binance/Requests/TradeApi/NewOrderUsingSorTradeRequest.cs` |
+| `Side` | `src/Binance/Models/Enums/Side.cs` |
+| `Type1` | `src/Binance/Models/Enums/Type1.cs` |
+| `TimeInForce` | `src/Binance/Models/Enums/TimeInForce.cs` |
+| `NewOrderRespType` | `src/Binance/Models/Enums/NewOrderRespType.cs` |
+| `SelfTradePreventionMode` | `src/Binance/Models/Enums/SelfTradePreventionMode.cs` |
+| `ApiV3SorOrderResponse` | `src/Binance/Models/ApiV3SorOrderResponse.cs` |
+| `NewOrderUsingSorTradeError` | `src/Binance/Errors/NewOrderUsingSorTradeError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryAllOcoUserData
 
@@ -279,10 +279,10 @@ Accessor: `client.TradeApi` · Source: `Api/TradeApi.cs` · 23 operations
 
 | Type | Source |
 | --- | --- |
-| `QueryAllOcoUserDataRequest` | `Requests/TradeApi/QueryAllOcoUserDataRequest.cs` |
-| `ApiV3AllOrderListResponse` | `Models/ApiV3AllOrderListResponse.cs` |
-| `QueryAllOcoUserDataError` | `Errors/QueryAllOcoUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryAllOcoUserDataRequest` | `src/Binance/Requests/TradeApi/QueryAllOcoUserDataRequest.cs` |
+| `ApiV3AllOrderListResponse` | `src/Binance/Models/ApiV3AllOrderListResponse.cs` |
+| `QueryAllOcoUserDataError` | `src/Binance/Errors/QueryAllOcoUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryAllocationsUserData
 
@@ -296,10 +296,10 @@ Accessor: `client.TradeApi` · Source: `Api/TradeApi.cs` · 23 operations
 
 | Type | Source |
 | --- | --- |
-| `QueryAllocationsUserDataRequest` | `Requests/TradeApi/QueryAllocationsUserDataRequest.cs` |
-| `ApiV3MyAllocationsResponse` | `Models/ApiV3MyAllocationsResponse.cs` |
-| `QueryAllocationsUserDataError` | `Errors/QueryAllocationsUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryAllocationsUserDataRequest` | `src/Binance/Requests/TradeApi/QueryAllocationsUserDataRequest.cs` |
+| `ApiV3MyAllocationsResponse` | `src/Binance/Models/ApiV3MyAllocationsResponse.cs` |
+| `QueryAllocationsUserDataError` | `src/Binance/Errors/QueryAllocationsUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryCommissionRatesUserData
 
@@ -313,10 +313,10 @@ Accessor: `client.TradeApi` · Source: `Api/TradeApi.cs` · 23 operations
 
 | Type | Source |
 | --- | --- |
-| `QueryCommissionRatesUserDataRequest` | `Requests/TradeApi/QueryCommissionRatesUserDataRequest.cs` |
-| `ApiV3AccountCommissionResponse` | `Models/ApiV3AccountCommissionResponse.cs` |
-| `QueryCommissionRatesUserDataError` | `Errors/QueryCommissionRatesUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryCommissionRatesUserDataRequest` | `src/Binance/Requests/TradeApi/QueryCommissionRatesUserDataRequest.cs` |
+| `ApiV3AccountCommissionResponse` | `src/Binance/Models/ApiV3AccountCommissionResponse.cs` |
+| `QueryCommissionRatesUserDataError` | `src/Binance/Errors/QueryCommissionRatesUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryCurrentOrderCountUsageTrade
 
@@ -330,10 +330,10 @@ Accessor: `client.TradeApi` · Source: `Api/TradeApi.cs` · 23 operations
 
 | Type | Source |
 | --- | --- |
-| `QueryCurrentOrderCountUsageTradeRequest` | `Requests/TradeApi/QueryCurrentOrderCountUsageTradeRequest.cs` |
-| `ApiV3RateLimitOrderResponse` | `Models/ApiV3RateLimitOrderResponse.cs` |
-| `QueryCurrentOrderCountUsageTradeError` | `Errors/QueryCurrentOrderCountUsageTradeError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryCurrentOrderCountUsageTradeRequest` | `src/Binance/Requests/TradeApi/QueryCurrentOrderCountUsageTradeRequest.cs` |
+| `ApiV3RateLimitOrderResponse` | `src/Binance/Models/ApiV3RateLimitOrderResponse.cs` |
+| `QueryCurrentOrderCountUsageTradeError` | `src/Binance/Errors/QueryCurrentOrderCountUsageTradeError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryOcoUserData
 
@@ -347,10 +347,10 @@ Accessor: `client.TradeApi` · Source: `Api/TradeApi.cs` · 23 operations
 
 | Type | Source |
 | --- | --- |
-| `QueryOcoUserDataRequest` | `Requests/TradeApi/QueryOcoUserDataRequest.cs` |
-| `ApiV3OrderListResponse` | `Models/ApiV3OrderListResponse.cs` |
-| `QueryOcoUserDataError` | `Errors/QueryOcoUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryOcoUserDataRequest` | `src/Binance/Requests/TradeApi/QueryOcoUserDataRequest.cs` |
+| `ApiV3OrderListResponse` | `src/Binance/Models/ApiV3OrderListResponse.cs` |
+| `QueryOcoUserDataError` | `src/Binance/Errors/QueryOcoUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryOpenOcoUserData
 
@@ -364,10 +364,10 @@ Accessor: `client.TradeApi` · Source: `Api/TradeApi.cs` · 23 operations
 
 | Type | Source |
 | --- | --- |
-| `QueryOpenOcoUserDataRequest` | `Requests/TradeApi/QueryOpenOcoUserDataRequest.cs` |
-| `ApiV3OpenOrderListResponse` | `Models/ApiV3OpenOrderListResponse.cs` |
-| `QueryOpenOcoUserDataError` | `Errors/QueryOpenOcoUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryOpenOcoUserDataRequest` | `src/Binance/Requests/TradeApi/QueryOpenOcoUserDataRequest.cs` |
+| `ApiV3OpenOrderListResponse` | `src/Binance/Models/ApiV3OpenOrderListResponse.cs` |
+| `QueryOpenOcoUserDataError` | `src/Binance/Errors/QueryOpenOcoUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryOrderUserData
 
@@ -381,10 +381,10 @@ Accessor: `client.TradeApi` · Source: `Api/TradeApi.cs` · 23 operations
 
 | Type | Source |
 | --- | --- |
-| `QueryOrderUserDataRequest` | `Requests/TradeApi/QueryOrderUserDataRequest.cs` |
-| `OrderDetails` | `Models/OrderDetails.cs` |
-| `QueryOrderUserDataError` | `Errors/QueryOrderUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryOrderUserDataRequest` | `src/Binance/Requests/TradeApi/QueryOrderUserDataRequest.cs` |
+| `OrderDetails` | `src/Binance/Models/OrderDetails.cs` |
+| `QueryOrderUserDataError` | `src/Binance/Errors/QueryOrderUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryPreventedMatches
 
@@ -398,10 +398,10 @@ Accessor: `client.TradeApi` · Source: `Api/TradeApi.cs` · 23 operations
 
 | Type | Source |
 | --- | --- |
-| `QueryPreventedMatchesRequest` | `Requests/TradeApi/QueryPreventedMatchesRequest.cs` |
-| `ApiV3MyPreventedMatchesResponse` | `Models/ApiV3MyPreventedMatchesResponse.cs` |
-| `QueryPreventedMatchesError` | `Errors/QueryPreventedMatchesError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryPreventedMatchesRequest` | `src/Binance/Requests/TradeApi/QueryPreventedMatchesRequest.cs` |
+| `ApiV3MyPreventedMatchesResponse` | `src/Binance/Models/ApiV3MyPreventedMatchesResponse.cs` |
+| `QueryPreventedMatchesError` | `src/Binance/Errors/QueryPreventedMatchesError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### TestNewOrderTrade
 
@@ -415,13 +415,13 @@ Accessor: `client.TradeApi` · Source: `Api/TradeApi.cs` · 23 operations
 
 | Type | Source |
 | --- | --- |
-| `TestNewOrderTradeRequest` | `Requests/TradeApi/TestNewOrderTradeRequest.cs` |
-| `Side` | `Models/Enums/Side.cs` |
-| `Type1` | `Models/Enums/Type1.cs` |
-| `TimeInForce` | `Models/Enums/TimeInForce.cs` |
-| `NewOrderRespType` | `Models/Enums/NewOrderRespType.cs` |
-| `TestNewOrderTradeError` | `Errors/TestNewOrderTradeError.cs` |
-| `Error` | `Models/Error.cs` |
+| `TestNewOrderTradeRequest` | `src/Binance/Requests/TradeApi/TestNewOrderTradeRequest.cs` |
+| `Side` | `src/Binance/Models/Enums/Side.cs` |
+| `Type1` | `src/Binance/Models/Enums/Type1.cs` |
+| `TimeInForce` | `src/Binance/Models/Enums/TimeInForce.cs` |
+| `NewOrderRespType` | `src/Binance/Models/Enums/NewOrderRespType.cs` |
+| `TestNewOrderTradeError` | `src/Binance/Errors/TestNewOrderTradeError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### TestNewOrderUsingSorTrade
 
@@ -435,12 +435,12 @@ Accessor: `client.TradeApi` · Source: `Api/TradeApi.cs` · 23 operations
 
 | Type | Source |
 | --- | --- |
-| `TestNewOrderUsingSorTradeRequest` | `Requests/TradeApi/TestNewOrderUsingSorTradeRequest.cs` |
-| `Side` | `Models/Enums/Side.cs` |
-| `Type1` | `Models/Enums/Type1.cs` |
-| `TimeInForce` | `Models/Enums/TimeInForce.cs` |
-| `NewOrderRespType` | `Models/Enums/NewOrderRespType.cs` |
-| `SelfTradePreventionMode` | `Models/Enums/SelfTradePreventionMode.cs` |
-| `TestNewOrderUsingSorTradeError` | `Errors/TestNewOrderUsingSorTradeError.cs` |
-| `Error` | `Models/Error.cs` |
+| `TestNewOrderUsingSorTradeRequest` | `src/Binance/Requests/TradeApi/TestNewOrderUsingSorTradeRequest.cs` |
+| `Side` | `src/Binance/Models/Enums/Side.cs` |
+| `Type1` | `src/Binance/Models/Enums/Type1.cs` |
+| `TimeInForce` | `src/Binance/Models/Enums/TimeInForce.cs` |
+| `NewOrderRespType` | `src/Binance/Models/Enums/NewOrderRespType.cs` |
+| `SelfTradePreventionMode` | `src/Binance/Models/Enums/SelfTradePreventionMode.cs` |
+| `TestNewOrderUsingSorTradeError` | `src/Binance/Errors/TestNewOrderUsingSorTradeError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 

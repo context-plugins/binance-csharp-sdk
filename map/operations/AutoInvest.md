@@ -2,7 +2,7 @@
 
 # AutoInvest — operations
 
-Accessor: `client.AutoInvest` · Source: `Api/AutoInvest.cs` · 17 operations
+Accessor: `client.AutoInvest` · Source: `src/Binance/Api/AutoInvest.cs` · 17 operations
 
 **Type sources**: the file declaring each type an operation names (`RawError` excluded — see sdk-map.md).
 
@@ -18,11 +18,11 @@ Accessor: `client.AutoInvest` · Source: `Api/AutoInvest.cs` · 17 operations
 
 | Type | Source |
 | --- | --- |
-| `ChangePlanStatusRequest` | `Requests/AutoInvest/ChangePlanStatusRequest.cs` |
-| `Status1` | `Models/Enums/Status1.cs` |
-| `SapiV1LendingAutoInvestPlanEditStatusResponse` | `Models/SapiV1LendingAutoInvestPlanEditStatusResponse.cs` |
-| `ChangePlanStatusError` | `Errors/ChangePlanStatusError.cs` |
-| `Error` | `Models/Error.cs` |
+| `ChangePlanStatusRequest` | `src/Binance/Requests/AutoInvest/ChangePlanStatusRequest.cs` |
+| `Status1` | `src/Binance/Models/Enums/Status1.cs` |
+| `SapiV1LendingAutoInvestPlanEditStatusResponse` | `src/Binance/Models/SapiV1LendingAutoInvestPlanEditStatusResponse.cs` |
+| `ChangePlanStatusError` | `src/Binance/Errors/ChangePlanStatusError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetListOfPlans
 
@@ -36,10 +36,10 @@ Accessor: `client.AutoInvest` · Source: `Api/AutoInvest.cs` · 17 operations
 
 | Type | Source |
 | --- | --- |
-| `GetListOfPlansRequest` | `Requests/AutoInvest/GetListOfPlansRequest.cs` |
-| `SapiV1LendingAutoInvestPlanListResponse` | `Models/SapiV1LendingAutoInvestPlanListResponse.cs` |
-| `GetListOfPlansError` | `Errors/GetListOfPlansError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetListOfPlansRequest` | `src/Binance/Requests/AutoInvest/GetListOfPlansRequest.cs` |
+| `SapiV1LendingAutoInvestPlanListResponse` | `src/Binance/Models/SapiV1LendingAutoInvestPlanListResponse.cs` |
+| `GetListOfPlansError` | `src/Binance/Errors/GetListOfPlansError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetTargetAssetListUserData
 
@@ -53,10 +53,10 @@ Accessor: `client.AutoInvest` · Source: `Api/AutoInvest.cs` · 17 operations
 
 | Type | Source |
 | --- | --- |
-| `GetTargetAssetListUserDataRequest` | `Requests/AutoInvest/GetTargetAssetListUserDataRequest.cs` |
-| `SapiV1LendingAutoInvestTargetAssetListResponse` | `Models/SapiV1LendingAutoInvestTargetAssetListResponse.cs` |
-| `GetTargetAssetListUserDataError` | `Errors/GetTargetAssetListUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetTargetAssetListUserDataRequest` | `src/Binance/Requests/AutoInvest/GetTargetAssetListUserDataRequest.cs` |
+| `SapiV1LendingAutoInvestTargetAssetListResponse` | `src/Binance/Models/SapiV1LendingAutoInvestTargetAssetListResponse.cs` |
+| `GetTargetAssetListUserDataError` | `src/Binance/Errors/GetTargetAssetListUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetTargetAssetRoiDataUserData
 
@@ -70,10 +70,10 @@ Accessor: `client.AutoInvest` · Source: `Api/AutoInvest.cs` · 17 operations
 
 | Type | Source |
 | --- | --- |
-| `GetTargetAssetRoiDataUserDataRequest` | `Requests/AutoInvest/GetTargetAssetRoiDataUserDataRequest.cs` |
-| `SapiV1LendingAutoInvestTargetAssetRoiListResponse` | `Models/SapiV1LendingAutoInvestTargetAssetRoiListResponse.cs` |
-| `GetTargetAssetRoiDataUserDataError` | `Errors/GetTargetAssetRoiDataUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetTargetAssetRoiDataUserDataRequest` | `src/Binance/Requests/AutoInvest/GetTargetAssetRoiDataUserDataRequest.cs` |
+| `SapiV1LendingAutoInvestTargetAssetRoiListResponse` | `src/Binance/Models/SapiV1LendingAutoInvestTargetAssetRoiListResponse.cs` |
+| `GetTargetAssetRoiDataUserDataError` | `src/Binance/Errors/GetTargetAssetRoiDataUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### IndexLinkedPlanRebalanceDetailsUserData
 
@@ -87,10 +87,10 @@ Accessor: `client.AutoInvest` · Source: `Api/AutoInvest.cs` · 17 operations
 
 | Type | Source |
 | --- | --- |
-| `IndexLinkedPlanRebalanceDetailsUserDataRequest` | `Requests/AutoInvest/IndexLinkedPlanRebalanceDetailsUserDataRequest.cs` |
-| `SapiV1LendingAutoInvestRebalanceHistoryResponse` | `Models/SapiV1LendingAutoInvestRebalanceHistoryResponse.cs` |
-| `IndexLinkedPlanRebalanceDetailsUserDataError` | `Errors/IndexLinkedPlanRebalanceDetailsUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `IndexLinkedPlanRebalanceDetailsUserDataRequest` | `src/Binance/Requests/AutoInvest/IndexLinkedPlanRebalanceDetailsUserDataRequest.cs` |
+| `SapiV1LendingAutoInvestRebalanceHistoryResponse` | `src/Binance/Models/SapiV1LendingAutoInvestRebalanceHistoryResponse.cs` |
+| `IndexLinkedPlanRebalanceDetailsUserDataError` | `src/Binance/Errors/IndexLinkedPlanRebalanceDetailsUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### IndexLinkedPlanRedemptionHistoryUserData
 
@@ -104,10 +104,10 @@ Accessor: `client.AutoInvest` · Source: `Api/AutoInvest.cs` · 17 operations
 
 | Type | Source |
 | --- | --- |
-| `IndexLinkedPlanRedemptionHistoryUserDataRequest` | `Requests/AutoInvest/IndexLinkedPlanRedemptionHistoryUserDataRequest.cs` |
-| `SapiV1LendingAutoInvestRedeemHistoryResponse` | `Models/SapiV1LendingAutoInvestRedeemHistoryResponse.cs` |
-| `IndexLinkedPlanRedemptionHistoryUserDataError` | `Errors/IndexLinkedPlanRedemptionHistoryUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `IndexLinkedPlanRedemptionHistoryUserDataRequest` | `src/Binance/Requests/AutoInvest/IndexLinkedPlanRedemptionHistoryUserDataRequest.cs` |
+| `SapiV1LendingAutoInvestRedeemHistoryResponse` | `src/Binance/Models/SapiV1LendingAutoInvestRedeemHistoryResponse.cs` |
+| `IndexLinkedPlanRedemptionHistoryUserDataError` | `src/Binance/Errors/IndexLinkedPlanRedemptionHistoryUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### IndexLinkedPlanRedemptionTrade
 
@@ -121,10 +121,10 @@ Accessor: `client.AutoInvest` · Source: `Api/AutoInvest.cs` · 17 operations
 
 | Type | Source |
 | --- | --- |
-| `IndexLinkedPlanRedemptionTradeRequest` | `Requests/AutoInvest/IndexLinkedPlanRedemptionTradeRequest.cs` |
-| `SapiV1LendingAutoInvestRedeemResponse` | `Models/SapiV1LendingAutoInvestRedeemResponse.cs` |
-| `IndexLinkedPlanRedemptionTradeError` | `Errors/IndexLinkedPlanRedemptionTradeError.cs` |
-| `Error` | `Models/Error.cs` |
+| `IndexLinkedPlanRedemptionTradeRequest` | `src/Binance/Requests/AutoInvest/IndexLinkedPlanRedemptionTradeRequest.cs` |
+| `SapiV1LendingAutoInvestRedeemResponse` | `src/Binance/Models/SapiV1LendingAutoInvestRedeemResponse.cs` |
+| `IndexLinkedPlanRedemptionTradeError` | `src/Binance/Errors/IndexLinkedPlanRedemptionTradeError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### InvestmentPlanAdjustment
 
@@ -138,13 +138,13 @@ Accessor: `client.AutoInvest` · Source: `Api/AutoInvest.cs` · 17 operations
 
 | Type | Source |
 | --- | --- |
-| `InvestmentPlanAdjustmentRequest` | `Requests/AutoInvest/InvestmentPlanAdjustmentRequest.cs` |
-| `SubscriptionCycle` | `Models/Enums/SubscriptionCycle.cs` |
-| `SubscriptionStartWeekday` | `Models/Enums/SubscriptionStartWeekday.cs` |
-| `Detail1` | `Models/Detail1.cs` |
-| `SapiV1LendingAutoInvestPlanEditResponse` | `Models/SapiV1LendingAutoInvestPlanEditResponse.cs` |
-| `InvestmentPlanAdjustmentError` | `Errors/InvestmentPlanAdjustmentError.cs` |
-| `Error` | `Models/Error.cs` |
+| `InvestmentPlanAdjustmentRequest` | `src/Binance/Requests/AutoInvest/InvestmentPlanAdjustmentRequest.cs` |
+| `SubscriptionCycle` | `src/Binance/Models/Enums/SubscriptionCycle.cs` |
+| `SubscriptionStartWeekday` | `src/Binance/Models/Enums/SubscriptionStartWeekday.cs` |
+| `Detail1` | `src/Binance/Models/Detail1.cs` |
+| `SapiV1LendingAutoInvestPlanEditResponse` | `src/Binance/Models/SapiV1LendingAutoInvestPlanEditResponse.cs` |
+| `InvestmentPlanAdjustmentError` | `src/Binance/Errors/InvestmentPlanAdjustmentError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### InvestmentPlanCreationUserData
 
@@ -158,15 +158,15 @@ Accessor: `client.AutoInvest` · Source: `Api/AutoInvest.cs` · 17 operations
 
 | Type | Source |
 | --- | --- |
-| `InvestmentPlanCreationUserDataRequest` | `Requests/AutoInvest/InvestmentPlanCreationUserDataRequest.cs` |
-| `SourceType` | `Models/Enums/SourceType.cs` |
-| `PlanType` | `Models/Enums/PlanType.cs` |
-| `SubscriptionCycle` | `Models/Enums/SubscriptionCycle.cs` |
-| `Detail1` | `Models/Detail1.cs` |
-| `SubscriptionStartWeekday` | `Models/Enums/SubscriptionStartWeekday.cs` |
-| `SapiV1LendingAutoInvestPlanAddResponse` | `Models/SapiV1LendingAutoInvestPlanAddResponse.cs` |
-| `InvestmentPlanCreationUserDataError` | `Errors/InvestmentPlanCreationUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `InvestmentPlanCreationUserDataRequest` | `src/Binance/Requests/AutoInvest/InvestmentPlanCreationUserDataRequest.cs` |
+| `SourceType` | `src/Binance/Models/Enums/SourceType.cs` |
+| `PlanType` | `src/Binance/Models/Enums/PlanType.cs` |
+| `SubscriptionCycle` | `src/Binance/Models/Enums/SubscriptionCycle.cs` |
+| `Detail1` | `src/Binance/Models/Detail1.cs` |
+| `SubscriptionStartWeekday` | `src/Binance/Models/Enums/SubscriptionStartWeekday.cs` |
+| `SapiV1LendingAutoInvestPlanAddResponse` | `src/Binance/Models/SapiV1LendingAutoInvestPlanAddResponse.cs` |
+| `InvestmentPlanCreationUserDataError` | `src/Binance/Errors/InvestmentPlanCreationUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### OneTimeTransactionTrade
 
@@ -180,11 +180,11 @@ Accessor: `client.AutoInvest` · Source: `Api/AutoInvest.cs` · 17 operations
 
 | Type | Source |
 | --- | --- |
-| `OneTimeTransactionTradeRequest` | `Requests/AutoInvest/OneTimeTransactionTradeRequest.cs` |
-| `Detail5` | `Models/Detail5.cs` |
-| `SapiV1LendingAutoInvestOneOffResponse` | `Models/SapiV1LendingAutoInvestOneOffResponse.cs` |
-| `OneTimeTransactionTradeError` | `Errors/OneTimeTransactionTradeError.cs` |
-| `Error` | `Models/Error.cs` |
+| `OneTimeTransactionTradeRequest` | `src/Binance/Requests/AutoInvest/OneTimeTransactionTradeRequest.cs` |
+| `Detail5` | `src/Binance/Models/Detail5.cs` |
+| `SapiV1LendingAutoInvestOneOffResponse` | `src/Binance/Models/SapiV1LendingAutoInvestOneOffResponse.cs` |
+| `OneTimeTransactionTradeError` | `src/Binance/Errors/OneTimeTransactionTradeError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryAllSourceAssetAndTargetAssetUserData
 
@@ -198,10 +198,10 @@ Accessor: `client.AutoInvest` · Source: `Api/AutoInvest.cs` · 17 operations
 
 | Type | Source |
 | --- | --- |
-| `QueryAllSourceAssetAndTargetAssetUserDataRequest` | `Requests/AutoInvest/QueryAllSourceAssetAndTargetAssetUserDataRequest.cs` |
-| `SapiV1LendingAutoInvestAllAssetResponse` | `Models/SapiV1LendingAutoInvestAllAssetResponse.cs` |
-| `QueryAllSourceAssetAndTargetAssetUserDataError` | `Errors/QueryAllSourceAssetAndTargetAssetUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryAllSourceAssetAndTargetAssetUserDataRequest` | `src/Binance/Requests/AutoInvest/QueryAllSourceAssetAndTargetAssetUserDataRequest.cs` |
+| `SapiV1LendingAutoInvestAllAssetResponse` | `src/Binance/Models/SapiV1LendingAutoInvestAllAssetResponse.cs` |
+| `QueryAllSourceAssetAndTargetAssetUserDataError` | `src/Binance/Errors/QueryAllSourceAssetAndTargetAssetUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryHoldingDetailsOfThePlan
 
@@ -215,10 +215,10 @@ Accessor: `client.AutoInvest` · Source: `Api/AutoInvest.cs` · 17 operations
 
 | Type | Source |
 | --- | --- |
-| `QueryHoldingDetailsOfThePlanRequest` | `Requests/AutoInvest/QueryHoldingDetailsOfThePlanRequest.cs` |
-| `SapiV1LendingAutoInvestPlanIdResponse` | `Models/SapiV1LendingAutoInvestPlanIdResponse.cs` |
-| `QueryHoldingDetailsOfThePlanError` | `Errors/QueryHoldingDetailsOfThePlanError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryHoldingDetailsOfThePlanRequest` | `src/Binance/Requests/AutoInvest/QueryHoldingDetailsOfThePlanRequest.cs` |
+| `SapiV1LendingAutoInvestPlanIdResponse` | `src/Binance/Models/SapiV1LendingAutoInvestPlanIdResponse.cs` |
+| `QueryHoldingDetailsOfThePlanError` | `src/Binance/Errors/QueryHoldingDetailsOfThePlanError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryIndexDetailsUserData
 
@@ -232,10 +232,10 @@ Accessor: `client.AutoInvest` · Source: `Api/AutoInvest.cs` · 17 operations
 
 | Type | Source |
 | --- | --- |
-| `QueryIndexDetailsUserDataRequest` | `Requests/AutoInvest/QueryIndexDetailsUserDataRequest.cs` |
-| `SapiV1LendingAutoInvestIndexInfoResponse` | `Models/SapiV1LendingAutoInvestIndexInfoResponse.cs` |
-| `QueryIndexDetailsUserDataError` | `Errors/QueryIndexDetailsUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryIndexDetailsUserDataRequest` | `src/Binance/Requests/AutoInvest/QueryIndexDetailsUserDataRequest.cs` |
+| `SapiV1LendingAutoInvestIndexInfoResponse` | `src/Binance/Models/SapiV1LendingAutoInvestIndexInfoResponse.cs` |
+| `QueryIndexDetailsUserDataError` | `src/Binance/Errors/QueryIndexDetailsUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryIndexLinkedPlanPositionDetailsUserData
 
@@ -249,10 +249,10 @@ Accessor: `client.AutoInvest` · Source: `Api/AutoInvest.cs` · 17 operations
 
 | Type | Source |
 | --- | --- |
-| `QueryIndexLinkedPlanPositionDetailsUserDataRequest` | `Requests/AutoInvest/QueryIndexLinkedPlanPositionDetailsUserDataRequest.cs` |
-| `SapiV1LendingAutoInvestIndexUserSummaryResponse` | `Models/SapiV1LendingAutoInvestIndexUserSummaryResponse.cs` |
-| `QueryIndexLinkedPlanPositionDetailsUserDataError` | `Errors/QueryIndexLinkedPlanPositionDetailsUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryIndexLinkedPlanPositionDetailsUserDataRequest` | `src/Binance/Requests/AutoInvest/QueryIndexLinkedPlanPositionDetailsUserDataRequest.cs` |
+| `SapiV1LendingAutoInvestIndexUserSummaryResponse` | `src/Binance/Models/SapiV1LendingAutoInvestIndexUserSummaryResponse.cs` |
+| `QueryIndexLinkedPlanPositionDetailsUserDataError` | `src/Binance/Errors/QueryIndexLinkedPlanPositionDetailsUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryOneTimeTransactionStatusUserData
 
@@ -266,10 +266,10 @@ Accessor: `client.AutoInvest` · Source: `Api/AutoInvest.cs` · 17 operations
 
 | Type | Source |
 | --- | --- |
-| `QueryOneTimeTransactionStatusUserDataRequest` | `Requests/AutoInvest/QueryOneTimeTransactionStatusUserDataRequest.cs` |
-| `SapiV1LendingAutoInvestOneOffStatusResponse` | `Models/SapiV1LendingAutoInvestOneOffStatusResponse.cs` |
-| `QueryOneTimeTransactionStatusUserDataError` | `Errors/QueryOneTimeTransactionStatusUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryOneTimeTransactionStatusUserDataRequest` | `src/Binance/Requests/AutoInvest/QueryOneTimeTransactionStatusUserDataRequest.cs` |
+| `SapiV1LendingAutoInvestOneOffStatusResponse` | `src/Binance/Models/SapiV1LendingAutoInvestOneOffStatusResponse.cs` |
+| `QueryOneTimeTransactionStatusUserDataError` | `src/Binance/Errors/QueryOneTimeTransactionStatusUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QuerySourceAssetListUserData
 
@@ -283,10 +283,10 @@ Accessor: `client.AutoInvest` · Source: `Api/AutoInvest.cs` · 17 operations
 
 | Type | Source |
 | --- | --- |
-| `QuerySourceAssetListUserDataRequest` | `Requests/AutoInvest/QuerySourceAssetListUserDataRequest.cs` |
-| `SapiV1LendingAutoInvestSourceAssetListResponse` | `Models/SapiV1LendingAutoInvestSourceAssetListResponse.cs` |
-| `QuerySourceAssetListUserDataError` | `Errors/QuerySourceAssetListUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QuerySourceAssetListUserDataRequest` | `src/Binance/Requests/AutoInvest/QuerySourceAssetListUserDataRequest.cs` |
+| `SapiV1LendingAutoInvestSourceAssetListResponse` | `src/Binance/Models/SapiV1LendingAutoInvestSourceAssetListResponse.cs` |
+| `QuerySourceAssetListUserDataError` | `src/Binance/Errors/QuerySourceAssetListUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QuerySubscriptionTransactionHistory
 
@@ -300,9 +300,9 @@ Accessor: `client.AutoInvest` · Source: `Api/AutoInvest.cs` · 17 operations
 
 | Type | Source |
 | --- | --- |
-| `QuerySubscriptionTransactionHistoryRequest` | `Requests/AutoInvest/QuerySubscriptionTransactionHistoryRequest.cs` |
-| `PlanType1` | `Models/Enums/PlanType1.cs` |
-| `SapiV1LendingAutoInvestHistoryListResponse` | `Models/SapiV1LendingAutoInvestHistoryListResponse.cs` |
-| `QuerySubscriptionTransactionHistoryError` | `Errors/QuerySubscriptionTransactionHistoryError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QuerySubscriptionTransactionHistoryRequest` | `src/Binance/Requests/AutoInvest/QuerySubscriptionTransactionHistoryRequest.cs` |
+| `PlanType1` | `src/Binance/Models/Enums/PlanType1.cs` |
+| `SapiV1LendingAutoInvestHistoryListResponse` | `src/Binance/Models/SapiV1LendingAutoInvestHistoryListResponse.cs` |
+| `QuerySubscriptionTransactionHistoryError` | `src/Binance/Errors/QuerySubscriptionTransactionHistoryError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 

@@ -2,7 +2,7 @@
 
 # Margin — operations
 
-Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
+Accessor: `client.Margin` · Source: `src/Binance/Api/Margin.cs` · 48 operations
 
 **Type sources**: the file declaring each type an operation names (`RawError` excluded — see sdk-map.md).
 
@@ -18,10 +18,10 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `AdjustCrossMarginMaxLeverageUserDataRequest` | `Requests/Margin/AdjustCrossMarginMaxLeverageUserDataRequest.cs` |
-| `SapiV1MarginMaxLeverageResponse` | `Models/SapiV1MarginMaxLeverageResponse.cs` |
-| `AdjustCrossMarginMaxLeverageUserDataError` | `Errors/AdjustCrossMarginMaxLeverageUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `AdjustCrossMarginMaxLeverageUserDataRequest` | `src/Binance/Requests/Margin/AdjustCrossMarginMaxLeverageUserDataRequest.cs` |
+| `SapiV1MarginMaxLeverageResponse` | `src/Binance/Models/SapiV1MarginMaxLeverageResponse.cs` |
+| `AdjustCrossMarginMaxLeverageUserDataError` | `src/Binance/Errors/AdjustCrossMarginMaxLeverageUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### CrossMarginCollateralRatioMarketData
 
@@ -33,9 +33,9 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `SapiV1MarginCrossMarginCollateralRatioResponse` | `Models/SapiV1MarginCrossMarginCollateralRatioResponse.cs` |
-| `CrossMarginCollateralRatioMarketDataError` | `Errors/CrossMarginCollateralRatioMarketDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `SapiV1MarginCrossMarginCollateralRatioResponse` | `src/Binance/Models/SapiV1MarginCrossMarginCollateralRatioResponse.cs` |
+| `CrossMarginCollateralRatioMarketDataError` | `src/Binance/Errors/CrossMarginCollateralRatioMarketDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### DisableIsolatedMarginAccountTrade
 
@@ -49,10 +49,10 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `DisableIsolatedMarginAccountTradeRequest` | `Requests/Margin/DisableIsolatedMarginAccountTradeRequest.cs` |
-| `SapiV1MarginIsolatedAccountResponse` | `Models/SapiV1MarginIsolatedAccountResponse.cs` |
-| `DisableIsolatedMarginAccountTradeError` | `Errors/DisableIsolatedMarginAccountTradeError.cs` |
-| `Error` | `Models/Error.cs` |
+| `DisableIsolatedMarginAccountTradeRequest` | `src/Binance/Requests/Margin/DisableIsolatedMarginAccountTradeRequest.cs` |
+| `SapiV1MarginIsolatedAccountResponse` | `src/Binance/Models/SapiV1MarginIsolatedAccountResponse.cs` |
+| `DisableIsolatedMarginAccountTradeError` | `src/Binance/Errors/DisableIsolatedMarginAccountTradeError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### EnableIsolatedMarginAccountTrade
 
@@ -66,10 +66,10 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `EnableIsolatedMarginAccountTradeRequest` | `Requests/Margin/EnableIsolatedMarginAccountTradeRequest.cs` |
-| `SapiV1MarginIsolatedAccountResponse` | `Models/SapiV1MarginIsolatedAccountResponse.cs` |
-| `EnableIsolatedMarginAccountTradeError` | `Errors/EnableIsolatedMarginAccountTradeError.cs` |
-| `Error` | `Models/Error.cs` |
+| `EnableIsolatedMarginAccountTradeRequest` | `src/Binance/Requests/Margin/EnableIsolatedMarginAccountTradeRequest.cs` |
+| `SapiV1MarginIsolatedAccountResponse` | `src/Binance/Models/SapiV1MarginIsolatedAccountResponse.cs` |
+| `EnableIsolatedMarginAccountTradeError` | `src/Binance/Errors/EnableIsolatedMarginAccountTradeError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetAFutureHourlyInterestRateUserData
 
@@ -83,11 +83,11 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `GetAFutureHourlyInterestRateUserDataRequest` | `Requests/Margin/GetAFutureHourlyInterestRateUserDataRequest.cs` |
-| `IsIsolated` | `Models/Enums/IsIsolated.cs` |
-| `SapiV1MarginNextHourlyInterestRateResponse` | `Models/SapiV1MarginNextHourlyInterestRateResponse.cs` |
-| `GetAFutureHourlyInterestRateUserDataError` | `Errors/GetAFutureHourlyInterestRateUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetAFutureHourlyInterestRateUserDataRequest` | `src/Binance/Requests/Margin/GetAFutureHourlyInterestRateUserDataRequest.cs` |
+| `IsIsolated` | `src/Binance/Models/Enums/IsIsolated.cs` |
+| `SapiV1MarginNextHourlyInterestRateResponse` | `src/Binance/Models/SapiV1MarginNextHourlyInterestRateResponse.cs` |
+| `GetAFutureHourlyInterestRateUserDataError` | `src/Binance/Errors/GetAFutureHourlyInterestRateUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetAllCrossMarginPairsMarketData
 
@@ -101,10 +101,10 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `GetAllCrossMarginPairsMarketDataRequest` | `Requests/Margin/GetAllCrossMarginPairsMarketDataRequest.cs` |
-| `SapiV1MarginAllPairsResponse` | `Models/SapiV1MarginAllPairsResponse.cs` |
-| `GetAllCrossMarginPairsMarketDataError` | `Errors/GetAllCrossMarginPairsMarketDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetAllCrossMarginPairsMarketDataRequest` | `src/Binance/Requests/Margin/GetAllCrossMarginPairsMarketDataRequest.cs` |
+| `SapiV1MarginAllPairsResponse` | `src/Binance/Models/SapiV1MarginAllPairsResponse.cs` |
+| `GetAllCrossMarginPairsMarketDataError` | `src/Binance/Errors/GetAllCrossMarginPairsMarketDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetAllIsolatedMarginSymbolUserData
 
@@ -118,10 +118,10 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `GetAllIsolatedMarginSymbolUserDataRequest` | `Requests/Margin/GetAllIsolatedMarginSymbolUserDataRequest.cs` |
-| `SapiV1MarginIsolatedAllPairsResponse` | `Models/SapiV1MarginIsolatedAllPairsResponse.cs` |
-| `GetAllIsolatedMarginSymbolUserDataError` | `Errors/GetAllIsolatedMarginSymbolUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetAllIsolatedMarginSymbolUserDataRequest` | `src/Binance/Requests/Margin/GetAllIsolatedMarginSymbolUserDataRequest.cs` |
+| `SapiV1MarginIsolatedAllPairsResponse` | `src/Binance/Models/SapiV1MarginIsolatedAllPairsResponse.cs` |
+| `GetAllIsolatedMarginSymbolUserDataError` | `src/Binance/Errors/GetAllIsolatedMarginSymbolUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetAllMarginAssetsMarketData
 
@@ -135,10 +135,10 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `GetAllMarginAssetsMarketDataRequest` | `Requests/Margin/GetAllMarginAssetsMarketDataRequest.cs` |
-| `SapiV1MarginAllAssetsResponse` | `Models/SapiV1MarginAllAssetsResponse.cs` |
-| `GetAllMarginAssetsMarketDataError` | `Errors/GetAllMarginAssetsMarketDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetAllMarginAssetsMarketDataRequest` | `src/Binance/Requests/Margin/GetAllMarginAssetsMarketDataRequest.cs` |
+| `SapiV1MarginAllAssetsResponse` | `src/Binance/Models/SapiV1MarginAllAssetsResponse.cs` |
+| `GetAllMarginAssetsMarketDataError` | `src/Binance/Errors/GetAllMarginAssetsMarketDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetBnbBurnStatusUserData
 
@@ -152,10 +152,10 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `GetBnbBurnStatusUserDataRequest` | `Requests/Margin/GetBnbBurnStatusUserDataRequest.cs` |
-| `BnbBurnStatus` | `Models/BnbBurnStatus.cs` |
-| `GetBnbBurnStatusUserDataError` | `Errors/GetBnbBurnStatusUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetBnbBurnStatusUserDataRequest` | `src/Binance/Requests/Margin/GetBnbBurnStatusUserDataRequest.cs` |
+| `BnbBurnStatus` | `src/Binance/Models/BnbBurnStatus.cs` |
+| `GetBnbBurnStatusUserDataError` | `src/Binance/Errors/GetBnbBurnStatusUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetCrossMarginTransferHistoryUserData
 
@@ -169,11 +169,11 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `GetCrossMarginTransferHistoryUserDataRequest` | `Requests/Margin/GetCrossMarginTransferHistoryUserDataRequest.cs` |
-| `Type2` | `Models/Enums/Type2.cs` |
-| `SapiV1MarginTransferResponse` | `Models/SapiV1MarginTransferResponse.cs` |
-| `GetCrossMarginTransferHistoryUserDataError` | `Errors/GetCrossMarginTransferHistoryUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetCrossMarginTransferHistoryUserDataRequest` | `src/Binance/Requests/Margin/GetCrossMarginTransferHistoryUserDataRequest.cs` |
+| `Type2` | `src/Binance/Models/Enums/Type2.cs` |
+| `SapiV1MarginTransferResponse` | `src/Binance/Models/SapiV1MarginTransferResponse.cs` |
+| `GetCrossMarginTransferHistoryUserDataError` | `src/Binance/Errors/GetCrossMarginTransferHistoryUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetCrossOrIsolatedMarginCapitalFlowUserData
 
@@ -187,11 +187,11 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `GetCrossOrIsolatedMarginCapitalFlowUserDataRequest` | `Requests/Margin/GetCrossOrIsolatedMarginCapitalFlowUserDataRequest.cs` |
-| `Type3` | `Models/Enums/Type3.cs` |
-| `SapiV1MarginCapitalFlowResponse` | `Models/SapiV1MarginCapitalFlowResponse.cs` |
-| `GetCrossOrIsolatedMarginCapitalFlowUserDataError` | `Errors/GetCrossOrIsolatedMarginCapitalFlowUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetCrossOrIsolatedMarginCapitalFlowUserDataRequest` | `src/Binance/Requests/Margin/GetCrossOrIsolatedMarginCapitalFlowUserDataRequest.cs` |
+| `Type3` | `src/Binance/Models/Enums/Type3.cs` |
+| `SapiV1MarginCapitalFlowResponse` | `src/Binance/Models/SapiV1MarginCapitalFlowResponse.cs` |
+| `GetCrossOrIsolatedMarginCapitalFlowUserDataError` | `src/Binance/Errors/GetCrossOrIsolatedMarginCapitalFlowUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetForceLiquidationRecordUserData
 
@@ -205,10 +205,10 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `GetForceLiquidationRecordUserDataRequest` | `Requests/Margin/GetForceLiquidationRecordUserDataRequest.cs` |
-| `SapiV1MarginForceLiquidationRecResponse` | `Models/SapiV1MarginForceLiquidationRecResponse.cs` |
-| `GetForceLiquidationRecordUserDataError` | `Errors/GetForceLiquidationRecordUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetForceLiquidationRecordUserDataRequest` | `src/Binance/Requests/Margin/GetForceLiquidationRecordUserDataRequest.cs` |
+| `SapiV1MarginForceLiquidationRecResponse` | `src/Binance/Models/SapiV1MarginForceLiquidationRecResponse.cs` |
+| `GetForceLiquidationRecordUserDataError` | `src/Binance/Errors/GetForceLiquidationRecordUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetInterestHistoryUserData
 
@@ -222,10 +222,10 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `GetInterestHistoryUserDataRequest` | `Requests/Margin/GetInterestHistoryUserDataRequest.cs` |
-| `SapiV1MarginInterestHistoryResponse` | `Models/SapiV1MarginInterestHistoryResponse.cs` |
-| `GetInterestHistoryUserDataError` | `Errors/GetInterestHistoryUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetInterestHistoryUserDataRequest` | `src/Binance/Requests/Margin/GetInterestHistoryUserDataRequest.cs` |
+| `SapiV1MarginInterestHistoryResponse` | `src/Binance/Models/SapiV1MarginInterestHistoryResponse.cs` |
+| `GetInterestHistoryUserDataError` | `src/Binance/Errors/GetInterestHistoryUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetSmallLiabilityExchangeCoinListUserData
 
@@ -239,10 +239,10 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `GetSmallLiabilityExchangeCoinListUserDataRequest` | `Requests/Margin/GetSmallLiabilityExchangeCoinListUserDataRequest.cs` |
-| `SapiV1MarginExchangeSmallLiabilityResponse` | `Models/SapiV1MarginExchangeSmallLiabilityResponse.cs` |
-| `GetSmallLiabilityExchangeCoinListUserDataError` | `Errors/GetSmallLiabilityExchangeCoinListUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetSmallLiabilityExchangeCoinListUserDataRequest` | `src/Binance/Requests/Margin/GetSmallLiabilityExchangeCoinListUserDataRequest.cs` |
+| `SapiV1MarginExchangeSmallLiabilityResponse` | `src/Binance/Models/SapiV1MarginExchangeSmallLiabilityResponse.cs` |
+| `GetSmallLiabilityExchangeCoinListUserDataError` | `src/Binance/Errors/GetSmallLiabilityExchangeCoinListUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetSmallLiabilityExchangeHistoryUserData
 
@@ -256,10 +256,10 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `GetSmallLiabilityExchangeHistoryUserDataRequest` | `Requests/Margin/GetSmallLiabilityExchangeHistoryUserDataRequest.cs` |
-| `SapiV1MarginExchangeSmallLiabilityHistoryResponse` | `Models/SapiV1MarginExchangeSmallLiabilityHistoryResponse.cs` |
-| `GetSmallLiabilityExchangeHistoryUserDataError` | `Errors/GetSmallLiabilityExchangeHistoryUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetSmallLiabilityExchangeHistoryUserDataRequest` | `src/Binance/Requests/Margin/GetSmallLiabilityExchangeHistoryUserDataRequest.cs` |
+| `SapiV1MarginExchangeSmallLiabilityHistoryResponse` | `src/Binance/Models/SapiV1MarginExchangeSmallLiabilityHistoryResponse.cs` |
+| `GetSmallLiabilityExchangeHistoryUserDataError` | `src/Binance/Errors/GetSmallLiabilityExchangeHistoryUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetSummaryOfMarginAccountUserData
 
@@ -273,10 +273,10 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `GetSummaryOfMarginAccountUserDataRequest` | `Requests/Margin/GetSummaryOfMarginAccountUserDataRequest.cs` |
-| `SapiV1MarginTradeCoeffResponse` | `Models/SapiV1MarginTradeCoeffResponse.cs` |
-| `GetSummaryOfMarginAccountUserDataError` | `Errors/GetSummaryOfMarginAccountUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetSummaryOfMarginAccountUserDataRequest` | `src/Binance/Requests/Margin/GetSummaryOfMarginAccountUserDataRequest.cs` |
+| `SapiV1MarginTradeCoeffResponse` | `src/Binance/Models/SapiV1MarginTradeCoeffResponse.cs` |
+| `GetSummaryOfMarginAccountUserDataError` | `src/Binance/Errors/GetSummaryOfMarginAccountUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMarginMarketData
 
@@ -290,10 +290,10 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMarginMarketDataRequest` | `Requests/Margin/GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMarginMarketDataRequest.cs` |
-| `SapiV1MarginDelistScheduleResponse` | `Models/SapiV1MarginDelistScheduleResponse.cs` |
-| `GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMarginMarketDataError` | `Errors/GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMarginMarketDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMarginMarketDataRequest` | `src/Binance/Requests/Margin/GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMarginMarketDataRequest.cs` |
+| `SapiV1MarginDelistScheduleResponse` | `src/Binance/Models/SapiV1MarginDelistScheduleResponse.cs` |
+| `GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMarginMarketDataError` | `src/Binance/Errors/GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMarginMarketDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### MarginAccountBorrowRepayMargin
 
@@ -307,10 +307,10 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `MarginAccountBorrowRepayMarginRequest` | `Requests/Margin/MarginAccountBorrowRepayMarginRequest.cs` |
-| `SapiV1MarginBorrowRepayResponse` | `Models/SapiV1MarginBorrowRepayResponse.cs` |
-| `MarginAccountBorrowRepayMarginError` | `Errors/MarginAccountBorrowRepayMarginError.cs` |
-| `Error` | `Models/Error.cs` |
+| `MarginAccountBorrowRepayMarginRequest` | `src/Binance/Requests/Margin/MarginAccountBorrowRepayMarginRequest.cs` |
+| `SapiV1MarginBorrowRepayResponse` | `src/Binance/Models/SapiV1MarginBorrowRepayResponse.cs` |
+| `MarginAccountBorrowRepayMarginError` | `src/Binance/Errors/MarginAccountBorrowRepayMarginError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### MarginAccountCancelAllOpenOrdersOnASymbolTrade
 
@@ -324,11 +324,11 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `MarginAccountCancelAllOpenOrdersOnASymbolTradeRequest` | `Requests/Margin/MarginAccountCancelAllOpenOrdersOnASymbolTradeRequest.cs` |
-| `IsIsolated` | `Models/Enums/IsIsolated.cs` |
-| `SapiV1MarginOpenOrdersResponse` | `Models/AnyOf/SapiV1MarginOpenOrdersResponse.cs` |
-| `MarginAccountCancelAllOpenOrdersOnASymbolTradeError` | `Errors/MarginAccountCancelAllOpenOrdersOnASymbolTradeError.cs` |
-| `Error` | `Models/Error.cs` |
+| `MarginAccountCancelAllOpenOrdersOnASymbolTradeRequest` | `src/Binance/Requests/Margin/MarginAccountCancelAllOpenOrdersOnASymbolTradeRequest.cs` |
+| `IsIsolated` | `src/Binance/Models/Enums/IsIsolated.cs` |
+| `SapiV1MarginOpenOrdersResponse` | `src/Binance/Models/AnyOf/SapiV1MarginOpenOrdersResponse.cs` |
+| `MarginAccountCancelAllOpenOrdersOnASymbolTradeError` | `src/Binance/Errors/MarginAccountCancelAllOpenOrdersOnASymbolTradeError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### MarginAccountCancelOcoTrade
 
@@ -342,11 +342,11 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `MarginAccountCancelOcoTradeRequest` | `Requests/Margin/MarginAccountCancelOcoTradeRequest.cs` |
-| `IsIsolated` | `Models/Enums/IsIsolated.cs` |
-| `MarginOcoOrder` | `Models/MarginOcoOrder.cs` |
-| `MarginAccountCancelOcoTradeError` | `Errors/MarginAccountCancelOcoTradeError.cs` |
-| `Error` | `Models/Error.cs` |
+| `MarginAccountCancelOcoTradeRequest` | `src/Binance/Requests/Margin/MarginAccountCancelOcoTradeRequest.cs` |
+| `IsIsolated` | `src/Binance/Models/Enums/IsIsolated.cs` |
+| `MarginOcoOrder` | `src/Binance/Models/MarginOcoOrder.cs` |
+| `MarginAccountCancelOcoTradeError` | `src/Binance/Errors/MarginAccountCancelOcoTradeError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### MarginAccountCancelOrderTrade
 
@@ -360,11 +360,11 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `MarginAccountCancelOrderTradeRequest` | `Requests/Margin/MarginAccountCancelOrderTradeRequest.cs` |
-| `IsIsolated` | `Models/Enums/IsIsolated.cs` |
-| `MarginOrder` | `Models/MarginOrder.cs` |
-| `MarginAccountCancelOrderTradeError` | `Errors/MarginAccountCancelOrderTradeError.cs` |
-| `Error` | `Models/Error.cs` |
+| `MarginAccountCancelOrderTradeRequest` | `src/Binance/Requests/Margin/MarginAccountCancelOrderTradeRequest.cs` |
+| `IsIsolated` | `src/Binance/Models/Enums/IsIsolated.cs` |
+| `MarginOrder` | `src/Binance/Models/MarginOrder.cs` |
+| `MarginAccountCancelOrderTradeError` | `src/Binance/Errors/MarginAccountCancelOrderTradeError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### MarginAccountNewOcoTrade
 
@@ -378,16 +378,16 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `MarginAccountNewOcoTradeRequest` | `Requests/Margin/MarginAccountNewOcoTradeRequest.cs` |
-| `Side` | `Models/Enums/Side.cs` |
-| `IsIsolated` | `Models/Enums/IsIsolated.cs` |
-| `StopLimitTimeInForce` | `Models/Enums/StopLimitTimeInForce.cs` |
-| `NewOrderRespType` | `Models/Enums/NewOrderRespType.cs` |
-| `SideEffectType` | `Models/Enums/SideEffectType.cs` |
-| `SelfTradePreventionMode` | `Models/Enums/SelfTradePreventionMode.cs` |
-| `SapiV1MarginOrderOcoResponse` | `Models/SapiV1MarginOrderOcoResponse.cs` |
-| `MarginAccountNewOcoTradeError` | `Errors/MarginAccountNewOcoTradeError.cs` |
-| `Error` | `Models/Error.cs` |
+| `MarginAccountNewOcoTradeRequest` | `src/Binance/Requests/Margin/MarginAccountNewOcoTradeRequest.cs` |
+| `Side` | `src/Binance/Models/Enums/Side.cs` |
+| `IsIsolated` | `src/Binance/Models/Enums/IsIsolated.cs` |
+| `StopLimitTimeInForce` | `src/Binance/Models/Enums/StopLimitTimeInForce.cs` |
+| `NewOrderRespType` | `src/Binance/Models/Enums/NewOrderRespType.cs` |
+| `SideEffectType` | `src/Binance/Models/Enums/SideEffectType.cs` |
+| `SelfTradePreventionMode` | `src/Binance/Models/Enums/SelfTradePreventionMode.cs` |
+| `SapiV1MarginOrderOcoResponse` | `src/Binance/Models/SapiV1MarginOrderOcoResponse.cs` |
+| `MarginAccountNewOcoTradeError` | `src/Binance/Errors/MarginAccountNewOcoTradeError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### MarginAccountNewOrderTrade
 
@@ -401,17 +401,17 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `MarginAccountNewOrderTradeRequest` | `Requests/Margin/MarginAccountNewOrderTradeRequest.cs` |
-| `Side` | `Models/Enums/Side.cs` |
-| `Type1` | `Models/Enums/Type1.cs` |
-| `IsIsolated` | `Models/Enums/IsIsolated.cs` |
-| `NewOrderRespType` | `Models/Enums/NewOrderRespType.cs` |
-| `SideEffectType` | `Models/Enums/SideEffectType.cs` |
-| `TimeInForce` | `Models/Enums/TimeInForce.cs` |
-| `SelfTradePreventionMode` | `Models/Enums/SelfTradePreventionMode.cs` |
-| `SapiV1MarginOrderResponse` | `Models/AnyOf/SapiV1MarginOrderResponse.cs` |
-| `MarginAccountNewOrderTradeError` | `Errors/MarginAccountNewOrderTradeError.cs` |
-| `Error` | `Models/Error.cs` |
+| `MarginAccountNewOrderTradeRequest` | `src/Binance/Requests/Margin/MarginAccountNewOrderTradeRequest.cs` |
+| `Side` | `src/Binance/Models/Enums/Side.cs` |
+| `Type1` | `src/Binance/Models/Enums/Type1.cs` |
+| `IsIsolated` | `src/Binance/Models/Enums/IsIsolated.cs` |
+| `NewOrderRespType` | `src/Binance/Models/Enums/NewOrderRespType.cs` |
+| `SideEffectType` | `src/Binance/Models/Enums/SideEffectType.cs` |
+| `TimeInForce` | `src/Binance/Models/Enums/TimeInForce.cs` |
+| `SelfTradePreventionMode` | `src/Binance/Models/Enums/SelfTradePreventionMode.cs` |
+| `SapiV1MarginOrderResponse` | `src/Binance/Models/AnyOf/SapiV1MarginOrderResponse.cs` |
+| `MarginAccountNewOrderTradeError` | `src/Binance/Errors/MarginAccountNewOrderTradeError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### MarginAccountNewOtoTrade
 
@@ -425,20 +425,20 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `MarginAccountNewOtoTradeRequest` | `Requests/Margin/MarginAccountNewOtoTradeRequest.cs` |
-| `WorkingType` | `Models/Enums/WorkingType.cs` |
-| `WorkingSide` | `Models/Enums/WorkingSide.cs` |
-| `PendingType` | `Models/Enums/PendingType.cs` |
-| `PendingSide` | `Models/Enums/PendingSide.cs` |
-| `IsIsolated` | `Models/Enums/IsIsolated.cs` |
-| `NewOrderRespType` | `Models/Enums/NewOrderRespType.cs` |
-| `SideEffectType1` | `Models/Enums/SideEffectType1.cs` |
-| `SelfTradePreventionMode` | `Models/Enums/SelfTradePreventionMode.cs` |
-| `WorkingTimeInForce` | `Models/Enums/WorkingTimeInForce.cs` |
-| `PendingTimeInForce` | `Models/Enums/PendingTimeInForce.cs` |
-| `SapiV1MarginOrderOtoResponse` | `Models/SapiV1MarginOrderOtoResponse.cs` |
-| `MarginAccountNewOtoTradeError` | `Errors/MarginAccountNewOtoTradeError.cs` |
-| `Error` | `Models/Error.cs` |
+| `MarginAccountNewOtoTradeRequest` | `src/Binance/Requests/Margin/MarginAccountNewOtoTradeRequest.cs` |
+| `WorkingType` | `src/Binance/Models/Enums/WorkingType.cs` |
+| `WorkingSide` | `src/Binance/Models/Enums/WorkingSide.cs` |
+| `PendingType` | `src/Binance/Models/Enums/PendingType.cs` |
+| `PendingSide` | `src/Binance/Models/Enums/PendingSide.cs` |
+| `IsIsolated` | `src/Binance/Models/Enums/IsIsolated.cs` |
+| `NewOrderRespType` | `src/Binance/Models/Enums/NewOrderRespType.cs` |
+| `SideEffectType1` | `src/Binance/Models/Enums/SideEffectType1.cs` |
+| `SelfTradePreventionMode` | `src/Binance/Models/Enums/SelfTradePreventionMode.cs` |
+| `WorkingTimeInForce` | `src/Binance/Models/Enums/WorkingTimeInForce.cs` |
+| `PendingTimeInForce` | `src/Binance/Models/Enums/PendingTimeInForce.cs` |
+| `SapiV1MarginOrderOtoResponse` | `src/Binance/Models/SapiV1MarginOrderOtoResponse.cs` |
+| `MarginAccountNewOtoTradeError` | `src/Binance/Errors/MarginAccountNewOtoTradeError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### MarginAccountNewOtocoTrade
 
@@ -452,22 +452,22 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `MarginAccountNewOtocoTradeRequest` | `Requests/Margin/MarginAccountNewOtocoTradeRequest.cs` |
-| `WorkingType` | `Models/Enums/WorkingType.cs` |
-| `WorkingSide` | `Models/Enums/WorkingSide.cs` |
-| `PendingSide` | `Models/Enums/PendingSide.cs` |
-| `PendingAboveType` | `Models/Enums/PendingAboveType.cs` |
-| `IsIsolated` | `Models/Enums/IsIsolated.cs` |
-| `SideEffectType1` | `Models/Enums/SideEffectType1.cs` |
-| `NewOrderRespType` | `Models/Enums/NewOrderRespType.cs` |
-| `SelfTradePreventionMode` | `Models/Enums/SelfTradePreventionMode.cs` |
-| `WorkingTimeInForce` | `Models/Enums/WorkingTimeInForce.cs` |
-| `PendingAboveTimeInForce` | `Models/Enums/PendingAboveTimeInForce.cs` |
-| `PendingBelowType` | `Models/Enums/PendingBelowType.cs` |
-| `PendingBelowTimeInForce` | `Models/Enums/PendingBelowTimeInForce.cs` |
-| `SapiV1MarginOrderOtocoResponse` | `Models/SapiV1MarginOrderOtocoResponse.cs` |
-| `MarginAccountNewOtocoTradeError` | `Errors/MarginAccountNewOtocoTradeError.cs` |
-| `Error` | `Models/Error.cs` |
+| `MarginAccountNewOtocoTradeRequest` | `src/Binance/Requests/Margin/MarginAccountNewOtocoTradeRequest.cs` |
+| `WorkingType` | `src/Binance/Models/Enums/WorkingType.cs` |
+| `WorkingSide` | `src/Binance/Models/Enums/WorkingSide.cs` |
+| `PendingSide` | `src/Binance/Models/Enums/PendingSide.cs` |
+| `PendingAboveType` | `src/Binance/Models/Enums/PendingAboveType.cs` |
+| `IsIsolated` | `src/Binance/Models/Enums/IsIsolated.cs` |
+| `SideEffectType1` | `src/Binance/Models/Enums/SideEffectType1.cs` |
+| `NewOrderRespType` | `src/Binance/Models/Enums/NewOrderRespType.cs` |
+| `SelfTradePreventionMode` | `src/Binance/Models/Enums/SelfTradePreventionMode.cs` |
+| `WorkingTimeInForce` | `src/Binance/Models/Enums/WorkingTimeInForce.cs` |
+| `PendingAboveTimeInForce` | `src/Binance/Models/Enums/PendingAboveTimeInForce.cs` |
+| `PendingBelowType` | `src/Binance/Models/Enums/PendingBelowType.cs` |
+| `PendingBelowTimeInForce` | `src/Binance/Models/Enums/PendingBelowTimeInForce.cs` |
+| `SapiV1MarginOrderOtocoResponse` | `src/Binance/Models/SapiV1MarginOrderOtocoResponse.cs` |
+| `MarginAccountNewOtocoTradeError` | `src/Binance/Errors/MarginAccountNewOtocoTradeError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### MarginInterestRateHistoryUserData
 
@@ -481,10 +481,10 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `MarginInterestRateHistoryUserDataRequest` | `Requests/Margin/MarginInterestRateHistoryUserDataRequest.cs` |
-| `SapiV1MarginInterestRateHistoryResponse` | `Models/SapiV1MarginInterestRateHistoryResponse.cs` |
-| `MarginInterestRateHistoryUserDataError` | `Errors/MarginInterestRateHistoryUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `MarginInterestRateHistoryUserDataRequest` | `src/Binance/Requests/Margin/MarginInterestRateHistoryUserDataRequest.cs` |
+| `SapiV1MarginInterestRateHistoryResponse` | `src/Binance/Models/SapiV1MarginInterestRateHistoryResponse.cs` |
+| `MarginInterestRateHistoryUserDataError` | `src/Binance/Errors/MarginInterestRateHistoryUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### MarginManualLiquidationMargin
 
@@ -498,11 +498,11 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `MarginManualLiquidationMarginRequest` | `Requests/Margin/MarginManualLiquidationMarginRequest.cs` |
-| `Type4` | `Models/Enums/Type4.cs` |
-| `SapiV1MarginManualLiquidationResponse` | `Models/SapiV1MarginManualLiquidationResponse.cs` |
-| `MarginManualLiquidationMarginError` | `Errors/MarginManualLiquidationMarginError.cs` |
-| `Error` | `Models/Error.cs` |
+| `MarginManualLiquidationMarginRequest` | `src/Binance/Requests/Margin/MarginManualLiquidationMarginRequest.cs` |
+| `Type4` | `src/Binance/Models/Enums/Type4.cs` |
+| `SapiV1MarginManualLiquidationResponse` | `src/Binance/Models/SapiV1MarginManualLiquidationResponse.cs` |
+| `MarginManualLiquidationMarginError` | `src/Binance/Errors/MarginManualLiquidationMarginError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryBorrowRepayRecordsInMarginAccountUserData
 
@@ -516,10 +516,10 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `QueryBorrowRepayRecordsInMarginAccountUserDataRequest` | `Requests/Margin/QueryBorrowRepayRecordsInMarginAccountUserDataRequest.cs` |
-| `SapiV1MarginBorrowRepayResponse1` | `Models/SapiV1MarginBorrowRepayResponse1.cs` |
-| `QueryBorrowRepayRecordsInMarginAccountUserDataError` | `Errors/QueryBorrowRepayRecordsInMarginAccountUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryBorrowRepayRecordsInMarginAccountUserDataRequest` | `src/Binance/Requests/Margin/QueryBorrowRepayRecordsInMarginAccountUserDataRequest.cs` |
+| `SapiV1MarginBorrowRepayResponse1` | `src/Binance/Models/SapiV1MarginBorrowRepayResponse1.cs` |
+| `QueryBorrowRepayRecordsInMarginAccountUserDataError` | `src/Binance/Errors/QueryBorrowRepayRecordsInMarginAccountUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryCrossMarginAccountDetailsUserData
 
@@ -533,10 +533,10 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `QueryCrossMarginAccountDetailsUserDataRequest` | `Requests/Margin/QueryCrossMarginAccountDetailsUserDataRequest.cs` |
-| `SapiV1MarginAccountResponse` | `Models/SapiV1MarginAccountResponse.cs` |
-| `QueryCrossMarginAccountDetailsUserDataError` | `Errors/QueryCrossMarginAccountDetailsUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryCrossMarginAccountDetailsUserDataRequest` | `src/Binance/Requests/Margin/QueryCrossMarginAccountDetailsUserDataRequest.cs` |
+| `SapiV1MarginAccountResponse` | `src/Binance/Models/SapiV1MarginAccountResponse.cs` |
+| `QueryCrossMarginAccountDetailsUserDataError` | `src/Binance/Errors/QueryCrossMarginAccountDetailsUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryCrossMarginFeeDataUserData
 
@@ -550,10 +550,10 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `QueryCrossMarginFeeDataUserDataRequest` | `Requests/Margin/QueryCrossMarginFeeDataUserDataRequest.cs` |
-| `SapiV1MarginCrossMarginDataResponse` | `Models/SapiV1MarginCrossMarginDataResponse.cs` |
-| `QueryCrossMarginFeeDataUserDataError` | `Errors/QueryCrossMarginFeeDataUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryCrossMarginFeeDataUserDataRequest` | `src/Binance/Requests/Margin/QueryCrossMarginFeeDataUserDataRequest.cs` |
+| `SapiV1MarginCrossMarginDataResponse` | `src/Binance/Models/SapiV1MarginCrossMarginDataResponse.cs` |
+| `QueryCrossMarginFeeDataUserDataError` | `src/Binance/Errors/QueryCrossMarginFeeDataUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryCurrentMarginOrderCountUsageTrade
 
@@ -567,10 +567,10 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `QueryCurrentMarginOrderCountUsageTradeRequest` | `Requests/Margin/QueryCurrentMarginOrderCountUsageTradeRequest.cs` |
-| `SapiV1MarginRateLimitOrderResponse` | `Models/SapiV1MarginRateLimitOrderResponse.cs` |
-| `QueryCurrentMarginOrderCountUsageTradeError` | `Errors/QueryCurrentMarginOrderCountUsageTradeError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryCurrentMarginOrderCountUsageTradeRequest` | `src/Binance/Requests/Margin/QueryCurrentMarginOrderCountUsageTradeRequest.cs` |
+| `SapiV1MarginRateLimitOrderResponse` | `src/Binance/Models/SapiV1MarginRateLimitOrderResponse.cs` |
+| `QueryCurrentMarginOrderCountUsageTradeError` | `src/Binance/Errors/QueryCurrentMarginOrderCountUsageTradeError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryEnabledIsolatedMarginAccountLimitUserData
 
@@ -584,10 +584,10 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `QueryEnabledIsolatedMarginAccountLimitUserDataRequest` | `Requests/Margin/QueryEnabledIsolatedMarginAccountLimitUserDataRequest.cs` |
-| `SapiV1MarginIsolatedAccountLimitResponse` | `Models/SapiV1MarginIsolatedAccountLimitResponse.cs` |
-| `QueryEnabledIsolatedMarginAccountLimitUserDataError` | `Errors/QueryEnabledIsolatedMarginAccountLimitUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryEnabledIsolatedMarginAccountLimitUserDataRequest` | `src/Binance/Requests/Margin/QueryEnabledIsolatedMarginAccountLimitUserDataRequest.cs` |
+| `SapiV1MarginIsolatedAccountLimitResponse` | `src/Binance/Models/SapiV1MarginIsolatedAccountLimitResponse.cs` |
+| `QueryEnabledIsolatedMarginAccountLimitUserDataError` | `src/Binance/Errors/QueryEnabledIsolatedMarginAccountLimitUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryIsolatedMarginAccountInfoUserData
 
@@ -601,10 +601,10 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `QueryIsolatedMarginAccountInfoUserDataRequest` | `Requests/Margin/QueryIsolatedMarginAccountInfoUserDataRequest.cs` |
-| `IsolatedMarginAccountInfo` | `Models/IsolatedMarginAccountInfo.cs` |
-| `QueryIsolatedMarginAccountInfoUserDataError` | `Errors/QueryIsolatedMarginAccountInfoUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryIsolatedMarginAccountInfoUserDataRequest` | `src/Binance/Requests/Margin/QueryIsolatedMarginAccountInfoUserDataRequest.cs` |
+| `IsolatedMarginAccountInfo` | `src/Binance/Models/IsolatedMarginAccountInfo.cs` |
+| `QueryIsolatedMarginAccountInfoUserDataError` | `src/Binance/Errors/QueryIsolatedMarginAccountInfoUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryIsolatedMarginFeeDataUserData
 
@@ -618,10 +618,10 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `QueryIsolatedMarginFeeDataUserDataRequest` | `Requests/Margin/QueryIsolatedMarginFeeDataUserDataRequest.cs` |
-| `SapiV1MarginIsolatedMarginDataResponse` | `Models/SapiV1MarginIsolatedMarginDataResponse.cs` |
-| `QueryIsolatedMarginFeeDataUserDataError` | `Errors/QueryIsolatedMarginFeeDataUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryIsolatedMarginFeeDataUserDataRequest` | `src/Binance/Requests/Margin/QueryIsolatedMarginFeeDataUserDataRequest.cs` |
+| `SapiV1MarginIsolatedMarginDataResponse` | `src/Binance/Models/SapiV1MarginIsolatedMarginDataResponse.cs` |
+| `QueryIsolatedMarginFeeDataUserDataError` | `src/Binance/Errors/QueryIsolatedMarginFeeDataUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryIsolatedMarginTierDataUserData
 
@@ -635,10 +635,10 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `QueryIsolatedMarginTierDataUserDataRequest` | `Requests/Margin/QueryIsolatedMarginTierDataUserDataRequest.cs` |
-| `SapiV1MarginIsolatedMarginTierResponse` | `Models/SapiV1MarginIsolatedMarginTierResponse.cs` |
-| `QueryIsolatedMarginTierDataUserDataError` | `Errors/QueryIsolatedMarginTierDataUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryIsolatedMarginTierDataUserDataRequest` | `src/Binance/Requests/Margin/QueryIsolatedMarginTierDataUserDataRequest.cs` |
+| `SapiV1MarginIsolatedMarginTierResponse` | `src/Binance/Models/SapiV1MarginIsolatedMarginTierResponse.cs` |
+| `QueryIsolatedMarginTierDataUserDataError` | `src/Binance/Errors/QueryIsolatedMarginTierDataUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryLiabilityCoinLeverageBracketInCrossMarginProModeMarketData
 
@@ -650,9 +650,9 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `SapiV1MarginLeverageBracketResponse` | `Models/SapiV1MarginLeverageBracketResponse.cs` |
-| `QueryLiabilityCoinLeverageBracketInCrossMarginProModeMarketDataError` | `Errors/QueryLiabilityCoinLeverageBracketInCrossMarginProModeMarketDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `SapiV1MarginLeverageBracketResponse` | `src/Binance/Models/SapiV1MarginLeverageBracketResponse.cs` |
+| `QueryLiabilityCoinLeverageBracketInCrossMarginProModeMarketDataError` | `src/Binance/Errors/QueryLiabilityCoinLeverageBracketInCrossMarginProModeMarketDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryMarginAccountSAllOcoUserData
 
@@ -666,11 +666,11 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `QueryMarginAccountSAllOcoUserDataRequest` | `Requests/Margin/QueryMarginAccountSAllOcoUserDataRequest.cs` |
-| `IsIsolated` | `Models/Enums/IsIsolated.cs` |
-| `SapiV1MarginAllOrderListResponse` | `Models/SapiV1MarginAllOrderListResponse.cs` |
-| `QueryMarginAccountSAllOcoUserDataError` | `Errors/QueryMarginAccountSAllOcoUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryMarginAccountSAllOcoUserDataRequest` | `src/Binance/Requests/Margin/QueryMarginAccountSAllOcoUserDataRequest.cs` |
+| `IsIsolated` | `src/Binance/Models/Enums/IsIsolated.cs` |
+| `SapiV1MarginAllOrderListResponse` | `src/Binance/Models/SapiV1MarginAllOrderListResponse.cs` |
+| `QueryMarginAccountSAllOcoUserDataError` | `src/Binance/Errors/QueryMarginAccountSAllOcoUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryMarginAccountSAllOrdersUserData
 
@@ -684,11 +684,11 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `QueryMarginAccountSAllOrdersUserDataRequest` | `Requests/Margin/QueryMarginAccountSAllOrdersUserDataRequest.cs` |
-| `IsIsolated` | `Models/Enums/IsIsolated.cs` |
-| `MarginOrderDetail` | `Models/MarginOrderDetail.cs` |
-| `QueryMarginAccountSAllOrdersUserDataError` | `Errors/QueryMarginAccountSAllOrdersUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryMarginAccountSAllOrdersUserDataRequest` | `src/Binance/Requests/Margin/QueryMarginAccountSAllOrdersUserDataRequest.cs` |
+| `IsIsolated` | `src/Binance/Models/Enums/IsIsolated.cs` |
+| `MarginOrderDetail` | `src/Binance/Models/MarginOrderDetail.cs` |
+| `QueryMarginAccountSAllOrdersUserDataError` | `src/Binance/Errors/QueryMarginAccountSAllOrdersUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryMarginAccountSOcoUserData
 
@@ -702,11 +702,11 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `QueryMarginAccountSOcoUserDataRequest` | `Requests/Margin/QueryMarginAccountSOcoUserDataRequest.cs` |
-| `IsIsolated` | `Models/Enums/IsIsolated.cs` |
-| `SapiV1MarginOrderListResponse` | `Models/SapiV1MarginOrderListResponse.cs` |
-| `QueryMarginAccountSOcoUserDataError` | `Errors/QueryMarginAccountSOcoUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryMarginAccountSOcoUserDataRequest` | `src/Binance/Requests/Margin/QueryMarginAccountSOcoUserDataRequest.cs` |
+| `IsIsolated` | `src/Binance/Models/Enums/IsIsolated.cs` |
+| `SapiV1MarginOrderListResponse` | `src/Binance/Models/SapiV1MarginOrderListResponse.cs` |
+| `QueryMarginAccountSOcoUserDataError` | `src/Binance/Errors/QueryMarginAccountSOcoUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryMarginAccountSOpenOcoUserData
 
@@ -720,11 +720,11 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `QueryMarginAccountSOpenOcoUserDataRequest` | `Requests/Margin/QueryMarginAccountSOpenOcoUserDataRequest.cs` |
-| `IsIsolated` | `Models/Enums/IsIsolated.cs` |
-| `SapiV1MarginOpenOrderListResponse` | `Models/SapiV1MarginOpenOrderListResponse.cs` |
-| `QueryMarginAccountSOpenOcoUserDataError` | `Errors/QueryMarginAccountSOpenOcoUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryMarginAccountSOpenOcoUserDataRequest` | `src/Binance/Requests/Margin/QueryMarginAccountSOpenOcoUserDataRequest.cs` |
+| `IsIsolated` | `src/Binance/Models/Enums/IsIsolated.cs` |
+| `SapiV1MarginOpenOrderListResponse` | `src/Binance/Models/SapiV1MarginOpenOrderListResponse.cs` |
+| `QueryMarginAccountSOpenOcoUserDataError` | `src/Binance/Errors/QueryMarginAccountSOpenOcoUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryMarginAccountSOpenOrdersUserData
 
@@ -738,11 +738,11 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `QueryMarginAccountSOpenOrdersUserDataRequest` | `Requests/Margin/QueryMarginAccountSOpenOrdersUserDataRequest.cs` |
-| `IsIsolated` | `Models/Enums/IsIsolated.cs` |
-| `MarginOrderDetail` | `Models/MarginOrderDetail.cs` |
-| `QueryMarginAccountSOpenOrdersUserDataError` | `Errors/QueryMarginAccountSOpenOrdersUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryMarginAccountSOpenOrdersUserDataRequest` | `src/Binance/Requests/Margin/QueryMarginAccountSOpenOrdersUserDataRequest.cs` |
+| `IsIsolated` | `src/Binance/Models/Enums/IsIsolated.cs` |
+| `MarginOrderDetail` | `src/Binance/Models/MarginOrderDetail.cs` |
+| `QueryMarginAccountSOpenOrdersUserDataError` | `src/Binance/Errors/QueryMarginAccountSOpenOrdersUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryMarginAccountSOrderUserData
 
@@ -756,11 +756,11 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `QueryMarginAccountSOrderUserDataRequest` | `Requests/Margin/QueryMarginAccountSOrderUserDataRequest.cs` |
-| `IsIsolated` | `Models/Enums/IsIsolated.cs` |
-| `MarginOrderDetail` | `Models/MarginOrderDetail.cs` |
-| `QueryMarginAccountSOrderUserDataError` | `Errors/QueryMarginAccountSOrderUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryMarginAccountSOrderUserDataRequest` | `src/Binance/Requests/Margin/QueryMarginAccountSOrderUserDataRequest.cs` |
+| `IsIsolated` | `src/Binance/Models/Enums/IsIsolated.cs` |
+| `MarginOrderDetail` | `src/Binance/Models/MarginOrderDetail.cs` |
+| `QueryMarginAccountSOrderUserDataError` | `src/Binance/Errors/QueryMarginAccountSOrderUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryMarginAccountSTradeListUserData
 
@@ -774,11 +774,11 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `QueryMarginAccountSTradeListUserDataRequest` | `Requests/Margin/QueryMarginAccountSTradeListUserDataRequest.cs` |
-| `IsIsolated` | `Models/Enums/IsIsolated.cs` |
-| `MarginTrade` | `Models/MarginTrade.cs` |
-| `QueryMarginAccountSTradeListUserDataError` | `Errors/QueryMarginAccountSTradeListUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryMarginAccountSTradeListUserDataRequest` | `src/Binance/Requests/Margin/QueryMarginAccountSTradeListUserDataRequest.cs` |
+| `IsIsolated` | `src/Binance/Models/Enums/IsIsolated.cs` |
+| `MarginTrade` | `src/Binance/Models/MarginTrade.cs` |
+| `QueryMarginAccountSTradeListUserDataError` | `src/Binance/Errors/QueryMarginAccountSTradeListUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryMarginAvailableInventoryUserData
 
@@ -792,11 +792,11 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `QueryMarginAvailableInventoryUserDataRequest` | `Requests/Margin/QueryMarginAvailableInventoryUserDataRequest.cs` |
-| `Type4` | `Models/Enums/Type4.cs` |
-| `SapiV1MarginAvailableInventoryResponse` | `Models/SapiV1MarginAvailableInventoryResponse.cs` |
-| `QueryMarginAvailableInventoryUserDataError` | `Errors/QueryMarginAvailableInventoryUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryMarginAvailableInventoryUserDataRequest` | `src/Binance/Requests/Margin/QueryMarginAvailableInventoryUserDataRequest.cs` |
+| `Type4` | `src/Binance/Models/Enums/Type4.cs` |
+| `SapiV1MarginAvailableInventoryResponse` | `src/Binance/Models/SapiV1MarginAvailableInventoryResponse.cs` |
+| `QueryMarginAvailableInventoryUserDataError` | `src/Binance/Errors/QueryMarginAvailableInventoryUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryMarginPriceIndexMarketData
 
@@ -810,10 +810,10 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `QueryMarginPriceIndexMarketDataRequest` | `Requests/Margin/QueryMarginPriceIndexMarketDataRequest.cs` |
-| `SapiV1MarginPriceIndexResponse` | `Models/SapiV1MarginPriceIndexResponse.cs` |
-| `QueryMarginPriceIndexMarketDataError` | `Errors/QueryMarginPriceIndexMarketDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryMarginPriceIndexMarketDataRequest` | `src/Binance/Requests/Margin/QueryMarginPriceIndexMarketDataRequest.cs` |
+| `SapiV1MarginPriceIndexResponse` | `src/Binance/Models/SapiV1MarginPriceIndexResponse.cs` |
+| `QueryMarginPriceIndexMarketDataError` | `src/Binance/Errors/QueryMarginPriceIndexMarketDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryMaxBorrowUserData
 
@@ -827,10 +827,10 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `QueryMaxBorrowUserDataRequest` | `Requests/Margin/QueryMaxBorrowUserDataRequest.cs` |
-| `SapiV1MarginMaxBorrowableResponse` | `Models/SapiV1MarginMaxBorrowableResponse.cs` |
-| `QueryMaxBorrowUserDataError` | `Errors/QueryMaxBorrowUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryMaxBorrowUserDataRequest` | `src/Binance/Requests/Margin/QueryMaxBorrowUserDataRequest.cs` |
+| `SapiV1MarginMaxBorrowableResponse` | `src/Binance/Models/SapiV1MarginMaxBorrowableResponse.cs` |
+| `QueryMaxBorrowUserDataError` | `src/Binance/Errors/QueryMaxBorrowUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryMaxTransferOutAmountUserData
 
@@ -844,10 +844,10 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `QueryMaxTransferOutAmountUserDataRequest` | `Requests/Margin/QueryMaxTransferOutAmountUserDataRequest.cs` |
-| `SapiV1MarginMaxTransferableResponse` | `Models/SapiV1MarginMaxTransferableResponse.cs` |
-| `QueryMaxTransferOutAmountUserDataError` | `Errors/QueryMaxTransferOutAmountUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryMaxTransferOutAmountUserDataRequest` | `src/Binance/Requests/Margin/QueryMaxTransferOutAmountUserDataRequest.cs` |
+| `SapiV1MarginMaxTransferableResponse` | `src/Binance/Models/SapiV1MarginMaxTransferableResponse.cs` |
+| `QueryMaxTransferOutAmountUserDataError` | `src/Binance/Errors/QueryMaxTransferOutAmountUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### ToggleBnbBurnOnSpotTradeAndMarginInterestUserData
 
@@ -861,10 +861,10 @@ Accessor: `client.Margin` · Source: `Api/Margin.cs` · 48 operations
 
 | Type | Source |
 | --- | --- |
-| `ToggleBnbBurnOnSpotTradeAndMarginInterestUserDataRequest` | `Requests/Margin/ToggleBnbBurnOnSpotTradeAndMarginInterestUserDataRequest.cs` |
-| `SpotBnbBurn` | `Models/Enums/SpotBnbBurn.cs` |
-| `InterestBnbBurn` | `Models/Enums/InterestBnbBurn.cs` |
-| `BnbBurnStatus` | `Models/BnbBurnStatus.cs` |
-| `ToggleBnbBurnOnSpotTradeAndMarginInterestUserDataError` | `Errors/ToggleBnbBurnOnSpotTradeAndMarginInterestUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `ToggleBnbBurnOnSpotTradeAndMarginInterestUserDataRequest` | `src/Binance/Requests/Margin/ToggleBnbBurnOnSpotTradeAndMarginInterestUserDataRequest.cs` |
+| `SpotBnbBurn` | `src/Binance/Models/Enums/SpotBnbBurn.cs` |
+| `InterestBnbBurn` | `src/Binance/Models/Enums/InterestBnbBurn.cs` |
+| `BnbBurnStatus` | `src/Binance/Models/BnbBurnStatus.cs` |
+| `ToggleBnbBurnOnSpotTradeAndMarginInterestUserDataError` | `src/Binance/Errors/ToggleBnbBurnOnSpotTradeAndMarginInterestUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 

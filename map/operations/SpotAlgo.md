@@ -2,7 +2,7 @@
 
 # SpotAlgo — operations
 
-Accessor: `client.SpotAlgo` · Source: `Api/SpotAlgo.cs` · 5 operations
+Accessor: `client.SpotAlgo` · Source: `src/Binance/Api/SpotAlgo.cs` · 5 operations
 
 **Type sources**: the file declaring each type an operation names (`RawError` excluded — see sdk-map.md).
 
@@ -18,10 +18,10 @@ Accessor: `client.SpotAlgo` · Source: `Api/SpotAlgo.cs` · 5 operations
 
 | Type | Source |
 | --- | --- |
-| `CancelAlgoOrderRequest` | `Requests/SpotAlgo/CancelAlgoOrderRequest.cs` |
-| `SapiV1AlgoSpotOrderResponse` | `Models/SapiV1AlgoSpotOrderResponse.cs` |
-| `CancelAlgoOrderError` | `Errors/CancelAlgoOrderError.cs` |
-| `Error` | `Models/Error.cs` |
+| `CancelAlgoOrderRequest` | `src/Binance/Requests/SpotAlgo/CancelAlgoOrderRequest.cs` |
+| `SapiV1AlgoSpotOrderResponse` | `src/Binance/Models/SapiV1AlgoSpotOrderResponse.cs` |
+| `CancelAlgoOrderError` | `src/Binance/Errors/CancelAlgoOrderError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryCurrentAlgoOpenOrders
 
@@ -35,10 +35,10 @@ Accessor: `client.SpotAlgo` · Source: `Api/SpotAlgo.cs` · 5 operations
 
 | Type | Source |
 | --- | --- |
-| `QueryCurrentAlgoOpenOrdersRequest` | `Requests/SpotAlgo/QueryCurrentAlgoOpenOrdersRequest.cs` |
-| `SapiV1AlgoSpotOpenOrdersResponse` | `Models/SapiV1AlgoSpotOpenOrdersResponse.cs` |
-| `QueryCurrentAlgoOpenOrdersError` | `Errors/QueryCurrentAlgoOpenOrdersError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryCurrentAlgoOpenOrdersRequest` | `src/Binance/Requests/SpotAlgo/QueryCurrentAlgoOpenOrdersRequest.cs` |
+| `SapiV1AlgoSpotOpenOrdersResponse` | `src/Binance/Models/SapiV1AlgoSpotOpenOrdersResponse.cs` |
+| `QueryCurrentAlgoOpenOrdersError` | `src/Binance/Errors/QueryCurrentAlgoOpenOrdersError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryHistoricalAlgoOrders
 
@@ -52,11 +52,11 @@ Accessor: `client.SpotAlgo` · Source: `Api/SpotAlgo.cs` · 5 operations
 
 | Type | Source |
 | --- | --- |
-| `QueryHistoricalAlgoOrdersRequest` | `Requests/SpotAlgo/QueryHistoricalAlgoOrdersRequest.cs` |
-| `Side` | `Models/Enums/Side.cs` |
-| `SapiV1AlgoSpotHistoricalOrdersResponse` | `Models/SapiV1AlgoSpotHistoricalOrdersResponse.cs` |
-| `QueryHistoricalAlgoOrdersError` | `Errors/QueryHistoricalAlgoOrdersError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryHistoricalAlgoOrdersRequest` | `src/Binance/Requests/SpotAlgo/QueryHistoricalAlgoOrdersRequest.cs` |
+| `Side` | `src/Binance/Models/Enums/Side.cs` |
+| `SapiV1AlgoSpotHistoricalOrdersResponse` | `src/Binance/Models/SapiV1AlgoSpotHistoricalOrdersResponse.cs` |
+| `QueryHistoricalAlgoOrdersError` | `src/Binance/Errors/QueryHistoricalAlgoOrdersError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QuerySubOrders
 
@@ -70,10 +70,10 @@ Accessor: `client.SpotAlgo` · Source: `Api/SpotAlgo.cs` · 5 operations
 
 | Type | Source |
 | --- | --- |
-| `QuerySubOrdersRequest` | `Requests/SpotAlgo/QuerySubOrdersRequest.cs` |
-| `SapiV1AlgoSpotSubOrdersResponse` | `Models/SapiV1AlgoSpotSubOrdersResponse.cs` |
-| `QuerySubOrdersError` | `Errors/QuerySubOrdersError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QuerySubOrdersRequest` | `src/Binance/Requests/SpotAlgo/QuerySubOrdersRequest.cs` |
+| `SapiV1AlgoSpotSubOrdersResponse` | `src/Binance/Models/SapiV1AlgoSpotSubOrdersResponse.cs` |
+| `QuerySubOrdersError` | `src/Binance/Errors/QuerySubOrdersError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### TimeWeightedAveragePriceTwapNewOrder
 
@@ -87,9 +87,9 @@ Accessor: `client.SpotAlgo` · Source: `Api/SpotAlgo.cs` · 5 operations
 
 | Type | Source |
 | --- | --- |
-| `TimeWeightedAveragePriceTwapNewOrderRequest` | `Requests/SpotAlgo/TimeWeightedAveragePriceTwapNewOrderRequest.cs` |
-| `Side` | `Models/Enums/Side.cs` |
-| `SapiV1AlgoSpotNewOrderTwapResponse` | `Models/SapiV1AlgoSpotNewOrderTwapResponse.cs` |
-| `TimeWeightedAveragePriceTwapNewOrderError` | `Errors/TimeWeightedAveragePriceTwapNewOrderError.cs` |
-| `Error` | `Models/Error.cs` |
+| `TimeWeightedAveragePriceTwapNewOrderRequest` | `src/Binance/Requests/SpotAlgo/TimeWeightedAveragePriceTwapNewOrderRequest.cs` |
+| `Side` | `src/Binance/Models/Enums/Side.cs` |
+| `SapiV1AlgoSpotNewOrderTwapResponse` | `src/Binance/Models/SapiV1AlgoSpotNewOrderTwapResponse.cs` |
+| `TimeWeightedAveragePriceTwapNewOrderError` | `src/Binance/Errors/TimeWeightedAveragePriceTwapNewOrderError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 

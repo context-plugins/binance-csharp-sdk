@@ -2,7 +2,7 @@
 
 # SimpleEarn — operations
 
-Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
+Accessor: `client.SimpleEarn` · Source: `src/Binance/Api/SimpleEarn.cs` · 24 operations
 
 **Type sources**: the file declaring each type an operation names (`RawError` excluded — see sdk-map.md).
 
@@ -18,10 +18,10 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 | Type | Source |
 | --- | --- |
-| `GetCollateralRecordUserDataRequest` | `Requests/SimpleEarn/GetCollateralRecordUserDataRequest.cs` |
-| `SapiV1SimpleEarnFlexibleHistoryCollateralRecordResponse` | `Models/SapiV1SimpleEarnFlexibleHistoryCollateralRecordResponse.cs` |
-| `GetCollateralRecordUserDataError` | `Errors/GetCollateralRecordUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetCollateralRecordUserDataRequest` | `src/Binance/Requests/SimpleEarn/GetCollateralRecordUserDataRequest.cs` |
+| `SapiV1SimpleEarnFlexibleHistoryCollateralRecordResponse` | `src/Binance/Models/SapiV1SimpleEarnFlexibleHistoryCollateralRecordResponse.cs` |
+| `GetCollateralRecordUserDataError` | `src/Binance/Errors/GetCollateralRecordUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetFlexiblePersonalLeftQuotaUserData
 
@@ -35,10 +35,10 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 | Type | Source |
 | --- | --- |
-| `GetFlexiblePersonalLeftQuotaUserDataRequest` | `Requests/SimpleEarn/GetFlexiblePersonalLeftQuotaUserDataRequest.cs` |
-| `SapiV1SimpleEarnFlexiblePersonalLeftQuotaResponse` | `Models/SapiV1SimpleEarnFlexiblePersonalLeftQuotaResponse.cs` |
-| `GetFlexiblePersonalLeftQuotaUserDataError` | `Errors/GetFlexiblePersonalLeftQuotaUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetFlexiblePersonalLeftQuotaUserDataRequest` | `src/Binance/Requests/SimpleEarn/GetFlexiblePersonalLeftQuotaUserDataRequest.cs` |
+| `SapiV1SimpleEarnFlexiblePersonalLeftQuotaResponse` | `src/Binance/Models/SapiV1SimpleEarnFlexiblePersonalLeftQuotaResponse.cs` |
+| `GetFlexiblePersonalLeftQuotaUserDataError` | `src/Binance/Errors/GetFlexiblePersonalLeftQuotaUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetFlexibleProductPositionUserData
 
@@ -52,10 +52,10 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 | Type | Source |
 | --- | --- |
-| `GetFlexibleProductPositionUserDataRequest` | `Requests/SimpleEarn/GetFlexibleProductPositionUserDataRequest.cs` |
-| `SapiV1SimpleEarnFlexiblePositionResponse` | `Models/SapiV1SimpleEarnFlexiblePositionResponse.cs` |
-| `GetFlexibleProductPositionUserDataError` | `Errors/GetFlexibleProductPositionUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetFlexibleProductPositionUserDataRequest` | `src/Binance/Requests/SimpleEarn/GetFlexibleProductPositionUserDataRequest.cs` |
+| `SapiV1SimpleEarnFlexiblePositionResponse` | `src/Binance/Models/SapiV1SimpleEarnFlexiblePositionResponse.cs` |
+| `GetFlexibleProductPositionUserDataError` | `src/Binance/Errors/GetFlexibleProductPositionUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetFlexibleRedemptionRecordUserData
 
@@ -68,10 +68,10 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 | Type | Source |
 | --- | --- |
-| `GetFlexibleRedemptionRecordUserDataRequest` | `Requests/SimpleEarn/GetFlexibleRedemptionRecordUserDataRequest.cs` |
-| `SapiV1SimpleEarnFlexibleHistoryRedemptionRecordResponse` | `Models/SapiV1SimpleEarnFlexibleHistoryRedemptionRecordResponse.cs` |
-| `GetFlexibleRedemptionRecordUserDataError` | `Errors/GetFlexibleRedemptionRecordUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetFlexibleRedemptionRecordUserDataRequest` | `src/Binance/Requests/SimpleEarn/GetFlexibleRedemptionRecordUserDataRequest.cs` |
+| `SapiV1SimpleEarnFlexibleHistoryRedemptionRecordResponse` | `src/Binance/Models/SapiV1SimpleEarnFlexibleHistoryRedemptionRecordResponse.cs` |
+| `GetFlexibleRedemptionRecordUserDataError` | `src/Binance/Errors/GetFlexibleRedemptionRecordUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetFlexibleRewardsHistoryUserData
 
@@ -85,10 +85,10 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 | Type | Source |
 | --- | --- |
-| `GetFlexibleRewardsHistoryUserDataRequest` | `Requests/SimpleEarn/GetFlexibleRewardsHistoryUserDataRequest.cs` |
-| `SapiV1SimpleEarnFlexibleHistoryRewardsRecordResponse` | `Models/SapiV1SimpleEarnFlexibleHistoryRewardsRecordResponse.cs` |
-| `GetFlexibleRewardsHistoryUserDataError` | `Errors/GetFlexibleRewardsHistoryUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetFlexibleRewardsHistoryUserDataRequest` | `src/Binance/Requests/SimpleEarn/GetFlexibleRewardsHistoryUserDataRequest.cs` |
+| `SapiV1SimpleEarnFlexibleHistoryRewardsRecordResponse` | `src/Binance/Models/SapiV1SimpleEarnFlexibleHistoryRewardsRecordResponse.cs` |
+| `GetFlexibleRewardsHistoryUserDataError` | `src/Binance/Errors/GetFlexibleRewardsHistoryUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetFlexibleSubscriptionPreviewUserData
 
@@ -102,10 +102,10 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 | Type | Source |
 | --- | --- |
-| `GetFlexibleSubscriptionPreviewUserDataRequest` | `Requests/SimpleEarn/GetFlexibleSubscriptionPreviewUserDataRequest.cs` |
-| `SapiV1SimpleEarnFlexibleSubscriptionPreviewResponse` | `Models/SapiV1SimpleEarnFlexibleSubscriptionPreviewResponse.cs` |
-| `GetFlexibleSubscriptionPreviewUserDataError` | `Errors/GetFlexibleSubscriptionPreviewUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetFlexibleSubscriptionPreviewUserDataRequest` | `src/Binance/Requests/SimpleEarn/GetFlexibleSubscriptionPreviewUserDataRequest.cs` |
+| `SapiV1SimpleEarnFlexibleSubscriptionPreviewResponse` | `src/Binance/Models/SapiV1SimpleEarnFlexibleSubscriptionPreviewResponse.cs` |
+| `GetFlexibleSubscriptionPreviewUserDataError` | `src/Binance/Errors/GetFlexibleSubscriptionPreviewUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetFlexibleSubscriptionRecordUserData
 
@@ -119,10 +119,10 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 | Type | Source |
 | --- | --- |
-| `GetFlexibleSubscriptionRecordUserDataRequest` | `Requests/SimpleEarn/GetFlexibleSubscriptionRecordUserDataRequest.cs` |
-| `SapiV1SimpleEarnFlexibleHistorySubscriptionRecordResponse` | `Models/SapiV1SimpleEarnFlexibleHistorySubscriptionRecordResponse.cs` |
-| `GetFlexibleSubscriptionRecordUserDataError` | `Errors/GetFlexibleSubscriptionRecordUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetFlexibleSubscriptionRecordUserDataRequest` | `src/Binance/Requests/SimpleEarn/GetFlexibleSubscriptionRecordUserDataRequest.cs` |
+| `SapiV1SimpleEarnFlexibleHistorySubscriptionRecordResponse` | `src/Binance/Models/SapiV1SimpleEarnFlexibleHistorySubscriptionRecordResponse.cs` |
+| `GetFlexibleSubscriptionRecordUserDataError` | `src/Binance/Errors/GetFlexibleSubscriptionRecordUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetLockedPersonalLeftQuotaUserData
 
@@ -136,10 +136,10 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 | Type | Source |
 | --- | --- |
-| `GetLockedPersonalLeftQuotaUserDataRequest` | `Requests/SimpleEarn/GetLockedPersonalLeftQuotaUserDataRequest.cs` |
-| `SapiV1SimpleEarnLockedPersonalLeftQuotaResponse` | `Models/SapiV1SimpleEarnLockedPersonalLeftQuotaResponse.cs` |
-| `GetLockedPersonalLeftQuotaUserDataError` | `Errors/GetLockedPersonalLeftQuotaUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetLockedPersonalLeftQuotaUserDataRequest` | `src/Binance/Requests/SimpleEarn/GetLockedPersonalLeftQuotaUserDataRequest.cs` |
+| `SapiV1SimpleEarnLockedPersonalLeftQuotaResponse` | `src/Binance/Models/SapiV1SimpleEarnLockedPersonalLeftQuotaResponse.cs` |
+| `GetLockedPersonalLeftQuotaUserDataError` | `src/Binance/Errors/GetLockedPersonalLeftQuotaUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetLockedProductPositionUserData
 
@@ -153,10 +153,10 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 | Type | Source |
 | --- | --- |
-| `GetLockedProductPositionUserDataRequest` | `Requests/SimpleEarn/GetLockedProductPositionUserDataRequest.cs` |
-| `SapiV1SimpleEarnLockedPositionResponse` | `Models/SapiV1SimpleEarnLockedPositionResponse.cs` |
-| `GetLockedProductPositionUserDataError` | `Errors/GetLockedProductPositionUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetLockedProductPositionUserDataRequest` | `src/Binance/Requests/SimpleEarn/GetLockedProductPositionUserDataRequest.cs` |
+| `SapiV1SimpleEarnLockedPositionResponse` | `src/Binance/Models/SapiV1SimpleEarnLockedPositionResponse.cs` |
+| `GetLockedProductPositionUserDataError` | `src/Binance/Errors/GetLockedProductPositionUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetLockedRedemptionRecordUserData
 
@@ -170,10 +170,10 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 | Type | Source |
 | --- | --- |
-| `GetLockedRedemptionRecordUserDataRequest` | `Requests/SimpleEarn/GetLockedRedemptionRecordUserDataRequest.cs` |
-| `SapiV1SimpleEarnLockedHistoryRedemptionRecordResponse` | `Models/SapiV1SimpleEarnLockedHistoryRedemptionRecordResponse.cs` |
-| `GetLockedRedemptionRecordUserDataError` | `Errors/GetLockedRedemptionRecordUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetLockedRedemptionRecordUserDataRequest` | `src/Binance/Requests/SimpleEarn/GetLockedRedemptionRecordUserDataRequest.cs` |
+| `SapiV1SimpleEarnLockedHistoryRedemptionRecordResponse` | `src/Binance/Models/SapiV1SimpleEarnLockedHistoryRedemptionRecordResponse.cs` |
+| `GetLockedRedemptionRecordUserDataError` | `src/Binance/Errors/GetLockedRedemptionRecordUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetLockedRewardsHistoryUserData
 
@@ -187,10 +187,10 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 | Type | Source |
 | --- | --- |
-| `GetLockedRewardsHistoryUserDataRequest` | `Requests/SimpleEarn/GetLockedRewardsHistoryUserDataRequest.cs` |
-| `SapiV1SimpleEarnLockedHistoryRewardsRecordResponse` | `Models/SapiV1SimpleEarnLockedHistoryRewardsRecordResponse.cs` |
-| `GetLockedRewardsHistoryUserDataError` | `Errors/GetLockedRewardsHistoryUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetLockedRewardsHistoryUserDataRequest` | `src/Binance/Requests/SimpleEarn/GetLockedRewardsHistoryUserDataRequest.cs` |
+| `SapiV1SimpleEarnLockedHistoryRewardsRecordResponse` | `src/Binance/Models/SapiV1SimpleEarnLockedHistoryRewardsRecordResponse.cs` |
+| `GetLockedRewardsHistoryUserDataError` | `src/Binance/Errors/GetLockedRewardsHistoryUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetLockedSubscriptionPreviewUserData
 
@@ -204,10 +204,10 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 | Type | Source |
 | --- | --- |
-| `GetLockedSubscriptionPreviewUserDataRequest` | `Requests/SimpleEarn/GetLockedSubscriptionPreviewUserDataRequest.cs` |
-| `SapiV1SimpleEarnLockedSubscriptionPreviewResponse` | `Models/SapiV1SimpleEarnLockedSubscriptionPreviewResponse.cs` |
-| `GetLockedSubscriptionPreviewUserDataError` | `Errors/GetLockedSubscriptionPreviewUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetLockedSubscriptionPreviewUserDataRequest` | `src/Binance/Requests/SimpleEarn/GetLockedSubscriptionPreviewUserDataRequest.cs` |
+| `SapiV1SimpleEarnLockedSubscriptionPreviewResponse` | `src/Binance/Models/SapiV1SimpleEarnLockedSubscriptionPreviewResponse.cs` |
+| `GetLockedSubscriptionPreviewUserDataError` | `src/Binance/Errors/GetLockedSubscriptionPreviewUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetLockedSubscriptionRecordUserData
 
@@ -221,10 +221,10 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 | Type | Source |
 | --- | --- |
-| `GetLockedSubscriptionRecordUserDataRequest` | `Requests/SimpleEarn/GetLockedSubscriptionRecordUserDataRequest.cs` |
-| `SapiV1SimpleEarnLockedHistorySubscriptionRecordResponse` | `Models/SapiV1SimpleEarnLockedHistorySubscriptionRecordResponse.cs` |
-| `GetLockedSubscriptionRecordUserDataError` | `Errors/GetLockedSubscriptionRecordUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetLockedSubscriptionRecordUserDataRequest` | `src/Binance/Requests/SimpleEarn/GetLockedSubscriptionRecordUserDataRequest.cs` |
+| `SapiV1SimpleEarnLockedHistorySubscriptionRecordResponse` | `src/Binance/Models/SapiV1SimpleEarnLockedHistorySubscriptionRecordResponse.cs` |
+| `GetLockedSubscriptionRecordUserDataError` | `src/Binance/Errors/GetLockedSubscriptionRecordUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetRateHistoryUserData
 
@@ -238,10 +238,10 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 | Type | Source |
 | --- | --- |
-| `GetRateHistoryUserDataRequest` | `Requests/SimpleEarn/GetRateHistoryUserDataRequest.cs` |
-| `SapiV1SimpleEarnFlexibleHistoryRateHistoryResponse` | `Models/SapiV1SimpleEarnFlexibleHistoryRateHistoryResponse.cs` |
-| `GetRateHistoryUserDataError` | `Errors/GetRateHistoryUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetRateHistoryUserDataRequest` | `src/Binance/Requests/SimpleEarn/GetRateHistoryUserDataRequest.cs` |
+| `SapiV1SimpleEarnFlexibleHistoryRateHistoryResponse` | `src/Binance/Models/SapiV1SimpleEarnFlexibleHistoryRateHistoryResponse.cs` |
+| `GetRateHistoryUserDataError` | `src/Binance/Errors/GetRateHistoryUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetSimpleEarnFlexibleProductListUserData
 
@@ -255,10 +255,10 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 | Type | Source |
 | --- | --- |
-| `GetSimpleEarnFlexibleProductListUserDataRequest` | `Requests/SimpleEarn/GetSimpleEarnFlexibleProductListUserDataRequest.cs` |
-| `SapiV1SimpleEarnFlexibleListResponse` | `Models/SapiV1SimpleEarnFlexibleListResponse.cs` |
-| `GetSimpleEarnFlexibleProductListUserDataError` | `Errors/GetSimpleEarnFlexibleProductListUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetSimpleEarnFlexibleProductListUserDataRequest` | `src/Binance/Requests/SimpleEarn/GetSimpleEarnFlexibleProductListUserDataRequest.cs` |
+| `SapiV1SimpleEarnFlexibleListResponse` | `src/Binance/Models/SapiV1SimpleEarnFlexibleListResponse.cs` |
+| `GetSimpleEarnFlexibleProductListUserDataError` | `src/Binance/Errors/GetSimpleEarnFlexibleProductListUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetSimpleEarnLockedProductListUserData
 
@@ -272,10 +272,10 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 | Type | Source |
 | --- | --- |
-| `GetSimpleEarnLockedProductListUserDataRequest` | `Requests/SimpleEarn/GetSimpleEarnLockedProductListUserDataRequest.cs` |
-| `SapiV1SimpleEarnLockedListResponse` | `Models/SapiV1SimpleEarnLockedListResponse.cs` |
-| `GetSimpleEarnLockedProductListUserDataError` | `Errors/GetSimpleEarnLockedProductListUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetSimpleEarnLockedProductListUserDataRequest` | `src/Binance/Requests/SimpleEarn/GetSimpleEarnLockedProductListUserDataRequest.cs` |
+| `SapiV1SimpleEarnLockedListResponse` | `src/Binance/Models/SapiV1SimpleEarnLockedListResponse.cs` |
+| `GetSimpleEarnLockedProductListUserDataError` | `src/Binance/Errors/GetSimpleEarnLockedProductListUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### RedeemFlexibleProductTrade
 
@@ -289,10 +289,10 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 | Type | Source |
 | --- | --- |
-| `RedeemFlexibleProductTradeRequest` | `Requests/SimpleEarn/RedeemFlexibleProductTradeRequest.cs` |
-| `SapiV1SimpleEarnFlexibleRedeemResponse` | `Models/SapiV1SimpleEarnFlexibleRedeemResponse.cs` |
-| `RedeemFlexibleProductTradeError` | `Errors/RedeemFlexibleProductTradeError.cs` |
-| `Error` | `Models/Error.cs` |
+| `RedeemFlexibleProductTradeRequest` | `src/Binance/Requests/SimpleEarn/RedeemFlexibleProductTradeRequest.cs` |
+| `SapiV1SimpleEarnFlexibleRedeemResponse` | `src/Binance/Models/SapiV1SimpleEarnFlexibleRedeemResponse.cs` |
+| `RedeemFlexibleProductTradeError` | `src/Binance/Errors/RedeemFlexibleProductTradeError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### RedeemLockedProductTrade
 
@@ -306,10 +306,10 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 | Type | Source |
 | --- | --- |
-| `RedeemLockedProductTradeRequest` | `Requests/SimpleEarn/RedeemLockedProductTradeRequest.cs` |
-| `SapiV1SimpleEarnLockedRedeemResponse` | `Models/SapiV1SimpleEarnLockedRedeemResponse.cs` |
-| `RedeemLockedProductTradeError` | `Errors/RedeemLockedProductTradeError.cs` |
-| `Error` | `Models/Error.cs` |
+| `RedeemLockedProductTradeRequest` | `src/Binance/Requests/SimpleEarn/RedeemLockedProductTradeRequest.cs` |
+| `SapiV1SimpleEarnLockedRedeemResponse` | `src/Binance/Models/SapiV1SimpleEarnLockedRedeemResponse.cs` |
+| `RedeemLockedProductTradeError` | `src/Binance/Errors/RedeemLockedProductTradeError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### SetFlexibleAutoSubscribeUserData
 
@@ -323,10 +323,10 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 | Type | Source |
 | --- | --- |
-| `SetFlexibleAutoSubscribeUserDataRequest` | `Requests/SimpleEarn/SetFlexibleAutoSubscribeUserDataRequest.cs` |
-| `SapiV1SimpleEarnFlexibleSetAutoSubscribeResponse` | `Models/SapiV1SimpleEarnFlexibleSetAutoSubscribeResponse.cs` |
-| `SetFlexibleAutoSubscribeUserDataError` | `Errors/SetFlexibleAutoSubscribeUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `SetFlexibleAutoSubscribeUserDataRequest` | `src/Binance/Requests/SimpleEarn/SetFlexibleAutoSubscribeUserDataRequest.cs` |
+| `SapiV1SimpleEarnFlexibleSetAutoSubscribeResponse` | `src/Binance/Models/SapiV1SimpleEarnFlexibleSetAutoSubscribeResponse.cs` |
+| `SetFlexibleAutoSubscribeUserDataError` | `src/Binance/Errors/SetFlexibleAutoSubscribeUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### SetLockedAutoSubscribeUserData
 
@@ -340,10 +340,10 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 | Type | Source |
 | --- | --- |
-| `SetLockedAutoSubscribeUserDataRequest` | `Requests/SimpleEarn/SetLockedAutoSubscribeUserDataRequest.cs` |
-| `SapiV1SimpleEarnLockedSetAutoSubscribeResponse` | `Models/SapiV1SimpleEarnLockedSetAutoSubscribeResponse.cs` |
-| `SetLockedAutoSubscribeUserDataError` | `Errors/SetLockedAutoSubscribeUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `SetLockedAutoSubscribeUserDataRequest` | `src/Binance/Requests/SimpleEarn/SetLockedAutoSubscribeUserDataRequest.cs` |
+| `SapiV1SimpleEarnLockedSetAutoSubscribeResponse` | `src/Binance/Models/SapiV1SimpleEarnLockedSetAutoSubscribeResponse.cs` |
+| `SetLockedAutoSubscribeUserDataError` | `src/Binance/Errors/SetLockedAutoSubscribeUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### SetLockedProductRedeemOptionUserData
 
@@ -357,11 +357,11 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 | Type | Source |
 | --- | --- |
-| `SetLockedProductRedeemOptionUserDataRequest` | `Requests/SimpleEarn/SetLockedProductRedeemOptionUserDataRequest.cs` |
-| `RedeemTo` | `Models/Enums/RedeemTo.cs` |
-| `SapiV1SimpleEarnLockedSetRedeemOptionResponse` | `Models/SapiV1SimpleEarnLockedSetRedeemOptionResponse.cs` |
-| `SetLockedProductRedeemOptionUserDataError` | `Errors/SetLockedProductRedeemOptionUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `SetLockedProductRedeemOptionUserDataRequest` | `src/Binance/Requests/SimpleEarn/SetLockedProductRedeemOptionUserDataRequest.cs` |
+| `RedeemTo` | `src/Binance/Models/Enums/RedeemTo.cs` |
+| `SapiV1SimpleEarnLockedSetRedeemOptionResponse` | `src/Binance/Models/SapiV1SimpleEarnLockedSetRedeemOptionResponse.cs` |
+| `SetLockedProductRedeemOptionUserDataError` | `src/Binance/Errors/SetLockedProductRedeemOptionUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### SimpleAccountUserData
 
@@ -375,10 +375,10 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 | Type | Source |
 | --- | --- |
-| `SimpleAccountUserDataRequest` | `Requests/SimpleEarn/SimpleAccountUserDataRequest.cs` |
-| `SapiV1SimpleEarnAccountResponse` | `Models/SapiV1SimpleEarnAccountResponse.cs` |
-| `SimpleAccountUserDataError` | `Errors/SimpleAccountUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `SimpleAccountUserDataRequest` | `src/Binance/Requests/SimpleEarn/SimpleAccountUserDataRequest.cs` |
+| `SapiV1SimpleEarnAccountResponse` | `src/Binance/Models/SapiV1SimpleEarnAccountResponse.cs` |
+| `SimpleAccountUserDataError` | `src/Binance/Errors/SimpleAccountUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### SubscribeFlexibleProductTrade
 
@@ -392,10 +392,10 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 | Type | Source |
 | --- | --- |
-| `SubscribeFlexibleProductTradeRequest` | `Requests/SimpleEarn/SubscribeFlexibleProductTradeRequest.cs` |
-| `SapiV1SimpleEarnFlexibleSubscribeResponse` | `Models/SapiV1SimpleEarnFlexibleSubscribeResponse.cs` |
-| `SubscribeFlexibleProductTradeError` | `Errors/SubscribeFlexibleProductTradeError.cs` |
-| `Error` | `Models/Error.cs` |
+| `SubscribeFlexibleProductTradeRequest` | `src/Binance/Requests/SimpleEarn/SubscribeFlexibleProductTradeRequest.cs` |
+| `SapiV1SimpleEarnFlexibleSubscribeResponse` | `src/Binance/Models/SapiV1SimpleEarnFlexibleSubscribeResponse.cs` |
+| `SubscribeFlexibleProductTradeError` | `src/Binance/Errors/SubscribeFlexibleProductTradeError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### SubscribeLockedProductTrade
 
@@ -409,9 +409,9 @@ Accessor: `client.SimpleEarn` · Source: `Api/SimpleEarn.cs` · 24 operations
 
 | Type | Source |
 | --- | --- |
-| `SubscribeLockedProductTradeRequest` | `Requests/SimpleEarn/SubscribeLockedProductTradeRequest.cs` |
-| `RedeemTo` | `Models/Enums/RedeemTo.cs` |
-| `SapiV1SimpleEarnLockedSubscribeResponse` | `Models/SapiV1SimpleEarnLockedSubscribeResponse.cs` |
-| `SubscribeLockedProductTradeError` | `Errors/SubscribeLockedProductTradeError.cs` |
-| `Error` | `Models/Error.cs` |
+| `SubscribeLockedProductTradeRequest` | `src/Binance/Requests/SimpleEarn/SubscribeLockedProductTradeRequest.cs` |
+| `RedeemTo` | `src/Binance/Models/Enums/RedeemTo.cs` |
+| `SapiV1SimpleEarnLockedSubscribeResponse` | `src/Binance/Models/SapiV1SimpleEarnLockedSubscribeResponse.cs` |
+| `SubscribeLockedProductTradeError` | `src/Binance/Errors/SubscribeLockedProductTradeError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 

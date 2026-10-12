@@ -2,7 +2,7 @@
 
 # Rebate — operations
 
-Accessor: `client.Rebate` · Source: `Api/Rebate.cs` · 1 operation
+Accessor: `client.Rebate` · Source: `src/Binance/Api/Rebate.cs` · 1 operation
 
 **Type sources**: the file declaring each type an operation names (`RawError` excluded — see sdk-map.md).
 
@@ -18,8 +18,8 @@ Accessor: `client.Rebate` · Source: `Api/Rebate.cs` · 1 operation
 
 | Type | Source |
 | --- | --- |
-| `GetSpotRebateHistoryRecordsUserDataRequest` | `Requests/Rebate/GetSpotRebateHistoryRecordsUserDataRequest.cs` |
-| `SapiV1RebateTaxQueryResponse` | `Models/SapiV1RebateTaxQueryResponse.cs` |
-| `GetSpotRebateHistoryRecordsUserDataError` | `Errors/GetSpotRebateHistoryRecordsUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetSpotRebateHistoryRecordsUserDataRequest` | `src/Binance/Requests/Rebate/GetSpotRebateHistoryRecordsUserDataRequest.cs` |
+| `SapiV1RebateTaxQueryResponse` | `src/Binance/Models/SapiV1RebateTaxQueryResponse.cs` |
+| `GetSpotRebateHistoryRecordsUserDataError` | `src/Binance/Errors/GetSpotRebateHistoryRecordsUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 

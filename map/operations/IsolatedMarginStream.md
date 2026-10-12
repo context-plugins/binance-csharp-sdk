@@ -2,7 +2,7 @@
 
 # IsolatedMarginStream — operations
 
-Accessor: `client.IsolatedMarginStream` · Source: `Api/IsolatedMarginStream.cs` · 3 operations
+Accessor: `client.IsolatedMarginStream` · Source: `src/Binance/Api/IsolatedMarginStream.cs` · 3 operations
 
 **Type sources**: the file declaring each type an operation names (`RawError` excluded — see sdk-map.md).
 
@@ -17,9 +17,9 @@ Accessor: `client.IsolatedMarginStream` · Source: `Api/IsolatedMarginStream.cs`
 
 | Type | Source |
 | --- | --- |
-| `CloseAListenKeyUserStream3Request` | `Requests/IsolatedMarginStream/CloseAListenKeyUserStream3Request.cs` |
-| `CloseAListenKeyUserStream3Error` | `Errors/CloseAListenKeyUserStream3Error.cs` |
-| `Error` | `Models/Error.cs` |
+| `CloseAListenKeyUserStream3Request` | `src/Binance/Requests/IsolatedMarginStream/CloseAListenKeyUserStream3Request.cs` |
+| `CloseAListenKeyUserStream3Error` | `src/Binance/Errors/CloseAListenKeyUserStream3Error.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GenerateAListenKeyUserStream
 
@@ -30,7 +30,7 @@ Accessor: `client.IsolatedMarginStream` · Source: `Api/IsolatedMarginStream.cs`
 
 | Type | Source |
 | --- | --- |
-| `SapiV1UserDataStreamIsolatedResponse` | `Models/SapiV1UserDataStreamIsolatedResponse.cs` |
+| `SapiV1UserDataStreamIsolatedResponse` | `src/Binance/Models/SapiV1UserDataStreamIsolatedResponse.cs` |
 
 ### PingKeepAliveAListenKeyUserStream
 
@@ -43,7 +43,7 @@ Accessor: `client.IsolatedMarginStream` · Source: `Api/IsolatedMarginStream.cs`
 
 | Type | Source |
 | --- | --- |
-| `PingKeepAliveAListenKeyUserStreamOperationRequest` | `Requests/IsolatedMarginStream/PingKeepAliveAListenKeyUserStreamOperationRequest.cs` |
-| `PingKeepAliveAListenKeyUserStreamApiError` | `Errors/PingKeepAliveAListenKeyUserStreamApiError.cs` |
-| `Error` | `Models/Error.cs` |
+| `PingKeepAliveAListenKeyUserStreamOperationRequest` | `src/Binance/Requests/IsolatedMarginStream/PingKeepAliveAListenKeyUserStreamOperationRequest.cs` |
+| `PingKeepAliveAListenKeyUserStreamApiError` | `src/Binance/Errors/PingKeepAliveAListenKeyUserStreamApiError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 

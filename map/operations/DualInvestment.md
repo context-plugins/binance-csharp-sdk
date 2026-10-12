@@ -2,7 +2,7 @@
 
 # DualInvestment — operations
 
-Accessor: `client.DualInvestment` · Source: `Api/DualInvestment.cs` · 5 operations
+Accessor: `client.DualInvestment` · Source: `src/Binance/Api/DualInvestment.cs` · 5 operations
 
 **Type sources**: the file declaring each type an operation names (`RawError` excluded — see sdk-map.md).
 
@@ -18,11 +18,11 @@ Accessor: `client.DualInvestment` · Source: `Api/DualInvestment.cs` · 5 operat
 
 | Type | Source |
 | --- | --- |
-| `ChangeAutoCompoundStatusUserDataRequest` | `Requests/DualInvestment/ChangeAutoCompoundStatusUserDataRequest.cs` |
-| `AutoCompoundPlan` | `Models/Enums/AutoCompoundPlan.cs` |
-| `SapiV1DciProductAutoCompoundEditStatusResponse` | `Models/SapiV1DciProductAutoCompoundEditStatusResponse.cs` |
-| `ChangeAutoCompoundStatusUserDataError` | `Errors/ChangeAutoCompoundStatusUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `ChangeAutoCompoundStatusUserDataRequest` | `src/Binance/Requests/DualInvestment/ChangeAutoCompoundStatusUserDataRequest.cs` |
+| `AutoCompoundPlan` | `src/Binance/Models/Enums/AutoCompoundPlan.cs` |
+| `SapiV1DciProductAutoCompoundEditStatusResponse` | `src/Binance/Models/SapiV1DciProductAutoCompoundEditStatusResponse.cs` |
+| `ChangeAutoCompoundStatusUserDataError` | `src/Binance/Errors/ChangeAutoCompoundStatusUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### CheckDualInvestmentAccountsUserData
 
@@ -36,10 +36,10 @@ Accessor: `client.DualInvestment` · Source: `Api/DualInvestment.cs` · 5 operat
 
 | Type | Source |
 | --- | --- |
-| `CheckDualInvestmentAccountsUserDataRequest` | `Requests/DualInvestment/CheckDualInvestmentAccountsUserDataRequest.cs` |
-| `SapiV1DciProductAccountsResponse` | `Models/SapiV1DciProductAccountsResponse.cs` |
-| `CheckDualInvestmentAccountsUserDataError` | `Errors/CheckDualInvestmentAccountsUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `CheckDualInvestmentAccountsUserDataRequest` | `src/Binance/Requests/DualInvestment/CheckDualInvestmentAccountsUserDataRequest.cs` |
+| `SapiV1DciProductAccountsResponse` | `src/Binance/Models/SapiV1DciProductAccountsResponse.cs` |
+| `CheckDualInvestmentAccountsUserDataError` | `src/Binance/Errors/CheckDualInvestmentAccountsUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetDualInvestmentPositionsUserData
 
@@ -53,11 +53,11 @@ Accessor: `client.DualInvestment` · Source: `Api/DualInvestment.cs` · 5 operat
 
 | Type | Source |
 | --- | --- |
-| `GetDualInvestmentPositionsUserDataRequest` | `Requests/DualInvestment/GetDualInvestmentPositionsUserDataRequest.cs` |
-| `Status2` | `Models/Enums/Status2.cs` |
-| `SapiV1DciProductPositionsResponse` | `Models/SapiV1DciProductPositionsResponse.cs` |
-| `GetDualInvestmentPositionsUserDataError` | `Errors/GetDualInvestmentPositionsUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetDualInvestmentPositionsUserDataRequest` | `src/Binance/Requests/DualInvestment/GetDualInvestmentPositionsUserDataRequest.cs` |
+| `Status2` | `src/Binance/Models/Enums/Status2.cs` |
+| `SapiV1DciProductPositionsResponse` | `src/Binance/Models/SapiV1DciProductPositionsResponse.cs` |
+| `GetDualInvestmentPositionsUserDataError` | `src/Binance/Errors/GetDualInvestmentPositionsUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetDualInvestmentProductListUserData
 
@@ -71,11 +71,11 @@ Accessor: `client.DualInvestment` · Source: `Api/DualInvestment.cs` · 5 operat
 
 | Type | Source |
 | --- | --- |
-| `GetDualInvestmentProductListUserDataRequest` | `Requests/DualInvestment/GetDualInvestmentProductListUserDataRequest.cs` |
-| `OptionType` | `Models/Enums/OptionType.cs` |
-| `SapiV1DciProductListResponse` | `Models/SapiV1DciProductListResponse.cs` |
-| `GetDualInvestmentProductListUserDataError` | `Errors/GetDualInvestmentProductListUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetDualInvestmentProductListUserDataRequest` | `src/Binance/Requests/DualInvestment/GetDualInvestmentProductListUserDataRequest.cs` |
+| `OptionType` | `src/Binance/Models/Enums/OptionType.cs` |
+| `SapiV1DciProductListResponse` | `src/Binance/Models/SapiV1DciProductListResponse.cs` |
+| `GetDualInvestmentProductListUserDataError` | `src/Binance/Errors/GetDualInvestmentProductListUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### SubscribeDualInvestmentProductsUserData
 
@@ -89,9 +89,9 @@ Accessor: `client.DualInvestment` · Source: `Api/DualInvestment.cs` · 5 operat
 
 | Type | Source |
 | --- | --- |
-| `SubscribeDualInvestmentProductsUserDataRequest` | `Requests/DualInvestment/SubscribeDualInvestmentProductsUserDataRequest.cs` |
-| `AutoCompoundPlan` | `Models/Enums/AutoCompoundPlan.cs` |
-| `SapiV1DciProductSubscribeResponse` | `Models/SapiV1DciProductSubscribeResponse.cs` |
-| `SubscribeDualInvestmentProductsUserDataError` | `Errors/SubscribeDualInvestmentProductsUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `SubscribeDualInvestmentProductsUserDataRequest` | `src/Binance/Requests/DualInvestment/SubscribeDualInvestmentProductsUserDataRequest.cs` |
+| `AutoCompoundPlan` | `src/Binance/Models/Enums/AutoCompoundPlan.cs` |
+| `SapiV1DciProductSubscribeResponse` | `src/Binance/Models/SapiV1DciProductSubscribeResponse.cs` |
+| `SubscribeDualInvestmentProductsUserDataError` | `src/Binance/Errors/SubscribeDualInvestmentProductsUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 

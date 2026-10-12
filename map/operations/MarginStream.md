@@ -2,7 +2,7 @@
 
 # MarginStream — operations
 
-Accessor: `client.MarginStream` · Source: `Api/MarginStream.cs` · 3 operations
+Accessor: `client.MarginStream` · Source: `src/Binance/Api/MarginStream.cs` · 3 operations
 
 **Type sources**: the file declaring each type an operation names (`RawError` excluded — see sdk-map.md).
 
@@ -17,9 +17,9 @@ Accessor: `client.MarginStream` · Source: `Api/MarginStream.cs` · 3 operations
 
 | Type | Source |
 | --- | --- |
-| `CloseAListenKeyUserStream2Request` | `Requests/MarginStream/CloseAListenKeyUserStream2Request.cs` |
-| `CloseAListenKeyUserStream2Error` | `Errors/CloseAListenKeyUserStream2Error.cs` |
-| `Error` | `Models/Error.cs` |
+| `CloseAListenKeyUserStream2Request` | `src/Binance/Requests/MarginStream/CloseAListenKeyUserStream2Request.cs` |
+| `CloseAListenKeyUserStream2Error` | `src/Binance/Errors/CloseAListenKeyUserStream2Error.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### CreateAListenKeyUserStream2
 
@@ -30,7 +30,7 @@ Accessor: `client.MarginStream` · Source: `Api/MarginStream.cs` · 3 operations
 
 | Type | Source |
 | --- | --- |
-| `SapiV1UserDataStreamResponse` | `Models/SapiV1UserDataStreamResponse.cs` |
+| `SapiV1UserDataStreamResponse` | `src/Binance/Models/SapiV1UserDataStreamResponse.cs` |
 
 ### PingKeepAliveAListenKeyUserStream2
 
@@ -43,7 +43,7 @@ Accessor: `client.MarginStream` · Source: `Api/MarginStream.cs` · 3 operations
 
 | Type | Source |
 | --- | --- |
-| `PingKeepAliveAListenKeyUserStream2Request` | `Requests/MarginStream/PingKeepAliveAListenKeyUserStream2Request.cs` |
-| `PingKeepAliveAListenKeyUserStream2Error` | `Errors/PingKeepAliveAListenKeyUserStream2Error.cs` |
-| `Error` | `Models/Error.cs` |
+| `PingKeepAliveAListenKeyUserStream2Request` | `src/Binance/Requests/MarginStream/PingKeepAliveAListenKeyUserStream2Request.cs` |
+| `PingKeepAliveAListenKeyUserStream2Error` | `src/Binance/Errors/PingKeepAliveAListenKeyUserStream2Error.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 

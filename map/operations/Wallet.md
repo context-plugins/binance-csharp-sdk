@@ -2,7 +2,7 @@
 
 # Wallet — operations
 
-Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
+Accessor: `client.Wallet` · Source: `src/Binance/Api/Wallet.cs` · 34 operations
 
 **Type sources**: the file declaring each type an operation names (`RawError` excluded — see sdk-map.md).
 
@@ -18,10 +18,10 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 | Type | Source |
 | --- | --- |
-| `AccountApiTradingStatusUserDataRequest` | `Requests/Wallet/AccountApiTradingStatusUserDataRequest.cs` |
-| `SapiV1AccountApiTradingStatusResponse` | `Models/SapiV1AccountApiTradingStatusResponse.cs` |
-| `AccountApiTradingStatusUserDataError` | `Errors/AccountApiTradingStatusUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `AccountApiTradingStatusUserDataRequest` | `src/Binance/Requests/Wallet/AccountApiTradingStatusUserDataRequest.cs` |
+| `SapiV1AccountApiTradingStatusResponse` | `src/Binance/Models/SapiV1AccountApiTradingStatusResponse.cs` |
+| `AccountApiTradingStatusUserDataError` | `src/Binance/Errors/AccountApiTradingStatusUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### AccountInfoUserData
 
@@ -35,10 +35,10 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 | Type | Source |
 | --- | --- |
-| `AccountInfoUserDataRequest` | `Requests/Wallet/AccountInfoUserDataRequest.cs` |
-| `SapiV1AccountInfoResponse` | `Models/SapiV1AccountInfoResponse.cs` |
-| `AccountInfoUserDataError` | `Errors/AccountInfoUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `AccountInfoUserDataRequest` | `src/Binance/Requests/Wallet/AccountInfoUserDataRequest.cs` |
+| `SapiV1AccountInfoResponse` | `src/Binance/Models/SapiV1AccountInfoResponse.cs` |
+| `AccountInfoUserDataError` | `src/Binance/Errors/AccountInfoUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### AccountStatusUserData
 
@@ -52,10 +52,10 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 | Type | Source |
 | --- | --- |
-| `AccountStatusUserDataRequest` | `Requests/Wallet/AccountStatusUserDataRequest.cs` |
-| `SapiV1AccountStatusResponse` | `Models/SapiV1AccountStatusResponse.cs` |
-| `AccountStatusUserDataError` | `Errors/AccountStatusUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `AccountStatusUserDataRequest` | `src/Binance/Requests/Wallet/AccountStatusUserDataRequest.cs` |
+| `SapiV1AccountStatusResponse` | `src/Binance/Models/SapiV1AccountStatusResponse.cs` |
+| `AccountStatusUserDataError` | `src/Binance/Errors/AccountStatusUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### AllCoinsInformationUserData
 
@@ -69,10 +69,10 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 | Type | Source |
 | --- | --- |
-| `AllCoinsInformationUserDataRequest` | `Requests/Wallet/AllCoinsInformationUserDataRequest.cs` |
-| `SapiV1CapitalConfigGetallResponse` | `Models/SapiV1CapitalConfigGetallResponse.cs` |
-| `AllCoinsInformationUserDataError` | `Errors/AllCoinsInformationUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `AllCoinsInformationUserDataRequest` | `src/Binance/Requests/Wallet/AllCoinsInformationUserDataRequest.cs` |
+| `SapiV1CapitalConfigGetallResponse` | `src/Binance/Models/SapiV1CapitalConfigGetallResponse.cs` |
+| `AllCoinsInformationUserDataError` | `src/Binance/Errors/AllCoinsInformationUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### AssetDetailUserData
 
@@ -86,10 +86,10 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 | Type | Source |
 | --- | --- |
-| `AssetDetailUserDataRequest` | `Requests/Wallet/AssetDetailUserDataRequest.cs` |
-| `SapiV1AssetAssetDetailResponse` | `Models/SapiV1AssetAssetDetailResponse.cs` |
-| `AssetDetailUserDataError` | `Errors/AssetDetailUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `AssetDetailUserDataRequest` | `src/Binance/Requests/Wallet/AssetDetailUserDataRequest.cs` |
+| `SapiV1AssetAssetDetailResponse` | `src/Binance/Models/SapiV1AssetAssetDetailResponse.cs` |
+| `AssetDetailUserDataError` | `src/Binance/Errors/AssetDetailUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### AssetDividendRecordUserData
 
@@ -103,10 +103,10 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 | Type | Source |
 | --- | --- |
-| `AssetDividendRecordUserDataRequest` | `Requests/Wallet/AssetDividendRecordUserDataRequest.cs` |
-| `SapiV1AssetAssetDividendResponse` | `Models/SapiV1AssetAssetDividendResponse.cs` |
-| `AssetDividendRecordUserDataError` | `Errors/AssetDividendRecordUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `AssetDividendRecordUserDataRequest` | `src/Binance/Requests/Wallet/AssetDividendRecordUserDataRequest.cs` |
+| `SapiV1AssetAssetDividendResponse` | `src/Binance/Models/SapiV1AssetAssetDividendResponse.cs` |
+| `AssetDividendRecordUserDataError` | `src/Binance/Errors/AssetDividendRecordUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### ConvertTransferUserData
 
@@ -120,10 +120,10 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 | Type | Source |
 | --- | --- |
-| `ConvertTransferUserDataRequest` | `Requests/Wallet/ConvertTransferUserDataRequest.cs` |
-| `SapiV1AssetConvertTransferResponse` | `Models/SapiV1AssetConvertTransferResponse.cs` |
-| `ConvertTransferUserDataError` | `Errors/ConvertTransferUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `ConvertTransferUserDataRequest` | `src/Binance/Requests/Wallet/ConvertTransferUserDataRequest.cs` |
+| `SapiV1AssetConvertTransferResponse` | `src/Binance/Models/SapiV1AssetConvertTransferResponse.cs` |
+| `ConvertTransferUserDataError` | `src/Binance/Errors/ConvertTransferUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### DailyAccountSnapshotUserData
 
@@ -137,11 +137,11 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 | Type | Source |
 | --- | --- |
-| `DailyAccountSnapshotUserDataRequest` | `Requests/Wallet/DailyAccountSnapshotUserDataRequest.cs` |
-| `Type6` | `Models/Enums/Type6.cs` |
-| `SapiV1AccountSnapshotResponse` | `Models/AnyOf/SapiV1AccountSnapshotResponse.cs` |
-| `DailyAccountSnapshotUserDataError` | `Errors/DailyAccountSnapshotUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `DailyAccountSnapshotUserDataRequest` | `src/Binance/Requests/Wallet/DailyAccountSnapshotUserDataRequest.cs` |
+| `Type6` | `src/Binance/Models/Enums/Type6.cs` |
+| `SapiV1AccountSnapshotResponse` | `src/Binance/Models/AnyOf/SapiV1AccountSnapshotResponse.cs` |
+| `DailyAccountSnapshotUserDataError` | `src/Binance/Errors/DailyAccountSnapshotUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### DepositAddressSupportingNetworkUserData
 
@@ -155,10 +155,10 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 | Type | Source |
 | --- | --- |
-| `DepositAddressSupportingNetworkUserDataRequest` | `Requests/Wallet/DepositAddressSupportingNetworkUserDataRequest.cs` |
-| `SapiV1CapitalDepositAddressResponse` | `Models/SapiV1CapitalDepositAddressResponse.cs` |
-| `DepositAddressSupportingNetworkUserDataError` | `Errors/DepositAddressSupportingNetworkUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `DepositAddressSupportingNetworkUserDataRequest` | `src/Binance/Requests/Wallet/DepositAddressSupportingNetworkUserDataRequest.cs` |
+| `SapiV1CapitalDepositAddressResponse` | `src/Binance/Models/SapiV1CapitalDepositAddressResponse.cs` |
+| `DepositAddressSupportingNetworkUserDataError` | `src/Binance/Errors/DepositAddressSupportingNetworkUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### DepositHistorySupportingNetworkUserData
 
@@ -172,10 +172,10 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 | Type | Source |
 | --- | --- |
-| `DepositHistorySupportingNetworkUserDataRequest` | `Requests/Wallet/DepositHistorySupportingNetworkUserDataRequest.cs` |
-| `SapiV1CapitalDepositHisrecResponse` | `Models/SapiV1CapitalDepositHisrecResponse.cs` |
-| `DepositHistorySupportingNetworkUserDataError` | `Errors/DepositHistorySupportingNetworkUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `DepositHistorySupportingNetworkUserDataRequest` | `src/Binance/Requests/Wallet/DepositHistorySupportingNetworkUserDataRequest.cs` |
+| `SapiV1CapitalDepositHisrecResponse` | `src/Binance/Models/SapiV1CapitalDepositHisrecResponse.cs` |
+| `DepositHistorySupportingNetworkUserDataError` | `src/Binance/Errors/DepositHistorySupportingNetworkUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### DisableFastWithdrawSwitchUserData
 
@@ -189,9 +189,9 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 | Type | Source |
 | --- | --- |
-| `DisableFastWithdrawSwitchUserDataRequest` | `Requests/Wallet/DisableFastWithdrawSwitchUserDataRequest.cs` |
-| `DisableFastWithdrawSwitchUserDataError` | `Errors/DisableFastWithdrawSwitchUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `DisableFastWithdrawSwitchUserDataRequest` | `src/Binance/Requests/Wallet/DisableFastWithdrawSwitchUserDataRequest.cs` |
+| `DisableFastWithdrawSwitchUserDataError` | `src/Binance/Errors/DisableFastWithdrawSwitchUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### DustLogUserData
 
@@ -205,11 +205,11 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 | Type | Source |
 | --- | --- |
-| `DustLogUserDataRequest` | `Requests/Wallet/DustLogUserDataRequest.cs` |
-| `AccountType` | `Models/Enums/AccountType.cs` |
-| `SapiV1AssetDribbletResponse` | `Models/SapiV1AssetDribbletResponse.cs` |
-| `DustLogUserDataError` | `Errors/DustLogUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `DustLogUserDataRequest` | `src/Binance/Requests/Wallet/DustLogUserDataRequest.cs` |
+| `AccountType` | `src/Binance/Models/Enums/AccountType.cs` |
+| `SapiV1AssetDribbletResponse` | `src/Binance/Models/SapiV1AssetDribbletResponse.cs` |
+| `DustLogUserDataError` | `src/Binance/Errors/DustLogUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### DustTransferUserData
 
@@ -223,11 +223,11 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 | Type | Source |
 | --- | --- |
-| `DustTransferUserDataRequest` | `Requests/Wallet/DustTransferUserDataRequest.cs` |
-| `AccountType` | `Models/Enums/AccountType.cs` |
-| `SapiV1AssetDustResponse` | `Models/SapiV1AssetDustResponse.cs` |
-| `DustTransferUserDataError` | `Errors/DustTransferUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `DustTransferUserDataRequest` | `src/Binance/Requests/Wallet/DustTransferUserDataRequest.cs` |
+| `AccountType` | `src/Binance/Models/Enums/AccountType.cs` |
+| `SapiV1AssetDustResponse` | `src/Binance/Models/SapiV1AssetDustResponse.cs` |
+| `DustTransferUserDataError` | `src/Binance/Errors/DustTransferUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### EnableFastWithdrawSwitchUserData
 
@@ -241,9 +241,9 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 | Type | Source |
 | --- | --- |
-| `EnableFastWithdrawSwitchUserDataRequest` | `Requests/Wallet/EnableFastWithdrawSwitchUserDataRequest.cs` |
-| `EnableFastWithdrawSwitchUserDataError` | `Errors/EnableFastWithdrawSwitchUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `EnableFastWithdrawSwitchUserDataRequest` | `src/Binance/Requests/Wallet/EnableFastWithdrawSwitchUserDataRequest.cs` |
+| `EnableFastWithdrawSwitchUserDataError` | `src/Binance/Errors/EnableFastWithdrawSwitchUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### FetchDepositAddressListWithNetworkUserData
 
@@ -257,10 +257,10 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 | Type | Source |
 | --- | --- |
-| `FetchDepositAddressListWithNetworkUserDataRequest` | `Requests/Wallet/FetchDepositAddressListWithNetworkUserDataRequest.cs` |
-| `SapiV1CapitalDepositAddressListResponse` | `Models/SapiV1CapitalDepositAddressListResponse.cs` |
-| `FetchDepositAddressListWithNetworkUserDataError` | `Errors/FetchDepositAddressListWithNetworkUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `FetchDepositAddressListWithNetworkUserDataRequest` | `src/Binance/Requests/Wallet/FetchDepositAddressListWithNetworkUserDataRequest.cs` |
+| `SapiV1CapitalDepositAddressListResponse` | `src/Binance/Models/SapiV1CapitalDepositAddressListResponse.cs` |
+| `FetchDepositAddressListWithNetworkUserDataError` | `src/Binance/Errors/FetchDepositAddressListWithNetworkUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### FetchWithdrawAddressListUserData
 
@@ -272,9 +272,9 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 | Type | Source |
 | --- | --- |
-| `SapiV1CapitalWithdrawAddressListResponse` | `Models/SapiV1CapitalWithdrawAddressListResponse.cs` |
-| `FetchWithdrawAddressListUserDataError` | `Errors/FetchWithdrawAddressListUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `SapiV1CapitalWithdrawAddressListResponse` | `src/Binance/Models/SapiV1CapitalWithdrawAddressListResponse.cs` |
+| `FetchWithdrawAddressListUserDataError` | `src/Binance/Errors/FetchWithdrawAddressListUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### FundingWalletUserData
 
@@ -288,11 +288,11 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 | Type | Source |
 | --- | --- |
-| `FundingWalletUserDataRequest` | `Requests/Wallet/FundingWalletUserDataRequest.cs` |
-| `NeedBtcValuation` | `Models/Enums/NeedBtcValuation.cs` |
-| `SapiV1AssetGetFundingAssetResponse` | `Models/SapiV1AssetGetFundingAssetResponse.cs` |
-| `FundingWalletUserDataError` | `Errors/FundingWalletUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `FundingWalletUserDataRequest` | `src/Binance/Requests/Wallet/FundingWalletUserDataRequest.cs` |
+| `NeedBtcValuation` | `src/Binance/Models/Enums/NeedBtcValuation.cs` |
+| `SapiV1AssetGetFundingAssetResponse` | `src/Binance/Models/SapiV1AssetGetFundingAssetResponse.cs` |
+| `FundingWalletUserDataError` | `src/Binance/Errors/FundingWalletUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetApiKeyPermissionUserData
 
@@ -306,10 +306,10 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 | Type | Source |
 | --- | --- |
-| `GetApiKeyPermissionUserDataRequest` | `Requests/Wallet/GetApiKeyPermissionUserDataRequest.cs` |
-| `SapiV1AccountApiRestrictionsResponse` | `Models/SapiV1AccountApiRestrictionsResponse.cs` |
-| `GetApiKeyPermissionUserDataError` | `Errors/GetApiKeyPermissionUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetApiKeyPermissionUserDataRequest` | `src/Binance/Requests/Wallet/GetApiKeyPermissionUserDataRequest.cs` |
+| `SapiV1AccountApiRestrictionsResponse` | `src/Binance/Models/SapiV1AccountApiRestrictionsResponse.cs` |
+| `GetApiKeyPermissionUserDataError` | `src/Binance/Errors/GetApiKeyPermissionUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetAssetsThatCanBeConvertedIntoBnbUserData
 
@@ -323,11 +323,11 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 | Type | Source |
 | --- | --- |
-| `GetAssetsThatCanBeConvertedIntoBnbUserDataRequest` | `Requests/Wallet/GetAssetsThatCanBeConvertedIntoBnbUserDataRequest.cs` |
-| `AccountType` | `Models/Enums/AccountType.cs` |
-| `SapiV1AssetDustBtcResponse` | `Models/SapiV1AssetDustBtcResponse.cs` |
-| `GetAssetsThatCanBeConvertedIntoBnbUserDataError` | `Errors/GetAssetsThatCanBeConvertedIntoBnbUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetAssetsThatCanBeConvertedIntoBnbUserDataRequest` | `src/Binance/Requests/Wallet/GetAssetsThatCanBeConvertedIntoBnbUserDataRequest.cs` |
+| `AccountType` | `src/Binance/Models/Enums/AccountType.cs` |
+| `SapiV1AssetDustBtcResponse` | `src/Binance/Models/SapiV1AssetDustBtcResponse.cs` |
+| `GetAssetsThatCanBeConvertedIntoBnbUserDataError` | `src/Binance/Errors/GetAssetsThatCanBeConvertedIntoBnbUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetCloudMiningPaymentAndRefundHistoryUserData
 
@@ -341,10 +341,10 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 | Type | Source |
 | --- | --- |
-| `GetCloudMiningPaymentAndRefundHistoryUserDataRequest` | `Requests/Wallet/GetCloudMiningPaymentAndRefundHistoryUserDataRequest.cs` |
-| `SapiV1AssetLedgerTransferCloudMiningQueryByPageResponse` | `Models/SapiV1AssetLedgerTransferCloudMiningQueryByPageResponse.cs` |
-| `GetCloudMiningPaymentAndRefundHistoryUserDataError` | `Errors/GetCloudMiningPaymentAndRefundHistoryUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetCloudMiningPaymentAndRefundHistoryUserDataRequest` | `src/Binance/Requests/Wallet/GetCloudMiningPaymentAndRefundHistoryUserDataRequest.cs` |
+| `SapiV1AssetLedgerTransferCloudMiningQueryByPageResponse` | `src/Binance/Models/SapiV1AssetLedgerTransferCloudMiningQueryByPageResponse.cs` |
+| `GetCloudMiningPaymentAndRefundHistoryUserDataError` | `src/Binance/Errors/GetCloudMiningPaymentAndRefundHistoryUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetSymbolsDelistScheduleForSpotMarketData
 
@@ -358,10 +358,10 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 | Type | Source |
 | --- | --- |
-| `GetSymbolsDelistScheduleForSpotMarketDataRequest` | `Requests/Wallet/GetSymbolsDelistScheduleForSpotMarketDataRequest.cs` |
-| `SapiV1SpotDelistScheduleResponse` | `Models/SapiV1SpotDelistScheduleResponse.cs` |
-| `GetSymbolsDelistScheduleForSpotMarketDataError` | `Errors/GetSymbolsDelistScheduleForSpotMarketDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetSymbolsDelistScheduleForSpotMarketDataRequest` | `src/Binance/Requests/Wallet/GetSymbolsDelistScheduleForSpotMarketDataRequest.cs` |
+| `SapiV1SpotDelistScheduleResponse` | `src/Binance/Models/SapiV1SpotDelistScheduleResponse.cs` |
+| `GetSymbolsDelistScheduleForSpotMarketDataError` | `src/Binance/Errors/GetSymbolsDelistScheduleForSpotMarketDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### OneClickArrivalDepositApplyUserData
 
@@ -375,10 +375,10 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 | Type | Source |
 | --- | --- |
-| `OneClickArrivalDepositApplyUserDataRequest` | `Requests/Wallet/OneClickArrivalDepositApplyUserDataRequest.cs` |
-| `SapiV1CapitalDepositCreditApplyResponse` | `Models/SapiV1CapitalDepositCreditApplyResponse.cs` |
-| `OneClickArrivalDepositApplyUserDataError` | `Errors/OneClickArrivalDepositApplyUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `OneClickArrivalDepositApplyUserDataRequest` | `src/Binance/Requests/Wallet/OneClickArrivalDepositApplyUserDataRequest.cs` |
+| `SapiV1CapitalDepositCreditApplyResponse` | `src/Binance/Models/SapiV1CapitalDepositCreditApplyResponse.cs` |
+| `OneClickArrivalDepositApplyUserDataError` | `src/Binance/Errors/OneClickArrivalDepositApplyUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryAutoConvertingStableCoinsUserData
 
@@ -390,9 +390,9 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 | Type | Source |
 | --- | --- |
-| `SapiV1CapitalContractConvertibleCoinsResponse` | `Models/SapiV1CapitalContractConvertibleCoinsResponse.cs` |
-| `QueryAutoConvertingStableCoinsUserDataError` | `Errors/QueryAutoConvertingStableCoinsUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `SapiV1CapitalContractConvertibleCoinsResponse` | `src/Binance/Models/SapiV1CapitalContractConvertibleCoinsResponse.cs` |
+| `QueryAutoConvertingStableCoinsUserDataError` | `src/Binance/Errors/QueryAutoConvertingStableCoinsUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryConvertTransferUserData
 
@@ -406,11 +406,11 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 | Type | Source |
 | --- | --- |
-| `QueryConvertTransferUserDataRequest` | `Requests/Wallet/QueryConvertTransferUserDataRequest.cs` |
-| `AccountType3` | `Models/Enums/AccountType3.cs` |
-| `SapiV1AssetConvertTransferQueryByPageResponse` | `Models/SapiV1AssetConvertTransferQueryByPageResponse.cs` |
-| `QueryConvertTransferUserDataError` | `Errors/QueryConvertTransferUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryConvertTransferUserDataRequest` | `src/Binance/Requests/Wallet/QueryConvertTransferUserDataRequest.cs` |
+| `AccountType3` | `src/Binance/Models/Enums/AccountType3.cs` |
+| `SapiV1AssetConvertTransferQueryByPageResponse` | `src/Binance/Models/SapiV1AssetConvertTransferQueryByPageResponse.cs` |
+| `QueryConvertTransferUserDataError` | `src/Binance/Errors/QueryConvertTransferUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryUserDelegationHistoryForMasterAccountUserData
 
@@ -424,10 +424,10 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 | Type | Source |
 | --- | --- |
-| `QueryUserDelegationHistoryForMasterAccountUserDataRequest` | `Requests/Wallet/QueryUserDelegationHistoryForMasterAccountUserDataRequest.cs` |
-| `SapiV1AssetCustodyTransferHistoryResponse` | `Models/SapiV1AssetCustodyTransferHistoryResponse.cs` |
-| `QueryUserDelegationHistoryForMasterAccountUserDataError` | `Errors/QueryUserDelegationHistoryForMasterAccountUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryUserDelegationHistoryForMasterAccountUserDataRequest` | `src/Binance/Requests/Wallet/QueryUserDelegationHistoryForMasterAccountUserDataRequest.cs` |
+| `SapiV1AssetCustodyTransferHistoryResponse` | `src/Binance/Models/SapiV1AssetCustodyTransferHistoryResponse.cs` |
+| `QueryUserDelegationHistoryForMasterAccountUserDataError` | `src/Binance/Errors/QueryUserDelegationHistoryForMasterAccountUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryUserUniversalTransferHistoryUserData
 
@@ -441,11 +441,11 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 | Type | Source |
 | --- | --- |
-| `QueryUserUniversalTransferHistoryUserDataRequest` | `Requests/Wallet/QueryUserUniversalTransferHistoryUserDataRequest.cs` |
-| `Type7` | `Models/Enums/Type7.cs` |
-| `SapiV1AssetTransferResponse` | `Models/SapiV1AssetTransferResponse.cs` |
-| `QueryUserUniversalTransferHistoryUserDataError` | `Errors/QueryUserUniversalTransferHistoryUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryUserUniversalTransferHistoryUserDataRequest` | `src/Binance/Requests/Wallet/QueryUserUniversalTransferHistoryUserDataRequest.cs` |
+| `Type7` | `src/Binance/Models/Enums/Type7.cs` |
+| `SapiV1AssetTransferResponse` | `src/Binance/Models/SapiV1AssetTransferResponse.cs` |
+| `QueryUserUniversalTransferHistoryUserDataError` | `src/Binance/Errors/QueryUserUniversalTransferHistoryUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryUserWalletBalanceUserData
 
@@ -459,10 +459,10 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 | Type | Source |
 | --- | --- |
-| `QueryUserWalletBalanceUserDataRequest` | `Requests/Wallet/QueryUserWalletBalanceUserDataRequest.cs` |
-| `SapiV1AssetWalletBalanceResponse` | `Models/SapiV1AssetWalletBalanceResponse.cs` |
-| `QueryUserWalletBalanceUserDataError` | `Errors/QueryUserWalletBalanceUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryUserWalletBalanceUserDataRequest` | `src/Binance/Requests/Wallet/QueryUserWalletBalanceUserDataRequest.cs` |
+| `SapiV1AssetWalletBalanceResponse` | `src/Binance/Models/SapiV1AssetWalletBalanceResponse.cs` |
+| `QueryUserWalletBalanceUserDataError` | `src/Binance/Errors/QueryUserWalletBalanceUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### SwitchOnOffBusdAndStableCoinsConversionUserDataUserData
 
@@ -476,9 +476,9 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 | Type | Source |
 | --- | --- |
-| `SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataRequest` | `Requests/Wallet/SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataRequest.cs` |
-| `SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataError` | `Errors/SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataRequest` | `src/Binance/Requests/Wallet/SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataRequest.cs` |
+| `SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataError` | `src/Binance/Errors/SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### SystemStatusSystem
 
@@ -488,7 +488,7 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 | Type | Source |
 | --- | --- |
-| `SapiV1SystemStatusResponse` | `Models/SapiV1SystemStatusResponse.cs` |
+| `SapiV1SystemStatusResponse` | `src/Binance/Models/SapiV1SystemStatusResponse.cs` |
 
 ### TradeFeeUserData
 
@@ -502,10 +502,10 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 | Type | Source |
 | --- | --- |
-| `TradeFeeUserDataRequest` | `Requests/Wallet/TradeFeeUserDataRequest.cs` |
-| `SapiV1AssetTradeFeeResponse` | `Models/SapiV1AssetTradeFeeResponse.cs` |
-| `TradeFeeUserDataError` | `Errors/TradeFeeUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `TradeFeeUserDataRequest` | `src/Binance/Requests/Wallet/TradeFeeUserDataRequest.cs` |
+| `SapiV1AssetTradeFeeResponse` | `src/Binance/Models/SapiV1AssetTradeFeeResponse.cs` |
+| `TradeFeeUserDataError` | `src/Binance/Errors/TradeFeeUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### UserAssetUserData
 
@@ -519,11 +519,11 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 | Type | Source |
 | --- | --- |
-| `UserAssetUserDataRequest` | `Requests/Wallet/UserAssetUserDataRequest.cs` |
-| `NeedBtcValuation` | `Models/Enums/NeedBtcValuation.cs` |
-| `SapiV3AssetGetUserAssetResponse` | `Models/SapiV3AssetGetUserAssetResponse.cs` |
-| `UserAssetUserDataError` | `Errors/UserAssetUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `UserAssetUserDataRequest` | `src/Binance/Requests/Wallet/UserAssetUserDataRequest.cs` |
+| `NeedBtcValuation` | `src/Binance/Models/Enums/NeedBtcValuation.cs` |
+| `SapiV3AssetGetUserAssetResponse` | `src/Binance/Models/SapiV3AssetGetUserAssetResponse.cs` |
+| `UserAssetUserDataError` | `src/Binance/Errors/UserAssetUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### UserUniversalTransferUserData
 
@@ -537,11 +537,11 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 | Type | Source |
 | --- | --- |
-| `UserUniversalTransferUserDataRequest` | `Requests/Wallet/UserUniversalTransferUserDataRequest.cs` |
-| `Type7` | `Models/Enums/Type7.cs` |
-| `SapiV1AssetTransferResponse1` | `Models/SapiV1AssetTransferResponse1.cs` |
-| `UserUniversalTransferUserDataError` | `Errors/UserUniversalTransferUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `UserUniversalTransferUserDataRequest` | `src/Binance/Requests/Wallet/UserUniversalTransferUserDataRequest.cs` |
+| `Type7` | `src/Binance/Models/Enums/Type7.cs` |
+| `SapiV1AssetTransferResponse1` | `src/Binance/Models/SapiV1AssetTransferResponse1.cs` |
+| `UserUniversalTransferUserDataError` | `src/Binance/Errors/UserUniversalTransferUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### WithdrawHistorySupportingNetworkUserData
 
@@ -555,10 +555,10 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 | Type | Source |
 | --- | --- |
-| `WithdrawHistorySupportingNetworkUserDataRequest` | `Requests/Wallet/WithdrawHistorySupportingNetworkUserDataRequest.cs` |
-| `SapiV1CapitalWithdrawHistoryResponse` | `Models/SapiV1CapitalWithdrawHistoryResponse.cs` |
-| `WithdrawHistorySupportingNetworkUserDataError` | `Errors/WithdrawHistorySupportingNetworkUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `WithdrawHistorySupportingNetworkUserDataRequest` | `src/Binance/Requests/Wallet/WithdrawHistorySupportingNetworkUserDataRequest.cs` |
+| `SapiV1CapitalWithdrawHistoryResponse` | `src/Binance/Models/SapiV1CapitalWithdrawHistoryResponse.cs` |
+| `WithdrawHistorySupportingNetworkUserDataError` | `src/Binance/Errors/WithdrawHistorySupportingNetworkUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### WithdrawUserData
 
@@ -572,8 +572,8 @@ Accessor: `client.Wallet` · Source: `Api/Wallet.cs` · 34 operations
 
 | Type | Source |
 | --- | --- |
-| `WithdrawUserDataRequest` | `Requests/Wallet/WithdrawUserDataRequest.cs` |
-| `SapiV1CapitalWithdrawApplyResponse` | `Models/SapiV1CapitalWithdrawApplyResponse.cs` |
-| `WithdrawUserDataError` | `Errors/WithdrawUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `WithdrawUserDataRequest` | `src/Binance/Requests/Wallet/WithdrawUserDataRequest.cs` |
+| `SapiV1CapitalWithdrawApplyResponse` | `src/Binance/Models/SapiV1CapitalWithdrawApplyResponse.cs` |
+| `WithdrawUserDataError` | `src/Binance/Errors/WithdrawUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 

@@ -2,11 +2,11 @@
 
 Every operation below is shown in its throwing form. On an error status it throws `ApiException<TError>` — the status code, headers, content type and the operation's error type, `RawError` (the raw body) when the spec declares none — and where an operation offers an `…AsResult` sibling, that sibling returns `ApiResult<TResponse, TError>` instead. A request that produces no usable response surfaces as `SdkConnectionException` or `SdkTimeoutException`, a body that does not match the documented response type as `ResponseDeserializationException`, and a credential that cannot be applied as `AuthSchemeException`; all of them derive from `SdkException` and name the failed call. See [README → Error Handling](README.md#error-handling).
 
-> Source: [BinanceClient](BinanceClient.cs)
+> Source: [BinanceClient](src/Binance/BinanceClient.cs)
 
 ## AutoInvest
 
-> Source: [AutoInvest](Api/AutoInvest.cs)
+> Source: [AutoInvest](src/Binance/Api/AutoInvest.cs)
 
 <details>
 <summary><code>Task&lt;SapiV1LendingAutoInvestPlanEditStatusResponse&gt; ChangePlanStatus(ChangePlanStatusRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
@@ -61,7 +61,7 @@ catch (ApiException<ChangePlanStatusError> ex)
 <dl>
 <dd>
 
-<code>[ChangePlanStatusRequest](Requests/AutoInvest/ChangePlanStatusRequest.cs)</code>
+<code>[ChangePlanStatusRequest](src/Binance/Requests/AutoInvest/ChangePlanStatusRequest.cs)</code>
 
 </dd>
 </dl>
@@ -71,9 +71,9 @@ catch (ApiException<ChangePlanStatusError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1LendingAutoInvestPlanEditStatusResponse](Models/SapiV1LendingAutoInvestPlanEditStatusResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1LendingAutoInvestPlanEditStatusResponse](src/Binance/Models/SapiV1LendingAutoInvestPlanEditStatusResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[ChangePlanStatusError](Errors/ChangePlanStatusError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[ChangePlanStatusError](src/Binance/Errors/ChangePlanStatusError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -135,7 +135,7 @@ catch (ApiException<GetListOfPlansError> ex)
 <dl>
 <dd>
 
-<code>[GetListOfPlansRequest](Requests/AutoInvest/GetListOfPlansRequest.cs)</code>
+<code>[GetListOfPlansRequest](src/Binance/Requests/AutoInvest/GetListOfPlansRequest.cs)</code>
 
 </dd>
 </dl>
@@ -145,9 +145,9 @@ catch (ApiException<GetListOfPlansError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1LendingAutoInvestPlanListResponse](Models/SapiV1LendingAutoInvestPlanListResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1LendingAutoInvestPlanListResponse](src/Binance/Models/SapiV1LendingAutoInvestPlanListResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetListOfPlansError](Errors/GetListOfPlansError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetListOfPlansError](src/Binance/Errors/GetListOfPlansError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -210,7 +210,7 @@ catch (ApiException<GetTargetAssetRoiDataUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetTargetAssetRoiDataUserDataRequest](Requests/AutoInvest/GetTargetAssetRoiDataUserDataRequest.cs)</code>
+<code>[GetTargetAssetRoiDataUserDataRequest](src/Binance/Requests/AutoInvest/GetTargetAssetRoiDataUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -220,9 +220,9 @@ catch (ApiException<GetTargetAssetRoiDataUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1LendingAutoInvestTargetAssetRoiListResponse](Models/SapiV1LendingAutoInvestTargetAssetRoiListResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1LendingAutoInvestTargetAssetRoiListResponse](src/Binance/Models/SapiV1LendingAutoInvestTargetAssetRoiListResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetTargetAssetRoiDataUserDataError](Errors/GetTargetAssetRoiDataUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetTargetAssetRoiDataUserDataError](src/Binance/Errors/GetTargetAssetRoiDataUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -283,7 +283,7 @@ catch (ApiException<GetTargetAssetListUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetTargetAssetListUserDataRequest](Requests/AutoInvest/GetTargetAssetListUserDataRequest.cs)</code>
+<code>[GetTargetAssetListUserDataRequest](src/Binance/Requests/AutoInvest/GetTargetAssetListUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -293,9 +293,9 @@ catch (ApiException<GetTargetAssetListUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1LendingAutoInvestTargetAssetListResponse](Models/SapiV1LendingAutoInvestTargetAssetListResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1LendingAutoInvestTargetAssetListResponse](src/Binance/Models/SapiV1LendingAutoInvestTargetAssetListResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetTargetAssetListUserDataError](Errors/GetTargetAssetListUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetTargetAssetListUserDataError](src/Binance/Errors/GetTargetAssetListUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -362,7 +362,7 @@ catch (ApiException<IndexLinkedPlanRebalanceDetailsUserDataError> ex)
 <dl>
 <dd>
 
-<code>[IndexLinkedPlanRebalanceDetailsUserDataRequest](Requests/AutoInvest/IndexLinkedPlanRebalanceDetailsUserDataRequest.cs)</code>
+<code>[IndexLinkedPlanRebalanceDetailsUserDataRequest](src/Binance/Requests/AutoInvest/IndexLinkedPlanRebalanceDetailsUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -372,9 +372,9 @@ catch (ApiException<IndexLinkedPlanRebalanceDetailsUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1LendingAutoInvestRebalanceHistoryResponse](Models/SapiV1LendingAutoInvestRebalanceHistoryResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1LendingAutoInvestRebalanceHistoryResponse](src/Binance/Models/SapiV1LendingAutoInvestRebalanceHistoryResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[IndexLinkedPlanRebalanceDetailsUserDataError](Errors/IndexLinkedPlanRebalanceDetailsUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[IndexLinkedPlanRebalanceDetailsUserDataError](src/Binance/Errors/IndexLinkedPlanRebalanceDetailsUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -438,7 +438,7 @@ catch (ApiException<IndexLinkedPlanRedemptionTradeError> ex)
 <dl>
 <dd>
 
-<code>[IndexLinkedPlanRedemptionTradeRequest](Requests/AutoInvest/IndexLinkedPlanRedemptionTradeRequest.cs)</code>
+<code>[IndexLinkedPlanRedemptionTradeRequest](src/Binance/Requests/AutoInvest/IndexLinkedPlanRedemptionTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -448,9 +448,9 @@ catch (ApiException<IndexLinkedPlanRedemptionTradeError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1LendingAutoInvestRedeemResponse](Models/SapiV1LendingAutoInvestRedeemResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1LendingAutoInvestRedeemResponse](src/Binance/Models/SapiV1LendingAutoInvestRedeemResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[IndexLinkedPlanRedemptionTradeError](Errors/IndexLinkedPlanRedemptionTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[IndexLinkedPlanRedemptionTradeError](src/Binance/Errors/IndexLinkedPlanRedemptionTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -519,7 +519,7 @@ catch (ApiException<IndexLinkedPlanRedemptionHistoryUserDataError> ex)
 <dl>
 <dd>
 
-<code>[IndexLinkedPlanRedemptionHistoryUserDataRequest](Requests/AutoInvest/IndexLinkedPlanRedemptionHistoryUserDataRequest.cs)</code>
+<code>[IndexLinkedPlanRedemptionHistoryUserDataRequest](src/Binance/Requests/AutoInvest/IndexLinkedPlanRedemptionHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -529,9 +529,9 @@ catch (ApiException<IndexLinkedPlanRedemptionHistoryUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1LendingAutoInvestRedeemHistoryResponse](Models/SapiV1LendingAutoInvestRedeemHistoryResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1LendingAutoInvestRedeemHistoryResponse](src/Binance/Models/SapiV1LendingAutoInvestRedeemHistoryResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[IndexLinkedPlanRedemptionHistoryUserDataError](Errors/IndexLinkedPlanRedemptionHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[IndexLinkedPlanRedemptionHistoryUserDataError](src/Binance/Errors/IndexLinkedPlanRedemptionHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -598,7 +598,7 @@ catch (ApiException<InvestmentPlanAdjustmentError> ex)
 <dl>
 <dd>
 
-<code>[InvestmentPlanAdjustmentRequest](Requests/AutoInvest/InvestmentPlanAdjustmentRequest.cs)</code>
+<code>[InvestmentPlanAdjustmentRequest](src/Binance/Requests/AutoInvest/InvestmentPlanAdjustmentRequest.cs)</code>
 
 </dd>
 </dl>
@@ -608,9 +608,9 @@ catch (ApiException<InvestmentPlanAdjustmentError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1LendingAutoInvestPlanEditResponse](Models/SapiV1LendingAutoInvestPlanEditResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1LendingAutoInvestPlanEditResponse](src/Binance/Models/SapiV1LendingAutoInvestPlanEditResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[InvestmentPlanAdjustmentError](Errors/InvestmentPlanAdjustmentError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[InvestmentPlanAdjustmentError](src/Binance/Errors/InvestmentPlanAdjustmentError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -679,7 +679,7 @@ catch (ApiException<InvestmentPlanCreationUserDataError> ex)
 <dl>
 <dd>
 
-<code>[InvestmentPlanCreationUserDataRequest](Requests/AutoInvest/InvestmentPlanCreationUserDataRequest.cs)</code>
+<code>[InvestmentPlanCreationUserDataRequest](src/Binance/Requests/AutoInvest/InvestmentPlanCreationUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -689,9 +689,9 @@ catch (ApiException<InvestmentPlanCreationUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1LendingAutoInvestPlanAddResponse](Models/SapiV1LendingAutoInvestPlanAddResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1LendingAutoInvestPlanAddResponse](src/Binance/Models/SapiV1LendingAutoInvestPlanAddResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[InvestmentPlanCreationUserDataError](Errors/InvestmentPlanCreationUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[InvestmentPlanCreationUserDataError](src/Binance/Errors/InvestmentPlanCreationUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -759,7 +759,7 @@ catch (ApiException<OneTimeTransactionTradeError> ex)
 <dl>
 <dd>
 
-<code>[OneTimeTransactionTradeRequest](Requests/AutoInvest/OneTimeTransactionTradeRequest.cs)</code>
+<code>[OneTimeTransactionTradeRequest](src/Binance/Requests/AutoInvest/OneTimeTransactionTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -769,9 +769,9 @@ catch (ApiException<OneTimeTransactionTradeError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1LendingAutoInvestOneOffResponse](Models/SapiV1LendingAutoInvestOneOffResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1LendingAutoInvestOneOffResponse](src/Binance/Models/SapiV1LendingAutoInvestOneOffResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[OneTimeTransactionTradeError](Errors/OneTimeTransactionTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[OneTimeTransactionTradeError](src/Binance/Errors/OneTimeTransactionTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -833,7 +833,7 @@ catch (ApiException<QueryIndexDetailsUserDataError> ex)
 <dl>
 <dd>
 
-<code>[QueryIndexDetailsUserDataRequest](Requests/AutoInvest/QueryIndexDetailsUserDataRequest.cs)</code>
+<code>[QueryIndexDetailsUserDataRequest](src/Binance/Requests/AutoInvest/QueryIndexDetailsUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -843,9 +843,9 @@ catch (ApiException<QueryIndexDetailsUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1LendingAutoInvestIndexInfoResponse](Models/SapiV1LendingAutoInvestIndexInfoResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1LendingAutoInvestIndexInfoResponse](src/Binance/Models/SapiV1LendingAutoInvestIndexInfoResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryIndexDetailsUserDataError](Errors/QueryIndexDetailsUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryIndexDetailsUserDataError](src/Binance/Errors/QueryIndexDetailsUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -908,7 +908,7 @@ catch (ApiException<QueryIndexLinkedPlanPositionDetailsUserDataError> ex)
 <dl>
 <dd>
 
-<code>[QueryIndexLinkedPlanPositionDetailsUserDataRequest](Requests/AutoInvest/QueryIndexLinkedPlanPositionDetailsUserDataRequest.cs)</code>
+<code>[QueryIndexLinkedPlanPositionDetailsUserDataRequest](src/Binance/Requests/AutoInvest/QueryIndexLinkedPlanPositionDetailsUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -918,9 +918,9 @@ catch (ApiException<QueryIndexLinkedPlanPositionDetailsUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1LendingAutoInvestIndexUserSummaryResponse](Models/SapiV1LendingAutoInvestIndexUserSummaryResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1LendingAutoInvestIndexUserSummaryResponse](src/Binance/Models/SapiV1LendingAutoInvestIndexUserSummaryResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryIndexLinkedPlanPositionDetailsUserDataError](Errors/QueryIndexLinkedPlanPositionDetailsUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryIndexLinkedPlanPositionDetailsUserDataError](src/Binance/Errors/QueryIndexLinkedPlanPositionDetailsUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -984,7 +984,7 @@ catch (ApiException<QueryOneTimeTransactionStatusUserDataError> ex)
 <dl>
 <dd>
 
-<code>[QueryOneTimeTransactionStatusUserDataRequest](Requests/AutoInvest/QueryOneTimeTransactionStatusUserDataRequest.cs)</code>
+<code>[QueryOneTimeTransactionStatusUserDataRequest](src/Binance/Requests/AutoInvest/QueryOneTimeTransactionStatusUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -994,9 +994,9 @@ catch (ApiException<QueryOneTimeTransactionStatusUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1LendingAutoInvestOneOffStatusResponse](Models/SapiV1LendingAutoInvestOneOffStatusResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1LendingAutoInvestOneOffStatusResponse](src/Binance/Models/SapiV1LendingAutoInvestOneOffStatusResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryOneTimeTransactionStatusUserDataError](Errors/QueryOneTimeTransactionStatusUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryOneTimeTransactionStatusUserDataError](src/Binance/Errors/QueryOneTimeTransactionStatusUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -1058,7 +1058,7 @@ catch (ApiException<QueryAllSourceAssetAndTargetAssetUserDataError> ex)
 <dl>
 <dd>
 
-<code>[QueryAllSourceAssetAndTargetAssetUserDataRequest](Requests/AutoInvest/QueryAllSourceAssetAndTargetAssetUserDataRequest.cs)</code>
+<code>[QueryAllSourceAssetAndTargetAssetUserDataRequest](src/Binance/Requests/AutoInvest/QueryAllSourceAssetAndTargetAssetUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -1068,9 +1068,9 @@ catch (ApiException<QueryAllSourceAssetAndTargetAssetUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1LendingAutoInvestAllAssetResponse](Models/SapiV1LendingAutoInvestAllAssetResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1LendingAutoInvestAllAssetResponse](src/Binance/Models/SapiV1LendingAutoInvestAllAssetResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryAllSourceAssetAndTargetAssetUserDataError](Errors/QueryAllSourceAssetAndTargetAssetUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryAllSourceAssetAndTargetAssetUserDataError](src/Binance/Errors/QueryAllSourceAssetAndTargetAssetUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -1131,7 +1131,7 @@ catch (ApiException<QueryHoldingDetailsOfThePlanError> ex)
 <dl>
 <dd>
 
-<code>[QueryHoldingDetailsOfThePlanRequest](Requests/AutoInvest/QueryHoldingDetailsOfThePlanRequest.cs)</code>
+<code>[QueryHoldingDetailsOfThePlanRequest](src/Binance/Requests/AutoInvest/QueryHoldingDetailsOfThePlanRequest.cs)</code>
 
 </dd>
 </dl>
@@ -1141,9 +1141,9 @@ catch (ApiException<QueryHoldingDetailsOfThePlanError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1LendingAutoInvestPlanIdResponse](Models/SapiV1LendingAutoInvestPlanIdResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1LendingAutoInvestPlanIdResponse](src/Binance/Models/SapiV1LendingAutoInvestPlanIdResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryHoldingDetailsOfThePlanError](Errors/QueryHoldingDetailsOfThePlanError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryHoldingDetailsOfThePlanError](src/Binance/Errors/QueryHoldingDetailsOfThePlanError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -1208,7 +1208,7 @@ catch (ApiException<QuerySourceAssetListUserDataError> ex)
 <dl>
 <dd>
 
-<code>[QuerySourceAssetListUserDataRequest](Requests/AutoInvest/QuerySourceAssetListUserDataRequest.cs)</code>
+<code>[QuerySourceAssetListUserDataRequest](src/Binance/Requests/AutoInvest/QuerySourceAssetListUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -1218,9 +1218,9 @@ catch (ApiException<QuerySourceAssetListUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1LendingAutoInvestSourceAssetListResponse](Models/SapiV1LendingAutoInvestSourceAssetListResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1LendingAutoInvestSourceAssetListResponse](src/Binance/Models/SapiV1LendingAutoInvestSourceAssetListResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QuerySourceAssetListUserDataError](Errors/QuerySourceAssetListUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QuerySourceAssetListUserDataError](src/Binance/Errors/QuerySourceAssetListUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -1284,7 +1284,7 @@ catch (ApiException<QuerySubscriptionTransactionHistoryError> ex)
 <dl>
 <dd>
 
-<code>[QuerySubscriptionTransactionHistoryRequest](Requests/AutoInvest/QuerySubscriptionTransactionHistoryRequest.cs)</code>
+<code>[QuerySubscriptionTransactionHistoryRequest](src/Binance/Requests/AutoInvest/QuerySubscriptionTransactionHistoryRequest.cs)</code>
 
 </dd>
 </dl>
@@ -1294,9 +1294,9 @@ catch (ApiException<QuerySubscriptionTransactionHistoryError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1LendingAutoInvestHistoryListResponse](Models/SapiV1LendingAutoInvestHistoryListResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1LendingAutoInvestHistoryListResponse](src/Binance/Models/SapiV1LendingAutoInvestHistoryListResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QuerySubscriptionTransactionHistoryError](Errors/QuerySubscriptionTransactionHistoryError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QuerySubscriptionTransactionHistoryError](src/Binance/Errors/QuerySubscriptionTransactionHistoryError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -1308,7 +1308,7 @@ catch (ApiException<QuerySubscriptionTransactionHistoryError> ex)
 
 ## Blvt
 
-> Source: [Blvt](Api/Blvt.cs)
+> Source: [Blvt](src/Binance/Api/Blvt.cs)
 
 <details>
 <summary><code>Task&lt;IReadOnlyList&lt;SapiV1BlvtTokenInfoResponse&gt;&gt; BlvtInfoMarketData(BlvtInfoMarketDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
@@ -1354,7 +1354,7 @@ catch (ApiException<BlvtInfoMarketDataError> ex)
 <dl>
 <dd>
 
-<code>[BlvtInfoMarketDataRequest](Requests/Blvt/BlvtInfoMarketDataRequest.cs)</code>
+<code>[BlvtInfoMarketDataRequest](src/Binance/Requests/Blvt/BlvtInfoMarketDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -1364,9 +1364,9 @@ catch (ApiException<BlvtInfoMarketDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1BlvtTokenInfoResponse](Models/SapiV1BlvtTokenInfoResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1BlvtTokenInfoResponse](src/Binance/Models/SapiV1BlvtTokenInfoResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[BlvtInfoMarketDataError](Errors/BlvtInfoMarketDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[BlvtInfoMarketDataError](src/Binance/Errors/BlvtInfoMarketDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -1425,7 +1425,7 @@ catch (ApiException<BlvtUserLimitInfoUserDataError> ex)
 <dl>
 <dd>
 
-<code>[BlvtUserLimitInfoUserDataRequest](Requests/Blvt/BlvtUserLimitInfoUserDataRequest.cs)</code>
+<code>[BlvtUserLimitInfoUserDataRequest](src/Binance/Requests/Blvt/BlvtUserLimitInfoUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -1435,9 +1435,9 @@ catch (ApiException<BlvtUserLimitInfoUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1BlvtUserLimitResponse](Models/SapiV1BlvtUserLimitResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1BlvtUserLimitResponse](src/Binance/Models/SapiV1BlvtUserLimitResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[BlvtUserLimitInfoUserDataError](Errors/BlvtUserLimitInfoUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[BlvtUserLimitInfoUserDataError](src/Binance/Errors/BlvtUserLimitInfoUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -1499,7 +1499,7 @@ catch (ApiException<QuerySubscriptionRecordUserDataError> ex)
 <dl>
 <dd>
 
-<code>[QuerySubscriptionRecordUserDataRequest](Requests/Blvt/QuerySubscriptionRecordUserDataRequest.cs)</code>
+<code>[QuerySubscriptionRecordUserDataRequest](src/Binance/Requests/Blvt/QuerySubscriptionRecordUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -1509,9 +1509,9 @@ catch (ApiException<QuerySubscriptionRecordUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1BlvtSubscribeRecordResponse](Models/SapiV1BlvtSubscribeRecordResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1BlvtSubscribeRecordResponse](src/Binance/Models/SapiV1BlvtSubscribeRecordResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QuerySubscriptionRecordUserDataError](Errors/QuerySubscriptionRecordUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QuerySubscriptionRecordUserDataError](src/Binance/Errors/QuerySubscriptionRecordUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -1572,7 +1572,7 @@ catch (ApiException<RedeemBlvtUserDataError> ex)
 <dl>
 <dd>
 
-<code>[RedeemBlvtUserDataRequest](Requests/Blvt/RedeemBlvtUserDataRequest.cs)</code>
+<code>[RedeemBlvtUserDataRequest](src/Binance/Requests/Blvt/RedeemBlvtUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -1582,9 +1582,9 @@ catch (ApiException<RedeemBlvtUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1BlvtRedeemResponse](Models/SapiV1BlvtRedeemResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1BlvtRedeemResponse](src/Binance/Models/SapiV1BlvtRedeemResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[RedeemBlvtUserDataError](Errors/RedeemBlvtUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[RedeemBlvtUserDataError](src/Binance/Errors/RedeemBlvtUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -1645,7 +1645,7 @@ catch (ApiException<RedemptionRecordUserDataError> ex)
 <dl>
 <dd>
 
-<code>[RedemptionRecordUserDataRequest](Requests/Blvt/RedemptionRecordUserDataRequest.cs)</code>
+<code>[RedemptionRecordUserDataRequest](src/Binance/Requests/Blvt/RedemptionRecordUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -1655,9 +1655,9 @@ catch (ApiException<RedemptionRecordUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1BlvtRedeemRecordResponse](Models/SapiV1BlvtRedeemRecordResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1BlvtRedeemRecordResponse](src/Binance/Models/SapiV1BlvtRedeemRecordResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[RedemptionRecordUserDataError](Errors/RedemptionRecordUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[RedemptionRecordUserDataError](src/Binance/Errors/RedemptionRecordUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -1718,7 +1718,7 @@ catch (ApiException<SubscribeBlvtUserDataError> ex)
 <dl>
 <dd>
 
-<code>[SubscribeBlvtUserDataRequest](Requests/Blvt/SubscribeBlvtUserDataRequest.cs)</code>
+<code>[SubscribeBlvtUserDataRequest](src/Binance/Requests/Blvt/SubscribeBlvtUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -1728,9 +1728,9 @@ catch (ApiException<SubscribeBlvtUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1BlvtSubscribeResponse](Models/SapiV1BlvtSubscribeResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1BlvtSubscribeResponse](src/Binance/Models/SapiV1BlvtSubscribeResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SubscribeBlvtUserDataError](Errors/SubscribeBlvtUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[SubscribeBlvtUserDataError](src/Binance/Errors/SubscribeBlvtUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -1742,7 +1742,7 @@ catch (ApiException<SubscribeBlvtUserDataError> ex)
 
 ## C2C
 
-> Source: [C2C](Api/C2C.cs)
+> Source: [C2C](src/Binance/Api/C2C.cs)
 
 <details>
 <summary><code>Task&lt;SapiV1C2COrderMatchListUserOrderHistoryResponse&gt; GetC2CTradeHistoryUserData(GetC2CTradeHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
@@ -1798,7 +1798,7 @@ catch (ApiException<GetC2CTradeHistoryUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetC2CTradeHistoryUserDataRequest](Requests/C2C/GetC2CTradeHistoryUserDataRequest.cs)</code>
+<code>[GetC2CTradeHistoryUserDataRequest](src/Binance/Requests/C2C/GetC2CTradeHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -1808,9 +1808,9 @@ catch (ApiException<GetC2CTradeHistoryUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1C2COrderMatchListUserOrderHistoryResponse](Models/SapiV1C2COrderMatchListUserOrderHistoryResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1C2COrderMatchListUserOrderHistoryResponse](src/Binance/Models/SapiV1C2COrderMatchListUserOrderHistoryResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetC2CTradeHistoryUserDataError](Errors/GetC2CTradeHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetC2CTradeHistoryUserDataError](src/Binance/Errors/GetC2CTradeHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -1822,7 +1822,7 @@ catch (ApiException<GetC2CTradeHistoryUserDataError> ex)
 
 ## ConvertApi
 
-> Source: [ConvertApi](Api/ConvertApi.cs)
+> Source: [ConvertApi](src/Binance/Api/ConvertApi.cs)
 
 <details>
 <summary><code>Task&lt;SapiV1ConvertAcceptQuoteResponse&gt; AcceptQuoteTrade(AcceptQuoteTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
@@ -1876,7 +1876,7 @@ catch (ApiException<AcceptQuoteTradeError> ex)
 <dl>
 <dd>
 
-<code>[AcceptQuoteTradeRequest](Requests/ConvertApi/AcceptQuoteTradeRequest.cs)</code>
+<code>[AcceptQuoteTradeRequest](src/Binance/Requests/ConvertApi/AcceptQuoteTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -1886,9 +1886,9 @@ catch (ApiException<AcceptQuoteTradeError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1ConvertAcceptQuoteResponse](Models/SapiV1ConvertAcceptQuoteResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1ConvertAcceptQuoteResponse](src/Binance/Models/SapiV1ConvertAcceptQuoteResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[AcceptQuoteTradeError](Errors/AcceptQuoteTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[AcceptQuoteTradeError](src/Binance/Errors/AcceptQuoteTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -1950,7 +1950,7 @@ catch (ApiException<CancelLimitOrderUserDataError> ex)
 <dl>
 <dd>
 
-<code>[CancelLimitOrderUserDataRequest](Requests/ConvertApi/CancelLimitOrderUserDataRequest.cs)</code>
+<code>[CancelLimitOrderUserDataRequest](src/Binance/Requests/ConvertApi/CancelLimitOrderUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -1960,9 +1960,9 @@ catch (ApiException<CancelLimitOrderUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1ConvertLimitCancelOrderResponse](Models/SapiV1ConvertLimitCancelOrderResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1ConvertLimitCancelOrderResponse](src/Binance/Models/SapiV1ConvertLimitCancelOrderResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CancelLimitOrderUserDataError](Errors/CancelLimitOrderUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[CancelLimitOrderUserDataError](src/Binance/Errors/CancelLimitOrderUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -2026,7 +2026,7 @@ catch (ApiException<GetConvertTradeHistoryUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetConvertTradeHistoryUserDataRequest](Requests/ConvertApi/GetConvertTradeHistoryUserDataRequest.cs)</code>
+<code>[GetConvertTradeHistoryUserDataRequest](src/Binance/Requests/ConvertApi/GetConvertTradeHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -2036,9 +2036,9 @@ catch (ApiException<GetConvertTradeHistoryUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1ConvertTradeFlowResponse](Models/SapiV1ConvertTradeFlowResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1ConvertTradeFlowResponse](src/Binance/Models/SapiV1ConvertTradeFlowResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetConvertTradeHistoryUserDataError](Errors/GetConvertTradeHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetConvertTradeHistoryUserDataError](src/Binance/Errors/GetConvertTradeHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -2098,7 +2098,7 @@ catch (ApiException<ListAllConvertPairsError> ex)
 <dl>
 <dd>
 
-<code>[ListAllConvertPairsRequest](Requests/ConvertApi/ListAllConvertPairsRequest.cs)</code>
+<code>[ListAllConvertPairsRequest](src/Binance/Requests/ConvertApi/ListAllConvertPairsRequest.cs)</code>
 
 </dd>
 </dl>
@@ -2108,9 +2108,9 @@ catch (ApiException<ListAllConvertPairsError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1ConvertExchangeInfoResponse](Models/SapiV1ConvertExchangeInfoResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1ConvertExchangeInfoResponse](src/Binance/Models/SapiV1ConvertExchangeInfoResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[ListAllConvertPairsError](Errors/ListAllConvertPairsError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[ListAllConvertPairsError](src/Binance/Errors/ListAllConvertPairsError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -2173,7 +2173,7 @@ catch (ApiException<OrderStatusUserDataError> ex)
 <dl>
 <dd>
 
-<code>[OrderStatusUserDataRequest](Requests/ConvertApi/OrderStatusUserDataRequest.cs)</code>
+<code>[OrderStatusUserDataRequest](src/Binance/Requests/ConvertApi/OrderStatusUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -2183,9 +2183,9 @@ catch (ApiException<OrderStatusUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1ConvertOrderStatusResponse](Models/SapiV1ConvertOrderStatusResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1ConvertOrderStatusResponse](src/Binance/Models/SapiV1ConvertOrderStatusResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[OrderStatusUserDataError](Errors/OrderStatusUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[OrderStatusUserDataError](src/Binance/Errors/OrderStatusUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -2256,7 +2256,7 @@ catch (ApiException<PlaceLimitOrderUserDataError> ex)
 <dl>
 <dd>
 
-<code>[PlaceLimitOrderUserDataRequest](Requests/ConvertApi/PlaceLimitOrderUserDataRequest.cs)</code>
+<code>[PlaceLimitOrderUserDataRequest](src/Binance/Requests/ConvertApi/PlaceLimitOrderUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -2266,9 +2266,9 @@ catch (ApiException<PlaceLimitOrderUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1ConvertLimitPlaceOrderResponse](Models/SapiV1ConvertLimitPlaceOrderResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1ConvertLimitPlaceOrderResponse](src/Binance/Models/SapiV1ConvertLimitPlaceOrderResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[PlaceLimitOrderUserDataError](Errors/PlaceLimitOrderUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[PlaceLimitOrderUserDataError](src/Binance/Errors/PlaceLimitOrderUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -2329,7 +2329,7 @@ catch (ApiException<QueryLimitOpenOrdersUserDataError> ex)
 <dl>
 <dd>
 
-<code>[QueryLimitOpenOrdersUserDataRequest](Requests/ConvertApi/QueryLimitOpenOrdersUserDataRequest.cs)</code>
+<code>[QueryLimitOpenOrdersUserDataRequest](src/Binance/Requests/ConvertApi/QueryLimitOpenOrdersUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -2339,9 +2339,9 @@ catch (ApiException<QueryLimitOpenOrdersUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1ConvertLimitQueryOpenOrdersResponse](Models/SapiV1ConvertLimitQueryOpenOrdersResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1ConvertLimitQueryOpenOrdersResponse](src/Binance/Models/SapiV1ConvertLimitQueryOpenOrdersResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryLimitOpenOrdersUserDataError](Errors/QueryLimitOpenOrdersUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryLimitOpenOrdersUserDataError](src/Binance/Errors/QueryLimitOpenOrdersUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -2403,7 +2403,7 @@ catch (ApiException<QueryOrderQuantityPrecisionPerAssetUserDataError> ex)
 <dl>
 <dd>
 
-<code>[QueryOrderQuantityPrecisionPerAssetUserDataRequest](Requests/ConvertApi/QueryOrderQuantityPrecisionPerAssetUserDataRequest.cs)</code>
+<code>[QueryOrderQuantityPrecisionPerAssetUserDataRequest](src/Binance/Requests/ConvertApi/QueryOrderQuantityPrecisionPerAssetUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -2413,9 +2413,9 @@ catch (ApiException<QueryOrderQuantityPrecisionPerAssetUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1ConvertAssetInfoResponse](Models/SapiV1ConvertAssetInfoResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1ConvertAssetInfoResponse](src/Binance/Models/SapiV1ConvertAssetInfoResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryOrderQuantityPrecisionPerAssetUserDataError](Errors/QueryOrderQuantityPrecisionPerAssetUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryOrderQuantityPrecisionPerAssetUserDataError](src/Binance/Errors/QueryOrderQuantityPrecisionPerAssetUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -2482,7 +2482,7 @@ catch (ApiException<SendQuoteRequestUserDataError> ex)
 <dl>
 <dd>
 
-<code>[SendQuoteRequestUserDataRequest](Requests/ConvertApi/SendQuoteRequestUserDataRequest.cs)</code>
+<code>[SendQuoteRequestUserDataRequest](src/Binance/Requests/ConvertApi/SendQuoteRequestUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -2492,9 +2492,9 @@ catch (ApiException<SendQuoteRequestUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1ConvertGetQuoteResponse](Models/SapiV1ConvertGetQuoteResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1ConvertGetQuoteResponse](src/Binance/Models/SapiV1ConvertGetQuoteResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SendQuoteRequestUserDataError](Errors/SendQuoteRequestUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[SendQuoteRequestUserDataError](src/Binance/Errors/SendQuoteRequestUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -2506,7 +2506,7 @@ catch (ApiException<SendQuoteRequestUserDataError> ex)
 
 ## CopyTrading
 
-> Source: [CopyTrading](Api/CopyTrading.cs)
+> Source: [CopyTrading](src/Binance/Api/CopyTrading.cs)
 
 <details>
 <summary><code>Task&lt;SapiV1CopyTradingFuturesUserStatusResponse&gt; GetFuturesLeadTraderStatusTrade(GetFuturesLeadTraderStatusTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
@@ -2559,7 +2559,7 @@ catch (ApiException<GetFuturesLeadTraderStatusTradeError> ex)
 <dl>
 <dd>
 
-<code>[GetFuturesLeadTraderStatusTradeRequest](Requests/CopyTrading/GetFuturesLeadTraderStatusTradeRequest.cs)</code>
+<code>[GetFuturesLeadTraderStatusTradeRequest](src/Binance/Requests/CopyTrading/GetFuturesLeadTraderStatusTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -2569,9 +2569,9 @@ catch (ApiException<GetFuturesLeadTraderStatusTradeError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1CopyTradingFuturesUserStatusResponse](Models/SapiV1CopyTradingFuturesUserStatusResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1CopyTradingFuturesUserStatusResponse](src/Binance/Models/SapiV1CopyTradingFuturesUserStatusResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetFuturesLeadTraderStatusTradeError](Errors/GetFuturesLeadTraderStatusTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetFuturesLeadTraderStatusTradeError](src/Binance/Errors/GetFuturesLeadTraderStatusTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -2633,7 +2633,7 @@ catch (ApiException<GetFuturesLeadTradingSymbolWhitelistUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetFuturesLeadTradingSymbolWhitelistUserDataRequest](Requests/CopyTrading/GetFuturesLeadTradingSymbolWhitelistUserDataRequest.cs)</code>
+<code>[GetFuturesLeadTradingSymbolWhitelistUserDataRequest](src/Binance/Requests/CopyTrading/GetFuturesLeadTradingSymbolWhitelistUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -2643,9 +2643,9 @@ catch (ApiException<GetFuturesLeadTradingSymbolWhitelistUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1CopyTradingFuturesLeadSymbolResponse](Models/SapiV1CopyTradingFuturesLeadSymbolResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1CopyTradingFuturesLeadSymbolResponse](src/Binance/Models/SapiV1CopyTradingFuturesLeadSymbolResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetFuturesLeadTradingSymbolWhitelistUserDataError](Errors/GetFuturesLeadTradingSymbolWhitelistUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetFuturesLeadTradingSymbolWhitelistUserDataError](src/Binance/Errors/GetFuturesLeadTradingSymbolWhitelistUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -2657,7 +2657,7 @@ catch (ApiException<GetFuturesLeadTradingSymbolWhitelistUserDataError> ex)
 
 ## CryptoLoans
 
-> Source: [CryptoLoans](Api/CryptoLoans.cs)
+> Source: [CryptoLoans](src/Binance/Api/CryptoLoans.cs)
 
 <details>
 <summary><code>Task&lt;SapiV2LoanFlexibleAdjustLtvResponse&gt; AdjustLtvFlexibleLoanAdjustLtvTrade(AdjustLtvFlexibleLoanAdjustLtvTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
@@ -2715,7 +2715,7 @@ catch (ApiException<AdjustLtvFlexibleLoanAdjustLtvTradeError> ex)
 <dl>
 <dd>
 
-<code>[AdjustLtvFlexibleLoanAdjustLtvTradeRequest](Requests/CryptoLoans/AdjustLtvFlexibleLoanAdjustLtvTradeRequest.cs)</code>
+<code>[AdjustLtvFlexibleLoanAdjustLtvTradeRequest](src/Binance/Requests/CryptoLoans/AdjustLtvFlexibleLoanAdjustLtvTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -2725,9 +2725,9 @@ catch (ApiException<AdjustLtvFlexibleLoanAdjustLtvTradeError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV2LoanFlexibleAdjustLtvResponse](Models/SapiV2LoanFlexibleAdjustLtvResponse.cs)</code>
+**OnSuccess**: <code>[SapiV2LoanFlexibleAdjustLtvResponse](src/Binance/Models/SapiV2LoanFlexibleAdjustLtvResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[AdjustLtvFlexibleLoanAdjustLtvTradeError](Errors/AdjustLtvFlexibleLoanAdjustLtvTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[AdjustLtvFlexibleLoanAdjustLtvTradeError](src/Binance/Errors/AdjustLtvFlexibleLoanAdjustLtvTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -2794,7 +2794,7 @@ catch (ApiException<AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserDataError> e
 <dl>
 <dd>
 
-<code>[AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserDataRequest](Requests/CryptoLoans/AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserDataRequest.cs)</code>
+<code>[AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserDataRequest](src/Binance/Requests/CryptoLoans/AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -2804,9 +2804,9 @@ catch (ApiException<AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserDataError> e
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV2LoanFlexibleLtvAdjustmentHistoryResponse](Models/SapiV2LoanFlexibleLtvAdjustmentHistoryResponse.cs)</code>
+**OnSuccess**: <code>[SapiV2LoanFlexibleLtvAdjustmentHistoryResponse](src/Binance/Models/SapiV2LoanFlexibleLtvAdjustmentHistoryResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserDataError](Errors/AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserDataError](src/Binance/Errors/AdjustLtvGetFlexibleLoanLtvAdjustmentHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -2871,7 +2871,7 @@ catch (ApiException<BorrowFlexibleLoanBorrowTradeError> ex)
 <dl>
 <dd>
 
-<code>[BorrowFlexibleLoanBorrowTradeRequest](Requests/CryptoLoans/BorrowFlexibleLoanBorrowTradeRequest.cs)</code>
+<code>[BorrowFlexibleLoanBorrowTradeRequest](src/Binance/Requests/CryptoLoans/BorrowFlexibleLoanBorrowTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -2881,9 +2881,9 @@ catch (ApiException<BorrowFlexibleLoanBorrowTradeError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV2LoanFlexibleBorrowResponse](Models/SapiV2LoanFlexibleBorrowResponse.cs)</code>
+**OnSuccess**: <code>[SapiV2LoanFlexibleBorrowResponse](src/Binance/Models/SapiV2LoanFlexibleBorrowResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[BorrowFlexibleLoanBorrowTradeError](Errors/BorrowFlexibleLoanBorrowTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[BorrowFlexibleLoanBorrowTradeError](src/Binance/Errors/BorrowFlexibleLoanBorrowTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -2950,7 +2950,7 @@ catch (ApiException<BorrowGetFlexibleLoanBorrowHistoryUserDataError> ex)
 <dl>
 <dd>
 
-<code>[BorrowGetFlexibleLoanBorrowHistoryUserDataRequest](Requests/CryptoLoans/BorrowGetFlexibleLoanBorrowHistoryUserDataRequest.cs)</code>
+<code>[BorrowGetFlexibleLoanBorrowHistoryUserDataRequest](src/Binance/Requests/CryptoLoans/BorrowGetFlexibleLoanBorrowHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -2960,9 +2960,9 @@ catch (ApiException<BorrowGetFlexibleLoanBorrowHistoryUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV2LoanFlexibleBorrowHistoryResponse](Models/SapiV2LoanFlexibleBorrowHistoryResponse.cs)</code>
+**OnSuccess**: <code>[SapiV2LoanFlexibleBorrowHistoryResponse](src/Binance/Models/SapiV2LoanFlexibleBorrowHistoryResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[BorrowGetFlexibleLoanBorrowHistoryUserDataError](Errors/BorrowGetFlexibleLoanBorrowHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[BorrowGetFlexibleLoanBorrowHistoryUserDataError](src/Binance/Errors/BorrowGetFlexibleLoanBorrowHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -3026,7 +3026,7 @@ catch (ApiException<BorrowGetFlexibleLoanOngoingOrdersUserDataError> ex)
 <dl>
 <dd>
 
-<code>[BorrowGetFlexibleLoanOngoingOrdersUserDataRequest](Requests/CryptoLoans/BorrowGetFlexibleLoanOngoingOrdersUserDataRequest.cs)</code>
+<code>[BorrowGetFlexibleLoanOngoingOrdersUserDataRequest](src/Binance/Requests/CryptoLoans/BorrowGetFlexibleLoanOngoingOrdersUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -3036,9 +3036,9 @@ catch (ApiException<BorrowGetFlexibleLoanOngoingOrdersUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV2LoanFlexibleOngoingOrdersResponse](Models/SapiV2LoanFlexibleOngoingOrdersResponse.cs)</code>
+**OnSuccess**: <code>[SapiV2LoanFlexibleOngoingOrdersResponse](src/Binance/Models/SapiV2LoanFlexibleOngoingOrdersResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[BorrowGetFlexibleLoanOngoingOrdersUserDataError](Errors/BorrowGetFlexibleLoanOngoingOrdersUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[BorrowGetFlexibleLoanOngoingOrdersUserDataError](src/Binance/Errors/BorrowGetFlexibleLoanOngoingOrdersUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -3102,7 +3102,7 @@ catch (ApiException<CheckCollateralRepayRateUserDataError> ex)
 <dl>
 <dd>
 
-<code>[CheckCollateralRepayRateUserDataRequest](Requests/CryptoLoans/CheckCollateralRepayRateUserDataRequest.cs)</code>
+<code>[CheckCollateralRepayRateUserDataRequest](src/Binance/Requests/CryptoLoans/CheckCollateralRepayRateUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -3112,9 +3112,9 @@ catch (ApiException<CheckCollateralRepayRateUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1LoanRepayCollateralRateResponse](Models/SapiV1LoanRepayCollateralRateResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1LoanRepayCollateralRateResponse](src/Binance/Models/SapiV1LoanRepayCollateralRateResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CheckCollateralRepayRateUserDataError](Errors/CheckCollateralRepayRateUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[CheckCollateralRepayRateUserDataError](src/Binance/Errors/CheckCollateralRepayRateUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -3176,7 +3176,7 @@ catch (ApiException<CryptoLoanAdjustLtvTradeError> ex)
 <dl>
 <dd>
 
-<code>[CryptoLoanAdjustLtvTradeRequest](Requests/CryptoLoans/CryptoLoanAdjustLtvTradeRequest.cs)</code>
+<code>[CryptoLoanAdjustLtvTradeRequest](src/Binance/Requests/CryptoLoans/CryptoLoanAdjustLtvTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -3186,9 +3186,9 @@ catch (ApiException<CryptoLoanAdjustLtvTradeError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1LoanAdjustLtvResponse](Models/SapiV1LoanAdjustLtvResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1LoanAdjustLtvResponse](src/Binance/Models/SapiV1LoanAdjustLtvResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CryptoLoanAdjustLtvTradeError](Errors/CryptoLoanAdjustLtvTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[CryptoLoanAdjustLtvTradeError](src/Binance/Errors/CryptoLoanAdjustLtvTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -3252,7 +3252,7 @@ catch (ApiException<CryptoLoanBorrowTradeError> ex)
 <dl>
 <dd>
 
-<code>[CryptoLoanBorrowTradeRequest](Requests/CryptoLoans/CryptoLoanBorrowTradeRequest.cs)</code>
+<code>[CryptoLoanBorrowTradeRequest](src/Binance/Requests/CryptoLoans/CryptoLoanBorrowTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -3262,9 +3262,9 @@ catch (ApiException<CryptoLoanBorrowTradeError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1LoanBorrowResponse](Models/SapiV1LoanBorrowResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1LoanBorrowResponse](src/Binance/Models/SapiV1LoanBorrowResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CryptoLoanBorrowTradeError](Errors/CryptoLoanBorrowTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[CryptoLoanBorrowTradeError](src/Binance/Errors/CryptoLoanBorrowTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -3328,7 +3328,7 @@ catch (ApiException<CryptoLoanCustomizeMarginCallTradeError> ex)
 <dl>
 <dd>
 
-<code>[CryptoLoanCustomizeMarginCallTradeRequest](Requests/CryptoLoans/CryptoLoanCustomizeMarginCallTradeRequest.cs)</code>
+<code>[CryptoLoanCustomizeMarginCallTradeRequest](src/Binance/Requests/CryptoLoans/CryptoLoanCustomizeMarginCallTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -3338,9 +3338,9 @@ catch (ApiException<CryptoLoanCustomizeMarginCallTradeError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1LoanCustomizeMarginCallResponse](Models/SapiV1LoanCustomizeMarginCallResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1LoanCustomizeMarginCallResponse](src/Binance/Models/SapiV1LoanCustomizeMarginCallResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CryptoLoanCustomizeMarginCallTradeError](Errors/CryptoLoanCustomizeMarginCallTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[CryptoLoanCustomizeMarginCallTradeError](src/Binance/Errors/CryptoLoanCustomizeMarginCallTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -3403,7 +3403,7 @@ catch (ApiException<CryptoLoanRepayTradeError> ex)
 <dl>
 <dd>
 
-<code>[CryptoLoanRepayTradeRequest](Requests/CryptoLoans/CryptoLoanRepayTradeRequest.cs)</code>
+<code>[CryptoLoanRepayTradeRequest](src/Binance/Requests/CryptoLoans/CryptoLoanRepayTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -3413,9 +3413,9 @@ catch (ApiException<CryptoLoanRepayTradeError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1LoanRepayResponse](Models/AnyOf/SapiV1LoanRepayResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1LoanRepayResponse](src/Binance/Models/AnyOf/SapiV1LoanRepayResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CryptoLoanRepayTradeError](Errors/CryptoLoanRepayTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[CryptoLoanRepayTradeError](src/Binance/Errors/CryptoLoanRepayTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -3478,7 +3478,7 @@ catch (ApiException<GetCollateralAssetsDataUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetCollateralAssetsDataUserDataRequest](Requests/CryptoLoans/GetCollateralAssetsDataUserDataRequest.cs)</code>
+<code>[GetCollateralAssetsDataUserDataRequest](src/Binance/Requests/CryptoLoans/GetCollateralAssetsDataUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -3488,9 +3488,9 @@ catch (ApiException<GetCollateralAssetsDataUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1LoanCollateralDataResponse](Models/SapiV1LoanCollateralDataResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1LoanCollateralDataResponse](src/Binance/Models/SapiV1LoanCollateralDataResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetCollateralAssetsDataUserDataError](Errors/GetCollateralAssetsDataUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetCollateralAssetsDataUserDataError](src/Binance/Errors/GetCollateralAssetsDataUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -3558,7 +3558,7 @@ catch (ApiException<GetCryptoLoansBorrowHistoryUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetCryptoLoansBorrowHistoryUserDataRequest](Requests/CryptoLoans/GetCryptoLoansBorrowHistoryUserDataRequest.cs)</code>
+<code>[GetCryptoLoansBorrowHistoryUserDataRequest](src/Binance/Requests/CryptoLoans/GetCryptoLoansBorrowHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -3568,9 +3568,9 @@ catch (ApiException<GetCryptoLoansBorrowHistoryUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1LoanBorrowHistoryResponse](Models/SapiV1LoanBorrowHistoryResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1LoanBorrowHistoryResponse](src/Binance/Models/SapiV1LoanBorrowHistoryResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetCryptoLoansBorrowHistoryUserDataError](Errors/GetCryptoLoansBorrowHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetCryptoLoansBorrowHistoryUserDataError](src/Binance/Errors/GetCryptoLoansBorrowHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -3635,7 +3635,7 @@ catch (ApiException<GetCryptoLoansIncomeHistoryUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetCryptoLoansIncomeHistoryUserDataRequest](Requests/CryptoLoans/GetCryptoLoansIncomeHistoryUserDataRequest.cs)</code>
+<code>[GetCryptoLoansIncomeHistoryUserDataRequest](src/Binance/Requests/CryptoLoans/GetCryptoLoansIncomeHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -3645,9 +3645,9 @@ catch (ApiException<GetCryptoLoansIncomeHistoryUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1LoanIncomeResponse](Models/SapiV1LoanIncomeResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1LoanIncomeResponse](src/Binance/Models/SapiV1LoanIncomeResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetCryptoLoansIncomeHistoryUserDataError](Errors/GetCryptoLoansIncomeHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetCryptoLoansIncomeHistoryUserDataError](src/Binance/Errors/GetCryptoLoansIncomeHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -3710,7 +3710,7 @@ catch (ApiException<GetFlexibleLoanAssetsDataUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetFlexibleLoanAssetsDataUserDataRequest](Requests/CryptoLoans/GetFlexibleLoanAssetsDataUserDataRequest.cs)</code>
+<code>[GetFlexibleLoanAssetsDataUserDataRequest](src/Binance/Requests/CryptoLoans/GetFlexibleLoanAssetsDataUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -3720,9 +3720,9 @@ catch (ApiException<GetFlexibleLoanAssetsDataUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV2LoanFlexibleLoanableDataResponse](Models/SapiV2LoanFlexibleLoanableDataResponse.cs)</code>
+**OnSuccess**: <code>[SapiV2LoanFlexibleLoanableDataResponse](src/Binance/Models/SapiV2LoanFlexibleLoanableDataResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetFlexibleLoanAssetsDataUserDataError](Errors/GetFlexibleLoanAssetsDataUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetFlexibleLoanAssetsDataUserDataError](src/Binance/Errors/GetFlexibleLoanAssetsDataUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -3785,7 +3785,7 @@ catch (ApiException<GetFlexibleLoanCollateralAssetsDataUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetFlexibleLoanCollateralAssetsDataUserDataRequest](Requests/CryptoLoans/GetFlexibleLoanCollateralAssetsDataUserDataRequest.cs)</code>
+<code>[GetFlexibleLoanCollateralAssetsDataUserDataRequest](src/Binance/Requests/CryptoLoans/GetFlexibleLoanCollateralAssetsDataUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -3795,9 +3795,9 @@ catch (ApiException<GetFlexibleLoanCollateralAssetsDataUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV2LoanFlexibleCollateralDataResponse](Models/SapiV2LoanFlexibleCollateralDataResponse.cs)</code>
+**OnSuccess**: <code>[SapiV2LoanFlexibleCollateralDataResponse](src/Binance/Models/SapiV2LoanFlexibleCollateralDataResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetFlexibleLoanCollateralAssetsDataUserDataError](Errors/GetFlexibleLoanCollateralAssetsDataUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetFlexibleLoanCollateralAssetsDataUserDataError](src/Binance/Errors/GetFlexibleLoanCollateralAssetsDataUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -3865,7 +3865,7 @@ catch (ApiException<GetLoanLtvAdjustmentHistoryUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetLoanLtvAdjustmentHistoryUserDataRequest](Requests/CryptoLoans/GetLoanLtvAdjustmentHistoryUserDataRequest.cs)</code>
+<code>[GetLoanLtvAdjustmentHistoryUserDataRequest](src/Binance/Requests/CryptoLoans/GetLoanLtvAdjustmentHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -3875,9 +3875,9 @@ catch (ApiException<GetLoanLtvAdjustmentHistoryUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1LoanLtvAdjustmentHistoryResponse](Models/SapiV1LoanLtvAdjustmentHistoryResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1LoanLtvAdjustmentHistoryResponse](src/Binance/Models/SapiV1LoanLtvAdjustmentHistoryResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetLoanLtvAdjustmentHistoryUserDataError](Errors/GetLoanLtvAdjustmentHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetLoanLtvAdjustmentHistoryUserDataError](src/Binance/Errors/GetLoanLtvAdjustmentHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -3941,7 +3941,7 @@ catch (ApiException<GetLoanOngoingOrdersUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetLoanOngoingOrdersUserDataRequest](Requests/CryptoLoans/GetLoanOngoingOrdersUserDataRequest.cs)</code>
+<code>[GetLoanOngoingOrdersUserDataRequest](src/Binance/Requests/CryptoLoans/GetLoanOngoingOrdersUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -3951,9 +3951,9 @@ catch (ApiException<GetLoanOngoingOrdersUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1LoanOngoingOrdersResponse](Models/SapiV1LoanOngoingOrdersResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1LoanOngoingOrdersResponse](src/Binance/Models/SapiV1LoanOngoingOrdersResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetLoanOngoingOrdersUserDataError](Errors/GetLoanOngoingOrdersUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetLoanOngoingOrdersUserDataError](src/Binance/Errors/GetLoanOngoingOrdersUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -4020,7 +4020,7 @@ catch (ApiException<GetLoanRepaymentHistoryUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetLoanRepaymentHistoryUserDataRequest](Requests/CryptoLoans/GetLoanRepaymentHistoryUserDataRequest.cs)</code>
+<code>[GetLoanRepaymentHistoryUserDataRequest](src/Binance/Requests/CryptoLoans/GetLoanRepaymentHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -4030,9 +4030,9 @@ catch (ApiException<GetLoanRepaymentHistoryUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1LoanRepayHistoryResponse](Models/SapiV1LoanRepayHistoryResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1LoanRepayHistoryResponse](src/Binance/Models/SapiV1LoanRepayHistoryResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetLoanRepaymentHistoryUserDataError](Errors/GetLoanRepaymentHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetLoanRepaymentHistoryUserDataError](src/Binance/Errors/GetLoanRepaymentHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -4095,7 +4095,7 @@ catch (ApiException<GetLoanableAssetsDataUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetLoanableAssetsDataUserDataRequest](Requests/CryptoLoans/GetLoanableAssetsDataUserDataRequest.cs)</code>
+<code>[GetLoanableAssetsDataUserDataRequest](src/Binance/Requests/CryptoLoans/GetLoanableAssetsDataUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -4105,9 +4105,9 @@ catch (ApiException<GetLoanableAssetsDataUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1LoanLoanableDataResponse](Models/SapiV1LoanLoanableDataResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1LoanLoanableDataResponse](src/Binance/Models/SapiV1LoanLoanableDataResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetLoanableAssetsDataUserDataError](Errors/GetLoanableAssetsDataUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetLoanableAssetsDataUserDataError](src/Binance/Errors/GetLoanableAssetsDataUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -4173,7 +4173,7 @@ catch (ApiException<RepayFlexibleLoanRepayTradeError> ex)
 <dl>
 <dd>
 
-<code>[RepayFlexibleLoanRepayTradeRequest](Requests/CryptoLoans/RepayFlexibleLoanRepayTradeRequest.cs)</code>
+<code>[RepayFlexibleLoanRepayTradeRequest](src/Binance/Requests/CryptoLoans/RepayFlexibleLoanRepayTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -4183,9 +4183,9 @@ catch (ApiException<RepayFlexibleLoanRepayTradeError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV2LoanFlexibleRepayResponse](Models/SapiV2LoanFlexibleRepayResponse.cs)</code>
+**OnSuccess**: <code>[SapiV2LoanFlexibleRepayResponse](src/Binance/Models/SapiV2LoanFlexibleRepayResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[RepayFlexibleLoanRepayTradeError](Errors/RepayFlexibleLoanRepayTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[RepayFlexibleLoanRepayTradeError](src/Binance/Errors/RepayFlexibleLoanRepayTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -4252,7 +4252,7 @@ catch (ApiException<RepayGetFlexibleLoanRepaymentHistoryUserDataError> ex)
 <dl>
 <dd>
 
-<code>[RepayGetFlexibleLoanRepaymentHistoryUserDataRequest](Requests/CryptoLoans/RepayGetFlexibleLoanRepaymentHistoryUserDataRequest.cs)</code>
+<code>[RepayGetFlexibleLoanRepaymentHistoryUserDataRequest](src/Binance/Requests/CryptoLoans/RepayGetFlexibleLoanRepaymentHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -4262,9 +4262,9 @@ catch (ApiException<RepayGetFlexibleLoanRepaymentHistoryUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV2LoanFlexibleRepayHistoryResponse](Models/SapiV2LoanFlexibleRepayHistoryResponse.cs)</code>
+**OnSuccess**: <code>[SapiV2LoanFlexibleRepayHistoryResponse](src/Binance/Models/SapiV2LoanFlexibleRepayHistoryResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[RepayGetFlexibleLoanRepaymentHistoryUserDataError](Errors/RepayGetFlexibleLoanRepaymentHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[RepayGetFlexibleLoanRepaymentHistoryUserDataError](src/Binance/Errors/RepayGetFlexibleLoanRepaymentHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -4276,7 +4276,7 @@ catch (ApiException<RepayGetFlexibleLoanRepaymentHistoryUserDataError> ex)
 
 ## DualInvestment
 
-> Source: [DualInvestment](Api/DualInvestment.cs)
+> Source: [DualInvestment](src/Binance/Api/DualInvestment.cs)
 
 <details>
 <summary><code>Task&lt;SapiV1DciProductAutoCompoundEditStatusResponse&gt; ChangeAutoCompoundStatusUserData(ChangeAutoCompoundStatusUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
@@ -4336,7 +4336,7 @@ catch (ApiException<ChangeAutoCompoundStatusUserDataError> ex)
 <dl>
 <dd>
 
-<code>[ChangeAutoCompoundStatusUserDataRequest](Requests/DualInvestment/ChangeAutoCompoundStatusUserDataRequest.cs)</code>
+<code>[ChangeAutoCompoundStatusUserDataRequest](src/Binance/Requests/DualInvestment/ChangeAutoCompoundStatusUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -4346,9 +4346,9 @@ catch (ApiException<ChangeAutoCompoundStatusUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1DciProductAutoCompoundEditStatusResponse](Models/SapiV1DciProductAutoCompoundEditStatusResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1DciProductAutoCompoundEditStatusResponse](src/Binance/Models/SapiV1DciProductAutoCompoundEditStatusResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[ChangeAutoCompoundStatusUserDataError](Errors/ChangeAutoCompoundStatusUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[ChangeAutoCompoundStatusUserDataError](src/Binance/Errors/ChangeAutoCompoundStatusUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -4410,7 +4410,7 @@ catch (ApiException<CheckDualInvestmentAccountsUserDataError> ex)
 <dl>
 <dd>
 
-<code>[CheckDualInvestmentAccountsUserDataRequest](Requests/DualInvestment/CheckDualInvestmentAccountsUserDataRequest.cs)</code>
+<code>[CheckDualInvestmentAccountsUserDataRequest](src/Binance/Requests/DualInvestment/CheckDualInvestmentAccountsUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -4420,9 +4420,9 @@ catch (ApiException<CheckDualInvestmentAccountsUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1DciProductAccountsResponse](Models/SapiV1DciProductAccountsResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1DciProductAccountsResponse](src/Binance/Models/SapiV1DciProductAccountsResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CheckDualInvestmentAccountsUserDataError](Errors/CheckDualInvestmentAccountsUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[CheckDualInvestmentAccountsUserDataError](src/Binance/Errors/CheckDualInvestmentAccountsUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -4484,7 +4484,7 @@ catch (ApiException<GetDualInvestmentPositionsUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetDualInvestmentPositionsUserDataRequest](Requests/DualInvestment/GetDualInvestmentPositionsUserDataRequest.cs)</code>
+<code>[GetDualInvestmentPositionsUserDataRequest](src/Binance/Requests/DualInvestment/GetDualInvestmentPositionsUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -4494,9 +4494,9 @@ catch (ApiException<GetDualInvestmentPositionsUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1DciProductPositionsResponse](Models/SapiV1DciProductPositionsResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1DciProductPositionsResponse](src/Binance/Models/SapiV1DciProductPositionsResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetDualInvestmentPositionsUserDataError](Errors/GetDualInvestmentPositionsUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetDualInvestmentPositionsUserDataError](src/Binance/Errors/GetDualInvestmentPositionsUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -4561,7 +4561,7 @@ catch (ApiException<GetDualInvestmentProductListUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetDualInvestmentProductListUserDataRequest](Requests/DualInvestment/GetDualInvestmentProductListUserDataRequest.cs)</code>
+<code>[GetDualInvestmentProductListUserDataRequest](src/Binance/Requests/DualInvestment/GetDualInvestmentProductListUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -4571,9 +4571,9 @@ catch (ApiException<GetDualInvestmentProductListUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1DciProductListResponse](Models/SapiV1DciProductListResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1DciProductListResponse](src/Binance/Models/SapiV1DciProductListResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetDualInvestmentProductListUserDataError](Errors/GetDualInvestmentProductListUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetDualInvestmentProductListUserDataError](src/Binance/Errors/GetDualInvestmentProductListUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -4642,7 +4642,7 @@ catch (ApiException<SubscribeDualInvestmentProductsUserDataError> ex)
 <dl>
 <dd>
 
-<code>[SubscribeDualInvestmentProductsUserDataRequest](Requests/DualInvestment/SubscribeDualInvestmentProductsUserDataRequest.cs)</code>
+<code>[SubscribeDualInvestmentProductsUserDataRequest](src/Binance/Requests/DualInvestment/SubscribeDualInvestmentProductsUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -4652,9 +4652,9 @@ catch (ApiException<SubscribeDualInvestmentProductsUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1DciProductSubscribeResponse](Models/SapiV1DciProductSubscribeResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1DciProductSubscribeResponse](src/Binance/Models/SapiV1DciProductSubscribeResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SubscribeDualInvestmentProductsUserDataError](Errors/SubscribeDualInvestmentProductsUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[SubscribeDualInvestmentProductsUserDataError](src/Binance/Errors/SubscribeDualInvestmentProductsUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -4666,7 +4666,7 @@ catch (ApiException<SubscribeDualInvestmentProductsUserDataError> ex)
 
 ## Fiat
 
-> Source: [Fiat](Api/Fiat.cs)
+> Source: [Fiat](src/Binance/Api/Fiat.cs)
 
 <details>
 <summary><code>Task&lt;SapiV1FiatOrdersResponse&gt; FiatDepositWithdrawHistoryUserData(FiatDepositWithdrawHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
@@ -4723,7 +4723,7 @@ catch (ApiException<FiatDepositWithdrawHistoryUserDataError> ex)
 <dl>
 <dd>
 
-<code>[FiatDepositWithdrawHistoryUserDataRequest](Requests/Fiat/FiatDepositWithdrawHistoryUserDataRequest.cs)</code>
+<code>[FiatDepositWithdrawHistoryUserDataRequest](src/Binance/Requests/Fiat/FiatDepositWithdrawHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -4733,9 +4733,9 @@ catch (ApiException<FiatDepositWithdrawHistoryUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1FiatOrdersResponse](Models/SapiV1FiatOrdersResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1FiatOrdersResponse](src/Binance/Models/SapiV1FiatOrdersResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[FiatDepositWithdrawHistoryUserDataError](Errors/FiatDepositWithdrawHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[FiatDepositWithdrawHistoryUserDataError](src/Binance/Errors/FiatDepositWithdrawHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -4800,7 +4800,7 @@ catch (ApiException<FiatPaymentsHistoryUserDataError> ex)
 <dl>
 <dd>
 
-<code>[FiatPaymentsHistoryUserDataRequest](Requests/Fiat/FiatPaymentsHistoryUserDataRequest.cs)</code>
+<code>[FiatPaymentsHistoryUserDataRequest](src/Binance/Requests/Fiat/FiatPaymentsHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -4810,9 +4810,9 @@ catch (ApiException<FiatPaymentsHistoryUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1FiatPaymentsResponse](Models/SapiV1FiatPaymentsResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1FiatPaymentsResponse](src/Binance/Models/SapiV1FiatPaymentsResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[FiatPaymentsHistoryUserDataError](Errors/FiatPaymentsHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[FiatPaymentsHistoryUserDataError](src/Binance/Errors/FiatPaymentsHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -4824,7 +4824,7 @@ catch (ApiException<FiatPaymentsHistoryUserDataError> ex)
 
 ## Futures
 
-> Source: [Futures](Api/Futures.cs)
+> Source: [Futures](src/Binance/Api/Futures.cs)
 
 <details>
 <summary><code>Task&lt;SapiV1FuturesTransferResponse1&gt; GetFutureAccountTransactionHistoryListUserData(GetFutureAccountTransactionHistoryListUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
@@ -4880,7 +4880,7 @@ catch (ApiException<GetFutureAccountTransactionHistoryListUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetFutureAccountTransactionHistoryListUserDataRequest](Requests/Futures/GetFutureAccountTransactionHistoryListUserDataRequest.cs)</code>
+<code>[GetFutureAccountTransactionHistoryListUserDataRequest](src/Binance/Requests/Futures/GetFutureAccountTransactionHistoryListUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -4890,9 +4890,9 @@ catch (ApiException<GetFutureAccountTransactionHistoryListUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1FuturesTransferResponse1](Models/SapiV1FuturesTransferResponse1.cs)</code>
+**OnSuccess**: <code>[SapiV1FuturesTransferResponse1](src/Binance/Models/SapiV1FuturesTransferResponse1.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetFutureAccountTransactionHistoryListUserDataError](Errors/GetFutureAccountTransactionHistoryListUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetFutureAccountTransactionHistoryListUserDataError](src/Binance/Errors/GetFutureAccountTransactionHistoryListUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -4954,7 +4954,7 @@ catch (ApiException<GetFutureTickLevelOrderbookHistoricalDataDownloadLinkUserDat
 <dl>
 <dd>
 
-<code>[GetFutureTickLevelOrderbookHistoricalDataDownloadLinkUserDataRequest](Requests/Futures/GetFutureTickLevelOrderbookHistoricalDataDownloadLinkUserDataRequest.cs)</code>
+<code>[GetFutureTickLevelOrderbookHistoricalDataDownloadLinkUserDataRequest](src/Binance/Requests/Futures/GetFutureTickLevelOrderbookHistoricalDataDownloadLinkUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -4964,9 +4964,9 @@ catch (ApiException<GetFutureTickLevelOrderbookHistoricalDataDownloadLinkUserDat
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1FuturesHistDataLinkResponse](Models/SapiV1FuturesHistDataLinkResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1FuturesHistDataLinkResponse](src/Binance/Models/SapiV1FuturesHistDataLinkResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetFutureTickLevelOrderbookHistoricalDataDownloadLinkUserDataError](Errors/GetFutureTickLevelOrderbookHistoricalDataDownloadLinkUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetFutureTickLevelOrderbookHistoricalDataDownloadLinkUserDataError](src/Binance/Errors/GetFutureTickLevelOrderbookHistoricalDataDownloadLinkUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -5030,7 +5030,7 @@ catch (ApiException<NewFutureAccountTransferUserDataError> ex)
 <dl>
 <dd>
 
-<code>[NewFutureAccountTransferUserDataRequest](Requests/Futures/NewFutureAccountTransferUserDataRequest.cs)</code>
+<code>[NewFutureAccountTransferUserDataRequest](src/Binance/Requests/Futures/NewFutureAccountTransferUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -5040,9 +5040,9 @@ catch (ApiException<NewFutureAccountTransferUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1FuturesTransferResponse](Models/SapiV1FuturesTransferResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1FuturesTransferResponse](src/Binance/Models/SapiV1FuturesTransferResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[NewFutureAccountTransferUserDataError](Errors/NewFutureAccountTransferUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[NewFutureAccountTransferUserDataError](src/Binance/Errors/NewFutureAccountTransferUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -5054,7 +5054,7 @@ catch (ApiException<NewFutureAccountTransferUserDataError> ex)
 
 ## FuturesAlgo
 
-> Source: [FuturesAlgo](Api/FuturesAlgo.cs)
+> Source: [FuturesAlgo](src/Binance/Api/FuturesAlgo.cs)
 
 <details>
 <summary><code>Task&lt;SapiV1AlgoFuturesOrderResponse&gt; CancelAlgoOrderTrade(CancelAlgoOrderTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
@@ -5110,7 +5110,7 @@ catch (ApiException<CancelAlgoOrderTradeError> ex)
 <dl>
 <dd>
 
-<code>[CancelAlgoOrderTradeRequest](Requests/FuturesAlgo/CancelAlgoOrderTradeRequest.cs)</code>
+<code>[CancelAlgoOrderTradeRequest](src/Binance/Requests/FuturesAlgo/CancelAlgoOrderTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -5120,9 +5120,9 @@ catch (ApiException<CancelAlgoOrderTradeError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1AlgoFuturesOrderResponse](Models/SapiV1AlgoFuturesOrderResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1AlgoFuturesOrderResponse](src/Binance/Models/SapiV1AlgoFuturesOrderResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CancelAlgoOrderTradeError](Errors/CancelAlgoOrderTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[CancelAlgoOrderTradeError](src/Binance/Errors/CancelAlgoOrderTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -5185,7 +5185,7 @@ catch (ApiException<QueryCurrentAlgoOpenOrdersUserDataError> ex)
 <dl>
 <dd>
 
-<code>[QueryCurrentAlgoOpenOrdersUserDataRequest](Requests/FuturesAlgo/QueryCurrentAlgoOpenOrdersUserDataRequest.cs)</code>
+<code>[QueryCurrentAlgoOpenOrdersUserDataRequest](src/Binance/Requests/FuturesAlgo/QueryCurrentAlgoOpenOrdersUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -5195,9 +5195,9 @@ catch (ApiException<QueryCurrentAlgoOpenOrdersUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1AlgoFuturesOpenOrdersResponse](Models/SapiV1AlgoFuturesOpenOrdersResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1AlgoFuturesOpenOrdersResponse](src/Binance/Models/SapiV1AlgoFuturesOpenOrdersResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryCurrentAlgoOpenOrdersUserDataError](Errors/QueryCurrentAlgoOpenOrdersUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryCurrentAlgoOpenOrdersUserDataError](src/Binance/Errors/QueryCurrentAlgoOpenOrdersUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -5263,7 +5263,7 @@ catch (ApiException<QueryHistoricalAlgoOrdersUserDataError> ex)
 <dl>
 <dd>
 
-<code>[QueryHistoricalAlgoOrdersUserDataRequest](Requests/FuturesAlgo/QueryHistoricalAlgoOrdersUserDataRequest.cs)</code>
+<code>[QueryHistoricalAlgoOrdersUserDataRequest](src/Binance/Requests/FuturesAlgo/QueryHistoricalAlgoOrdersUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -5273,9 +5273,9 @@ catch (ApiException<QueryHistoricalAlgoOrdersUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1AlgoFuturesHistoricalOrdersResponse](Models/SapiV1AlgoFuturesHistoricalOrdersResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1AlgoFuturesHistoricalOrdersResponse](src/Binance/Models/SapiV1AlgoFuturesHistoricalOrdersResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryHistoricalAlgoOrdersUserDataError](Errors/QueryHistoricalAlgoOrdersUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryHistoricalAlgoOrdersUserDataError](src/Binance/Errors/QueryHistoricalAlgoOrdersUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -5339,7 +5339,7 @@ catch (ApiException<QuerySubOrdersUserDataError> ex)
 <dl>
 <dd>
 
-<code>[QuerySubOrdersUserDataRequest](Requests/FuturesAlgo/QuerySubOrdersUserDataRequest.cs)</code>
+<code>[QuerySubOrdersUserDataRequest](src/Binance/Requests/FuturesAlgo/QuerySubOrdersUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -5349,9 +5349,9 @@ catch (ApiException<QuerySubOrdersUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1AlgoFuturesSubOrdersResponse](Models/SapiV1AlgoFuturesSubOrdersResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1AlgoFuturesSubOrdersResponse](src/Binance/Models/SapiV1AlgoFuturesSubOrdersResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QuerySubOrdersUserDataError](Errors/QuerySubOrdersUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QuerySubOrdersUserDataError](src/Binance/Errors/QuerySubOrdersUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -5429,7 +5429,7 @@ catch (ApiException<TimeWeightedAveragePriceTwapNewOrderTradeError> ex)
 <dl>
 <dd>
 
-<code>[TimeWeightedAveragePriceTwapNewOrderTradeRequest](Requests/FuturesAlgo/TimeWeightedAveragePriceTwapNewOrderTradeRequest.cs)</code>
+<code>[TimeWeightedAveragePriceTwapNewOrderTradeRequest](src/Binance/Requests/FuturesAlgo/TimeWeightedAveragePriceTwapNewOrderTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -5439,9 +5439,9 @@ catch (ApiException<TimeWeightedAveragePriceTwapNewOrderTradeError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1AlgoFuturesNewOrderTwapResponse](Models/SapiV1AlgoFuturesNewOrderTwapResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1AlgoFuturesNewOrderTwapResponse](src/Binance/Models/SapiV1AlgoFuturesNewOrderTwapResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[TimeWeightedAveragePriceTwapNewOrderTradeError](Errors/TimeWeightedAveragePriceTwapNewOrderTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[TimeWeightedAveragePriceTwapNewOrderTradeError](src/Binance/Errors/TimeWeightedAveragePriceTwapNewOrderTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -5516,7 +5516,7 @@ catch (ApiException<VolumeParticipationVpNewOrderTradeError> ex)
 <dl>
 <dd>
 
-<code>[VolumeParticipationVpNewOrderTradeRequest](Requests/FuturesAlgo/VolumeParticipationVpNewOrderTradeRequest.cs)</code>
+<code>[VolumeParticipationVpNewOrderTradeRequest](src/Binance/Requests/FuturesAlgo/VolumeParticipationVpNewOrderTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -5526,9 +5526,9 @@ catch (ApiException<VolumeParticipationVpNewOrderTradeError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1AlgoFuturesNewOrderVpResponse](Models/SapiV1AlgoFuturesNewOrderVpResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1AlgoFuturesNewOrderVpResponse](src/Binance/Models/SapiV1AlgoFuturesNewOrderVpResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[VolumeParticipationVpNewOrderTradeError](Errors/VolumeParticipationVpNewOrderTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[VolumeParticipationVpNewOrderTradeError](src/Binance/Errors/VolumeParticipationVpNewOrderTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -5540,7 +5540,7 @@ catch (ApiException<VolumeParticipationVpNewOrderTradeError> ex)
 
 ## GiftCard
 
-> Source: [GiftCard](Api/GiftCard.cs)
+> Source: [GiftCard](src/Binance/Api/GiftCard.cs)
 
 <details>
 <summary><code>Task&lt;SapiV1GiftcardBuyCodeResponse&gt; BuyABinanceCodeTrade(BuyABinanceCodeTradeRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
@@ -5606,7 +5606,7 @@ catch (ApiException<BuyABinanceCodeTradeError> ex)
 <dl>
 <dd>
 
-<code>[BuyABinanceCodeTradeRequest](Requests/GiftCard/BuyABinanceCodeTradeRequest.cs)</code>
+<code>[BuyABinanceCodeTradeRequest](src/Binance/Requests/GiftCard/BuyABinanceCodeTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -5616,9 +5616,9 @@ catch (ApiException<BuyABinanceCodeTradeError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1GiftcardBuyCodeResponse](Models/SapiV1GiftcardBuyCodeResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1GiftcardBuyCodeResponse](src/Binance/Models/SapiV1GiftcardBuyCodeResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[BuyABinanceCodeTradeError](Errors/BuyABinanceCodeTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[BuyABinanceCodeTradeError](src/Binance/Errors/BuyABinanceCodeTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -5688,7 +5688,7 @@ catch (ApiException<CreateABinanceCodeUserDataError> ex)
 <dl>
 <dd>
 
-<code>[CreateABinanceCodeUserDataRequest](Requests/GiftCard/CreateABinanceCodeUserDataRequest.cs)</code>
+<code>[CreateABinanceCodeUserDataRequest](src/Binance/Requests/GiftCard/CreateABinanceCodeUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -5698,9 +5698,9 @@ catch (ApiException<CreateABinanceCodeUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1GiftcardCreateCodeResponse](Models/SapiV1GiftcardCreateCodeResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1GiftcardCreateCodeResponse](src/Binance/Models/SapiV1GiftcardCreateCodeResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CreateABinanceCodeUserDataError](Errors/CreateABinanceCodeUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[CreateABinanceCodeUserDataError](src/Binance/Errors/CreateABinanceCodeUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -5763,7 +5763,7 @@ catch (ApiException<FetchRsaPublicKeyUserDataError> ex)
 <dl>
 <dd>
 
-<code>[FetchRsaPublicKeyUserDataRequest](Requests/GiftCard/FetchRsaPublicKeyUserDataRequest.cs)</code>
+<code>[FetchRsaPublicKeyUserDataRequest](src/Binance/Requests/GiftCard/FetchRsaPublicKeyUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -5773,9 +5773,9 @@ catch (ApiException<FetchRsaPublicKeyUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1GiftcardCryptographyRsaPublicKeyResponse](Models/SapiV1GiftcardCryptographyRsaPublicKeyResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1GiftcardCryptographyRsaPublicKeyResponse](src/Binance/Models/SapiV1GiftcardCryptographyRsaPublicKeyResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[FetchRsaPublicKeyUserDataError](Errors/FetchRsaPublicKeyUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[FetchRsaPublicKeyUserDataError](src/Binance/Errors/FetchRsaPublicKeyUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -5837,7 +5837,7 @@ catch (ApiException<FetchTokenLimitUserDataError> ex)
 <dl>
 <dd>
 
-<code>[FetchTokenLimitUserDataRequest](Requests/GiftCard/FetchTokenLimitUserDataRequest.cs)</code>
+<code>[FetchTokenLimitUserDataRequest](src/Binance/Requests/GiftCard/FetchTokenLimitUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -5847,9 +5847,9 @@ catch (ApiException<FetchTokenLimitUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1GiftcardBuyCodeTokenLimitResponse](Models/SapiV1GiftcardBuyCodeTokenLimitResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1GiftcardBuyCodeTokenLimitResponse](src/Binance/Models/SapiV1GiftcardBuyCodeTokenLimitResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[FetchTokenLimitUserDataError](Errors/FetchTokenLimitUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[FetchTokenLimitUserDataError](src/Binance/Errors/FetchTokenLimitUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -5913,7 +5913,7 @@ catch (ApiException<RedeemABinanceCodeUserDataError> ex)
 <dl>
 <dd>
 
-<code>[RedeemABinanceCodeUserDataRequest](Requests/GiftCard/RedeemABinanceCodeUserDataRequest.cs)</code>
+<code>[RedeemABinanceCodeUserDataRequest](src/Binance/Requests/GiftCard/RedeemABinanceCodeUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -5923,9 +5923,9 @@ catch (ApiException<RedeemABinanceCodeUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1GiftcardRedeemCodeResponse](Models/SapiV1GiftcardRedeemCodeResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1GiftcardRedeemCodeResponse](src/Binance/Models/SapiV1GiftcardRedeemCodeResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[RedeemABinanceCodeUserDataError](Errors/RedeemABinanceCodeUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[RedeemABinanceCodeUserDataError](src/Binance/Errors/RedeemABinanceCodeUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -5989,7 +5989,7 @@ catch (ApiException<VerifyABinanceCodeUserDataError> ex)
 <dl>
 <dd>
 
-<code>[VerifyABinanceCodeUserDataRequest](Requests/GiftCard/VerifyABinanceCodeUserDataRequest.cs)</code>
+<code>[VerifyABinanceCodeUserDataRequest](src/Binance/Requests/GiftCard/VerifyABinanceCodeUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -5999,9 +5999,9 @@ catch (ApiException<VerifyABinanceCodeUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1GiftcardVerifyResponse](Models/SapiV1GiftcardVerifyResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1GiftcardVerifyResponse](src/Binance/Models/SapiV1GiftcardVerifyResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[VerifyABinanceCodeUserDataError](Errors/VerifyABinanceCodeUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[VerifyABinanceCodeUserDataError](src/Binance/Errors/VerifyABinanceCodeUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -6013,7 +6013,7 @@ catch (ApiException<VerifyABinanceCodeUserDataError> ex)
 
 ## IsolatedMarginStream
 
-> Source: [IsolatedMarginStream](Api/IsolatedMarginStream.cs)
+> Source: [IsolatedMarginStream](src/Binance/Api/IsolatedMarginStream.cs)
 
 <details>
 <summary><code>Task&lt;object&gt; CloseAListenKeyUserStream3(CloseAListenKeyUserStream3Request request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
@@ -6064,7 +6064,7 @@ catch (ApiException<CloseAListenKeyUserStream3Error> ex)
 <dl>
 <dd>
 
-<code>[CloseAListenKeyUserStream3Request](Requests/IsolatedMarginStream/CloseAListenKeyUserStream3Request.cs)</code>
+<code>[CloseAListenKeyUserStream3Request](src/Binance/Requests/IsolatedMarginStream/CloseAListenKeyUserStream3Request.cs)</code>
 
 </dd>
 </dl>
@@ -6076,7 +6076,7 @@ catch (ApiException<CloseAListenKeyUserStream3Error> ex)
 
 **OnSuccess**: <code>object</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CloseAListenKeyUserStream3Error](Errors/CloseAListenKeyUserStream3Error.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[CloseAListenKeyUserStream3Error](src/Binance/Errors/CloseAListenKeyUserStream3Error.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -6130,9 +6130,9 @@ catch (ApiException<RawError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1UserDataStreamIsolatedResponse](Models/SapiV1UserDataStreamIsolatedResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1UserDataStreamIsolatedResponse](src/Binance/Models/SapiV1UserDataStreamIsolatedResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[RawError](Core/ErrorResponse/RawError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[RawError](src/Binance/Core/ErrorResponse/RawError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -6192,7 +6192,7 @@ catch (ApiException<PingKeepAliveAListenKeyUserStreamApiError> ex)
 <dl>
 <dd>
 
-<code>[PingKeepAliveAListenKeyUserStreamOperationRequest](Requests/IsolatedMarginStream/PingKeepAliveAListenKeyUserStreamOperationRequest.cs)</code>
+<code>[PingKeepAliveAListenKeyUserStreamOperationRequest](src/Binance/Requests/IsolatedMarginStream/PingKeepAliveAListenKeyUserStreamOperationRequest.cs)</code>
 
 </dd>
 </dl>
@@ -6204,7 +6204,7 @@ catch (ApiException<PingKeepAliveAListenKeyUserStreamApiError> ex)
 
 **OnSuccess**: <code>object</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[PingKeepAliveAListenKeyUserStreamApiError](Errors/PingKeepAliveAListenKeyUserStreamApiError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[PingKeepAliveAListenKeyUserStreamApiError](src/Binance/Errors/PingKeepAliveAListenKeyUserStreamApiError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -6216,7 +6216,7 @@ catch (ApiException<PingKeepAliveAListenKeyUserStreamApiError> ex)
 
 ## Margin
 
-> Source: [Margin](Api/Margin.cs)
+> Source: [Margin](src/Binance/Api/Margin.cs)
 
 <details>
 <summary><code>Task&lt;SapiV1MarginMaxLeverageResponse&gt; AdjustCrossMarginMaxLeverageUserData(AdjustCrossMarginMaxLeverageUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
@@ -6271,7 +6271,7 @@ catch (ApiException<AdjustCrossMarginMaxLeverageUserDataError> ex)
 <dl>
 <dd>
 
-<code>[AdjustCrossMarginMaxLeverageUserDataRequest](Requests/Margin/AdjustCrossMarginMaxLeverageUserDataRequest.cs)</code>
+<code>[AdjustCrossMarginMaxLeverageUserDataRequest](src/Binance/Requests/Margin/AdjustCrossMarginMaxLeverageUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -6281,9 +6281,9 @@ catch (ApiException<AdjustCrossMarginMaxLeverageUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1MarginMaxLeverageResponse](Models/SapiV1MarginMaxLeverageResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1MarginMaxLeverageResponse](src/Binance/Models/SapiV1MarginMaxLeverageResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[AdjustCrossMarginMaxLeverageUserDataError](Errors/AdjustCrossMarginMaxLeverageUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[AdjustCrossMarginMaxLeverageUserDataError](src/Binance/Errors/AdjustCrossMarginMaxLeverageUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -6337,9 +6337,9 @@ catch (ApiException<CrossMarginCollateralRatioMarketDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginCrossMarginCollateralRatioResponse](Models/SapiV1MarginCrossMarginCollateralRatioResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginCrossMarginCollateralRatioResponse](src/Binance/Models/SapiV1MarginCrossMarginCollateralRatioResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CrossMarginCollateralRatioMarketDataError](Errors/CrossMarginCollateralRatioMarketDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[CrossMarginCollateralRatioMarketDataError](src/Binance/Errors/CrossMarginCollateralRatioMarketDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -6401,7 +6401,7 @@ catch (ApiException<DisableIsolatedMarginAccountTradeError> ex)
 <dl>
 <dd>
 
-<code>[DisableIsolatedMarginAccountTradeRequest](Requests/Margin/DisableIsolatedMarginAccountTradeRequest.cs)</code>
+<code>[DisableIsolatedMarginAccountTradeRequest](src/Binance/Requests/Margin/DisableIsolatedMarginAccountTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -6411,9 +6411,9 @@ catch (ApiException<DisableIsolatedMarginAccountTradeError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1MarginIsolatedAccountResponse](Models/SapiV1MarginIsolatedAccountResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1MarginIsolatedAccountResponse](src/Binance/Models/SapiV1MarginIsolatedAccountResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[DisableIsolatedMarginAccountTradeError](Errors/DisableIsolatedMarginAccountTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[DisableIsolatedMarginAccountTradeError](src/Binance/Errors/DisableIsolatedMarginAccountTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -6475,7 +6475,7 @@ catch (ApiException<EnableIsolatedMarginAccountTradeError> ex)
 <dl>
 <dd>
 
-<code>[EnableIsolatedMarginAccountTradeRequest](Requests/Margin/EnableIsolatedMarginAccountTradeRequest.cs)</code>
+<code>[EnableIsolatedMarginAccountTradeRequest](src/Binance/Requests/Margin/EnableIsolatedMarginAccountTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -6485,9 +6485,9 @@ catch (ApiException<EnableIsolatedMarginAccountTradeError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1MarginIsolatedAccountResponse](Models/SapiV1MarginIsolatedAccountResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1MarginIsolatedAccountResponse](src/Binance/Models/SapiV1MarginIsolatedAccountResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[EnableIsolatedMarginAccountTradeError](Errors/EnableIsolatedMarginAccountTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[EnableIsolatedMarginAccountTradeError](src/Binance/Errors/EnableIsolatedMarginAccountTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -6544,7 +6544,7 @@ catch (ApiException<GetAllCrossMarginPairsMarketDataError> ex)
 <dl>
 <dd>
 
-<code>[GetAllCrossMarginPairsMarketDataRequest](Requests/Margin/GetAllCrossMarginPairsMarketDataRequest.cs)</code>
+<code>[GetAllCrossMarginPairsMarketDataRequest](src/Binance/Requests/Margin/GetAllCrossMarginPairsMarketDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -6554,9 +6554,9 @@ catch (ApiException<GetAllCrossMarginPairsMarketDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginAllPairsResponse](Models/SapiV1MarginAllPairsResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginAllPairsResponse](src/Binance/Models/SapiV1MarginAllPairsResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetAllCrossMarginPairsMarketDataError](Errors/GetAllCrossMarginPairsMarketDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetAllCrossMarginPairsMarketDataError](src/Binance/Errors/GetAllCrossMarginPairsMarketDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -6616,7 +6616,7 @@ catch (ApiException<GetAllIsolatedMarginSymbolUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetAllIsolatedMarginSymbolUserDataRequest](Requests/Margin/GetAllIsolatedMarginSymbolUserDataRequest.cs)</code>
+<code>[GetAllIsolatedMarginSymbolUserDataRequest](src/Binance/Requests/Margin/GetAllIsolatedMarginSymbolUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -6626,9 +6626,9 @@ catch (ApiException<GetAllIsolatedMarginSymbolUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginIsolatedAllPairsResponse](Models/SapiV1MarginIsolatedAllPairsResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginIsolatedAllPairsResponse](src/Binance/Models/SapiV1MarginIsolatedAllPairsResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetAllIsolatedMarginSymbolUserDataError](Errors/GetAllIsolatedMarginSymbolUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetAllIsolatedMarginSymbolUserDataError](src/Binance/Errors/GetAllIsolatedMarginSymbolUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -6685,7 +6685,7 @@ catch (ApiException<GetAllMarginAssetsMarketDataError> ex)
 <dl>
 <dd>
 
-<code>[GetAllMarginAssetsMarketDataRequest](Requests/Margin/GetAllMarginAssetsMarketDataRequest.cs)</code>
+<code>[GetAllMarginAssetsMarketDataRequest](src/Binance/Requests/Margin/GetAllMarginAssetsMarketDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -6695,9 +6695,9 @@ catch (ApiException<GetAllMarginAssetsMarketDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginAllAssetsResponse](Models/SapiV1MarginAllAssetsResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginAllAssetsResponse](src/Binance/Models/SapiV1MarginAllAssetsResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetAllMarginAssetsMarketDataError](Errors/GetAllMarginAssetsMarketDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetAllMarginAssetsMarketDataError](src/Binance/Errors/GetAllMarginAssetsMarketDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -6756,7 +6756,7 @@ catch (ApiException<GetBnbBurnStatusUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetBnbBurnStatusUserDataRequest](Requests/Margin/GetBnbBurnStatusUserDataRequest.cs)</code>
+<code>[GetBnbBurnStatusUserDataRequest](src/Binance/Requests/Margin/GetBnbBurnStatusUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -6766,9 +6766,9 @@ catch (ApiException<GetBnbBurnStatusUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[BnbBurnStatus](Models/BnbBurnStatus.cs)</code>
+**OnSuccess**: <code>[BnbBurnStatus](src/Binance/Models/BnbBurnStatus.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetBnbBurnStatusUserDataError](Errors/GetBnbBurnStatusUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetBnbBurnStatusUserDataError](src/Binance/Errors/GetBnbBurnStatusUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -6835,7 +6835,7 @@ catch (ApiException<GetCrossMarginTransferHistoryUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetCrossMarginTransferHistoryUserDataRequest](Requests/Margin/GetCrossMarginTransferHistoryUserDataRequest.cs)</code>
+<code>[GetCrossMarginTransferHistoryUserDataRequest](src/Binance/Requests/Margin/GetCrossMarginTransferHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -6845,9 +6845,9 @@ catch (ApiException<GetCrossMarginTransferHistoryUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1MarginTransferResponse](Models/SapiV1MarginTransferResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1MarginTransferResponse](src/Binance/Models/SapiV1MarginTransferResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetCrossMarginTransferHistoryUserDataError](Errors/GetCrossMarginTransferHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetCrossMarginTransferHistoryUserDataError](src/Binance/Errors/GetCrossMarginTransferHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -6910,7 +6910,7 @@ catch (ApiException<GetForceLiquidationRecordUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetForceLiquidationRecordUserDataRequest](Requests/Margin/GetForceLiquidationRecordUserDataRequest.cs)</code>
+<code>[GetForceLiquidationRecordUserDataRequest](src/Binance/Requests/Margin/GetForceLiquidationRecordUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -6920,9 +6920,9 @@ catch (ApiException<GetForceLiquidationRecordUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1MarginForceLiquidationRecResponse](Models/SapiV1MarginForceLiquidationRecResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1MarginForceLiquidationRecResponse](src/Binance/Models/SapiV1MarginForceLiquidationRecResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetForceLiquidationRecordUserDataError](Errors/GetForceLiquidationRecordUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetForceLiquidationRecordUserDataError](src/Binance/Errors/GetForceLiquidationRecordUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -6993,7 +6993,7 @@ catch (ApiException<GetInterestHistoryUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetInterestHistoryUserDataRequest](Requests/Margin/GetInterestHistoryUserDataRequest.cs)</code>
+<code>[GetInterestHistoryUserDataRequest](src/Binance/Requests/Margin/GetInterestHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -7003,9 +7003,9 @@ catch (ApiException<GetInterestHistoryUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1MarginInterestHistoryResponse](Models/SapiV1MarginInterestHistoryResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1MarginInterestHistoryResponse](src/Binance/Models/SapiV1MarginInterestHistoryResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetInterestHistoryUserDataError](Errors/GetInterestHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetInterestHistoryUserDataError](src/Binance/Errors/GetInterestHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -7067,7 +7067,7 @@ catch (ApiException<GetSmallLiabilityExchangeCoinListUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetSmallLiabilityExchangeCoinListUserDataRequest](Requests/Margin/GetSmallLiabilityExchangeCoinListUserDataRequest.cs)</code>
+<code>[GetSmallLiabilityExchangeCoinListUserDataRequest](src/Binance/Requests/Margin/GetSmallLiabilityExchangeCoinListUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -7077,9 +7077,9 @@ catch (ApiException<GetSmallLiabilityExchangeCoinListUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginExchangeSmallLiabilityResponse](Models/SapiV1MarginExchangeSmallLiabilityResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginExchangeSmallLiabilityResponse](src/Binance/Models/SapiV1MarginExchangeSmallLiabilityResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetSmallLiabilityExchangeCoinListUserDataError](Errors/GetSmallLiabilityExchangeCoinListUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetSmallLiabilityExchangeCoinListUserDataError](src/Binance/Errors/GetSmallLiabilityExchangeCoinListUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -7143,7 +7143,7 @@ catch (ApiException<GetSmallLiabilityExchangeHistoryUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetSmallLiabilityExchangeHistoryUserDataRequest](Requests/Margin/GetSmallLiabilityExchangeHistoryUserDataRequest.cs)</code>
+<code>[GetSmallLiabilityExchangeHistoryUserDataRequest](src/Binance/Requests/Margin/GetSmallLiabilityExchangeHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -7153,9 +7153,9 @@ catch (ApiException<GetSmallLiabilityExchangeHistoryUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1MarginExchangeSmallLiabilityHistoryResponse](Models/SapiV1MarginExchangeSmallLiabilityHistoryResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1MarginExchangeSmallLiabilityHistoryResponse](src/Binance/Models/SapiV1MarginExchangeSmallLiabilityHistoryResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetSmallLiabilityExchangeHistoryUserDataError](Errors/GetSmallLiabilityExchangeHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetSmallLiabilityExchangeHistoryUserDataError](src/Binance/Errors/GetSmallLiabilityExchangeHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -7217,7 +7217,7 @@ catch (ApiException<GetSummaryOfMarginAccountUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetSummaryOfMarginAccountUserDataRequest](Requests/Margin/GetSummaryOfMarginAccountUserDataRequest.cs)</code>
+<code>[GetSummaryOfMarginAccountUserDataRequest](src/Binance/Requests/Margin/GetSummaryOfMarginAccountUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -7227,9 +7227,9 @@ catch (ApiException<GetSummaryOfMarginAccountUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1MarginTradeCoeffResponse](Models/SapiV1MarginTradeCoeffResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1MarginTradeCoeffResponse](src/Binance/Models/SapiV1MarginTradeCoeffResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetSummaryOfMarginAccountUserDataError](Errors/GetSummaryOfMarginAccountUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetSummaryOfMarginAccountUserDataError](src/Binance/Errors/GetSummaryOfMarginAccountUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -7293,7 +7293,7 @@ catch (ApiException<GetAFutureHourlyInterestRateUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetAFutureHourlyInterestRateUserDataRequest](Requests/Margin/GetAFutureHourlyInterestRateUserDataRequest.cs)</code>
+<code>[GetAFutureHourlyInterestRateUserDataRequest](src/Binance/Requests/Margin/GetAFutureHourlyInterestRateUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -7303,9 +7303,9 @@ catch (ApiException<GetAFutureHourlyInterestRateUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginNextHourlyInterestRateResponse](Models/SapiV1MarginNextHourlyInterestRateResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginNextHourlyInterestRateResponse](src/Binance/Models/SapiV1MarginNextHourlyInterestRateResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetAFutureHourlyInterestRateUserDataError](Errors/GetAFutureHourlyInterestRateUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetAFutureHourlyInterestRateUserDataError](src/Binance/Errors/GetAFutureHourlyInterestRateUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -7369,7 +7369,7 @@ catch (ApiException<GetCrossOrIsolatedMarginCapitalFlowUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetCrossOrIsolatedMarginCapitalFlowUserDataRequest](Requests/Margin/GetCrossOrIsolatedMarginCapitalFlowUserDataRequest.cs)</code>
+<code>[GetCrossOrIsolatedMarginCapitalFlowUserDataRequest](src/Binance/Requests/Margin/GetCrossOrIsolatedMarginCapitalFlowUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -7379,9 +7379,9 @@ catch (ApiException<GetCrossOrIsolatedMarginCapitalFlowUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginCapitalFlowResponse](Models/SapiV1MarginCapitalFlowResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginCapitalFlowResponse](src/Binance/Models/SapiV1MarginCapitalFlowResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetCrossOrIsolatedMarginCapitalFlowUserDataError](Errors/GetCrossOrIsolatedMarginCapitalFlowUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetCrossOrIsolatedMarginCapitalFlowUserDataError](src/Binance/Errors/GetCrossOrIsolatedMarginCapitalFlowUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -7443,7 +7443,7 @@ catch (ApiException<GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMar
 <dl>
 <dd>
 
-<code>[GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMarginMarketDataRequest](Requests/Margin/GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMarginMarketDataRequest.cs)</code>
+<code>[GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMarginMarketDataRequest](src/Binance/Requests/Margin/GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMarginMarketDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -7453,9 +7453,9 @@ catch (ApiException<GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMar
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginDelistScheduleResponse](Models/SapiV1MarginDelistScheduleResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginDelistScheduleResponse](src/Binance/Models/SapiV1MarginDelistScheduleResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMarginMarketDataError](Errors/GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMarginMarketDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMarginMarketDataError](src/Binance/Errors/GetTokensOrSymbolsDelistScheduleForCrossMarginAndIsolatedMarginMarketDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -7520,7 +7520,7 @@ catch (ApiException<MarginAccountCancelOcoTradeError> ex)
 <dl>
 <dd>
 
-<code>[MarginAccountCancelOcoTradeRequest](Requests/Margin/MarginAccountCancelOcoTradeRequest.cs)</code>
+<code>[MarginAccountCancelOcoTradeRequest](src/Binance/Requests/Margin/MarginAccountCancelOcoTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -7530,9 +7530,9 @@ catch (ApiException<MarginAccountCancelOcoTradeError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[MarginOcoOrder](Models/MarginOcoOrder.cs)</code>
+**OnSuccess**: <code>[MarginOcoOrder](src/Binance/Models/MarginOcoOrder.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[MarginAccountCancelOcoTradeError](Errors/MarginAccountCancelOcoTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[MarginAccountCancelOcoTradeError](src/Binance/Errors/MarginAccountCancelOcoTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -7596,7 +7596,7 @@ catch (ApiException<MarginAccountCancelOrderTradeError> ex)
 <dl>
 <dd>
 
-<code>[MarginAccountCancelOrderTradeRequest](Requests/Margin/MarginAccountCancelOrderTradeRequest.cs)</code>
+<code>[MarginAccountCancelOrderTradeRequest](src/Binance/Requests/Margin/MarginAccountCancelOrderTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -7606,9 +7606,9 @@ catch (ApiException<MarginAccountCancelOrderTradeError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[MarginOrder](Models/MarginOrder.cs)</code>
+**OnSuccess**: <code>[MarginOrder](src/Binance/Models/MarginOrder.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[MarginAccountCancelOrderTradeError](Errors/MarginAccountCancelOrderTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[MarginAccountCancelOrderTradeError](src/Binance/Errors/MarginAccountCancelOrderTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -7672,7 +7672,7 @@ catch (ApiException<MarginAccountCancelAllOpenOrdersOnASymbolTradeError> ex)
 <dl>
 <dd>
 
-<code>[MarginAccountCancelAllOpenOrdersOnASymbolTradeRequest](Requests/Margin/MarginAccountCancelAllOpenOrdersOnASymbolTradeRequest.cs)</code>
+<code>[MarginAccountCancelAllOpenOrdersOnASymbolTradeRequest](src/Binance/Requests/Margin/MarginAccountCancelAllOpenOrdersOnASymbolTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -7682,9 +7682,9 @@ catch (ApiException<MarginAccountCancelAllOpenOrdersOnASymbolTradeError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginOpenOrdersResponse](Models/AnyOf/SapiV1MarginOpenOrdersResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginOpenOrdersResponse](src/Binance/Models/AnyOf/SapiV1MarginOpenOrdersResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[MarginAccountCancelAllOpenOrdersOnASymbolTradeError](Errors/MarginAccountCancelAllOpenOrdersOnASymbolTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[MarginAccountCancelAllOpenOrdersOnASymbolTradeError](src/Binance/Errors/MarginAccountCancelAllOpenOrdersOnASymbolTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -7760,7 +7760,7 @@ catch (ApiException<MarginAccountNewOcoTradeError> ex)
 <dl>
 <dd>
 
-<code>[MarginAccountNewOcoTradeRequest](Requests/Margin/MarginAccountNewOcoTradeRequest.cs)</code>
+<code>[MarginAccountNewOcoTradeRequest](src/Binance/Requests/Margin/MarginAccountNewOcoTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -7770,9 +7770,9 @@ catch (ApiException<MarginAccountNewOcoTradeError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1MarginOrderOcoResponse](Models/SapiV1MarginOrderOcoResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1MarginOrderOcoResponse](src/Binance/Models/SapiV1MarginOrderOcoResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[MarginAccountNewOcoTradeError](Errors/MarginAccountNewOcoTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[MarginAccountNewOcoTradeError](src/Binance/Errors/MarginAccountNewOcoTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -7849,7 +7849,7 @@ catch (ApiException<MarginAccountNewOtoTradeError> ex)
 <dl>
 <dd>
 
-<code>[MarginAccountNewOtoTradeRequest](Requests/Margin/MarginAccountNewOtoTradeRequest.cs)</code>
+<code>[MarginAccountNewOtoTradeRequest](src/Binance/Requests/Margin/MarginAccountNewOtoTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -7859,9 +7859,9 @@ catch (ApiException<MarginAccountNewOtoTradeError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1MarginOrderOtoResponse](Models/SapiV1MarginOrderOtoResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1MarginOrderOtoResponse](src/Binance/Models/SapiV1MarginOrderOtoResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[MarginAccountNewOtoTradeError](Errors/MarginAccountNewOtoTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[MarginAccountNewOtoTradeError](src/Binance/Errors/MarginAccountNewOtoTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -7938,7 +7938,7 @@ catch (ApiException<MarginAccountNewOtocoTradeError> ex)
 <dl>
 <dd>
 
-<code>[MarginAccountNewOtocoTradeRequest](Requests/Margin/MarginAccountNewOtocoTradeRequest.cs)</code>
+<code>[MarginAccountNewOtocoTradeRequest](src/Binance/Requests/Margin/MarginAccountNewOtocoTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -7948,9 +7948,9 @@ catch (ApiException<MarginAccountNewOtocoTradeError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1MarginOrderOtocoResponse](Models/SapiV1MarginOrderOtocoResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1MarginOrderOtocoResponse](src/Binance/Models/SapiV1MarginOrderOtocoResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[MarginAccountNewOtocoTradeError](Errors/MarginAccountNewOtocoTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[MarginAccountNewOtocoTradeError](src/Binance/Errors/MarginAccountNewOtocoTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -8020,7 +8020,7 @@ catch (ApiException<MarginAccountNewOrderTradeError> ex)
 <dl>
 <dd>
 
-<code>[MarginAccountNewOrderTradeRequest](Requests/Margin/MarginAccountNewOrderTradeRequest.cs)</code>
+<code>[MarginAccountNewOrderTradeRequest](src/Binance/Requests/Margin/MarginAccountNewOrderTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -8030,9 +8030,9 @@ catch (ApiException<MarginAccountNewOrderTradeError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1MarginOrderResponse](Models/AnyOf/SapiV1MarginOrderResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1MarginOrderResponse](src/Binance/Models/AnyOf/SapiV1MarginOrderResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[MarginAccountNewOrderTradeError](Errors/MarginAccountNewOrderTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[MarginAccountNewOrderTradeError](src/Binance/Errors/MarginAccountNewOrderTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -8095,7 +8095,7 @@ catch (ApiException<MarginInterestRateHistoryUserDataError> ex)
 <dl>
 <dd>
 
-<code>[MarginInterestRateHistoryUserDataRequest](Requests/Margin/MarginInterestRateHistoryUserDataRequest.cs)</code>
+<code>[MarginInterestRateHistoryUserDataRequest](src/Binance/Requests/Margin/MarginInterestRateHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -8105,9 +8105,9 @@ catch (ApiException<MarginInterestRateHistoryUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginInterestRateHistoryResponse](Models/SapiV1MarginInterestRateHistoryResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginInterestRateHistoryResponse](src/Binance/Models/SapiV1MarginInterestRateHistoryResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[MarginInterestRateHistoryUserDataError](Errors/MarginInterestRateHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[MarginInterestRateHistoryUserDataError](src/Binance/Errors/MarginInterestRateHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -8173,7 +8173,7 @@ catch (ApiException<MarginAccountBorrowRepayMarginError> ex)
 <dl>
 <dd>
 
-<code>[MarginAccountBorrowRepayMarginRequest](Requests/Margin/MarginAccountBorrowRepayMarginRequest.cs)</code>
+<code>[MarginAccountBorrowRepayMarginRequest](src/Binance/Requests/Margin/MarginAccountBorrowRepayMarginRequest.cs)</code>
 
 </dd>
 </dl>
@@ -8183,9 +8183,9 @@ catch (ApiException<MarginAccountBorrowRepayMarginError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1MarginBorrowRepayResponse](Models/SapiV1MarginBorrowRepayResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1MarginBorrowRepayResponse](src/Binance/Models/SapiV1MarginBorrowRepayResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[MarginAccountBorrowRepayMarginError](Errors/MarginAccountBorrowRepayMarginError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[MarginAccountBorrowRepayMarginError](src/Binance/Errors/MarginAccountBorrowRepayMarginError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -8247,7 +8247,7 @@ catch (ApiException<MarginManualLiquidationMarginError> ex)
 <dl>
 <dd>
 
-<code>[MarginManualLiquidationMarginRequest](Requests/Margin/MarginManualLiquidationMarginRequest.cs)</code>
+<code>[MarginManualLiquidationMarginRequest](src/Binance/Requests/Margin/MarginManualLiquidationMarginRequest.cs)</code>
 
 </dd>
 </dl>
@@ -8257,9 +8257,9 @@ catch (ApiException<MarginManualLiquidationMarginError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginManualLiquidationResponse](Models/SapiV1MarginManualLiquidationResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginManualLiquidationResponse](src/Binance/Models/SapiV1MarginManualLiquidationResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[MarginManualLiquidationMarginError](Errors/MarginManualLiquidationMarginError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[MarginManualLiquidationMarginError](src/Binance/Errors/MarginManualLiquidationMarginError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -8319,7 +8319,7 @@ catch (ApiException<QueryCrossMarginAccountDetailsUserDataError> ex)
 <dl>
 <dd>
 
-<code>[QueryCrossMarginAccountDetailsUserDataRequest](Requests/Margin/QueryCrossMarginAccountDetailsUserDataRequest.cs)</code>
+<code>[QueryCrossMarginAccountDetailsUserDataRequest](src/Binance/Requests/Margin/QueryCrossMarginAccountDetailsUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -8329,9 +8329,9 @@ catch (ApiException<QueryCrossMarginAccountDetailsUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1MarginAccountResponse](Models/SapiV1MarginAccountResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1MarginAccountResponse](src/Binance/Models/SapiV1MarginAccountResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryCrossMarginAccountDetailsUserDataError](Errors/QueryCrossMarginAccountDetailsUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryCrossMarginAccountDetailsUserDataError](src/Binance/Errors/QueryCrossMarginAccountDetailsUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -8394,7 +8394,7 @@ catch (ApiException<QueryCrossMarginFeeDataUserDataError> ex)
 <dl>
 <dd>
 
-<code>[QueryCrossMarginFeeDataUserDataRequest](Requests/Margin/QueryCrossMarginFeeDataUserDataRequest.cs)</code>
+<code>[QueryCrossMarginFeeDataUserDataRequest](src/Binance/Requests/Margin/QueryCrossMarginFeeDataUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -8404,9 +8404,9 @@ catch (ApiException<QueryCrossMarginFeeDataUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginCrossMarginDataResponse](Models/SapiV1MarginCrossMarginDataResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginCrossMarginDataResponse](src/Binance/Models/SapiV1MarginCrossMarginDataResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryCrossMarginFeeDataUserDataError](Errors/QueryCrossMarginFeeDataUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryCrossMarginFeeDataUserDataError](src/Binance/Errors/QueryCrossMarginFeeDataUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -8468,7 +8468,7 @@ catch (ApiException<QueryCurrentMarginOrderCountUsageTradeError> ex)
 <dl>
 <dd>
 
-<code>[QueryCurrentMarginOrderCountUsageTradeRequest](Requests/Margin/QueryCurrentMarginOrderCountUsageTradeRequest.cs)</code>
+<code>[QueryCurrentMarginOrderCountUsageTradeRequest](src/Binance/Requests/Margin/QueryCurrentMarginOrderCountUsageTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -8478,9 +8478,9 @@ catch (ApiException<QueryCurrentMarginOrderCountUsageTradeError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginRateLimitOrderResponse](Models/SapiV1MarginRateLimitOrderResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginRateLimitOrderResponse](src/Binance/Models/SapiV1MarginRateLimitOrderResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryCurrentMarginOrderCountUsageTradeError](Errors/QueryCurrentMarginOrderCountUsageTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryCurrentMarginOrderCountUsageTradeError](src/Binance/Errors/QueryCurrentMarginOrderCountUsageTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -8542,7 +8542,7 @@ catch (ApiException<QueryEnabledIsolatedMarginAccountLimitUserDataError> ex)
 <dl>
 <dd>
 
-<code>[QueryEnabledIsolatedMarginAccountLimitUserDataRequest](Requests/Margin/QueryEnabledIsolatedMarginAccountLimitUserDataRequest.cs)</code>
+<code>[QueryEnabledIsolatedMarginAccountLimitUserDataRequest](src/Binance/Requests/Margin/QueryEnabledIsolatedMarginAccountLimitUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -8552,9 +8552,9 @@ catch (ApiException<QueryEnabledIsolatedMarginAccountLimitUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1MarginIsolatedAccountLimitResponse](Models/SapiV1MarginIsolatedAccountLimitResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1MarginIsolatedAccountLimitResponse](src/Binance/Models/SapiV1MarginIsolatedAccountLimitResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryEnabledIsolatedMarginAccountLimitUserDataError](Errors/QueryEnabledIsolatedMarginAccountLimitUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryEnabledIsolatedMarginAccountLimitUserDataError](src/Binance/Errors/QueryEnabledIsolatedMarginAccountLimitUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -8618,7 +8618,7 @@ catch (ApiException<QueryIsolatedMarginAccountInfoUserDataError> ex)
 <dl>
 <dd>
 
-<code>[QueryIsolatedMarginAccountInfoUserDataRequest](Requests/Margin/QueryIsolatedMarginAccountInfoUserDataRequest.cs)</code>
+<code>[QueryIsolatedMarginAccountInfoUserDataRequest](src/Binance/Requests/Margin/QueryIsolatedMarginAccountInfoUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -8628,9 +8628,9 @@ catch (ApiException<QueryIsolatedMarginAccountInfoUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[IsolatedMarginAccountInfo](Models/IsolatedMarginAccountInfo.cs)</code>
+**OnSuccess**: <code>[IsolatedMarginAccountInfo](src/Binance/Models/IsolatedMarginAccountInfo.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryIsolatedMarginAccountInfoUserDataError](Errors/QueryIsolatedMarginAccountInfoUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryIsolatedMarginAccountInfoUserDataError](src/Binance/Errors/QueryIsolatedMarginAccountInfoUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -8693,7 +8693,7 @@ catch (ApiException<QueryIsolatedMarginFeeDataUserDataError> ex)
 <dl>
 <dd>
 
-<code>[QueryIsolatedMarginFeeDataUserDataRequest](Requests/Margin/QueryIsolatedMarginFeeDataUserDataRequest.cs)</code>
+<code>[QueryIsolatedMarginFeeDataUserDataRequest](src/Binance/Requests/Margin/QueryIsolatedMarginFeeDataUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -8703,9 +8703,9 @@ catch (ApiException<QueryIsolatedMarginFeeDataUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginIsolatedMarginDataResponse](Models/SapiV1MarginIsolatedMarginDataResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginIsolatedMarginDataResponse](src/Binance/Models/SapiV1MarginIsolatedMarginDataResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryIsolatedMarginFeeDataUserDataError](Errors/QueryIsolatedMarginFeeDataUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryIsolatedMarginFeeDataUserDataError](src/Binance/Errors/QueryIsolatedMarginFeeDataUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -8769,7 +8769,7 @@ catch (ApiException<QueryIsolatedMarginTierDataUserDataError> ex)
 <dl>
 <dd>
 
-<code>[QueryIsolatedMarginTierDataUserDataRequest](Requests/Margin/QueryIsolatedMarginTierDataUserDataRequest.cs)</code>
+<code>[QueryIsolatedMarginTierDataUserDataRequest](src/Binance/Requests/Margin/QueryIsolatedMarginTierDataUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -8779,9 +8779,9 @@ catch (ApiException<QueryIsolatedMarginTierDataUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginIsolatedMarginTierResponse](Models/SapiV1MarginIsolatedMarginTierResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginIsolatedMarginTierResponse](src/Binance/Models/SapiV1MarginIsolatedMarginTierResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryIsolatedMarginTierDataUserDataError](Errors/QueryIsolatedMarginTierDataUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryIsolatedMarginTierDataUserDataError](src/Binance/Errors/QueryIsolatedMarginTierDataUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -8837,9 +8837,9 @@ catch (ApiException<QueryLiabilityCoinLeverageBracketInCrossMarginProModeMarketD
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginLeverageBracketResponse](Models/SapiV1MarginLeverageBracketResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginLeverageBracketResponse](src/Binance/Models/SapiV1MarginLeverageBracketResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryLiabilityCoinLeverageBracketInCrossMarginProModeMarketDataError](Errors/QueryLiabilityCoinLeverageBracketInCrossMarginProModeMarketDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryLiabilityCoinLeverageBracketInCrossMarginProModeMarketDataError](src/Binance/Errors/QueryLiabilityCoinLeverageBracketInCrossMarginProModeMarketDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -8906,7 +8906,7 @@ catch (ApiException<QueryMarginAccountSAllOrdersUserDataError> ex)
 <dl>
 <dd>
 
-<code>[QueryMarginAccountSAllOrdersUserDataRequest](Requests/Margin/QueryMarginAccountSAllOrdersUserDataRequest.cs)</code>
+<code>[QueryMarginAccountSAllOrdersUserDataRequest](src/Binance/Requests/Margin/QueryMarginAccountSAllOrdersUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -8916,9 +8916,9 @@ catch (ApiException<QueryMarginAccountSAllOrdersUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[MarginOrderDetail](Models/MarginOrderDetail.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[MarginOrderDetail](src/Binance/Models/MarginOrderDetail.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryMarginAccountSAllOrdersUserDataError](Errors/QueryMarginAccountSAllOrdersUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryMarginAccountSAllOrdersUserDataError](src/Binance/Errors/QueryMarginAccountSAllOrdersUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -8981,7 +8981,7 @@ catch (ApiException<QueryMarginAccountSOcoUserDataError> ex)
 <dl>
 <dd>
 
-<code>[QueryMarginAccountSOcoUserDataRequest](Requests/Margin/QueryMarginAccountSOcoUserDataRequest.cs)</code>
+<code>[QueryMarginAccountSOcoUserDataRequest](src/Binance/Requests/Margin/QueryMarginAccountSOcoUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -8991,9 +8991,9 @@ catch (ApiException<QueryMarginAccountSOcoUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1MarginOrderListResponse](Models/SapiV1MarginOrderListResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1MarginOrderListResponse](src/Binance/Models/SapiV1MarginOrderListResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryMarginAccountSOcoUserDataError](Errors/QueryMarginAccountSOcoUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryMarginAccountSOcoUserDataError](src/Binance/Errors/QueryMarginAccountSOcoUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -9052,7 +9052,7 @@ catch (ApiException<QueryMarginAccountSOpenOcoUserDataError> ex)
 <dl>
 <dd>
 
-<code>[QueryMarginAccountSOpenOcoUserDataRequest](Requests/Margin/QueryMarginAccountSOpenOcoUserDataRequest.cs)</code>
+<code>[QueryMarginAccountSOpenOcoUserDataRequest](src/Binance/Requests/Margin/QueryMarginAccountSOpenOcoUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -9062,9 +9062,9 @@ catch (ApiException<QueryMarginAccountSOpenOcoUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginOpenOrderListResponse](Models/SapiV1MarginOpenOrderListResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginOpenOrderListResponse](src/Binance/Models/SapiV1MarginOpenOrderListResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryMarginAccountSOpenOcoUserDataError](Errors/QueryMarginAccountSOpenOcoUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryMarginAccountSOpenOcoUserDataError](src/Binance/Errors/QueryMarginAccountSOpenOcoUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -9129,7 +9129,7 @@ catch (ApiException<QueryMarginAccountSOpenOrdersUserDataError> ex)
 <dl>
 <dd>
 
-<code>[QueryMarginAccountSOpenOrdersUserDataRequest](Requests/Margin/QueryMarginAccountSOpenOrdersUserDataRequest.cs)</code>
+<code>[QueryMarginAccountSOpenOrdersUserDataRequest](src/Binance/Requests/Margin/QueryMarginAccountSOpenOrdersUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -9139,9 +9139,9 @@ catch (ApiException<QueryMarginAccountSOpenOrdersUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[MarginOrderDetail](Models/MarginOrderDetail.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[MarginOrderDetail](src/Binance/Models/MarginOrderDetail.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryMarginAccountSOpenOrdersUserDataError](Errors/QueryMarginAccountSOpenOrdersUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryMarginAccountSOpenOrdersUserDataError](src/Binance/Errors/QueryMarginAccountSOpenOrdersUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -9204,7 +9204,7 @@ catch (ApiException<QueryMarginAccountSOrderUserDataError> ex)
 <dl>
 <dd>
 
-<code>[QueryMarginAccountSOrderUserDataRequest](Requests/Margin/QueryMarginAccountSOrderUserDataRequest.cs)</code>
+<code>[QueryMarginAccountSOrderUserDataRequest](src/Binance/Requests/Margin/QueryMarginAccountSOrderUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -9214,9 +9214,9 @@ catch (ApiException<QueryMarginAccountSOrderUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[MarginOrderDetail](Models/MarginOrderDetail.cs)</code>
+**OnSuccess**: <code>[MarginOrderDetail](src/Binance/Models/MarginOrderDetail.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryMarginAccountSOrderUserDataError](Errors/QueryMarginAccountSOrderUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryMarginAccountSOrderUserDataError](src/Binance/Errors/QueryMarginAccountSOrderUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -9280,7 +9280,7 @@ catch (ApiException<QueryMarginAccountSTradeListUserDataError> ex)
 <dl>
 <dd>
 
-<code>[QueryMarginAccountSTradeListUserDataRequest](Requests/Margin/QueryMarginAccountSTradeListUserDataRequest.cs)</code>
+<code>[QueryMarginAccountSTradeListUserDataRequest](src/Binance/Requests/Margin/QueryMarginAccountSTradeListUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -9290,9 +9290,9 @@ catch (ApiException<QueryMarginAccountSTradeListUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[MarginTrade](Models/MarginTrade.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[MarginTrade](src/Binance/Models/MarginTrade.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryMarginAccountSTradeListUserDataError](Errors/QueryMarginAccountSTradeListUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryMarginAccountSTradeListUserDataError](src/Binance/Errors/QueryMarginAccountSTradeListUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -9353,7 +9353,7 @@ catch (ApiException<QueryMarginAccountSAllOcoUserDataError> ex)
 <dl>
 <dd>
 
-<code>[QueryMarginAccountSAllOcoUserDataRequest](Requests/Margin/QueryMarginAccountSAllOcoUserDataRequest.cs)</code>
+<code>[QueryMarginAccountSAllOcoUserDataRequest](src/Binance/Requests/Margin/QueryMarginAccountSAllOcoUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -9363,9 +9363,9 @@ catch (ApiException<QueryMarginAccountSAllOcoUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginAllOrderListResponse](Models/SapiV1MarginAllOrderListResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1MarginAllOrderListResponse](src/Binance/Models/SapiV1MarginAllOrderListResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryMarginAccountSAllOcoUserDataError](Errors/QueryMarginAccountSAllOcoUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryMarginAccountSAllOcoUserDataError](src/Binance/Errors/QueryMarginAccountSAllOcoUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -9427,7 +9427,7 @@ catch (ApiException<QueryMarginAvailableInventoryUserDataError> ex)
 <dl>
 <dd>
 
-<code>[QueryMarginAvailableInventoryUserDataRequest](Requests/Margin/QueryMarginAvailableInventoryUserDataRequest.cs)</code>
+<code>[QueryMarginAvailableInventoryUserDataRequest](src/Binance/Requests/Margin/QueryMarginAvailableInventoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -9437,9 +9437,9 @@ catch (ApiException<QueryMarginAvailableInventoryUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1MarginAvailableInventoryResponse](Models/SapiV1MarginAvailableInventoryResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1MarginAvailableInventoryResponse](src/Binance/Models/SapiV1MarginAvailableInventoryResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryMarginAvailableInventoryUserDataError](Errors/QueryMarginAvailableInventoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryMarginAvailableInventoryUserDataError](src/Binance/Errors/QueryMarginAvailableInventoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -9496,7 +9496,7 @@ catch (ApiException<QueryMarginPriceIndexMarketDataError> ex)
 <dl>
 <dd>
 
-<code>[QueryMarginPriceIndexMarketDataRequest](Requests/Margin/QueryMarginPriceIndexMarketDataRequest.cs)</code>
+<code>[QueryMarginPriceIndexMarketDataRequest](src/Binance/Requests/Margin/QueryMarginPriceIndexMarketDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -9506,9 +9506,9 @@ catch (ApiException<QueryMarginPriceIndexMarketDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1MarginPriceIndexResponse](Models/SapiV1MarginPriceIndexResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1MarginPriceIndexResponse](src/Binance/Models/SapiV1MarginPriceIndexResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryMarginPriceIndexMarketDataError](Errors/QueryMarginPriceIndexMarketDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryMarginPriceIndexMarketDataError](src/Binance/Errors/QueryMarginPriceIndexMarketDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -9571,7 +9571,7 @@ catch (ApiException<QueryMaxBorrowUserDataError> ex)
 <dl>
 <dd>
 
-<code>[QueryMaxBorrowUserDataRequest](Requests/Margin/QueryMaxBorrowUserDataRequest.cs)</code>
+<code>[QueryMaxBorrowUserDataRequest](src/Binance/Requests/Margin/QueryMaxBorrowUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -9581,9 +9581,9 @@ catch (ApiException<QueryMaxBorrowUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1MarginMaxBorrowableResponse](Models/SapiV1MarginMaxBorrowableResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1MarginMaxBorrowableResponse](src/Binance/Models/SapiV1MarginMaxBorrowableResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryMaxBorrowUserDataError](Errors/QueryMaxBorrowUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryMaxBorrowUserDataError](src/Binance/Errors/QueryMaxBorrowUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -9645,7 +9645,7 @@ catch (ApiException<QueryMaxTransferOutAmountUserDataError> ex)
 <dl>
 <dd>
 
-<code>[QueryMaxTransferOutAmountUserDataRequest](Requests/Margin/QueryMaxTransferOutAmountUserDataRequest.cs)</code>
+<code>[QueryMaxTransferOutAmountUserDataRequest](src/Binance/Requests/Margin/QueryMaxTransferOutAmountUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -9655,9 +9655,9 @@ catch (ApiException<QueryMaxTransferOutAmountUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1MarginMaxTransferableResponse](Models/SapiV1MarginMaxTransferableResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1MarginMaxTransferableResponse](src/Binance/Models/SapiV1MarginMaxTransferableResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryMaxTransferOutAmountUserDataError](Errors/QueryMaxTransferOutAmountUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryMaxTransferOutAmountUserDataError](src/Binance/Errors/QueryMaxTransferOutAmountUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -9728,7 +9728,7 @@ catch (ApiException<QueryBorrowRepayRecordsInMarginAccountUserDataError> ex)
 <dl>
 <dd>
 
-<code>[QueryBorrowRepayRecordsInMarginAccountUserDataRequest](Requests/Margin/QueryBorrowRepayRecordsInMarginAccountUserDataRequest.cs)</code>
+<code>[QueryBorrowRepayRecordsInMarginAccountUserDataRequest](src/Binance/Requests/Margin/QueryBorrowRepayRecordsInMarginAccountUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -9738,9 +9738,9 @@ catch (ApiException<QueryBorrowRepayRecordsInMarginAccountUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1MarginBorrowRepayResponse1](Models/SapiV1MarginBorrowRepayResponse1.cs)</code>
+**OnSuccess**: <code>[SapiV1MarginBorrowRepayResponse1](src/Binance/Models/SapiV1MarginBorrowRepayResponse1.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryBorrowRepayRecordsInMarginAccountUserDataError](Errors/QueryBorrowRepayRecordsInMarginAccountUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryBorrowRepayRecordsInMarginAccountUserDataError](src/Binance/Errors/QueryBorrowRepayRecordsInMarginAccountUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -9804,7 +9804,7 @@ catch (ApiException<ToggleBnbBurnOnSpotTradeAndMarginInterestUserDataError> ex)
 <dl>
 <dd>
 
-<code>[ToggleBnbBurnOnSpotTradeAndMarginInterestUserDataRequest](Requests/Margin/ToggleBnbBurnOnSpotTradeAndMarginInterestUserDataRequest.cs)</code>
+<code>[ToggleBnbBurnOnSpotTradeAndMarginInterestUserDataRequest](src/Binance/Requests/Margin/ToggleBnbBurnOnSpotTradeAndMarginInterestUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -9814,9 +9814,9 @@ catch (ApiException<ToggleBnbBurnOnSpotTradeAndMarginInterestUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[BnbBurnStatus](Models/BnbBurnStatus.cs)</code>
+**OnSuccess**: <code>[BnbBurnStatus](src/Binance/Models/BnbBurnStatus.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[ToggleBnbBurnOnSpotTradeAndMarginInterestUserDataError](Errors/ToggleBnbBurnOnSpotTradeAndMarginInterestUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[ToggleBnbBurnOnSpotTradeAndMarginInterestUserDataError](src/Binance/Errors/ToggleBnbBurnOnSpotTradeAndMarginInterestUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -9828,7 +9828,7 @@ catch (ApiException<ToggleBnbBurnOnSpotTradeAndMarginInterestUserDataError> ex)
 
 ## MarginStream
 
-> Source: [MarginStream](Api/MarginStream.cs)
+> Source: [MarginStream](src/Binance/Api/MarginStream.cs)
 
 <details>
 <summary><code>Task&lt;object&gt; CloseAListenKeyUserStream2(CloseAListenKeyUserStream2Request request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
@@ -9879,7 +9879,7 @@ catch (ApiException<CloseAListenKeyUserStream2Error> ex)
 <dl>
 <dd>
 
-<code>[CloseAListenKeyUserStream2Request](Requests/MarginStream/CloseAListenKeyUserStream2Request.cs)</code>
+<code>[CloseAListenKeyUserStream2Request](src/Binance/Requests/MarginStream/CloseAListenKeyUserStream2Request.cs)</code>
 
 </dd>
 </dl>
@@ -9891,7 +9891,7 @@ catch (ApiException<CloseAListenKeyUserStream2Error> ex)
 
 **OnSuccess**: <code>object</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CloseAListenKeyUserStream2Error](Errors/CloseAListenKeyUserStream2Error.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[CloseAListenKeyUserStream2Error](src/Binance/Errors/CloseAListenKeyUserStream2Error.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -9945,9 +9945,9 @@ catch (ApiException<RawError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1UserDataStreamResponse](Models/SapiV1UserDataStreamResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1UserDataStreamResponse](src/Binance/Models/SapiV1UserDataStreamResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[RawError](Core/ErrorResponse/RawError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[RawError](src/Binance/Core/ErrorResponse/RawError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -10007,7 +10007,7 @@ catch (ApiException<PingKeepAliveAListenKeyUserStream2Error> ex)
 <dl>
 <dd>
 
-<code>[PingKeepAliveAListenKeyUserStream2Request](Requests/MarginStream/PingKeepAliveAListenKeyUserStream2Request.cs)</code>
+<code>[PingKeepAliveAListenKeyUserStream2Request](src/Binance/Requests/MarginStream/PingKeepAliveAListenKeyUserStream2Request.cs)</code>
 
 </dd>
 </dl>
@@ -10019,7 +10019,7 @@ catch (ApiException<PingKeepAliveAListenKeyUserStream2Error> ex)
 
 **OnSuccess**: <code>object</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[PingKeepAliveAListenKeyUserStream2Error](Errors/PingKeepAliveAListenKeyUserStream2Error.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[PingKeepAliveAListenKeyUserStream2Error](src/Binance/Errors/PingKeepAliveAListenKeyUserStream2Error.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -10031,7 +10031,7 @@ catch (ApiException<PingKeepAliveAListenKeyUserStream2Error> ex)
 
 ## Market
 
-> Source: [Market](Api/Market.cs)
+> Source: [Market](src/Binance/Api/Market.cs)
 
 <details>
 <summary><code>Task&lt;ApiV3Ticker24HrResponse&gt; HrTickerPriceChangeStatistics24(HrTickerPriceChangeStatistics24Request request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
@@ -10088,7 +10088,7 @@ catch (ApiException<HrTickerPriceChangeStatistics24Error> ex)
 <dl>
 <dd>
 
-<code>[HrTickerPriceChangeStatistics24Request](Requests/Market/HrTickerPriceChangeStatistics24Request.cs)</code>
+<code>[HrTickerPriceChangeStatistics24Request](src/Binance/Requests/Market/HrTickerPriceChangeStatistics24Request.cs)</code>
 
 </dd>
 </dl>
@@ -10098,9 +10098,9 @@ catch (ApiException<HrTickerPriceChangeStatistics24Error> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ApiV3Ticker24HrResponse](Models/AnyOf/ApiV3Ticker24HrResponse.cs)</code>
+**OnSuccess**: <code>[ApiV3Ticker24HrResponse](src/Binance/Models/AnyOf/ApiV3Ticker24HrResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[HrTickerPriceChangeStatistics24Error](Errors/HrTickerPriceChangeStatistics24Error.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[HrTickerPriceChangeStatistics24Error](src/Binance/Errors/HrTickerPriceChangeStatistics24Error.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -10153,9 +10153,9 @@ catch (ApiException<RawError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ApiV3TimeResponse](Models/ApiV3TimeResponse.cs)</code>
+**OnSuccess**: <code>[ApiV3TimeResponse](src/Binance/Models/ApiV3TimeResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[RawError](Core/ErrorResponse/RawError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[RawError](src/Binance/Core/ErrorResponse/RawError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -10225,7 +10225,7 @@ catch (ApiException<CompressedAggregateTradesListError> ex)
 <dl>
 <dd>
 
-<code>[CompressedAggregateTradesListRequest](Requests/Market/CompressedAggregateTradesListRequest.cs)</code>
+<code>[CompressedAggregateTradesListRequest](src/Binance/Requests/Market/CompressedAggregateTradesListRequest.cs)</code>
 
 </dd>
 </dl>
@@ -10235,9 +10235,9 @@ catch (ApiException<CompressedAggregateTradesListError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[AggTrade](Models/AggTrade.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[AggTrade](src/Binance/Models/AggTrade.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CompressedAggregateTradesListError](Errors/CompressedAggregateTradesListError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[CompressedAggregateTradesListError](src/Binance/Errors/CompressedAggregateTradesListError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -10293,7 +10293,7 @@ catch (ApiException<CurrentAveragePriceError> ex)
 <dl>
 <dd>
 
-<code>[CurrentAveragePriceRequest](Requests/Market/CurrentAveragePriceRequest.cs)</code>
+<code>[CurrentAveragePriceRequest](src/Binance/Requests/Market/CurrentAveragePriceRequest.cs)</code>
 
 </dd>
 </dl>
@@ -10303,9 +10303,9 @@ catch (ApiException<CurrentAveragePriceError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ApiV3AvgPriceResponse](Models/ApiV3AvgPriceResponse.cs)</code>
+**OnSuccess**: <code>[ApiV3AvgPriceResponse](src/Binance/Models/ApiV3AvgPriceResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CurrentAveragePriceError](Errors/CurrentAveragePriceError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[CurrentAveragePriceError](src/Binance/Errors/CurrentAveragePriceError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -10377,7 +10377,7 @@ catch (ApiException<ExchangeInformationError> ex)
 <dl>
 <dd>
 
-<code>[ExchangeInformationRequest](Requests/Market/ExchangeInformationRequest.cs)</code>
+<code>[ExchangeInformationRequest](src/Binance/Requests/Market/ExchangeInformationRequest.cs)</code>
 
 </dd>
 </dl>
@@ -10387,9 +10387,9 @@ catch (ApiException<ExchangeInformationError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ApiV3ExchangeInfoResponse](Models/ApiV3ExchangeInfoResponse.cs)</code>
+**OnSuccess**: <code>[ApiV3ExchangeInfoResponse](src/Binance/Models/ApiV3ExchangeInfoResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[ExchangeInformationError](Errors/ExchangeInformationError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[ExchangeInformationError](src/Binance/Errors/ExchangeInformationError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -10453,7 +10453,7 @@ catch (ApiException<KlineCandlestickDataError> ex)
 <dl>
 <dd>
 
-<code>[KlineCandlestickDataRequest](Requests/Market/KlineCandlestickDataRequest.cs)</code>
+<code>[KlineCandlestickDataRequest](src/Binance/Requests/Market/KlineCandlestickDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -10463,9 +10463,9 @@ catch (ApiException<KlineCandlestickDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;IReadOnlyList&lt;[ApiV3KlinesResponse](Models/AnyOf/ApiV3KlinesResponse.cs)&gt;&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;IReadOnlyList&lt;[ApiV3KlinesResponse](src/Binance/Models/AnyOf/ApiV3KlinesResponse.cs)&gt;&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[KlineCandlestickDataError](Errors/KlineCandlestickDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[KlineCandlestickDataError](src/Binance/Errors/KlineCandlestickDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -10518,7 +10518,7 @@ catch (ApiException<RawError> ex)
 <dl>
 <dd>
 
-<code>[OldTradeLookupRequest](Requests/Market/OldTradeLookupRequest.cs)</code>
+<code>[OldTradeLookupRequest](src/Binance/Requests/Market/OldTradeLookupRequest.cs)</code>
 
 </dd>
 </dl>
@@ -10528,9 +10528,9 @@ catch (ApiException<RawError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[Trade](Models/Trade.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[Trade](src/Binance/Models/Trade.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[RawError](Core/ErrorResponse/RawError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[RawError](src/Binance/Core/ErrorResponse/RawError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -10589,7 +10589,7 @@ catch (ApiException<OrderBookError> ex)
 <dl>
 <dd>
 
-<code>[OrderBookRequest](Requests/Market/OrderBookRequest.cs)</code>
+<code>[OrderBookRequest](src/Binance/Requests/Market/OrderBookRequest.cs)</code>
 
 </dd>
 </dl>
@@ -10599,9 +10599,9 @@ catch (ApiException<OrderBookError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ApiV3DepthResponse](Models/ApiV3DepthResponse.cs)</code>
+**OnSuccess**: <code>[ApiV3DepthResponse](src/Binance/Models/ApiV3DepthResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[OrderBookError](Errors/OrderBookError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[OrderBookError](src/Binance/Errors/OrderBookError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -10657,7 +10657,7 @@ catch (ApiException<RecentTradesListError> ex)
 <dl>
 <dd>
 
-<code>[RecentTradesListRequest](Requests/Market/RecentTradesListRequest.cs)</code>
+<code>[RecentTradesListRequest](src/Binance/Requests/Market/RecentTradesListRequest.cs)</code>
 
 </dd>
 </dl>
@@ -10667,9 +10667,9 @@ catch (ApiException<RecentTradesListError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[Trade](Models/Trade.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[Trade](src/Binance/Models/Trade.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[RecentTradesListError](Errors/RecentTradesListError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[RecentTradesListError](src/Binance/Errors/RecentTradesListError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -10735,7 +10735,7 @@ catch (ApiException<RollingWindowPriceChangeStatisticsError> ex)
 <dl>
 <dd>
 
-<code>[RollingWindowPriceChangeStatisticsRequest](Requests/Market/RollingWindowPriceChangeStatisticsRequest.cs)</code>
+<code>[RollingWindowPriceChangeStatisticsRequest](src/Binance/Requests/Market/RollingWindowPriceChangeStatisticsRequest.cs)</code>
 
 </dd>
 </dl>
@@ -10745,9 +10745,9 @@ catch (ApiException<RollingWindowPriceChangeStatisticsError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ApiV3TickerResponse](Models/ApiV3TickerResponse.cs)</code>
+**OnSuccess**: <code>[ApiV3TickerResponse](src/Binance/Models/ApiV3TickerResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[RollingWindowPriceChangeStatisticsError](Errors/RollingWindowPriceChangeStatisticsError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[RollingWindowPriceChangeStatisticsError](src/Binance/Errors/RollingWindowPriceChangeStatisticsError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -10811,7 +10811,7 @@ catch (ApiException<SymbolOrderBookTickerError> ex)
 <dl>
 <dd>
 
-<code>[SymbolOrderBookTickerRequest](Requests/Market/SymbolOrderBookTickerRequest.cs)</code>
+<code>[SymbolOrderBookTickerRequest](src/Binance/Requests/Market/SymbolOrderBookTickerRequest.cs)</code>
 
 </dd>
 </dl>
@@ -10821,9 +10821,9 @@ catch (ApiException<SymbolOrderBookTickerError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ApiV3TickerBookTickerResponse](Models/AnyOf/ApiV3TickerBookTickerResponse.cs)</code>
+**OnSuccess**: <code>[ApiV3TickerBookTickerResponse](src/Binance/Models/AnyOf/ApiV3TickerBookTickerResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SymbolOrderBookTickerError](Errors/SymbolOrderBookTickerError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[SymbolOrderBookTickerError](src/Binance/Errors/SymbolOrderBookTickerError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -10887,7 +10887,7 @@ catch (ApiException<SymbolPriceTickerError> ex)
 <dl>
 <dd>
 
-<code>[SymbolPriceTickerRequest](Requests/Market/SymbolPriceTickerRequest.cs)</code>
+<code>[SymbolPriceTickerRequest](src/Binance/Requests/Market/SymbolPriceTickerRequest.cs)</code>
 
 </dd>
 </dl>
@@ -10897,9 +10897,9 @@ catch (ApiException<SymbolPriceTickerError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ApiV3TickerPriceResponse](Models/AnyOf/ApiV3TickerPriceResponse.cs)</code>
+**OnSuccess**: <code>[ApiV3TickerPriceResponse](src/Binance/Models/AnyOf/ApiV3TickerPriceResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SymbolPriceTickerError](Errors/SymbolPriceTickerError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[SymbolPriceTickerError](src/Binance/Errors/SymbolPriceTickerError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -10954,7 +10954,7 @@ catch (ApiException<RawError> ex)
 
 **OnSuccess**: <code>object</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[RawError](Core/ErrorResponse/RawError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[RawError](src/Binance/Core/ErrorResponse/RawError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -11022,7 +11022,7 @@ catch (ApiException<TradingDayTickerError> ex)
 <dl>
 <dd>
 
-<code>[TradingDayTickerRequest](Requests/Market/TradingDayTickerRequest.cs)</code>
+<code>[TradingDayTickerRequest](src/Binance/Requests/Market/TradingDayTickerRequest.cs)</code>
 
 </dd>
 </dl>
@@ -11032,9 +11032,9 @@ catch (ApiException<TradingDayTickerError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ApiV3TickerTradingDayResponse](Models/AnyOf/ApiV3TickerTradingDayResponse.cs)</code>
+**OnSuccess**: <code>[ApiV3TickerTradingDayResponse](src/Binance/Models/AnyOf/ApiV3TickerTradingDayResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[TradingDayTickerError](Errors/TradingDayTickerError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[TradingDayTickerError](src/Binance/Errors/TradingDayTickerError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -11097,7 +11097,7 @@ catch (ApiException<UiKlinesError> ex)
 <dl>
 <dd>
 
-<code>[UiKlinesRequest](Requests/Market/UiKlinesRequest.cs)</code>
+<code>[UiKlinesRequest](src/Binance/Requests/Market/UiKlinesRequest.cs)</code>
 
 </dd>
 </dl>
@@ -11107,9 +11107,9 @@ catch (ApiException<UiKlinesError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;IReadOnlyList&lt;[ApiV3UiKlinesResponse](Models/AnyOf/ApiV3UiKlinesResponse.cs)&gt;&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;IReadOnlyList&lt;[ApiV3UiKlinesResponse](src/Binance/Models/AnyOf/ApiV3UiKlinesResponse.cs)&gt;&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[UiKlinesError](Errors/UiKlinesError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[UiKlinesError](src/Binance/Errors/UiKlinesError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -11121,7 +11121,7 @@ catch (ApiException<UiKlinesError> ex)
 
 ## Mining
 
-> Source: [Mining](Api/Mining.cs)
+> Source: [Mining](src/Binance/Api/Mining.cs)
 
 <details>
 <summary><code>Task&lt;SapiV1MiningStatisticsUserListResponse&gt; AccountListUserData(AccountListUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
@@ -11174,7 +11174,7 @@ catch (ApiException<AccountListUserDataError> ex)
 <dl>
 <dd>
 
-<code>[AccountListUserDataRequest](Requests/Mining/AccountListUserDataRequest.cs)</code>
+<code>[AccountListUserDataRequest](src/Binance/Requests/Mining/AccountListUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -11184,9 +11184,9 @@ catch (ApiException<AccountListUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1MiningStatisticsUserListResponse](Models/SapiV1MiningStatisticsUserListResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1MiningStatisticsUserListResponse](src/Binance/Models/SapiV1MiningStatisticsUserListResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[AccountListUserDataError](Errors/AccountListUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[AccountListUserDataError](src/Binance/Errors/AccountListUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -11240,9 +11240,9 @@ catch (ApiException<AcquiringAlgorithmMarketDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1MiningPubAlgoListResponse](Models/SapiV1MiningPubAlgoListResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1MiningPubAlgoListResponse](src/Binance/Models/SapiV1MiningPubAlgoListResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[AcquiringAlgorithmMarketDataError](Errors/AcquiringAlgorithmMarketDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[AcquiringAlgorithmMarketDataError](src/Binance/Errors/AcquiringAlgorithmMarketDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -11296,9 +11296,9 @@ catch (ApiException<AcquiringCoinNameMarketDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1MiningPubCoinListResponse](Models/SapiV1MiningPubCoinListResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1MiningPubCoinListResponse](src/Binance/Models/SapiV1MiningPubCoinListResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[AcquiringCoinNameMarketDataError](Errors/AcquiringCoinNameMarketDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[AcquiringCoinNameMarketDataError](src/Binance/Errors/AcquiringCoinNameMarketDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -11360,7 +11360,7 @@ catch (ApiException<CancelHashrateResaleConfigurationUserDataError> ex)
 <dl>
 <dd>
 
-<code>[CancelHashrateResaleConfigurationUserDataRequest](Requests/Mining/CancelHashrateResaleConfigurationUserDataRequest.cs)</code>
+<code>[CancelHashrateResaleConfigurationUserDataRequest](src/Binance/Requests/Mining/CancelHashrateResaleConfigurationUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -11370,9 +11370,9 @@ catch (ApiException<CancelHashrateResaleConfigurationUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1MiningHashTransferConfigCancelResponse](Models/SapiV1MiningHashTransferConfigCancelResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1MiningHashTransferConfigCancelResponse](src/Binance/Models/SapiV1MiningHashTransferConfigCancelResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CancelHashrateResaleConfigurationUserDataError](Errors/CancelHashrateResaleConfigurationUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[CancelHashrateResaleConfigurationUserDataError](src/Binance/Errors/CancelHashrateResaleConfigurationUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -11434,7 +11434,7 @@ catch (ApiException<EarningsListUserDataError> ex)
 <dl>
 <dd>
 
-<code>[EarningsListUserDataRequest](Requests/Mining/EarningsListUserDataRequest.cs)</code>
+<code>[EarningsListUserDataRequest](src/Binance/Requests/Mining/EarningsListUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -11444,9 +11444,9 @@ catch (ApiException<EarningsListUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1MiningPaymentListResponse](Models/SapiV1MiningPaymentListResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1MiningPaymentListResponse](src/Binance/Models/SapiV1MiningPaymentListResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[EarningsListUserDataError](Errors/EarningsListUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[EarningsListUserDataError](src/Binance/Errors/EarningsListUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -11508,7 +11508,7 @@ catch (ApiException<ExtraBonusListUserDataError> ex)
 <dl>
 <dd>
 
-<code>[ExtraBonusListUserDataRequest](Requests/Mining/ExtraBonusListUserDataRequest.cs)</code>
+<code>[ExtraBonusListUserDataRequest](src/Binance/Requests/Mining/ExtraBonusListUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -11518,9 +11518,9 @@ catch (ApiException<ExtraBonusListUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1MiningPaymentOtherResponse](Models/SapiV1MiningPaymentOtherResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1MiningPaymentOtherResponse](src/Binance/Models/SapiV1MiningPaymentOtherResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[ExtraBonusListUserDataError](Errors/ExtraBonusListUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[ExtraBonusListUserDataError](src/Binance/Errors/ExtraBonusListUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -11581,7 +11581,7 @@ catch (ApiException<HashrateResaleDetailsUserDataError> ex)
 <dl>
 <dd>
 
-<code>[HashrateResaleDetailsUserDataRequest](Requests/Mining/HashrateResaleDetailsUserDataRequest.cs)</code>
+<code>[HashrateResaleDetailsUserDataRequest](src/Binance/Requests/Mining/HashrateResaleDetailsUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -11591,9 +11591,9 @@ catch (ApiException<HashrateResaleDetailsUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1MiningHashTransferProfitDetailsResponse](Models/SapiV1MiningHashTransferProfitDetailsResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1MiningHashTransferProfitDetailsResponse](src/Binance/Models/SapiV1MiningHashTransferProfitDetailsResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[HashrateResaleDetailsUserDataError](Errors/HashrateResaleDetailsUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[HashrateResaleDetailsUserDataError](src/Binance/Errors/HashrateResaleDetailsUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -11652,7 +11652,7 @@ catch (ApiException<HashrateResaleListUserDataError> ex)
 <dl>
 <dd>
 
-<code>[HashrateResaleListUserDataRequest](Requests/Mining/HashrateResaleListUserDataRequest.cs)</code>
+<code>[HashrateResaleListUserDataRequest](src/Binance/Requests/Mining/HashrateResaleListUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -11662,9 +11662,9 @@ catch (ApiException<HashrateResaleListUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1MiningHashTransferConfigDetailsListResponse](Models/SapiV1MiningHashTransferConfigDetailsListResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1MiningHashTransferConfigDetailsListResponse](src/Binance/Models/SapiV1MiningHashTransferConfigDetailsListResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[HashrateResaleListUserDataError](Errors/HashrateResaleListUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[HashrateResaleListUserDataError](src/Binance/Errors/HashrateResaleListUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -11727,7 +11727,7 @@ catch (ApiException<HashrateResaleRequestUserDataError> ex)
 <dl>
 <dd>
 
-<code>[HashrateResaleRequestUserDataRequest](Requests/Mining/HashrateResaleRequestUserDataRequest.cs)</code>
+<code>[HashrateResaleRequestUserDataRequest](src/Binance/Requests/Mining/HashrateResaleRequestUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -11737,9 +11737,9 @@ catch (ApiException<HashrateResaleRequestUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1MiningHashTransferConfigResponse](Models/SapiV1MiningHashTransferConfigResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1MiningHashTransferConfigResponse](src/Binance/Models/SapiV1MiningHashTransferConfigResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[HashrateResaleRequestUserDataError](Errors/HashrateResaleRequestUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[HashrateResaleRequestUserDataError](src/Binance/Errors/HashrateResaleRequestUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -11799,7 +11799,7 @@ catch (ApiException<MiningAccountEarningUserDataError> ex)
 <dl>
 <dd>
 
-<code>[MiningAccountEarningUserDataRequest](Requests/Mining/MiningAccountEarningUserDataRequest.cs)</code>
+<code>[MiningAccountEarningUserDataRequest](src/Binance/Requests/Mining/MiningAccountEarningUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -11809,9 +11809,9 @@ catch (ApiException<MiningAccountEarningUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1MiningPaymentUidResponse](Models/SapiV1MiningPaymentUidResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1MiningPaymentUidResponse](src/Binance/Models/SapiV1MiningPaymentUidResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[MiningAccountEarningUserDataError](Errors/MiningAccountEarningUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[MiningAccountEarningUserDataError](src/Binance/Errors/MiningAccountEarningUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -11873,7 +11873,7 @@ catch (ApiException<RequestForDetailMinerListUserDataError> ex)
 <dl>
 <dd>
 
-<code>[RequestForDetailMinerListUserDataRequest](Requests/Mining/RequestForDetailMinerListUserDataRequest.cs)</code>
+<code>[RequestForDetailMinerListUserDataRequest](src/Binance/Requests/Mining/RequestForDetailMinerListUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -11883,9 +11883,9 @@ catch (ApiException<RequestForDetailMinerListUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1MiningWorkerDetailResponse](Models/SapiV1MiningWorkerDetailResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1MiningWorkerDetailResponse](src/Binance/Models/SapiV1MiningWorkerDetailResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[RequestForDetailMinerListUserDataError](Errors/RequestForDetailMinerListUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[RequestForDetailMinerListUserDataError](src/Binance/Errors/RequestForDetailMinerListUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -11946,7 +11946,7 @@ catch (ApiException<RequestForMinerListUserDataError> ex)
 <dl>
 <dd>
 
-<code>[RequestForMinerListUserDataRequest](Requests/Mining/RequestForMinerListUserDataRequest.cs)</code>
+<code>[RequestForMinerListUserDataRequest](src/Binance/Requests/Mining/RequestForMinerListUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -11956,9 +11956,9 @@ catch (ApiException<RequestForMinerListUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1MiningWorkerListResponse](Models/SapiV1MiningWorkerListResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1MiningWorkerListResponse](src/Binance/Models/SapiV1MiningWorkerListResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[RequestForMinerListUserDataError](Errors/RequestForMinerListUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[RequestForMinerListUserDataError](src/Binance/Errors/RequestForMinerListUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -12019,7 +12019,7 @@ catch (ApiException<StatisticListUserDataError> ex)
 <dl>
 <dd>
 
-<code>[StatisticListUserDataRequest](Requests/Mining/StatisticListUserDataRequest.cs)</code>
+<code>[StatisticListUserDataRequest](src/Binance/Requests/Mining/StatisticListUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -12029,9 +12029,9 @@ catch (ApiException<StatisticListUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1MiningStatisticsUserStatusResponse](Models/SapiV1MiningStatisticsUserStatusResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1MiningStatisticsUserStatusResponse](src/Binance/Models/SapiV1MiningStatisticsUserStatusResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[StatisticListUserDataError](Errors/StatisticListUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[StatisticListUserDataError](src/Binance/Errors/StatisticListUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -12043,7 +12043,7 @@ catch (ApiException<StatisticListUserDataError> ex)
 
 ## Nft
 
-> Source: [Nft](Api/Nft.cs)
+> Source: [Nft](src/Binance/Api/Nft.cs)
 
 <details>
 <summary><code>Task&lt;SapiV1NftUserGetAssetResponse&gt; GetNftAssetUserData(GetNftAssetUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
@@ -12096,7 +12096,7 @@ catch (ApiException<GetNftAssetUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetNftAssetUserDataRequest](Requests/Nft/GetNftAssetUserDataRequest.cs)</code>
+<code>[GetNftAssetUserDataRequest](src/Binance/Requests/Nft/GetNftAssetUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -12106,9 +12106,9 @@ catch (ApiException<GetNftAssetUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1NftUserGetAssetResponse](Models/SapiV1NftUserGetAssetResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1NftUserGetAssetResponse](src/Binance/Models/SapiV1NftUserGetAssetResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetNftAssetUserDataError](Errors/GetNftAssetUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetNftAssetUserDataError](src/Binance/Errors/GetNftAssetUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -12172,7 +12172,7 @@ catch (ApiException<GetNftDepositHistoryUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetNftDepositHistoryUserDataRequest](Requests/Nft/GetNftDepositHistoryUserDataRequest.cs)</code>
+<code>[GetNftDepositHistoryUserDataRequest](src/Binance/Requests/Nft/GetNftDepositHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -12182,9 +12182,9 @@ catch (ApiException<GetNftDepositHistoryUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1NftHistoryDepositResponse](Models/SapiV1NftHistoryDepositResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1NftHistoryDepositResponse](src/Binance/Models/SapiV1NftHistoryDepositResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetNftDepositHistoryUserDataError](Errors/GetNftDepositHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetNftDepositHistoryUserDataError](src/Binance/Errors/GetNftDepositHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -12249,7 +12249,7 @@ catch (ApiException<GetNftTransactionHistoryUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetNftTransactionHistoryUserDataRequest](Requests/Nft/GetNftTransactionHistoryUserDataRequest.cs)</code>
+<code>[GetNftTransactionHistoryUserDataRequest](src/Binance/Requests/Nft/GetNftTransactionHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -12259,9 +12259,9 @@ catch (ApiException<GetNftTransactionHistoryUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1NftHistoryTransactionsResponse](Models/SapiV1NftHistoryTransactionsResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1NftHistoryTransactionsResponse](src/Binance/Models/SapiV1NftHistoryTransactionsResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetNftTransactionHistoryUserDataError](Errors/GetNftTransactionHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetNftTransactionHistoryUserDataError](src/Binance/Errors/GetNftTransactionHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -12325,7 +12325,7 @@ catch (ApiException<GetNftWithdrawHistoryUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetNftWithdrawHistoryUserDataRequest](Requests/Nft/GetNftWithdrawHistoryUserDataRequest.cs)</code>
+<code>[GetNftWithdrawHistoryUserDataRequest](src/Binance/Requests/Nft/GetNftWithdrawHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -12335,9 +12335,9 @@ catch (ApiException<GetNftWithdrawHistoryUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1NftHistoryWithdrawResponse](Models/SapiV1NftHistoryWithdrawResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1NftHistoryWithdrawResponse](src/Binance/Models/SapiV1NftHistoryWithdrawResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetNftWithdrawHistoryUserDataError](Errors/GetNftWithdrawHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetNftWithdrawHistoryUserDataError](src/Binance/Errors/GetNftWithdrawHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -12349,7 +12349,7 @@ catch (ApiException<GetNftWithdrawHistoryUserDataError> ex)
 
 ## Pay
 
-> Source: [Pay](Api/Pay.cs)
+> Source: [Pay](src/Binance/Api/Pay.cs)
 
 <details>
 <summary><code>Task&lt;SapiV1PayTransactionsResponse&gt; GetPayTradeHistoryUserData(GetPayTradeHistoryUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
@@ -12405,7 +12405,7 @@ catch (ApiException<GetPayTradeHistoryUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetPayTradeHistoryUserDataRequest](Requests/Pay/GetPayTradeHistoryUserDataRequest.cs)</code>
+<code>[GetPayTradeHistoryUserDataRequest](src/Binance/Requests/Pay/GetPayTradeHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -12415,9 +12415,9 @@ catch (ApiException<GetPayTradeHistoryUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1PayTransactionsResponse](Models/SapiV1PayTransactionsResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1PayTransactionsResponse](src/Binance/Models/SapiV1PayTransactionsResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetPayTradeHistoryUserDataError](Errors/GetPayTradeHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetPayTradeHistoryUserDataError](src/Binance/Errors/GetPayTradeHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -12429,7 +12429,7 @@ catch (ApiException<GetPayTradeHistoryUserDataError> ex)
 
 ## PortfolioMargin
 
-> Source: [PortfolioMargin](Api/PortfolioMargin.cs)
+> Source: [PortfolioMargin](src/Binance/Api/PortfolioMargin.cs)
 
 <details>
 <summary><code>Task&lt;SapiV1PortfolioBnbTransferResponse&gt; BnbTransferUserData(BnbTransferUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
@@ -12484,7 +12484,7 @@ catch (ApiException<BnbTransferUserDataError> ex)
 <dl>
 <dd>
 
-<code>[BnbTransferUserDataRequest](Requests/PortfolioMargin/BnbTransferUserDataRequest.cs)</code>
+<code>[BnbTransferUserDataRequest](src/Binance/Requests/PortfolioMargin/BnbTransferUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -12494,9 +12494,9 @@ catch (ApiException<BnbTransferUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1PortfolioBnbTransferResponse](Models/SapiV1PortfolioBnbTransferResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1PortfolioBnbTransferResponse](src/Binance/Models/SapiV1PortfolioBnbTransferResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[BnbTransferUserDataError](Errors/BnbTransferUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[BnbTransferUserDataError](src/Binance/Errors/BnbTransferUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -12559,7 +12559,7 @@ catch (ApiException<ChangeAutoRepayFuturesStatusUserDataError> ex)
 <dl>
 <dd>
 
-<code>[ChangeAutoRepayFuturesStatusUserDataRequest](Requests/PortfolioMargin/ChangeAutoRepayFuturesStatusUserDataRequest.cs)</code>
+<code>[ChangeAutoRepayFuturesStatusUserDataRequest](src/Binance/Requests/PortfolioMargin/ChangeAutoRepayFuturesStatusUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -12569,9 +12569,9 @@ catch (ApiException<ChangeAutoRepayFuturesStatusUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1PortfolioRepayFuturesSwitchResponse](Models/SapiV1PortfolioRepayFuturesSwitchResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1PortfolioRepayFuturesSwitchResponse](src/Binance/Models/SapiV1PortfolioRepayFuturesSwitchResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[ChangeAutoRepayFuturesStatusUserDataError](Errors/ChangeAutoRepayFuturesStatusUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[ChangeAutoRepayFuturesStatusUserDataError](src/Binance/Errors/ChangeAutoRepayFuturesStatusUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -12632,7 +12632,7 @@ catch (ApiException<FundAutoCollectionUserDataError> ex)
 <dl>
 <dd>
 
-<code>[FundAutoCollectionUserDataRequest](Requests/PortfolioMargin/FundAutoCollectionUserDataRequest.cs)</code>
+<code>[FundAutoCollectionUserDataRequest](src/Binance/Requests/PortfolioMargin/FundAutoCollectionUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -12642,9 +12642,9 @@ catch (ApiException<FundAutoCollectionUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1PortfolioAutoCollectionResponse](Models/SapiV1PortfolioAutoCollectionResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1PortfolioAutoCollectionResponse](src/Binance/Models/SapiV1PortfolioAutoCollectionResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[FundAutoCollectionUserDataError](Errors/FundAutoCollectionUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[FundAutoCollectionUserDataError](src/Binance/Errors/FundAutoCollectionUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -12706,7 +12706,7 @@ catch (ApiException<FundCollectionByAssetUserDataError> ex)
 <dl>
 <dd>
 
-<code>[FundCollectionByAssetUserDataRequest](Requests/PortfolioMargin/FundCollectionByAssetUserDataRequest.cs)</code>
+<code>[FundCollectionByAssetUserDataRequest](src/Binance/Requests/PortfolioMargin/FundCollectionByAssetUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -12716,9 +12716,9 @@ catch (ApiException<FundCollectionByAssetUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1PortfolioAssetCollectionResponse](Models/SapiV1PortfolioAssetCollectionResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1PortfolioAssetCollectionResponse](src/Binance/Models/SapiV1PortfolioAssetCollectionResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[FundCollectionByAssetUserDataError](Errors/FundCollectionByAssetUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[FundCollectionByAssetUserDataError](src/Binance/Errors/FundCollectionByAssetUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -12780,7 +12780,7 @@ catch (ApiException<GetAutoRepayFuturesStatusUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetAutoRepayFuturesStatusUserDataRequest](Requests/PortfolioMargin/GetAutoRepayFuturesStatusUserDataRequest.cs)</code>
+<code>[GetAutoRepayFuturesStatusUserDataRequest](src/Binance/Requests/PortfolioMargin/GetAutoRepayFuturesStatusUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -12790,9 +12790,9 @@ catch (ApiException<GetAutoRepayFuturesStatusUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1PortfolioRepayFuturesSwitchResponse1](Models/SapiV1PortfolioRepayFuturesSwitchResponse1.cs)</code>
+**OnSuccess**: <code>[SapiV1PortfolioRepayFuturesSwitchResponse1](src/Binance/Models/SapiV1PortfolioRepayFuturesSwitchResponse1.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetAutoRepayFuturesStatusUserDataError](Errors/GetAutoRepayFuturesStatusUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetAutoRepayFuturesStatusUserDataError](src/Binance/Errors/GetAutoRepayFuturesStatusUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -12846,9 +12846,9 @@ catch (ApiException<GetPortfolioMarginAssetLeverageUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1PortfolioMarginAssetLeverageResponse](Models/SapiV1PortfolioMarginAssetLeverageResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1PortfolioMarginAssetLeverageResponse](src/Binance/Models/SapiV1PortfolioMarginAssetLeverageResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetPortfolioMarginAssetLeverageUserDataError](Errors/GetPortfolioMarginAssetLeverageUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetPortfolioMarginAssetLeverageUserDataError](src/Binance/Errors/GetPortfolioMarginAssetLeverageUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -12909,7 +12909,7 @@ catch (ApiException<PortfolioMarginAccountUserDataError> ex)
 <dl>
 <dd>
 
-<code>[PortfolioMarginAccountUserDataRequest](Requests/PortfolioMargin/PortfolioMarginAccountUserDataRequest.cs)</code>
+<code>[PortfolioMarginAccountUserDataRequest](src/Binance/Requests/PortfolioMargin/PortfolioMarginAccountUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -12919,9 +12919,9 @@ catch (ApiException<PortfolioMarginAccountUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1PortfolioAccountResponse](Models/SapiV1PortfolioAccountResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1PortfolioAccountResponse](src/Binance/Models/SapiV1PortfolioAccountResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[PortfolioMarginAccountUserDataError](Errors/PortfolioMarginAccountUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[PortfolioMarginAccountUserDataError](src/Binance/Errors/PortfolioMarginAccountUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -12983,7 +12983,7 @@ catch (ApiException<PortfolioMarginBankruptcyLoanAmountUserDataError> ex)
 <dl>
 <dd>
 
-<code>[PortfolioMarginBankruptcyLoanAmountUserDataRequest](Requests/PortfolioMargin/PortfolioMarginBankruptcyLoanAmountUserDataRequest.cs)</code>
+<code>[PortfolioMarginBankruptcyLoanAmountUserDataRequest](src/Binance/Requests/PortfolioMargin/PortfolioMarginBankruptcyLoanAmountUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -12993,9 +12993,9 @@ catch (ApiException<PortfolioMarginBankruptcyLoanAmountUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1PortfolioPmLoanResponse](Models/SapiV1PortfolioPmLoanResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1PortfolioPmLoanResponse](src/Binance/Models/SapiV1PortfolioPmLoanResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[PortfolioMarginBankruptcyLoanAmountUserDataError](Errors/PortfolioMarginBankruptcyLoanAmountUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[PortfolioMarginBankruptcyLoanAmountUserDataError](src/Binance/Errors/PortfolioMarginBankruptcyLoanAmountUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -13058,7 +13058,7 @@ catch (ApiException<PortfolioMarginBankruptcyLoanRepayUserDataError> ex)
 <dl>
 <dd>
 
-<code>[PortfolioMarginBankruptcyLoanRepayUserDataRequest](Requests/PortfolioMargin/PortfolioMarginBankruptcyLoanRepayUserDataRequest.cs)</code>
+<code>[PortfolioMarginBankruptcyLoanRepayUserDataRequest](src/Binance/Requests/PortfolioMargin/PortfolioMarginBankruptcyLoanRepayUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -13068,9 +13068,9 @@ catch (ApiException<PortfolioMarginBankruptcyLoanRepayUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1PortfolioRepayResponse](Models/SapiV1PortfolioRepayResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1PortfolioRepayResponse](src/Binance/Models/SapiV1PortfolioRepayResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[PortfolioMarginBankruptcyLoanRepayUserDataError](Errors/PortfolioMarginBankruptcyLoanRepayUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[PortfolioMarginBankruptcyLoanRepayUserDataError](src/Binance/Errors/PortfolioMarginBankruptcyLoanRepayUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -13126,9 +13126,9 @@ catch (ApiException<PortfolioMarginCollateralRateMarketDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1PortfolioCollateralRateResponse](Models/SapiV1PortfolioCollateralRateResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1PortfolioCollateralRateResponse](src/Binance/Models/SapiV1PortfolioCollateralRateResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[PortfolioMarginCollateralRateMarketDataError](Errors/PortfolioMarginCollateralRateMarketDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[PortfolioMarginCollateralRateMarketDataError](src/Binance/Errors/PortfolioMarginCollateralRateMarketDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -13190,7 +13190,7 @@ catch (ApiException<PortfolioMarginProTieredCollateralRateUserDataError> ex)
 <dl>
 <dd>
 
-<code>[PortfolioMarginProTieredCollateralRateUserDataRequest](Requests/PortfolioMargin/PortfolioMarginProTieredCollateralRateUserDataRequest.cs)</code>
+<code>[PortfolioMarginProTieredCollateralRateUserDataRequest](src/Binance/Requests/PortfolioMargin/PortfolioMarginProTieredCollateralRateUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -13200,9 +13200,9 @@ catch (ApiException<PortfolioMarginProTieredCollateralRateUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV2PortfolioCollateralRateResponse](Models/SapiV2PortfolioCollateralRateResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV2PortfolioCollateralRateResponse](src/Binance/Models/SapiV2PortfolioCollateralRateResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[PortfolioMarginProTieredCollateralRateUserDataError](Errors/PortfolioMarginProTieredCollateralRateUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[PortfolioMarginProTieredCollateralRateUserDataError](src/Binance/Errors/PortfolioMarginProTieredCollateralRateUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -13266,7 +13266,7 @@ catch (ApiException<QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUse
 <dl>
 <dd>
 
-<code>[QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUserDataRequest](Requests/PortfolioMargin/QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUserDataRequest.cs)</code>
+<code>[QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUserDataRequest](src/Binance/Requests/PortfolioMargin/QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -13276,9 +13276,9 @@ catch (ApiException<QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUse
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1PortfolioInterestHistoryResponse](Models/SapiV1PortfolioInterestHistoryResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1PortfolioInterestHistoryResponse](src/Binance/Models/SapiV1PortfolioInterestHistoryResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUserDataError](Errors/QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUserDataError](src/Binance/Errors/QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -13337,7 +13337,7 @@ catch (ApiException<QueryPortfolioMarginAssetIndexPriceMarketDataError> ex)
 <dl>
 <dd>
 
-<code>[QueryPortfolioMarginAssetIndexPriceMarketDataRequest](Requests/PortfolioMargin/QueryPortfolioMarginAssetIndexPriceMarketDataRequest.cs)</code>
+<code>[QueryPortfolioMarginAssetIndexPriceMarketDataRequest](src/Binance/Requests/PortfolioMargin/QueryPortfolioMarginAssetIndexPriceMarketDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -13347,9 +13347,9 @@ catch (ApiException<QueryPortfolioMarginAssetIndexPriceMarketDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1PortfolioAssetIndexPriceResponse](Models/SapiV1PortfolioAssetIndexPriceResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1PortfolioAssetIndexPriceResponse](src/Binance/Models/SapiV1PortfolioAssetIndexPriceResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryPortfolioMarginAssetIndexPriceMarketDataError](Errors/QueryPortfolioMarginAssetIndexPriceMarketDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryPortfolioMarginAssetIndexPriceMarketDataError](src/Binance/Errors/QueryPortfolioMarginAssetIndexPriceMarketDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -13411,7 +13411,7 @@ catch (ApiException<RepayFuturesNegativeBalanceUserDataError> ex)
 <dl>
 <dd>
 
-<code>[RepayFuturesNegativeBalanceUserDataRequest](Requests/PortfolioMargin/RepayFuturesNegativeBalanceUserDataRequest.cs)</code>
+<code>[RepayFuturesNegativeBalanceUserDataRequest](src/Binance/Requests/PortfolioMargin/RepayFuturesNegativeBalanceUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -13421,9 +13421,9 @@ catch (ApiException<RepayFuturesNegativeBalanceUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1PortfolioRepayFuturesNegativeBalanceResponse](Models/SapiV1PortfolioRepayFuturesNegativeBalanceResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1PortfolioRepayFuturesNegativeBalanceResponse](src/Binance/Models/SapiV1PortfolioRepayFuturesNegativeBalanceResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[RepayFuturesNegativeBalanceUserDataError](Errors/RepayFuturesNegativeBalanceUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[RepayFuturesNegativeBalanceUserDataError](src/Binance/Errors/RepayFuturesNegativeBalanceUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -13435,7 +13435,7 @@ catch (ApiException<RepayFuturesNegativeBalanceUserDataError> ex)
 
 ## Rebate
 
-> Source: [Rebate](Api/Rebate.cs)
+> Source: [Rebate](src/Binance/Api/Rebate.cs)
 
 <details>
 <summary><code>Task&lt;SapiV1RebateTaxQueryResponse&gt; GetSpotRebateHistoryRecordsUserData(GetSpotRebateHistoryRecordsUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
@@ -13492,7 +13492,7 @@ catch (ApiException<GetSpotRebateHistoryRecordsUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetSpotRebateHistoryRecordsUserDataRequest](Requests/Rebate/GetSpotRebateHistoryRecordsUserDataRequest.cs)</code>
+<code>[GetSpotRebateHistoryRecordsUserDataRequest](src/Binance/Requests/Rebate/GetSpotRebateHistoryRecordsUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -13502,9 +13502,9 @@ catch (ApiException<GetSpotRebateHistoryRecordsUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1RebateTaxQueryResponse](Models/SapiV1RebateTaxQueryResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1RebateTaxQueryResponse](src/Binance/Models/SapiV1RebateTaxQueryResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetSpotRebateHistoryRecordsUserDataError](Errors/GetSpotRebateHistoryRecordsUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetSpotRebateHistoryRecordsUserDataError](src/Binance/Errors/GetSpotRebateHistoryRecordsUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -13516,7 +13516,7 @@ catch (ApiException<GetSpotRebateHistoryRecordsUserDataError> ex)
 
 ## Savings
 
-> Source: [Savings](Api/Savings.cs)
+> Source: [Savings](src/Binance/Api/Savings.cs)
 
 <details>
 <summary><code>Task&lt;SapiV1LendingPositionChangedResponse&gt; ChangeFixedActivityPositionToDailyPositionUserData(ChangeFixedActivityPositionToDailyPositionUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
@@ -13572,7 +13572,7 @@ catch (ApiException<ChangeFixedActivityPositionToDailyPositionUserDataError> ex)
 <dl>
 <dd>
 
-<code>[ChangeFixedActivityPositionToDailyPositionUserDataRequest](Requests/Savings/ChangeFixedActivityPositionToDailyPositionUserDataRequest.cs)</code>
+<code>[ChangeFixedActivityPositionToDailyPositionUserDataRequest](src/Binance/Requests/Savings/ChangeFixedActivityPositionToDailyPositionUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -13582,9 +13582,9 @@ catch (ApiException<ChangeFixedActivityPositionToDailyPositionUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1LendingPositionChangedResponse](Models/SapiV1LendingPositionChangedResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1LendingPositionChangedResponse](src/Binance/Models/SapiV1LendingPositionChangedResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[ChangeFixedActivityPositionToDailyPositionUserDataError](Errors/ChangeFixedActivityPositionToDailyPositionUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[ChangeFixedActivityPositionToDailyPositionUserDataError](src/Binance/Errors/ChangeFixedActivityPositionToDailyPositionUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -13648,7 +13648,7 @@ catch (ApiException<GetFixedActivityProjectListUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetFixedActivityProjectListUserDataRequest](Requests/Savings/GetFixedActivityProjectListUserDataRequest.cs)</code>
+<code>[GetFixedActivityProjectListUserDataRequest](src/Binance/Requests/Savings/GetFixedActivityProjectListUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -13658,9 +13658,9 @@ catch (ApiException<GetFixedActivityProjectListUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1LendingProjectListResponse](Models/SapiV1LendingProjectListResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1LendingProjectListResponse](src/Binance/Models/SapiV1LendingProjectListResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetFixedActivityProjectListUserDataError](Errors/GetFixedActivityProjectListUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetFixedActivityProjectListUserDataError](src/Binance/Errors/GetFixedActivityProjectListUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -13721,7 +13721,7 @@ catch (ApiException<GetFixedActivityProjectPositionUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetFixedActivityProjectPositionUserDataRequest](Requests/Savings/GetFixedActivityProjectPositionUserDataRequest.cs)</code>
+<code>[GetFixedActivityProjectPositionUserDataRequest](src/Binance/Requests/Savings/GetFixedActivityProjectPositionUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -13731,9 +13731,9 @@ catch (ApiException<GetFixedActivityProjectPositionUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1LendingProjectPositionListResponse](Models/SapiV1LendingProjectPositionListResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1LendingProjectPositionListResponse](src/Binance/Models/SapiV1LendingProjectPositionListResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetFixedActivityProjectPositionUserDataError](Errors/GetFixedActivityProjectPositionUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetFixedActivityProjectPositionUserDataError](src/Binance/Errors/GetFixedActivityProjectPositionUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -13795,7 +13795,7 @@ catch (ApiException<PurchaseFixedActivityProjectUserDataError> ex)
 <dl>
 <dd>
 
-<code>[PurchaseFixedActivityProjectUserDataRequest](Requests/Savings/PurchaseFixedActivityProjectUserDataRequest.cs)</code>
+<code>[PurchaseFixedActivityProjectUserDataRequest](src/Binance/Requests/Savings/PurchaseFixedActivityProjectUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -13805,9 +13805,9 @@ catch (ApiException<PurchaseFixedActivityProjectUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1LendingCustomizedFixedPurchaseResponse](Models/SapiV1LendingCustomizedFixedPurchaseResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1LendingCustomizedFixedPurchaseResponse](src/Binance/Models/SapiV1LendingCustomizedFixedPurchaseResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[PurchaseFixedActivityProjectUserDataError](Errors/PurchaseFixedActivityProjectUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[PurchaseFixedActivityProjectUserDataError](src/Binance/Errors/PurchaseFixedActivityProjectUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -13819,7 +13819,7 @@ catch (ApiException<PurchaseFixedActivityProjectUserDataError> ex)
 
 ## SimpleEarn
 
-> Source: [SimpleEarn](Api/SimpleEarn.cs)
+> Source: [SimpleEarn](src/Binance/Api/SimpleEarn.cs)
 
 <details>
 <summary><code>Task&lt;SapiV1SimpleEarnFlexibleHistoryCollateralRecordResponse&gt; GetCollateralRecordUserData(GetCollateralRecordUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
@@ -13872,7 +13872,7 @@ catch (ApiException<GetCollateralRecordUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetCollateralRecordUserDataRequest](Requests/SimpleEarn/GetCollateralRecordUserDataRequest.cs)</code>
+<code>[GetCollateralRecordUserDataRequest](src/Binance/Requests/SimpleEarn/GetCollateralRecordUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -13882,9 +13882,9 @@ catch (ApiException<GetCollateralRecordUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1SimpleEarnFlexibleHistoryCollateralRecordResponse](Models/SapiV1SimpleEarnFlexibleHistoryCollateralRecordResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1SimpleEarnFlexibleHistoryCollateralRecordResponse](src/Binance/Models/SapiV1SimpleEarnFlexibleHistoryCollateralRecordResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetCollateralRecordUserDataError](Errors/GetCollateralRecordUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetCollateralRecordUserDataError](src/Binance/Errors/GetCollateralRecordUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -13945,7 +13945,7 @@ catch (ApiException<GetFlexiblePersonalLeftQuotaUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetFlexiblePersonalLeftQuotaUserDataRequest](Requests/SimpleEarn/GetFlexiblePersonalLeftQuotaUserDataRequest.cs)</code>
+<code>[GetFlexiblePersonalLeftQuotaUserDataRequest](src/Binance/Requests/SimpleEarn/GetFlexiblePersonalLeftQuotaUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -13955,9 +13955,9 @@ catch (ApiException<GetFlexiblePersonalLeftQuotaUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1SimpleEarnFlexiblePersonalLeftQuotaResponse](Models/SapiV1SimpleEarnFlexiblePersonalLeftQuotaResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1SimpleEarnFlexiblePersonalLeftQuotaResponse](src/Binance/Models/SapiV1SimpleEarnFlexiblePersonalLeftQuotaResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetFlexiblePersonalLeftQuotaUserDataError](Errors/GetFlexiblePersonalLeftQuotaUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetFlexiblePersonalLeftQuotaUserDataError](src/Binance/Errors/GetFlexiblePersonalLeftQuotaUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -14019,7 +14019,7 @@ catch (ApiException<GetFlexibleProductPositionUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetFlexibleProductPositionUserDataRequest](Requests/SimpleEarn/GetFlexibleProductPositionUserDataRequest.cs)</code>
+<code>[GetFlexibleProductPositionUserDataRequest](src/Binance/Requests/SimpleEarn/GetFlexibleProductPositionUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -14029,9 +14029,9 @@ catch (ApiException<GetFlexibleProductPositionUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1SimpleEarnFlexiblePositionResponse](Models/SapiV1SimpleEarnFlexiblePositionResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1SimpleEarnFlexiblePositionResponse](src/Binance/Models/SapiV1SimpleEarnFlexiblePositionResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetFlexibleProductPositionUserDataError](Errors/GetFlexibleProductPositionUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetFlexibleProductPositionUserDataError](src/Binance/Errors/GetFlexibleProductPositionUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -14086,7 +14086,7 @@ catch (ApiException<GetFlexibleRedemptionRecordUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetFlexibleRedemptionRecordUserDataRequest](Requests/SimpleEarn/GetFlexibleRedemptionRecordUserDataRequest.cs)</code>
+<code>[GetFlexibleRedemptionRecordUserDataRequest](src/Binance/Requests/SimpleEarn/GetFlexibleRedemptionRecordUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -14096,9 +14096,9 @@ catch (ApiException<GetFlexibleRedemptionRecordUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1SimpleEarnFlexibleHistoryRedemptionRecordResponse](Models/SapiV1SimpleEarnFlexibleHistoryRedemptionRecordResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1SimpleEarnFlexibleHistoryRedemptionRecordResponse](src/Binance/Models/SapiV1SimpleEarnFlexibleHistoryRedemptionRecordResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetFlexibleRedemptionRecordUserDataError](Errors/GetFlexibleRedemptionRecordUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetFlexibleRedemptionRecordUserDataError](src/Binance/Errors/GetFlexibleRedemptionRecordUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -14153,7 +14153,7 @@ catch (ApiException<GetFlexibleRewardsHistoryUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetFlexibleRewardsHistoryUserDataRequest](Requests/SimpleEarn/GetFlexibleRewardsHistoryUserDataRequest.cs)</code>
+<code>[GetFlexibleRewardsHistoryUserDataRequest](src/Binance/Requests/SimpleEarn/GetFlexibleRewardsHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -14163,9 +14163,9 @@ catch (ApiException<GetFlexibleRewardsHistoryUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1SimpleEarnFlexibleHistoryRewardsRecordResponse](Models/SapiV1SimpleEarnFlexibleHistoryRewardsRecordResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1SimpleEarnFlexibleHistoryRewardsRecordResponse](src/Binance/Models/SapiV1SimpleEarnFlexibleHistoryRewardsRecordResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetFlexibleRewardsHistoryUserDataError](Errors/GetFlexibleRewardsHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetFlexibleRewardsHistoryUserDataError](src/Binance/Errors/GetFlexibleRewardsHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -14227,7 +14227,7 @@ catch (ApiException<GetFlexibleSubscriptionPreviewUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetFlexibleSubscriptionPreviewUserDataRequest](Requests/SimpleEarn/GetFlexibleSubscriptionPreviewUserDataRequest.cs)</code>
+<code>[GetFlexibleSubscriptionPreviewUserDataRequest](src/Binance/Requests/SimpleEarn/GetFlexibleSubscriptionPreviewUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -14237,9 +14237,9 @@ catch (ApiException<GetFlexibleSubscriptionPreviewUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1SimpleEarnFlexibleSubscriptionPreviewResponse](Models/SapiV1SimpleEarnFlexibleSubscriptionPreviewResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1SimpleEarnFlexibleSubscriptionPreviewResponse](src/Binance/Models/SapiV1SimpleEarnFlexibleSubscriptionPreviewResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetFlexibleSubscriptionPreviewUserDataError](Errors/GetFlexibleSubscriptionPreviewUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetFlexibleSubscriptionPreviewUserDataError](src/Binance/Errors/GetFlexibleSubscriptionPreviewUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -14301,7 +14301,7 @@ catch (ApiException<GetFlexibleSubscriptionRecordUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetFlexibleSubscriptionRecordUserDataRequest](Requests/SimpleEarn/GetFlexibleSubscriptionRecordUserDataRequest.cs)</code>
+<code>[GetFlexibleSubscriptionRecordUserDataRequest](src/Binance/Requests/SimpleEarn/GetFlexibleSubscriptionRecordUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -14311,9 +14311,9 @@ catch (ApiException<GetFlexibleSubscriptionRecordUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1SimpleEarnFlexibleHistorySubscriptionRecordResponse](Models/SapiV1SimpleEarnFlexibleHistorySubscriptionRecordResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1SimpleEarnFlexibleHistorySubscriptionRecordResponse](src/Binance/Models/SapiV1SimpleEarnFlexibleHistorySubscriptionRecordResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetFlexibleSubscriptionRecordUserDataError](Errors/GetFlexibleSubscriptionRecordUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetFlexibleSubscriptionRecordUserDataError](src/Binance/Errors/GetFlexibleSubscriptionRecordUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -14374,7 +14374,7 @@ catch (ApiException<GetLockedPersonalLeftQuotaUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetLockedPersonalLeftQuotaUserDataRequest](Requests/SimpleEarn/GetLockedPersonalLeftQuotaUserDataRequest.cs)</code>
+<code>[GetLockedPersonalLeftQuotaUserDataRequest](src/Binance/Requests/SimpleEarn/GetLockedPersonalLeftQuotaUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -14384,9 +14384,9 @@ catch (ApiException<GetLockedPersonalLeftQuotaUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1SimpleEarnLockedPersonalLeftQuotaResponse](Models/SapiV1SimpleEarnLockedPersonalLeftQuotaResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1SimpleEarnLockedPersonalLeftQuotaResponse](src/Binance/Models/SapiV1SimpleEarnLockedPersonalLeftQuotaResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetLockedPersonalLeftQuotaUserDataError](Errors/GetLockedPersonalLeftQuotaUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetLockedPersonalLeftQuotaUserDataError](src/Binance/Errors/GetLockedPersonalLeftQuotaUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -14447,7 +14447,7 @@ catch (ApiException<GetLockedProductPositionUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetLockedProductPositionUserDataRequest](Requests/SimpleEarn/GetLockedProductPositionUserDataRequest.cs)</code>
+<code>[GetLockedProductPositionUserDataRequest](src/Binance/Requests/SimpleEarn/GetLockedProductPositionUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -14457,9 +14457,9 @@ catch (ApiException<GetLockedProductPositionUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1SimpleEarnLockedPositionResponse](Models/SapiV1SimpleEarnLockedPositionResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1SimpleEarnLockedPositionResponse](src/Binance/Models/SapiV1SimpleEarnLockedPositionResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetLockedProductPositionUserDataError](Errors/GetLockedProductPositionUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetLockedProductPositionUserDataError](src/Binance/Errors/GetLockedProductPositionUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -14521,7 +14521,7 @@ catch (ApiException<GetLockedRedemptionRecordUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetLockedRedemptionRecordUserDataRequest](Requests/SimpleEarn/GetLockedRedemptionRecordUserDataRequest.cs)</code>
+<code>[GetLockedRedemptionRecordUserDataRequest](src/Binance/Requests/SimpleEarn/GetLockedRedemptionRecordUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -14531,9 +14531,9 @@ catch (ApiException<GetLockedRedemptionRecordUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1SimpleEarnLockedHistoryRedemptionRecordResponse](Models/SapiV1SimpleEarnLockedHistoryRedemptionRecordResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1SimpleEarnLockedHistoryRedemptionRecordResponse](src/Binance/Models/SapiV1SimpleEarnLockedHistoryRedemptionRecordResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetLockedRedemptionRecordUserDataError](Errors/GetLockedRedemptionRecordUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetLockedRedemptionRecordUserDataError](src/Binance/Errors/GetLockedRedemptionRecordUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -14593,7 +14593,7 @@ catch (ApiException<GetLockedRewardsHistoryUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetLockedRewardsHistoryUserDataRequest](Requests/SimpleEarn/GetLockedRewardsHistoryUserDataRequest.cs)</code>
+<code>[GetLockedRewardsHistoryUserDataRequest](src/Binance/Requests/SimpleEarn/GetLockedRewardsHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -14603,9 +14603,9 @@ catch (ApiException<GetLockedRewardsHistoryUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1SimpleEarnLockedHistoryRewardsRecordResponse](Models/SapiV1SimpleEarnLockedHistoryRewardsRecordResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1SimpleEarnLockedHistoryRewardsRecordResponse](src/Binance/Models/SapiV1SimpleEarnLockedHistoryRewardsRecordResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetLockedRewardsHistoryUserDataError](Errors/GetLockedRewardsHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetLockedRewardsHistoryUserDataError](src/Binance/Errors/GetLockedRewardsHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -14667,7 +14667,7 @@ catch (ApiException<GetLockedSubscriptionPreviewUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetLockedSubscriptionPreviewUserDataRequest](Requests/SimpleEarn/GetLockedSubscriptionPreviewUserDataRequest.cs)</code>
+<code>[GetLockedSubscriptionPreviewUserDataRequest](src/Binance/Requests/SimpleEarn/GetLockedSubscriptionPreviewUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -14677,9 +14677,9 @@ catch (ApiException<GetLockedSubscriptionPreviewUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1SimpleEarnLockedSubscriptionPreviewResponse](Models/SapiV1SimpleEarnLockedSubscriptionPreviewResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1SimpleEarnLockedSubscriptionPreviewResponse](src/Binance/Models/SapiV1SimpleEarnLockedSubscriptionPreviewResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetLockedSubscriptionPreviewUserDataError](Errors/GetLockedSubscriptionPreviewUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetLockedSubscriptionPreviewUserDataError](src/Binance/Errors/GetLockedSubscriptionPreviewUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -14741,7 +14741,7 @@ catch (ApiException<GetLockedSubscriptionRecordUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetLockedSubscriptionRecordUserDataRequest](Requests/SimpleEarn/GetLockedSubscriptionRecordUserDataRequest.cs)</code>
+<code>[GetLockedSubscriptionRecordUserDataRequest](src/Binance/Requests/SimpleEarn/GetLockedSubscriptionRecordUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -14751,9 +14751,9 @@ catch (ApiException<GetLockedSubscriptionRecordUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1SimpleEarnLockedHistorySubscriptionRecordResponse](Models/SapiV1SimpleEarnLockedHistorySubscriptionRecordResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1SimpleEarnLockedHistorySubscriptionRecordResponse](src/Binance/Models/SapiV1SimpleEarnLockedHistorySubscriptionRecordResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetLockedSubscriptionRecordUserDataError](Errors/GetLockedSubscriptionRecordUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetLockedSubscriptionRecordUserDataError](src/Binance/Errors/GetLockedSubscriptionRecordUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -14815,7 +14815,7 @@ catch (ApiException<GetRateHistoryUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetRateHistoryUserDataRequest](Requests/SimpleEarn/GetRateHistoryUserDataRequest.cs)</code>
+<code>[GetRateHistoryUserDataRequest](src/Binance/Requests/SimpleEarn/GetRateHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -14825,9 +14825,9 @@ catch (ApiException<GetRateHistoryUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1SimpleEarnFlexibleHistoryRateHistoryResponse](Models/SapiV1SimpleEarnFlexibleHistoryRateHistoryResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1SimpleEarnFlexibleHistoryRateHistoryResponse](src/Binance/Models/SapiV1SimpleEarnFlexibleHistoryRateHistoryResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetRateHistoryUserDataError](Errors/GetRateHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetRateHistoryUserDataError](src/Binance/Errors/GetRateHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -14892,7 +14892,7 @@ catch (ApiException<GetSimpleEarnFlexibleProductListUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetSimpleEarnFlexibleProductListUserDataRequest](Requests/SimpleEarn/GetSimpleEarnFlexibleProductListUserDataRequest.cs)</code>
+<code>[GetSimpleEarnFlexibleProductListUserDataRequest](src/Binance/Requests/SimpleEarn/GetSimpleEarnFlexibleProductListUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -14902,9 +14902,9 @@ catch (ApiException<GetSimpleEarnFlexibleProductListUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1SimpleEarnFlexibleListResponse](Models/SapiV1SimpleEarnFlexibleListResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1SimpleEarnFlexibleListResponse](src/Binance/Models/SapiV1SimpleEarnFlexibleListResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetSimpleEarnFlexibleProductListUserDataError](Errors/GetSimpleEarnFlexibleProductListUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetSimpleEarnFlexibleProductListUserDataError](src/Binance/Errors/GetSimpleEarnFlexibleProductListUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -14967,7 +14967,7 @@ catch (ApiException<GetSimpleEarnLockedProductListUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetSimpleEarnLockedProductListUserDataRequest](Requests/SimpleEarn/GetSimpleEarnLockedProductListUserDataRequest.cs)</code>
+<code>[GetSimpleEarnLockedProductListUserDataRequest](src/Binance/Requests/SimpleEarn/GetSimpleEarnLockedProductListUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -14977,9 +14977,9 @@ catch (ApiException<GetSimpleEarnLockedProductListUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1SimpleEarnLockedListResponse](Models/SapiV1SimpleEarnLockedListResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1SimpleEarnLockedListResponse](src/Binance/Models/SapiV1SimpleEarnLockedListResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetSimpleEarnLockedProductListUserDataError](Errors/GetSimpleEarnLockedProductListUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetSimpleEarnLockedProductListUserDataError](src/Binance/Errors/GetSimpleEarnLockedProductListUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -15041,7 +15041,7 @@ catch (ApiException<RedeemFlexibleProductTradeError> ex)
 <dl>
 <dd>
 
-<code>[RedeemFlexibleProductTradeRequest](Requests/SimpleEarn/RedeemFlexibleProductTradeRequest.cs)</code>
+<code>[RedeemFlexibleProductTradeRequest](src/Binance/Requests/SimpleEarn/RedeemFlexibleProductTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -15051,9 +15051,9 @@ catch (ApiException<RedeemFlexibleProductTradeError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1SimpleEarnFlexibleRedeemResponse](Models/SapiV1SimpleEarnFlexibleRedeemResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1SimpleEarnFlexibleRedeemResponse](src/Binance/Models/SapiV1SimpleEarnFlexibleRedeemResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[RedeemFlexibleProductTradeError](Errors/RedeemFlexibleProductTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[RedeemFlexibleProductTradeError](src/Binance/Errors/RedeemFlexibleProductTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -15115,7 +15115,7 @@ catch (ApiException<RedeemLockedProductTradeError> ex)
 <dl>
 <dd>
 
-<code>[RedeemLockedProductTradeRequest](Requests/SimpleEarn/RedeemLockedProductTradeRequest.cs)</code>
+<code>[RedeemLockedProductTradeRequest](src/Binance/Requests/SimpleEarn/RedeemLockedProductTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -15125,9 +15125,9 @@ catch (ApiException<RedeemLockedProductTradeError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1SimpleEarnLockedRedeemResponse](Models/SapiV1SimpleEarnLockedRedeemResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1SimpleEarnLockedRedeemResponse](src/Binance/Models/SapiV1SimpleEarnLockedRedeemResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[RedeemLockedProductTradeError](Errors/RedeemLockedProductTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[RedeemLockedProductTradeError](src/Binance/Errors/RedeemLockedProductTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -15188,7 +15188,7 @@ catch (ApiException<SetFlexibleAutoSubscribeUserDataError> ex)
 <dl>
 <dd>
 
-<code>[SetFlexibleAutoSubscribeUserDataRequest](Requests/SimpleEarn/SetFlexibleAutoSubscribeUserDataRequest.cs)</code>
+<code>[SetFlexibleAutoSubscribeUserDataRequest](src/Binance/Requests/SimpleEarn/SetFlexibleAutoSubscribeUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -15198,9 +15198,9 @@ catch (ApiException<SetFlexibleAutoSubscribeUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1SimpleEarnFlexibleSetAutoSubscribeResponse](Models/SapiV1SimpleEarnFlexibleSetAutoSubscribeResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1SimpleEarnFlexibleSetAutoSubscribeResponse](src/Binance/Models/SapiV1SimpleEarnFlexibleSetAutoSubscribeResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SetFlexibleAutoSubscribeUserDataError](Errors/SetFlexibleAutoSubscribeUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[SetFlexibleAutoSubscribeUserDataError](src/Binance/Errors/SetFlexibleAutoSubscribeUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -15261,7 +15261,7 @@ catch (ApiException<SetLockedAutoSubscribeUserDataError> ex)
 <dl>
 <dd>
 
-<code>[SetLockedAutoSubscribeUserDataRequest](Requests/SimpleEarn/SetLockedAutoSubscribeUserDataRequest.cs)</code>
+<code>[SetLockedAutoSubscribeUserDataRequest](src/Binance/Requests/SimpleEarn/SetLockedAutoSubscribeUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -15271,9 +15271,9 @@ catch (ApiException<SetLockedAutoSubscribeUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1SimpleEarnLockedSetAutoSubscribeResponse](Models/SapiV1SimpleEarnLockedSetAutoSubscribeResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1SimpleEarnLockedSetAutoSubscribeResponse](src/Binance/Models/SapiV1SimpleEarnLockedSetAutoSubscribeResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SetLockedAutoSubscribeUserDataError](Errors/SetLockedAutoSubscribeUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[SetLockedAutoSubscribeUserDataError](src/Binance/Errors/SetLockedAutoSubscribeUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -15336,7 +15336,7 @@ catch (ApiException<SetLockedProductRedeemOptionUserDataError> ex)
 <dl>
 <dd>
 
-<code>[SetLockedProductRedeemOptionUserDataRequest](Requests/SimpleEarn/SetLockedProductRedeemOptionUserDataRequest.cs)</code>
+<code>[SetLockedProductRedeemOptionUserDataRequest](src/Binance/Requests/SimpleEarn/SetLockedProductRedeemOptionUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -15346,9 +15346,9 @@ catch (ApiException<SetLockedProductRedeemOptionUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1SimpleEarnLockedSetRedeemOptionResponse](Models/SapiV1SimpleEarnLockedSetRedeemOptionResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1SimpleEarnLockedSetRedeemOptionResponse](src/Binance/Models/SapiV1SimpleEarnLockedSetRedeemOptionResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SetLockedProductRedeemOptionUserDataError](Errors/SetLockedProductRedeemOptionUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[SetLockedProductRedeemOptionUserDataError](src/Binance/Errors/SetLockedProductRedeemOptionUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -15407,7 +15407,7 @@ catch (ApiException<SimpleAccountUserDataError> ex)
 <dl>
 <dd>
 
-<code>[SimpleAccountUserDataRequest](Requests/SimpleEarn/SimpleAccountUserDataRequest.cs)</code>
+<code>[SimpleAccountUserDataRequest](src/Binance/Requests/SimpleEarn/SimpleAccountUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -15417,9 +15417,9 @@ catch (ApiException<SimpleAccountUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1SimpleEarnAccountResponse](Models/SapiV1SimpleEarnAccountResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1SimpleEarnAccountResponse](src/Binance/Models/SapiV1SimpleEarnAccountResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SimpleAccountUserDataError](Errors/SimpleAccountUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[SimpleAccountUserDataError](src/Binance/Errors/SimpleAccountUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -15482,7 +15482,7 @@ catch (ApiException<SubscribeFlexibleProductTradeError> ex)
 <dl>
 <dd>
 
-<code>[SubscribeFlexibleProductTradeRequest](Requests/SimpleEarn/SubscribeFlexibleProductTradeRequest.cs)</code>
+<code>[SubscribeFlexibleProductTradeRequest](src/Binance/Requests/SimpleEarn/SubscribeFlexibleProductTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -15492,9 +15492,9 @@ catch (ApiException<SubscribeFlexibleProductTradeError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1SimpleEarnFlexibleSubscribeResponse](Models/SapiV1SimpleEarnFlexibleSubscribeResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1SimpleEarnFlexibleSubscribeResponse](src/Binance/Models/SapiV1SimpleEarnFlexibleSubscribeResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SubscribeFlexibleProductTradeError](Errors/SubscribeFlexibleProductTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[SubscribeFlexibleProductTradeError](src/Binance/Errors/SubscribeFlexibleProductTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -15557,7 +15557,7 @@ catch (ApiException<SubscribeLockedProductTradeError> ex)
 <dl>
 <dd>
 
-<code>[SubscribeLockedProductTradeRequest](Requests/SimpleEarn/SubscribeLockedProductTradeRequest.cs)</code>
+<code>[SubscribeLockedProductTradeRequest](src/Binance/Requests/SimpleEarn/SubscribeLockedProductTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -15567,9 +15567,9 @@ catch (ApiException<SubscribeLockedProductTradeError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1SimpleEarnLockedSubscribeResponse](Models/SapiV1SimpleEarnLockedSubscribeResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1SimpleEarnLockedSubscribeResponse](src/Binance/Models/SapiV1SimpleEarnLockedSubscribeResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SubscribeLockedProductTradeError](Errors/SubscribeLockedProductTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[SubscribeLockedProductTradeError](src/Binance/Errors/SubscribeLockedProductTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -15581,7 +15581,7 @@ catch (ApiException<SubscribeLockedProductTradeError> ex)
 
 ## SpotAlgo
 
-> Source: [SpotAlgo](Api/SpotAlgo.cs)
+> Source: [SpotAlgo](src/Binance/Api/SpotAlgo.cs)
 
 <details>
 <summary><code>Task&lt;SapiV1AlgoSpotOrderResponse&gt; CancelAlgoOrder(CancelAlgoOrderRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
@@ -15635,7 +15635,7 @@ catch (ApiException<CancelAlgoOrderError> ex)
 <dl>
 <dd>
 
-<code>[CancelAlgoOrderRequest](Requests/SpotAlgo/CancelAlgoOrderRequest.cs)</code>
+<code>[CancelAlgoOrderRequest](src/Binance/Requests/SpotAlgo/CancelAlgoOrderRequest.cs)</code>
 
 </dd>
 </dl>
@@ -15645,9 +15645,9 @@ catch (ApiException<CancelAlgoOrderError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1AlgoSpotOrderResponse](Models/SapiV1AlgoSpotOrderResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1AlgoSpotOrderResponse](src/Binance/Models/SapiV1AlgoSpotOrderResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CancelAlgoOrderError](Errors/CancelAlgoOrderError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[CancelAlgoOrderError](src/Binance/Errors/CancelAlgoOrderError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -15708,7 +15708,7 @@ catch (ApiException<QueryCurrentAlgoOpenOrdersError> ex)
 <dl>
 <dd>
 
-<code>[QueryCurrentAlgoOpenOrdersRequest](Requests/SpotAlgo/QueryCurrentAlgoOpenOrdersRequest.cs)</code>
+<code>[QueryCurrentAlgoOpenOrdersRequest](src/Binance/Requests/SpotAlgo/QueryCurrentAlgoOpenOrdersRequest.cs)</code>
 
 </dd>
 </dl>
@@ -15718,9 +15718,9 @@ catch (ApiException<QueryCurrentAlgoOpenOrdersError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1AlgoSpotOpenOrdersResponse](Models/SapiV1AlgoSpotOpenOrdersResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1AlgoSpotOpenOrdersResponse](src/Binance/Models/SapiV1AlgoSpotOpenOrdersResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryCurrentAlgoOpenOrdersError](Errors/QueryCurrentAlgoOpenOrdersError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryCurrentAlgoOpenOrdersError](src/Binance/Errors/QueryCurrentAlgoOpenOrdersError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -15784,7 +15784,7 @@ catch (ApiException<QueryHistoricalAlgoOrdersError> ex)
 <dl>
 <dd>
 
-<code>[QueryHistoricalAlgoOrdersRequest](Requests/SpotAlgo/QueryHistoricalAlgoOrdersRequest.cs)</code>
+<code>[QueryHistoricalAlgoOrdersRequest](src/Binance/Requests/SpotAlgo/QueryHistoricalAlgoOrdersRequest.cs)</code>
 
 </dd>
 </dl>
@@ -15794,9 +15794,9 @@ catch (ApiException<QueryHistoricalAlgoOrdersError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1AlgoSpotHistoricalOrdersResponse](Models/SapiV1AlgoSpotHistoricalOrdersResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1AlgoSpotHistoricalOrdersResponse](src/Binance/Models/SapiV1AlgoSpotHistoricalOrdersResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryHistoricalAlgoOrdersError](Errors/QueryHistoricalAlgoOrdersError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryHistoricalAlgoOrdersError](src/Binance/Errors/QueryHistoricalAlgoOrdersError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -15859,7 +15859,7 @@ catch (ApiException<QuerySubOrdersError> ex)
 <dl>
 <dd>
 
-<code>[QuerySubOrdersRequest](Requests/SpotAlgo/QuerySubOrdersRequest.cs)</code>
+<code>[QuerySubOrdersRequest](src/Binance/Requests/SpotAlgo/QuerySubOrdersRequest.cs)</code>
 
 </dd>
 </dl>
@@ -15869,9 +15869,9 @@ catch (ApiException<QuerySubOrdersError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1AlgoSpotSubOrdersResponse](Models/SapiV1AlgoSpotSubOrdersResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1AlgoSpotSubOrdersResponse](src/Binance/Models/SapiV1AlgoSpotSubOrdersResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QuerySubOrdersError](Errors/QuerySubOrdersError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QuerySubOrdersError](src/Binance/Errors/QuerySubOrdersError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -15937,7 +15937,7 @@ catch (ApiException<TimeWeightedAveragePriceTwapNewOrderError> ex)
 <dl>
 <dd>
 
-<code>[TimeWeightedAveragePriceTwapNewOrderRequest](Requests/SpotAlgo/TimeWeightedAveragePriceTwapNewOrderRequest.cs)</code>
+<code>[TimeWeightedAveragePriceTwapNewOrderRequest](src/Binance/Requests/SpotAlgo/TimeWeightedAveragePriceTwapNewOrderRequest.cs)</code>
 
 </dd>
 </dl>
@@ -15947,9 +15947,9 @@ catch (ApiException<TimeWeightedAveragePriceTwapNewOrderError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1AlgoSpotNewOrderTwapResponse](Models/SapiV1AlgoSpotNewOrderTwapResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1AlgoSpotNewOrderTwapResponse](src/Binance/Models/SapiV1AlgoSpotNewOrderTwapResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[TimeWeightedAveragePriceTwapNewOrderError](Errors/TimeWeightedAveragePriceTwapNewOrderError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[TimeWeightedAveragePriceTwapNewOrderError](src/Binance/Errors/TimeWeightedAveragePriceTwapNewOrderError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -15961,7 +15961,7 @@ catch (ApiException<TimeWeightedAveragePriceTwapNewOrderError> ex)
 
 ## Staking
 
-> Source: [Staking](Api/Staking.cs)
+> Source: [Staking](src/Binance/Api/Staking.cs)
 
 <details>
 <summary><code>Task&lt;SapiV2EthStakingAccountResponse&gt; EthStakingAccountV2UserData(EthStakingAccountV2UserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
@@ -16012,7 +16012,7 @@ catch (ApiException<EthStakingAccountV2UserDataError> ex)
 <dl>
 <dd>
 
-<code>[EthStakingAccountV2UserDataRequest](Requests/Staking/EthStakingAccountV2UserDataRequest.cs)</code>
+<code>[EthStakingAccountV2UserDataRequest](src/Binance/Requests/Staking/EthStakingAccountV2UserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -16022,9 +16022,9 @@ catch (ApiException<EthStakingAccountV2UserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV2EthStakingAccountResponse](Models/SapiV2EthStakingAccountResponse.cs)</code>
+**OnSuccess**: <code>[SapiV2EthStakingAccountResponse](src/Binance/Models/SapiV2EthStakingAccountResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[EthStakingAccountV2UserDataError](Errors/EthStakingAccountV2UserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[EthStakingAccountV2UserDataError](src/Binance/Errors/EthStakingAccountV2UserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -16091,7 +16091,7 @@ catch (ApiException<GetBethRewardsDistributionHistoryUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetBethRewardsDistributionHistoryUserDataRequest](Requests/Staking/GetBethRewardsDistributionHistoryUserDataRequest.cs)</code>
+<code>[GetBethRewardsDistributionHistoryUserDataRequest](src/Binance/Requests/Staking/GetBethRewardsDistributionHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -16101,9 +16101,9 @@ catch (ApiException<GetBethRewardsDistributionHistoryUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1EthStakingEthHistoryRewardsHistoryResponse](Models/SapiV1EthStakingEthHistoryRewardsHistoryResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1EthStakingEthHistoryRewardsHistoryResponse](src/Binance/Models/SapiV1EthStakingEthHistoryRewardsHistoryResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetBethRewardsDistributionHistoryUserDataError](Errors/GetBethRewardsDistributionHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetBethRewardsDistributionHistoryUserDataError](src/Binance/Errors/GetBethRewardsDistributionHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -16169,7 +16169,7 @@ catch (ApiException<GetEthRedemptionHistoryUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetEthRedemptionHistoryUserDataRequest](Requests/Staking/GetEthRedemptionHistoryUserDataRequest.cs)</code>
+<code>[GetEthRedemptionHistoryUserDataRequest](src/Binance/Requests/Staking/GetEthRedemptionHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -16179,9 +16179,9 @@ catch (ApiException<GetEthRedemptionHistoryUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1EthStakingEthHistoryRedemptionHistoryResponse](Models/SapiV1EthStakingEthHistoryRedemptionHistoryResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1EthStakingEthHistoryRedemptionHistoryResponse](src/Binance/Models/SapiV1EthStakingEthHistoryRedemptionHistoryResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetEthRedemptionHistoryUserDataError](Errors/GetEthRedemptionHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetEthRedemptionHistoryUserDataError](src/Binance/Errors/GetEthRedemptionHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -16247,7 +16247,7 @@ catch (ApiException<GetEthStakingHistoryUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetEthStakingHistoryUserDataRequest](Requests/Staking/GetEthStakingHistoryUserDataRequest.cs)</code>
+<code>[GetEthStakingHistoryUserDataRequest](src/Binance/Requests/Staking/GetEthStakingHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -16257,9 +16257,9 @@ catch (ApiException<GetEthStakingHistoryUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1EthStakingEthHistoryStakingHistoryResponse](Models/SapiV1EthStakingEthHistoryStakingHistoryResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1EthStakingEthHistoryStakingHistoryResponse](src/Binance/Models/SapiV1EthStakingEthHistoryStakingHistoryResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetEthStakingHistoryUserDataError](Errors/GetEthStakingHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetEthStakingHistoryUserDataError](src/Binance/Errors/GetEthStakingHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -16325,7 +16325,7 @@ catch (ApiException<GetWbethRateHistoryUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetWbethRateHistoryUserDataRequest](Requests/Staking/GetWbethRateHistoryUserDataRequest.cs)</code>
+<code>[GetWbethRateHistoryUserDataRequest](src/Binance/Requests/Staking/GetWbethRateHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -16335,9 +16335,9 @@ catch (ApiException<GetWbethRateHistoryUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1EthStakingEthHistoryRateHistoryResponse](Models/SapiV1EthStakingEthHistoryRateHistoryResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1EthStakingEthHistoryRateHistoryResponse](src/Binance/Models/SapiV1EthStakingEthHistoryRateHistoryResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetWbethRateHistoryUserDataError](Errors/GetWbethRateHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetWbethRateHistoryUserDataError](src/Binance/Errors/GetWbethRateHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -16403,7 +16403,7 @@ catch (ApiException<GetWbethRewardsHistoryUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetWbethRewardsHistoryUserDataRequest](Requests/Staking/GetWbethRewardsHistoryUserDataRequest.cs)</code>
+<code>[GetWbethRewardsHistoryUserDataRequest](src/Binance/Requests/Staking/GetWbethRewardsHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -16413,9 +16413,9 @@ catch (ApiException<GetWbethRewardsHistoryUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1EthStakingEthHistoryWbethRewardsHistoryResponse](Models/SapiV1EthStakingEthHistoryWbethRewardsHistoryResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1EthStakingEthHistoryWbethRewardsHistoryResponse](src/Binance/Models/SapiV1EthStakingEthHistoryWbethRewardsHistoryResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetWbethRewardsHistoryUserDataError](Errors/GetWbethRewardsHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetWbethRewardsHistoryUserDataError](src/Binance/Errors/GetWbethRewardsHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -16481,7 +16481,7 @@ catch (ApiException<GetWbethUnwrapHistoryUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetWbethUnwrapHistoryUserDataRequest](Requests/Staking/GetWbethUnwrapHistoryUserDataRequest.cs)</code>
+<code>[GetWbethUnwrapHistoryUserDataRequest](src/Binance/Requests/Staking/GetWbethUnwrapHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -16491,9 +16491,9 @@ catch (ApiException<GetWbethUnwrapHistoryUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1EthStakingWbethHistoryUnwrapHistoryResponse](Models/SapiV1EthStakingWbethHistoryUnwrapHistoryResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1EthStakingWbethHistoryUnwrapHistoryResponse](src/Binance/Models/SapiV1EthStakingWbethHistoryUnwrapHistoryResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetWbethUnwrapHistoryUserDataError](Errors/GetWbethUnwrapHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetWbethUnwrapHistoryUserDataError](src/Binance/Errors/GetWbethUnwrapHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -16559,7 +16559,7 @@ catch (ApiException<GetWbethWrapHistoryUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetWbethWrapHistoryUserDataRequest](Requests/Staking/GetWbethWrapHistoryUserDataRequest.cs)</code>
+<code>[GetWbethWrapHistoryUserDataRequest](src/Binance/Requests/Staking/GetWbethWrapHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -16569,9 +16569,9 @@ catch (ApiException<GetWbethWrapHistoryUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1EthStakingWbethHistoryWrapHistoryResponse](Models/SapiV1EthStakingWbethHistoryWrapHistoryResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1EthStakingWbethHistoryWrapHistoryResponse](src/Binance/Models/SapiV1EthStakingWbethHistoryWrapHistoryResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetWbethWrapHistoryUserDataError](Errors/GetWbethWrapHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetWbethWrapHistoryUserDataError](src/Binance/Errors/GetWbethWrapHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -16630,7 +16630,7 @@ catch (ApiException<GetCurrentEthStakingQuotaUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetCurrentEthStakingQuotaUserDataRequest](Requests/Staking/GetCurrentEthStakingQuotaUserDataRequest.cs)</code>
+<code>[GetCurrentEthStakingQuotaUserDataRequest](src/Binance/Requests/Staking/GetCurrentEthStakingQuotaUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -16640,9 +16640,9 @@ catch (ApiException<GetCurrentEthStakingQuotaUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1EthStakingEthQuotaResponse](Models/SapiV1EthStakingEthQuotaResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1EthStakingEthQuotaResponse](src/Binance/Models/SapiV1EthStakingEthQuotaResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetCurrentEthStakingQuotaUserDataError](Errors/GetCurrentEthStakingQuotaUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetCurrentEthStakingQuotaUserDataError](src/Binance/Errors/GetCurrentEthStakingQuotaUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -16706,7 +16706,7 @@ catch (ApiException<RedeemEthTradeError> ex)
 <dl>
 <dd>
 
-<code>[RedeemEthTradeRequest](Requests/Staking/RedeemEthTradeRequest.cs)</code>
+<code>[RedeemEthTradeRequest](src/Binance/Requests/Staking/RedeemEthTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -16716,9 +16716,9 @@ catch (ApiException<RedeemEthTradeError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1EthStakingEthRedeemResponse](Models/SapiV1EthStakingEthRedeemResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1EthStakingEthRedeemResponse](src/Binance/Models/SapiV1EthStakingEthRedeemResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[RedeemEthTradeError](Errors/RedeemEthTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[RedeemEthTradeError](src/Binance/Errors/RedeemEthTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -16782,7 +16782,7 @@ catch (ApiException<SubscribeEthStakingV2TradeError> ex)
 <dl>
 <dd>
 
-<code>[SubscribeEthStakingV2TradeRequest](Requests/Staking/SubscribeEthStakingV2TradeRequest.cs)</code>
+<code>[SubscribeEthStakingV2TradeRequest](src/Binance/Requests/Staking/SubscribeEthStakingV2TradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -16792,9 +16792,9 @@ catch (ApiException<SubscribeEthStakingV2TradeError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV2EthStakingEthStakeResponse](Models/SapiV2EthStakingEthStakeResponse.cs)</code>
+**OnSuccess**: <code>[SapiV2EthStakingEthStakeResponse](src/Binance/Models/SapiV2EthStakingEthStakeResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SubscribeEthStakingV2TradeError](Errors/SubscribeEthStakingV2TradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[SubscribeEthStakingV2TradeError](src/Binance/Errors/SubscribeEthStakingV2TradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -16856,7 +16856,7 @@ catch (ApiException<WrapBethTradeError> ex)
 <dl>
 <dd>
 
-<code>[WrapBethTradeRequest](Requests/Staking/WrapBethTradeRequest.cs)</code>
+<code>[WrapBethTradeRequest](src/Binance/Requests/Staking/WrapBethTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -16866,9 +16866,9 @@ catch (ApiException<WrapBethTradeError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1EthStakingWbethWrapResponse](Models/SapiV1EthStakingWbethWrapResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1EthStakingWbethWrapResponse](src/Binance/Models/SapiV1EthStakingWbethWrapResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[WrapBethTradeError](Errors/WrapBethTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[WrapBethTradeError](src/Binance/Errors/WrapBethTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -16880,7 +16880,7 @@ catch (ApiException<WrapBethTradeError> ex)
 
 ## Stream
 
-> Source: [Stream](Api/Stream.cs)
+> Source: [Stream](src/Binance/Api/Stream.cs)
 
 <details>
 <summary><code>Task&lt;object&gt; CloseAListenKeyUserStream(CloseAListenKeyUserStreamRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
@@ -16931,7 +16931,7 @@ catch (ApiException<CloseAListenKeyUserStreamError> ex)
 <dl>
 <dd>
 
-<code>[CloseAListenKeyUserStreamRequest](Requests/Stream/CloseAListenKeyUserStreamRequest.cs)</code>
+<code>[CloseAListenKeyUserStreamRequest](src/Binance/Requests/Stream/CloseAListenKeyUserStreamRequest.cs)</code>
 
 </dd>
 </dl>
@@ -16943,7 +16943,7 @@ catch (ApiException<CloseAListenKeyUserStreamError> ex)
 
 **OnSuccess**: <code>object</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CloseAListenKeyUserStreamError](Errors/CloseAListenKeyUserStreamError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[CloseAListenKeyUserStreamError](src/Binance/Errors/CloseAListenKeyUserStreamError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -16997,9 +16997,9 @@ catch (ApiException<RawError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ApiV3UserDataStreamResponse](Models/ApiV3UserDataStreamResponse.cs)</code>
+**OnSuccess**: <code>[ApiV3UserDataStreamResponse](src/Binance/Models/ApiV3UserDataStreamResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[RawError](Core/ErrorResponse/RawError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[RawError](src/Binance/Core/ErrorResponse/RawError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -17058,7 +17058,7 @@ catch (ApiException<PingKeepAliveAListenKeyUserStreamError> ex)
 <dl>
 <dd>
 
-<code>[PingKeepAliveAListenKeyUserStreamRequest](Requests/Stream/PingKeepAliveAListenKeyUserStreamRequest.cs)</code>
+<code>[PingKeepAliveAListenKeyUserStreamRequest](src/Binance/Requests/Stream/PingKeepAliveAListenKeyUserStreamRequest.cs)</code>
 
 </dd>
 </dl>
@@ -17070,7 +17070,7 @@ catch (ApiException<PingKeepAliveAListenKeyUserStreamError> ex)
 
 **OnSuccess**: <code>object</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[PingKeepAliveAListenKeyUserStreamError](Errors/PingKeepAliveAListenKeyUserStreamError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[PingKeepAliveAListenKeyUserStreamError](src/Binance/Errors/PingKeepAliveAListenKeyUserStreamError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -17082,7 +17082,7 @@ catch (ApiException<PingKeepAliveAListenKeyUserStreamError> ex)
 
 ## SubAccountApi
 
-> Source: [SubAccountApi](Api/SubAccountApi.cs)
+> Source: [SubAccountApi](src/Binance/Api/SubAccountApi.cs)
 
 <details>
 <summary><code>Task&lt;SapiV1SubAccountVirtualSubAccountResponse&gt; CreateAVirtualSubAccountForMasterAccount(CreateAVirtualSubAccountForMasterAccountRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
@@ -17138,7 +17138,7 @@ catch (ApiException<CreateAVirtualSubAccountForMasterAccountError> ex)
 <dl>
 <dd>
 
-<code>[CreateAVirtualSubAccountForMasterAccountRequest](Requests/SubAccountApi/CreateAVirtualSubAccountForMasterAccountRequest.cs)</code>
+<code>[CreateAVirtualSubAccountForMasterAccountRequest](src/Binance/Requests/SubAccountApi/CreateAVirtualSubAccountForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -17148,9 +17148,9 @@ catch (ApiException<CreateAVirtualSubAccountForMasterAccountError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1SubAccountVirtualSubAccountResponse](Models/SapiV1SubAccountVirtualSubAccountResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1SubAccountVirtualSubAccountResponse](src/Binance/Models/SapiV1SubAccountVirtualSubAccountResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CreateAVirtualSubAccountForMasterAccountError](Errors/CreateAVirtualSubAccountForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[CreateAVirtualSubAccountForMasterAccountError](src/Binance/Errors/CreateAVirtualSubAccountForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -17212,7 +17212,7 @@ catch (ApiException<DeleteIpListForASubAccountApiKeyForMasterAccountError> ex)
 <dl>
 <dd>
 
-<code>[DeleteIpListForASubAccountApiKeyForMasterAccountRequest](Requests/SubAccountApi/DeleteIpListForASubAccountApiKeyForMasterAccountRequest.cs)</code>
+<code>[DeleteIpListForASubAccountApiKeyForMasterAccountRequest](src/Binance/Requests/SubAccountApi/DeleteIpListForASubAccountApiKeyForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -17222,9 +17222,9 @@ catch (ApiException<DeleteIpListForASubAccountApiKeyForMasterAccountError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1SubAccountSubAccountApiIpRestrictionIpListResponse](Models/SapiV1SubAccountSubAccountApiIpRestrictionIpListResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1SubAccountSubAccountApiIpRestrictionIpListResponse](src/Binance/Models/SapiV1SubAccountSubAccountApiIpRestrictionIpListResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[DeleteIpListForASubAccountApiKeyForMasterAccountError](Errors/DeleteIpListForASubAccountApiKeyForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[DeleteIpListForASubAccountApiKeyForMasterAccountError](src/Binance/Errors/DeleteIpListForASubAccountApiKeyForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -17287,7 +17287,7 @@ catch (ApiException<DepositAssetsIntoTheManagedSubAccountForInvestorMasterAccoun
 <dl>
 <dd>
 
-<code>[DepositAssetsIntoTheManagedSubAccountForInvestorMasterAccountRequest](Requests/SubAccountApi/DepositAssetsIntoTheManagedSubAccountForInvestorMasterAccountRequest.cs)</code>
+<code>[DepositAssetsIntoTheManagedSubAccountForInvestorMasterAccountRequest](src/Binance/Requests/SubAccountApi/DepositAssetsIntoTheManagedSubAccountForInvestorMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -17297,9 +17297,9 @@ catch (ApiException<DepositAssetsIntoTheManagedSubAccountForInvestorMasterAccoun
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1ManagedSubaccountDepositResponse](Models/SapiV1ManagedSubaccountDepositResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1ManagedSubaccountDepositResponse](src/Binance/Models/SapiV1ManagedSubaccountDepositResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[DepositAssetsIntoTheManagedSubAccountForInvestorMasterAccountError](Errors/DepositAssetsIntoTheManagedSubAccountForInvestorMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[DepositAssetsIntoTheManagedSubAccountForInvestorMasterAccountError](src/Binance/Errors/DepositAssetsIntoTheManagedSubAccountForInvestorMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -17360,7 +17360,7 @@ catch (ApiException<DetailOnSubAccountSFuturesAccountForMasterAccountError> ex)
 <dl>
 <dd>
 
-<code>[DetailOnSubAccountSFuturesAccountForMasterAccountRequest](Requests/SubAccountApi/DetailOnSubAccountSFuturesAccountForMasterAccountRequest.cs)</code>
+<code>[DetailOnSubAccountSFuturesAccountForMasterAccountRequest](src/Binance/Requests/SubAccountApi/DetailOnSubAccountSFuturesAccountForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -17370,9 +17370,9 @@ catch (ApiException<DetailOnSubAccountSFuturesAccountForMasterAccountError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1SubAccountFuturesAccountResponse](Models/SapiV1SubAccountFuturesAccountResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1SubAccountFuturesAccountResponse](src/Binance/Models/SapiV1SubAccountFuturesAccountResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[DetailOnSubAccountSFuturesAccountForMasterAccountError](Errors/DetailOnSubAccountSFuturesAccountForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[DetailOnSubAccountSFuturesAccountForMasterAccountError](src/Binance/Errors/DetailOnSubAccountSFuturesAccountForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -17434,7 +17434,7 @@ catch (ApiException<DetailOnSubAccountSFuturesAccountV2ForMasterAccountError> ex
 <dl>
 <dd>
 
-<code>[DetailOnSubAccountSFuturesAccountV2ForMasterAccountRequest](Requests/SubAccountApi/DetailOnSubAccountSFuturesAccountV2ForMasterAccountRequest.cs)</code>
+<code>[DetailOnSubAccountSFuturesAccountV2ForMasterAccountRequest](src/Binance/Requests/SubAccountApi/DetailOnSubAccountSFuturesAccountV2ForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -17444,9 +17444,9 @@ catch (ApiException<DetailOnSubAccountSFuturesAccountV2ForMasterAccountError> ex
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV2SubAccountFuturesAccountResponse](Models/AnyOf/SapiV2SubAccountFuturesAccountResponse.cs)</code>
+**OnSuccess**: <code>[SapiV2SubAccountFuturesAccountResponse](src/Binance/Models/AnyOf/SapiV2SubAccountFuturesAccountResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[DetailOnSubAccountSFuturesAccountV2ForMasterAccountError](Errors/DetailOnSubAccountSFuturesAccountV2ForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[DetailOnSubAccountSFuturesAccountV2ForMasterAccountError](src/Binance/Errors/DetailOnSubAccountSFuturesAccountV2ForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -17507,7 +17507,7 @@ catch (ApiException<DetailOnSubAccountSMarginAccountForMasterAccountError> ex)
 <dl>
 <dd>
 
-<code>[DetailOnSubAccountSMarginAccountForMasterAccountRequest](Requests/SubAccountApi/DetailOnSubAccountSMarginAccountForMasterAccountRequest.cs)</code>
+<code>[DetailOnSubAccountSMarginAccountForMasterAccountRequest](src/Binance/Requests/SubAccountApi/DetailOnSubAccountSMarginAccountForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -17517,9 +17517,9 @@ catch (ApiException<DetailOnSubAccountSMarginAccountForMasterAccountError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1SubAccountMarginAccountResponse](Models/SapiV1SubAccountMarginAccountResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1SubAccountMarginAccountResponse](src/Binance/Models/SapiV1SubAccountMarginAccountResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[DetailOnSubAccountSMarginAccountForMasterAccountError](Errors/DetailOnSubAccountSMarginAccountForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[DetailOnSubAccountSMarginAccountForMasterAccountError](src/Binance/Errors/DetailOnSubAccountSMarginAccountForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -17580,7 +17580,7 @@ catch (ApiException<EnableFuturesForSubAccountForMasterAccountError> ex)
 <dl>
 <dd>
 
-<code>[EnableFuturesForSubAccountForMasterAccountRequest](Requests/SubAccountApi/EnableFuturesForSubAccountForMasterAccountRequest.cs)</code>
+<code>[EnableFuturesForSubAccountForMasterAccountRequest](src/Binance/Requests/SubAccountApi/EnableFuturesForSubAccountForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -17590,9 +17590,9 @@ catch (ApiException<EnableFuturesForSubAccountForMasterAccountError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1SubAccountFuturesEnableResponse](Models/SapiV1SubAccountFuturesEnableResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1SubAccountFuturesEnableResponse](src/Binance/Models/SapiV1SubAccountFuturesEnableResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[EnableFuturesForSubAccountForMasterAccountError](Errors/EnableFuturesForSubAccountForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[EnableFuturesForSubAccountForMasterAccountError](src/Binance/Errors/EnableFuturesForSubAccountForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -17654,7 +17654,7 @@ catch (ApiException<EnableLeverageTokenForSubAccountForMasterAccountError> ex)
 <dl>
 <dd>
 
-<code>[EnableLeverageTokenForSubAccountForMasterAccountRequest](Requests/SubAccountApi/EnableLeverageTokenForSubAccountForMasterAccountRequest.cs)</code>
+<code>[EnableLeverageTokenForSubAccountForMasterAccountRequest](src/Binance/Requests/SubAccountApi/EnableLeverageTokenForSubAccountForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -17664,9 +17664,9 @@ catch (ApiException<EnableLeverageTokenForSubAccountForMasterAccountError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1SubAccountBlvtEnableResponse](Models/SapiV1SubAccountBlvtEnableResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1SubAccountBlvtEnableResponse](src/Binance/Models/SapiV1SubAccountBlvtEnableResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[EnableLeverageTokenForSubAccountForMasterAccountError](Errors/EnableLeverageTokenForSubAccountForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[EnableLeverageTokenForSubAccountForMasterAccountError](src/Binance/Errors/EnableLeverageTokenForSubAccountForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -17727,7 +17727,7 @@ catch (ApiException<EnableMarginForSubAccountForMasterAccountError> ex)
 <dl>
 <dd>
 
-<code>[EnableMarginForSubAccountForMasterAccountRequest](Requests/SubAccountApi/EnableMarginForSubAccountForMasterAccountRequest.cs)</code>
+<code>[EnableMarginForSubAccountForMasterAccountRequest](src/Binance/Requests/SubAccountApi/EnableMarginForSubAccountForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -17737,9 +17737,9 @@ catch (ApiException<EnableMarginForSubAccountForMasterAccountError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1SubAccountMarginEnableResponse](Models/SapiV1SubAccountMarginEnableResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1SubAccountMarginEnableResponse](src/Binance/Models/SapiV1SubAccountMarginEnableResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[EnableMarginForSubAccountForMasterAccountError](Errors/EnableMarginForSubAccountForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[EnableMarginForSubAccountForMasterAccountError](src/Binance/Errors/EnableMarginForSubAccountForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -17802,7 +17802,7 @@ catch (ApiException<EnableOptionsForSubAccountForMasterAccountUserDataError> ex)
 <dl>
 <dd>
 
-<code>[EnableOptionsForSubAccountForMasterAccountUserDataRequest](Requests/SubAccountApi/EnableOptionsForSubAccountForMasterAccountUserDataRequest.cs)</code>
+<code>[EnableOptionsForSubAccountForMasterAccountUserDataRequest](src/Binance/Requests/SubAccountApi/EnableOptionsForSubAccountForMasterAccountUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -17812,9 +17812,9 @@ catch (ApiException<EnableOptionsForSubAccountForMasterAccountUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1SubAccountEoptionsEnableResponse](Models/SapiV1SubAccountEoptionsEnableResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1SubAccountEoptionsEnableResponse](src/Binance/Models/SapiV1SubAccountEoptionsEnableResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[EnableOptionsForSubAccountForMasterAccountUserDataError](Errors/EnableOptionsForSubAccountForMasterAccountUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[EnableOptionsForSubAccountForMasterAccountUserDataError](src/Binance/Errors/EnableOptionsForSubAccountForMasterAccountUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -17875,7 +17875,7 @@ catch (ApiException<FuturesPositionRiskOfSubAccountForMasterAccountError> ex)
 <dl>
 <dd>
 
-<code>[FuturesPositionRiskOfSubAccountForMasterAccountRequest](Requests/SubAccountApi/FuturesPositionRiskOfSubAccountForMasterAccountRequest.cs)</code>
+<code>[FuturesPositionRiskOfSubAccountForMasterAccountRequest](src/Binance/Requests/SubAccountApi/FuturesPositionRiskOfSubAccountForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -17885,9 +17885,9 @@ catch (ApiException<FuturesPositionRiskOfSubAccountForMasterAccountError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1SubAccountFuturesPositionRiskResponse](Models/SapiV1SubAccountFuturesPositionRiskResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1SubAccountFuturesPositionRiskResponse](src/Binance/Models/SapiV1SubAccountFuturesPositionRiskResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[FuturesPositionRiskOfSubAccountForMasterAccountError](Errors/FuturesPositionRiskOfSubAccountForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[FuturesPositionRiskOfSubAccountForMasterAccountError](src/Binance/Errors/FuturesPositionRiskOfSubAccountForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -17949,7 +17949,7 @@ catch (ApiException<FuturesPositionRiskOfSubAccountV2ForMasterAccountError> ex)
 <dl>
 <dd>
 
-<code>[FuturesPositionRiskOfSubAccountV2ForMasterAccountRequest](Requests/SubAccountApi/FuturesPositionRiskOfSubAccountV2ForMasterAccountRequest.cs)</code>
+<code>[FuturesPositionRiskOfSubAccountV2ForMasterAccountRequest](src/Binance/Requests/SubAccountApi/FuturesPositionRiskOfSubAccountV2ForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -17959,9 +17959,9 @@ catch (ApiException<FuturesPositionRiskOfSubAccountV2ForMasterAccountError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV2SubAccountFuturesPositionRiskResponse](Models/AnyOf/SapiV2SubAccountFuturesPositionRiskResponse.cs)</code>
+**OnSuccess**: <code>[SapiV2SubAccountFuturesPositionRiskResponse](src/Binance/Models/AnyOf/SapiV2SubAccountFuturesPositionRiskResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[FuturesPositionRiskOfSubAccountV2ForMasterAccountError](Errors/FuturesPositionRiskOfSubAccountV2ForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[FuturesPositionRiskOfSubAccountV2ForMasterAccountError](src/Binance/Errors/FuturesPositionRiskOfSubAccountV2ForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -18023,7 +18023,7 @@ catch (ApiException<GetIpRestrictionForASubAccountApiKeyForMasterAccountError> e
 <dl>
 <dd>
 
-<code>[GetIpRestrictionForASubAccountApiKeyForMasterAccountRequest](Requests/SubAccountApi/GetIpRestrictionForASubAccountApiKeyForMasterAccountRequest.cs)</code>
+<code>[GetIpRestrictionForASubAccountApiKeyForMasterAccountRequest](src/Binance/Requests/SubAccountApi/GetIpRestrictionForASubAccountApiKeyForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -18033,9 +18033,9 @@ catch (ApiException<GetIpRestrictionForASubAccountApiKeyForMasterAccountError> e
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1SubAccountSubAccountApiIpRestrictionResponse](Models/SapiV1SubAccountSubAccountApiIpRestrictionResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1SubAccountSubAccountApiIpRestrictionResponse](src/Binance/Models/SapiV1SubAccountSubAccountApiIpRestrictionResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetIpRestrictionForASubAccountApiKeyForMasterAccountError](Errors/GetIpRestrictionForASubAccountApiKeyForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetIpRestrictionForASubAccountApiKeyForMasterAccountError](src/Binance/Errors/GetIpRestrictionForASubAccountApiKeyForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -18100,7 +18100,7 @@ catch (ApiException<GetManagedSubAccountDepositAddressForInvestorMasterAccountEr
 <dl>
 <dd>
 
-<code>[GetManagedSubAccountDepositAddressForInvestorMasterAccountRequest](Requests/SubAccountApi/GetManagedSubAccountDepositAddressForInvestorMasterAccountRequest.cs)</code>
+<code>[GetManagedSubAccountDepositAddressForInvestorMasterAccountRequest](src/Binance/Requests/SubAccountApi/GetManagedSubAccountDepositAddressForInvestorMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -18110,9 +18110,9 @@ catch (ApiException<GetManagedSubAccountDepositAddressForInvestorMasterAccountEr
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1ManagedSubaccountDepositAddressResponse](Models/SapiV1ManagedSubaccountDepositAddressResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1ManagedSubaccountDepositAddressResponse](src/Binance/Models/SapiV1ManagedSubaccountDepositAddressResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetManagedSubAccountDepositAddressForInvestorMasterAccountError](Errors/GetManagedSubAccountDepositAddressForInvestorMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetManagedSubAccountDepositAddressForInvestorMasterAccountError](src/Binance/Errors/GetManagedSubAccountDepositAddressForInvestorMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -18173,7 +18173,7 @@ catch (ApiException<ManagedSubAccountAssetDetailsForInvestorMasterAccountError> 
 <dl>
 <dd>
 
-<code>[ManagedSubAccountAssetDetailsForInvestorMasterAccountRequest](Requests/SubAccountApi/ManagedSubAccountAssetDetailsForInvestorMasterAccountRequest.cs)</code>
+<code>[ManagedSubAccountAssetDetailsForInvestorMasterAccountRequest](src/Binance/Requests/SubAccountApi/ManagedSubAccountAssetDetailsForInvestorMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -18183,9 +18183,9 @@ catch (ApiException<ManagedSubAccountAssetDetailsForInvestorMasterAccountError> 
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1ManagedSubaccountAssetResponse](Models/SapiV1ManagedSubaccountAssetResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1ManagedSubaccountAssetResponse](src/Binance/Models/SapiV1ManagedSubaccountAssetResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[ManagedSubAccountAssetDetailsForInvestorMasterAccountError](Errors/ManagedSubAccountAssetDetailsForInvestorMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[ManagedSubAccountAssetDetailsForInvestorMasterAccountError](src/Binance/Errors/ManagedSubAccountAssetDetailsForInvestorMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -18251,7 +18251,7 @@ catch (ApiException<ManagedSubAccountSnapshotForInvestorMasterAccountError> ex)
 <dl>
 <dd>
 
-<code>[ManagedSubAccountSnapshotForInvestorMasterAccountRequest](Requests/SubAccountApi/ManagedSubAccountSnapshotForInvestorMasterAccountRequest.cs)</code>
+<code>[ManagedSubAccountSnapshotForInvestorMasterAccountRequest](src/Binance/Requests/SubAccountApi/ManagedSubAccountSnapshotForInvestorMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -18261,9 +18261,9 @@ catch (ApiException<ManagedSubAccountSnapshotForInvestorMasterAccountError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1ManagedSubaccountAccountSnapshotResponse](Models/SapiV1ManagedSubaccountAccountSnapshotResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1ManagedSubaccountAccountSnapshotResponse](src/Binance/Models/SapiV1ManagedSubaccountAccountSnapshotResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[ManagedSubAccountSnapshotForInvestorMasterAccountError](Errors/ManagedSubAccountSnapshotForInvestorMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[ManagedSubAccountSnapshotForInvestorMasterAccountError](src/Binance/Errors/ManagedSubAccountSnapshotForInvestorMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -18327,7 +18327,7 @@ catch (ApiException<MarginTransferForSubAccountForMasterAccountError> ex)
 <dl>
 <dd>
 
-<code>[MarginTransferForSubAccountForMasterAccountRequest](Requests/SubAccountApi/MarginTransferForSubAccountForMasterAccountRequest.cs)</code>
+<code>[MarginTransferForSubAccountForMasterAccountRequest](src/Binance/Requests/SubAccountApi/MarginTransferForSubAccountForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -18337,9 +18337,9 @@ catch (ApiException<MarginTransferForSubAccountForMasterAccountError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1SubAccountMarginTransferResponse](Models/SapiV1SubAccountMarginTransferResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1SubAccountMarginTransferResponse](src/Binance/Models/SapiV1SubAccountMarginTransferResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[MarginTransferForSubAccountForMasterAccountError](Errors/MarginTransferForSubAccountForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[MarginTransferForSubAccountForMasterAccountError](src/Binance/Errors/MarginTransferForSubAccountForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -18406,7 +18406,7 @@ catch (ApiException<QueryManagedSubAccountTransferLogForInvestorMasterAccountErr
 <dl>
 <dd>
 
-<code>[QueryManagedSubAccountTransferLogForInvestorMasterAccountRequest](Requests/SubAccountApi/QueryManagedSubAccountTransferLogForInvestorMasterAccountRequest.cs)</code>
+<code>[QueryManagedSubAccountTransferLogForInvestorMasterAccountRequest](src/Binance/Requests/SubAccountApi/QueryManagedSubAccountTransferLogForInvestorMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -18416,9 +18416,9 @@ catch (ApiException<QueryManagedSubAccountTransferLogForInvestorMasterAccountErr
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1ManagedSubaccountQueryTransLogForInvestorResponse](Models/SapiV1ManagedSubaccountQueryTransLogForInvestorResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1ManagedSubaccountQueryTransLogForInvestorResponse](src/Binance/Models/SapiV1ManagedSubaccountQueryTransLogForInvestorResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryManagedSubAccountTransferLogForInvestorMasterAccountError](Errors/QueryManagedSubAccountTransferLogForInvestorMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryManagedSubAccountTransferLogForInvestorMasterAccountError](src/Binance/Errors/QueryManagedSubAccountTransferLogForInvestorMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -18485,7 +18485,7 @@ catch (ApiException<QueryManagedSubAccountTransferLogForTradingTeamMasterAccount
 <dl>
 <dd>
 
-<code>[QueryManagedSubAccountTransferLogForTradingTeamMasterAccountRequest](Requests/SubAccountApi/QueryManagedSubAccountTransferLogForTradingTeamMasterAccountRequest.cs)</code>
+<code>[QueryManagedSubAccountTransferLogForTradingTeamMasterAccountRequest](src/Binance/Requests/SubAccountApi/QueryManagedSubAccountTransferLogForTradingTeamMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -18495,9 +18495,9 @@ catch (ApiException<QueryManagedSubAccountTransferLogForTradingTeamMasterAccount
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1ManagedSubaccountQueryTransLogForTradeParentResponse](Models/SapiV1ManagedSubaccountQueryTransLogForTradeParentResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1ManagedSubaccountQueryTransLogForTradeParentResponse](src/Binance/Models/SapiV1ManagedSubaccountQueryTransLogForTradeParentResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryManagedSubAccountTransferLogForTradingTeamMasterAccountError](Errors/QueryManagedSubAccountTransferLogForTradingTeamMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryManagedSubAccountTransferLogForTradingTeamMasterAccountError](src/Binance/Errors/QueryManagedSubAccountTransferLogForTradingTeamMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -18563,7 +18563,7 @@ catch (ApiException<QueryManagedSubAccountTransferLogForTradingTeamSubAccountUse
 <dl>
 <dd>
 
-<code>[QueryManagedSubAccountTransferLogForTradingTeamSubAccountUserDataRequest](Requests/SubAccountApi/QueryManagedSubAccountTransferLogForTradingTeamSubAccountUserDataRequest.cs)</code>
+<code>[QueryManagedSubAccountTransferLogForTradingTeamSubAccountUserDataRequest](src/Binance/Requests/SubAccountApi/QueryManagedSubAccountTransferLogForTradingTeamSubAccountUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -18573,9 +18573,9 @@ catch (ApiException<QueryManagedSubAccountTransferLogForTradingTeamSubAccountUse
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1ManagedSubaccountQueryTransLogResponse](Models/SapiV1ManagedSubaccountQueryTransLogResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1ManagedSubaccountQueryTransLogResponse](src/Binance/Models/SapiV1ManagedSubaccountQueryTransLogResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryManagedSubAccountTransferLogForTradingTeamSubAccountUserDataError](Errors/QueryManagedSubAccountTransferLogForTradingTeamSubAccountUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryManagedSubAccountTransferLogForTradingTeamSubAccountUserDataError](src/Binance/Errors/QueryManagedSubAccountTransferLogForTradingTeamSubAccountUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -18636,7 +18636,7 @@ catch (ApiException<QueryManagedSubAccountFuturesAssetDetailsForInvestorMasterAc
 <dl>
 <dd>
 
-<code>[QueryManagedSubAccountFuturesAssetDetailsForInvestorMasterAccountRequest](Requests/SubAccountApi/QueryManagedSubAccountFuturesAssetDetailsForInvestorMasterAccountRequest.cs)</code>
+<code>[QueryManagedSubAccountFuturesAssetDetailsForInvestorMasterAccountRequest](src/Binance/Requests/SubAccountApi/QueryManagedSubAccountFuturesAssetDetailsForInvestorMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -18646,9 +18646,9 @@ catch (ApiException<QueryManagedSubAccountFuturesAssetDetailsForInvestorMasterAc
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1ManagedSubaccountFetchFutureAssetResponse](Models/SapiV1ManagedSubaccountFetchFutureAssetResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1ManagedSubaccountFetchFutureAssetResponse](src/Binance/Models/SapiV1ManagedSubaccountFetchFutureAssetResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryManagedSubAccountFuturesAssetDetailsForInvestorMasterAccountError](Errors/QueryManagedSubAccountFuturesAssetDetailsForInvestorMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryManagedSubAccountFuturesAssetDetailsForInvestorMasterAccountError](src/Binance/Errors/QueryManagedSubAccountFuturesAssetDetailsForInvestorMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -18713,7 +18713,7 @@ catch (ApiException<QueryManagedSubAccountListForInvestorError> ex)
 <dl>
 <dd>
 
-<code>[QueryManagedSubAccountListForInvestorRequest](Requests/SubAccountApi/QueryManagedSubAccountListForInvestorRequest.cs)</code>
+<code>[QueryManagedSubAccountListForInvestorRequest](src/Binance/Requests/SubAccountApi/QueryManagedSubAccountListForInvestorRequest.cs)</code>
 
 </dd>
 </dl>
@@ -18723,9 +18723,9 @@ catch (ApiException<QueryManagedSubAccountListForInvestorError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1ManagedSubaccountInfoResponse](Models/SapiV1ManagedSubaccountInfoResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1ManagedSubaccountInfoResponse](src/Binance/Models/SapiV1ManagedSubaccountInfoResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryManagedSubAccountListForInvestorError](Errors/QueryManagedSubAccountListForInvestorError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryManagedSubAccountListForInvestorError](src/Binance/Errors/QueryManagedSubAccountListForInvestorError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -18786,7 +18786,7 @@ catch (ApiException<QueryManagedSubAccountMarginAssetDetailsForInvestorMasterAcc
 <dl>
 <dd>
 
-<code>[QueryManagedSubAccountMarginAssetDetailsForInvestorMasterAccountRequest](Requests/SubAccountApi/QueryManagedSubAccountMarginAssetDetailsForInvestorMasterAccountRequest.cs)</code>
+<code>[QueryManagedSubAccountMarginAssetDetailsForInvestorMasterAccountRequest](src/Binance/Requests/SubAccountApi/QueryManagedSubAccountMarginAssetDetailsForInvestorMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -18796,9 +18796,9 @@ catch (ApiException<QueryManagedSubAccountMarginAssetDetailsForInvestorMasterAcc
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1ManagedSubaccountMarginAssetResponse](Models/SapiV1ManagedSubaccountMarginAssetResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1ManagedSubaccountMarginAssetResponse](src/Binance/Models/SapiV1ManagedSubaccountMarginAssetResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryManagedSubAccountMarginAssetDetailsForInvestorMasterAccountError](Errors/QueryManagedSubAccountMarginAssetDetailsForInvestorMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryManagedSubAccountMarginAssetDetailsForInvestorMasterAccountError](src/Binance/Errors/QueryManagedSubAccountMarginAssetDetailsForInvestorMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -18861,7 +18861,7 @@ catch (ApiException<QuerySubAccountAssetsForMasterAccountError> ex)
 <dl>
 <dd>
 
-<code>[QuerySubAccountAssetsForMasterAccountRequest](Requests/SubAccountApi/QuerySubAccountAssetsForMasterAccountRequest.cs)</code>
+<code>[QuerySubAccountAssetsForMasterAccountRequest](src/Binance/Requests/SubAccountApi/QuerySubAccountAssetsForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -18871,9 +18871,9 @@ catch (ApiException<QuerySubAccountAssetsForMasterAccountError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV4SubAccountAssetsResponse](Models/SapiV4SubAccountAssetsResponse.cs)</code>
+**OnSuccess**: <code>[SapiV4SubAccountAssetsResponse](src/Binance/Models/SapiV4SubAccountAssetsResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QuerySubAccountAssetsForMasterAccountError](Errors/QuerySubAccountAssetsForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QuerySubAccountAssetsForMasterAccountError](src/Binance/Errors/QuerySubAccountAssetsForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -18935,7 +18935,7 @@ catch (ApiException<QuerySubAccountListForMasterAccountError> ex)
 <dl>
 <dd>
 
-<code>[QuerySubAccountListForMasterAccountRequest](Requests/SubAccountApi/QuerySubAccountListForMasterAccountRequest.cs)</code>
+<code>[QuerySubAccountListForMasterAccountRequest](src/Binance/Requests/SubAccountApi/QuerySubAccountListForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -18945,9 +18945,9 @@ catch (ApiException<QuerySubAccountListForMasterAccountError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1SubAccountListResponse](Models/SapiV1SubAccountListResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1SubAccountListResponse](src/Binance/Models/SapiV1SubAccountListResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QuerySubAccountListForMasterAccountError](Errors/QuerySubAccountListForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QuerySubAccountListForMasterAccountError](src/Binance/Errors/QuerySubAccountListForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -19010,7 +19010,7 @@ catch (ApiException<QuerySubAccountTransactionStatisticsForMasterAccountError> e
 <dl>
 <dd>
 
-<code>[QuerySubAccountTransactionStatisticsForMasterAccountRequest](Requests/SubAccountApi/QuerySubAccountTransactionStatisticsForMasterAccountRequest.cs)</code>
+<code>[QuerySubAccountTransactionStatisticsForMasterAccountRequest](src/Binance/Requests/SubAccountApi/QuerySubAccountTransactionStatisticsForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -19020,9 +19020,9 @@ catch (ApiException<QuerySubAccountTransactionStatisticsForMasterAccountError> e
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1SubAccountTransactionStatisticsResponse](Models/SapiV1SubAccountTransactionStatisticsResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1SubAccountTransactionStatisticsResponse](src/Binance/Models/SapiV1SubAccountTransactionStatisticsResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QuerySubAccountTransactionStatisticsForMasterAccountError](Errors/QuerySubAccountTransactionStatisticsForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QuerySubAccountTransactionStatisticsForMasterAccountError](src/Binance/Errors/QuerySubAccountTransactionStatisticsForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -19085,7 +19085,7 @@ catch (ApiException<SubAccountAssetsForMasterAccountError> ex)
 <dl>
 <dd>
 
-<code>[SubAccountAssetsForMasterAccountRequest](Requests/SubAccountApi/SubAccountAssetsForMasterAccountRequest.cs)</code>
+<code>[SubAccountAssetsForMasterAccountRequest](src/Binance/Requests/SubAccountApi/SubAccountAssetsForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -19095,9 +19095,9 @@ catch (ApiException<SubAccountAssetsForMasterAccountError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV3SubAccountAssetsResponse](Models/SapiV3SubAccountAssetsResponse.cs)</code>
+**OnSuccess**: <code>[SapiV3SubAccountAssetsResponse](src/Binance/Models/SapiV3SubAccountAssetsResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SubAccountAssetsForMasterAccountError](Errors/SubAccountAssetsForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[SubAccountAssetsForMasterAccountError](src/Binance/Errors/SubAccountAssetsForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -19161,7 +19161,7 @@ catch (ApiException<SubAccountDepositHistoryForMasterAccountError> ex)
 <dl>
 <dd>
 
-<code>[SubAccountDepositHistoryForMasterAccountRequest](Requests/SubAccountApi/SubAccountDepositHistoryForMasterAccountRequest.cs)</code>
+<code>[SubAccountDepositHistoryForMasterAccountRequest](src/Binance/Requests/SubAccountApi/SubAccountDepositHistoryForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -19171,9 +19171,9 @@ catch (ApiException<SubAccountDepositHistoryForMasterAccountError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1CapitalDepositSubHisrecResponse](Models/SapiV1CapitalDepositSubHisrecResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1CapitalDepositSubHisrecResponse](src/Binance/Models/SapiV1CapitalDepositSubHisrecResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SubAccountDepositHistoryForMasterAccountError](Errors/SubAccountDepositHistoryForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[SubAccountDepositHistoryForMasterAccountError](src/Binance/Errors/SubAccountDepositHistoryForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -19240,7 +19240,7 @@ catch (ApiException<SubAccountFuturesAssetTransferForMasterAccountError> ex)
 <dl>
 <dd>
 
-<code>[SubAccountFuturesAssetTransferForMasterAccountRequest](Requests/SubAccountApi/SubAccountFuturesAssetTransferForMasterAccountRequest.cs)</code>
+<code>[SubAccountFuturesAssetTransferForMasterAccountRequest](src/Binance/Requests/SubAccountApi/SubAccountFuturesAssetTransferForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -19250,9 +19250,9 @@ catch (ApiException<SubAccountFuturesAssetTransferForMasterAccountError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1SubAccountFuturesInternalTransferResponse1](Models/SapiV1SubAccountFuturesInternalTransferResponse1.cs)</code>
+**OnSuccess**: <code>[SapiV1SubAccountFuturesInternalTransferResponse1](src/Binance/Models/SapiV1SubAccountFuturesInternalTransferResponse1.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SubAccountFuturesAssetTransferForMasterAccountError](Errors/SubAccountFuturesAssetTransferForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[SubAccountFuturesAssetTransferForMasterAccountError](src/Binance/Errors/SubAccountFuturesAssetTransferForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -19315,7 +19315,7 @@ catch (ApiException<SubAccountFuturesAssetTransferHistoryForMasterAccountError> 
 <dl>
 <dd>
 
-<code>[SubAccountFuturesAssetTransferHistoryForMasterAccountRequest](Requests/SubAccountApi/SubAccountFuturesAssetTransferHistoryForMasterAccountRequest.cs)</code>
+<code>[SubAccountFuturesAssetTransferHistoryForMasterAccountRequest](src/Binance/Requests/SubAccountApi/SubAccountFuturesAssetTransferHistoryForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -19325,9 +19325,9 @@ catch (ApiException<SubAccountFuturesAssetTransferHistoryForMasterAccountError> 
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1SubAccountFuturesInternalTransferResponse](Models/SapiV1SubAccountFuturesInternalTransferResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1SubAccountFuturesInternalTransferResponse](src/Binance/Models/SapiV1SubAccountFuturesInternalTransferResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SubAccountFuturesAssetTransferHistoryForMasterAccountError](Errors/SubAccountFuturesAssetTransferHistoryForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[SubAccountFuturesAssetTransferHistoryForMasterAccountError](src/Binance/Errors/SubAccountFuturesAssetTransferHistoryForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -19392,7 +19392,7 @@ catch (ApiException<SubAccountSpotAssetTransferHistoryForMasterAccountError> ex)
 <dl>
 <dd>
 
-<code>[SubAccountSpotAssetTransferHistoryForMasterAccountRequest](Requests/SubAccountApi/SubAccountSpotAssetTransferHistoryForMasterAccountRequest.cs)</code>
+<code>[SubAccountSpotAssetTransferHistoryForMasterAccountRequest](src/Binance/Requests/SubAccountApi/SubAccountSpotAssetTransferHistoryForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -19402,9 +19402,9 @@ catch (ApiException<SubAccountSpotAssetTransferHistoryForMasterAccountError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1SubAccountSubTransferHistoryResponse](Models/SapiV1SubAccountSubTransferHistoryResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1SubAccountSubTransferHistoryResponse](src/Binance/Models/SapiV1SubAccountSubTransferHistoryResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SubAccountSpotAssetTransferHistoryForMasterAccountError](Errors/SubAccountSpotAssetTransferHistoryForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[SubAccountSpotAssetTransferHistoryForMasterAccountError](src/Binance/Errors/SubAccountSpotAssetTransferHistoryForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -19467,7 +19467,7 @@ catch (ApiException<SubAccountSpotAssetsSummaryForMasterAccountError> ex)
 <dl>
 <dd>
 
-<code>[SubAccountSpotAssetsSummaryForMasterAccountRequest](Requests/SubAccountApi/SubAccountSpotAssetsSummaryForMasterAccountRequest.cs)</code>
+<code>[SubAccountSpotAssetsSummaryForMasterAccountRequest](src/Binance/Requests/SubAccountApi/SubAccountSpotAssetsSummaryForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -19477,9 +19477,9 @@ catch (ApiException<SubAccountSpotAssetsSummaryForMasterAccountError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1SubAccountSpotSummaryResponse](Models/SapiV1SubAccountSpotSummaryResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1SubAccountSpotSummaryResponse](src/Binance/Models/SapiV1SubAccountSpotSummaryResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SubAccountSpotAssetsSummaryForMasterAccountError](Errors/SubAccountSpotAssetsSummaryForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[SubAccountSpotAssetsSummaryForMasterAccountError](src/Binance/Errors/SubAccountSpotAssetsSummaryForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -19544,7 +19544,7 @@ catch (ApiException<SubAccountSpotAssetsSummaryForMasterAccount2Error> ex)
 <dl>
 <dd>
 
-<code>[SubAccountSpotAssetsSummaryForMasterAccount2Request](Requests/SubAccountApi/SubAccountSpotAssetsSummaryForMasterAccount2Request.cs)</code>
+<code>[SubAccountSpotAssetsSummaryForMasterAccount2Request](src/Binance/Requests/SubAccountApi/SubAccountSpotAssetsSummaryForMasterAccount2Request.cs)</code>
 
 </dd>
 </dl>
@@ -19554,9 +19554,9 @@ catch (ApiException<SubAccountSpotAssetsSummaryForMasterAccount2Error> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1CapitalDepositSubAddressResponse](Models/SapiV1CapitalDepositSubAddressResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1CapitalDepositSubAddressResponse](src/Binance/Models/SapiV1CapitalDepositSubAddressResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SubAccountSpotAssetsSummaryForMasterAccount2Error](Errors/SubAccountSpotAssetsSummaryForMasterAccount2Error.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[SubAccountSpotAssetsSummaryForMasterAccount2Error](src/Binance/Errors/SubAccountSpotAssetsSummaryForMasterAccount2Error.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -19621,7 +19621,7 @@ catch (ApiException<SubAccountTransferHistoryForSubAccountError> ex)
 <dl>
 <dd>
 
-<code>[SubAccountTransferHistoryForSubAccountRequest](Requests/SubAccountApi/SubAccountTransferHistoryForSubAccountRequest.cs)</code>
+<code>[SubAccountTransferHistoryForSubAccountRequest](src/Binance/Requests/SubAccountApi/SubAccountTransferHistoryForSubAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -19631,9 +19631,9 @@ catch (ApiException<SubAccountTransferHistoryForSubAccountError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1SubAccountTransferSubUserHistoryResponse](Models/SapiV1SubAccountTransferSubUserHistoryResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1SubAccountTransferSubUserHistoryResponse](src/Binance/Models/SapiV1SubAccountTransferSubUserHistoryResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SubAccountTransferHistoryForSubAccountError](Errors/SubAccountTransferHistoryForSubAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[SubAccountTransferHistoryForSubAccountError](src/Binance/Errors/SubAccountTransferHistoryForSubAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -19695,7 +19695,7 @@ catch (ApiException<SubAccountSStatusOnMarginFuturesForMasterAccountError> ex)
 <dl>
 <dd>
 
-<code>[SubAccountSStatusOnMarginFuturesForMasterAccountRequest](Requests/SubAccountApi/SubAccountSStatusOnMarginFuturesForMasterAccountRequest.cs)</code>
+<code>[SubAccountSStatusOnMarginFuturesForMasterAccountRequest](src/Binance/Requests/SubAccountApi/SubAccountSStatusOnMarginFuturesForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -19705,9 +19705,9 @@ catch (ApiException<SubAccountSStatusOnMarginFuturesForMasterAccountError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1SubAccountStatusResponse](Models/SapiV1SubAccountStatusResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1SubAccountStatusResponse](src/Binance/Models/SapiV1SubAccountStatusResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SubAccountSStatusOnMarginFuturesForMasterAccountError](Errors/SubAccountSStatusOnMarginFuturesForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[SubAccountSStatusOnMarginFuturesForMasterAccountError](src/Binance/Errors/SubAccountSStatusOnMarginFuturesForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -19767,7 +19767,7 @@ catch (ApiException<SummaryOfSubAccountSFuturesAccountForMasterAccountError> ex)
 <dl>
 <dd>
 
-<code>[SummaryOfSubAccountSFuturesAccountForMasterAccountRequest](Requests/SubAccountApi/SummaryOfSubAccountSFuturesAccountForMasterAccountRequest.cs)</code>
+<code>[SummaryOfSubAccountSFuturesAccountForMasterAccountRequest](src/Binance/Requests/SubAccountApi/SummaryOfSubAccountSFuturesAccountForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -19777,9 +19777,9 @@ catch (ApiException<SummaryOfSubAccountSFuturesAccountForMasterAccountError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1SubAccountFuturesAccountSummaryResponse](Models/SapiV1SubAccountFuturesAccountSummaryResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1SubAccountFuturesAccountSummaryResponse](src/Binance/Models/SapiV1SubAccountFuturesAccountSummaryResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SummaryOfSubAccountSFuturesAccountForMasterAccountError](Errors/SummaryOfSubAccountSFuturesAccountForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[SummaryOfSubAccountSFuturesAccountForMasterAccountError](src/Binance/Errors/SummaryOfSubAccountSFuturesAccountForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -19841,7 +19841,7 @@ catch (ApiException<SummaryOfSubAccountSFuturesAccountV2ForMasterAccountError> e
 <dl>
 <dd>
 
-<code>[SummaryOfSubAccountSFuturesAccountV2ForMasterAccountRequest](Requests/SubAccountApi/SummaryOfSubAccountSFuturesAccountV2ForMasterAccountRequest.cs)</code>
+<code>[SummaryOfSubAccountSFuturesAccountV2ForMasterAccountRequest](src/Binance/Requests/SubAccountApi/SummaryOfSubAccountSFuturesAccountV2ForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -19851,9 +19851,9 @@ catch (ApiException<SummaryOfSubAccountSFuturesAccountV2ForMasterAccountError> e
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV2SubAccountFuturesAccountSummaryResponse](Models/AnyOf/SapiV2SubAccountFuturesAccountSummaryResponse.cs)</code>
+**OnSuccess**: <code>[SapiV2SubAccountFuturesAccountSummaryResponse](src/Binance/Models/AnyOf/SapiV2SubAccountFuturesAccountSummaryResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SummaryOfSubAccountSFuturesAccountV2ForMasterAccountError](Errors/SummaryOfSubAccountSFuturesAccountV2ForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[SummaryOfSubAccountSFuturesAccountV2ForMasterAccountError](src/Binance/Errors/SummaryOfSubAccountSFuturesAccountV2ForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -19913,7 +19913,7 @@ catch (ApiException<SummaryOfSubAccountSMarginAccountForMasterAccountError> ex)
 <dl>
 <dd>
 
-<code>[SummaryOfSubAccountSMarginAccountForMasterAccountRequest](Requests/SubAccountApi/SummaryOfSubAccountSMarginAccountForMasterAccountRequest.cs)</code>
+<code>[SummaryOfSubAccountSMarginAccountForMasterAccountRequest](src/Binance/Requests/SubAccountApi/SummaryOfSubAccountSMarginAccountForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -19923,9 +19923,9 @@ catch (ApiException<SummaryOfSubAccountSMarginAccountForMasterAccountError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1SubAccountMarginAccountSummaryResponse](Models/SapiV1SubAccountMarginAccountSummaryResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1SubAccountMarginAccountSummaryResponse](src/Binance/Models/SapiV1SubAccountMarginAccountSummaryResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SummaryOfSubAccountSMarginAccountForMasterAccountError](Errors/SummaryOfSubAccountSMarginAccountForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[SummaryOfSubAccountSMarginAccountForMasterAccountError](src/Binance/Errors/SummaryOfSubAccountSMarginAccountForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -19989,7 +19989,7 @@ catch (ApiException<TransferForSubAccountForMasterAccountError> ex)
 <dl>
 <dd>
 
-<code>[TransferForSubAccountForMasterAccountRequest](Requests/SubAccountApi/TransferForSubAccountForMasterAccountRequest.cs)</code>
+<code>[TransferForSubAccountForMasterAccountRequest](src/Binance/Requests/SubAccountApi/TransferForSubAccountForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -19999,9 +19999,9 @@ catch (ApiException<TransferForSubAccountForMasterAccountError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1SubAccountFuturesTransferResponse](Models/SapiV1SubAccountFuturesTransferResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1SubAccountFuturesTransferResponse](src/Binance/Models/SapiV1SubAccountFuturesTransferResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[TransferForSubAccountForMasterAccountError](Errors/TransferForSubAccountForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[TransferForSubAccountForMasterAccountError](src/Binance/Errors/TransferForSubAccountForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -20062,7 +20062,7 @@ catch (ApiException<TransferToMasterForSubAccountError> ex)
 <dl>
 <dd>
 
-<code>[TransferToMasterForSubAccountRequest](Requests/SubAccountApi/TransferToMasterForSubAccountRequest.cs)</code>
+<code>[TransferToMasterForSubAccountRequest](src/Binance/Requests/SubAccountApi/TransferToMasterForSubAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -20072,9 +20072,9 @@ catch (ApiException<TransferToMasterForSubAccountError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1SubAccountTransferSubToMasterResponse](Models/SapiV1SubAccountTransferSubToMasterResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1SubAccountTransferSubToMasterResponse](src/Binance/Models/SapiV1SubAccountTransferSubToMasterResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[TransferToMasterForSubAccountError](Errors/TransferToMasterForSubAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[TransferToMasterForSubAccountError](src/Binance/Errors/TransferToMasterForSubAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -20137,7 +20137,7 @@ catch (ApiException<TransferToSubAccountOfSameMasterForSubAccountError> ex)
 <dl>
 <dd>
 
-<code>[TransferToSubAccountOfSameMasterForSubAccountRequest](Requests/SubAccountApi/TransferToSubAccountOfSameMasterForSubAccountRequest.cs)</code>
+<code>[TransferToSubAccountOfSameMasterForSubAccountRequest](src/Binance/Requests/SubAccountApi/TransferToSubAccountOfSameMasterForSubAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -20147,9 +20147,9 @@ catch (ApiException<TransferToSubAccountOfSameMasterForSubAccountError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1SubAccountTransferSubToSubResponse](Models/SapiV1SubAccountTransferSubToSubResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1SubAccountTransferSubToSubResponse](src/Binance/Models/SapiV1SubAccountTransferSubToSubResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[TransferToSubAccountOfSameMasterForSubAccountError](Errors/TransferToSubAccountOfSameMasterForSubAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[TransferToSubAccountOfSameMasterForSubAccountError](src/Binance/Errors/TransferToSubAccountOfSameMasterForSubAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -20222,7 +20222,7 @@ catch (ApiException<UniversalTransferForMasterAccountError> ex)
 <dl>
 <dd>
 
-<code>[UniversalTransferForMasterAccountRequest](Requests/SubAccountApi/UniversalTransferForMasterAccountRequest.cs)</code>
+<code>[UniversalTransferForMasterAccountRequest](src/Binance/Requests/SubAccountApi/UniversalTransferForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -20232,9 +20232,9 @@ catch (ApiException<UniversalTransferForMasterAccountError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1SubAccountUniversalTransferResponse1](Models/SapiV1SubAccountUniversalTransferResponse1.cs)</code>
+**OnSuccess**: <code>[SapiV1SubAccountUniversalTransferResponse1](src/Binance/Models/SapiV1SubAccountUniversalTransferResponse1.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[UniversalTransferForMasterAccountError](Errors/UniversalTransferForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[UniversalTransferForMasterAccountError](src/Binance/Errors/UniversalTransferForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -20300,7 +20300,7 @@ catch (ApiException<UniversalTransferHistoryForMasterAccountError> ex)
 <dl>
 <dd>
 
-<code>[UniversalTransferHistoryForMasterAccountRequest](Requests/SubAccountApi/UniversalTransferHistoryForMasterAccountRequest.cs)</code>
+<code>[UniversalTransferHistoryForMasterAccountRequest](src/Binance/Requests/SubAccountApi/UniversalTransferHistoryForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -20310,9 +20310,9 @@ catch (ApiException<UniversalTransferHistoryForMasterAccountError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1SubAccountUniversalTransferResponse](Models/SapiV1SubAccountUniversalTransferResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1SubAccountUniversalTransferResponse](src/Binance/Models/SapiV1SubAccountUniversalTransferResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[UniversalTransferHistoryForMasterAccountError](Errors/UniversalTransferHistoryForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[UniversalTransferHistoryForMasterAccountError](src/Binance/Errors/UniversalTransferHistoryForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -20377,7 +20377,7 @@ catch (ApiException<UpdateIpRestrictionForSubAccountApiKeyForMasterAccountError>
 <dl>
 <dd>
 
-<code>[UpdateIpRestrictionForSubAccountApiKeyForMasterAccountRequest](Requests/SubAccountApi/UpdateIpRestrictionForSubAccountApiKeyForMasterAccountRequest.cs)</code>
+<code>[UpdateIpRestrictionForSubAccountApiKeyForMasterAccountRequest](src/Binance/Requests/SubAccountApi/UpdateIpRestrictionForSubAccountApiKeyForMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -20387,9 +20387,9 @@ catch (ApiException<UpdateIpRestrictionForSubAccountApiKeyForMasterAccountError>
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV2SubAccountSubAccountApiIpRestrictionResponse](Models/SapiV2SubAccountSubAccountApiIpRestrictionResponse.cs)</code>
+**OnSuccess**: <code>[SapiV2SubAccountSubAccountApiIpRestrictionResponse](src/Binance/Models/SapiV2SubAccountSubAccountApiIpRestrictionResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[UpdateIpRestrictionForSubAccountApiKeyForMasterAccountError](Errors/UpdateIpRestrictionForSubAccountApiKeyForMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[UpdateIpRestrictionForSubAccountApiKeyForMasterAccountError](src/Binance/Errors/UpdateIpRestrictionForSubAccountApiKeyForMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -20452,7 +20452,7 @@ catch (ApiException<WithdrawlAssetsFromTheManagedSubAccountForInvestorMasterAcco
 <dl>
 <dd>
 
-<code>[WithdrawlAssetsFromTheManagedSubAccountForInvestorMasterAccountRequest](Requests/SubAccountApi/WithdrawlAssetsFromTheManagedSubAccountForInvestorMasterAccountRequest.cs)</code>
+<code>[WithdrawlAssetsFromTheManagedSubAccountForInvestorMasterAccountRequest](src/Binance/Requests/SubAccountApi/WithdrawlAssetsFromTheManagedSubAccountForInvestorMasterAccountRequest.cs)</code>
 
 </dd>
 </dl>
@@ -20462,9 +20462,9 @@ catch (ApiException<WithdrawlAssetsFromTheManagedSubAccountForInvestorMasterAcco
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1ManagedSubaccountWithdrawResponse](Models/SapiV1ManagedSubaccountWithdrawResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1ManagedSubaccountWithdrawResponse](src/Binance/Models/SapiV1ManagedSubaccountWithdrawResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[WithdrawlAssetsFromTheManagedSubAccountForInvestorMasterAccountError](Errors/WithdrawlAssetsFromTheManagedSubAccountForInvestorMasterAccountError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[WithdrawlAssetsFromTheManagedSubAccountForInvestorMasterAccountError](src/Binance/Errors/WithdrawlAssetsFromTheManagedSubAccountForInvestorMasterAccountError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -20476,7 +20476,7 @@ catch (ApiException<WithdrawlAssetsFromTheManagedSubAccountForInvestorMasterAcco
 
 ## TradeApi
 
-> Source: [TradeApi](Api/TradeApi.cs)
+> Source: [TradeApi](src/Binance/Api/TradeApi.cs)
 
 <details>
 <summary><code>Task&lt;Account&gt; AccountInformationUserData(AccountInformationUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
@@ -20529,7 +20529,7 @@ catch (ApiException<AccountInformationUserDataError> ex)
 <dl>
 <dd>
 
-<code>[AccountInformationUserDataRequest](Requests/TradeApi/AccountInformationUserDataRequest.cs)</code>
+<code>[AccountInformationUserDataRequest](src/Binance/Requests/TradeApi/AccountInformationUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -20539,9 +20539,9 @@ catch (ApiException<AccountInformationUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Account](Models/Account.cs)</code>
+**OnSuccess**: <code>[Account](src/Binance/Models/Account.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[AccountInformationUserDataError](Errors/AccountInformationUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[AccountInformationUserDataError](src/Binance/Errors/AccountInformationUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -20623,7 +20623,7 @@ catch (ApiException<AccountTradeListUserDataError> ex)
 <dl>
 <dd>
 
-<code>[AccountTradeListUserDataRequest](Requests/TradeApi/AccountTradeListUserDataRequest.cs)</code>
+<code>[AccountTradeListUserDataRequest](src/Binance/Requests/TradeApi/AccountTradeListUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -20633,9 +20633,9 @@ catch (ApiException<AccountTradeListUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[MyTrade](Models/MyTrade.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[MyTrade](src/Binance/Models/MyTrade.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[AccountTradeListUserDataError](Errors/AccountTradeListUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[AccountTradeListUserDataError](src/Binance/Errors/AccountTradeListUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -20702,7 +20702,7 @@ catch (ApiException<AllOrdersUserDataError> ex)
 <dl>
 <dd>
 
-<code>[AllOrdersUserDataRequest](Requests/TradeApi/AllOrdersUserDataRequest.cs)</code>
+<code>[AllOrdersUserDataRequest](src/Binance/Requests/TradeApi/AllOrdersUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -20712,9 +20712,9 @@ catch (ApiException<AllOrdersUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[OrderDetails](Models/OrderDetails.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[OrderDetails](src/Binance/Models/OrderDetails.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[AllOrdersUserDataError](Errors/AllOrdersUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[AllOrdersUserDataError](src/Binance/Errors/AllOrdersUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -20778,7 +20778,7 @@ catch (ApiException<CancelOcoTradeError> ex)
 <dl>
 <dd>
 
-<code>[CancelOcoTradeRequest](Requests/TradeApi/CancelOcoTradeRequest.cs)</code>
+<code>[CancelOcoTradeRequest](src/Binance/Requests/TradeApi/CancelOcoTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -20788,9 +20788,9 @@ catch (ApiException<CancelOcoTradeError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[OcoOrder](Models/OcoOrder.cs)</code>
+**OnSuccess**: <code>[OcoOrder](src/Binance/Models/OcoOrder.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CancelOcoTradeError](Errors/CancelOcoTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[CancelOcoTradeError](src/Binance/Errors/CancelOcoTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -20855,7 +20855,7 @@ catch (ApiException<CancelOrderTradeError> ex)
 <dl>
 <dd>
 
-<code>[CancelOrderTradeRequest](Requests/TradeApi/CancelOrderTradeRequest.cs)</code>
+<code>[CancelOrderTradeRequest](src/Binance/Requests/TradeApi/CancelOrderTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -20865,9 +20865,9 @@ catch (ApiException<CancelOrderTradeError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Order](Models/Order.cs)</code>
+**OnSuccess**: <code>[Order](src/Binance/Models/Order.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CancelOrderTradeError](Errors/CancelOrderTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[CancelOrderTradeError](src/Binance/Errors/CancelOrderTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -20930,7 +20930,7 @@ catch (ApiException<CancelAllOpenOrdersOnASymbolTradeError> ex)
 <dl>
 <dd>
 
-<code>[CancelAllOpenOrdersOnASymbolTradeRequest](Requests/TradeApi/CancelAllOpenOrdersOnASymbolTradeRequest.cs)</code>
+<code>[CancelAllOpenOrdersOnASymbolTradeRequest](src/Binance/Requests/TradeApi/CancelAllOpenOrdersOnASymbolTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -20940,9 +20940,9 @@ catch (ApiException<CancelAllOpenOrdersOnASymbolTradeError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[ApiV3OpenOrdersResponse](Models/AnyOf/ApiV3OpenOrdersResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[ApiV3OpenOrdersResponse](src/Binance/Models/AnyOf/ApiV3OpenOrdersResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CancelAllOpenOrdersOnASymbolTradeError](Errors/CancelAllOpenOrdersOnASymbolTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[CancelAllOpenOrdersOnASymbolTradeError](src/Binance/Errors/CancelAllOpenOrdersOnASymbolTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -21019,7 +21019,7 @@ catch (ApiException<CancelAnExistingOrderAndSendANewOrderTradeError> ex)
 <dl>
 <dd>
 
-<code>[CancelAnExistingOrderAndSendANewOrderTradeRequest](Requests/TradeApi/CancelAnExistingOrderAndSendANewOrderTradeRequest.cs)</code>
+<code>[CancelAnExistingOrderAndSendANewOrderTradeRequest](src/Binance/Requests/TradeApi/CancelAnExistingOrderAndSendANewOrderTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -21029,9 +21029,9 @@ catch (ApiException<CancelAnExistingOrderAndSendANewOrderTradeError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ApiV3OrderCancelReplaceResponse](Models/ApiV3OrderCancelReplaceResponse.cs)</code>
+**OnSuccess**: <code>[ApiV3OrderCancelReplaceResponse](src/Binance/Models/ApiV3OrderCancelReplaceResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CancelAnExistingOrderAndSendANewOrderTradeError](Errors/CancelAnExistingOrderAndSendANewOrderTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[CancelAnExistingOrderAndSendANewOrderTradeError](src/Binance/Errors/CancelAnExistingOrderAndSendANewOrderTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -21095,7 +21095,7 @@ catch (ApiException<CurrentOpenOrdersUserDataError> ex)
 <dl>
 <dd>
 
-<code>[CurrentOpenOrdersUserDataRequest](Requests/TradeApi/CurrentOpenOrdersUserDataRequest.cs)</code>
+<code>[CurrentOpenOrdersUserDataRequest](src/Binance/Requests/TradeApi/CurrentOpenOrdersUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -21105,9 +21105,9 @@ catch (ApiException<CurrentOpenOrdersUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[OrderDetails](Models/OrderDetails.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[OrderDetails](src/Binance/Models/OrderDetails.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CurrentOpenOrdersUserDataError](Errors/CurrentOpenOrdersUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[CurrentOpenOrdersUserDataError](src/Binance/Errors/CurrentOpenOrdersUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -21191,7 +21191,7 @@ catch (ApiException<NewOrderTradeError> ex)
 <dl>
 <dd>
 
-<code>[NewOrderTradeRequest](Requests/TradeApi/NewOrderTradeRequest.cs)</code>
+<code>[NewOrderTradeRequest](src/Binance/Requests/TradeApi/NewOrderTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -21201,9 +21201,9 @@ catch (ApiException<NewOrderTradeError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ApiV3OrderResponse](Models/AnyOf/ApiV3OrderResponse.cs)</code>
+**OnSuccess**: <code>[ApiV3OrderResponse](src/Binance/Models/AnyOf/ApiV3OrderResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[NewOrderTradeError](Errors/NewOrderTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[NewOrderTradeError](src/Binance/Errors/NewOrderTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -21279,7 +21279,7 @@ catch (ApiException<NewOrderListOtoTradeError> ex)
 <dl>
 <dd>
 
-<code>[NewOrderListOtoTradeRequest](Requests/TradeApi/NewOrderListOtoTradeRequest.cs)</code>
+<code>[NewOrderListOtoTradeRequest](src/Binance/Requests/TradeApi/NewOrderListOtoTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -21289,9 +21289,9 @@ catch (ApiException<NewOrderListOtoTradeError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ApiV3OrderListOtoResponse](Models/ApiV3OrderListOtoResponse.cs)</code>
+**OnSuccess**: <code>[ApiV3OrderListOtoResponse](src/Binance/Models/ApiV3OrderListOtoResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[NewOrderListOtoTradeError](Errors/NewOrderListOtoTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[NewOrderListOtoTradeError](src/Binance/Errors/NewOrderListOtoTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -21368,7 +21368,7 @@ catch (ApiException<NewOrderListOtocoTradeError> ex)
 <dl>
 <dd>
 
-<code>[NewOrderListOtocoTradeRequest](Requests/TradeApi/NewOrderListOtocoTradeRequest.cs)</code>
+<code>[NewOrderListOtocoTradeRequest](src/Binance/Requests/TradeApi/NewOrderListOtocoTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -21378,9 +21378,9 @@ catch (ApiException<NewOrderListOtocoTradeError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ApiV3OrderListOtocoResponse](Models/ApiV3OrderListOtocoResponse.cs)</code>
+**OnSuccess**: <code>[ApiV3OrderListOtocoResponse](src/Binance/Models/ApiV3OrderListOtocoResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[NewOrderListOtocoTradeError](Errors/NewOrderListOtocoTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[NewOrderListOtocoTradeError](src/Binance/Errors/NewOrderListOtocoTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -21456,7 +21456,7 @@ catch (ApiException<NewOrderListOcoTradeError> ex)
 <dl>
 <dd>
 
-<code>[NewOrderListOcoTradeRequest](Requests/TradeApi/NewOrderListOcoTradeRequest.cs)</code>
+<code>[NewOrderListOcoTradeRequest](src/Binance/Requests/TradeApi/NewOrderListOcoTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -21466,9 +21466,9 @@ catch (ApiException<NewOrderListOcoTradeError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ApiV3OrderListOcoResponse](Models/ApiV3OrderListOcoResponse.cs)</code>
+**OnSuccess**: <code>[ApiV3OrderListOcoResponse](src/Binance/Models/ApiV3OrderListOcoResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[NewOrderListOcoTradeError](Errors/NewOrderListOcoTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[NewOrderListOcoTradeError](src/Binance/Errors/NewOrderListOcoTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -21533,7 +21533,7 @@ catch (ApiException<NewOrderUsingSorTradeError> ex)
 <dl>
 <dd>
 
-<code>[NewOrderUsingSorTradeRequest](Requests/TradeApi/NewOrderUsingSorTradeRequest.cs)</code>
+<code>[NewOrderUsingSorTradeRequest](src/Binance/Requests/TradeApi/NewOrderUsingSorTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -21543,9 +21543,9 @@ catch (ApiException<NewOrderUsingSorTradeError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ApiV3SorOrderResponse](Models/ApiV3SorOrderResponse.cs)</code>
+**OnSuccess**: <code>[ApiV3SorOrderResponse](src/Binance/Models/ApiV3SorOrderResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[NewOrderUsingSorTradeError](Errors/NewOrderUsingSorTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[NewOrderUsingSorTradeError](src/Binance/Errors/NewOrderUsingSorTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -21620,7 +21620,7 @@ catch (ApiException<QueryAllocationsUserDataError> ex)
 <dl>
 <dd>
 
-<code>[QueryAllocationsUserDataRequest](Requests/TradeApi/QueryAllocationsUserDataRequest.cs)</code>
+<code>[QueryAllocationsUserDataRequest](src/Binance/Requests/TradeApi/QueryAllocationsUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -21630,9 +21630,9 @@ catch (ApiException<QueryAllocationsUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[ApiV3MyAllocationsResponse](Models/ApiV3MyAllocationsResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[ApiV3MyAllocationsResponse](src/Binance/Models/ApiV3MyAllocationsResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryAllocationsUserDataError](Errors/QueryAllocationsUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryAllocationsUserDataError](src/Binance/Errors/QueryAllocationsUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -21693,7 +21693,7 @@ catch (ApiException<QueryCommissionRatesUserDataError> ex)
 <dl>
 <dd>
 
-<code>[QueryCommissionRatesUserDataRequest](Requests/TradeApi/QueryCommissionRatesUserDataRequest.cs)</code>
+<code>[QueryCommissionRatesUserDataRequest](src/Binance/Requests/TradeApi/QueryCommissionRatesUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -21703,9 +21703,9 @@ catch (ApiException<QueryCommissionRatesUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ApiV3AccountCommissionResponse](Models/ApiV3AccountCommissionResponse.cs)</code>
+**OnSuccess**: <code>[ApiV3AccountCommissionResponse](src/Binance/Models/ApiV3AccountCommissionResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryCommissionRatesUserDataError](Errors/QueryCommissionRatesUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryCommissionRatesUserDataError](src/Binance/Errors/QueryCommissionRatesUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -21766,7 +21766,7 @@ catch (ApiException<QueryCurrentOrderCountUsageTradeError> ex)
 <dl>
 <dd>
 
-<code>[QueryCurrentOrderCountUsageTradeRequest](Requests/TradeApi/QueryCurrentOrderCountUsageTradeRequest.cs)</code>
+<code>[QueryCurrentOrderCountUsageTradeRequest](src/Binance/Requests/TradeApi/QueryCurrentOrderCountUsageTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -21776,9 +21776,9 @@ catch (ApiException<QueryCurrentOrderCountUsageTradeError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[ApiV3RateLimitOrderResponse](Models/ApiV3RateLimitOrderResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[ApiV3RateLimitOrderResponse](src/Binance/Models/ApiV3RateLimitOrderResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryCurrentOrderCountUsageTradeError](Errors/QueryCurrentOrderCountUsageTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryCurrentOrderCountUsageTradeError](src/Binance/Errors/QueryCurrentOrderCountUsageTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -21839,7 +21839,7 @@ catch (ApiException<QueryOcoUserDataError> ex)
 <dl>
 <dd>
 
-<code>[QueryOcoUserDataRequest](Requests/TradeApi/QueryOcoUserDataRequest.cs)</code>
+<code>[QueryOcoUserDataRequest](src/Binance/Requests/TradeApi/QueryOcoUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -21849,9 +21849,9 @@ catch (ApiException<QueryOcoUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ApiV3OrderListResponse](Models/ApiV3OrderListResponse.cs)</code>
+**OnSuccess**: <code>[ApiV3OrderListResponse](src/Binance/Models/ApiV3OrderListResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryOcoUserDataError](Errors/QueryOcoUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryOcoUserDataError](src/Binance/Errors/QueryOcoUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -21910,7 +21910,7 @@ catch (ApiException<QueryOpenOcoUserDataError> ex)
 <dl>
 <dd>
 
-<code>[QueryOpenOcoUserDataRequest](Requests/TradeApi/QueryOpenOcoUserDataRequest.cs)</code>
+<code>[QueryOpenOcoUserDataRequest](src/Binance/Requests/TradeApi/QueryOpenOcoUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -21920,9 +21920,9 @@ catch (ApiException<QueryOpenOcoUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[ApiV3OpenOrderListResponse](Models/ApiV3OpenOrderListResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[ApiV3OpenOrderListResponse](src/Binance/Models/ApiV3OpenOrderListResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryOpenOcoUserDataError](Errors/QueryOpenOcoUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryOpenOcoUserDataError](src/Binance/Errors/QueryOpenOcoUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -21987,7 +21987,7 @@ catch (ApiException<QueryOrderUserDataError> ex)
 <dl>
 <dd>
 
-<code>[QueryOrderUserDataRequest](Requests/TradeApi/QueryOrderUserDataRequest.cs)</code>
+<code>[QueryOrderUserDataRequest](src/Binance/Requests/TradeApi/QueryOrderUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -21997,9 +21997,9 @@ catch (ApiException<QueryOrderUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[OrderDetails](Models/OrderDetails.cs)</code>
+**OnSuccess**: <code>[OrderDetails](src/Binance/Models/OrderDetails.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryOrderUserDataError](Errors/QueryOrderUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryOrderUserDataError](src/Binance/Errors/QueryOrderUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -22078,7 +22078,7 @@ catch (ApiException<QueryPreventedMatchesError> ex)
 <dl>
 <dd>
 
-<code>[QueryPreventedMatchesRequest](Requests/TradeApi/QueryPreventedMatchesRequest.cs)</code>
+<code>[QueryPreventedMatchesRequest](src/Binance/Requests/TradeApi/QueryPreventedMatchesRequest.cs)</code>
 
 </dd>
 </dl>
@@ -22088,9 +22088,9 @@ catch (ApiException<QueryPreventedMatchesError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[ApiV3MyPreventedMatchesResponse](Models/ApiV3MyPreventedMatchesResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[ApiV3MyPreventedMatchesResponse](src/Binance/Models/ApiV3MyPreventedMatchesResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryPreventedMatchesError](Errors/QueryPreventedMatchesError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryPreventedMatchesError](src/Binance/Errors/QueryPreventedMatchesError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -22152,7 +22152,7 @@ catch (ApiException<QueryAllOcoUserDataError> ex)
 <dl>
 <dd>
 
-<code>[QueryAllOcoUserDataRequest](Requests/TradeApi/QueryAllOcoUserDataRequest.cs)</code>
+<code>[QueryAllOcoUserDataRequest](src/Binance/Requests/TradeApi/QueryAllOcoUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -22162,9 +22162,9 @@ catch (ApiException<QueryAllOcoUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[ApiV3AllOrderListResponse](Models/ApiV3AllOrderListResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[ApiV3AllOrderListResponse](src/Binance/Models/ApiV3AllOrderListResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryAllOcoUserDataError](Errors/QueryAllOcoUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryAllOcoUserDataError](src/Binance/Errors/QueryAllOcoUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -22236,7 +22236,7 @@ catch (ApiException<TestNewOrderTradeError> ex)
 <dl>
 <dd>
 
-<code>[TestNewOrderTradeRequest](Requests/TradeApi/TestNewOrderTradeRequest.cs)</code>
+<code>[TestNewOrderTradeRequest](src/Binance/Requests/TradeApi/TestNewOrderTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -22248,7 +22248,7 @@ catch (ApiException<TestNewOrderTradeError> ex)
 
 **OnSuccess**: <code>object</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[TestNewOrderTradeError](Errors/TestNewOrderTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[TestNewOrderTradeError](src/Binance/Errors/TestNewOrderTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -22319,7 +22319,7 @@ catch (ApiException<TestNewOrderUsingSorTradeError> ex)
 <dl>
 <dd>
 
-<code>[TestNewOrderUsingSorTradeRequest](Requests/TradeApi/TestNewOrderUsingSorTradeRequest.cs)</code>
+<code>[TestNewOrderUsingSorTradeRequest](src/Binance/Requests/TradeApi/TestNewOrderUsingSorTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -22331,7 +22331,7 @@ catch (ApiException<TestNewOrderUsingSorTradeError> ex)
 
 **OnSuccess**: <code>object</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[TestNewOrderUsingSorTradeError](Errors/TestNewOrderUsingSorTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[TestNewOrderUsingSorTradeError](src/Binance/Errors/TestNewOrderUsingSorTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -22343,7 +22343,7 @@ catch (ApiException<TestNewOrderUsingSorTradeError> ex)
 
 ## VipLoans
 
-> Source: [VipLoans](Api/VipLoans.cs)
+> Source: [VipLoans](src/Binance/Api/VipLoans.cs)
 
 <details>
 <summary><code>Task&lt;SapiV1LoanVipCollateralAccountResponse&gt; CheckLockedValueOfVipCollateralAccountUserData(CheckLockedValueOfVipCollateralAccountUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
@@ -22397,7 +22397,7 @@ catch (ApiException<CheckLockedValueOfVipCollateralAccountUserDataError> ex)
 <dl>
 <dd>
 
-<code>[CheckLockedValueOfVipCollateralAccountUserDataRequest](Requests/VipLoans/CheckLockedValueOfVipCollateralAccountUserDataRequest.cs)</code>
+<code>[CheckLockedValueOfVipCollateralAccountUserDataRequest](src/Binance/Requests/VipLoans/CheckLockedValueOfVipCollateralAccountUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -22407,9 +22407,9 @@ catch (ApiException<CheckLockedValueOfVipCollateralAccountUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1LoanVipCollateralAccountResponse](Models/SapiV1LoanVipCollateralAccountResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1LoanVipCollateralAccountResponse](src/Binance/Models/SapiV1LoanVipCollateralAccountResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[CheckLockedValueOfVipCollateralAccountUserDataError](Errors/CheckLockedValueOfVipCollateralAccountUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[CheckLockedValueOfVipCollateralAccountUserDataError](src/Binance/Errors/CheckLockedValueOfVipCollateralAccountUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -22471,7 +22471,7 @@ catch (ApiException<GetBorrowInterestRateUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetBorrowInterestRateUserDataRequest](Requests/VipLoans/GetBorrowInterestRateUserDataRequest.cs)</code>
+<code>[GetBorrowInterestRateUserDataRequest](src/Binance/Requests/VipLoans/GetBorrowInterestRateUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -22481,9 +22481,9 @@ catch (ApiException<GetBorrowInterestRateUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1LoanVipRequestInterestRateResponse](Models/SapiV1LoanVipRequestInterestRateResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1LoanVipRequestInterestRateResponse](src/Binance/Models/SapiV1LoanVipRequestInterestRateResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetBorrowInterestRateUserDataError](Errors/GetBorrowInterestRateUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetBorrowInterestRateUserDataError](src/Binance/Errors/GetBorrowInterestRateUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -22545,7 +22545,7 @@ catch (ApiException<GetCollateralAssetDataUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetCollateralAssetDataUserDataRequest](Requests/VipLoans/GetCollateralAssetDataUserDataRequest.cs)</code>
+<code>[GetCollateralAssetDataUserDataRequest](src/Binance/Requests/VipLoans/GetCollateralAssetDataUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -22555,9 +22555,9 @@ catch (ApiException<GetCollateralAssetDataUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1LoanVipCollateralDataResponse](Models/SapiV1LoanVipCollateralDataResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1LoanVipCollateralDataResponse](src/Binance/Models/SapiV1LoanVipCollateralDataResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetCollateralAssetDataUserDataError](Errors/GetCollateralAssetDataUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetCollateralAssetDataUserDataError](src/Binance/Errors/GetCollateralAssetDataUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -22620,7 +22620,7 @@ catch (ApiException<GetLoanableAssetsDataError> ex)
 <dl>
 <dd>
 
-<code>[GetLoanableAssetsDataRequest](Requests/VipLoans/GetLoanableAssetsDataRequest.cs)</code>
+<code>[GetLoanableAssetsDataRequest](src/Binance/Requests/VipLoans/GetLoanableAssetsDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -22630,9 +22630,9 @@ catch (ApiException<GetLoanableAssetsDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1LoanVipLoanableDataResponse](Models/SapiV1LoanVipLoanableDataResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1LoanVipLoanableDataResponse](src/Binance/Models/SapiV1LoanVipLoanableDataResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetLoanableAssetsDataError](Errors/GetLoanableAssetsDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetLoanableAssetsDataError](src/Binance/Errors/GetLoanableAssetsDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -22697,7 +22697,7 @@ catch (ApiException<GetVipLoanOngoingOrdersUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetVipLoanOngoingOrdersUserDataRequest](Requests/VipLoans/GetVipLoanOngoingOrdersUserDataRequest.cs)</code>
+<code>[GetVipLoanOngoingOrdersUserDataRequest](src/Binance/Requests/VipLoans/GetVipLoanOngoingOrdersUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -22707,9 +22707,9 @@ catch (ApiException<GetVipLoanOngoingOrdersUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1LoanVipOngoingOrdersResponse](Models/SapiV1LoanVipOngoingOrdersResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1LoanVipOngoingOrdersResponse](src/Binance/Models/SapiV1LoanVipOngoingOrdersResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetVipLoanOngoingOrdersUserDataError](Errors/GetVipLoanOngoingOrdersUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetVipLoanOngoingOrdersUserDataError](src/Binance/Errors/GetVipLoanOngoingOrdersUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -22774,7 +22774,7 @@ catch (ApiException<GetVipLoanRepaymentHistoryUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetVipLoanRepaymentHistoryUserDataRequest](Requests/VipLoans/GetVipLoanRepaymentHistoryUserDataRequest.cs)</code>
+<code>[GetVipLoanRepaymentHistoryUserDataRequest](src/Binance/Requests/VipLoans/GetVipLoanRepaymentHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -22784,9 +22784,9 @@ catch (ApiException<GetVipLoanRepaymentHistoryUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1LoanVipRepayHistoryResponse](Models/SapiV1LoanVipRepayHistoryResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1LoanVipRepayHistoryResponse](src/Binance/Models/SapiV1LoanVipRepayHistoryResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetVipLoanRepaymentHistoryUserDataError](Errors/GetVipLoanRepaymentHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetVipLoanRepaymentHistoryUserDataError](src/Binance/Errors/GetVipLoanRepaymentHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -22849,7 +22849,7 @@ catch (ApiException<QueryApplicationStatusUserDataError> ex)
 <dl>
 <dd>
 
-<code>[QueryApplicationStatusUserDataRequest](Requests/VipLoans/QueryApplicationStatusUserDataRequest.cs)</code>
+<code>[QueryApplicationStatusUserDataRequest](src/Binance/Requests/VipLoans/QueryApplicationStatusUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -22859,9 +22859,9 @@ catch (ApiException<QueryApplicationStatusUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1LoanVipRequestDataResponse](Models/SapiV1LoanVipRequestDataResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1LoanVipRequestDataResponse](src/Binance/Models/SapiV1LoanVipRequestDataResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryApplicationStatusUserDataError](Errors/QueryApplicationStatusUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryApplicationStatusUserDataError](src/Binance/Errors/QueryApplicationStatusUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -22928,7 +22928,7 @@ catch (ApiException<VipLoanBorrowError> ex)
 <dl>
 <dd>
 
-<code>[VipLoanBorrowRequest](Requests/VipLoans/VipLoanBorrowRequest.cs)</code>
+<code>[VipLoanBorrowRequest](src/Binance/Requests/VipLoans/VipLoanBorrowRequest.cs)</code>
 
 </dd>
 </dl>
@@ -22938,9 +22938,9 @@ catch (ApiException<VipLoanBorrowError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1LoanVipBorrowResponse](Models/SapiV1LoanVipBorrowResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1LoanVipBorrowResponse](src/Binance/Models/SapiV1LoanVipBorrowResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[VipLoanBorrowError](Errors/VipLoanBorrowError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[VipLoanBorrowError](src/Binance/Errors/VipLoanBorrowError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -23002,7 +23002,7 @@ catch (ApiException<VipLoanRenewError> ex)
 <dl>
 <dd>
 
-<code>[VipLoanRenewRequest](Requests/VipLoans/VipLoanRenewRequest.cs)</code>
+<code>[VipLoanRenewRequest](src/Binance/Requests/VipLoans/VipLoanRenewRequest.cs)</code>
 
 </dd>
 </dl>
@@ -23012,9 +23012,9 @@ catch (ApiException<VipLoanRenewError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1LoanVipRenewResponse](Models/SapiV1LoanVipRenewResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1LoanVipRenewResponse](src/Binance/Models/SapiV1LoanVipRenewResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[VipLoanRenewError](Errors/VipLoanRenewError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[VipLoanRenewError](src/Binance/Errors/VipLoanRenewError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -23076,7 +23076,7 @@ catch (ApiException<VipLoanRepayTradeError> ex)
 <dl>
 <dd>
 
-<code>[VipLoanRepayTradeRequest](Requests/VipLoans/VipLoanRepayTradeRequest.cs)</code>
+<code>[VipLoanRepayTradeRequest](src/Binance/Requests/VipLoans/VipLoanRepayTradeRequest.cs)</code>
 
 </dd>
 </dl>
@@ -23086,9 +23086,9 @@ catch (ApiException<VipLoanRepayTradeError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1LoanVipRepayResponse](Models/SapiV1LoanVipRepayResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1LoanVipRepayResponse](src/Binance/Models/SapiV1LoanVipRepayResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[VipLoanRepayTradeError](Errors/VipLoanRepayTradeError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[VipLoanRepayTradeError](src/Binance/Errors/VipLoanRepayTradeError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -23100,7 +23100,7 @@ catch (ApiException<VipLoanRepayTradeError> ex)
 
 ## Wallet
 
-> Source: [Wallet](Api/Wallet.cs)
+> Source: [Wallet](src/Binance/Api/Wallet.cs)
 
 <details>
 <summary><code>Task&lt;SapiV1AccountApiTradingStatusResponse&gt; AccountApiTradingStatusUserData(AccountApiTradingStatusUserDataRequest request, RequestOptions? requestOptions = null, CancellationToken cancellationToken = default);</code></summary>
@@ -23153,7 +23153,7 @@ catch (ApiException<AccountApiTradingStatusUserDataError> ex)
 <dl>
 <dd>
 
-<code>[AccountApiTradingStatusUserDataRequest](Requests/Wallet/AccountApiTradingStatusUserDataRequest.cs)</code>
+<code>[AccountApiTradingStatusUserDataRequest](src/Binance/Requests/Wallet/AccountApiTradingStatusUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -23163,9 +23163,9 @@ catch (ApiException<AccountApiTradingStatusUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1AccountApiTradingStatusResponse](Models/SapiV1AccountApiTradingStatusResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1AccountApiTradingStatusResponse](src/Binance/Models/SapiV1AccountApiTradingStatusResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[AccountApiTradingStatusUserDataError](Errors/AccountApiTradingStatusUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[AccountApiTradingStatusUserDataError](src/Binance/Errors/AccountApiTradingStatusUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -23226,7 +23226,7 @@ catch (ApiException<AccountStatusUserDataError> ex)
 <dl>
 <dd>
 
-<code>[AccountStatusUserDataRequest](Requests/Wallet/AccountStatusUserDataRequest.cs)</code>
+<code>[AccountStatusUserDataRequest](src/Binance/Requests/Wallet/AccountStatusUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -23236,9 +23236,9 @@ catch (ApiException<AccountStatusUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1AccountStatusResponse](Models/SapiV1AccountStatusResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1AccountStatusResponse](src/Binance/Models/SapiV1AccountStatusResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[AccountStatusUserDataError](Errors/AccountStatusUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[AccountStatusUserDataError](src/Binance/Errors/AccountStatusUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -23299,7 +23299,7 @@ catch (ApiException<AccountInfoUserDataError> ex)
 <dl>
 <dd>
 
-<code>[AccountInfoUserDataRequest](Requests/Wallet/AccountInfoUserDataRequest.cs)</code>
+<code>[AccountInfoUserDataRequest](src/Binance/Requests/Wallet/AccountInfoUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -23309,9 +23309,9 @@ catch (ApiException<AccountInfoUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1AccountInfoResponse](Models/SapiV1AccountInfoResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1AccountInfoResponse](src/Binance/Models/SapiV1AccountInfoResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[AccountInfoUserDataError](Errors/AccountInfoUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[AccountInfoUserDataError](src/Binance/Errors/AccountInfoUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -23372,7 +23372,7 @@ catch (ApiException<AllCoinsInformationUserDataError> ex)
 <dl>
 <dd>
 
-<code>[AllCoinsInformationUserDataRequest](Requests/Wallet/AllCoinsInformationUserDataRequest.cs)</code>
+<code>[AllCoinsInformationUserDataRequest](src/Binance/Requests/Wallet/AllCoinsInformationUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -23382,9 +23382,9 @@ catch (ApiException<AllCoinsInformationUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1CapitalConfigGetallResponse](Models/SapiV1CapitalConfigGetallResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1CapitalConfigGetallResponse](src/Binance/Models/SapiV1CapitalConfigGetallResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[AllCoinsInformationUserDataError](Errors/AllCoinsInformationUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[AllCoinsInformationUserDataError](src/Binance/Errors/AllCoinsInformationUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -23448,7 +23448,7 @@ catch (ApiException<AssetDetailUserDataError> ex)
 <dl>
 <dd>
 
-<code>[AssetDetailUserDataRequest](Requests/Wallet/AssetDetailUserDataRequest.cs)</code>
+<code>[AssetDetailUserDataRequest](src/Binance/Requests/Wallet/AssetDetailUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -23458,9 +23458,9 @@ catch (ApiException<AssetDetailUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1AssetAssetDetailResponse](Models/SapiV1AssetAssetDetailResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1AssetAssetDetailResponse](src/Binance/Models/SapiV1AssetAssetDetailResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[AssetDetailUserDataError](Errors/AssetDetailUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[AssetDetailUserDataError](src/Binance/Errors/AssetDetailUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -23522,7 +23522,7 @@ catch (ApiException<AssetDividendRecordUserDataError> ex)
 <dl>
 <dd>
 
-<code>[AssetDividendRecordUserDataRequest](Requests/Wallet/AssetDividendRecordUserDataRequest.cs)</code>
+<code>[AssetDividendRecordUserDataRequest](src/Binance/Requests/Wallet/AssetDividendRecordUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -23532,9 +23532,9 @@ catch (ApiException<AssetDividendRecordUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1AssetAssetDividendResponse](Models/SapiV1AssetAssetDividendResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1AssetAssetDividendResponse](src/Binance/Models/SapiV1AssetAssetDividendResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[AssetDividendRecordUserDataError](Errors/AssetDividendRecordUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[AssetDividendRecordUserDataError](src/Binance/Errors/AssetDividendRecordUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -23600,7 +23600,7 @@ catch (ApiException<ConvertTransferUserDataError> ex)
 <dl>
 <dd>
 
-<code>[ConvertTransferUserDataRequest](Requests/Wallet/ConvertTransferUserDataRequest.cs)</code>
+<code>[ConvertTransferUserDataRequest](src/Binance/Requests/Wallet/ConvertTransferUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -23610,9 +23610,9 @@ catch (ApiException<ConvertTransferUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1AssetConvertTransferResponse](Models/SapiV1AssetConvertTransferResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1AssetConvertTransferResponse](src/Binance/Models/SapiV1AssetConvertTransferResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[ConvertTransferUserDataError](Errors/ConvertTransferUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[ConvertTransferUserDataError](src/Binance/Errors/ConvertTransferUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -23676,7 +23676,7 @@ catch (ApiException<DailyAccountSnapshotUserDataError> ex)
 <dl>
 <dd>
 
-<code>[DailyAccountSnapshotUserDataRequest](Requests/Wallet/DailyAccountSnapshotUserDataRequest.cs)</code>
+<code>[DailyAccountSnapshotUserDataRequest](src/Binance/Requests/Wallet/DailyAccountSnapshotUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -23686,9 +23686,9 @@ catch (ApiException<DailyAccountSnapshotUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1AccountSnapshotResponse](Models/AnyOf/SapiV1AccountSnapshotResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1AccountSnapshotResponse](src/Binance/Models/AnyOf/SapiV1AccountSnapshotResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[DailyAccountSnapshotUserDataError](Errors/DailyAccountSnapshotUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[DailyAccountSnapshotUserDataError](src/Binance/Errors/DailyAccountSnapshotUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -23755,7 +23755,7 @@ catch (ApiException<DepositAddressSupportingNetworkUserDataError> ex)
 <dl>
 <dd>
 
-<code>[DepositAddressSupportingNetworkUserDataRequest](Requests/Wallet/DepositAddressSupportingNetworkUserDataRequest.cs)</code>
+<code>[DepositAddressSupportingNetworkUserDataRequest](src/Binance/Requests/Wallet/DepositAddressSupportingNetworkUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -23765,9 +23765,9 @@ catch (ApiException<DepositAddressSupportingNetworkUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1CapitalDepositAddressResponse](Models/SapiV1CapitalDepositAddressResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1CapitalDepositAddressResponse](src/Binance/Models/SapiV1CapitalDepositAddressResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[DepositAddressSupportingNetworkUserDataError](Errors/DepositAddressSupportingNetworkUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[DepositAddressSupportingNetworkUserDataError](src/Binance/Errors/DepositAddressSupportingNetworkUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -23834,7 +23834,7 @@ catch (ApiException<DepositHistorySupportingNetworkUserDataError> ex)
 <dl>
 <dd>
 
-<code>[DepositHistorySupportingNetworkUserDataRequest](Requests/Wallet/DepositHistorySupportingNetworkUserDataRequest.cs)</code>
+<code>[DepositHistorySupportingNetworkUserDataRequest](src/Binance/Requests/Wallet/DepositHistorySupportingNetworkUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -23844,9 +23844,9 @@ catch (ApiException<DepositHistorySupportingNetworkUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1CapitalDepositHisrecResponse](Models/SapiV1CapitalDepositHisrecResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1CapitalDepositHisrecResponse](src/Binance/Models/SapiV1CapitalDepositHisrecResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[DepositHistorySupportingNetworkUserDataError](Errors/DepositHistorySupportingNetworkUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[DepositHistorySupportingNetworkUserDataError](src/Binance/Errors/DepositHistorySupportingNetworkUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -23908,7 +23908,7 @@ catch (ApiException<DisableFastWithdrawSwitchUserDataError> ex)
 <dl>
 <dd>
 
-<code>[DisableFastWithdrawSwitchUserDataRequest](Requests/Wallet/DisableFastWithdrawSwitchUserDataRequest.cs)</code>
+<code>[DisableFastWithdrawSwitchUserDataRequest](src/Binance/Requests/Wallet/DisableFastWithdrawSwitchUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -23920,7 +23920,7 @@ catch (ApiException<DisableFastWithdrawSwitchUserDataError> ex)
 
 **OnSuccess**: <code>object</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[DisableFastWithdrawSwitchUserDataError](Errors/DisableFastWithdrawSwitchUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[DisableFastWithdrawSwitchUserDataError](src/Binance/Errors/DisableFastWithdrawSwitchUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -23982,7 +23982,7 @@ catch (ApiException<DustTransferUserDataError> ex)
 <dl>
 <dd>
 
-<code>[DustTransferUserDataRequest](Requests/Wallet/DustTransferUserDataRequest.cs)</code>
+<code>[DustTransferUserDataRequest](src/Binance/Requests/Wallet/DustTransferUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -23992,9 +23992,9 @@ catch (ApiException<DustTransferUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1AssetDustResponse](Models/SapiV1AssetDustResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1AssetDustResponse](src/Binance/Models/SapiV1AssetDustResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[DustTransferUserDataError](Errors/DustTransferUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[DustTransferUserDataError](src/Binance/Errors/DustTransferUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -24053,7 +24053,7 @@ catch (ApiException<DustLogUserDataError> ex)
 <dl>
 <dd>
 
-<code>[DustLogUserDataRequest](Requests/Wallet/DustLogUserDataRequest.cs)</code>
+<code>[DustLogUserDataRequest](src/Binance/Requests/Wallet/DustLogUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -24063,9 +24063,9 @@ catch (ApiException<DustLogUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1AssetDribbletResponse](Models/SapiV1AssetDribbletResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1AssetDribbletResponse](src/Binance/Models/SapiV1AssetDribbletResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[DustLogUserDataError](Errors/DustLogUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[DustLogUserDataError](src/Binance/Errors/DustLogUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -24127,7 +24127,7 @@ catch (ApiException<EnableFastWithdrawSwitchUserDataError> ex)
 <dl>
 <dd>
 
-<code>[EnableFastWithdrawSwitchUserDataRequest](Requests/Wallet/EnableFastWithdrawSwitchUserDataRequest.cs)</code>
+<code>[EnableFastWithdrawSwitchUserDataRequest](src/Binance/Requests/Wallet/EnableFastWithdrawSwitchUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -24139,7 +24139,7 @@ catch (ApiException<EnableFastWithdrawSwitchUserDataError> ex)
 
 **OnSuccess**: <code>object</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[EnableFastWithdrawSwitchUserDataError](Errors/EnableFastWithdrawSwitchUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[EnableFastWithdrawSwitchUserDataError](src/Binance/Errors/EnableFastWithdrawSwitchUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -24203,7 +24203,7 @@ catch (ApiException<FetchDepositAddressListWithNetworkUserDataError> ex)
 <dl>
 <dd>
 
-<code>[FetchDepositAddressListWithNetworkUserDataRequest](Requests/Wallet/FetchDepositAddressListWithNetworkUserDataRequest.cs)</code>
+<code>[FetchDepositAddressListWithNetworkUserDataRequest](src/Binance/Requests/Wallet/FetchDepositAddressListWithNetworkUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -24213,9 +24213,9 @@ catch (ApiException<FetchDepositAddressListWithNetworkUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1CapitalDepositAddressListResponse](Models/SapiV1CapitalDepositAddressListResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1CapitalDepositAddressListResponse](src/Binance/Models/SapiV1CapitalDepositAddressListResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[FetchDepositAddressListWithNetworkUserDataError](Errors/FetchDepositAddressListWithNetworkUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[FetchDepositAddressListWithNetworkUserDataError](src/Binance/Errors/FetchDepositAddressListWithNetworkUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -24271,9 +24271,9 @@ catch (ApiException<FetchWithdrawAddressListUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1CapitalWithdrawAddressListResponse](Models/SapiV1CapitalWithdrawAddressListResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1CapitalWithdrawAddressListResponse](src/Binance/Models/SapiV1CapitalWithdrawAddressListResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[FetchWithdrawAddressListUserDataError](Errors/FetchWithdrawAddressListUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[FetchWithdrawAddressListUserDataError](src/Binance/Errors/FetchWithdrawAddressListUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -24335,7 +24335,7 @@ catch (ApiException<FundingWalletUserDataError> ex)
 <dl>
 <dd>
 
-<code>[FundingWalletUserDataRequest](Requests/Wallet/FundingWalletUserDataRequest.cs)</code>
+<code>[FundingWalletUserDataRequest](src/Binance/Requests/Wallet/FundingWalletUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -24345,9 +24345,9 @@ catch (ApiException<FundingWalletUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1AssetGetFundingAssetResponse](Models/SapiV1AssetGetFundingAssetResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1AssetGetFundingAssetResponse](src/Binance/Models/SapiV1AssetGetFundingAssetResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[FundingWalletUserDataError](Errors/FundingWalletUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[FundingWalletUserDataError](src/Binance/Errors/FundingWalletUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -24406,7 +24406,7 @@ catch (ApiException<GetApiKeyPermissionUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetApiKeyPermissionUserDataRequest](Requests/Wallet/GetApiKeyPermissionUserDataRequest.cs)</code>
+<code>[GetApiKeyPermissionUserDataRequest](src/Binance/Requests/Wallet/GetApiKeyPermissionUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -24416,9 +24416,9 @@ catch (ApiException<GetApiKeyPermissionUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1AccountApiRestrictionsResponse](Models/SapiV1AccountApiRestrictionsResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1AccountApiRestrictionsResponse](src/Binance/Models/SapiV1AccountApiRestrictionsResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetApiKeyPermissionUserDataError](Errors/GetApiKeyPermissionUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetApiKeyPermissionUserDataError](src/Binance/Errors/GetApiKeyPermissionUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -24478,7 +24478,7 @@ catch (ApiException<GetAssetsThatCanBeConvertedIntoBnbUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetAssetsThatCanBeConvertedIntoBnbUserDataRequest](Requests/Wallet/GetAssetsThatCanBeConvertedIntoBnbUserDataRequest.cs)</code>
+<code>[GetAssetsThatCanBeConvertedIntoBnbUserDataRequest](src/Binance/Requests/Wallet/GetAssetsThatCanBeConvertedIntoBnbUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -24488,9 +24488,9 @@ catch (ApiException<GetAssetsThatCanBeConvertedIntoBnbUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1AssetDustBtcResponse](Models/SapiV1AssetDustBtcResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1AssetDustBtcResponse](src/Binance/Models/SapiV1AssetDustBtcResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetAssetsThatCanBeConvertedIntoBnbUserDataError](Errors/GetAssetsThatCanBeConvertedIntoBnbUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetAssetsThatCanBeConvertedIntoBnbUserDataError](src/Binance/Errors/GetAssetsThatCanBeConvertedIntoBnbUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -24558,7 +24558,7 @@ catch (ApiException<GetCloudMiningPaymentAndRefundHistoryUserDataError> ex)
 <dl>
 <dd>
 
-<code>[GetCloudMiningPaymentAndRefundHistoryUserDataRequest](Requests/Wallet/GetCloudMiningPaymentAndRefundHistoryUserDataRequest.cs)</code>
+<code>[GetCloudMiningPaymentAndRefundHistoryUserDataRequest](src/Binance/Requests/Wallet/GetCloudMiningPaymentAndRefundHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -24568,9 +24568,9 @@ catch (ApiException<GetCloudMiningPaymentAndRefundHistoryUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1AssetLedgerTransferCloudMiningQueryByPageResponse](Models/SapiV1AssetLedgerTransferCloudMiningQueryByPageResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1AssetLedgerTransferCloudMiningQueryByPageResponse](src/Binance/Models/SapiV1AssetLedgerTransferCloudMiningQueryByPageResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetCloudMiningPaymentAndRefundHistoryUserDataError](Errors/GetCloudMiningPaymentAndRefundHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetCloudMiningPaymentAndRefundHistoryUserDataError](src/Binance/Errors/GetCloudMiningPaymentAndRefundHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -24632,7 +24632,7 @@ catch (ApiException<GetSymbolsDelistScheduleForSpotMarketDataError> ex)
 <dl>
 <dd>
 
-<code>[GetSymbolsDelistScheduleForSpotMarketDataRequest](Requests/Wallet/GetSymbolsDelistScheduleForSpotMarketDataRequest.cs)</code>
+<code>[GetSymbolsDelistScheduleForSpotMarketDataRequest](src/Binance/Requests/Wallet/GetSymbolsDelistScheduleForSpotMarketDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -24642,9 +24642,9 @@ catch (ApiException<GetSymbolsDelistScheduleForSpotMarketDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1SpotDelistScheduleResponse](Models/SapiV1SpotDelistScheduleResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1SpotDelistScheduleResponse](src/Binance/Models/SapiV1SpotDelistScheduleResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[GetSymbolsDelistScheduleForSpotMarketDataError](Errors/GetSymbolsDelistScheduleForSpotMarketDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[GetSymbolsDelistScheduleForSpotMarketDataError](src/Binance/Errors/GetSymbolsDelistScheduleForSpotMarketDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -24706,7 +24706,7 @@ catch (ApiException<OneClickArrivalDepositApplyUserDataError> ex)
 <dl>
 <dd>
 
-<code>[OneClickArrivalDepositApplyUserDataRequest](Requests/Wallet/OneClickArrivalDepositApplyUserDataRequest.cs)</code>
+<code>[OneClickArrivalDepositApplyUserDataRequest](src/Binance/Requests/Wallet/OneClickArrivalDepositApplyUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -24716,9 +24716,9 @@ catch (ApiException<OneClickArrivalDepositApplyUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1CapitalDepositCreditApplyResponse](Models/SapiV1CapitalDepositCreditApplyResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1CapitalDepositCreditApplyResponse](src/Binance/Models/SapiV1CapitalDepositCreditApplyResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[OneClickArrivalDepositApplyUserDataError](Errors/OneClickArrivalDepositApplyUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[OneClickArrivalDepositApplyUserDataError](src/Binance/Errors/OneClickArrivalDepositApplyUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -24783,7 +24783,7 @@ catch (ApiException<QueryConvertTransferUserDataError> ex)
 <dl>
 <dd>
 
-<code>[QueryConvertTransferUserDataRequest](Requests/Wallet/QueryConvertTransferUserDataRequest.cs)</code>
+<code>[QueryConvertTransferUserDataRequest](src/Binance/Requests/Wallet/QueryConvertTransferUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -24793,9 +24793,9 @@ catch (ApiException<QueryConvertTransferUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1AssetConvertTransferQueryByPageResponse](Models/SapiV1AssetConvertTransferQueryByPageResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1AssetConvertTransferQueryByPageResponse](src/Binance/Models/SapiV1AssetConvertTransferQueryByPageResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryConvertTransferUserDataError](Errors/QueryConvertTransferUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryConvertTransferUserDataError](src/Binance/Errors/QueryConvertTransferUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -24864,7 +24864,7 @@ catch (ApiException<QueryUserDelegationHistoryForMasterAccountUserDataError> ex)
 <dl>
 <dd>
 
-<code>[QueryUserDelegationHistoryForMasterAccountUserDataRequest](Requests/Wallet/QueryUserDelegationHistoryForMasterAccountUserDataRequest.cs)</code>
+<code>[QueryUserDelegationHistoryForMasterAccountUserDataRequest](src/Binance/Requests/Wallet/QueryUserDelegationHistoryForMasterAccountUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -24874,9 +24874,9 @@ catch (ApiException<QueryUserDelegationHistoryForMasterAccountUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1AssetCustodyTransferHistoryResponse](Models/SapiV1AssetCustodyTransferHistoryResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1AssetCustodyTransferHistoryResponse](src/Binance/Models/SapiV1AssetCustodyTransferHistoryResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryUserDelegationHistoryForMasterAccountUserDataError](Errors/QueryUserDelegationHistoryForMasterAccountUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryUserDelegationHistoryForMasterAccountUserDataError](src/Binance/Errors/QueryUserDelegationHistoryForMasterAccountUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -24946,7 +24946,7 @@ catch (ApiException<QueryUserUniversalTransferHistoryUserDataError> ex)
 <dl>
 <dd>
 
-<code>[QueryUserUniversalTransferHistoryUserDataRequest](Requests/Wallet/QueryUserUniversalTransferHistoryUserDataRequest.cs)</code>
+<code>[QueryUserUniversalTransferHistoryUserDataRequest](src/Binance/Requests/Wallet/QueryUserUniversalTransferHistoryUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -24956,9 +24956,9 @@ catch (ApiException<QueryUserUniversalTransferHistoryUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1AssetTransferResponse](Models/SapiV1AssetTransferResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1AssetTransferResponse](src/Binance/Models/SapiV1AssetTransferResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryUserUniversalTransferHistoryUserDataError](Errors/QueryUserUniversalTransferHistoryUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryUserUniversalTransferHistoryUserDataError](src/Binance/Errors/QueryUserUniversalTransferHistoryUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -25019,7 +25019,7 @@ catch (ApiException<QueryUserWalletBalanceUserDataError> ex)
 <dl>
 <dd>
 
-<code>[QueryUserWalletBalanceUserDataRequest](Requests/Wallet/QueryUserWalletBalanceUserDataRequest.cs)</code>
+<code>[QueryUserWalletBalanceUserDataRequest](src/Binance/Requests/Wallet/QueryUserWalletBalanceUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -25029,9 +25029,9 @@ catch (ApiException<QueryUserWalletBalanceUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1AssetWalletBalanceResponse](Models/SapiV1AssetWalletBalanceResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1AssetWalletBalanceResponse](src/Binance/Models/SapiV1AssetWalletBalanceResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryUserWalletBalanceUserDataError](Errors/QueryUserWalletBalanceUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryUserWalletBalanceUserDataError](src/Binance/Errors/QueryUserWalletBalanceUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -25087,9 +25087,9 @@ catch (ApiException<QueryAutoConvertingStableCoinsUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1CapitalContractConvertibleCoinsResponse](Models/SapiV1CapitalContractConvertibleCoinsResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1CapitalContractConvertibleCoinsResponse](src/Binance/Models/SapiV1CapitalContractConvertibleCoinsResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[QueryAutoConvertingStableCoinsUserDataError](Errors/QueryAutoConvertingStableCoinsUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[QueryAutoConvertingStableCoinsUserDataError](src/Binance/Errors/QueryAutoConvertingStableCoinsUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -25150,7 +25150,7 @@ catch (ApiException<SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataError
 <dl>
 <dd>
 
-<code>[SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataRequest](Requests/Wallet/SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataRequest.cs)</code>
+<code>[SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataRequest](src/Binance/Requests/Wallet/SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -25162,7 +25162,7 @@ catch (ApiException<SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataError
 
 **OnSuccess**: <code>object</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataError](Errors/SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataError](src/Binance/Errors/SwitchOnOffBusdAndStableCoinsConversionUserDataUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -25215,9 +25215,9 @@ catch (ApiException<RawError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1SystemStatusResponse](Models/SapiV1SystemStatusResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1SystemStatusResponse](src/Binance/Models/SapiV1SystemStatusResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[RawError](Core/ErrorResponse/RawError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[RawError](src/Binance/Core/ErrorResponse/RawError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -25279,7 +25279,7 @@ catch (ApiException<TradeFeeUserDataError> ex)
 <dl>
 <dd>
 
-<code>[TradeFeeUserDataRequest](Requests/Wallet/TradeFeeUserDataRequest.cs)</code>
+<code>[TradeFeeUserDataRequest](src/Binance/Requests/Wallet/TradeFeeUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -25289,9 +25289,9 @@ catch (ApiException<TradeFeeUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1AssetTradeFeeResponse](Models/SapiV1AssetTradeFeeResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1AssetTradeFeeResponse](src/Binance/Models/SapiV1AssetTradeFeeResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[TradeFeeUserDataError](Errors/TradeFeeUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[TradeFeeUserDataError](src/Binance/Errors/TradeFeeUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -25353,7 +25353,7 @@ catch (ApiException<UserAssetUserDataError> ex)
 <dl>
 <dd>
 
-<code>[UserAssetUserDataRequest](Requests/Wallet/UserAssetUserDataRequest.cs)</code>
+<code>[UserAssetUserDataRequest](src/Binance/Requests/Wallet/UserAssetUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -25363,9 +25363,9 @@ catch (ApiException<UserAssetUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV3AssetGetUserAssetResponse](Models/SapiV3AssetGetUserAssetResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV3AssetGetUserAssetResponse](src/Binance/Models/SapiV3AssetGetUserAssetResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[UserAssetUserDataError](Errors/UserAssetUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[UserAssetUserDataError](src/Binance/Errors/UserAssetUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -25469,7 +25469,7 @@ catch (ApiException<UserUniversalTransferUserDataError> ex)
 <dl>
 <dd>
 
-<code>[UserUniversalTransferUserDataRequest](Requests/Wallet/UserUniversalTransferUserDataRequest.cs)</code>
+<code>[UserUniversalTransferUserDataRequest](src/Binance/Requests/Wallet/UserUniversalTransferUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -25479,9 +25479,9 @@ catch (ApiException<UserUniversalTransferUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1AssetTransferResponse1](Models/SapiV1AssetTransferResponse1.cs)</code>
+**OnSuccess**: <code>[SapiV1AssetTransferResponse1](src/Binance/Models/SapiV1AssetTransferResponse1.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[UserUniversalTransferUserDataError](Errors/UserUniversalTransferUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[UserUniversalTransferUserDataError](src/Binance/Errors/UserUniversalTransferUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -25549,7 +25549,7 @@ catch (ApiException<WithdrawUserDataError> ex)
 <dl>
 <dd>
 
-<code>[WithdrawUserDataRequest](Requests/Wallet/WithdrawUserDataRequest.cs)</code>
+<code>[WithdrawUserDataRequest](src/Binance/Requests/Wallet/WithdrawUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -25559,9 +25559,9 @@ catch (ApiException<WithdrawUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SapiV1CapitalWithdrawApplyResponse](Models/SapiV1CapitalWithdrawApplyResponse.cs)</code>
+**OnSuccess**: <code>[SapiV1CapitalWithdrawApplyResponse](src/Binance/Models/SapiV1CapitalWithdrawApplyResponse.cs)</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[WithdrawUserDataError](Errors/WithdrawUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[WithdrawUserDataError](src/Binance/Errors/WithdrawUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>
@@ -25634,7 +25634,7 @@ catch (ApiException<WithdrawHistorySupportingNetworkUserDataError> ex)
 <dl>
 <dd>
 
-<code>[WithdrawHistorySupportingNetworkUserDataRequest](Requests/Wallet/WithdrawHistorySupportingNetworkUserDataRequest.cs)</code>
+<code>[WithdrawHistorySupportingNetworkUserDataRequest](src/Binance/Requests/Wallet/WithdrawHistorySupportingNetworkUserDataRequest.cs)</code>
 
 </dd>
 </dl>
@@ -25644,9 +25644,9 @@ catch (ApiException<WithdrawHistorySupportingNetworkUserDataError> ex)
 <dl>
 <dd>
 
-**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1CapitalWithdrawHistoryResponse](Models/SapiV1CapitalWithdrawHistoryResponse.cs)&gt;</code>
+**OnSuccess**: <code>IReadOnlyList&lt;[SapiV1CapitalWithdrawHistoryResponse](src/Binance/Models/SapiV1CapitalWithdrawHistoryResponse.cs)&gt;</code>
 
-**OnError**: <code>[ApiException](Core/Exceptions/ApiException.cs)&lt;[WithdrawHistorySupportingNetworkUserDataError](Errors/WithdrawHistorySupportingNetworkUserDataError.cs)&gt;</code>
+**OnError**: <code>[ApiException](src/Binance/Core/Exceptions/ApiException.cs)&lt;[WithdrawHistorySupportingNetworkUserDataError](src/Binance/Errors/WithdrawHistorySupportingNetworkUserDataError.cs)&gt;</code>
 
 </dd>
 </dl>

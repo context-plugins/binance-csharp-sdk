@@ -2,7 +2,7 @@
 
 # Staking — operations
 
-Accessor: `client.Staking` · Source: `Api/Staking.cs` · 12 operations
+Accessor: `client.Staking` · Source: `src/Binance/Api/Staking.cs` · 12 operations
 
 **Type sources**: the file declaring each type an operation names (`RawError` excluded — see sdk-map.md).
 
@@ -18,10 +18,10 @@ Accessor: `client.Staking` · Source: `Api/Staking.cs` · 12 operations
 
 | Type | Source |
 | --- | --- |
-| `EthStakingAccountV2UserDataRequest` | `Requests/Staking/EthStakingAccountV2UserDataRequest.cs` |
-| `SapiV2EthStakingAccountResponse` | `Models/SapiV2EthStakingAccountResponse.cs` |
-| `EthStakingAccountV2UserDataError` | `Errors/EthStakingAccountV2UserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `EthStakingAccountV2UserDataRequest` | `src/Binance/Requests/Staking/EthStakingAccountV2UserDataRequest.cs` |
+| `SapiV2EthStakingAccountResponse` | `src/Binance/Models/SapiV2EthStakingAccountResponse.cs` |
+| `EthStakingAccountV2UserDataError` | `src/Binance/Errors/EthStakingAccountV2UserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetBethRewardsDistributionHistoryUserData
 
@@ -35,10 +35,10 @@ Accessor: `client.Staking` · Source: `Api/Staking.cs` · 12 operations
 
 | Type | Source |
 | --- | --- |
-| `GetBethRewardsDistributionHistoryUserDataRequest` | `Requests/Staking/GetBethRewardsDistributionHistoryUserDataRequest.cs` |
-| `SapiV1EthStakingEthHistoryRewardsHistoryResponse` | `Models/SapiV1EthStakingEthHistoryRewardsHistoryResponse.cs` |
-| `GetBethRewardsDistributionHistoryUserDataError` | `Errors/GetBethRewardsDistributionHistoryUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetBethRewardsDistributionHistoryUserDataRequest` | `src/Binance/Requests/Staking/GetBethRewardsDistributionHistoryUserDataRequest.cs` |
+| `SapiV1EthStakingEthHistoryRewardsHistoryResponse` | `src/Binance/Models/SapiV1EthStakingEthHistoryRewardsHistoryResponse.cs` |
+| `GetBethRewardsDistributionHistoryUserDataError` | `src/Binance/Errors/GetBethRewardsDistributionHistoryUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetCurrentEthStakingQuotaUserData
 
@@ -52,10 +52,10 @@ Accessor: `client.Staking` · Source: `Api/Staking.cs` · 12 operations
 
 | Type | Source |
 | --- | --- |
-| `GetCurrentEthStakingQuotaUserDataRequest` | `Requests/Staking/GetCurrentEthStakingQuotaUserDataRequest.cs` |
-| `SapiV1EthStakingEthQuotaResponse` | `Models/SapiV1EthStakingEthQuotaResponse.cs` |
-| `GetCurrentEthStakingQuotaUserDataError` | `Errors/GetCurrentEthStakingQuotaUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetCurrentEthStakingQuotaUserDataRequest` | `src/Binance/Requests/Staking/GetCurrentEthStakingQuotaUserDataRequest.cs` |
+| `SapiV1EthStakingEthQuotaResponse` | `src/Binance/Models/SapiV1EthStakingEthQuotaResponse.cs` |
+| `GetCurrentEthStakingQuotaUserDataError` | `src/Binance/Errors/GetCurrentEthStakingQuotaUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetEthRedemptionHistoryUserData
 
@@ -69,10 +69,10 @@ Accessor: `client.Staking` · Source: `Api/Staking.cs` · 12 operations
 
 | Type | Source |
 | --- | --- |
-| `GetEthRedemptionHistoryUserDataRequest` | `Requests/Staking/GetEthRedemptionHistoryUserDataRequest.cs` |
-| `SapiV1EthStakingEthHistoryRedemptionHistoryResponse` | `Models/SapiV1EthStakingEthHistoryRedemptionHistoryResponse.cs` |
-| `GetEthRedemptionHistoryUserDataError` | `Errors/GetEthRedemptionHistoryUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetEthRedemptionHistoryUserDataRequest` | `src/Binance/Requests/Staking/GetEthRedemptionHistoryUserDataRequest.cs` |
+| `SapiV1EthStakingEthHistoryRedemptionHistoryResponse` | `src/Binance/Models/SapiV1EthStakingEthHistoryRedemptionHistoryResponse.cs` |
+| `GetEthRedemptionHistoryUserDataError` | `src/Binance/Errors/GetEthRedemptionHistoryUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetEthStakingHistoryUserData
 
@@ -86,10 +86,10 @@ Accessor: `client.Staking` · Source: `Api/Staking.cs` · 12 operations
 
 | Type | Source |
 | --- | --- |
-| `GetEthStakingHistoryUserDataRequest` | `Requests/Staking/GetEthStakingHistoryUserDataRequest.cs` |
-| `SapiV1EthStakingEthHistoryStakingHistoryResponse` | `Models/SapiV1EthStakingEthHistoryStakingHistoryResponse.cs` |
-| `GetEthStakingHistoryUserDataError` | `Errors/GetEthStakingHistoryUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetEthStakingHistoryUserDataRequest` | `src/Binance/Requests/Staking/GetEthStakingHistoryUserDataRequest.cs` |
+| `SapiV1EthStakingEthHistoryStakingHistoryResponse` | `src/Binance/Models/SapiV1EthStakingEthHistoryStakingHistoryResponse.cs` |
+| `GetEthStakingHistoryUserDataError` | `src/Binance/Errors/GetEthStakingHistoryUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetWbethRateHistoryUserData
 
@@ -103,10 +103,10 @@ Accessor: `client.Staking` · Source: `Api/Staking.cs` · 12 operations
 
 | Type | Source |
 | --- | --- |
-| `GetWbethRateHistoryUserDataRequest` | `Requests/Staking/GetWbethRateHistoryUserDataRequest.cs` |
-| `SapiV1EthStakingEthHistoryRateHistoryResponse` | `Models/SapiV1EthStakingEthHistoryRateHistoryResponse.cs` |
-| `GetWbethRateHistoryUserDataError` | `Errors/GetWbethRateHistoryUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetWbethRateHistoryUserDataRequest` | `src/Binance/Requests/Staking/GetWbethRateHistoryUserDataRequest.cs` |
+| `SapiV1EthStakingEthHistoryRateHistoryResponse` | `src/Binance/Models/SapiV1EthStakingEthHistoryRateHistoryResponse.cs` |
+| `GetWbethRateHistoryUserDataError` | `src/Binance/Errors/GetWbethRateHistoryUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetWbethRewardsHistoryUserData
 
@@ -120,10 +120,10 @@ Accessor: `client.Staking` · Source: `Api/Staking.cs` · 12 operations
 
 | Type | Source |
 | --- | --- |
-| `GetWbethRewardsHistoryUserDataRequest` | `Requests/Staking/GetWbethRewardsHistoryUserDataRequest.cs` |
-| `SapiV1EthStakingEthHistoryWbethRewardsHistoryResponse` | `Models/SapiV1EthStakingEthHistoryWbethRewardsHistoryResponse.cs` |
-| `GetWbethRewardsHistoryUserDataError` | `Errors/GetWbethRewardsHistoryUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetWbethRewardsHistoryUserDataRequest` | `src/Binance/Requests/Staking/GetWbethRewardsHistoryUserDataRequest.cs` |
+| `SapiV1EthStakingEthHistoryWbethRewardsHistoryResponse` | `src/Binance/Models/SapiV1EthStakingEthHistoryWbethRewardsHistoryResponse.cs` |
+| `GetWbethRewardsHistoryUserDataError` | `src/Binance/Errors/GetWbethRewardsHistoryUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetWbethUnwrapHistoryUserData
 
@@ -137,10 +137,10 @@ Accessor: `client.Staking` · Source: `Api/Staking.cs` · 12 operations
 
 | Type | Source |
 | --- | --- |
-| `GetWbethUnwrapHistoryUserDataRequest` | `Requests/Staking/GetWbethUnwrapHistoryUserDataRequest.cs` |
-| `SapiV1EthStakingWbethHistoryUnwrapHistoryResponse` | `Models/SapiV1EthStakingWbethHistoryUnwrapHistoryResponse.cs` |
-| `GetWbethUnwrapHistoryUserDataError` | `Errors/GetWbethUnwrapHistoryUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetWbethUnwrapHistoryUserDataRequest` | `src/Binance/Requests/Staking/GetWbethUnwrapHistoryUserDataRequest.cs` |
+| `SapiV1EthStakingWbethHistoryUnwrapHistoryResponse` | `src/Binance/Models/SapiV1EthStakingWbethHistoryUnwrapHistoryResponse.cs` |
+| `GetWbethUnwrapHistoryUserDataError` | `src/Binance/Errors/GetWbethUnwrapHistoryUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetWbethWrapHistoryUserData
 
@@ -154,10 +154,10 @@ Accessor: `client.Staking` · Source: `Api/Staking.cs` · 12 operations
 
 | Type | Source |
 | --- | --- |
-| `GetWbethWrapHistoryUserDataRequest` | `Requests/Staking/GetWbethWrapHistoryUserDataRequest.cs` |
-| `SapiV1EthStakingWbethHistoryWrapHistoryResponse` | `Models/SapiV1EthStakingWbethHistoryWrapHistoryResponse.cs` |
-| `GetWbethWrapHistoryUserDataError` | `Errors/GetWbethWrapHistoryUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetWbethWrapHistoryUserDataRequest` | `src/Binance/Requests/Staking/GetWbethWrapHistoryUserDataRequest.cs` |
+| `SapiV1EthStakingWbethHistoryWrapHistoryResponse` | `src/Binance/Models/SapiV1EthStakingWbethHistoryWrapHistoryResponse.cs` |
+| `GetWbethWrapHistoryUserDataError` | `src/Binance/Errors/GetWbethWrapHistoryUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### RedeemEthTrade
 
@@ -171,10 +171,10 @@ Accessor: `client.Staking` · Source: `Api/Staking.cs` · 12 operations
 
 | Type | Source |
 | --- | --- |
-| `RedeemEthTradeRequest` | `Requests/Staking/RedeemEthTradeRequest.cs` |
-| `SapiV1EthStakingEthRedeemResponse` | `Models/SapiV1EthStakingEthRedeemResponse.cs` |
-| `RedeemEthTradeError` | `Errors/RedeemEthTradeError.cs` |
-| `Error` | `Models/Error.cs` |
+| `RedeemEthTradeRequest` | `src/Binance/Requests/Staking/RedeemEthTradeRequest.cs` |
+| `SapiV1EthStakingEthRedeemResponse` | `src/Binance/Models/SapiV1EthStakingEthRedeemResponse.cs` |
+| `RedeemEthTradeError` | `src/Binance/Errors/RedeemEthTradeError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### SubscribeEthStakingV2Trade
 
@@ -188,10 +188,10 @@ Accessor: `client.Staking` · Source: `Api/Staking.cs` · 12 operations
 
 | Type | Source |
 | --- | --- |
-| `SubscribeEthStakingV2TradeRequest` | `Requests/Staking/SubscribeEthStakingV2TradeRequest.cs` |
-| `SapiV2EthStakingEthStakeResponse` | `Models/SapiV2EthStakingEthStakeResponse.cs` |
-| `SubscribeEthStakingV2TradeError` | `Errors/SubscribeEthStakingV2TradeError.cs` |
-| `Error` | `Models/Error.cs` |
+| `SubscribeEthStakingV2TradeRequest` | `src/Binance/Requests/Staking/SubscribeEthStakingV2TradeRequest.cs` |
+| `SapiV2EthStakingEthStakeResponse` | `src/Binance/Models/SapiV2EthStakingEthStakeResponse.cs` |
+| `SubscribeEthStakingV2TradeError` | `src/Binance/Errors/SubscribeEthStakingV2TradeError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### WrapBethTrade
 
@@ -205,8 +205,8 @@ Accessor: `client.Staking` · Source: `Api/Staking.cs` · 12 operations
 
 | Type | Source |
 | --- | --- |
-| `WrapBethTradeRequest` | `Requests/Staking/WrapBethTradeRequest.cs` |
-| `SapiV1EthStakingWbethWrapResponse` | `Models/SapiV1EthStakingWbethWrapResponse.cs` |
-| `WrapBethTradeError` | `Errors/WrapBethTradeError.cs` |
-| `Error` | `Models/Error.cs` |
+| `WrapBethTradeRequest` | `src/Binance/Requests/Staking/WrapBethTradeRequest.cs` |
+| `SapiV1EthStakingWbethWrapResponse` | `src/Binance/Models/SapiV1EthStakingWbethWrapResponse.cs` |
+| `WrapBethTradeError` | `src/Binance/Errors/WrapBethTradeError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 

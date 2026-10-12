@@ -2,7 +2,7 @@
 
 # Savings — operations
 
-Accessor: `client.Savings` · Source: `Api/Savings.cs` · 4 operations
+Accessor: `client.Savings` · Source: `src/Binance/Api/Savings.cs` · 4 operations
 
 **Type sources**: the file declaring each type an operation names (`RawError` excluded — see sdk-map.md).
 
@@ -18,10 +18,10 @@ Accessor: `client.Savings` · Source: `Api/Savings.cs` · 4 operations
 
 | Type | Source |
 | --- | --- |
-| `ChangeFixedActivityPositionToDailyPositionUserDataRequest` | `Requests/Savings/ChangeFixedActivityPositionToDailyPositionUserDataRequest.cs` |
-| `SapiV1LendingPositionChangedResponse` | `Models/SapiV1LendingPositionChangedResponse.cs` |
-| `ChangeFixedActivityPositionToDailyPositionUserDataError` | `Errors/ChangeFixedActivityPositionToDailyPositionUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `ChangeFixedActivityPositionToDailyPositionUserDataRequest` | `src/Binance/Requests/Savings/ChangeFixedActivityPositionToDailyPositionUserDataRequest.cs` |
+| `SapiV1LendingPositionChangedResponse` | `src/Binance/Models/SapiV1LendingPositionChangedResponse.cs` |
+| `ChangeFixedActivityPositionToDailyPositionUserDataError` | `src/Binance/Errors/ChangeFixedActivityPositionToDailyPositionUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetFixedActivityProjectListUserData
 
@@ -35,13 +35,13 @@ Accessor: `client.Savings` · Source: `Api/Savings.cs` · 4 operations
 
 | Type | Source |
 | --- | --- |
-| `GetFixedActivityProjectListUserDataRequest` | `Requests/Savings/GetFixedActivityProjectListUserDataRequest.cs` |
-| `Type8` | `Models/Enums/Type8.cs` |
-| `Status` | `Models/Enums/Status.cs` |
-| `SortBy` | `Models/Enums/SortBy.cs` |
-| `SapiV1LendingProjectListResponse` | `Models/SapiV1LendingProjectListResponse.cs` |
-| `GetFixedActivityProjectListUserDataError` | `Errors/GetFixedActivityProjectListUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetFixedActivityProjectListUserDataRequest` | `src/Binance/Requests/Savings/GetFixedActivityProjectListUserDataRequest.cs` |
+| `Type8` | `src/Binance/Models/Enums/Type8.cs` |
+| `Status` | `src/Binance/Models/Enums/Status.cs` |
+| `SortBy` | `src/Binance/Models/Enums/SortBy.cs` |
+| `SapiV1LendingProjectListResponse` | `src/Binance/Models/SapiV1LendingProjectListResponse.cs` |
+| `GetFixedActivityProjectListUserDataError` | `src/Binance/Errors/GetFixedActivityProjectListUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetFixedActivityProjectPositionUserData
 
@@ -55,11 +55,11 @@ Accessor: `client.Savings` · Source: `Api/Savings.cs` · 4 operations
 
 | Type | Source |
 | --- | --- |
-| `GetFixedActivityProjectPositionUserDataRequest` | `Requests/Savings/GetFixedActivityProjectPositionUserDataRequest.cs` |
-| `Status` | `Models/Enums/Status.cs` |
-| `SapiV1LendingProjectPositionListResponse` | `Models/SapiV1LendingProjectPositionListResponse.cs` |
-| `GetFixedActivityProjectPositionUserDataError` | `Errors/GetFixedActivityProjectPositionUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetFixedActivityProjectPositionUserDataRequest` | `src/Binance/Requests/Savings/GetFixedActivityProjectPositionUserDataRequest.cs` |
+| `Status` | `src/Binance/Models/Enums/Status.cs` |
+| `SapiV1LendingProjectPositionListResponse` | `src/Binance/Models/SapiV1LendingProjectPositionListResponse.cs` |
+| `GetFixedActivityProjectPositionUserDataError` | `src/Binance/Errors/GetFixedActivityProjectPositionUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### PurchaseFixedActivityProjectUserData
 
@@ -73,8 +73,8 @@ Accessor: `client.Savings` · Source: `Api/Savings.cs` · 4 operations
 
 | Type | Source |
 | --- | --- |
-| `PurchaseFixedActivityProjectUserDataRequest` | `Requests/Savings/PurchaseFixedActivityProjectUserDataRequest.cs` |
-| `SapiV1LendingCustomizedFixedPurchaseResponse` | `Models/SapiV1LendingCustomizedFixedPurchaseResponse.cs` |
-| `PurchaseFixedActivityProjectUserDataError` | `Errors/PurchaseFixedActivityProjectUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `PurchaseFixedActivityProjectUserDataRequest` | `src/Binance/Requests/Savings/PurchaseFixedActivityProjectUserDataRequest.cs` |
+| `SapiV1LendingCustomizedFixedPurchaseResponse` | `src/Binance/Models/SapiV1LendingCustomizedFixedPurchaseResponse.cs` |
+| `PurchaseFixedActivityProjectUserDataError` | `src/Binance/Errors/PurchaseFixedActivityProjectUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 

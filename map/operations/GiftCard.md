@@ -2,7 +2,7 @@
 
 # GiftCard — operations
 
-Accessor: `client.GiftCard` · Source: `Api/GiftCard.cs` · 6 operations
+Accessor: `client.GiftCard` · Source: `src/Binance/Api/GiftCard.cs` · 6 operations
 
 **Type sources**: the file declaring each type an operation names (`RawError` excluded — see sdk-map.md).
 
@@ -18,10 +18,10 @@ Accessor: `client.GiftCard` · Source: `Api/GiftCard.cs` · 6 operations
 
 | Type | Source |
 | --- | --- |
-| `BuyABinanceCodeTradeRequest` | `Requests/GiftCard/BuyABinanceCodeTradeRequest.cs` |
-| `SapiV1GiftcardBuyCodeResponse` | `Models/SapiV1GiftcardBuyCodeResponse.cs` |
-| `BuyABinanceCodeTradeError` | `Errors/BuyABinanceCodeTradeError.cs` |
-| `Error` | `Models/Error.cs` |
+| `BuyABinanceCodeTradeRequest` | `src/Binance/Requests/GiftCard/BuyABinanceCodeTradeRequest.cs` |
+| `SapiV1GiftcardBuyCodeResponse` | `src/Binance/Models/SapiV1GiftcardBuyCodeResponse.cs` |
+| `BuyABinanceCodeTradeError` | `src/Binance/Errors/BuyABinanceCodeTradeError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### CreateABinanceCodeUserData
 
@@ -35,10 +35,10 @@ Accessor: `client.GiftCard` · Source: `Api/GiftCard.cs` · 6 operations
 
 | Type | Source |
 | --- | --- |
-| `CreateABinanceCodeUserDataRequest` | `Requests/GiftCard/CreateABinanceCodeUserDataRequest.cs` |
-| `SapiV1GiftcardCreateCodeResponse` | `Models/SapiV1GiftcardCreateCodeResponse.cs` |
-| `CreateABinanceCodeUserDataError` | `Errors/CreateABinanceCodeUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `CreateABinanceCodeUserDataRequest` | `src/Binance/Requests/GiftCard/CreateABinanceCodeUserDataRequest.cs` |
+| `SapiV1GiftcardCreateCodeResponse` | `src/Binance/Models/SapiV1GiftcardCreateCodeResponse.cs` |
+| `CreateABinanceCodeUserDataError` | `src/Binance/Errors/CreateABinanceCodeUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### FetchRsaPublicKeyUserData
 
@@ -52,10 +52,10 @@ Accessor: `client.GiftCard` · Source: `Api/GiftCard.cs` · 6 operations
 
 | Type | Source |
 | --- | --- |
-| `FetchRsaPublicKeyUserDataRequest` | `Requests/GiftCard/FetchRsaPublicKeyUserDataRequest.cs` |
-| `SapiV1GiftcardCryptographyRsaPublicKeyResponse` | `Models/SapiV1GiftcardCryptographyRsaPublicKeyResponse.cs` |
-| `FetchRsaPublicKeyUserDataError` | `Errors/FetchRsaPublicKeyUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `FetchRsaPublicKeyUserDataRequest` | `src/Binance/Requests/GiftCard/FetchRsaPublicKeyUserDataRequest.cs` |
+| `SapiV1GiftcardCryptographyRsaPublicKeyResponse` | `src/Binance/Models/SapiV1GiftcardCryptographyRsaPublicKeyResponse.cs` |
+| `FetchRsaPublicKeyUserDataError` | `src/Binance/Errors/FetchRsaPublicKeyUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### FetchTokenLimitUserData
 
@@ -69,10 +69,10 @@ Accessor: `client.GiftCard` · Source: `Api/GiftCard.cs` · 6 operations
 
 | Type | Source |
 | --- | --- |
-| `FetchTokenLimitUserDataRequest` | `Requests/GiftCard/FetchTokenLimitUserDataRequest.cs` |
-| `SapiV1GiftcardBuyCodeTokenLimitResponse` | `Models/SapiV1GiftcardBuyCodeTokenLimitResponse.cs` |
-| `FetchTokenLimitUserDataError` | `Errors/FetchTokenLimitUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `FetchTokenLimitUserDataRequest` | `src/Binance/Requests/GiftCard/FetchTokenLimitUserDataRequest.cs` |
+| `SapiV1GiftcardBuyCodeTokenLimitResponse` | `src/Binance/Models/SapiV1GiftcardBuyCodeTokenLimitResponse.cs` |
+| `FetchTokenLimitUserDataError` | `src/Binance/Errors/FetchTokenLimitUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### RedeemABinanceCodeUserData
 
@@ -86,10 +86,10 @@ Accessor: `client.GiftCard` · Source: `Api/GiftCard.cs` · 6 operations
 
 | Type | Source |
 | --- | --- |
-| `RedeemABinanceCodeUserDataRequest` | `Requests/GiftCard/RedeemABinanceCodeUserDataRequest.cs` |
-| `SapiV1GiftcardRedeemCodeResponse` | `Models/SapiV1GiftcardRedeemCodeResponse.cs` |
-| `RedeemABinanceCodeUserDataError` | `Errors/RedeemABinanceCodeUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `RedeemABinanceCodeUserDataRequest` | `src/Binance/Requests/GiftCard/RedeemABinanceCodeUserDataRequest.cs` |
+| `SapiV1GiftcardRedeemCodeResponse` | `src/Binance/Models/SapiV1GiftcardRedeemCodeResponse.cs` |
+| `RedeemABinanceCodeUserDataError` | `src/Binance/Errors/RedeemABinanceCodeUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### VerifyABinanceCodeUserData
 
@@ -103,8 +103,8 @@ Accessor: `client.GiftCard` · Source: `Api/GiftCard.cs` · 6 operations
 
 | Type | Source |
 | --- | --- |
-| `VerifyABinanceCodeUserDataRequest` | `Requests/GiftCard/VerifyABinanceCodeUserDataRequest.cs` |
-| `SapiV1GiftcardVerifyResponse` | `Models/SapiV1GiftcardVerifyResponse.cs` |
-| `VerifyABinanceCodeUserDataError` | `Errors/VerifyABinanceCodeUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `VerifyABinanceCodeUserDataRequest` | `src/Binance/Requests/GiftCard/VerifyABinanceCodeUserDataRequest.cs` |
+| `SapiV1GiftcardVerifyResponse` | `src/Binance/Models/SapiV1GiftcardVerifyResponse.cs` |
+| `VerifyABinanceCodeUserDataError` | `src/Binance/Errors/VerifyABinanceCodeUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 

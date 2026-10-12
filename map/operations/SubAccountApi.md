@@ -2,7 +2,7 @@
 
 # SubAccountApi — operations
 
-Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operations
+Accessor: `client.SubAccountApi` · Source: `src/Binance/Api/SubAccountApi.cs` · 45 operations
 
 **Type sources**: the file declaring each type an operation names (`RawError` excluded — see sdk-map.md).
 
@@ -18,10 +18,10 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 | Type | Source |
 | --- | --- |
-| `CreateAVirtualSubAccountForMasterAccountRequest` | `Requests/SubAccountApi/CreateAVirtualSubAccountForMasterAccountRequest.cs` |
-| `SapiV1SubAccountVirtualSubAccountResponse` | `Models/SapiV1SubAccountVirtualSubAccountResponse.cs` |
-| `CreateAVirtualSubAccountForMasterAccountError` | `Errors/CreateAVirtualSubAccountForMasterAccountError.cs` |
-| `Error` | `Models/Error.cs` |
+| `CreateAVirtualSubAccountForMasterAccountRequest` | `src/Binance/Requests/SubAccountApi/CreateAVirtualSubAccountForMasterAccountRequest.cs` |
+| `SapiV1SubAccountVirtualSubAccountResponse` | `src/Binance/Models/SapiV1SubAccountVirtualSubAccountResponse.cs` |
+| `CreateAVirtualSubAccountForMasterAccountError` | `src/Binance/Errors/CreateAVirtualSubAccountForMasterAccountError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### DeleteIpListForASubAccountApiKeyForMasterAccount
 
@@ -35,10 +35,10 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 | Type | Source |
 | --- | --- |
-| `DeleteIpListForASubAccountApiKeyForMasterAccountRequest` | `Requests/SubAccountApi/DeleteIpListForASubAccountApiKeyForMasterAccountRequest.cs` |
-| `SapiV1SubAccountSubAccountApiIpRestrictionIpListResponse` | `Models/SapiV1SubAccountSubAccountApiIpRestrictionIpListResponse.cs` |
-| `DeleteIpListForASubAccountApiKeyForMasterAccountError` | `Errors/DeleteIpListForASubAccountApiKeyForMasterAccountError.cs` |
-| `Error` | `Models/Error.cs` |
+| `DeleteIpListForASubAccountApiKeyForMasterAccountRequest` | `src/Binance/Requests/SubAccountApi/DeleteIpListForASubAccountApiKeyForMasterAccountRequest.cs` |
+| `SapiV1SubAccountSubAccountApiIpRestrictionIpListResponse` | `src/Binance/Models/SapiV1SubAccountSubAccountApiIpRestrictionIpListResponse.cs` |
+| `DeleteIpListForASubAccountApiKeyForMasterAccountError` | `src/Binance/Errors/DeleteIpListForASubAccountApiKeyForMasterAccountError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### DepositAssetsIntoTheManagedSubAccountForInvestorMasterAccount
 
@@ -52,10 +52,10 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 | Type | Source |
 | --- | --- |
-| `DepositAssetsIntoTheManagedSubAccountForInvestorMasterAccountRequest` | `Requests/SubAccountApi/DepositAssetsIntoTheManagedSubAccountForInvestorMasterAccountRequest.cs` |
-| `SapiV1ManagedSubaccountDepositResponse` | `Models/SapiV1ManagedSubaccountDepositResponse.cs` |
-| `DepositAssetsIntoTheManagedSubAccountForInvestorMasterAccountError` | `Errors/DepositAssetsIntoTheManagedSubAccountForInvestorMasterAccountError.cs` |
-| `Error` | `Models/Error.cs` |
+| `DepositAssetsIntoTheManagedSubAccountForInvestorMasterAccountRequest` | `src/Binance/Requests/SubAccountApi/DepositAssetsIntoTheManagedSubAccountForInvestorMasterAccountRequest.cs` |
+| `SapiV1ManagedSubaccountDepositResponse` | `src/Binance/Models/SapiV1ManagedSubaccountDepositResponse.cs` |
+| `DepositAssetsIntoTheManagedSubAccountForInvestorMasterAccountError` | `src/Binance/Errors/DepositAssetsIntoTheManagedSubAccountForInvestorMasterAccountError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### DetailOnSubAccountSFuturesAccountForMasterAccount
 
@@ -69,10 +69,10 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 | Type | Source |
 | --- | --- |
-| `DetailOnSubAccountSFuturesAccountForMasterAccountRequest` | `Requests/SubAccountApi/DetailOnSubAccountSFuturesAccountForMasterAccountRequest.cs` |
-| `SapiV1SubAccountFuturesAccountResponse` | `Models/SapiV1SubAccountFuturesAccountResponse.cs` |
-| `DetailOnSubAccountSFuturesAccountForMasterAccountError` | `Errors/DetailOnSubAccountSFuturesAccountForMasterAccountError.cs` |
-| `Error` | `Models/Error.cs` |
+| `DetailOnSubAccountSFuturesAccountForMasterAccountRequest` | `src/Binance/Requests/SubAccountApi/DetailOnSubAccountSFuturesAccountForMasterAccountRequest.cs` |
+| `SapiV1SubAccountFuturesAccountResponse` | `src/Binance/Models/SapiV1SubAccountFuturesAccountResponse.cs` |
+| `DetailOnSubAccountSFuturesAccountForMasterAccountError` | `src/Binance/Errors/DetailOnSubAccountSFuturesAccountForMasterAccountError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### DetailOnSubAccountSFuturesAccountV2ForMasterAccount
 
@@ -86,10 +86,10 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 | Type | Source |
 | --- | --- |
-| `DetailOnSubAccountSFuturesAccountV2ForMasterAccountRequest` | `Requests/SubAccountApi/DetailOnSubAccountSFuturesAccountV2ForMasterAccountRequest.cs` |
-| `SapiV2SubAccountFuturesAccountResponse` | `Models/AnyOf/SapiV2SubAccountFuturesAccountResponse.cs` |
-| `DetailOnSubAccountSFuturesAccountV2ForMasterAccountError` | `Errors/DetailOnSubAccountSFuturesAccountV2ForMasterAccountError.cs` |
-| `Error` | `Models/Error.cs` |
+| `DetailOnSubAccountSFuturesAccountV2ForMasterAccountRequest` | `src/Binance/Requests/SubAccountApi/DetailOnSubAccountSFuturesAccountV2ForMasterAccountRequest.cs` |
+| `SapiV2SubAccountFuturesAccountResponse` | `src/Binance/Models/AnyOf/SapiV2SubAccountFuturesAccountResponse.cs` |
+| `DetailOnSubAccountSFuturesAccountV2ForMasterAccountError` | `src/Binance/Errors/DetailOnSubAccountSFuturesAccountV2ForMasterAccountError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### DetailOnSubAccountSMarginAccountForMasterAccount
 
@@ -103,10 +103,10 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 | Type | Source |
 | --- | --- |
-| `DetailOnSubAccountSMarginAccountForMasterAccountRequest` | `Requests/SubAccountApi/DetailOnSubAccountSMarginAccountForMasterAccountRequest.cs` |
-| `SapiV1SubAccountMarginAccountResponse` | `Models/SapiV1SubAccountMarginAccountResponse.cs` |
-| `DetailOnSubAccountSMarginAccountForMasterAccountError` | `Errors/DetailOnSubAccountSMarginAccountForMasterAccountError.cs` |
-| `Error` | `Models/Error.cs` |
+| `DetailOnSubAccountSMarginAccountForMasterAccountRequest` | `src/Binance/Requests/SubAccountApi/DetailOnSubAccountSMarginAccountForMasterAccountRequest.cs` |
+| `SapiV1SubAccountMarginAccountResponse` | `src/Binance/Models/SapiV1SubAccountMarginAccountResponse.cs` |
+| `DetailOnSubAccountSMarginAccountForMasterAccountError` | `src/Binance/Errors/DetailOnSubAccountSMarginAccountForMasterAccountError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### EnableFuturesForSubAccountForMasterAccount
 
@@ -120,10 +120,10 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 | Type | Source |
 | --- | --- |
-| `EnableFuturesForSubAccountForMasterAccountRequest` | `Requests/SubAccountApi/EnableFuturesForSubAccountForMasterAccountRequest.cs` |
-| `SapiV1SubAccountFuturesEnableResponse` | `Models/SapiV1SubAccountFuturesEnableResponse.cs` |
-| `EnableFuturesForSubAccountForMasterAccountError` | `Errors/EnableFuturesForSubAccountForMasterAccountError.cs` |
-| `Error` | `Models/Error.cs` |
+| `EnableFuturesForSubAccountForMasterAccountRequest` | `src/Binance/Requests/SubAccountApi/EnableFuturesForSubAccountForMasterAccountRequest.cs` |
+| `SapiV1SubAccountFuturesEnableResponse` | `src/Binance/Models/SapiV1SubAccountFuturesEnableResponse.cs` |
+| `EnableFuturesForSubAccountForMasterAccountError` | `src/Binance/Errors/EnableFuturesForSubAccountForMasterAccountError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### EnableLeverageTokenForSubAccountForMasterAccount
 
@@ -137,10 +137,10 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 | Type | Source |
 | --- | --- |
-| `EnableLeverageTokenForSubAccountForMasterAccountRequest` | `Requests/SubAccountApi/EnableLeverageTokenForSubAccountForMasterAccountRequest.cs` |
-| `SapiV1SubAccountBlvtEnableResponse` | `Models/SapiV1SubAccountBlvtEnableResponse.cs` |
-| `EnableLeverageTokenForSubAccountForMasterAccountError` | `Errors/EnableLeverageTokenForSubAccountForMasterAccountError.cs` |
-| `Error` | `Models/Error.cs` |
+| `EnableLeverageTokenForSubAccountForMasterAccountRequest` | `src/Binance/Requests/SubAccountApi/EnableLeverageTokenForSubAccountForMasterAccountRequest.cs` |
+| `SapiV1SubAccountBlvtEnableResponse` | `src/Binance/Models/SapiV1SubAccountBlvtEnableResponse.cs` |
+| `EnableLeverageTokenForSubAccountForMasterAccountError` | `src/Binance/Errors/EnableLeverageTokenForSubAccountForMasterAccountError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### EnableMarginForSubAccountForMasterAccount
 
@@ -154,10 +154,10 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 | Type | Source |
 | --- | --- |
-| `EnableMarginForSubAccountForMasterAccountRequest` | `Requests/SubAccountApi/EnableMarginForSubAccountForMasterAccountRequest.cs` |
-| `SapiV1SubAccountMarginEnableResponse` | `Models/SapiV1SubAccountMarginEnableResponse.cs` |
-| `EnableMarginForSubAccountForMasterAccountError` | `Errors/EnableMarginForSubAccountForMasterAccountError.cs` |
-| `Error` | `Models/Error.cs` |
+| `EnableMarginForSubAccountForMasterAccountRequest` | `src/Binance/Requests/SubAccountApi/EnableMarginForSubAccountForMasterAccountRequest.cs` |
+| `SapiV1SubAccountMarginEnableResponse` | `src/Binance/Models/SapiV1SubAccountMarginEnableResponse.cs` |
+| `EnableMarginForSubAccountForMasterAccountError` | `src/Binance/Errors/EnableMarginForSubAccountForMasterAccountError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### EnableOptionsForSubAccountForMasterAccountUserData
 
@@ -171,10 +171,10 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 | Type | Source |
 | --- | --- |
-| `EnableOptionsForSubAccountForMasterAccountUserDataRequest` | `Requests/SubAccountApi/EnableOptionsForSubAccountForMasterAccountUserDataRequest.cs` |
-| `SapiV1SubAccountEoptionsEnableResponse` | `Models/SapiV1SubAccountEoptionsEnableResponse.cs` |
-| `EnableOptionsForSubAccountForMasterAccountUserDataError` | `Errors/EnableOptionsForSubAccountForMasterAccountUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `EnableOptionsForSubAccountForMasterAccountUserDataRequest` | `src/Binance/Requests/SubAccountApi/EnableOptionsForSubAccountForMasterAccountUserDataRequest.cs` |
+| `SapiV1SubAccountEoptionsEnableResponse` | `src/Binance/Models/SapiV1SubAccountEoptionsEnableResponse.cs` |
+| `EnableOptionsForSubAccountForMasterAccountUserDataError` | `src/Binance/Errors/EnableOptionsForSubAccountForMasterAccountUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### FuturesPositionRiskOfSubAccountForMasterAccount
 
@@ -188,10 +188,10 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 | Type | Source |
 | --- | --- |
-| `FuturesPositionRiskOfSubAccountForMasterAccountRequest` | `Requests/SubAccountApi/FuturesPositionRiskOfSubAccountForMasterAccountRequest.cs` |
-| `SapiV1SubAccountFuturesPositionRiskResponse` | `Models/SapiV1SubAccountFuturesPositionRiskResponse.cs` |
-| `FuturesPositionRiskOfSubAccountForMasterAccountError` | `Errors/FuturesPositionRiskOfSubAccountForMasterAccountError.cs` |
-| `Error` | `Models/Error.cs` |
+| `FuturesPositionRiskOfSubAccountForMasterAccountRequest` | `src/Binance/Requests/SubAccountApi/FuturesPositionRiskOfSubAccountForMasterAccountRequest.cs` |
+| `SapiV1SubAccountFuturesPositionRiskResponse` | `src/Binance/Models/SapiV1SubAccountFuturesPositionRiskResponse.cs` |
+| `FuturesPositionRiskOfSubAccountForMasterAccountError` | `src/Binance/Errors/FuturesPositionRiskOfSubAccountForMasterAccountError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### FuturesPositionRiskOfSubAccountV2ForMasterAccount
 
@@ -205,10 +205,10 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 | Type | Source |
 | --- | --- |
-| `FuturesPositionRiskOfSubAccountV2ForMasterAccountRequest` | `Requests/SubAccountApi/FuturesPositionRiskOfSubAccountV2ForMasterAccountRequest.cs` |
-| `SapiV2SubAccountFuturesPositionRiskResponse` | `Models/AnyOf/SapiV2SubAccountFuturesPositionRiskResponse.cs` |
-| `FuturesPositionRiskOfSubAccountV2ForMasterAccountError` | `Errors/FuturesPositionRiskOfSubAccountV2ForMasterAccountError.cs` |
-| `Error` | `Models/Error.cs` |
+| `FuturesPositionRiskOfSubAccountV2ForMasterAccountRequest` | `src/Binance/Requests/SubAccountApi/FuturesPositionRiskOfSubAccountV2ForMasterAccountRequest.cs` |
+| `SapiV2SubAccountFuturesPositionRiskResponse` | `src/Binance/Models/AnyOf/SapiV2SubAccountFuturesPositionRiskResponse.cs` |
+| `FuturesPositionRiskOfSubAccountV2ForMasterAccountError` | `src/Binance/Errors/FuturesPositionRiskOfSubAccountV2ForMasterAccountError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetIpRestrictionForASubAccountApiKeyForMasterAccount
 
@@ -222,10 +222,10 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 | Type | Source |
 | --- | --- |
-| `GetIpRestrictionForASubAccountApiKeyForMasterAccountRequest` | `Requests/SubAccountApi/GetIpRestrictionForASubAccountApiKeyForMasterAccountRequest.cs` |
-| `SapiV1SubAccountSubAccountApiIpRestrictionResponse` | `Models/SapiV1SubAccountSubAccountApiIpRestrictionResponse.cs` |
-| `GetIpRestrictionForASubAccountApiKeyForMasterAccountError` | `Errors/GetIpRestrictionForASubAccountApiKeyForMasterAccountError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetIpRestrictionForASubAccountApiKeyForMasterAccountRequest` | `src/Binance/Requests/SubAccountApi/GetIpRestrictionForASubAccountApiKeyForMasterAccountRequest.cs` |
+| `SapiV1SubAccountSubAccountApiIpRestrictionResponse` | `src/Binance/Models/SapiV1SubAccountSubAccountApiIpRestrictionResponse.cs` |
+| `GetIpRestrictionForASubAccountApiKeyForMasterAccountError` | `src/Binance/Errors/GetIpRestrictionForASubAccountApiKeyForMasterAccountError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetManagedSubAccountDepositAddressForInvestorMasterAccount
 
@@ -239,10 +239,10 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 | Type | Source |
 | --- | --- |
-| `GetManagedSubAccountDepositAddressForInvestorMasterAccountRequest` | `Requests/SubAccountApi/GetManagedSubAccountDepositAddressForInvestorMasterAccountRequest.cs` |
-| `SapiV1ManagedSubaccountDepositAddressResponse` | `Models/SapiV1ManagedSubaccountDepositAddressResponse.cs` |
-| `GetManagedSubAccountDepositAddressForInvestorMasterAccountError` | `Errors/GetManagedSubAccountDepositAddressForInvestorMasterAccountError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetManagedSubAccountDepositAddressForInvestorMasterAccountRequest` | `src/Binance/Requests/SubAccountApi/GetManagedSubAccountDepositAddressForInvestorMasterAccountRequest.cs` |
+| `SapiV1ManagedSubaccountDepositAddressResponse` | `src/Binance/Models/SapiV1ManagedSubaccountDepositAddressResponse.cs` |
+| `GetManagedSubAccountDepositAddressForInvestorMasterAccountError` | `src/Binance/Errors/GetManagedSubAccountDepositAddressForInvestorMasterAccountError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### ManagedSubAccountAssetDetailsForInvestorMasterAccount
 
@@ -256,10 +256,10 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 | Type | Source |
 | --- | --- |
-| `ManagedSubAccountAssetDetailsForInvestorMasterAccountRequest` | `Requests/SubAccountApi/ManagedSubAccountAssetDetailsForInvestorMasterAccountRequest.cs` |
-| `SapiV1ManagedSubaccountAssetResponse` | `Models/SapiV1ManagedSubaccountAssetResponse.cs` |
-| `ManagedSubAccountAssetDetailsForInvestorMasterAccountError` | `Errors/ManagedSubAccountAssetDetailsForInvestorMasterAccountError.cs` |
-| `Error` | `Models/Error.cs` |
+| `ManagedSubAccountAssetDetailsForInvestorMasterAccountRequest` | `src/Binance/Requests/SubAccountApi/ManagedSubAccountAssetDetailsForInvestorMasterAccountRequest.cs` |
+| `SapiV1ManagedSubaccountAssetResponse` | `src/Binance/Models/SapiV1ManagedSubaccountAssetResponse.cs` |
+| `ManagedSubAccountAssetDetailsForInvestorMasterAccountError` | `src/Binance/Errors/ManagedSubAccountAssetDetailsForInvestorMasterAccountError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### ManagedSubAccountSnapshotForInvestorMasterAccount
 
@@ -272,10 +272,10 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 | Type | Source |
 | --- | --- |
-| `ManagedSubAccountSnapshotForInvestorMasterAccountRequest` | `Requests/SubAccountApi/ManagedSubAccountSnapshotForInvestorMasterAccountRequest.cs` |
-| `SapiV1ManagedSubaccountAccountSnapshotResponse` | `Models/SapiV1ManagedSubaccountAccountSnapshotResponse.cs` |
-| `ManagedSubAccountSnapshotForInvestorMasterAccountError` | `Errors/ManagedSubAccountSnapshotForInvestorMasterAccountError.cs` |
-| `Error` | `Models/Error.cs` |
+| `ManagedSubAccountSnapshotForInvestorMasterAccountRequest` | `src/Binance/Requests/SubAccountApi/ManagedSubAccountSnapshotForInvestorMasterAccountRequest.cs` |
+| `SapiV1ManagedSubaccountAccountSnapshotResponse` | `src/Binance/Models/SapiV1ManagedSubaccountAccountSnapshotResponse.cs` |
+| `ManagedSubAccountSnapshotForInvestorMasterAccountError` | `src/Binance/Errors/ManagedSubAccountSnapshotForInvestorMasterAccountError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### MarginTransferForSubAccountForMasterAccount
 
@@ -289,10 +289,10 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 | Type | Source |
 | --- | --- |
-| `MarginTransferForSubAccountForMasterAccountRequest` | `Requests/SubAccountApi/MarginTransferForSubAccountForMasterAccountRequest.cs` |
-| `SapiV1SubAccountMarginTransferResponse` | `Models/SapiV1SubAccountMarginTransferResponse.cs` |
-| `MarginTransferForSubAccountForMasterAccountError` | `Errors/MarginTransferForSubAccountForMasterAccountError.cs` |
-| `Error` | `Models/Error.cs` |
+| `MarginTransferForSubAccountForMasterAccountRequest` | `src/Binance/Requests/SubAccountApi/MarginTransferForSubAccountForMasterAccountRequest.cs` |
+| `SapiV1SubAccountMarginTransferResponse` | `src/Binance/Models/SapiV1SubAccountMarginTransferResponse.cs` |
+| `MarginTransferForSubAccountForMasterAccountError` | `src/Binance/Errors/MarginTransferForSubAccountForMasterAccountError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryManagedSubAccountFuturesAssetDetailsForInvestorMasterAccount
 
@@ -306,10 +306,10 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 | Type | Source |
 | --- | --- |
-| `QueryManagedSubAccountFuturesAssetDetailsForInvestorMasterAccountRequest` | `Requests/SubAccountApi/QueryManagedSubAccountFuturesAssetDetailsForInvestorMasterAccountRequest.cs` |
-| `SapiV1ManagedSubaccountFetchFutureAssetResponse` | `Models/SapiV1ManagedSubaccountFetchFutureAssetResponse.cs` |
-| `QueryManagedSubAccountFuturesAssetDetailsForInvestorMasterAccountError` | `Errors/QueryManagedSubAccountFuturesAssetDetailsForInvestorMasterAccountError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryManagedSubAccountFuturesAssetDetailsForInvestorMasterAccountRequest` | `src/Binance/Requests/SubAccountApi/QueryManagedSubAccountFuturesAssetDetailsForInvestorMasterAccountRequest.cs` |
+| `SapiV1ManagedSubaccountFetchFutureAssetResponse` | `src/Binance/Models/SapiV1ManagedSubaccountFetchFutureAssetResponse.cs` |
+| `QueryManagedSubAccountFuturesAssetDetailsForInvestorMasterAccountError` | `src/Binance/Errors/QueryManagedSubAccountFuturesAssetDetailsForInvestorMasterAccountError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryManagedSubAccountListForInvestor
 
@@ -323,10 +323,10 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 | Type | Source |
 | --- | --- |
-| `QueryManagedSubAccountListForInvestorRequest` | `Requests/SubAccountApi/QueryManagedSubAccountListForInvestorRequest.cs` |
-| `SapiV1ManagedSubaccountInfoResponse` | `Models/SapiV1ManagedSubaccountInfoResponse.cs` |
-| `QueryManagedSubAccountListForInvestorError` | `Errors/QueryManagedSubAccountListForInvestorError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryManagedSubAccountListForInvestorRequest` | `src/Binance/Requests/SubAccountApi/QueryManagedSubAccountListForInvestorRequest.cs` |
+| `SapiV1ManagedSubaccountInfoResponse` | `src/Binance/Models/SapiV1ManagedSubaccountInfoResponse.cs` |
+| `QueryManagedSubAccountListForInvestorError` | `src/Binance/Errors/QueryManagedSubAccountListForInvestorError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryManagedSubAccountMarginAssetDetailsForInvestorMasterAccount
 
@@ -340,10 +340,10 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 | Type | Source |
 | --- | --- |
-| `QueryManagedSubAccountMarginAssetDetailsForInvestorMasterAccountRequest` | `Requests/SubAccountApi/QueryManagedSubAccountMarginAssetDetailsForInvestorMasterAccountRequest.cs` |
-| `SapiV1ManagedSubaccountMarginAssetResponse` | `Models/SapiV1ManagedSubaccountMarginAssetResponse.cs` |
-| `QueryManagedSubAccountMarginAssetDetailsForInvestorMasterAccountError` | `Errors/QueryManagedSubAccountMarginAssetDetailsForInvestorMasterAccountError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryManagedSubAccountMarginAssetDetailsForInvestorMasterAccountRequest` | `src/Binance/Requests/SubAccountApi/QueryManagedSubAccountMarginAssetDetailsForInvestorMasterAccountRequest.cs` |
+| `SapiV1ManagedSubaccountMarginAssetResponse` | `src/Binance/Models/SapiV1ManagedSubaccountMarginAssetResponse.cs` |
+| `QueryManagedSubAccountMarginAssetDetailsForInvestorMasterAccountError` | `src/Binance/Errors/QueryManagedSubAccountMarginAssetDetailsForInvestorMasterAccountError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryManagedSubAccountTransferLogForInvestorMasterAccount
 
@@ -357,10 +357,10 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 | Type | Source |
 | --- | --- |
-| `QueryManagedSubAccountTransferLogForInvestorMasterAccountRequest` | `Requests/SubAccountApi/QueryManagedSubAccountTransferLogForInvestorMasterAccountRequest.cs` |
-| `SapiV1ManagedSubaccountQueryTransLogForInvestorResponse` | `Models/SapiV1ManagedSubaccountQueryTransLogForInvestorResponse.cs` |
-| `QueryManagedSubAccountTransferLogForInvestorMasterAccountError` | `Errors/QueryManagedSubAccountTransferLogForInvestorMasterAccountError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryManagedSubAccountTransferLogForInvestorMasterAccountRequest` | `src/Binance/Requests/SubAccountApi/QueryManagedSubAccountTransferLogForInvestorMasterAccountRequest.cs` |
+| `SapiV1ManagedSubaccountQueryTransLogForInvestorResponse` | `src/Binance/Models/SapiV1ManagedSubaccountQueryTransLogForInvestorResponse.cs` |
+| `QueryManagedSubAccountTransferLogForInvestorMasterAccountError` | `src/Binance/Errors/QueryManagedSubAccountTransferLogForInvestorMasterAccountError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryManagedSubAccountTransferLogForTradingTeamMasterAccount
 
@@ -374,10 +374,10 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 | Type | Source |
 | --- | --- |
-| `QueryManagedSubAccountTransferLogForTradingTeamMasterAccountRequest` | `Requests/SubAccountApi/QueryManagedSubAccountTransferLogForTradingTeamMasterAccountRequest.cs` |
-| `SapiV1ManagedSubaccountQueryTransLogForTradeParentResponse` | `Models/SapiV1ManagedSubaccountQueryTransLogForTradeParentResponse.cs` |
-| `QueryManagedSubAccountTransferLogForTradingTeamMasterAccountError` | `Errors/QueryManagedSubAccountTransferLogForTradingTeamMasterAccountError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryManagedSubAccountTransferLogForTradingTeamMasterAccountRequest` | `src/Binance/Requests/SubAccountApi/QueryManagedSubAccountTransferLogForTradingTeamMasterAccountRequest.cs` |
+| `SapiV1ManagedSubaccountQueryTransLogForTradeParentResponse` | `src/Binance/Models/SapiV1ManagedSubaccountQueryTransLogForTradeParentResponse.cs` |
+| `QueryManagedSubAccountTransferLogForTradingTeamMasterAccountError` | `src/Binance/Errors/QueryManagedSubAccountTransferLogForTradingTeamMasterAccountError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryManagedSubAccountTransferLogForTradingTeamSubAccountUserData
 
@@ -391,12 +391,12 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 | Type | Source |
 | --- | --- |
-| `QueryManagedSubAccountTransferLogForTradingTeamSubAccountUserDataRequest` | `Requests/SubAccountApi/QueryManagedSubAccountTransferLogForTradingTeamSubAccountUserDataRequest.cs` |
-| `Transfers` | `Models/Enums/Transfers.cs` |
-| `TransferFunctionAccountType` | `Models/Enums/TransferFunctionAccountType.cs` |
-| `SapiV1ManagedSubaccountQueryTransLogResponse` | `Models/SapiV1ManagedSubaccountQueryTransLogResponse.cs` |
-| `QueryManagedSubAccountTransferLogForTradingTeamSubAccountUserDataError` | `Errors/QueryManagedSubAccountTransferLogForTradingTeamSubAccountUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryManagedSubAccountTransferLogForTradingTeamSubAccountUserDataRequest` | `src/Binance/Requests/SubAccountApi/QueryManagedSubAccountTransferLogForTradingTeamSubAccountUserDataRequest.cs` |
+| `Transfers` | `src/Binance/Models/Enums/Transfers.cs` |
+| `TransferFunctionAccountType` | `src/Binance/Models/Enums/TransferFunctionAccountType.cs` |
+| `SapiV1ManagedSubaccountQueryTransLogResponse` | `src/Binance/Models/SapiV1ManagedSubaccountQueryTransLogResponse.cs` |
+| `QueryManagedSubAccountTransferLogForTradingTeamSubAccountUserDataError` | `src/Binance/Errors/QueryManagedSubAccountTransferLogForTradingTeamSubAccountUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QuerySubAccountAssetsForMasterAccount
 
@@ -410,10 +410,10 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 | Type | Source |
 | --- | --- |
-| `QuerySubAccountAssetsForMasterAccountRequest` | `Requests/SubAccountApi/QuerySubAccountAssetsForMasterAccountRequest.cs` |
-| `SapiV4SubAccountAssetsResponse` | `Models/SapiV4SubAccountAssetsResponse.cs` |
-| `QuerySubAccountAssetsForMasterAccountError` | `Errors/QuerySubAccountAssetsForMasterAccountError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QuerySubAccountAssetsForMasterAccountRequest` | `src/Binance/Requests/SubAccountApi/QuerySubAccountAssetsForMasterAccountRequest.cs` |
+| `SapiV4SubAccountAssetsResponse` | `src/Binance/Models/SapiV4SubAccountAssetsResponse.cs` |
+| `QuerySubAccountAssetsForMasterAccountError` | `src/Binance/Errors/QuerySubAccountAssetsForMasterAccountError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QuerySubAccountListForMasterAccount
 
@@ -427,11 +427,11 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 | Type | Source |
 | --- | --- |
-| `QuerySubAccountListForMasterAccountRequest` | `Requests/SubAccountApi/QuerySubAccountListForMasterAccountRequest.cs` |
-| `IsFreeze` | `Models/Enums/IsFreeze.cs` |
-| `SapiV1SubAccountListResponse` | `Models/SapiV1SubAccountListResponse.cs` |
-| `QuerySubAccountListForMasterAccountError` | `Errors/QuerySubAccountListForMasterAccountError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QuerySubAccountListForMasterAccountRequest` | `src/Binance/Requests/SubAccountApi/QuerySubAccountListForMasterAccountRequest.cs` |
+| `IsFreeze` | `src/Binance/Models/Enums/IsFreeze.cs` |
+| `SapiV1SubAccountListResponse` | `src/Binance/Models/SapiV1SubAccountListResponse.cs` |
+| `QuerySubAccountListForMasterAccountError` | `src/Binance/Errors/QuerySubAccountListForMasterAccountError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QuerySubAccountTransactionStatisticsForMasterAccount
 
@@ -445,10 +445,10 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 | Type | Source |
 | --- | --- |
-| `QuerySubAccountTransactionStatisticsForMasterAccountRequest` | `Requests/SubAccountApi/QuerySubAccountTransactionStatisticsForMasterAccountRequest.cs` |
-| `SapiV1SubAccountTransactionStatisticsResponse` | `Models/SapiV1SubAccountTransactionStatisticsResponse.cs` |
-| `QuerySubAccountTransactionStatisticsForMasterAccountError` | `Errors/QuerySubAccountTransactionStatisticsForMasterAccountError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QuerySubAccountTransactionStatisticsForMasterAccountRequest` | `src/Binance/Requests/SubAccountApi/QuerySubAccountTransactionStatisticsForMasterAccountRequest.cs` |
+| `SapiV1SubAccountTransactionStatisticsResponse` | `src/Binance/Models/SapiV1SubAccountTransactionStatisticsResponse.cs` |
+| `QuerySubAccountTransactionStatisticsForMasterAccountError` | `src/Binance/Errors/QuerySubAccountTransactionStatisticsForMasterAccountError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### SubAccountAssetsForMasterAccount
 
@@ -462,10 +462,10 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 | Type | Source |
 | --- | --- |
-| `SubAccountAssetsForMasterAccountRequest` | `Requests/SubAccountApi/SubAccountAssetsForMasterAccountRequest.cs` |
-| `SapiV3SubAccountAssetsResponse` | `Models/SapiV3SubAccountAssetsResponse.cs` |
-| `SubAccountAssetsForMasterAccountError` | `Errors/SubAccountAssetsForMasterAccountError.cs` |
-| `Error` | `Models/Error.cs` |
+| `SubAccountAssetsForMasterAccountRequest` | `src/Binance/Requests/SubAccountApi/SubAccountAssetsForMasterAccountRequest.cs` |
+| `SapiV3SubAccountAssetsResponse` | `src/Binance/Models/SapiV3SubAccountAssetsResponse.cs` |
+| `SubAccountAssetsForMasterAccountError` | `src/Binance/Errors/SubAccountAssetsForMasterAccountError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### SubAccountDepositHistoryForMasterAccount
 
@@ -479,10 +479,10 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 | Type | Source |
 | --- | --- |
-| `SubAccountDepositHistoryForMasterAccountRequest` | `Requests/SubAccountApi/SubAccountDepositHistoryForMasterAccountRequest.cs` |
-| `SapiV1CapitalDepositSubHisrecResponse` | `Models/SapiV1CapitalDepositSubHisrecResponse.cs` |
-| `SubAccountDepositHistoryForMasterAccountError` | `Errors/SubAccountDepositHistoryForMasterAccountError.cs` |
-| `Error` | `Models/Error.cs` |
+| `SubAccountDepositHistoryForMasterAccountRequest` | `src/Binance/Requests/SubAccountApi/SubAccountDepositHistoryForMasterAccountRequest.cs` |
+| `SapiV1CapitalDepositSubHisrecResponse` | `src/Binance/Models/SapiV1CapitalDepositSubHisrecResponse.cs` |
+| `SubAccountDepositHistoryForMasterAccountError` | `src/Binance/Errors/SubAccountDepositHistoryForMasterAccountError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### SubAccountFuturesAssetTransferForMasterAccount
 
@@ -496,10 +496,10 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 | Type | Source |
 | --- | --- |
-| `SubAccountFuturesAssetTransferForMasterAccountRequest` | `Requests/SubAccountApi/SubAccountFuturesAssetTransferForMasterAccountRequest.cs` |
-| `SapiV1SubAccountFuturesInternalTransferResponse1` | `Models/SapiV1SubAccountFuturesInternalTransferResponse1.cs` |
-| `SubAccountFuturesAssetTransferForMasterAccountError` | `Errors/SubAccountFuturesAssetTransferForMasterAccountError.cs` |
-| `Error` | `Models/Error.cs` |
+| `SubAccountFuturesAssetTransferForMasterAccountRequest` | `src/Binance/Requests/SubAccountApi/SubAccountFuturesAssetTransferForMasterAccountRequest.cs` |
+| `SapiV1SubAccountFuturesInternalTransferResponse1` | `src/Binance/Models/SapiV1SubAccountFuturesInternalTransferResponse1.cs` |
+| `SubAccountFuturesAssetTransferForMasterAccountError` | `src/Binance/Errors/SubAccountFuturesAssetTransferForMasterAccountError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### SubAccountFuturesAssetTransferHistoryForMasterAccount
 
@@ -513,10 +513,10 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 | Type | Source |
 | --- | --- |
-| `SubAccountFuturesAssetTransferHistoryForMasterAccountRequest` | `Requests/SubAccountApi/SubAccountFuturesAssetTransferHistoryForMasterAccountRequest.cs` |
-| `SapiV1SubAccountFuturesInternalTransferResponse` | `Models/SapiV1SubAccountFuturesInternalTransferResponse.cs` |
-| `SubAccountFuturesAssetTransferHistoryForMasterAccountError` | `Errors/SubAccountFuturesAssetTransferHistoryForMasterAccountError.cs` |
-| `Error` | `Models/Error.cs` |
+| `SubAccountFuturesAssetTransferHistoryForMasterAccountRequest` | `src/Binance/Requests/SubAccountApi/SubAccountFuturesAssetTransferHistoryForMasterAccountRequest.cs` |
+| `SapiV1SubAccountFuturesInternalTransferResponse` | `src/Binance/Models/SapiV1SubAccountFuturesInternalTransferResponse.cs` |
+| `SubAccountFuturesAssetTransferHistoryForMasterAccountError` | `src/Binance/Errors/SubAccountFuturesAssetTransferHistoryForMasterAccountError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### SubAccountSStatusOnMarginFuturesForMasterAccount
 
@@ -530,10 +530,10 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 | Type | Source |
 | --- | --- |
-| `SubAccountSStatusOnMarginFuturesForMasterAccountRequest` | `Requests/SubAccountApi/SubAccountSStatusOnMarginFuturesForMasterAccountRequest.cs` |
-| `SapiV1SubAccountStatusResponse` | `Models/SapiV1SubAccountStatusResponse.cs` |
-| `SubAccountSStatusOnMarginFuturesForMasterAccountError` | `Errors/SubAccountSStatusOnMarginFuturesForMasterAccountError.cs` |
-| `Error` | `Models/Error.cs` |
+| `SubAccountSStatusOnMarginFuturesForMasterAccountRequest` | `src/Binance/Requests/SubAccountApi/SubAccountSStatusOnMarginFuturesForMasterAccountRequest.cs` |
+| `SapiV1SubAccountStatusResponse` | `src/Binance/Models/SapiV1SubAccountStatusResponse.cs` |
+| `SubAccountSStatusOnMarginFuturesForMasterAccountError` | `src/Binance/Errors/SubAccountSStatusOnMarginFuturesForMasterAccountError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### SubAccountSpotAssetTransferHistoryForMasterAccount
 
@@ -547,10 +547,10 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 | Type | Source |
 | --- | --- |
-| `SubAccountSpotAssetTransferHistoryForMasterAccountRequest` | `Requests/SubAccountApi/SubAccountSpotAssetTransferHistoryForMasterAccountRequest.cs` |
-| `SapiV1SubAccountSubTransferHistoryResponse` | `Models/SapiV1SubAccountSubTransferHistoryResponse.cs` |
-| `SubAccountSpotAssetTransferHistoryForMasterAccountError` | `Errors/SubAccountSpotAssetTransferHistoryForMasterAccountError.cs` |
-| `Error` | `Models/Error.cs` |
+| `SubAccountSpotAssetTransferHistoryForMasterAccountRequest` | `src/Binance/Requests/SubAccountApi/SubAccountSpotAssetTransferHistoryForMasterAccountRequest.cs` |
+| `SapiV1SubAccountSubTransferHistoryResponse` | `src/Binance/Models/SapiV1SubAccountSubTransferHistoryResponse.cs` |
+| `SubAccountSpotAssetTransferHistoryForMasterAccountError` | `src/Binance/Errors/SubAccountSpotAssetTransferHistoryForMasterAccountError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### SubAccountSpotAssetsSummaryForMasterAccount
 
@@ -564,10 +564,10 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 | Type | Source |
 | --- | --- |
-| `SubAccountSpotAssetsSummaryForMasterAccountRequest` | `Requests/SubAccountApi/SubAccountSpotAssetsSummaryForMasterAccountRequest.cs` |
-| `SapiV1SubAccountSpotSummaryResponse` | `Models/SapiV1SubAccountSpotSummaryResponse.cs` |
-| `SubAccountSpotAssetsSummaryForMasterAccountError` | `Errors/SubAccountSpotAssetsSummaryForMasterAccountError.cs` |
-| `Error` | `Models/Error.cs` |
+| `SubAccountSpotAssetsSummaryForMasterAccountRequest` | `src/Binance/Requests/SubAccountApi/SubAccountSpotAssetsSummaryForMasterAccountRequest.cs` |
+| `SapiV1SubAccountSpotSummaryResponse` | `src/Binance/Models/SapiV1SubAccountSpotSummaryResponse.cs` |
+| `SubAccountSpotAssetsSummaryForMasterAccountError` | `src/Binance/Errors/SubAccountSpotAssetsSummaryForMasterAccountError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### SubAccountSpotAssetsSummaryForMasterAccount2
 
@@ -581,10 +581,10 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 | Type | Source |
 | --- | --- |
-| `SubAccountSpotAssetsSummaryForMasterAccount2Request` | `Requests/SubAccountApi/SubAccountSpotAssetsSummaryForMasterAccount2Request.cs` |
-| `SapiV1CapitalDepositSubAddressResponse` | `Models/SapiV1CapitalDepositSubAddressResponse.cs` |
-| `SubAccountSpotAssetsSummaryForMasterAccount2Error` | `Errors/SubAccountSpotAssetsSummaryForMasterAccount2Error.cs` |
-| `Error` | `Models/Error.cs` |
+| `SubAccountSpotAssetsSummaryForMasterAccount2Request` | `src/Binance/Requests/SubAccountApi/SubAccountSpotAssetsSummaryForMasterAccount2Request.cs` |
+| `SapiV1CapitalDepositSubAddressResponse` | `src/Binance/Models/SapiV1CapitalDepositSubAddressResponse.cs` |
+| `SubAccountSpotAssetsSummaryForMasterAccount2Error` | `src/Binance/Errors/SubAccountSpotAssetsSummaryForMasterAccount2Error.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### SubAccountTransferHistoryForSubAccount
 
@@ -598,10 +598,10 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 | Type | Source |
 | --- | --- |
-| `SubAccountTransferHistoryForSubAccountRequest` | `Requests/SubAccountApi/SubAccountTransferHistoryForSubAccountRequest.cs` |
-| `SapiV1SubAccountTransferSubUserHistoryResponse` | `Models/SapiV1SubAccountTransferSubUserHistoryResponse.cs` |
-| `SubAccountTransferHistoryForSubAccountError` | `Errors/SubAccountTransferHistoryForSubAccountError.cs` |
-| `Error` | `Models/Error.cs` |
+| `SubAccountTransferHistoryForSubAccountRequest` | `src/Binance/Requests/SubAccountApi/SubAccountTransferHistoryForSubAccountRequest.cs` |
+| `SapiV1SubAccountTransferSubUserHistoryResponse` | `src/Binance/Models/SapiV1SubAccountTransferSubUserHistoryResponse.cs` |
+| `SubAccountTransferHistoryForSubAccountError` | `src/Binance/Errors/SubAccountTransferHistoryForSubAccountError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### SummaryOfSubAccountSFuturesAccountForMasterAccount
 
@@ -615,10 +615,10 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 | Type | Source |
 | --- | --- |
-| `SummaryOfSubAccountSFuturesAccountForMasterAccountRequest` | `Requests/SubAccountApi/SummaryOfSubAccountSFuturesAccountForMasterAccountRequest.cs` |
-| `SapiV1SubAccountFuturesAccountSummaryResponse` | `Models/SapiV1SubAccountFuturesAccountSummaryResponse.cs` |
-| `SummaryOfSubAccountSFuturesAccountForMasterAccountError` | `Errors/SummaryOfSubAccountSFuturesAccountForMasterAccountError.cs` |
-| `Error` | `Models/Error.cs` |
+| `SummaryOfSubAccountSFuturesAccountForMasterAccountRequest` | `src/Binance/Requests/SubAccountApi/SummaryOfSubAccountSFuturesAccountForMasterAccountRequest.cs` |
+| `SapiV1SubAccountFuturesAccountSummaryResponse` | `src/Binance/Models/SapiV1SubAccountFuturesAccountSummaryResponse.cs` |
+| `SummaryOfSubAccountSFuturesAccountForMasterAccountError` | `src/Binance/Errors/SummaryOfSubAccountSFuturesAccountForMasterAccountError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### SummaryOfSubAccountSFuturesAccountV2ForMasterAccount
 
@@ -632,10 +632,10 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 | Type | Source |
 | --- | --- |
-| `SummaryOfSubAccountSFuturesAccountV2ForMasterAccountRequest` | `Requests/SubAccountApi/SummaryOfSubAccountSFuturesAccountV2ForMasterAccountRequest.cs` |
-| `SapiV2SubAccountFuturesAccountSummaryResponse` | `Models/AnyOf/SapiV2SubAccountFuturesAccountSummaryResponse.cs` |
-| `SummaryOfSubAccountSFuturesAccountV2ForMasterAccountError` | `Errors/SummaryOfSubAccountSFuturesAccountV2ForMasterAccountError.cs` |
-| `Error` | `Models/Error.cs` |
+| `SummaryOfSubAccountSFuturesAccountV2ForMasterAccountRequest` | `src/Binance/Requests/SubAccountApi/SummaryOfSubAccountSFuturesAccountV2ForMasterAccountRequest.cs` |
+| `SapiV2SubAccountFuturesAccountSummaryResponse` | `src/Binance/Models/AnyOf/SapiV2SubAccountFuturesAccountSummaryResponse.cs` |
+| `SummaryOfSubAccountSFuturesAccountV2ForMasterAccountError` | `src/Binance/Errors/SummaryOfSubAccountSFuturesAccountV2ForMasterAccountError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### SummaryOfSubAccountSMarginAccountForMasterAccount
 
@@ -649,10 +649,10 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 | Type | Source |
 | --- | --- |
-| `SummaryOfSubAccountSMarginAccountForMasterAccountRequest` | `Requests/SubAccountApi/SummaryOfSubAccountSMarginAccountForMasterAccountRequest.cs` |
-| `SapiV1SubAccountMarginAccountSummaryResponse` | `Models/SapiV1SubAccountMarginAccountSummaryResponse.cs` |
-| `SummaryOfSubAccountSMarginAccountForMasterAccountError` | `Errors/SummaryOfSubAccountSMarginAccountForMasterAccountError.cs` |
-| `Error` | `Models/Error.cs` |
+| `SummaryOfSubAccountSMarginAccountForMasterAccountRequest` | `src/Binance/Requests/SubAccountApi/SummaryOfSubAccountSMarginAccountForMasterAccountRequest.cs` |
+| `SapiV1SubAccountMarginAccountSummaryResponse` | `src/Binance/Models/SapiV1SubAccountMarginAccountSummaryResponse.cs` |
+| `SummaryOfSubAccountSMarginAccountForMasterAccountError` | `src/Binance/Errors/SummaryOfSubAccountSMarginAccountForMasterAccountError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### TransferForSubAccountForMasterAccount
 
@@ -666,10 +666,10 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 | Type | Source |
 | --- | --- |
-| `TransferForSubAccountForMasterAccountRequest` | `Requests/SubAccountApi/TransferForSubAccountForMasterAccountRequest.cs` |
-| `SapiV1SubAccountFuturesTransferResponse` | `Models/SapiV1SubAccountFuturesTransferResponse.cs` |
-| `TransferForSubAccountForMasterAccountError` | `Errors/TransferForSubAccountForMasterAccountError.cs` |
-| `Error` | `Models/Error.cs` |
+| `TransferForSubAccountForMasterAccountRequest` | `src/Binance/Requests/SubAccountApi/TransferForSubAccountForMasterAccountRequest.cs` |
+| `SapiV1SubAccountFuturesTransferResponse` | `src/Binance/Models/SapiV1SubAccountFuturesTransferResponse.cs` |
+| `TransferForSubAccountForMasterAccountError` | `src/Binance/Errors/TransferForSubAccountForMasterAccountError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### TransferToMasterForSubAccount
 
@@ -683,10 +683,10 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 | Type | Source |
 | --- | --- |
-| `TransferToMasterForSubAccountRequest` | `Requests/SubAccountApi/TransferToMasterForSubAccountRequest.cs` |
-| `SapiV1SubAccountTransferSubToMasterResponse` | `Models/SapiV1SubAccountTransferSubToMasterResponse.cs` |
-| `TransferToMasterForSubAccountError` | `Errors/TransferToMasterForSubAccountError.cs` |
-| `Error` | `Models/Error.cs` |
+| `TransferToMasterForSubAccountRequest` | `src/Binance/Requests/SubAccountApi/TransferToMasterForSubAccountRequest.cs` |
+| `SapiV1SubAccountTransferSubToMasterResponse` | `src/Binance/Models/SapiV1SubAccountTransferSubToMasterResponse.cs` |
+| `TransferToMasterForSubAccountError` | `src/Binance/Errors/TransferToMasterForSubAccountError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### TransferToSubAccountOfSameMasterForSubAccount
 
@@ -700,10 +700,10 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 | Type | Source |
 | --- | --- |
-| `TransferToSubAccountOfSameMasterForSubAccountRequest` | `Requests/SubAccountApi/TransferToSubAccountOfSameMasterForSubAccountRequest.cs` |
-| `SapiV1SubAccountTransferSubToSubResponse` | `Models/SapiV1SubAccountTransferSubToSubResponse.cs` |
-| `TransferToSubAccountOfSameMasterForSubAccountError` | `Errors/TransferToSubAccountOfSameMasterForSubAccountError.cs` |
-| `Error` | `Models/Error.cs` |
+| `TransferToSubAccountOfSameMasterForSubAccountRequest` | `src/Binance/Requests/SubAccountApi/TransferToSubAccountOfSameMasterForSubAccountRequest.cs` |
+| `SapiV1SubAccountTransferSubToSubResponse` | `src/Binance/Models/SapiV1SubAccountTransferSubToSubResponse.cs` |
+| `TransferToSubAccountOfSameMasterForSubAccountError` | `src/Binance/Errors/TransferToSubAccountOfSameMasterForSubAccountError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### UniversalTransferForMasterAccount
 
@@ -717,12 +717,12 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 | Type | Source |
 | --- | --- |
-| `UniversalTransferForMasterAccountRequest` | `Requests/SubAccountApi/UniversalTransferForMasterAccountRequest.cs` |
-| `FromAccountType` | `Models/Enums/FromAccountType.cs` |
-| `ToAccountType` | `Models/Enums/ToAccountType.cs` |
-| `SapiV1SubAccountUniversalTransferResponse1` | `Models/SapiV1SubAccountUniversalTransferResponse1.cs` |
-| `UniversalTransferForMasterAccountError` | `Errors/UniversalTransferForMasterAccountError.cs` |
-| `Error` | `Models/Error.cs` |
+| `UniversalTransferForMasterAccountRequest` | `src/Binance/Requests/SubAccountApi/UniversalTransferForMasterAccountRequest.cs` |
+| `FromAccountType` | `src/Binance/Models/Enums/FromAccountType.cs` |
+| `ToAccountType` | `src/Binance/Models/Enums/ToAccountType.cs` |
+| `SapiV1SubAccountUniversalTransferResponse1` | `src/Binance/Models/SapiV1SubAccountUniversalTransferResponse1.cs` |
+| `UniversalTransferForMasterAccountError` | `src/Binance/Errors/UniversalTransferForMasterAccountError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### UniversalTransferHistoryForMasterAccount
 
@@ -736,10 +736,10 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 | Type | Source |
 | --- | --- |
-| `UniversalTransferHistoryForMasterAccountRequest` | `Requests/SubAccountApi/UniversalTransferHistoryForMasterAccountRequest.cs` |
-| `SapiV1SubAccountUniversalTransferResponse` | `Models/SapiV1SubAccountUniversalTransferResponse.cs` |
-| `UniversalTransferHistoryForMasterAccountError` | `Errors/UniversalTransferHistoryForMasterAccountError.cs` |
-| `Error` | `Models/Error.cs` |
+| `UniversalTransferHistoryForMasterAccountRequest` | `src/Binance/Requests/SubAccountApi/UniversalTransferHistoryForMasterAccountRequest.cs` |
+| `SapiV1SubAccountUniversalTransferResponse` | `src/Binance/Models/SapiV1SubAccountUniversalTransferResponse.cs` |
+| `UniversalTransferHistoryForMasterAccountError` | `src/Binance/Errors/UniversalTransferHistoryForMasterAccountError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### UpdateIpRestrictionForSubAccountApiKeyForMasterAccount
 
@@ -753,10 +753,10 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 | Type | Source |
 | --- | --- |
-| `UpdateIpRestrictionForSubAccountApiKeyForMasterAccountRequest` | `Requests/SubAccountApi/UpdateIpRestrictionForSubAccountApiKeyForMasterAccountRequest.cs` |
-| `SapiV2SubAccountSubAccountApiIpRestrictionResponse` | `Models/SapiV2SubAccountSubAccountApiIpRestrictionResponse.cs` |
-| `UpdateIpRestrictionForSubAccountApiKeyForMasterAccountError` | `Errors/UpdateIpRestrictionForSubAccountApiKeyForMasterAccountError.cs` |
-| `Error` | `Models/Error.cs` |
+| `UpdateIpRestrictionForSubAccountApiKeyForMasterAccountRequest` | `src/Binance/Requests/SubAccountApi/UpdateIpRestrictionForSubAccountApiKeyForMasterAccountRequest.cs` |
+| `SapiV2SubAccountSubAccountApiIpRestrictionResponse` | `src/Binance/Models/SapiV2SubAccountSubAccountApiIpRestrictionResponse.cs` |
+| `UpdateIpRestrictionForSubAccountApiKeyForMasterAccountError` | `src/Binance/Errors/UpdateIpRestrictionForSubAccountApiKeyForMasterAccountError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### WithdrawlAssetsFromTheManagedSubAccountForInvestorMasterAccount
 
@@ -770,8 +770,8 @@ Accessor: `client.SubAccountApi` · Source: `Api/SubAccountApi.cs` · 45 operati
 
 | Type | Source |
 | --- | --- |
-| `WithdrawlAssetsFromTheManagedSubAccountForInvestorMasterAccountRequest` | `Requests/SubAccountApi/WithdrawlAssetsFromTheManagedSubAccountForInvestorMasterAccountRequest.cs` |
-| `SapiV1ManagedSubaccountWithdrawResponse` | `Models/SapiV1ManagedSubaccountWithdrawResponse.cs` |
-| `WithdrawlAssetsFromTheManagedSubAccountForInvestorMasterAccountError` | `Errors/WithdrawlAssetsFromTheManagedSubAccountForInvestorMasterAccountError.cs` |
-| `Error` | `Models/Error.cs` |
+| `WithdrawlAssetsFromTheManagedSubAccountForInvestorMasterAccountRequest` | `src/Binance/Requests/SubAccountApi/WithdrawlAssetsFromTheManagedSubAccountForInvestorMasterAccountRequest.cs` |
+| `SapiV1ManagedSubaccountWithdrawResponse` | `src/Binance/Models/SapiV1ManagedSubaccountWithdrawResponse.cs` |
+| `WithdrawlAssetsFromTheManagedSubAccountForInvestorMasterAccountError` | `src/Binance/Errors/WithdrawlAssetsFromTheManagedSubAccountForInvestorMasterAccountError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 

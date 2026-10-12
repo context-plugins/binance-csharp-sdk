@@ -2,7 +2,7 @@
 
 # PortfolioMargin — operations
 
-Accessor: `client.PortfolioMargin` · Source: `Api/PortfolioMargin.cs` · 14 operations
+Accessor: `client.PortfolioMargin` · Source: `src/Binance/Api/PortfolioMargin.cs` · 14 operations
 
 **Type sources**: the file declaring each type an operation names (`RawError` excluded — see sdk-map.md).
 
@@ -18,11 +18,11 @@ Accessor: `client.PortfolioMargin` · Source: `Api/PortfolioMargin.cs` · 14 ope
 
 | Type | Source |
 | --- | --- |
-| `BnbTransferUserDataRequest` | `Requests/PortfolioMargin/BnbTransferUserDataRequest.cs` |
-| `TransferSide` | `Models/Enums/TransferSide.cs` |
-| `SapiV1PortfolioBnbTransferResponse` | `Models/SapiV1PortfolioBnbTransferResponse.cs` |
-| `BnbTransferUserDataError` | `Errors/BnbTransferUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `BnbTransferUserDataRequest` | `src/Binance/Requests/PortfolioMargin/BnbTransferUserDataRequest.cs` |
+| `TransferSide` | `src/Binance/Models/Enums/TransferSide.cs` |
+| `SapiV1PortfolioBnbTransferResponse` | `src/Binance/Models/SapiV1PortfolioBnbTransferResponse.cs` |
+| `BnbTransferUserDataError` | `src/Binance/Errors/BnbTransferUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### ChangeAutoRepayFuturesStatusUserData
 
@@ -36,10 +36,10 @@ Accessor: `client.PortfolioMargin` · Source: `Api/PortfolioMargin.cs` · 14 ope
 
 | Type | Source |
 | --- | --- |
-| `ChangeAutoRepayFuturesStatusUserDataRequest` | `Requests/PortfolioMargin/ChangeAutoRepayFuturesStatusUserDataRequest.cs` |
-| `SapiV1PortfolioRepayFuturesSwitchResponse` | `Models/SapiV1PortfolioRepayFuturesSwitchResponse.cs` |
-| `ChangeAutoRepayFuturesStatusUserDataError` | `Errors/ChangeAutoRepayFuturesStatusUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `ChangeAutoRepayFuturesStatusUserDataRequest` | `src/Binance/Requests/PortfolioMargin/ChangeAutoRepayFuturesStatusUserDataRequest.cs` |
+| `SapiV1PortfolioRepayFuturesSwitchResponse` | `src/Binance/Models/SapiV1PortfolioRepayFuturesSwitchResponse.cs` |
+| `ChangeAutoRepayFuturesStatusUserDataError` | `src/Binance/Errors/ChangeAutoRepayFuturesStatusUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### FundAutoCollectionUserData
 
@@ -53,10 +53,10 @@ Accessor: `client.PortfolioMargin` · Source: `Api/PortfolioMargin.cs` · 14 ope
 
 | Type | Source |
 | --- | --- |
-| `FundAutoCollectionUserDataRequest` | `Requests/PortfolioMargin/FundAutoCollectionUserDataRequest.cs` |
-| `SapiV1PortfolioAutoCollectionResponse` | `Models/SapiV1PortfolioAutoCollectionResponse.cs` |
-| `FundAutoCollectionUserDataError` | `Errors/FundAutoCollectionUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `FundAutoCollectionUserDataRequest` | `src/Binance/Requests/PortfolioMargin/FundAutoCollectionUserDataRequest.cs` |
+| `SapiV1PortfolioAutoCollectionResponse` | `src/Binance/Models/SapiV1PortfolioAutoCollectionResponse.cs` |
+| `FundAutoCollectionUserDataError` | `src/Binance/Errors/FundAutoCollectionUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### FundCollectionByAssetUserData
 
@@ -70,10 +70,10 @@ Accessor: `client.PortfolioMargin` · Source: `Api/PortfolioMargin.cs` · 14 ope
 
 | Type | Source |
 | --- | --- |
-| `FundCollectionByAssetUserDataRequest` | `Requests/PortfolioMargin/FundCollectionByAssetUserDataRequest.cs` |
-| `SapiV1PortfolioAssetCollectionResponse` | `Models/SapiV1PortfolioAssetCollectionResponse.cs` |
-| `FundCollectionByAssetUserDataError` | `Errors/FundCollectionByAssetUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `FundCollectionByAssetUserDataRequest` | `src/Binance/Requests/PortfolioMargin/FundCollectionByAssetUserDataRequest.cs` |
+| `SapiV1PortfolioAssetCollectionResponse` | `src/Binance/Models/SapiV1PortfolioAssetCollectionResponse.cs` |
+| `FundCollectionByAssetUserDataError` | `src/Binance/Errors/FundCollectionByAssetUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetAutoRepayFuturesStatusUserData
 
@@ -87,10 +87,10 @@ Accessor: `client.PortfolioMargin` · Source: `Api/PortfolioMargin.cs` · 14 ope
 
 | Type | Source |
 | --- | --- |
-| `GetAutoRepayFuturesStatusUserDataRequest` | `Requests/PortfolioMargin/GetAutoRepayFuturesStatusUserDataRequest.cs` |
-| `SapiV1PortfolioRepayFuturesSwitchResponse1` | `Models/SapiV1PortfolioRepayFuturesSwitchResponse1.cs` |
-| `GetAutoRepayFuturesStatusUserDataError` | `Errors/GetAutoRepayFuturesStatusUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `GetAutoRepayFuturesStatusUserDataRequest` | `src/Binance/Requests/PortfolioMargin/GetAutoRepayFuturesStatusUserDataRequest.cs` |
+| `SapiV1PortfolioRepayFuturesSwitchResponse1` | `src/Binance/Models/SapiV1PortfolioRepayFuturesSwitchResponse1.cs` |
+| `GetAutoRepayFuturesStatusUserDataError` | `src/Binance/Errors/GetAutoRepayFuturesStatusUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### GetPortfolioMarginAssetLeverageUserData
 
@@ -101,9 +101,9 @@ Accessor: `client.PortfolioMargin` · Source: `Api/PortfolioMargin.cs` · 14 ope
 
 | Type | Source |
 | --- | --- |
-| `SapiV1PortfolioMarginAssetLeverageResponse` | `Models/SapiV1PortfolioMarginAssetLeverageResponse.cs` |
-| `GetPortfolioMarginAssetLeverageUserDataError` | `Errors/GetPortfolioMarginAssetLeverageUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `SapiV1PortfolioMarginAssetLeverageResponse` | `src/Binance/Models/SapiV1PortfolioMarginAssetLeverageResponse.cs` |
+| `GetPortfolioMarginAssetLeverageUserDataError` | `src/Binance/Errors/GetPortfolioMarginAssetLeverageUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### PortfolioMarginAccountUserData
 
@@ -117,10 +117,10 @@ Accessor: `client.PortfolioMargin` · Source: `Api/PortfolioMargin.cs` · 14 ope
 
 | Type | Source |
 | --- | --- |
-| `PortfolioMarginAccountUserDataRequest` | `Requests/PortfolioMargin/PortfolioMarginAccountUserDataRequest.cs` |
-| `SapiV1PortfolioAccountResponse` | `Models/SapiV1PortfolioAccountResponse.cs` |
-| `PortfolioMarginAccountUserDataError` | `Errors/PortfolioMarginAccountUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `PortfolioMarginAccountUserDataRequest` | `src/Binance/Requests/PortfolioMargin/PortfolioMarginAccountUserDataRequest.cs` |
+| `SapiV1PortfolioAccountResponse` | `src/Binance/Models/SapiV1PortfolioAccountResponse.cs` |
+| `PortfolioMarginAccountUserDataError` | `src/Binance/Errors/PortfolioMarginAccountUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### PortfolioMarginBankruptcyLoanAmountUserData
 
@@ -134,10 +134,10 @@ Accessor: `client.PortfolioMargin` · Source: `Api/PortfolioMargin.cs` · 14 ope
 
 | Type | Source |
 | --- | --- |
-| `PortfolioMarginBankruptcyLoanAmountUserDataRequest` | `Requests/PortfolioMargin/PortfolioMarginBankruptcyLoanAmountUserDataRequest.cs` |
-| `SapiV1PortfolioPmLoanResponse` | `Models/SapiV1PortfolioPmLoanResponse.cs` |
-| `PortfolioMarginBankruptcyLoanAmountUserDataError` | `Errors/PortfolioMarginBankruptcyLoanAmountUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `PortfolioMarginBankruptcyLoanAmountUserDataRequest` | `src/Binance/Requests/PortfolioMargin/PortfolioMarginBankruptcyLoanAmountUserDataRequest.cs` |
+| `SapiV1PortfolioPmLoanResponse` | `src/Binance/Models/SapiV1PortfolioPmLoanResponse.cs` |
+| `PortfolioMarginBankruptcyLoanAmountUserDataError` | `src/Binance/Errors/PortfolioMarginBankruptcyLoanAmountUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### PortfolioMarginBankruptcyLoanRepayUserData
 
@@ -151,10 +151,10 @@ Accessor: `client.PortfolioMargin` · Source: `Api/PortfolioMargin.cs` · 14 ope
 
 | Type | Source |
 | --- | --- |
-| `PortfolioMarginBankruptcyLoanRepayUserDataRequest` | `Requests/PortfolioMargin/PortfolioMarginBankruptcyLoanRepayUserDataRequest.cs` |
-| `SapiV1PortfolioRepayResponse` | `Models/SapiV1PortfolioRepayResponse.cs` |
-| `PortfolioMarginBankruptcyLoanRepayUserDataError` | `Errors/PortfolioMarginBankruptcyLoanRepayUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `PortfolioMarginBankruptcyLoanRepayUserDataRequest` | `src/Binance/Requests/PortfolioMargin/PortfolioMarginBankruptcyLoanRepayUserDataRequest.cs` |
+| `SapiV1PortfolioRepayResponse` | `src/Binance/Models/SapiV1PortfolioRepayResponse.cs` |
+| `PortfolioMarginBankruptcyLoanRepayUserDataError` | `src/Binance/Errors/PortfolioMarginBankruptcyLoanRepayUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### PortfolioMarginCollateralRateMarketData
 
@@ -166,9 +166,9 @@ Accessor: `client.PortfolioMargin` · Source: `Api/PortfolioMargin.cs` · 14 ope
 
 | Type | Source |
 | --- | --- |
-| `SapiV1PortfolioCollateralRateResponse` | `Models/SapiV1PortfolioCollateralRateResponse.cs` |
-| `PortfolioMarginCollateralRateMarketDataError` | `Errors/PortfolioMarginCollateralRateMarketDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `SapiV1PortfolioCollateralRateResponse` | `src/Binance/Models/SapiV1PortfolioCollateralRateResponse.cs` |
+| `PortfolioMarginCollateralRateMarketDataError` | `src/Binance/Errors/PortfolioMarginCollateralRateMarketDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### PortfolioMarginProTieredCollateralRateUserData
 
@@ -182,10 +182,10 @@ Accessor: `client.PortfolioMargin` · Source: `Api/PortfolioMargin.cs` · 14 ope
 
 | Type | Source |
 | --- | --- |
-| `PortfolioMarginProTieredCollateralRateUserDataRequest` | `Requests/PortfolioMargin/PortfolioMarginProTieredCollateralRateUserDataRequest.cs` |
-| `SapiV2PortfolioCollateralRateResponse` | `Models/SapiV2PortfolioCollateralRateResponse.cs` |
-| `PortfolioMarginProTieredCollateralRateUserDataError` | `Errors/PortfolioMarginProTieredCollateralRateUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `PortfolioMarginProTieredCollateralRateUserDataRequest` | `src/Binance/Requests/PortfolioMargin/PortfolioMarginProTieredCollateralRateUserDataRequest.cs` |
+| `SapiV2PortfolioCollateralRateResponse` | `src/Binance/Models/SapiV2PortfolioCollateralRateResponse.cs` |
+| `PortfolioMarginProTieredCollateralRateUserDataError` | `src/Binance/Errors/PortfolioMarginProTieredCollateralRateUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUserData
 
@@ -199,10 +199,10 @@ Accessor: `client.PortfolioMargin` · Source: `Api/PortfolioMargin.cs` · 14 ope
 
 | Type | Source |
 | --- | --- |
-| `QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUserDataRequest` | `Requests/PortfolioMargin/QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUserDataRequest.cs` |
-| `SapiV1PortfolioInterestHistoryResponse` | `Models/SapiV1PortfolioInterestHistoryResponse.cs` |
-| `QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUserDataError` | `Errors/QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUserDataRequest` | `src/Binance/Requests/PortfolioMargin/QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUserDataRequest.cs` |
+| `SapiV1PortfolioInterestHistoryResponse` | `src/Binance/Models/SapiV1PortfolioInterestHistoryResponse.cs` |
+| `QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUserDataError` | `src/Binance/Errors/QueryClassicPortfolioMarginNegativeBalanceInterestHistoryUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QueryPortfolioMarginAssetIndexPriceMarketData
 
@@ -215,10 +215,10 @@ Accessor: `client.PortfolioMargin` · Source: `Api/PortfolioMargin.cs` · 14 ope
 
 | Type | Source |
 | --- | --- |
-| `QueryPortfolioMarginAssetIndexPriceMarketDataRequest` | `Requests/PortfolioMargin/QueryPortfolioMarginAssetIndexPriceMarketDataRequest.cs` |
-| `SapiV1PortfolioAssetIndexPriceResponse` | `Models/SapiV1PortfolioAssetIndexPriceResponse.cs` |
-| `QueryPortfolioMarginAssetIndexPriceMarketDataError` | `Errors/QueryPortfolioMarginAssetIndexPriceMarketDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QueryPortfolioMarginAssetIndexPriceMarketDataRequest` | `src/Binance/Requests/PortfolioMargin/QueryPortfolioMarginAssetIndexPriceMarketDataRequest.cs` |
+| `SapiV1PortfolioAssetIndexPriceResponse` | `src/Binance/Models/SapiV1PortfolioAssetIndexPriceResponse.cs` |
+| `QueryPortfolioMarginAssetIndexPriceMarketDataError` | `src/Binance/Errors/QueryPortfolioMarginAssetIndexPriceMarketDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### RepayFuturesNegativeBalanceUserData
 
@@ -232,8 +232,8 @@ Accessor: `client.PortfolioMargin` · Source: `Api/PortfolioMargin.cs` · 14 ope
 
 | Type | Source |
 | --- | --- |
-| `RepayFuturesNegativeBalanceUserDataRequest` | `Requests/PortfolioMargin/RepayFuturesNegativeBalanceUserDataRequest.cs` |
-| `SapiV1PortfolioRepayFuturesNegativeBalanceResponse` | `Models/SapiV1PortfolioRepayFuturesNegativeBalanceResponse.cs` |
-| `RepayFuturesNegativeBalanceUserDataError` | `Errors/RepayFuturesNegativeBalanceUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `RepayFuturesNegativeBalanceUserDataRequest` | `src/Binance/Requests/PortfolioMargin/RepayFuturesNegativeBalanceUserDataRequest.cs` |
+| `SapiV1PortfolioRepayFuturesNegativeBalanceResponse` | `src/Binance/Models/SapiV1PortfolioRepayFuturesNegativeBalanceResponse.cs` |
+| `RepayFuturesNegativeBalanceUserDataError` | `src/Binance/Errors/RepayFuturesNegativeBalanceUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 

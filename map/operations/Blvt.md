@@ -2,7 +2,7 @@
 
 # Blvt — operations
 
-Accessor: `client.Blvt` · Source: `Api/Blvt.cs` · 6 operations
+Accessor: `client.Blvt` · Source: `src/Binance/Api/Blvt.cs` · 6 operations
 
 **Type sources**: the file declaring each type an operation names (`RawError` excluded — see sdk-map.md).
 
@@ -17,10 +17,10 @@ Accessor: `client.Blvt` · Source: `Api/Blvt.cs` · 6 operations
 
 | Type | Source |
 | --- | --- |
-| `BlvtInfoMarketDataRequest` | `Requests/Blvt/BlvtInfoMarketDataRequest.cs` |
-| `SapiV1BlvtTokenInfoResponse` | `Models/SapiV1BlvtTokenInfoResponse.cs` |
-| `BlvtInfoMarketDataError` | `Errors/BlvtInfoMarketDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `BlvtInfoMarketDataRequest` | `src/Binance/Requests/Blvt/BlvtInfoMarketDataRequest.cs` |
+| `SapiV1BlvtTokenInfoResponse` | `src/Binance/Models/SapiV1BlvtTokenInfoResponse.cs` |
+| `BlvtInfoMarketDataError` | `src/Binance/Errors/BlvtInfoMarketDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### BlvtUserLimitInfoUserData
 
@@ -34,10 +34,10 @@ Accessor: `client.Blvt` · Source: `Api/Blvt.cs` · 6 operations
 
 | Type | Source |
 | --- | --- |
-| `BlvtUserLimitInfoUserDataRequest` | `Requests/Blvt/BlvtUserLimitInfoUserDataRequest.cs` |
-| `SapiV1BlvtUserLimitResponse` | `Models/SapiV1BlvtUserLimitResponse.cs` |
-| `BlvtUserLimitInfoUserDataError` | `Errors/BlvtUserLimitInfoUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `BlvtUserLimitInfoUserDataRequest` | `src/Binance/Requests/Blvt/BlvtUserLimitInfoUserDataRequest.cs` |
+| `SapiV1BlvtUserLimitResponse` | `src/Binance/Models/SapiV1BlvtUserLimitResponse.cs` |
+| `BlvtUserLimitInfoUserDataError` | `src/Binance/Errors/BlvtUserLimitInfoUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### QuerySubscriptionRecordUserData
 
@@ -51,10 +51,10 @@ Accessor: `client.Blvt` · Source: `Api/Blvt.cs` · 6 operations
 
 | Type | Source |
 | --- | --- |
-| `QuerySubscriptionRecordUserDataRequest` | `Requests/Blvt/QuerySubscriptionRecordUserDataRequest.cs` |
-| `SapiV1BlvtSubscribeRecordResponse` | `Models/SapiV1BlvtSubscribeRecordResponse.cs` |
-| `QuerySubscriptionRecordUserDataError` | `Errors/QuerySubscriptionRecordUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `QuerySubscriptionRecordUserDataRequest` | `src/Binance/Requests/Blvt/QuerySubscriptionRecordUserDataRequest.cs` |
+| `SapiV1BlvtSubscribeRecordResponse` | `src/Binance/Models/SapiV1BlvtSubscribeRecordResponse.cs` |
+| `QuerySubscriptionRecordUserDataError` | `src/Binance/Errors/QuerySubscriptionRecordUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### RedeemBlvtUserData
 
@@ -68,10 +68,10 @@ Accessor: `client.Blvt` · Source: `Api/Blvt.cs` · 6 operations
 
 | Type | Source |
 | --- | --- |
-| `RedeemBlvtUserDataRequest` | `Requests/Blvt/RedeemBlvtUserDataRequest.cs` |
-| `SapiV1BlvtRedeemResponse` | `Models/SapiV1BlvtRedeemResponse.cs` |
-| `RedeemBlvtUserDataError` | `Errors/RedeemBlvtUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `RedeemBlvtUserDataRequest` | `src/Binance/Requests/Blvt/RedeemBlvtUserDataRequest.cs` |
+| `SapiV1BlvtRedeemResponse` | `src/Binance/Models/SapiV1BlvtRedeemResponse.cs` |
+| `RedeemBlvtUserDataError` | `src/Binance/Errors/RedeemBlvtUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### RedemptionRecordUserData
 
@@ -85,10 +85,10 @@ Accessor: `client.Blvt` · Source: `Api/Blvt.cs` · 6 operations
 
 | Type | Source |
 | --- | --- |
-| `RedemptionRecordUserDataRequest` | `Requests/Blvt/RedemptionRecordUserDataRequest.cs` |
-| `SapiV1BlvtRedeemRecordResponse` | `Models/SapiV1BlvtRedeemRecordResponse.cs` |
-| `RedemptionRecordUserDataError` | `Errors/RedemptionRecordUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `RedemptionRecordUserDataRequest` | `src/Binance/Requests/Blvt/RedemptionRecordUserDataRequest.cs` |
+| `SapiV1BlvtRedeemRecordResponse` | `src/Binance/Models/SapiV1BlvtRedeemRecordResponse.cs` |
+| `RedemptionRecordUserDataError` | `src/Binance/Errors/RedemptionRecordUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
 ### SubscribeBlvtUserData
 
@@ -102,8 +102,8 @@ Accessor: `client.Blvt` · Source: `Api/Blvt.cs` · 6 operations
 
 | Type | Source |
 | --- | --- |
-| `SubscribeBlvtUserDataRequest` | `Requests/Blvt/SubscribeBlvtUserDataRequest.cs` |
-| `SapiV1BlvtSubscribeResponse` | `Models/SapiV1BlvtSubscribeResponse.cs` |
-| `SubscribeBlvtUserDataError` | `Errors/SubscribeBlvtUserDataError.cs` |
-| `Error` | `Models/Error.cs` |
+| `SubscribeBlvtUserDataRequest` | `src/Binance/Requests/Blvt/SubscribeBlvtUserDataRequest.cs` |
+| `SapiV1BlvtSubscribeResponse` | `src/Binance/Models/SapiV1BlvtSubscribeResponse.cs` |
+| `SubscribeBlvtUserDataError` | `src/Binance/Errors/SubscribeBlvtUserDataError.cs` |
+| `Error` | `src/Binance/Models/Error.cs` |
 
